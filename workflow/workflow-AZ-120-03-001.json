@@ -1,0 +1,198 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:22:24",
+  "documentId": "AZ-120-03-001",
+  "sourceFile": "結合試験 試験手順書 AZ-120-03-001.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-120-03\\_old\\結合試験 試験手順書 AZ-120-03-001.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・不備一覧画面からの一括完了の確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・シート「【別紙】事前準備」に記載してあるテストデータを作成しておくこと",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 25,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "申込書品質管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "初期値",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "2",
+          "functionName": "不備一覧画面",
+          "operationNo": "1",
+          "operationType": "入力",
+          "operationItem": "各項目に入力",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "3",
+          "operationType": "クリック",
+          "operationItem": "選択チェックボックス",
+          "operationContent": "全てチェックオンにする",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "4",
+          "operationType": "ボタン",
+          "operationItem": "「完了登録」押下",
+          "operationContent": "「完了登録」押下前に、全てのデータを他のユーザで「代理店対応」について、「連絡」から「照会」に変更する",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "表示",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "「MAZG200W024」のエラーメッセージが表示されること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "6",
+          "operationType": "入力",
+          "operationItem": "各項目に入力",
+          "operationContent": "【別紙】操作内容\n入力内容：２参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 22,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "7",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 23,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "8",
+          "operationType": "クリック",
+          "operationItem": "選択チェックボックス",
+          "operationContent": "全てチェックオンにする",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 24,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "9",
+          "operationType": "ボタン",
+          "operationItem": "「完了登録」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 25,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "10",
+          "verificationType": "表示",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "項番2-8でチェックオンにしたデータが非表示になること",
+          "evidenceType": "画面HC"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:27:25",
+  "documentId": "AZ-220-01-004",
+  "sourceFile": "結合試験 試験手順書 AZ-220-01-004.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-220-01\\結合試験 試験手順書 AZ-220-01-004.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・検索条件に応じた検索結果の確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】検索条件整理（AZ-220-01）.xlsx　を参照し、事前準備が完了していること\n・代理店画面：代理店認証経由での確認",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 16,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "代理店 不備一覧画面",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "（初期表示）",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "1",
+          "verificationType": "その他",
+          "verificationItem": "参照可能代理店テーブル",
+          "verificationContent": "データ参照",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "表示",
+          "verificationItem": "メッセージエリア",
+          "verificationContent": "「MAZG206W100」が表示されること",
+          "evidenceType": "画面HC"
+        }
+      ]
+    }
+  }
+}

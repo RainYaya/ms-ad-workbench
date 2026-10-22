@@ -1,0 +1,100 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:22:25",
+  "documentId": "AZ-120-04-001",
+  "sourceFile": "結合試験 試験手順書 AZ-120-04-001.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-120-04\\結合試験 試験手順書 AZ-120-04-001.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・ヘルプ画面の遷移確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "",
+        "range": ""
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 18,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "申込書品質管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "初期値",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "2",
+          "functionName": "不備一覧画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「ヘルプ」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "ヘルプ画面",
+          "verificationContent": "別タブで画面が開くこと",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "URL",
+          "verificationContent": "環境定義の設定値と差分比較を行い、一致すること\n（【別紙】記載のURLと一致すること）",
+          "evidenceType": "その他"
+        }
+      ]
+    }
+  }
+}

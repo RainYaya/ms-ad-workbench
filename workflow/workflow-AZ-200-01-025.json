@@ -1,0 +1,72 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:23:49",
+  "documentId": "AZ-200-01-025",
+  "sourceFile": "結合試験 試験手順書 AZ-200-01-025.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-200-01\\結合試験 試験手順書 AZ-200-01-025.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "住生認証処理の確認\n　・営業職員以外 の場合：\n　　　認証エラーが発生せず、ログイン可能であることを確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・システムズ様に実施頂く想定",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 16,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "その他（申込書品質管理）",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "ログイン画面",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "申込書品質管理システム\n（代理店MS）",
+          "verificationContent": "遷移できること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "URL",
+          "verificationContent": "新環境のURLであること",
+          "evidenceType": "その他"
+        }
+      ]
+    }
+  }
+}

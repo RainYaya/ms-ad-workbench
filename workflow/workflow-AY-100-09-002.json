@@ -1,0 +1,156 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:36:08",
+  "documentId": "AY-100-09-002",
+  "sourceFile": "結合試験 試験手順書 AY-100-09-002.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-100-09\\結合試験 試験手順書 AY-100-09-002.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・【AD】以下ボタンが表示されないことの確認\n　→　集計\n・リンクの遷移確認\n※　遷移のみ確認。実際の画面の確認は総合試験で実施。",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "",
+        "range": ""
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 22,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "異例取扱管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "遷移",
+          "operationItem": "画面",
+          "operationContent": "初期表示",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "表示",
+          "verificationItem": "「集計」ボタン",
+          "verificationContent": "表示されていないこと",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "3",
+          "operationType": "クリック",
+          "operationItem": "AD業務総括部・異例取扱HP",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "遷移",
+          "verificationItem": "AD業務総括部・異例取扱HP",
+          "verificationContent": "別タブで画面が開くこと",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "その他",
+          "verificationItem": "URL",
+          "verificationContent": "環境定義の設定値と差分比較を行い、一致すること",
+          "evidenceType": "その他"
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "6",
+          "operationType": "遷移",
+          "operationItem": "異例取扱管理メニュー画面",
+          "operationContent": "初期表示",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "7",
+          "operationType": "クリック",
+          "operationItem": "AD商品info.海上",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "8",
+          "verificationType": "遷移",
+          "verificationItem": "AD商品info.海上",
+          "verificationContent": "別タブで画面が開くこと",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 22,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "9",
+          "verificationType": "その他",
+          "verificationItem": "URL",
+          "verificationContent": "環境定義の設定値と差分比較を行い、一致すること",
+          "evidenceType": "その他"
+        }
+      ]
+    }
+  }
+}

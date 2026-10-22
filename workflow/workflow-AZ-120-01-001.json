@@ -1,0 +1,100 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:22:16",
+  "documentId": "AZ-120-01-001",
+  "sourceFile": "結合試験 試験手順書 AZ-120-01-001.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-120-01\\結合試験 試験手順書 AZ-120-01-001.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・検索条件に応じた検索結果の確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】検索条件整理（AZ-120-01）.xlsx　を参照し、事前準備が完了していること",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 18,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "申込書品質管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "初期値",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "2",
+          "functionName": "不備一覧画面",
+          "operationNo": "1",
+          "operationType": "入力",
+          "operationItem": "各項目に入力",
+          "operationContent": "【別紙】検索条件整理（AZ-120-01）.xlsx\nを参照して入力を行い、検索条件ごとの結果を確認すること",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "表示",
+          "verificationItem": "不備一覧画面",
+          "verificationContent": "検索結果件数が、DB上のデータ件数と一致すること",
+          "evidenceType": "画面HC"
+        }
+      ]
+    }
+  }
+}

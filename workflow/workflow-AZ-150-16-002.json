@@ -1,0 +1,142 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:23:07",
+  "documentId": "AZ-150-16-002",
+  "sourceFile": "結合試験 試験手順書 AZ-150-16-002.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-150-15、16\\結合試験 試験手順書 AZ-150-16-002.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・各種業務（日次）バッチの処理確認（異常系）\n　→　不備登録情報ファイル作成バッチ処理\t\t\n　→　代理店完了データ作成バッチ処理",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備（AZ-150-15、16）.xlsx　が完了していること\n・差分比較用に、現状のファイルを退避する。",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 21,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "不備登録情報ファイル作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "警告終了のログが出力されること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "不備登録情報ファイル",
+          "verificationContent": "【別紙】期待値 1　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "2",
+          "functionName": "代理店完了情報ファイル作成バッチ処理",
+          "operationNo": "5",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：２参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "警告終了のログが出力されること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "代理店完了情報ファイル",
+          "verificationContent": "【別紙】期待値 2　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        }
+      ]
+    }
+  }
+}

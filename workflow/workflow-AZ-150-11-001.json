@@ -1,0 +1,86 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:22:52",
+  "documentId": "AZ-150-11-001",
+  "sourceFile": "結合試験 試験手順書 AZ-150-11-001.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-150-11、12\\結合試験 試験手順書 AZ-150-11-001.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・各種業務（随時）バッチの処理確認（正常終了）",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前登録（AZ-150-11、12）.xlsx　が完了していること",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 17,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "メール変換先取込通知バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "登録件数が想定通りであること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "メール通知先変換テーブル",
+          "verificationContent": "【別紙】事前準備.xlsx　のシート「登録ファイル」通りにデータが反映されていること",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        }
+      ]
+    }
+  }
+}

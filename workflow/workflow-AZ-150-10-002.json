@@ -1,0 +1,114 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:22:49",
+  "documentId": "AZ-150-10-002",
+  "sourceFile": "結合試験 試験手順書 AZ-150-10-002.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-150-09、10\\結合試験 試験手順書 AZ-150-10-002.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・各種業務（日次）バッチの処理確認（異常系）\n　→　閲覧システム連携ファイル作成バッチ処理",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備（閲覧システム連携ファイル作成バッチ処理）.xlsx　が完了していること",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 19,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "閲覧システム連携ファイル作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１～２参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "警告終了のログが出力されること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "閲覧システム連携ファイル",
+          "verificationContent": "【別紙】期待値　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "5",
+          "operationType": "その他",
+          "operationItem": "事後作業",
+          "operationContent": "【別紙】操作内容\n入力内容：３参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "6",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "（目視確認）"
+        }
+      ]
+    }
+  }
+}

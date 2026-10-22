@@ -1,0 +1,128 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:45:52",
+  "documentId": "AY-210-02-005",
+  "sourceFile": "結合試験 試験手順書 AY-210-02-005.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-210-02\\結合試験 試験手順書 AY-210-02-005.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・各種業務（日次）バッチの処理確認（異常系）\n→コンプラ連携ファイル作成処理",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備.xlsxが全て実施直前に実施済みであること。\n・バッチ実行前にDBダンプを取得済み。",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 20,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "コンプラ連携ファイル作成処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１～２参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "警告終了のログが出力されること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "コンプラ連携ファイル",
+          "verificationContent": "【別紙】期待値　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "その他",
+          "verificationItem": "取消計上申請テーブル",
+          "verificationContent": "コンプラ情報システム連携日が更新されていないこと",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "6",
+          "operationType": "その他",
+          "operationItem": "事後作業",
+          "operationContent": "【別紙】操作内容\n入力内容：３参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "7",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "（目視確認）"
+        }
+      ]
+    }
+  }
+}

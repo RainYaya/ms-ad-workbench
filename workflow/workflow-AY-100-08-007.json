@@ -1,0 +1,212 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:35:53",
+  "documentId": "AY-100-08-007",
+  "sourceFile": "結合試験 試験手順書 AY-100-08-007.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-100-08\\結合試験 試験手順書 AY-100-08-007.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "【タイムゾーンの確認】　以下サービス間で時刻にずれが発生していないことの確認\n　・EC2（Web/APサーバ）\n　・RDS\n　・EBS（オンラインログ）",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "",
+        "range": ""
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 26,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "異例取扱管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「新規登録」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "取消計上申請登録画面",
+          "verificationContent": "遷移すること",
+          "evidenceType": "（目視確認）"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "2",
+          "functionName": "取消計上申請登録画面",
+          "operationNo": "1",
+          "operationType": "入力",
+          "operationItem": "各項目に入力",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「登録」押下",
+          "operationContent": "ボタン押下時の時刻をメモ",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "遷移",
+          "verificationItem": "申請・確認更新画面",
+          "verificationContent": "操作内容2-1で変更した内容が反映されること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "取消計上申請テーブル",
+          "verificationContent": "「登録日」の時刻が、操作内容2-2の時刻とずれがないこと",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "3",
+          "functionName": "申請・確認更新画面",
+          "operationNo": "1",
+          "operationType": "入力",
+          "operationItem": "任意の項目の値を変更",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「更新」押下",
+          "operationContent": "ボタン押下時の時刻をメモ",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 22,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "表示",
+          "verificationItem": "申請・確認更新画面",
+          "verificationContent": "操作内容3-1で変更した内容が反映されること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 23,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "取消計上申請テーブル",
+          "verificationContent": "「更新日」の時刻が、操作内容3-2の時刻とずれがないこと",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        },
+        {
+          "sourceRow": 24,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "操作内容1-1～3-2の時刻とずれがないこと",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 25,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "6",
+          "verificationType": "その他",
+          "verificationItem": "DBログ",
+          "verificationContent": "操作内容1-1～3-2の時刻とずれがないこと",
+          "evidenceType": "DBﾛｸﾞ"
+        },
+        {
+          "sourceRow": 26,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "7",
+          "verificationType": "その他",
+          "verificationItem": "TRログ",
+          "verificationContent": "操作内容1-1～3-2の時刻とずれがないこと",
+          "evidenceType": "TRﾛｸﾞ"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,184 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:28:54",
+  "documentId": "AZ-230-01-082",
+  "sourceFile": "結合試験 試験手順書 AZ-230-01-082.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-230-01\\結合試験 試験手順書 AZ-230-01-082.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・ToDo連携データの確認",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備（AZ-230-01）.xlsxが実施されていること。",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 26,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "(1回目)",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "開局-初回送信前打鍵",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "1",
+          "functionName": "申込書品質管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「新規登録」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "不備内容入力画面-新規",
+          "verificationContent": "初期値",
+          "evidenceType": "（目視確認）"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "2",
+          "functionName": "不備内容入力画面－新規",
+          "operationNo": "1",
+          "operationType": "入力",
+          "operationItem": "各項目に入力",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「登録」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "遷移",
+          "verificationItem": "不備内容入力画面-更新",
+          "verificationContent": "【別紙】表示内容\n表示内容：１参照",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 23,
+          "itemNo": "3",
+          "functionName": "ToDo連携データ作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行（JP1）",
+          "operationContent": "9時",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 24,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "ToDo連携テーブル",
+          "verificationContent": "レコードが無いこと",
+          "evidenceType": "DBﾀﾞﾝﾌﾟ"
+        },
+        {
+          "sourceRow": 25,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "AP_AZB022A.log",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 26,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "FAZZ000A011A",
+          "verificationContent": "データが追記されないこと",
+          "evidenceType": "定義ﾌｧｲﾙ"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,198 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:23:04",
+  "documentId": "AZ-150-15-001",
+  "sourceFile": "結合試験 試験手順書 AZ-150-15-001.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\01 申込書品質管理\\AZ-150-15、16\\結合試験 試験手順書 AZ-150-15-001.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・各種業務の（月次）バッチの処理確認（正常終了）　　\n　→　不備登録情報ファイル作成バッチ処理\t\n　→　連携データ作成バッチ処理、システム活用率データ作成バッチ処理",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備（AZ-150-15、16）が完了していること",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 25,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "不備登録情報ファイル作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "【別紙】事前準備の２－１で取得した件数と\n出力レコード件数が一致すること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "不備登録情報ファイル",
+          "verificationContent": "【別紙】期待値　１　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "2",
+          "functionName": "連携データ作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：２参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "【別紙】事前準備の２－２で取得した件数と\n出力レコード件数が一致すること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "連携データファイル",
+          "verificationContent": "【別紙】期待値　２　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 22,
+          "itemNo": "3",
+          "functionName": "システム活用率データ作成バッチ処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：３参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 23,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 24,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "【別紙】事前準備の２－３で取得した件数と\n出力レコード件数が一致すること",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 25,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "システム活用率データファイル",
+          "verificationContent": "【別紙】期待値　３　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        }
+      ]
+    }
+  }
+}

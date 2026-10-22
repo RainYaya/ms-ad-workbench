@@ -1,0 +1,114 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:36:00",
+  "documentId": "AY-100-08-012",
+  "sourceFile": "結合試験 試験手順書 AY-100-08-012.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-100-08\\結合試験 試験手順書 AY-100-08-012.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "【タイムゾーンの確認】\n以下サービス間で時刻にずれが発生していないことの確認\n　・EC2（バッチサーバ）\n　・RDS\n　・EFS（バッチログ）\n　・EFS（システム間連携ファイル）",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "・【別紙】事前準備　が完了していること",
+        "range": "K6:P9"
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 19,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "承認情報ファイル作成処理",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "バッチ実行",
+          "operationContent": "【別紙】操作内容\n入力内容：１参照",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "その他",
+          "verificationItem": "操作結果",
+          "verificationContent": "-",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "その他",
+          "verificationItem": "承認情報ファイル",
+          "verificationContent": "【別紙】期待値　参照",
+          "evidenceType": "CSVﾌｧｲﾙ"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "その他",
+          "verificationItem": "APログ",
+          "verificationContent": "操作内容1-1の時刻とずれがないこと",
+          "evidenceType": "APﾛｸﾞ"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "その他",
+          "verificationItem": "DBログ",
+          "verificationContent": "操作内容1-1の時刻とずれがないこと",
+          "evidenceType": "DBﾛｸﾞ"
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "6",
+          "verificationType": "その他",
+          "verificationItem": "取消計上申請テーブル",
+          "verificationContent": "「計上情報出力日」がバッチ実行したシステム日時で更新されていること",
+          "evidenceType": ""
+        }
+      ]
+    }
+  }
+}

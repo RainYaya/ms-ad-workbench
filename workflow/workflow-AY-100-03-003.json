@@ -1,0 +1,86 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:35:29",
+  "documentId": "AY-100-03-003",
+  "sourceFile": "結合試験 試験手順書 AY-100-03-003.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-100-03\\結合試験 試験手順書 AY-100-03-003.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・例外処理の確認（セッションタイムアウト）\n　→　親画面",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "",
+        "range": ""
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 17,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "異例取扱管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "画面を操作せず、一時間待機",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "ボタン",
+          "operationItem": "「新規登録」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "3",
+          "verificationType": "遷移",
+          "verificationItem": "セッションタイムアウト画面\n（親画面）",
+          "verificationContent": "遷移すること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "出力（Msg）",
+          "verificationItem": "エラーメッセージ",
+          "verificationContent": "MAYG800E002",
+          "evidenceType": "画面HC"
+        }
+      ]
+    }
+  }
+}

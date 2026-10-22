@@ -1,0 +1,212 @@
+﻿{
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-10-22T16:35:28",
+  "documentId": "AY-100-03-002",
+  "sourceFile": "結合試験 試験手順書 AY-100-03-002.xlsx",
+  "sourcePath": "C:\\ktin_local\\600\\G602 結合試験手順書\\02 異例取扱管理\\AY-100-03\\結合試験 試験手順書 AY-100-03-002.xlsx",
+  "workflow": {
+    "sourceSheet": "試験手順書",
+    "overview": {
+      "testPerspective": {
+        "label": "試験観点（期待結果）/留意事項",
+        "value": "・例外処理の確認（セッションタイムアウト）\n　→　子画面（ポップアップ）",
+        "range": "E6:J9"
+      },
+      "prerequisites": {
+        "label": "実施前提（実施前準備）",
+        "value": "",
+        "range": ""
+      }
+    },
+    "procedure": {
+      "columnRange": "E:O",
+      "headerTopRow": 11,
+      "dataStartRow": 14,
+      "lastDataRow": 26,
+      "rawRows": [
+        {
+          "sourceRow": 14,
+          "itemNo": "1",
+          "functionName": "異例取扱管理メニュー画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「照会・検索」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 15,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "照会・検索画面",
+          "verificationContent": "遷移すること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 16,
+          "itemNo": "2",
+          "functionName": "照会・検索画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "（任意の検索条件）",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 17,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "表示",
+          "verificationItem": "照会・検索画面",
+          "verificationContent": "データが表示されること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 18,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "3",
+          "operationType": "クリック",
+          "operationItem": "No.リンク",
+          "operationContent": "（任意のデータ）",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 19,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "遷移",
+          "verificationItem": "申請・確認更新画面",
+          "verificationContent": "遷移すること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 20,
+          "itemNo": "3",
+          "functionName": "申請・確認更新画面",
+          "operationNo": "1",
+          "operationType": "ボタン",
+          "operationItem": "「申請依頼先選択」\nまたは\n「承認依頼先」押下",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 21,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "2",
+          "verificationType": "遷移",
+          "verificationItem": "担当者検索画面",
+          "verificationContent": "遷移すること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 22,
+          "itemNo": "4",
+          "functionName": "担当者検索画面",
+          "operationNo": "1",
+          "operationType": "その他",
+          "operationItem": "画面を操作せず、一時間待機",
+          "operationContent": "",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 23,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "2",
+          "operationType": "入力",
+          "operationItem": "「氏名」または「課支社CD」",
+          "operationContent": "test",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 24,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "3",
+          "operationType": "ボタン",
+          "operationItem": "「検索」押下",
+          "operationContent": "チェックする",
+          "verificationNo": "",
+          "verificationType": "",
+          "verificationItem": "",
+          "verificationContent": "",
+          "evidenceType": ""
+        },
+        {
+          "sourceRow": 25,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "4",
+          "verificationType": "遷移",
+          "verificationItem": "セッションタイムアウト画面\n（子画面）",
+          "verificationContent": "遷移すること",
+          "evidenceType": "画面HC"
+        },
+        {
+          "sourceRow": 26,
+          "itemNo": "",
+          "functionName": "",
+          "operationNo": "",
+          "operationType": "",
+          "operationItem": "",
+          "operationContent": "",
+          "verificationNo": "5",
+          "verificationType": "出力（Msg）",
+          "verificationItem": "エラーメッセージ",
+          "verificationContent": "MAYG800E002",
+          "evidenceType": "画面HC"
+        }
+      ]
+    }
+  }
+}
