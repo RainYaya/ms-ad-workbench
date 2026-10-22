@@ -293,3 +293,13 @@ index.html
 js/app.js
 css/style.css
 ```
+
+## 11. GitHub / GitHub Pages
+
+- Repo: `https://github.com/RainYaya/ms-ad-workbench`（private）
+- Pages: `https://rainyaya.github.io/ms-ad-workbench/`
+- ルート `index.html` は `v2/index.html` へリダイレクト。旧版は `legacy.html` に残している。
+- Pages は **legacy build**。`.nojekyll` がないと Jekyll で build failed になったので、消さないこと。
+- **注意**: repo は private だが、このアカウントの Pages は `public: true`。URL を知っていれば test data を読める。機密扱いなら Pages を削除するか、データをサニタイズする。
+- Pages 再ビルドは `main` への push で自動。状態確認:
+  `gh api /repos/RainYaya/ms-ad-workbench/pages/builds/latest --jq '{status,error}'`
