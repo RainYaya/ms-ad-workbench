@@ -1,5 +1,7 @@
 param(
     [int]$Port = 9222,
+    [string]$CaseId = 'AZ-110-01-009',
+    [string]$ParamsFile = "$PSScriptRoot\params\AZ-110-01.json",
     [string]$BaseUrl = 'http://127.0.0.1:10081/mhkcmwa11/dummy.html',
     [string]$PagePattern = '*127.0.0.1:10081*',
     [string]$PopupPattern = '*insurance_item_select.html*',
@@ -12,7 +14,20 @@ param(
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot\Cdp.ps1"
 
-$script:shotDir = Join-Path $PSScriptRoot '..\logs\AZ-110-01-009'
+if (-not (Test-Path $ParamsFile)) { throw "Params file not found: $ParamsFile" }
+$allParams = Get-Content $ParamsFile -Raw -Encoding UTF8 | ConvertFrom-Json
+$caseParams = $allParams.cases.$CaseId
+if (-not $caseParams) { throw "Case not found in params: $CaseId" }
+$P = [pscustomobject]@{}
+foreach ($prop in $allParams.common.psobject.Properties) { $P | Add-Member -NotePropertyName $prop.Name -NotePropertyValue $prop.Value }
+foreach ($prop in $caseParams.psobject.Properties) { $P | Add-Member -NotePropertyName $prop.Name -NotePropertyValue $prop.Value -Force }
+$PJson = $P | ConvertTo-Json -Compress -Depth 10
+Write-Host ("CASE {0} expected login: {1} / {2}" -f $CaseId, $P.user, $P.pointCheck)
+$commonJson = $allParams.common | ConvertTo-Json -Compress -Depth 10
+$insuranceLabelJson = $P.insuranceLabel | ConvertTo-Json -Compress
+$agentIdJson = $P.fieldAgentId | ConvertTo-Json -Compress
+
+$script:shotDir = Join-Path $PSScriptRoot ("..\logs\" + $CaseId)
 $script:shots = @()
 if (-not (Test-Path $script:shotDir)) { New-Item -ItemType Directory -Path $script:shotDir -Force | Out-Null }
 
@@ -42,8 +57,9 @@ Wait-CdpJs -Conn $page -Expression "!!document.querySelector('#policy_number')" 
 Save-StepShot -Conn $page -Block 1 -Row 15 -Name 'AZG100'
 
 Write-Host 'STEP 2: fill input screen'
-$fill = @'
+$fill = (@'
 (async () => {
+  const P = __PARAMS__;
   const q = (s) => document.querySelector(s);
   const must = (s) => { const el = q(s); if (!el) throw new Error('not found: ' + s); return el; };
   const setInput = (s, v) => {
@@ -62,24 +78,24 @@ $fill = @'
   const gid = q('input[name="gamid"]')?.value;
   if (gid !== 'AMA03') throw new Error('AZG100 not detected: gamid=' + gid);
 
-  setSelect('select[name="input_type_list.selected"]', '2');
-  setSelect('select[name="large_item_list.selected"]', 'B');
+  setSelect('select[name="input_type_list.selected"]', P.inputType);
+  setSelect('select[name="large_item_list.selected"]', P.largeItemValue);
   await new Promise((r) => setTimeout(r, 300));
 
-  setInput('#policy_number', 'AZ11001');
-  setInput('#sub_policy_number', '0000000009');
-  setInput('#section_code', 'AHE61');
-  setInput('#agent_code', '252H');
-  setInput('#sub_agent_code', '123456');
-  setInput('#free_code_1', '1234567890');
-  setInput('#insurant_name', 'TEST');
-  setInput('#start_date', '2026/11/01');
-  setSelect('select[name="application_form_type_list.selected"]', '1');
-  setInput('#sumup_year_month', '2026/11');
-  setInput('#daily_report_send', '1234567890AB');
-  setInput('#sumup_section_code', 'ABC012');
-  setSelect('select[name="sumup_status_list.selected"]', '1');
-  setInput('#reminder_date', '2026/10/30');
+  setInput('#policy_number', P.policyNo);
+  setInput('#sub_policy_number', P.detailNo);
+  setInput('#section_code', P.sectionCode);
+  setInput('#agent_code', P.agentCode);
+  setInput('#sub_agent_code', P.subAgentCode);
+  setInput('#free_code_1', P.freeCode);
+  setInput('#insurant_name', P.customerName);
+  setInput('#start_date', P.startDate);
+  setSelect('select[name="application_form_type_list.selected"]', P.applicationType);
+  setInput('#sumup_year_month', P.sumupYearMonth);
+  setInput('#daily_report_send', P.dailyReportSend);
+  setInput('#sumup_section_code', P.sumupSectionCode);
+  setSelect('select[name="sumup_status_list.selected"]', P.sumupStatus);
+  setInput('#reminder_date', P.reminderDate);
 
   return JSON.stringify({
     inputType: q('#selected_input_type_code')?.value,
@@ -91,7 +107,7 @@ $fill = @'
     reminder: q('#reminder_date')?.value
   });
 })()
-'@
+'@).Replace('__PARAMS__', $PJson)
 $filled = Invoke-CdpJs -Conn $page -Expression $fill
 Write-Host "AZG100 values: $filled"
 Save-StepShot -Conn $page -Block 2 -Row 16 -Name 'AZG100_filled'
@@ -122,19 +138,22 @@ JSON.stringify({
     throw
 }
 Save-StepShot -Conn $popup -Block 3 -Row 18 -Name 'insurance_popup'
-$popupResult = Invoke-CdpJs -Conn $popup -Expression @'
+$popupResult = Invoke-CdpJs -Conn $popup -Expression (@'
 (() => {
   const sel = document.querySelector('select[name="insurance_item_list.selected"]');
   if (!sel) throw new Error('insurance select not found');
-  sel.value = '00A0';
+  const target = __INSURANCE_LABEL__;
+  const norm = (s) => String(s).replace(/\s+/g, '').replace(/\uFF1A/g, ':');
+  const opt = [...sel.options].find((o) => norm(o.textContent).startsWith(norm(target)));
+  if (!opt) throw new Error('insurance option not found: ' + target + ' / ' + [...sel.options].map((o) => o.textContent).join('|'));
+  sel.value = opt.value;
   sel.dispatchEvent(new Event('change', { bubbles: true }));
-  if (sel.value !== '00A0') throw new Error('select failed: ' + sel.value);
   const ok = document.querySelector('input[name="ok"]');
   if (!ok) throw new Error('OK button not found');
   ok.click();
-  return 'ok';
+  return JSON.stringify({ value: opt.value, text: opt.textContent });
 })()
-'@
+'@).Replace('__INSURANCE_LABEL__', $insuranceLabelJson)
 Write-Host "popup: $popupResult"
 Start-Sleep -Seconds 1
 
@@ -156,8 +175,9 @@ Send-Cdp -Conn $agent -Method 'Page.enable' | Out-Null
 Wait-CdpJs -Conn $agent -Expression "!!document.querySelector('#section_code_key')" -TimeoutSec 20 | Out-Null
 Save-StepShot -Conn $agent -Block 4 -Row 23 -Name 'agent_popup'
 
-$agentFill = Invoke-CdpJs -Conn $agent -Expression @'
+$agentFill = Invoke-CdpJs -Conn $agent -Expression (@'
 (() => {
+  const C = __COMMON__;
   const set = (s, v) => {
     const el = document.querySelector(s);
     if (!el) throw new Error('not found: ' + s);
@@ -165,11 +185,11 @@ $agentFill = Invoke-CdpJs -Conn $agent -Expression @'
     el.dispatchEvent(new Event('input', { bubbles: true }));
     el.dispatchEvent(new Event('change', { bubbles: true }));
   };
-  set('#section_code_key', 'AHE61');
-  set('#agent_code_key', '252H');
+  set('#section_code_key', C.sectionCode);
+  set('#agent_code_key', C.agentCode);
   return JSON.stringify({ section: document.querySelector('#section_code_key')?.value, agent: document.querySelector('#agent_code_key')?.value });
 })()
-'@
+'@).Replace('__COMMON__', $commonJson)
 Write-Host "agent popup values: $agentFill"
 Invoke-CdpJs -Conn $agent -Expression "document.querySelector('#search').click(); 'search clicked'" | Out-Null
 try {
@@ -210,11 +230,12 @@ JSON.stringify({
 '@
 Write-Host "agent results: $agentDiagnostic"
 
-$agentSelected = Invoke-CdpJs -Conn $agent -Expression @'
+$agentSelected = Invoke-CdpJs -Conn $agent -Expression (@'
 (() => {
+  const target = __AGENT_ID__;
   const rows = [...document.querySelectorAll('#gyoumu_list tr')];
-  const row = rows.find((tr) => tr.innerText.includes('3028004586'));
-  if (!row) throw new Error('agent row 3028004586 not found; count=' + rows.length);
+  const row = rows.find((tr) => tr.innerText.includes(target));
+  if (!row) throw new Error('agent row ' + target + ' not found; count=' + rows.length);
   const hit = row.querySelector('input[type="radio"],input[type="checkbox"],a,button') || row;
   hit.click();
   const select = document.querySelector('input[name="closeSelect"]');
@@ -222,15 +243,15 @@ $agentSelected = Invoke-CdpJs -Conn $agent -Expression @'
   select.click();
   return 'selected';
 })()
-'@
+'@).Replace('__AGENT_ID__', $agentIdJson)
 Write-Host "agent select: $agentSelected"
-Wait-CdpJs -Conn $page -Expression "document.querySelector('#field_agent_id')?.value === '3028004586'" -TimeoutSec 10 | Out-Null
+Wait-CdpJs -Conn $page -Expression "document.querySelector('#field_agent_id')?.value === $agentIdJson" -TimeoutSec 10 | Out-Null
 Save-StepShot -Conn $page -Block 5 -Row 29 -Name 'AZG100_after_agent'
 
 $logDir = Join-Path $PSScriptRoot '..\logs'
 if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 [IO.File]::WriteAllText(
-    (Join-Path $logDir 'AZ-110-01-009-step5.json'),
+    (Join-Path $logDir ($CaseId + '-step5.json')),
     (@{
         filled = ($filled | ConvertFrom-Json)
         insuranceParent = ($parent | ConvertFrom-Json)
@@ -240,7 +261,7 @@ if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Forc
     } | ConvertTo-Json -Depth 10)
 )
 [IO.File]::WriteAllText(
-    (Join-Path $logDir 'AZ-110-01-009-screenshots.json'),
+    (Join-Path $logDir ($CaseId + '-screenshots.json')),
     ($script:shots | ConvertTo-Json -Depth 10)
 )
-Write-Host 'DONE'
+Write-Host "DONE $CaseId"

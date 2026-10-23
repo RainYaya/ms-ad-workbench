@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><title>mock insurance</title></head><body>
 <form name="form1">
-<select name="insurance_item_list.selected"><option value=""></option><option value="00A0">00 ： 自賠責</option></select>
-<input type="button" name="ok" value="ＯＫ" onclick="window.opener.document.querySelector('select[name=\'insurance_item_list.selected\']').value='00A0';window.opener.document.querySelector('#selected_insurance_item_code').value='00A0';window.opener.document.querySelector('#insurance_item_title').textContent='00 ： 自賠責';window.close();">
+<select name="insurance_item_list.selected"><option value=""></option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+<input type="button" name="ok" value="ＯＫ" onclick="const sel=document.querySelector('select[name=\'insurance_item_list.selected\']');const opt=sel.options[sel.selectedIndex];window.opener.document.querySelector('select[name=\'insurance_item_list.selected\']').value=opt.value;window.opener.document.querySelector('#selected_insurance_item_code').value=opt.value;window.opener.document.querySelector('#insurance_item_title').textContent=opt.textContent;window.close();">
 <input type="button" name="cancel" value="キャンセル" onclick="window.close();">
 </form>
 </body></html>

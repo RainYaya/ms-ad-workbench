@@ -1,0 +1,77 @@
+{
+  "template": "TPL-AZ-110-01-009",
+  "procedure": "AZ-110-01 シナリオ導線１",
+  "common": {
+    "inputType": "2",
+    "sectionCode": "AHE61",
+    "agentCode": "252H",
+    "subAgentCode": "123456",
+    "freeCode": "1234567890",
+    "fieldAgentId": "3028004586",
+    "customerName": "TEST",
+    "startDate": "2026/11/01",
+    "applicationType": "1",
+    "sumupYearMonth": "2026/11",
+    "dailyReportSend": "1234567890AB",
+    "sumupSectionCode": "ABC012",
+    "sumupStatus": "1",
+    "reminderDate": "2026/10/30",
+    "itemCode": "T0",
+    "inquiryCode": "T007",
+    "itemName": "T0：損保取引確認書",
+    "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+    "defectContent": "添付書類もれ",
+    "editedInquiryContent": "編集済み。",
+    "confirmer": "TEST",
+    "counterparty": "確認相手TEST",
+    "correctionItem": "訂正項目１",
+    "correctionContent": "訂正内容１",
+    "completeErrorCode": "MAZG101W047",
+    "inquiryMethod": "1：品質管理",
+    "requestType": "照会",
+    "afterCompleteSalesStatus": "未対応",
+    "agencyStatus": "対象外"
+  },
+  "cases": {
+    "AZ-110-01-009": {
+      "routeId": "AZ-R109",
+      "user": "MS-3n",
+      "pointCheck": "事務S",
+      "policyNo": "AZ11001",
+      "detailNo": "0000000009",
+      "item": "自賠責",
+      "largeItemValue": "B",
+      "insuranceLabel": "00 ： 自賠責"
+    },
+    "AZ-110-01-010": {
+      "routeId": "AZ-R110",
+      "user": "MS-4n",
+      "pointCheck": "事務S（貨物）",
+      "policyNo": "AZ11001",
+      "detailNo": "0000000010",
+      "item": "貨物",
+      "largeItemValue": "Y",
+      "insuranceLabel": "02 ： 国内貨物総合保険"
+    },
+    "AZ-110-01-011": {
+      "routeId": "AZ-R111",
+      "user": "MS-3n",
+      "pointCheck": "事務S",
+      "policyNo": "AZ11001",
+      "detailNo": "0000000011",
+      "item": "種目共通",
+      "largeItemValue": "Z",
+      "insuranceLabel": "00 ： 種目共通"
+    },
+    "AZ-110-01-012": {
+      "routeId": "AZ-R112",
+      "user": "MS-2n",
+      "pointCheck": "営業",
+      "policyNo": "AZ11001",
+      "detailNo": "0000000012",
+      "item": "その他",
+      "largeItemValue": "0",
+      "insuranceLabel": "00 ： その他"
+    }
+  }
+}
