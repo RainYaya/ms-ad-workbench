@@ -108,6 +108,35 @@ function Connect-CdpPage {
     throw "CDP target not found: $UrlPattern"
 }
 
+function Connect-CdpPageWithSelector {
+    param(
+        [string]$UrlPattern,
+        [string]$Selector,
+        [int]$Port = 9222,
+        [int]$TimeoutSec = 30
+    )
+    $end = (Get-Date).AddSeconds($TimeoutSec)
+    while ((Get-Date) -lt $end) {
+        $targets = Get-CdpTargets -Port $Port | Where-Object { $_.type -eq 'page' -and $_.url -like $UrlPattern }
+        foreach ($t in $targets) {
+            $conn = $null
+            try {
+                $conn = Connect-CdpTarget -WebSocketUrl $t.webSocketDebuggerUrl -Port $Port
+                if (Invoke-CdpJs -Conn $conn -Expression "!!document.querySelector('$Selector')") {
+                    return $conn
+                }
+            } catch {
+                # target may be loading or navigating
+            }
+            if ($conn) {
+                try { $conn.Ws.Dispose() } catch { }
+            }
+        }
+        Start-Sleep -Milliseconds 300
+    }
+    throw "CDP target with selector '$Selector' not found"
+}
+
 function Save-CdpScreenshot {
     param(
         $Conn,

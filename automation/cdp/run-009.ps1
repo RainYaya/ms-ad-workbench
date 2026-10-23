@@ -16,15 +16,13 @@ if ($StartEdge) {
     Start-CdpEdge -Port $Port -Profile $Profile -Url $BaseUrl -Headless:$Headless
 }
 
-$page = Connect-CdpPage -UrlPattern $PagePattern -Port $Port -TimeoutSec 30
+Write-Host 'Waiting for the menu page. If a login screen appears, log in now...'
+$page = Connect-CdpPageWithSelector `
+    -UrlPattern $PagePattern `
+    -Selector '#act001to100' `
+    -Port $Port `
+    -TimeoutSec $WaitMenuSec
 Send-Cdp -Conn $page -Method 'Page.enable' | Out-Null
-
-$hasMenu = Invoke-CdpJs -Conn $page -Expression "!!document.querySelector('#act001to100')"
-if (-not $hasMenu) {
-    Write-Host "If a login screen appears, log in now. Waiting up to $WaitMenuSec sec for the menu..."
-    Send-Cdp -Conn $page -Method 'Page.navigate' -Params @{ url = $BaseUrl } | Out-Null
-    Wait-CdpJs -Conn $page -Expression "!!document.querySelector('#act001to100')" -TimeoutSec $WaitMenuSec | Out-Null
-}
 
 Write-Host 'STEP 1: click new registration'
 Invoke-CdpJs -Conn $page -Expression "document.querySelector('#act001to100').click(); 'clicked'" | Out-Null
