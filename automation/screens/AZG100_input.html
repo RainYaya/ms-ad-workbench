@@ -1,0 +1,634 @@
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG100(this,null);">
+  <input type="hidden" name="_csrf" value="b695932c-0746-447e-980d-17039b2e4841">
+  
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" src="/mhkcmwa11/static/img/logo.GIF" width="auto" height="32" alt="企業ロゴ">
+    </div>
+    <div class="title_area_title">申込書品質管理システム　不備内容入力画面</div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        2026/10/23 11:24:34
+        &nbsp;&nbsp;&nbsp;画面ID：
+        AZG100
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        v2.1<br>
+        利用者識別：MDAwMTAwMg==
+      </span>
+    </div>
+  </div>
+
+  
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      &nbsp;
+    </div>
+  </div>
+
+  
+  <input type="hidden" id="GateFLG" name="GateFLG" value="0">
+  <input type="hidden" id="ai21__aid" name="ai21__aid" value="">
+  <input type="hidden" id="ai21__gid" name="ai21__gid" value="AMA03">
+  <input type="hidden" id="ai21__data" name="ai21__data" value="">
+  <input type="hidden" id="dousaMode" name="dousaMode" value="">
+  <input type="hidden" id="gamcd" name="gamcd" value="AMA00">
+  <input type="hidden" id="gamid" name="gamid" value="AMA03">
+  <input type="hidden" id="hubsessid" name="hubsessid" value="410d32bf-bb84-4a31-9bec-dd23ab99d12a">
+  <input type="hidden" id="H0000A_Z6" name="h0000A_Z6" value="">
+  <input type="hidden" id="H0000A_Z6_M" name="h0000A_Z6_M" value="">
+  <input type="hidden" id="pfkey" name="pfkey" value="child">
+  <input type="hidden" id="seniType" name="seniType" value="">
+  <input type="hidden" id="sys_mode" name="sys_mode" value="">
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" value="">
+  <input type="hidden" id="company_kbn" name="company_kbn" value="MS">
+
+  
+  <div class="wrapper03 gyoumu_area">
+    
+    <div class="item">
+      <div class="gyoumu_field_title">入力区分</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_input_type_code" name="input_type_code" value="">
+        <select name="input_type_list.selected" class="gyoumu_field_control" onchange="setInputTypeSelect(this);onChangeInputType(this);" tabindex="1">
+          
+            <option value="" selected="selected"></option>
+          
+            <option value="1">契約入力</option>
+          
+            <option value="2">現地</option>
+          
+            <option value="3">センター</option>
+          
+            <option value="4">口座振替</option>
+          
+            <option value="5">クレカ</option>
+          
+            <option value="6">スマホ決済</option>
+          
+            <option value="7">入金照合</option>
+          
+            <option value="8">証券</option>
+          
+            <option value="A">後方払</option>
+          
+            <option value="B">積立支払</option>
+          
+            <option value="9">その他</option>
+          
+        </select>
+      </div>
+      <div class="gyoumu_field_title">契約マスタ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="checkbox" id="import_flag" name="import_flag" value="true" tabindex="2"><!--
+         --><label>連動する</label>
+      </div>
+    </div>
+
+    
+    <div class="item">
+      <div class="text_bold">「英数字は半角大文字」「年月は西暦」で入力</div>
+    </div>
+
+    
+    <div class="item">
+      <div class="gyoumu_field_title">種目</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_large_item_code" name="large_item_code" value="">
+        <select name="large_item_list.selected" class="gyoumu_field_control" onchange="setLargeItemSelect(this);onChangeLargeItem();" tabindex="3">
+          
+            <option value="" selected="selected"></option>
+          
+            <option value="1">自動車</option>
+          
+            <option value="3">火災</option>
+          
+            <option value="4">積立火災</option>
+          
+            <option value="5">新種</option>
+          
+            <option value="6">積立新種</option>
+          
+            <option value="7">傷害</option>
+          
+            <option value="8">積傷/積特</option>
+          
+            <option value="X">長期医療</option>
+          
+            <option value="B">自賠責</option>
+          
+            <option value="Y">貨物</option>
+          
+            <option value="Z">種目共通</option>
+          
+            <option value="0">その他</option>
+          
+        </select>
+      </div>
+
+      <div class="gyoumu_field_title">保険種類</div>
+      <div id="insurance_item_title" class="gyoumu_field_value_left" title="">
+        <input type="hidden" id="selected_insurance_item_code" name="insurance_item_code" value="">
+        <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="setInsuranceItemSelect(this);onChangeInsuranceItem(this);" tabindex="4">
+          
+            <option value="" selected="selected"></option>
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </select>
+      </div>
+
+      <div class="gyoumu_field_title">証券番号</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="policy_number" name="policy_number" value="" class="gyoumu_field_control" tabindex="6" maxlength="12" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">明細番号</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sub_policy_number" name="sub_policy_number" value="" class="gyoumu_field_control" tabindex="7" maxlength="10" onblur="subPolicyNumberOutput(this);toUpper(this);">
+      </div>
+
+      <div class="button_select_insurance_item">
+        <input type="button" name="selectInsuransuItem" class="small_square_button" tabindex="5" value="...." onclick="onClickSelectInsurance();">
+      </div>
+    </div>
+
+    
+    <div class="item">
+      <div class="gyoumu_field_title">部店課支社ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="section_code" name="section_code" value="" class="gyoumu_field_control" tabindex="11" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">代理店ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="agent_code" name="agent_code" value="" class="gyoumu_field_control" tabindex="12" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">代理店名</div>
+      <div class="gyoumu_field_value">
+        
+        &nbsp;
+      </div>
+
+      <div class="gyoumu_field_title">ｻﾌﾞｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sub_agent_code" name="sub_agent_code" value="" class="gyoumu_field_control" tabindex="13" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">ﾌﾘｰｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="free_code_1" name="free_code_1" value="" class="gyoumu_field_control" tabindex="14" maxlength="10" onblur="toUpper(this);">
+      </div>
+    </div>
+
+    
+    <div class="item">
+      <div class="gyoumu_field_title">募集人ID</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="field_agent_id" name="field_agent_id" value="" class="gyoumu_field_control" tabindex="8" maxlength="10" onblur="toUpper(this);">
+      </div>
+      <div class="gyoumu_field_value_left" id="field_agent_name" title="">
+        
+        &nbsp;
+      </div>
+      <div class="gyoumu_field_value">
+        <input type="button" name="selectFieldAgent" class="small_square_button" tabindex="9" value="...." onclick="popupAZG905()">
+      </div>
+      <div class="gyoumu_field_title">契約者名</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="insurant_name" name="insurant_name" value="" class="gyoumu_field_control" tabindex="10" maxlength="120">
+      </div>
+    </div>
+
+    
+    <div class="item">
+      <div class="gyoumu_field_title">保険始期日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="start_date" name="start_date" value="" class="gyoumu_field_control" tabindex="15" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">変更日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="change_date" name="change_date" value="" class="gyoumu_field_control" tabindex="16" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">新更変・他</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_application_form_type_code" name="application_form_type" value="">
+        <select name="application_form_type_list.selected" class="gyoumu_field_control" onchange="setApplicationFormTypeSelect(this);" tabindex="17">
+          
+            <option value="" selected="selected"></option>
+          
+            <option value="1">新規</option>
+          
+            <option value="2">更改</option>
+          
+            <option value="3">変更・他</option>
+          
+            <option value="4">自動継続</option>
+          
+            <option value="5">ＤＮ１明細</option>
+          
+        </select>
+      </div>
+
+      <div class="gyoumu_field_title">計上年月</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sumup_year_month" name="sumup_year_month" value="" class="gyoumu_field_control" tabindex="18" maxlength="7" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,6)">
+      </div>
+
+      <div class="gyoumu_field_title">日報／送付</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="daily_report_send" name="daily_report_send" value="" class="gyoumu_field_control" tabindex="19" maxlength="12">
+      </div>
+
+      <div class="gyoumu_field_title">日報部課代ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sumup_section_code" name="sumup_section_code" value="" class="gyoumu_field_control" tabindex="20" maxlength="9" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">計上状態</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_sumup_status_code" name="sumup_status" value="">
+        <select name="sumup_status_list.selected" class="gyoumu_field_control" onchange="setSumupStatusSelect(this);" tabindex="21">
+          
+            <option value="" selected="selected"></option>
+          
+            <option value="1">未計上</option>
+          
+            <option value="2">計上済</option>
+          
+        </select>
+      </div>
+    </div>
+
+    
+    <div class="item">
+      <div class="gyoumu_field_title">登録者</div>
+      <div class="gyoumu_field_value" title="ＸＸ　ＸＸ">
+        ＸＸ　ＸＸ
+        &nbsp;
+      </div>
+
+      <div class="gyoumu_field_title">登録日</div>
+      <div class="gyoumu_field_value">
+        2026/10/23
+        &nbsp;
+      </div>
+
+      <div class="gyoumu_field_title">更新日</div>
+      <div class="gyoumu_field_value">
+        2026/10/23
+        &nbsp;
+      </div>
+
+      <div class="gyoumu_field_title">回答締切日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="reminder_date" name="reminder_date" value="2026/10/30" class="gyoumu_field_control" tabindex="22" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">完了日</div>
+      <div class="gyoumu_field_value">
+        
+        &nbsp;
+      </div>
+    </div>
+
+  </div>
+
+  <input type="hidden" id="insuranceSelectedIndex" name="insuranceSelectedIndex" value="">
+
+  
+  <div class="button_area size_button_area03">
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act100to001" name="act100to001" onclick="clickButton(this)" value="メニュー" formaction="/mhkcmwa11/AMA03/aZG100To01">
+    </div>
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act100to200" name="act100to200" onclick="clickButton(this)" value="一覧画面" formaction="/mhkcmwa11/AMA03/aZG100To07">
+    </div>
+    <div class="button_width_60">
+      <input type="submit" class="button_area_button" id="regist" name="regist" onclick="clickButton(this)" value="登録" formaction="/mhkcmwa11/AMA03/aZG100Regist">
+    </div>
+    <div class="button_width_60">
+      <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()">
+    </div>
+  </div>
+
+  <input type="submit" id="close" name="close" formaction="/mhkcmwa11/AMA03/close" class="display_none">
+</form>

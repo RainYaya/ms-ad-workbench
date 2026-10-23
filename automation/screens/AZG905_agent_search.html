@@ -1,0 +1,103 @@
+<body class="popup_body_common" onload="custom_Load()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG905(this,null);">
+
+	<input type="hidden" name="_csrf" value="ee211cbb-c9aa-41c1-a6a5-78d5f83f08b1">
+
+	
+	<div id="popup_message_area" class="popup_message_area">
+		&nbsp;
+	</div>
+
+	
+	<input type="hidden" id="GateFLG" name="GateFLG" value="0">
+	<input type="hidden" id="ai21__aid" name="ai21__aid" value="">
+	<input type="hidden" id="ai21__gid" name="ai21__gid" value="AMA18">
+	<input type="hidden" id="ai21__data" name="ai21__data" value="">
+	<input type="hidden" id="dousaMode" name="dousaMode" value="">
+	<input type="hidden" id="gamcd" name="gamcd" value="AMA00">
+	<input type="hidden" id="gamid" name="gamid" value="AMA18">
+	<input type="hidden" id="hubsessid" name="hubsessid" value="0d1152bf-7dd3-48df-884d-69664ec38124">
+	<input type="hidden" id="H0000A_Z6" name="h0000A_Z6" value="">
+	<input type="hidden" id="H0000A_Z6_M" name="h0000A_Z6_M" value="">
+	<input type="hidden" id="pfkey" name="pfkey" value="child">
+	<input type="hidden" id="seniType" name="seniType" value="">
+	<input type="hidden" id="sys_mode" name="sys_mode" value="">
+	<input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" value="">
+
+	
+	<div id="gyoumu_area" class="wrapper18">
+		<div class="gyoumu_area_18">
+			<div class="gyoumu_field_title">部店課支社ｺｰﾄﾞ</div>
+			<div class="gyoumu_field_value_left">
+				<input type="text" class="gyoumu_field_control" id="section_code_key" name="section_code_key" maxlength="6" onblur="toUpper(this);" value="AHE61">
+			</div>
+			<div class="gyoumu_field_title">代理店ｺｰﾄﾞ&nbsp; ※</div>
+			<div class="gyoumu_field_value_left">
+				<input type="text" class="gyoumu_field_control" id="agent_code_key" name="agent_code_key" maxlength="6" onblur="toUpper(this);" value="252H">
+			</div>
+			<div class="gyoumu_field_title">募集人ID</div>
+			<div class="gyoumu_field_value_left">
+				<input type="text" class="gyoumu_field_control" id="field_agent_id_key" name="field_agent_id_key" maxlength="10" onblur="toUpper(this);" value="">
+			</div>
+			<div class="gyoumu_field_title">募集人名</div>
+			<div class="gyoumu_field_value_left">
+				<input type="text" class="gyoumu_field_control" id="field_agent_name_key" name="field_agent_name_key" maxlength="400" value="">
+			</div>
+		</div>
+
+		<div>
+			<input type="submit" class="search_button" id="search" name="search" onclick="clickButton(this)" value="検　索" formaction="/mhkcmwa11/AMA18/aZG905Search">
+			<span class="field_agent_message color_red">※子代理店の場合は親代理店ｺｰﾄﾞを入力してください</span>
+		</div>
+
+		<div>
+			<div class="gyoumu_search_count">
+				0 / 0 ページ 検索結果 0 件
+			</div>
+		</div>
+
+		<table id="table18" class="sticky_table">
+			<thead>
+				<tr class="sticky_table_thead_tr">
+					<th class="sticky_table_title">選択</th>
+					<th class="sticky_table_title">部店課支社<br>ｺｰﾄﾞ</th>
+					<th class="sticky_table_title">代理店<br>ｺｰﾄﾞ</th>
+					<th class="sticky_table_title">募集人ID</th>
+					<th class="sticky_table_title">募集人名</th>
+				</tr>
+			</thead>
+			<tbody id="gyoumu_list" style="visibility: hidden;">
+			
+			</tbody>
+		</table>
+	</div>
+
+	<input type="hidden" id="hide_gyoumu_area_flag" name="hide_gyoumu_area_flag" value="">
+
+	
+	<div id="ButtonP" class="popup_button_area size_button_area18">
+		
+		<div class="button_width_60">
+			<input type="submit" class="popup_button_area_button" id="prevPage" name="prevPage" onclick="clickButton(this)" value="前 頁" formaction="/mhkcmwa11/AMA18/aZG905PrevPage" style="visibility: hidden;">
+		</div>
+		<div class="button_width_60">
+			<input type="submit" class="popup_button_area_button" id="nextPage" name="nextPage" onclick="clickButton(this)" value="次 頁" formaction="/mhkcmwa11/AMA18/aZG905NextPage" style="visibility: hidden;">
+		</div>
+		<div class="button_width_45">
+			<input name="closeSelect" type="button" class="popup_button_area_button" value="選択" onclick="popupCloseSelect();" style="visibility: hidden;">
+		</div>
+		
+		<div class="button_width_60">
+			<input name="close" type="button" class="popup_button_area_button" value="閉じる" onclick="popupClose(this);">
+		</div>
+	</div>
+	<input type="hidden" id="pageNumber" name="pageNumber" value="0">
+	<input type="hidden" id="pageSize" name="pageSize" value="10">
+	<input type="hidden" id="totalPage" name="totalPage" value="0">
+	<input type="hidden" id="totalCount" name="totalCount" value="0">
+
+</form>
+
+
+
+</body>

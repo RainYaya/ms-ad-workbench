@@ -310,3 +310,6 @@ css/style.css
 - 以后继续做 009 或复用 010 时，先读这个文件；不要重新向用户要已经记录过的 HTML。
 - 目前进度：block 1〜2 已验证；保险种类 popup 的 URL/select/OK 已记录；等待选择后的父窗口值与募集人 popup。
 - 新的画面确认后，直接把 selector 追加到该文件，保持一处一档。
+
+- 画面 HTML / selector：`automation/screens/MANIFEST.md`，HTML 在 `automation/screens/`。
+- 截图按 block/sourceRow 顺序输出：`automation/logs/AZ-110-01-009/blockNN_rowNNN_*.png`。

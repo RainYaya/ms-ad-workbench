@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>mock agent</title></head><body>
+<form name="mhk_MHKPRForm">
+<input id="section_code_key" name="section_code_key" value="AHE61">
+<input id="agent_code_key" name="agent_code_key" value="252H">
+<input id="field_agent_id_key" name="field_agent_id_key" value="">
+<input id="field_agent_name_key" name="field_agent_name_key" value="">
+<input type="button" id="search" value="検索" onclick="document.querySelector('#gyoumu_list').innerHTML='<tr><td><input type=&quot;radio&quot; name=&quot;sel&quot;></td><td>AHE61</td><td>252H</td><td>3028004586</td><td>TEST</td></tr>';document.querySelector('input[name=closeSelect]').style.visibility='visible';">
+<table><tbody id="gyoumu_list"></tbody></table>
+<input type="button" name="closeSelect" value="選択" style="visibility:hidden" onclick="const r=document.querySelector('#gyoumu_list input[type=radio]:checked');if(!r)return;window.opener.document.querySelector('#field_agent_id').value='3028004586';window.opener.document.querySelector('#field_agent_name').textContent='TEST';window.close();">
+<input type="button" name="close" value="閉じる" onclick="window.close();">
+</form>
+</body></html>

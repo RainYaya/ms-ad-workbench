@@ -12,6 +12,18 @@ param(
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot\Cdp.ps1"
 
+$script:shotDir = Join-Path $PSScriptRoot '..\logs\AZ-110-01-009'
+$script:shots = @()
+if (-not (Test-Path $script:shotDir)) { New-Item -ItemType Directory -Path $script:shotDir -Force | Out-Null }
+
+function Save-StepShot {
+    param($Conn, [int]$Block, [int]$Row, [string]$Name)
+    $file = Join-Path $script:shotDir (('block{0:D2}_row{1:D3}_{2}.png' -f $Block, $Row, $Name))
+    Save-CdpScreenshot -Conn $Conn -Path $file
+    $script:shots += [pscustomobject]@{ block = $Block; sourceRow = $Row; file = $file }
+    Write-Host "SHOT $file"
+}
+
 if ($StartEdge) {
     Start-CdpEdge -Port $Port -Profile $Profile -Url $BaseUrl -Headless:$Headless
 }
@@ -27,6 +39,7 @@ Send-Cdp -Conn $page -Method 'Page.enable' | Out-Null
 Write-Host 'STEP 1: click new registration'
 Invoke-CdpJs -Conn $page -Expression "document.querySelector('#act001to100').click(); 'clicked'" | Out-Null
 Wait-CdpJs -Conn $page -Expression "!!document.querySelector('#policy_number')" -TimeoutSec 30 | Out-Null
+Save-StepShot -Conn $page -Block 1 -Row 15 -Name 'AZG100'
 
 Write-Host 'STEP 2: fill input screen'
 $fill = @'
@@ -81,11 +94,12 @@ $fill = @'
 '@
 $filled = Invoke-CdpJs -Conn $page -Expression $fill
 Write-Host "AZG100 values: $filled"
-Save-CdpScreenshot -Conn $page -Path (Join-Path $PSScriptRoot '..\logs\009-block2.png')
+Save-StepShot -Conn $page -Block 2 -Row 16 -Name 'AZG100_filled'
 
 Write-Host 'STEP 3: insurance popup'
 Invoke-CdpJs -Conn $page -Expression "document.querySelector('input[name=""selectInsuransuItem""]').click(); 'popup opened'" | Out-Null
 $popup = Connect-CdpPage -UrlPattern $PopupPattern -Port $Port -TimeoutSec 20
+Send-Cdp -Conn $popup -Method 'Page.enable' | Out-Null
 try {
     Wait-CdpJs -Conn $popup -Expression "!!document.querySelector('select[name=""insurance_item_list.selected""]')" -TimeoutSec 20 | Out-Null
 } catch {
@@ -107,6 +121,7 @@ JSON.stringify({
     Write-Host "popup diagnostic: $diag"
     throw
 }
+Save-StepShot -Conn $popup -Block 3 -Row 18 -Name 'insurance_popup'
 $popupResult = Invoke-CdpJs -Conn $popup -Expression @'
 (() => {
   const sel = document.querySelector('select[name="insurance_item_list.selected"]');
@@ -132,12 +147,75 @@ JSON.stringify({
 })
 '@
 Write-Host "parent: $parent"
-Save-CdpScreenshot -Conn $page -Path (Join-Path $PSScriptRoot '..\logs\009-block3.png')
+Save-StepShot -Conn $page -Block 3 -Row 21 -Name 'AZG100_after_insurance'
+
+Write-Host 'STEP 4: agent search popup'
+Invoke-CdpJs -Conn $page -Expression "document.querySelector('input[name=""selectFieldAgent""]').click(); 'agent popup opened'" | Out-Null
+$agent = Connect-CdpPageWithSelector -UrlPattern $PagePattern -Selector '#section_code_key' -Port $Port -TimeoutSec 20
+Send-Cdp -Conn $agent -Method 'Page.enable' | Out-Null
+Wait-CdpJs -Conn $agent -Expression "!!document.querySelector('#section_code_key')" -TimeoutSec 20 | Out-Null
+Save-StepShot -Conn $agent -Block 4 -Row 23 -Name 'agent_popup'
+
+$agentFill = Invoke-CdpJs -Conn $agent -Expression @'
+(() => {
+  const set = (s, v) => {
+    const el = document.querySelector(s);
+    if (!el) throw new Error('not found: ' + s);
+    el.value = v;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+  set('#section_code_key', 'AHE61');
+  set('#agent_code_key', '252H');
+  return JSON.stringify({ section: document.querySelector('#section_code_key')?.value, agent: document.querySelector('#agent_code_key')?.value });
+})()
+'@
+Write-Host "agent popup values: $agentFill"
+Invoke-CdpJs -Conn $agent -Expression "document.querySelector('#search').click(); 'search clicked'" | Out-Null
+Wait-CdpJs -Conn $agent -Expression "document.querySelectorAll('#gyoumu_list tr').length > 0" -TimeoutSec 20 | Out-Null
+Save-StepShot -Conn $agent -Block 5 -Row 26 -Name 'agent_results'
+
+$agentDiagnostic = Invoke-CdpJs -Conn $agent -Expression @'
+JSON.stringify({
+  count: document.querySelectorAll('#gyoumu_list tr').length,
+  rows: [...document.querySelectorAll('#gyoumu_list tr')].slice(0, 5).map((tr) => tr.innerText.replace(/\s+/g, ' ').trim()),
+  inputs: [...document.querySelectorAll('#gyoumu_list input')].map((i) => ({ type: i.type, name: i.name, id: i.id, value: i.value })),
+  buttons: [...document.querySelectorAll('input[type="button"],input[type="submit"]')].map((b) => ({ name: b.name, value: b.value, id: b.id, visibility: getComputedStyle(b).visibility }))
+})
+'@
+Write-Host "agent results: $agentDiagnostic"
+
+$agentSelected = Invoke-CdpJs -Conn $agent -Expression @'
+(() => {
+  const rows = [...document.querySelectorAll('#gyoumu_list tr')];
+  const row = rows.find((tr) => tr.innerText.includes('3028004586'));
+  if (!row) throw new Error('agent row 3028004586 not found; count=' + rows.length);
+  const hit = row.querySelector('input[type="radio"],input[type="checkbox"],a,button') || row;
+  hit.click();
+  const select = document.querySelector('input[name="closeSelect"]');
+  if (!select) throw new Error('closeSelect not found');
+  select.click();
+  return 'selected';
+})()
+'@
+Write-Host "agent select: $agentSelected"
+Wait-CdpJs -Conn $page -Expression "document.querySelector('#field_agent_id')?.value === '3028004586'" -TimeoutSec 10 | Out-Null
+Save-StepShot -Conn $page -Block 5 -Row 29 -Name 'AZG100_after_agent'
 
 $logDir = Join-Path $PSScriptRoot '..\logs'
 if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 [IO.File]::WriteAllText(
-    (Join-Path $logDir 'AZ-110-01-009-step3.json'),
-    (@{ filled = ($filled | ConvertFrom-Json); parent = ($parent | ConvertFrom-Json) } | ConvertTo-Json -Depth 10)
+    (Join-Path $logDir 'AZ-110-01-009-step5.json'),
+    (@{
+        filled = ($filled | ConvertFrom-Json)
+        insuranceParent = ($parent | ConvertFrom-Json)
+        agentPopup = ($agentFill | ConvertFrom-Json)
+        agentResults = ($agentDiagnostic | ConvertFrom-Json)
+        screenshots = $script:shots
+    } | ConvertTo-Json -Depth 10)
+)
+[IO.File]::WriteAllText(
+    (Join-Path $logDir 'AZ-110-01-009-screenshots.json'),
+    ($script:shots | ConvertTo-Json -Depth 10)
 )
 Write-Host 'DONE'

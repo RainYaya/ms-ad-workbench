@@ -1,0 +1,27 @@
+<body class="popup_body_common" onload="bodyOnload()">
+<form action="" method="post" name="form1">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	<div id="gyoumu_area" class="wrapperHoshu">
+		<div class="gyoumu_field_title">種目</div>
+		<div class="gyoumu_field_value_left" id="large_item_name">自賠責</div>
+		<div class="gyoumu_field_title">保険種類</div>
+		<div class="gyoumu_field_value_left">
+			<select name="insurance_item_list.selected" class="gyoumu_field_control"><option value="" title=""></option><option value="00A0" title="00 ： 自賠責">00 ： 自賠責</option></select>
+		</div>
+	</div>
+
+	<!-- ボタンエリア -->
+	<div class="popup_button_area size_button_areaHoshu">
+		<!-- 共通ボタン -->
+		<div class="button_width_60">
+			<input class="popup_button_area_button" name="ok" type="button" value="ＯＫ" onclick="popupClose(this);">
+		</div>
+		<!-- 終了ボタン -->
+		<div class="button_width_75">
+			<input class="popup_button_area_button" name="cancel" type="button" value="キャンセル" onclick="popupClose(this);">
+		</div>
+	</div>
+</form>
+
+
+</body>
