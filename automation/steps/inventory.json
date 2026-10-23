@@ -1,0 +1,2720 @@
+{
+ "generatedAt": "2026-10-23",
+ "source": "automation/tasks/assigned_20261023.txt",
+ "caseCount": 450,
+ "eventCount": 10803,
+ "screenCount": 51,
+ "rawScreenCount": 55,
+ "operationSignatureCount": 395,
+ "assertionSignatureCount": 441,
+ "exactWorkflowCount": 215,
+ "rawWorkflowWithContentCount": 237,
+ "normalizedWorkflowWithContentCount": 233,
+ "exactWorkflowGroups": [
+  {
+   "count": 20,
+   "cases": [
+    "AZ-310-02-012",
+    "AZ-310-02-013",
+    "AZ-310-02-014",
+    "AZ-310-02-015",
+    "AZ-310-02-016",
+    "AZ-310-02-017",
+    "AZ-310-02-018",
+    "AZ-310-02-019"
+   ]
+  },
+  {
+   "count": 20,
+   "cases": [
+    "AY-120-09-004",
+    "AY-120-09-005",
+    "AY-120-09-006",
+    "AY-120-09-007",
+    "AY-120-09-008",
+    "AY-120-09-009",
+    "AY-120-09-010",
+    "AY-120-09-011"
+   ]
+  },
+  {
+   "count": 12,
+   "cases": [
+    "AY-120-07-015",
+    "AY-120-07-016",
+    "AY-120-07-017",
+    "AY-120-07-018",
+    "AY-121-06-011",
+    "AY-121-06-012",
+    "AY-121-06-013",
+    "AY-121-06-014"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AZ-110-05-008",
+    "AZ-110-05-009",
+    "AZ-110-05-010",
+    "AZ-110-05-011",
+    "AZ-110-05-012",
+    "AZ-110-05-013",
+    "AZ-110-05-014",
+    "AZ-110-05-015"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AZ-310-01-011",
+    "AZ-310-01-012",
+    "AZ-310-01-013",
+    "AZ-310-01-014",
+    "AZ-310-01-015",
+    "AZ-310-01-016",
+    "AZ-310-01-017",
+    "AZ-310-01-018"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AY-120-04-009",
+    "AY-120-04-010",
+    "AY-120-04-011",
+    "AY-120-04-012",
+    "AY-120-04-013",
+    "AY-120-04-014",
+    "AY-120-04-015",
+    "AY-120-04-016"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AY-120-06-003",
+    "AY-120-06-004",
+    "AY-120-06-005",
+    "AY-120-06-006",
+    "AY-120-06-007",
+    "AY-120-06-008",
+    "AY-120-06-009",
+    "AY-120-06-010"
+   ]
+  },
+  {
+   "count": 10,
+   "cases": [
+    "AY-121-03-005",
+    "AY-121-03-006",
+    "AY-121-03-007",
+    "AY-121-03-008",
+    "AY-121-03-009",
+    "AY-121-03-010",
+    "AY-121-03-011",
+    "AY-121-03-012"
+   ]
+  },
+  {
+   "count": 9,
+   "cases": [
+    "AZ-200-01-001",
+    "AZ-200-01-003",
+    "AZ-200-01-005",
+    "AZ-200-01-006",
+    "AZ-200-01-008",
+    "AZ-200-01-009",
+    "AZ-200-01-030",
+    "AZ-200-01-031"
+   ]
+  }
+ ],
+ "operationOnlySequenceCount": 203,
+ "topScreens": [
+  [
+   "不備内容入力画面-更新",
+   2195
+  ],
+  [
+   "不備一覧",
+   1272
+  ],
+  [
+   "送信先(写)選択",
+   876
+  ],
+  [
+   "照会・検索",
+   750
+  ],
+  [
+   "項目名検索",
+   628
+  ],
+  [
+   "申込書品質管理メニュー",
+   618
+  ],
+  [
+   "申請・確認更新",
+   580
+  ],
+  [
+   "ToDo連携データ作成バッチ処理",
+   476
+  ],
+  [
+   "不備内容入力画面-新規",
+   462
+  ],
+  [
+   "異例取扱管理メニュー",
+   348
+  ],
+  [
+   "代理店 不備一覧",
+   312
+  ],
+  [
+   "担当者検索",
+   308
+  ],
+  [
+   "募集人検索",
+   222
+  ],
+  [
+   "照会内容編集",
+   198
+  ],
+  [
+   "申請承認一覧",
+   190
+  ],
+  [
+   "代理店 不備内容入力画面(更新)",
+   187
+  ],
+  [
+   "帳票印刷",
+   186
+  ],
+  [
+   "メール通知先選択",
+   162
+  ],
+  [
+   "(blank)",
+   114
+  ],
+  [
+   "保険種類選択",
+   111
+  ],
+  [
+   "取消計上申請承認",
+   106
+  ],
+  [
+   "訂正内容確認",
+   94
+  ],
+  [
+   "その他(申込書品質管理)",
+   60
+  ],
+  [
+   "営業連携メール通知先登録",
+   43
+  ],
+  [
+   "課支社代理店情報移管バッチ処理",
+   28
+  ],
+  [
+   "取消計上申請登録",
+   28
+  ],
+  [
+   "不備集計",
+   26
+  ],
+  [
+   "代理店 訂正内容確認",
+   19
+  ],
+  [
+   "個別メール通知先検索",
+   18
+  ],
+  [
+   "メール変換先取込通知バッチ処理",
+   16
+  ]
+ ],
+ "topOperations": [
+  {
+   "count": 273,
+   "signature": "不備一覧|click|検索|none:"
+  },
+  {
+   "count": 208,
+   "signature": "送信先(写)選択|click|OK|none:"
+  },
+  {
+   "count": 203,
+   "signature": "申込書品質管理メニュー|click|検索|none:"
+  },
+  {
+   "count": 199,
+   "signature": "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+  },
+  {
+   "count": 191,
+   "signature": "不備一覧|click|No|none:"
+  },
+  {
+   "count": 141,
+   "signature": "不備内容入力画面-更新|click|OK|none:"
+  },
+  {
+   "count": 136,
+   "signature": "照会・検索|click|検索|none:"
+  },
+  {
+   "count": 135,
+   "signature": "項目名検索|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+  },
+  {
+   "count": 133,
+   "signature": "項目名検索|click|選択|none:"
+  },
+  {
+   "count": 127,
+   "signature": "不備内容入力画面-更新|click|検索|none:"
+  },
+  {
+   "count": 125,
+   "signature": "異例取扱管理メニュー|click|照会・検索|none:"
+  },
+  {
+   "count": 121,
+   "signature": "照会・検索|click|No|none:"
+  },
+  {
+   "count": 104,
+   "signature": "送信先(写)選択|click|検索|none:"
+  },
+  {
+   "count": 104,
+   "signature": "送信先(写)選択|click|No|none:"
+  },
+  {
+   "count": 101,
+   "signature": "申込書品質管理メニュー|click|新規登録|none:"
+  },
+  {
+   "count": 101,
+   "signature": "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+  },
+  {
+   "count": 101,
+   "signature": "不備内容入力画面-新規|click|登録|none:"
+  },
+  {
+   "count": 93,
+   "signature": "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照"
+  },
+  {
+   "count": 78,
+   "signature": "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」"
+  },
+  {
+   "count": 76,
+   "signature": "項目名検索|click|検索|none:"
+  },
+  {
+   "count": 74,
+   "signature": "項目名検索|click|各項目の選択|bundle:【別紙】操作内容 入力内容：#参照"
+  },
+  {
+   "count": 72,
+   "signature": "不備内容入力画面-更新|click|営業連携|none:"
+  },
+  {
+   "count": 71,
+   "signature": "不備一覧|click|No|literal:対象の申込情報"
+  },
+  {
+   "count": 70,
+   "signature": "不備内容入力画面-更新|click|代理店連携|none:"
+  },
+  {
+   "count": 66,
+   "signature": "不備内容入力画面-更新|click|照会内容チェックボックス|literal:チェックありにする"
+  },
+  {
+   "count": 66,
+   "signature": "不備内容入力画面-更新|click|修|none:"
+  },
+  {
+   "count": 66,
+   "signature": "照会内容編集|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+  },
+  {
+   "count": 66,
+   "signature": "照会内容編集|click|OK|none:"
+  },
+  {
+   "count": 64,
+   "signature": "代理店 不備一覧|click|検索|none:"
+  },
+  {
+   "count": 60,
+   "signature": "担当者検索|click|検索|none:"
+  }
+ ],
+ "topAssertions": [
+  {
+   "count": 265,
+   "signature": "不備内容入力画面-更新|display|不備内容入力画面-更新|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 215,
+   "signature": "不備一覧|transition|不備内容入力画面-更新|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 193,
+   "signature": "申込書品質管理メニュー|transition|不備一覧|literal:初期値"
+  },
+  {
+   "count": 133,
+   "signature": "不備内容入力画面-更新|transition|項目名検索|literal:初期値"
+  },
+  {
+   "count": 133,
+   "signature": "項目名検索|transition|不備内容入力画面-更新|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 114,
+   "signature": "異例取扱管理メニュー|transition|照会・検索|literal:初期値"
+  },
+  {
+   "count": 107,
+   "signature": "照会・検索|display|照会・検索画面|literal:入力項目に該当する検索結果が表示される"
+  },
+  {
+   "count": 101,
+   "signature": "申込書品質管理メニュー|transition|不備内容入力画面-新規|literal:初期値"
+  },
+  {
+   "count": 97,
+   "signature": "不備内容入力画面-新規|transition|不備内容入力画面-更新|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 83,
+   "signature": "照会・検索|transition|申請・確認更新|bundle:【別紙】表示内容 1 参照"
+  },
+  {
+   "count": 78,
+   "signature": "送信先(写)選択|display|送信先(写)選択画面|literal:検索結果"
+  },
+  {
+   "count": 76,
+   "signature": "項目名検索|display|項目名検索画面|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 71,
+   "signature": "不備内容入力画面-更新|other|APログ|literal:ログに出力されること"
+  },
+  {
+   "count": 71,
+   "signature": "不備内容入力画面-更新|other|DBログ|literal:ログに出力されること"
+  },
+  {
+   "count": 71,
+   "signature": "不備一覧|display|不備一覧画面|literal:検索結果を表示"
+  },
+  {
+   "count": 66,
+   "signature": "不備内容入力画面-更新|transition|照会内容編集|literal:初期値"
+  },
+  {
+   "count": 66,
+   "signature": "照会内容編集|transition|不備内容入力画面-更新|bundle:【別紙】表示内容 表示内容：#参照"
+  },
+  {
+   "count": 66,
+   "signature": "ToDo連携データ作成バッチ処理|other|ToDo連携テーブル|literal:TODO連携区分が「1:送信済」であること"
+  },
+  {
+   "count": 64,
+   "signature": "不備内容入力画面-更新|other|申込書テーブル|none:"
+  },
+  {
+   "count": 64,
+   "signature": "不備内容入力画面-更新|other|申込不備テーブル|none:"
+  },
+  {
+   "count": 62,
+   "signature": "申請・確認更新|transition|送信先(写)選択|literal:初期値"
+  },
+  {
+   "count": 52,
+   "signature": "申請・確認更新|transition|担当者検索|literal:初期値"
+  },
+  {
+   "count": 52,
+   "signature": "担当者検索|display|担当者検索画面|literal:入力項目に該当する検索結果が表示される"
+  },
+  {
+   "count": 49,
+   "signature": "申請・確認更新|display|申請・確認更新画面|bundle:【別紙】表示内容 2 参照"
+  },
+  {
+   "count": 48,
+   "signature": "送信先(写)選択|transition|取消計上申請承認|bundle:【別紙】表示内容 2 参照"
+  },
+  {
+   "count": 47,
+   "signature": "ToDo連携データ作成バッチ処理|other|APログ|literal:AP_AZB022.log"
+  },
+  {
+   "count": 46,
+   "signature": "ToDo連携データ作成バッチ処理|other|APログ|literal:AP_AZB022A.log"
+  },
+  {
+   "count": 44,
+   "signature": "不備内容入力画面-更新|message|メッセージ|literal:「MAZG101l006」が表示される"
+  },
+  {
+   "count": 40,
+   "signature": "不備一覧|transition|不備内容入力画面-更新|literal:対象の申込情報"
+  },
+  {
+   "count": 38,
+   "signature": "申請承認一覧|display|申請承認一覧画面|literal:入力項目に該当する検索結果が表示される"
+  }
+ ],
+ "prefixReuse": {
+  "3": {
+   "cases": 417,
+   "uniquePrefixes": 44,
+   "top": [
+    {
+     "count": 136,
+     "prefix": [
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:"
+     ]
+    },
+    {
+     "count": 81,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:"
+     ]
+    },
+    {
+     "count": 37,
+     "prefix": [
+      "申込書品質管理メニュー|click|新規登録|none:",
+      "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備内容入力画面-新規|click|(保険種類欄の横)|none:"
+     ]
+    },
+    {
+     "count": 28,
+     "prefix": [
+      "代理店 不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "代理店 不備一覧|click|検索|none:",
+      "代理店 不備一覧|click|No|none:"
+     ]
+    },
+    {
+     "count": 12,
+     "prefix": [
+      "異例取扱管理メニュー|click|申請・承認|none:",
+      "申請承認一覧|click|承認表示条件の11:承認待ち|literal:チェックする(他の項目全部チェックなし)",
+      "申請承認一覧|click|再表示|none:"
+     ]
+    }
+   ]
+  },
+  "5": {
+   "cases": 409,
+   "uniquePrefixes": 84,
+   "top": [
+    {
+     "count": 41,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照"
+     ]
+    },
+    {
+     "count": 37,
+     "prefix": [
+      "申込書品質管理メニュー|click|新規登録|none:",
+      "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備内容入力画面-新規|click|(保険種類欄の横)|none:",
+      "保険種類選択|click|保険種類|bundle:【別紙】操作内容 入力内容：#参照",
+      "保険種類選択|click|OK|none:"
+     ]
+    },
+    {
+     "count": 25,
+     "prefix": [
+      "代理店 不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "代理店 不備一覧|click|検索|none:",
+      "代理店 不備一覧|click|No|none:",
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+     ]
+    },
+    {
+     "count": 20,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|click|削除|none:"
+     ]
+    },
+    {
+     "count": 18,
+     "prefix": [
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:",
+      "不備内容入力画面-更新|click|検索|none:"
+     ]
+    }
+   ]
+  },
+  "8": {
+   "cases": 299,
+   "uniquePrefixes": 79,
+   "top": [
+    {
+     "count": 37,
+     "prefix": [
+      "申込書品質管理メニュー|click|新規登録|none:",
+      "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備内容入力画面-新規|click|(保険種類欄の横)|none:",
+      "保険種類選択|click|保険種類|bundle:【別紙】操作内容 入力内容：#参照",
+      "保険種類選択|click|OK|none:",
+      "不備内容入力画面-新規|click|(募集人ID欄の横)|none:",
+      "募集人検索|input|部店課支社コード|literal:AHE61",
+      "募集人検索|click|検索|none:"
+     ]
+    },
+    {
+     "count": 21,
+     "prefix": [
+      "代理店 不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "代理店 不備一覧|click|検索|none:",
+      "代理店 不備一覧|click|No|none:",
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:",
+      "代理店 不備内容入力画面(更新)|click|一時中断|none:"
+     ]
+    },
+    {
+     "count": 18,
+     "prefix": [
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:",
+      "不備内容入力画面-更新|click|検索|none:",
+      "項目名検索|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "項目名検索|click|検索|none:",
+      "項目名検索|click|各項目の選択|bundle:【別紙】操作内容 入力内容：#参照"
+     ]
+    },
+    {
+     "count": 18,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|click|要再申請|none:",
+      "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:"
+     ]
+    },
+    {
+     "count": 12,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照",
+      "申請・確認更新|click|対応登録|none:",
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 3 参照"
+     ]
+    }
+   ]
+  },
+  "12": {
+   "cases": 233,
+   "uniquePrefixes": 87,
+   "top": [
+    {
+     "count": 29,
+     "prefix": [
+      "申込書品質管理メニュー|click|新規登録|none:",
+      "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備内容入力画面-新規|click|(保険種類欄の横)|none:",
+      "保険種類選択|click|保険種類|bundle:【別紙】操作内容 入力内容：#参照",
+      "保険種類選択|click|OK|none:",
+      "不備内容入力画面-新規|click|(募集人ID欄の横)|none:",
+      "募集人検索|input|部店課支社コード|literal:AHE61",
+      "募集人検索|click|検索|none:",
+      "募集人検索|click|選択欄ラジオ|bundle:【別紙】操作内容 入力内容：#参照",
+      "募集人検索|click|選択|none:",
+      "不備内容入力画面-新規|click|登録|none:",
+      "不備内容入力画面-更新|click|検索|none:"
+     ]
+    },
+    {
+     "count": 21,
+     "prefix": [
+      "代理店 不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "代理店 不備一覧|click|検索|none:",
+      "代理店 不備一覧|click|No|none:",
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:",
+      "代理店 不備内容入力画面(更新)|click|一時中断|none:",
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:"
+     ]
+    },
+    {
+     "count": 13,
+     "prefix": [
+      "申込書品質管理メニュー|click|検索|none:",
+      "不備一覧|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備一覧|click|検索|none:",
+      "不備一覧|click|No|none:",
+      "不備内容入力画面-更新|click|検索|none:",
+      "項目名検索|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "項目名検索|click|検索|none:",
+      "項目名検索|click|各項目の選択|bundle:【別紙】操作内容 入力内容：#参照",
+      "項目名検索|click|選択|none:",
+      "不備内容入力画面-更新|click|照会内容チェックボックス|literal:チェックありにする",
+      "不備内容入力画面-更新|click|修|none:",
+      "照会内容編集|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照"
+     ]
+    },
+    {
+     "count": 12,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照",
+      "申請・確認更新|click|対応登録|none:",
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 3 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 4 参照",
+      "申請・確認更新|click|対応登録|none:"
+     ]
+    },
+    {
+     "count": 10,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照",
+      "申請・確認更新|click|申請依頼先選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 3 参照",
+      "担当者検索|click|検索|none:",
+      "担当者検索|click|No|none:",
+      "申請・確認更新|click|申請代行者選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 4 参照",
+      "担当者検索|click|検索|none:"
+     ]
+    }
+   ]
+  },
+  "20": {
+   "cases": 134,
+   "uniquePrefixes": 58,
+   "top": [
+    {
+     "count": 28,
+     "prefix": [
+      "申込書品質管理メニュー|click|新規登録|none:",
+      "不備内容入力画面-新規|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "不備内容入力画面-新規|click|(保険種類欄の横)|none:",
+      "保険種類選択|click|保険種類|bundle:【別紙】操作内容 入力内容：#参照",
+      "保険種類選択|click|OK|none:",
+      "不備内容入力画面-新規|click|(募集人ID欄の横)|none:",
+      "募集人検索|input|部店課支社コード|literal:AHE61",
+      "募集人検索|click|検索|none:",
+      "募集人検索|click|選択欄ラジオ|bundle:【別紙】操作内容 入力内容：#参照",
+      "募集人検索|click|選択|none:",
+      "不備内容入力画面-新規|click|登録|none:",
+      "不備内容入力画面-更新|click|検索|none:",
+      "項目名検索|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "項目名検索|click|検索|none:",
+      "項目名検索|click|各項目の選択|bundle:【別紙】操作内容 入力内容：#参照",
+      "項目名検索|click|選択|none:",
+      "不備内容入力画面-更新|click|照会内容チェックボックス|literal:チェックありにする",
+      "不備内容入力画面-更新|click|修|none:",
+      "照会内容編集|inputBundle|各項目|bundle:【別紙】操作内容 入力内容：#参照",
+      "照会内容編集|click|OK|none:"
+     ]
+    },
+    {
+     "count": 10,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照",
+      "申請・確認更新|click|申請依頼先選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 3 参照",
+      "担当者検索|click|検索|none:",
+      "担当者検索|click|No|none:",
+      "申請・確認更新|click|申請代行者選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 4 参照",
+      "担当者検索|click|検索|none:",
+      "担当者検索|click|No|none:",
+      "申請・確認更新|click|更新|none:",
+      "申請・確認更新|click|申請依頼|none:",
+      "送信先(写)選択|inputBundle|各項目|bundle:【別紙】操作内容 5 参照",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:",
+      "送信先(写)選択|click|OK|none:",
+      "送信先(写)選択|click|OK|none:"
+     ]
+    },
+    {
+     "count": 10,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|click|要再申請|none:",
+      "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:",
+      "送信先(写)選択|click|OK|none:",
+      "送信先(写)選択|click|OK|none:",
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|click|要再申請|none:",
+      "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:",
+      "送信先(写)選択|click|OK|none:",
+      "送信先(写)選択|click|OK|none:"
+     ]
+    },
+    {
+     "count": 8,
+     "prefix": [
+      "異例取扱管理メニュー|click|照会・検索|none:",
+      "照会・検索|inputBundle|各項目|bundle:【別紙】操作内容 1 参照",
+      "照会・検索|click|検索|none:",
+      "照会・検索|click|No|none:",
+      "申請・確認更新|inputBundle|各項目|bundle:【別紙】操作内容 2 参照",
+      "申請・確認更新|click|承認依頼先選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 3 参照",
+      "担当者検索|click|検索|none:",
+      "担当者検索|click|No|none:",
+      "申請・確認更新|click|承認代行者選択|none:",
+      "担当者検索|inputBundle|各項目|bundle:【別紙】操作内容 4 参照",
+      "担当者検索|click|検索|none:",
+      "担当者検索|click|No|none:",
+      "申請・確認更新|click|更新|none:",
+      "申請・確認更新|click|承認依頼|none:",
+      "送信先(写)選択|inputBundle|各項目|bundle:【別紙】操作内容 5 参照",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:",
+      "送信先(写)選択|click|OK|none:",
+      "送信先(写)選択|click|OK|none:"
+     ]
+    },
+    {
+     "count": 6,
+     "prefix": [
+      "異例取扱管理メニュー|click|申請・承認|none:",
+      "申請承認一覧|click|課支社長 申請表示条件の10:申請依頼|literal:チェックする(他の項目全部チェックなし)",
+      "申請承認一覧|click|再表示|none:",
+      "申請承認一覧|click|申請|literal:事前準備で登録したレコードと合致する「申請」ボタンを押下",
+      "取消計上申請承認|input|「承認依頼/要再申請依頼理由」入力|literal:「テスト」",
+      "取消計上申請承認|click|不承認|none:",
+      "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:",
+      "送信先(写)選択|click|OK|none:",
+      "送信先(写)選択|click|OK|none:",
+      "異例取扱管理メニュー|click|申請・承認|none:",
+      "申請承認一覧|click|承認表示条件の11:承認待ち|literal:チェックする(他の項目全部チェックなし)",
+      "申請承認一覧|click|再表示|none:",
+      "申請承認一覧|click|承認|literal:事前準備で登録したレコードと合致する「承認」ボタンを押下",
+      "取消計上申請承認|input|「承認/要再申請依頼理由」入力|literal:「テスト」",
+      "取消計上申請承認|click|不承認|none:",
+      "送信先(写)選択|input|「氏名」入力|literal:「黒川 京子」",
+      "送信先(写)選択|click|検索|none:",
+      "送信先(写)選択|click|No|none:"
+     ]
+    }
+   ]
+  }
+ },
+ "candidateBlocks": [
+  {
+   "signature": "op:不備一覧:inputBundle:各項目:bundle || op:不備一覧:click:検索:none || op:不備一覧:click:No:none || ast:不備一覧:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 152,
+   "eventCount": 4,
+   "score": 608,
+   "caseIds": [
+    "AZ-110-13-005",
+    "AZ-110-14-001",
+    "AZ-110-15-001",
+    "AZ-110-16-001",
+    "AZ-110-17-001",
+    "AZ-110-17-002",
+    "AZ-110-17-003",
+    "AZ-110-18-001"
+   ],
+   "example": [
+    "AZ-110-13-005",
+    16
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 27
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンク押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:不備一覧:click:検索:none || op:不備一覧:click:No:none || ast:不備一覧:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 152,
+   "eventCount": 3,
+   "score": 456,
+   "caseIds": [
+    "AZ-110-13-005",
+    "AZ-110-14-001",
+    "AZ-110-15-001",
+    "AZ-110-16-001",
+    "AZ-110-17-001",
+    "AZ-110-17-002",
+    "AZ-110-17-003",
+    "AZ-110-18-001"
+   ],
+   "example": [
+    "AZ-110-13-005",
+    17
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンク押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:照会・検索:inputBundle:各項目:bundle || op:照会・検索:click:検索:none || ast:照会・検索:display:照会・検索画面:literal || op:照会・検索:click:No:none || ast:照会・検索:transition:申請・確認更新:bundle",
+   "caseCount": 81,
+   "eventCount": 5,
+   "score": 405,
+   "caseIds": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010"
+   ],
+   "example": [
+    "AY-120-01-003",
+    16
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 1 参照",
+     "rawType": "入力",
+     "rawItem": "画面各項目入力",
+     "sourceRow": 16
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 17
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "display",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "dataKey": "入力項目に該当する検索結果が表示される",
+     "rawType": "表示",
+     "rawItem": "照会・検索画面",
+     "sourceRow": 18
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 19
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "transition",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 1 参照",
+     "rawType": "遷移",
+     "rawItem": "申請・確認更新画面",
+     "sourceRow": 20
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:inputBundle:各項目:bundle || op:項目名検索:click:検索:none || ast:項目名検索:display:項目名検索画面:bundle || op:項目名検索:click:各項目の選択:bundle || op:項目名検索:click:選択:none || ast:項目名検索:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 67,
+   "eventCount": 6,
+   "score": 402,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    36
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 34
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 35
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "display",
+     "target": "項目名検索画面",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "表示",
+     "rawItem": "項目名検索画面",
+     "sourceRow": 36
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "各項目の選択",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "クリック",
+     "rawItem": "各項目の選択",
+     "sourceRow": 37
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 38
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 39
+    }
+   ]
+  },
+  {
+   "signature": "op:送信先(写)選択:click:検索:none || ast:送信先(写)選択:display:送信先(写)選択画面:literal || op:送信先(写)選択:click:No:none || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:message:メッセージ:literal",
+   "caseCount": 80,
+   "eventCount": 5,
+   "score": 400,
+   "caseIds": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016"
+   ],
+   "example": [
+    "AY-100-07-001",
+    37
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」ボタン押下",
+     "sourceRow": 26
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "display",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "dataKey": "検索結果",
+     "rawType": "表示",
+     "rawItem": "送信先(写)選択画面",
+     "sourceRow": 27
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "dataKey": "「MAYG901I009」が表示される",
+     "rawType": "出力(Msg)",
+     "rawItem": "メッセージ",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:click:検索:none || ast:項目名検索:display:項目名検索画面:bundle || op:項目名検索:click:各項目の選択:bundle || op:項目名検索:click:選択:none || ast:項目名検索:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 67,
+   "eventCount": 5,
+   "score": 335,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    37
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 35
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "display",
+     "target": "項目名検索画面",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "表示",
+     "rawItem": "項目名検索画面",
+     "sourceRow": 36
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "各項目の選択",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "クリック",
+     "rawItem": "各項目の選択",
+     "sourceRow": 37
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 38
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 39
+    }
+   ]
+  },
+  {
+   "signature": "op:申込書品質管理メニュー:click:検索:none || ast:申込書品質管理メニュー:transition:不備一覧:literal",
+   "caseCount": 165,
+   "eventCount": 2,
+   "score": 330,
+   "caseIds": [
+    "AZ-100-05-003",
+    "AZ-100-05-004",
+    "AZ-110-13-005",
+    "AZ-110-14-001",
+    "AZ-110-15-001",
+    "AZ-110-16-001",
+    "AZ-110-17-001",
+    "AZ-110-17-002"
+   ],
+   "example": [
+    "AZ-100-05-003",
+    14
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 25
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "assert": "transition",
+     "target": "不備一覧",
+     "dataClass": "literal",
+     "dataKey": "初期値",
+     "rawType": "遷移",
+     "rawItem": "不備一覧画面",
+     "sourceRow": 26
+    }
+   ]
+  },
+  {
+   "signature": "op:照会・検索:click:検索:none || ast:照会・検索:display:照会・検索画面:literal || op:照会・検索:click:No:none || ast:照会・検索:transition:申請・確認更新:bundle",
+   "caseCount": 81,
+   "eventCount": 4,
+   "score": 324,
+   "caseIds": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010"
+   ],
+   "example": [
+    "AY-120-01-003",
+    17
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 17
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "display",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "dataKey": "入力項目に該当する検索結果が表示される",
+     "rawType": "表示",
+     "rawItem": "照会・検索画面",
+     "sourceRow": 18
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 19
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "transition",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 1 参照",
+     "rawType": "遷移",
+     "rawItem": "申請・確認更新画面",
+     "sourceRow": 20
+    }
+   ]
+  },
+  {
+   "signature": "op:送信先(写)選択:input:「氏名」入力:literal || op:送信先(写)選択:click:検索:none || ast:送信先(写)選択:display:送信先(写)選択画面:literal || op:送信先(写)選択:click:No:none || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:message:メッセージ:literal",
+   "caseCount": 54,
+   "eventCount": 6,
+   "score": 324,
+   "caseIds": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002"
+   ],
+   "example": [
+    "AY-100-07-001",
+    36
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "input",
+     "target": "「氏名」入力",
+     "dataClass": "literal",
+     "dataKey": "「黒川 京子」",
+     "rawType": "入力",
+     "rawItem": "「氏名」入力",
+     "sourceRow": 25
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」ボタン押下",
+     "sourceRow": 26
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "display",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "dataKey": "検索結果",
+     "rawType": "表示",
+     "rawItem": "送信先(写)選択画面",
+     "sourceRow": 27
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "dataKey": "「MAYG901I009」が表示される",
+     "rawType": "出力(Msg)",
+     "rawItem": "メッセージ",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:不備一覧:click:No:none || ast:不備一覧:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 156,
+   "eventCount": 2,
+   "score": 312,
+   "caseIds": [
+    "AZ-110-13-005",
+    "AZ-110-14-001",
+    "AZ-110-15-001",
+    "AZ-110-16-001",
+    "AZ-110-17-001",
+    "AZ-110-17-002",
+    "AZ-110-17-003",
+    "AZ-110-18-001"
+   ],
+   "example": [
+    "AZ-110-13-005",
+    18
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンク押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:送信先(写)選択:click:No:none || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:message:メッセージ:literal || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:transition:取消計上申請承認:bundle",
+   "caseCount": 52,
+   "eventCount": 5,
+   "score": 260,
+   "caseIds": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004"
+   ],
+   "example": [
+    "AY-120-02-015",
+    42
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "dataKey": "「MAYG901I009」が表示される",
+     "rawType": "出力(Msg)",
+     "rawItem": "メッセージ",
+     "sourceRow": 30
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 31
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 2 参照",
+     "rawType": "遷移",
+     "rawItem": "取消計上申請承認画面",
+     "sourceRow": 32
+    }
+   ]
+  },
+  {
+   "signature": "op:照会・検索:inputBundle:各項目:bundle || op:照会・検索:click:検索:none || ast:照会・検索:display:照会・検索画面:literal",
+   "caseCount": 86,
+   "eventCount": 3,
+   "score": 258,
+   "caseIds": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008"
+   ],
+   "example": [
+    "AY-100-07-001",
+    18
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 26
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 27
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "display",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "dataKey": "検索結果が1件以上表示されること",
+     "rawType": "表示",
+     "rawItem": "照会・検索画面",
+     "sourceRow": 28
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:click:選択:none || ast:項目名検索:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 126,
+   "eventCount": 2,
+   "score": 252,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    40
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 24
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 25
+    }
+   ]
+  },
+  {
+   "signature": "op:不備内容入力画面-更新:click:検索:none || ast:不備内容入力画面-更新:transition:項目名検索:literal",
+   "caseCount": 123,
+   "eventCount": 2,
+   "score": 246,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    34
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 21
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "transition",
+     "target": "項目名検索",
+     "dataClass": "literal",
+     "dataKey": "初期値",
+     "rawType": "遷移",
+     "rawItem": "項目名検索画面",
+     "sourceRow": 22
+    }
+   ]
+  },
+  {
+   "signature": "op:送信先(写)選択:click:No:none || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:message:メッセージ:literal",
+   "caseCount": 80,
+   "eventCount": 3,
+   "score": 240,
+   "caseIds": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016"
+   ],
+   "example": [
+    "AY-100-07-001",
+    39
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "クリック",
+     "rawItem": "「No.」リンククリック",
+     "sourceRow": 28
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "dataKey": "「MAYG901I009」が表示される",
+     "rawType": "出力(Msg)",
+     "rawItem": "メッセージ",
+     "sourceRow": 30
+    }
+   ]
+  },
+  {
+   "signature": "op:募集人検索:input:部店課支社コード:literal || op:募集人検索:click:検索:none || ast:募集人検索:display:募集人検索画面:literal || op:募集人検索:click:選択欄ラジオ:bundle || op:募集人検索:click:選択:none || ast:募集人検索:transition:不備内容入力画面-新規:literal",
+   "caseCount": 37,
+   "eventCount": 6,
+   "score": 222,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    24
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "input",
+     "target": "部店課支社コード",
+     "dataClass": "literal",
+     "dataKey": "AHE61",
+     "rawType": "入力",
+     "rawItem": "部店課支社コード",
+     "sourceRow": 24
+    },
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 25
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人検索",
+     "assert": "display",
+     "target": "募集人検索画面",
+     "dataClass": "literal",
+     "dataKey": "部店課支社コードAHE61の検索結果を確認",
+     "rawType": "表示",
+     "rawItem": "募集人検索画面",
+     "sourceRow": 26
+    },
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "選択欄ラジオ",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "クリック",
+     "rawItem": "選択欄ラジオボタン",
+     "sourceRow": 27
+    },
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 28
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-新規",
+     "dataClass": "literal",
+     "dataKey": "募集人の選択内容が反映されること",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-新規",
+     "sourceRow": 29
+    }
+   ]
+  },
+  {
+   "signature": "op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:message:メッセージ:literal || op:送信先(写)選択:click:OK:none || ast:送信先(写)選択:transition:取消計上申請承認:bundle",
+   "caseCount": 52,
+   "eventCount": 4,
+   "score": 208,
+   "caseIds": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004"
+   ],
+   "example": [
+    "AY-120-02-015",
+    43
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 29
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "dataKey": "「MAYG901I009」が表示される",
+     "rawType": "出力(Msg)",
+     "rawItem": "メッセージ",
+     "sourceRow": 30
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」ボタン押下",
+     "sourceRow": 31
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 2 参照",
+     "rawType": "遷移",
+     "rawItem": "取消計上申請承認画面",
+     "sourceRow": 32
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:inputBundle:各項目:bundle || op:項目名検索:click:検索:none || ast:項目名検索:display:項目名検索画面:bundle",
+   "caseCount": 69,
+   "eventCount": 3,
+   "score": 207,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    36
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 34
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 35
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "display",
+     "target": "項目名検索画面",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "表示",
+     "rawItem": "項目名検索画面",
+     "sourceRow": 36
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:click:各項目の選択:bundle || op:項目名検索:click:選択:none || ast:項目名検索:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 67,
+   "eventCount": 3,
+   "score": 201,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    39
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "各項目の選択",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "クリック",
+     "rawItem": "各項目の選択",
+     "sourceRow": 37
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 38
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 39
+    }
+   ]
+  },
+  {
+   "signature": "op:申込書品質管理メニュー:click:新規登録:none || ast:申込書品質管理メニュー:transition:不備内容入力画面-新規:literal",
+   "caseCount": 98,
+   "eventCount": 2,
+   "score": 196,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    14
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "action": "click",
+     "target": "新規登録",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「新規登録」押下",
+     "sourceRow": 16
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "assert": "transition",
+     "target": "不備内容入力画面-新規",
+     "dataClass": "literal",
+     "dataKey": "初期値",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-新規",
+     "sourceRow": 17
+    }
+   ]
+  },
+  {
+   "signature": "op:不備内容入力画面-新規:click:登録:none || ast:不備内容入力画面-新規:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 97,
+   "eventCount": 2,
+   "score": 194,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    30
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-新規",
+     "action": "click",
+     "target": "登録",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「登録」押下",
+     "sourceRow": 19
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 20
+    }
+   ]
+  },
+  {
+   "signature": "op:異例取扱管理メニュー:click:照会・検索:none || ast:異例取扱管理メニュー:transition:照会・検索:literal",
+   "caseCount": 95,
+   "eventCount": 2,
+   "score": 190,
+   "caseIds": [
+    "AY-100-05-001",
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-100-08-003",
+    "AY-100-08-004",
+    "AY-110-02-001",
+    "AY-110-02-002",
+    "AY-120-01-003"
+   ],
+   "example": [
+    "AY-100-05-001",
+    14
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "異例取扱管理メニュー",
+     "action": "click",
+     "target": "照会・検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「照会・検索」押下",
+     "sourceRow": 14
+    },
+    {
+     "kind": "ast",
+     "screen": "異例取扱管理メニュー",
+     "assert": "transition",
+     "target": "照会・検索",
+     "dataClass": "literal",
+     "dataKey": "初期値",
+     "rawType": "遷移",
+     "rawItem": "照会・検索画面",
+     "sourceRow": 15
+    }
+   ]
+  },
+  {
+   "signature": "op:照会内容編集:inputBundle:各項目:bundle || op:照会内容編集:click:OK:none || ast:照会内容編集:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 63,
+   "eventCount": 3,
+   "score": 189,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    45
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 44
+    },
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」押下",
+     "sourceRow": 45
+    },
+    {
+     "kind": "ast",
+     "screen": "照会内容編集",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 46
+    }
+   ]
+  },
+  {
+   "signature": "op:不備内容入力画面-更新:click:照会内容チェックボックス:literal || op:不備内容入力画面-更新:click:修:none || ast:不備内容入力画面-更新:transition:照会内容編集:literal",
+   "caseCount": 62,
+   "eventCount": 3,
+   "score": 186,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    42
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "照会内容チェックボックス",
+     "dataClass": "literal",
+     "dataKey": "チェックありにする",
+     "rawType": "クリック",
+     "rawItem": "照会内容チェックボックス",
+     "sourceRow": 41
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "修",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「修」押下",
+     "sourceRow": 42
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "transition",
+     "target": "照会内容編集",
+     "dataClass": "literal",
+     "dataKey": "初期値",
+     "rawType": "遷移",
+     "rawItem": "照会内容編集画面",
+     "sourceRow": 43
+    }
+   ]
+  },
+  {
+   "signature": "op:募集人検索:click:検索:none || ast:募集人検索:display:募集人検索画面:literal || op:募集人検索:click:選択欄ラジオ:bundle || op:募集人検索:click:選択:none || ast:募集人検索:transition:不備内容入力画面-新規:literal",
+   "caseCount": 37,
+   "eventCount": 5,
+   "score": 185,
+   "caseIds": [
+    "AZ-110-01-009",
+    "AZ-110-01-010",
+    "AZ-110-01-011",
+    "AZ-110-01-012",
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004"
+   ],
+   "example": [
+    "AZ-110-01-009",
+    25
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 25
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人検索",
+     "assert": "display",
+     "target": "募集人検索画面",
+     "dataClass": "literal",
+     "dataKey": "部店課支社コードAHE61の検索結果を確認",
+     "rawType": "表示",
+     "rawItem": "募集人検索画面",
+     "sourceRow": 26
+    },
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "選択欄ラジオ",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "クリック",
+     "rawItem": "選択欄ラジオボタン",
+     "sourceRow": 27
+    },
+    {
+     "kind": "op",
+     "screen": "募集人検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 28
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-新規",
+     "dataClass": "literal",
+     "dataKey": "募集人の選択内容が反映されること",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-新規",
+     "sourceRow": 29
+    }
+   ]
+  },
+  {
+   "signature": "op:不備内容入力画面-新規:inputBundle:各項目:bundle || op:不備内容入力画面-新規:click:登録:none || ast:不備内容入力画面-新規:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 60,
+   "eventCount": 3,
+   "score": 180,
+   "caseIds": [
+    "AZ-111-02-003",
+    "AZ-111-02-005",
+    "AZ-111-02-006",
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015"
+   ],
+   "example": [
+    "AZ-111-02-003",
+    30
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-新規",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 18
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-新規",
+     "action": "click",
+     "target": "登録",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「登録」押下",
+     "sourceRow": 19
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 20
+    }
+   ]
+  },
+  {
+   "signature": "op:照会・検索:click:検索:none || ast:照会・検索:display:照会・検索画面:literal",
+   "caseCount": 89,
+   "eventCount": 2,
+   "score": 178,
+   "caseIds": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-100-08-004",
+    "AY-110-02-001",
+    "AY-110-02-002",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005"
+   ],
+   "example": [
+    "AY-100-07-001",
+    19
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「検索」押下",
+     "sourceRow": 27
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "display",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "dataKey": "検索結果が1件以上表示されること",
+     "rawType": "表示",
+     "rawItem": "照会・検索画面",
+     "sourceRow": 28
+    }
+   ]
+  },
+  {
+   "signature": "op:項目名検索:inputBundle:各項目:bundle || op:項目名検索:click:選択:none || ast:項目名検索:transition:不備内容入力画面-更新:bundle",
+   "caseCount": 59,
+   "eventCount": 3,
+   "score": 177,
+   "caseIds": [
+    "AZ-210-08-001",
+    "AZ-210-09-001",
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016"
+   ],
+   "example": [
+    "AZ-210-08-001",
+    27
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】操作内容 入力内容：#参照",
+     "rawType": "入力",
+     "rawItem": "各項目に入力",
+     "sourceRow": 23
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「選択」押下",
+     "sourceRow": 24
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "遷移",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 25
+    }
+   ]
+  },
+  {
+   "signature": "op:不備内容入力画面-更新:click:OK:none || ast:不備内容入力画面-更新:display:不備内容入力画面-更新:bundle",
+   "caseCount": 88,
+   "eventCount": 2,
+   "score": 176,
+   "caseIds": [
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004",
+    "AZ-110-16-001",
+    "AZ-110-17-001",
+    "AZ-110-17-002",
+    "AZ-110-17-003"
+   ],
+   "example": [
+    "AZ-110-02-001",
+    54
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none",
+     "dataKey": "",
+     "rawType": "ボタン",
+     "rawItem": "「OK」押下",
+     "sourceRow": 68
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "dataKey": "【別紙】表示内容 表示内容：#参照",
+     "rawType": "表示",
+     "rawItem": "不備内容入力画面-更新",
+     "sourceRow": 69
+    }
+   ]
+  },
+  {
+   "signature": "op:ToDo連携データ作成バッチ処理:other:バッチ実行(JP1):literal || ast:ToDo連携データ作成バッチ処理:other:ToDo連携テーブル:literal || ast:ToDo連携データ作成バッチ処理:other:APログ:literal",
+   "caseCount": 57,
+   "eventCount": 3,
+   "score": 171,
+   "caseIds": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018"
+   ],
+   "example": [
+    "AZ-230-01-011",
+    47
+   ],
+   "events": [
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "action": "other",
+     "target": "バッチ実行(JP1)",
+     "dataClass": "literal",
+     "dataKey": "19時",
+     "rawType": "その他",
+     "rawItem": "バッチ実行(JP1)",
+     "sourceRow": 77
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "dataKey": "TODO連携区分が「9:送信対象外」であること",
+     "rawType": "その他",
+     "rawItem": "ToDo連携テーブル",
+     "sourceRow": 78
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal",
+     "dataKey": "AP_AZB022A.log",
+     "rawType": "その他",
+     "rawItem": "APログ",
+     "sourceRow": 79
+    }
+   ]
+  }
+ ],
+ "examples": {
+  "AZ-110-37-001 vs AZ-110-67-001": {
+   "commonEventPrefix": 6,
+   "leftEvents": 14,
+   "rightEvents": 13,
+   "leftCase": "AZ-110-37-001",
+   "rightCase": "AZ-110-67-001"
+  },
+  "AZ-110-01-009 vs AZ-110-01-010": {
+   "commonEventPrefix": 44,
+   "leftEvents": 44,
+   "rightEvents": 44,
+   "leftCase": "AZ-110-01-009",
+   "rightCase": "AZ-110-01-010"
+  }
+ }
+}

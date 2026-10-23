@@ -163,3 +163,10 @@ Full 55-screen list and capture status: `automation/screens/SCREENS.md`.
 - The result-row HTML of AZG905 after search is not captured yet; selection logic currently guesses radio + `closeSelect`.
 - 152 templates are single-case; their screens may still be reused, but their action sequences differ. Estimate selectors per screen first, then template scripts.
 - AY flows use a different approval state machine and different screens; they are separate from AZ templates.
+
+## 9. Step-level composition (next layer)
+
+- `automation/steps/DESIGN.md`: block/workflow model, contracts, data bindings, anti-patterns.
+- `automation/steps/INVENTORY.md`: raw 450-case step inventory and candidate blocks (not approved).
+- Use screen-level blocks, not a flat button dictionary. Assertions and pre/post screens are mandatory.
+- 37/67 share a 6-event prefix; 009-012 share the full 44-event sequence. This is the intended reuse path.
