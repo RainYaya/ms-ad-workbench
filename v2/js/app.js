@@ -70,6 +70,24 @@
   for (const arr of casesByScenario.values()) arr.sort((a, b) => a.id.localeCompare(b.id));
   for (const arr of casesByCategory.values()) arr.sort((a, b) => a.id.localeCompare(b.id));
 
+  const caseUserMap = new Map();
+  for (const rt of DATA.routes || []) {
+    for (const p of rt.patterns || []) {
+      for (const st of p.steps || []) {
+        if (st.caseId && st.user) caseUserMap.set(st.caseId, st.user);
+      }
+    }
+    for (const st of rt.slots || []) {
+      if (!st.user) continue;
+      if (st.caseId) caseUserMap.set(st.caseId, st.user);
+      else {
+        for (const c of casesByScenario.get(st.scenarioId) || []) {
+          if (caseFitsRoute(c, rt)) caseUserMap.set(c.id, st.user);
+        }
+      }
+    }
+  }
+
   const STATUS = {
     NOT_STARTED: { label: '未実施', cls: 'gray', dot: 'not' },
     IN_PROGRESS: { label: '実施中', cls: 'blue', dot: 'prog' },
@@ -107,6 +125,8 @@
     if (c.comparisonMark === '〇') out.push('<span class="badge violet">現新比較</span>');
     const sc = scenarioById.get(c.scenarioId);
     if (sc && sc.hasRoute) out.push('<span class="badge green">ルート</span>');
+    const user = caseUserMap.get(c.id);
+    if (user) out.push(`<span class="badge blue">${esc(user.id || '')}${user.point ? ` / ${esc(user.point)}` : ''}</span>`);
     if (p && p.result === 'NG') out.push('<span class="badge red">NG</span>');
     if (taskSet.has(c.id)) out.push('<span class="badge green">自分のタスク</span>');
     return out.join(' ');
@@ -926,6 +946,7 @@ AY-120-01-001"></textarea>
         <div class="case-meta">
           <span class="badge outline">${esc(meta.scenarioId)}${sc?.title ? ` ${esc(sc.title)}` : ''}</span>
           ${companyBadge(meta.company)}
+          ${caseUserMap.get(meta.id) ? `<span class="badge blue">利用者 ${esc(caseUserMap.get(meta.id).id || '')}${caseUserMap.get(meta.id).point ? ` / ${esc(caseUserMap.get(meta.id).point)}` : ''}</span>` : ''}
           ${meta.item ? `<span class="badge gray">${esc(meta.item)}</span>` : ''}
           ${meta.comparisonMark === '〇' ? '<span class="badge violet">現新比較</span>' : ''}
           ${meta.hasWorkflow === false ? '<span class="badge red">手順書なし</span>' : ''}
