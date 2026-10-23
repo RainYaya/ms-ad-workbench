@@ -83,36 +83,38 @@
 
 ## 5. AZ-110 assigned tasks
 
-| Template | Tasks | Rows | Scenarios | Status |
-|---|---:|---:|---|---|
-| `TPL-AZ-110-05-008` | 10 | 42 | AZ-110-05 | not_started |
-| `TPL-AZ-110-24-009` | 6 | 10 | AZ-110-24 | not_started |
-| `TPL-AZ-110-37-001` | 5 | 14 | AZ-110-37, AZ-110-42, AZ-210-10, AZ-210-14, AZ-310-21 | not_started |
-| `TPL-AZ-110-67-001` | 5 | 13 | AZ-110-67, AZ-110-68, AZ-110-69, AZ-110-70, AZ-110-71 | not_started |
-| `TPL-AZ-110-01-009` | 4 | 44 | AZ-110-01 | blocked_environment |
-| `TPL-AZ-110-36-001` | 4 | 14 | AZ-110-36, AZ-110-41, AZ-310-18, AZ-310-38 | not_started |
-| `TPL-AZ-110-62-001` | 4 | 13 | AZ-110-62, AZ-110-65, AZ-310-36, AZ-410-11 | not_started |
-| `TPL-AZ-110-64-001` | 4 | 13 | AZ-110-64, AZ-310-20, AZ-310-35, AZ-310-39 | not_started |
-| `TPL-AZ-110-02-002` | 3 | 42 | AZ-110-02 | not_started |
-| `TPL-AZ-110-14-001` | 3 | 18 | AZ-110-14, AZ-110-39, AZ-310-23 | not_started |
-| `TPL-AZ-110-25-002` | 3 | 11 | AZ-110-25 | not_started |
-| `TPL-AZ-110-13-005` | 2 | 23 | AZ-110-13, AZ-110-19 | not_started |
-| `TPL-AZ-110-15-001` | 2 | 16 | AZ-110-15, AZ-110-34 | not_started |
-| `TPL-AZ-110-17-002` | 2 | 25 | AZ-110-17 | not_started |
-| `TPL-AZ-110-25-001` | 2 | 15 | AZ-110-25, AZ-310-19 | not_started |
-| `TPL-AZ-110-35-001` | 2 | 30 | AZ-110-35, AZ-110-40 | not_started |
-| `TPL-AZ-110-38-001` | 2 | 18 | AZ-110-38, AZ-310-22 | not_started |
-| `TPL-AZ-110-63-001` | 2 | 34 | AZ-110-63, AZ-110-66 | not_started |
-| `TPL-AZ-110-02-001` | 1 | 46 | AZ-110-02 | not_started |
-| `TPL-AZ-110-16-001` | 1 | 30 | AZ-110-16 | not_started |
-| `TPL-AZ-110-17-001` | 1 | 29 | AZ-110-17 | not_started |
-| `TPL-AZ-110-18-001` | 1 | 13 | AZ-110-18 | not_started |
-| `TPL-AZ-110-19-001` | 1 | 27 | AZ-110-19 | not_started |
-| `TPL-AZ-110-33-004` | 1 | 8 | AZ-110-33 | not_started |
-| `TPL-AZ-110-79-001` | 1 | 46 | AZ-110-79 | not_started |
-| `TPL-AZ-110-80-001` | 1 | 60 | AZ-110-80 | not_started |
-| `TPL-AZ-110-81-001` | 1 | 32 | AZ-110-81 | not_started |
-| `TPL-AZ-110-82-001` | 1 | 60 | AZ-110-82 | not_started |
+Some templates also contain cases from other categories; `Group total` is the whole template, `AZ-110 tasks` is only the assigned AZ-110 subset.
+
+| Template | AZ-110 tasks | Group total | Rows | AZ-110 scenarios | Status |
+|---|---:|---:|---:|---|---|
+| `TPL-AZ-110-05-008` | 10 | 10 | 42 | AZ-110-05 | not_started |
+| `TPL-AZ-110-24-009` | 6 | 6 | 10 | AZ-110-24 | not_started |
+| `TPL-AZ-110-67-001` | 5 | 5 | 13 | AZ-110-67, AZ-110-68, AZ-110-69, AZ-110-70, AZ-110-71 | not_started |
+| `TPL-AZ-110-01-009` | 4 | 4 | 44 | AZ-110-01 | blocked_environment |
+| `TPL-AZ-110-02-002` | 3 | 3 | 42 | AZ-110-02 | not_started |
+| `TPL-AZ-110-25-002` | 3 | 3 | 11 | AZ-110-25 | not_started |
+| `TPL-AZ-110-13-005` | 2 | 2 | 23 | AZ-110-13, AZ-110-19 | not_started |
+| `TPL-AZ-110-14-001` | 2 | 3 | 18 | AZ-110-14, AZ-110-39 | not_started |
+| `TPL-AZ-110-15-001` | 2 | 2 | 16 | AZ-110-15, AZ-110-34 | not_started |
+| `TPL-AZ-110-17-002` | 2 | 2 | 25 | AZ-110-17 | not_started |
+| `TPL-AZ-110-35-001` | 2 | 2 | 30 | AZ-110-35, AZ-110-40 | not_started |
+| `TPL-AZ-110-36-001` | 2 | 4 | 14 | AZ-110-36, AZ-110-41 | not_started |
+| `TPL-AZ-110-37-001` | 2 | 5 | 14 | AZ-110-37, AZ-110-42 | not_started |
+| `TPL-AZ-110-62-001` | 2 | 4 | 13 | AZ-110-62, AZ-110-65 | not_started |
+| `TPL-AZ-110-63-001` | 2 | 2 | 34 | AZ-110-63, AZ-110-66 | not_started |
+| `TPL-AZ-110-02-001` | 1 | 1 | 46 | AZ-110-02 | not_started |
+| `TPL-AZ-110-16-001` | 1 | 1 | 30 | AZ-110-16 | not_started |
+| `TPL-AZ-110-17-001` | 1 | 1 | 29 | AZ-110-17 | not_started |
+| `TPL-AZ-110-18-001` | 1 | 1 | 13 | AZ-110-18 | not_started |
+| `TPL-AZ-110-19-001` | 1 | 1 | 27 | AZ-110-19 | not_started |
+| `TPL-AZ-110-25-001` | 1 | 2 | 15 | AZ-110-25 | not_started |
+| `TPL-AZ-110-33-004` | 1 | 1 | 8 | AZ-110-33 | not_started |
+| `TPL-AZ-110-38-001` | 1 | 2 | 18 | AZ-110-38 | not_started |
+| `TPL-AZ-110-64-001` | 1 | 4 | 13 | AZ-110-64 | not_started |
+| `TPL-AZ-110-79-001` | 1 | 1 | 46 | AZ-110-79 | not_started |
+| `TPL-AZ-110-80-001` | 1 | 1 | 60 | AZ-110-80 | not_started |
+| `TPL-AZ-110-81-001` | 1 | 1 | 32 | AZ-110-81 | not_started |
+| `TPL-AZ-110-82-001` | 1 | 1 | 60 | AZ-110-82 | not_started |
 
 ## 6. Common screens (selector work)
 

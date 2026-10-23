@@ -96,8 +96,12 @@ def main():
         return str(v).replace("|", "\\|")
 
     top = templates[:20]
-    az110 = [t for t in templates if any(x.startswith("AZ-110-") for x in t["scenarioIds"])]
-    az110.sort(key=lambda x: (-x["count"], x["id"]))
+    az110 = []
+    for t in templates:
+        az = [x for x in t["caseIds"] if x.startswith("AZ-110")]
+        if az:
+            az110.append((t, az))
+    az110.sort(key=lambda x: (-len(x[1]), x[0]["id"]))
     cumulative = 0
     lines_md = []
     lines_md.append("# Assigned tasks / automation plan\n")
@@ -127,10 +131,12 @@ def main():
     for t in top:
         lines_md.append(f"| `{t['id']}` | {t['count']} | {t['rowCount']} | {esc(', '.join(t['scenarioIds'][:4]))} | {t['status']} |")
     lines_md.append("\n## 5. AZ-110 assigned tasks\n")
-    lines_md.append("| Template | Tasks | Rows | Scenarios | Status |")
-    lines_md.append("|---|---:|---:|---|---|")
-    for t in az110:
-        lines_md.append(f"| `{t['id']}` | {t['count']} | {t['rowCount']} | {esc(', '.join(t['scenarioIds']))} | {t['status']} |")
+    lines_md.append("Some templates also contain cases from other categories; `Group total` is the whole template, `AZ-110 tasks` is only the assigned AZ-110 subset.\n")
+    lines_md.append("| Template | AZ-110 tasks | Group total | Rows | AZ-110 scenarios | Status |")
+    lines_md.append("|---|---:|---:|---:|---|---|")
+    for t, az in az110:
+        scenarios = sorted({x[:9] for x in az})
+        lines_md.append(f"| `{t['id']}` | {len(az)} | {t['count']} | {t['rowCount']} | {esc(', '.join(scenarios))} | {t['status']} |")
     lines_md.append("\n## 6. Common screens (selector work)\n")
     lines_md.append("Full 55-screen list and capture status: `automation/screens/SCREENS.md`.\n")
     lines_md.append("| Screen | Occurrences |\n|---|---:|")
