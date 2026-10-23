@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8"><title>mock input</title></head><body>
+<div class="title_area"><div class="title_area_title">申込書品質管理システム　不備内容入力画面</div></div>
+<form id="mhk_MHKPRForm">
+<input type="hidden" name="gamid" value="AMA03">
+<input type="hidden" id="selected_input_type_code" value="">
+<select name="input_type_list.selected" onchange="document.getElementById('selected_input_type_code').value=this.value"><option value=""></option><option value="2">現地</option></select>
+<input type="hidden" id="selected_large_item_code" value="">
+<select name="large_item_list.selected" onchange="document.getElementById('selected_large_item_code').value=this.value"><option value=""></option><option value="B">自賠責</option></select>
+<select name="insurance_item_list.selected"><option value=""></option></select>
+<input type="hidden" id="selected_insurance_item_code" value="">
+<div id="insurance_item_title"></div>
+<input type="button" name="selectInsuransuItem" value="...." onclick="window.open('popup.html','insurancePopup','width=500,height=300')">
+<input id="policy_number" name="policy_number">
+<input id="sub_policy_number" name="sub_policy_number">
+<input id="section_code" name="section_code">
+<input id="agent_code" name="agent_code">
+<input id="sub_agent_code" name="sub_agent_code">
+<input id="free_code_1" name="free_code_1">
+<input id="field_agent_id" name="field_agent_id">
+<input id="insurant_name" name="insurant_name">
+<input id="start_date" name="start_date">
+<input id="change_date" name="change_date">
+<select name="application_form_type_list.selected" onchange="document.getElementById('selected_application_form_type_code').value=this.value"><option value=""></option><option value="1">新規</option></select>
+<input type="hidden" id="selected_application_form_type_code" value="">
+<input id="sumup_year_month" name="sumup_year_month">
+<input id="daily_report_send" name="daily_report_send">
+<input id="sumup_section_code" name="sumup_section_code">
+<select name="sumup_status_list.selected" onchange="document.getElementById('selected_sumup_status_code').value=this.value"><option value=""></option><option value="1">未計上</option></select>
+<input type="hidden" id="selected_sumup_status_code" value="">
+<input id="reminder_date" name="reminder_date">
+<input type="submit" id="regist" value="登録">
+</form>
+</body></html>
