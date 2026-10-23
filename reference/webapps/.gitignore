@@ -1,0 +1,5 @@
+# Client webapp snapshots: local-only until publication is approved.
+*
+!.gitignore
+!README.md
+!manifest.json

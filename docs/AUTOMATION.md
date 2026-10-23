@@ -1,0 +1,179 @@
+# Automation
+
+更新: 2026-10-23
+
+## 1. Three different things named "automation"
+
+| Surface | Where | What it does |
+|---|---|---|
+| Viewer automation tab | `v2/js/app.js` | Stores locator JSON per case and generates a Console snippet. Manual, one step at a time. |
+| CDP runner | `automation/cdp/` | Drives Edge via DevTools Protocol, executes JS, captures screenshots. This is the real runner. |
+| Step/block design | `automation/steps/` | Defines reusable screen blocks, params, assertions, and composition. Not yet a full executor. |
+
+Do not confuse the viewer's `msad.automation.v1` locator list with the CDP params file. They serve different purposes.
+
+## 2. CDP components
+
+| File | Purpose |
+|---|---|
+| `automation/cdp/Cdp.ps1` | Connect/evaluate/wait, popup targeting, screenshot, page selection |
+| `automation/cdp/start-edge.ps1` | Stop Edge, copy profile, start CDP-enabled Edge |
+| `automation/cdp/run-009.ps1` | Template runner for `AZ-110-01-009..012`, blocks 1–5 |
+| `automation/cdp/params/AZ-110-01.json` | Common + case params for 009–012 |
+| `automation/cdp/mock/` | Mock SUT for runner verification |
+| `automation/logs/<caseId>/` | Screenshots and JSON evidence (git-ignored) |
+
+### 2.1 Edge profile constraint
+
+Edge 155 does not expose CDP on the default `User Data` directory. The workaround is:
+
+1. Close all Edge.
+2. Copy the profile to a non-default directory (e.g. `%TEMP%\msad-edge-copy`).
+3. Launch with `--remote-debugging-port=9223 --user-data-dir=<copy> --profile-directory=Default`.
+
+`start-edge.ps1` encapsulates this. Do not start a second Edge with the default profile.
+
+### 2.2 Target selection
+
+After login, the browser has multiple targets. The runner selects the page containing `#act001to100` (the menu), not simply the first URL match. This avoids waiting on the login/dummy target.
+
+## 3. Running 009–012
+
+On the SUT machine:
+
+```powershell
+cd C:\ms-ad-automation
+powershell -ExecutionPolicy Bypass -File .\start-edge.ps1
+```
+
+Log in manually as the case's user, then:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run-009.ps1 `
+  -CaseId AZ-110-01-009 `
+  -Port 9223 `
+  -BaseUrl "http://127.0.0.1:10081/mhkcmwa11/dummy.html"
+```
+
+For 010–012, change only `-CaseId`:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run-009.ps1 `
+  -CaseId AZ-110-01-010 `
+  -Port 9223 `
+  -BaseUrl "http://127.0.0.1:10081/mhkcmwa11/dummy.html"
+```
+
+The runner prints the expected login at startup:
+
+```text
+CASE AZ-110-01-010 expected login: MS-4n / 事務S（貨物）
+```
+
+**Login switching is manual.** The runner does not authenticate or switch users. Do not reuse the previous session if the expected user differs.
+
+## 4. Params
+
+`automation/cdp/params/AZ-110-01.json`:
+
+```json
+{
+  "template": "TPL-AZ-110-01-009",
+  "procedure": "AZ-110-01 シナリオ導線１",
+  "common": {},
+  "cases": {
+    "AZ-110-01-009": { "routeId": "AZ-R109", "user": "MS-3n", "pointCheck": "事務S", "..." : "..." }
+  }
+}
+```
+
+Case-specific fields:
+
+| Case | User | 点検区分 | 種目 | value | 保険種類 label | 明細番号 |
+|---|---|---|---|---|---|---|
+| 009 | MS-3n | 事務S | 自賠責 | `B` | `00 ： 自賠責` | `0000000009` |
+| 010 | MS-4n | 事務S（貨物） | 貨物 | `Y` | `02 ： 国内貨物総合保険` | `0000000010` |
+| 011 | MS-3n | 事務S | 種目共通 | `Z` | `00 ： 種目共通` | `0000000011` |
+| 012 | MS-2n | 営業 | その他 | `0` | `00 ： その他` | `0000000012` |
+
+Common fields include policy number, section/agent codes, field agent ID, customer, dates, sumup fields, item/inquiry codes, correction fields, and the `MAZG101W047` completion error.
+
+Insurance selection uses the **visible label** normalized for whitespace/colon, not a fixed value. `011` and `012` both use `00`, so value-based selection would be ambiguous.
+
+## 5. Blocks
+
+Current runner implements:
+
+| Block | Source rows | What |
+|---|---|---|
+| 1 | 14–15 | Menu → `新規登録` → AZG100 |
+| 2 | 16 | Fill AZG100 |
+| 3 | 17–21 | Insurance popup → label select → OK → back |
+| 4 | 22–23 | Agent popup → fill section/agent → search |
+| 5 | 24–29 | Select agent → `選択` → back |
+
+Not implemented:
+
+| Block | Source rows | What |
+|---|---|---|
+| 6 | 30–31 | `#regist` → update screen |
+| 7 | 32–35 | Update → search → item-name search |
+| 8 | 36–41 | Item code `T0` / inquiry `T007` → search → select |
+| 9–10 | 42–47 | Inquiry checkbox → `修` → edit → OK |
+| 11 | 48–50 | Agent inquiry `否` → correction confirmation |
+| 12 | 51–53 | Correction input → register |
+| 13 | 54–57 | `完了登録` → `MAZG101W047` → update → status |
+
+Block 6–13 values are in `automation/AZ-110-01-009.md` and the params `common` section.
+
+## 6. Evidence
+
+Screenshots follow the procedure's verification order:
+
+```text
+block01_row015_AZG100.png
+block02_row016_AZG100_filled.png
+...
+block05_row029_AZG100_after_agent.png
+```
+
+Directory: `automation/logs/<caseId>/`.
+Manifest and screen HTML: `automation/screens/MANIFEST.md`, `automation/screens/SCREENS.md`.
+
+A no-result agent search also saves `block05_row026_agent_no_results.png` and prints a diagnostic.
+
+## 7. Current blocker
+
+Actual SUT `AZ-110-01-009` block 4/5:
+
+- Popup opens and values `AHE61` / `252H` are filled.
+- Clicking `#search` leaves `#gyoumu_list tr` empty.
+- The runner prints `agent no-results diagnostic` with href, section, agent code, field agent ID, row count, list text, and body.
+- This is treated as environment/master-data or search-condition issue, not a selector issue, until the result-row DOM is captured.
+
+Search variants to try, in order:
+
+1. `AHE61` + `252H`
+2. clear agent code, keep `AHE61`
+3. clear section/agent, search by `field_agent_id=3028004586`
+4. confirm the master data for `3028004586` under `AHE61/252H`
+
+## 8. Safety / limits
+
+- CDP is bound to the local Edge debugging port; do not expose it.
+- The runner assumes a local SUT at `127.0.0.1:10081`; it is not a remote service.
+- Screenshots may contain customer/test data; `automation/logs/` is git-ignored.
+- Do not commit credentials or production data.
+- Reference webapps are local-only by default; see `reference/webapps/README.md`.
+
+## 9. Next automation step
+
+Before adding more case-specific scripts:
+
+1. Capture the agent-search result-row HTML and fix block 4/5.
+2. Implement block 6–13 on 009; capture update/item-search/edit/confirm screens.
+3. Compose 37/67 from the shared 6-event prefix + two tails.
+4. Promote the step inventory into a curated block registry.
+5. Then map cases to workflows/blocks; do not write one runner per case.
+
+See [`../automation/steps/DESIGN.md`](../automation/steps/DESIGN.md).
