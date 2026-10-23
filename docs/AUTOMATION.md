@@ -158,7 +158,11 @@ Search variants to try, in order:
 3. clear section/agent, search by `field_agent_id=3028004586`
 4. confirm the master data for `3028004586` under `AHE61/252H`
 
-## 8. Safety / limits
+## 8. Source selectors
+
+AMB source views prefill selectors for the remaining 009 blocks. See [`../automation/screens/SOURCE-SELECTORS.md`](../automation/screens/SOURCE-SELECTORS.md). Treat them as `source-only` until a live DOM confirms them; dynamic `th:name` row selectors and option lists cannot be finalized from source.
+
+## 9. Safety / limits
 
 - CDP is bound to the local Edge debugging port; do not expose it.
 - The runner assumes a local SUT at `127.0.0.1:10081`; it is not a remote service.
@@ -166,7 +170,7 @@ Search variants to try, in order:
 - Do not commit credentials or production data.
 - Reference webapps are local-only by default; see `reference/webapps/README.md`.
 
-## 9. Next automation step
+## 10. Next automation step
 
 Before adding more case-specific scripts:
 
@@ -176,4 +180,4 @@ Before adding more case-specific scripts:
 4. Promote the step inventory into a curated block registry.
 5. Then map cases to workflows/blocks; do not write one runner per case.
 
-See [`../automation/steps/DESIGN.md`](../automation/steps/DESIGN.md).
+See [`../automation/steps/DESIGN.md`](../automation/steps/DESIGN.md) and [`../automation/blocks/PILOT.md`](../automation/blocks/PILOT.md).

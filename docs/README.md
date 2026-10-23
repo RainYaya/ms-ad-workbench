@@ -16,4 +16,5 @@ Related working documents:
 - [`../automation/AZ-110-01-009.md`](../automation/AZ-110-01-009.md) — 009 specifics
 - [`../automation/steps/DESIGN.md`](../automation/steps/DESIGN.md) — block composition
 - [`../automation/steps/INVENTORY.md`](../automation/steps/INVENTORY.md) — raw step inventory
+- [`../automation/blocks/PILOT.md`](../automation/blocks/PILOT.md) — 009–012 and 37/67 block pilot
 - [`../automation/screens/SCREENS.md`](../automation/screens/SCREENS.md) — screen capture status

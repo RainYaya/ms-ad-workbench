@@ -23,6 +23,10 @@ The views are Thymeleaf/JSP-style templates with `${...Form...}` placeholders. D
 3. **Verify against the live DOM.** The source template is not the rendered page.
 4. **Do not use it for master data.** Select options are often empty; the backend supplies them.
 
+## Source-derived selectors
+
+A first selector draft extracted from AMB is in [`../automation/screens/SOURCE-SELECTORS.md`](../automation/screens/SOURCE-SELECTORS.md). It covers AZG101 update, AZG900 item search, AZG902 inquiry edit, AZG906 correction confirmation, and marks each selector as `source-only` until live-verified.
+
 ## What they cannot do
 
 - Run without a backend.
