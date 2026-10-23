@@ -14,8 +14,8 @@
 
 - Viewer、数据、路由、证据、任务、导出：已完成。
 - 215 个精确手顺模板、55 个画面、152 个单例：已归类。
-- 15 个 block：已注册。
-- 静态组合：12 full / 438 partial；3,337 / 10,803 event（30.9%）。
+- 45 个 block：15 个 curated + 30 个 auto candidate；auto 未批准。
+- 静态组合：34 auto-inclusive / 12 curated-only full；416 partial；7,345 / 10,803 event（68.0% auto / 30.9% curated）。
 - Runner：009–012 四个 case；009 实际卡在 block 4/5，010–012 mock 通过。
 - 外部 webapp：已解压参考；source selector 已抽取；默认不进 git/Pages。
 - 前端：新增「自動化」页面和 case drawer 执行命令复制。

@@ -115,3 +115,11 @@ Short architecture decision log. Each entry is a decision, the reason, and the c
 **Reason:** A workflow can match every block pattern while selectors are `source-only`, the runner is incomplete, or the actual SUT is blocked. The 009 case is both 100% block-composed and blocked at block 4/5.
 
 **Consequence:** The 自動化 page exposes coverage and runner status independently. `block full` + `blocked` is a valid, visible combination. Do not derive test completion from block coverage.
+
+## D15. Auto-mined blocks are candidates
+
+**Decision:** Auto-mine repeated event n-grams as `draft-auto` blocks, but keep a separate curated-only coverage number.
+
+**Reason:** Auto mining raises mechanical coverage quickly and exposes reusable shapes, but it can overfit surface text and produce blocks that are not safe to execute.
+
+**Consequence:** The viewer and ledger show both auto-inclusive and curated-only coverage. `draft-auto` blocks never carry a live/mock execution status; they are `not-run`/`not-implemented` until manually promoted.

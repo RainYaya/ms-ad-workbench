@@ -25,7 +25,12 @@ The views are Thymeleaf/JSP-style templates with `${...Form...}` placeholders. D
 
 ## Source-derived selectors
 
-A first selector draft extracted from AMB is in [`../automation/screens/SOURCE-SELECTORS.md`](../automation/screens/SOURCE-SELECTORS.md). It covers AZG101 update, AZG900 item search, AZG902 inquiry edit, AZG906 correction confirmation, and marks each selector as `source-only` until live-verified.
+Selector drafts:
+
+- AMB/AZ: [`../automation/screens/SOURCE-SELECTORS.md`](../automation/screens/SOURCE-SELECTORS.md) — AZG101 update, AZG900 item search, AZG902 inquiry edit, AZG906 correction confirmation.
+- ANB/AY: [`../automation/screens/SOURCE-SELECTORS-AY.md`](../automation/screens/SOURCE-SELECTORS-AY.md) — AYG200 search/list, AYG901 send-destination (写), AYG101/102 approval, AYG900 user search.
+
+All are `source-only` until live-verified.
 
 ## What they cannot do
 

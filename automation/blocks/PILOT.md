@@ -7,7 +7,7 @@ Two proofs before scaling to 450 cases:
 1. **009–012** — one full workflow, four parameter sets.
 2. **37 / 67** — one shared prefix, two different tails.
 
-This file is the **pilot rationale**. The machine-readable registry is `blocks.json` (15 blocks: the 8 pilot blocks plus the 009 block 6–13 decomposition). Coverage: `COVERAGE.md`.
+This file is the **pilot rationale**. The machine-readable registry is `blocks.json` (15 curated blocks: the 8 pilot blocks plus the 009 block 6–13 decomposition, plus auto-mined candidates marked `draft-auto`). Coverage: `COVERAGE.md`.
 
 Selectors marked `source-only` must be confirmed against the live DOM.
 

@@ -33,3 +33,4 @@ Output directory: `automation/logs/<CaseId>/`（例: `automation/logs/AZ-110-01-
 - 保険種類は value ではなく表示 label（空白・全角コロン正規化）で選ぶ。`010` は `02 ： 国内貨物総合保険`、`011` は `00 ： 種目共通`、`012` は `00 ： その他`。
 - Block 6〜13 の screenshot (`row031`, `row035`, `row038`, `row041`, `row044`, `row047`, `row050`, `row053`, `row055`, `row057`) は未実装。
 - Source-derived selectors for AZG101/AZG900/AZG902/AZG906: `SOURCE-SELECTORS.md`（source-only; live verification required）。
+- AY source-derived selectors for AYG200/AYG901/AYG101/102/AYG900: `SOURCE-SELECTORS-AY.md`（source-only）。

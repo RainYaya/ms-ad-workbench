@@ -1439,7 +1439,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       <td><span class="mono">${esc(b.id)}</span></td>
       <td>${esc(b.fromScreen)} → ${esc(b.toScreen)}</td>
       <td class="num">${fmt(b.usedByCases)}</td>
-      <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : '<span class="badge gray">source</span>'}</td>
+      <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : b.status === 'draft-auto' ? '<span class="badge violet">auto</span>' : '<span class="badge gray">source</span>'}</td>
       <td>${executionBadge(b.executionStatus)}</td>
       <td class="small">${esc((b.params || []).join(', '))}</td>
     </tr>`).join('');
@@ -1455,10 +1455,10 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       ${pageHead('自動化', 'block composition / runner readiness（静的な一致結果。実行証明ではありません）')}
       <div class="kpis">
         ${kpi('対象ケース', sum.caseCount || 0, '自分のタスク', 'accent')}
-        ${kpi('Block 一致', sum.fullCount || 0, '静的照合（実行証明ではない）', 'green')}
+        ${kpi('Block 一致', sum.fullCount || 0, `静的照合 / curated ${sum.curatedFullCount || 0}（実行証明ではない）`, 'green')}
         ${kpi('ギャップあり', sum.partialCount || 0, 'block 未一致', 'amber')}
         ${kpi('Event カバー', `${pct.toFixed(1)}%`, `${fmt(sum.coveredEvents)} / ${fmt(sum.eventCount)}`, 'blue')}
-        ${kpi('Block', sum.blockCount || 0, 'draft registry', 'violet')}
+        ${kpi('Block', sum.blockCount || 0, `${sum.curatedBlockCount || 0} curated + ${sum.autoBlockCount || 0} auto`, 'violet')}
         ${kpi('実績あり', (sum.actualFullCount || 0) + (sum.actualPartialCount || 0), 'live-pass を含むケース', 'green')}
       </div>
       <section class="panel mt">
@@ -1466,7 +1466,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>状態</th><th>Script</th><th>Note</th><th></th></tr></thead><tbody>${runnerRows || '<tr><td colspan="5" class="muted">runner はまだありません</td></tr>'}</tbody></table></div>
       </section>
       <section class="panel mt">
-        <div class="panel-head"><h3>Block 完全一致（静的）</h3><span class="hint">${full.length} ケース</span></div>
+        <div class="panel-head"><h3>Block 完全一致（静的）</h3><span class="hint">${full.length} ケース / auto-inclusive</span></div>
         <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>Block composition</th><th class="num">Live / blocks</th><th class="num">Events</th></tr></thead><tbody>${fullRows || '<tr><td colspan="4" class="muted">なし</td></tr>'}</tbody></table></div>
       </section>
       <section class="panel mt">

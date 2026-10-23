@@ -9,6 +9,7 @@ This is a static composition pass. It does not execute the SUT.
 """
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 from collections import Counter, defaultdict
@@ -109,6 +110,102 @@ def build_blocks(cases):
     return blocks
 
 
+def is_sublist(short, long):
+    if len(short) > len(long):
+        return False
+    for i in range(len(long) - len(short) + 1):
+        if tuple(long[i:i + len(short)]) == tuple(short):
+            return True
+    return False
+
+
+def mine_auto_blocks(cases, ids, curated):
+    """Mine repeated screen-level event n-grams as draft candidates.
+
+    These are not approved blocks. They are added so the composer can measure
+    how much of the 450-case corpus is mechanically reusable.
+    """
+    curated_sigs = {tuple(
+        (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
+        for p in b["pattern"]
+    ) for b in curated}
+    found = {}
+    examples = {}
+    for cid in ids:
+        events = stepinv.build_events(cases[cid])
+        # Split at screen changes; blocks do not span screens.
+        segments = []
+        cur = []
+        for e in events:
+            if cur and e["screen"] != cur[-1]["screen"]:
+                segments.append(cur)
+                cur = []
+            cur.append(e)
+        if cur:
+            segments.append(cur)
+        for seg in segments:
+            for start in range(len(seg)):
+                for length in range(2, 9):
+                    end = start + length
+                    if end > len(seg):
+                        break
+                    sub = seg[start:end]
+                    if sub[0]["kind"] != "op" or sub[-1]["kind"] != "ast":
+                        continue
+                    if any(e["screen"] == "(blank)" for e in sub):
+                        continue
+                    key = tuple(event_pattern(e) for e in sub)
+                    if key in curated_sigs:
+                        continue
+                    found.setdefault(key, set()).add(cid)
+                    examples.setdefault(key, (cid, sub[0].get("sourceRow")))
+    candidates = []
+    for key, cids in found.items():
+        if len(cids) < 3:
+            continue
+        candidates.append((len(cids) * len(key), len(cids), len(key), key, cids))
+    candidates.sort(key=lambda x: (-x[0], -x[2], -x[1]))
+    selected = []
+    selected_keys = []
+    for score, count, length, key, cids in candidates:
+        # Prefer the longest form; avoid adding a shorter sub-block of an
+        # already selected longer block with comparable coverage.
+        if any(is_sublist(key, sk) for sk in selected_keys):
+            continue
+        selected.append((score, count, length, key, cids))
+        selected_keys.append(key)
+        if len(selected) >= 40:
+            break
+    out = []
+    for score, count, length, key, cids in selected:
+        first_case, first_row = examples[key]
+        transitions = [p for p in key if p[0] == "ast" and p[2] == "transition"]
+        to_screen = transitions[-1][3] if transitions else key[-1][1]
+        params = ["bundle"] if any(p[4] == "bundle" for p in key) else []
+        events = [{
+            "kind": p[0], "screen": p[1],
+            **({"action": p[2]} if p[0] == "op" else {"assert": p[2]}),
+            "target": p[3], "dataClass": p[4],
+        } for p in key]
+        out.append({
+            "id": "BLK-AUTO-" + hashlib.sha1(repr(key).encode("utf-8")).hexdigest()[:8].upper(),
+            "fromScreen": key[0][1],
+            "toScreen": to_screen,
+            "params": params,
+            "preconditions": [],
+            "status": "draft-auto",
+            "note": "Auto-mined candidate; manual review required.",
+            "sourceCase": first_case,
+            "eventRange": [0, 0],
+            "pattern": events,
+            "assertions": [p for p in events if p["kind"] == "ast"],
+            "usedByCases": 0,
+            "_autoCount": count,
+            "_firstRow": first_row,
+        })
+    return out
+
+
 def match_at(events, i, block):
     if i + len(block["_pattern"]) > len(events):
         return False
@@ -130,9 +227,17 @@ def compose(events, blocks):
         for b in blocks:
             if match_at(events, i, b):
                 cost = dp[i + len(b["_pattern"])]
-                if cost < best or (cost == best and best_block is not None and len(b["_pattern"]) > len(best_block["_pattern"])):
+                is_auto = b.get("status") == "draft-auto"
+                best_auto = best_block is not None and best_block.get("status") == "draft-auto"
+                if cost < best:
                     best = cost
                     best_block = b
+                elif cost == best:
+                    # Prefer a curated block over an auto-mined candidate.
+                    if best_block is None or (best_auto and not is_auto):
+                        best_block = b
+                    elif best_auto == is_auto and len(b["_pattern"]) > len(best_block["_pattern"]):
+                        best_block = b
         dp[i] = best
         choice[i] = best_block
     seq = []
@@ -169,7 +274,9 @@ def execution_map(info):
 def main():
     cases = stepinv.load_cases()
     ids = assigned_ids()
-    blocks = build_blocks(cases)
+    curated = build_blocks(cases)
+    auto_blocks = mine_auto_blocks(cases, ids, curated)
+    blocks = curated + auto_blocks
     for b in blocks:
         b["_pattern"] = [tuple(x) for x in [
             (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
@@ -245,6 +352,26 @@ def main():
             "template": template_by_case.get(cid),
         }
 
+    # Drop auto-mined candidates that the composer never selected; they are
+    # noise in the registry and would inflate the block count.
+    blocks = [b for b in blocks if b.get("status") != "draft-auto" or block_use.get(b["id"], 0) > 0]
+
+    def corpus_stats(block_set):
+        n_full = 0
+        n_covered = 0
+        n_total = 0
+        for cid in ids:
+            ev = stepinv.build_events(cases[cid])
+            _, gap = compose(ev, block_set)
+            n_total += len(ev)
+            n_covered += len(ev) - len(gap)
+            if not gap:
+                n_full += 1
+        return n_full, n_covered, n_total
+
+    curated_full, curated_covered, curated_total = corpus_stats(curated)
+    auto_count = sum(1 for b in blocks if b.get("status") == "draft-auto")
+
     block_statuses = defaultdict(list)
     for w in workflows.values():
         for bd in w.get("blockDetails", []):
@@ -280,6 +407,10 @@ def main():
         "eventCoverage": round(covered_events / total_events, 4) if total_events else 0,
         "blockCount": len(blocks),
         "fullCaseIds": full,
+        "curatedBlockCount": len(curated),
+        "autoBlockCount": auto_count,
+        "curatedFullCount": curated_full,
+        "curatedEventCoverage": round(curated_covered / curated_total, 4) if curated_total else 0,
         "actualFullCount": len(actual_full),
         "actualPartialCount": len(actual_partial),
         "mockOnlyCount": len(mock_only),
@@ -349,6 +480,10 @@ def main():
             "coveredEvents": covered_events,
             "eventCoverage": summary["eventCoverage"],
             "blockCount": len(blocks),
+            "curatedBlockCount": summary["curatedBlockCount"],
+            "autoBlockCount": summary["autoBlockCount"],
+            "curatedFullCount": summary["curatedFullCount"],
+            "curatedEventCoverage": summary["curatedEventCoverage"],
             "fullCaseIds": full,
             "actualFullCount": summary["actualFullCount"],
             "actualPartialCount": summary["actualPartialCount"],
@@ -414,12 +549,14 @@ def main():
         "| Item | Count |",
         "|---|---:|",
         f"| Assigned cases | {len(ids)} |",
-        f"| Static block full | {len(full)} |",
+        f"| Static block full (curated + auto) | {len(full)} |",
+        f"| Curated-only full | {summary['curatedFullCount']} |",
         f"| Actually fully passed | {len(actual_full)} |",
         f"| Actually partially passed | {len(actual_partial)} |",
         f"| Mock-only | {len(mock_only)} |",
         f"| Environment-blocked cases | {len(blocked_cases)} |",
-        f"| Blocks | {len(blocks)} |",
+        f"| Blocks | {len(blocks)} ({summary['curatedBlockCount']} curated + {summary['autoBlockCount']} auto) |",
+        f"| Event coverage | {summary['eventCoverage']:.1%} auto-inclusive / {summary['curatedEventCoverage']:.1%} curated-only |",
         "",
         "Block execution state:",
         "",
@@ -531,8 +668,8 @@ def main():
         f"- Assigned cases: **{len(ids)}**",
         f"- Fully composed: **{len(full)}**",
         f"- Partial: **{len(partial)}**",
-        f"- Events: **{covered_events}/{total_events}** ({summary['eventCoverage']:.1%})",
-        f"- Blocks: **{len(blocks)}**",
+        f"- Events: **{covered_events}/{total_events}** ({summary['eventCoverage']:.1%} auto-inclusive; {summary['curatedEventCoverage']:.1%} curated-only)",
+        f"- Blocks: **{len(blocks)}** ({summary['curatedBlockCount']} curated + {summary['autoBlockCount']} auto candidates)",
         "",
         "## Pilot workflows",
         "",

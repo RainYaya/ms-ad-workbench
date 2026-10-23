@@ -166,7 +166,7 @@ A block has `fromScreen`, `toScreen`, parameters, and assertions. See [`AUTOMATI
 | Assigned tasks | 450 (309 AZ / 141 AY), 215 exact signatures, 55 screens |
 | 009 | Actual block 1–3 pass; block 4/5 blocked; block 6–13 pending |
 | 010–012 | Parameterized, mock pass; actual pending |
-| Static block composition | 12 full / 438 partial; 3,337/10,803 events (30.9%) |
+| Static block composition | 34 auto-inclusive / 12 curated-only full; 416 partial; 7,345/10,803 events (68.0% / 30.9%) |
 
 ## 9. Boundaries / non-goals
 
