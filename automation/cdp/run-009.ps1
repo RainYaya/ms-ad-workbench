@@ -1,6 +1,6 @@
 param(
     [int]$Port = 9222,
-    [string]$BaseUrl = 'http://127.0.0.1:10081/mhkcmwa11/',
+    [string]$BaseUrl = 'http://127.0.0.1:10081/mhkcmwa11/dummy.html',
     [string]$PagePattern = '*127.0.0.1:10081*',
     [string]$PopupPattern = '*insurance_item_select.html*',
     [switch]$StartEdge,
