@@ -172,7 +172,32 @@ $agentFill = Invoke-CdpJs -Conn $agent -Expression @'
 '@
 Write-Host "agent popup values: $agentFill"
 Invoke-CdpJs -Conn $agent -Expression "document.querySelector('#search').click(); 'search clicked'" | Out-Null
-Wait-CdpJs -Conn $agent -Expression "document.querySelectorAll('#gyoumu_list tr').length > 0" -TimeoutSec 20 | Out-Null
+try {
+    Wait-CdpJs -Conn $agent -Expression "document.querySelectorAll('#gyoumu_list tr').length > 0" -TimeoutSec 20 | Out-Null
+} catch {
+    $noRows = ''
+    try {
+        $noRows = Invoke-CdpJs -Conn $agent -Expression @'
+JSON.stringify({
+  href: location.href,
+  title: document.title,
+  readyState: document.readyState,
+  searchCount: document.querySelector('.gyoumu_search_count')?.innerText,
+  section: document.querySelector('#section_code_key')?.value,
+  agentCode: document.querySelector('#agent_code_key')?.value,
+  fieldAgentId: document.querySelector('#field_agent_id_key')?.value,
+  rows: document.querySelectorAll('#gyoumu_list tr').length,
+  listText: document.querySelector('#gyoumu_list')?.innerText,
+  body: (document.body?.innerText || '').slice(0, 800)
+})
+'@
+    } catch {
+        $noRows = $_.Exception.Message
+    }
+    Save-StepShot -Conn $agent -Block 5 -Row 26 -Name 'agent_no_results'
+    Write-Host "agent no-results diagnostic: $noRows"
+    throw
+}
 Save-StepShot -Conn $agent -Block 5 -Row 26 -Name 'agent_results'
 
 $agentDiagnostic = Invoke-CdpJs -Conn $agent -Expression @'
