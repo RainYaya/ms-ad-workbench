@@ -19,4 +19,5 @@ Related working documents:
 - [`../automation/steps/INVENTORY.md`](../automation/steps/INVENTORY.md) — raw step inventory
 - [`../automation/blocks/PILOT.md`](../automation/blocks/PILOT.md) — 009–012 and 37/67 block pilot
 - [`../automation/blocks/COVERAGE.md`](../automation/blocks/COVERAGE.md) — static composition coverage and gaps
+- [`../automation/PROGRESS.md`](../automation/PROGRESS.md) — per-book/per-case done/remaining ledger
 - [`../automation/screens/SCREENS.md`](../automation/screens/SCREENS.md) — screen capture status

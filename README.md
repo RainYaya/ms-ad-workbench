@@ -21,6 +21,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`automation/steps/DESIGN.md`](automation/steps/DESIGN.md) | Step/block composition model |
 | [`automation/steps/INVENTORY.md`](automation/steps/INVENTORY.md) | Raw 450-case step inventory and candidate blocks |
 | [`automation/blocks/COVERAGE.md`](automation/blocks/COVERAGE.md) | Static block coverage: 12 full / 438 partial / 30.9% events |
+| [`automation/PROGRESS.md`](automation/PROGRESS.md) | Per-book/per-case progress, done/remaining/next, and block execution state |
 
 ## Viewer quick start
 

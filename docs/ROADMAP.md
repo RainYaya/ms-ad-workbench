@@ -19,14 +19,15 @@
 - Runner：009–012 四个 case；009 实际卡在 block 4/5，010–012 mock 通过。
 - 外部 webapp：已解压参考；source selector 已抽取；默认不进 git/Pages。
 - 前端：新增「自動化」页面和 case drawer 执行命令复制。
+- 进度台账：`automation/PROGRESS.md`（全部 case 的 done/remaining/next）。
 
 ## 2. 你需要做的事
 
 | # | 你需要做什么 | 什么时候 | 产出 |
 |---:|---|---|---|
-| 1 | 保持 SUT 在 `127.0.0.1:10081` 可访问，并告诉我何时可用 | 下一次实际执行前 | SUT 可访问 |
-| 2 | 在 009 block 4/5 跑一次诊断，把 `agent no-results diagnostic` 整行或 `#gyoumu_list` HTML 发我 | 下一次实际执行 | 判断是主数据、检索条件还是 selector |
-| 3 | 确认/提供各 case 的登录方式；至少确认 MS-3n / MS-4n / MS-2n 的切换方式 | 009、010–012 实际执行前 | 可重复登录 |
+| 1 | 009 的 block 4/5 已确认是环境无数据；**不需要再诊断**。以后环境恢复时告诉我即可 | 环境恢复时 | 可重跑 |
+| 2 | 不需要为 009 提供诊断/HTML；先让我继续做 block 6–13 和其他 block family | 现在 | 无 |
+| 3 | 确认登录方式；至少确认 MS-3n / MS-4n / MS-2n 的切换方式（等实际执行时再提供） | 实际执行前 | 可重复登录 |
 | 4 | 审一下 009–012 与 37/67 的 pilot 组合是否符合业务语义（尤其 37 的 CL、67 的删除确认、009 的 `MAZG101W047`） | 本轮设计确认 | 认可/修正 block 边界 |
 | 5 | 决定 reference webapps 是否允许进入 git/Pages；当前默认 local-only | 需要版本化参考源码时 | 公开/私有策略 |
 | 6 | 遇到未知画面时，按我给的清单提供 F12 outerHTML 或截图 | 只在 source 不足时 | selector 证据 |
@@ -46,18 +47,19 @@
 
 **验收**：能在一个页面看到 full/partial、block 使用数、runner 状态；能从一个 case 复制命令。
 
-### M1 — 009 垂直切片（下一步）
+### M1 — 009 垂直切片（4/5 environment-blocked；继续 6–13）
 
-- [ ] **M1.1** 解决 009 block 4/5：募集人検索 0 行
-  - Owner: 你（运行/发诊断）+ 我（分析）
-  - 试：`AHE61/252H`、清空 agent code、仅 `field_agent_id=3028004586`
-  - 证据：`agent no-results diagnostic` + 结果行 HTML
+- [x] **M1.1** 009 block 4/5 记录为 **environment-blocked**
+  - 已确认不是 selector 问题：环境没有可检索数据。
+  - **不再诊断、不改 selector 掩盖**。保留 `blocked` 状态，继续其他工作。
+  - 只有环境恢复时才重新跑；当前不阻塞路线图。
 - [ ] **M1.2** 实现 009 block 6–13
   - Owner: 我
   - 依据：`automation/AZ-110-01-009.md` + `SOURCE-SELECTORS.md`
   - 画面：AZG101 / AZG900 / AZG902 / AZG906
-- [ ] **M1.3** 实际跑 009，按 row 15/16/18/21/23/26/29/31/35/38/41/44/47/50/53/55/57 截图
-  - Owner: 你执行 + 我驱动/分析
+- [ ] **M1.3** 实际跑 009（等环境恢复；当前跳过）
+  - 行 15/16/18/21/23/26/29/31/35/38/41/44/47/50/53/55/57 截图
+  - 当前标记 `blocked`，不阻塞其他 block
 - [ ] **M1.4** 实际跑 010–012，逐 case 切换 MS-4n / MS-3n / MS-2n
 - [ ] **M1.5** 更新 `AZ-110-01-009.md`、coverage、runner 状态
 
@@ -117,22 +119,19 @@
 
 ## 4. 接下来 10 步（立即执行）
 
-1. **[你]** 把 SUT 恢复到 `127.0.0.1:10081` 可访问。
-2. **[你]** 跑 009 到 block 4/5，发诊断/HTML。
-3. **[我]** 依据 source selector 先补 009 block 6–13 的 selector 草案。
-4. **[我]** 实现 block 6–13 的 runner 代码，先 mock。
-5. **[你+我]** 实际跑 009，修到全 44 event 通过。
-6. **[我]** 用同一 runner 跑 010–012 的 mock；你按用户切换实际跑。
-7. **[我]** 新增照会・検索 block family。
-8. **[我]** 新增送信先(写)選択 block family。
-9. **[我]** 重跑 coverage，更新前端「自動化」页。
-10. **[你]** 看 coverage 的 top gaps，确认下一批模板优先级。
+1. **[我]** 依据 source selector 先补 009 block 6–13 的 selector 草案。
+2. **[我]** 实现 block 6–13 的 runner 代码，先 mock。
+3. **[我]** 新增照会・検索 block family。
+4. **[我]** 新增送信先(写)選択 block family。
+5. **[我]** 重跑 coverage，更新 `PROGRESS.md` / 前端「自動化」页。
+6. **[你]** 看 `automation/PROGRESS.md` 和 coverage 的 top gaps，确认下一批模板优先级。
+7. **[你]** 只有环境恢复时，才重新跑 009 / 010–012。
 
 ## 5. 阻塞与风险
 
 | 风险 | 影响 | 处理 |
 |---|---|---|
-| 009 募集人検索 0 行 | 009–012 实际全流程无法完成 | 诊断/主数据/检索条件；不要改 selector 掩盖 |
+| 009 募集人検索 0 行 | 009–012 实际全流程无法完成 | 环境无数据；不再诊断；环境恢复后重跑；不要改 selector 掩盖 |
 | 登录用户需手动切换 | 010–012 可能用错权限 | runner 打印 expected login；每 case 手动确认 |
 | source-only selector 未经 live 验证 | 执行可能点错/找不到 | 标状态；执行只用 live/mock |
 | 37/67 尾部语义 | CL/删除确认可能理解错 | 你审 block 边界和断言 |

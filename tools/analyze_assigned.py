@@ -157,6 +157,7 @@ def main():
     lines_md.append("\n## 9. Step-level composition (next layer)\n")
     lines_md.append("- `automation/steps/DESIGN.md`: block/workflow model, contracts, data bindings, anti-patterns.")
     lines_md.append("- `automation/steps/INVENTORY.md`: raw 450-case step inventory and candidate blocks (not approved).")
+    lines_md.append("- `automation/PROGRESS.md`: per-book/per-case done/remaining ledger.")
     lines_md.append("- Use screen-level blocks, not a flat button dictionary. Assertions and pre/post screens are mandatory.")
     lines_md.append("- 37/67 share a 6-event prefix; 009-012 share the full 44-event sequence. This is the intended reuse path.")
     OUT_MD.write_text("\n".join(lines_md) + "\n", encoding="utf-8")

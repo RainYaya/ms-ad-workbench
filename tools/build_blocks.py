@@ -19,6 +19,9 @@ OUT = ROOT / "automation" / "blocks"
 OUT.mkdir(parents=True, exist_ok=True)
 TASKS = ROOT / "automation" / "tasks" / "assigned_20261023.txt"
 RUNNERS = ROOT / "automation" / "runners.json"
+EXEC_STATUS = ROOT / "automation" / "execution-status.json"
+TEMPLATES = ROOT / "automation" / "templates.json"
+PROGRESS = ROOT / "automation" / "progress"
 
 spec = importlib.util.spec_from_file_location("stepinv", ROOT / "tools" / "analyze_steps.py")
 stepinv = importlib.util.module_from_spec(spec)
@@ -146,6 +149,23 @@ def compose(events, blocks):
     return seq, uncovered
 
 
+EXEC_KEYS = (
+    ("livePass", "live-pass"),
+    ("mockPass", "mock-pass"),
+    ("blocked", "blocked"),
+    ("notImplemented", "not-implemented"),
+    ("notRun", "not-run"),
+)
+
+
+def execution_map(info):
+    out = {}
+    for key, status in EXEC_KEYS:
+        for bid in (info or {}).get(key, []):
+            out[bid] = status
+    return out
+
+
 def main():
     cases = stepinv.load_cases()
     ids = assigned_ids()
@@ -157,6 +177,15 @@ def main():
         ]]
     # longest first helps readability; DP re-checks all
     blocks.sort(key=lambda b: (-len(b["_pattern"]), b["id"]))
+
+    exec_data = json.loads(EXEC_STATUS.read_text(encoding="utf-8"))
+    exec_cases = exec_data.get("cases", {})
+    template_by_case = {}
+    if TEMPLATES.exists():
+        tpl_data = json.loads(TEMPLATES.read_text(encoding="utf-8"))
+        for t in tpl_data.get("templates", []):
+            for cid in t.get("caseIds", []):
+                template_by_case[cid] = {"id": t["id"], "count": t["count"], "rowCount": t["rowCount"]}
 
     workflows = {}
     block_use = Counter()
@@ -177,17 +206,70 @@ def main():
             gap_stats[json.dumps(u["event"], ensure_ascii=False, sort_keys=True)] += 1
         status = "full" if not uncovered else "partial"
         (full if status == "full" else partial).append(cid)
+        info = exec_cases.get(cid, {})
+        status_by_block = execution_map(info)
+        block_details = []
+        for s in seq:
+            start, end = s["start"], s["end"]
+            block_details.append({
+                "block": s["block"],
+                "start": start,
+                "end": end,
+                "fromRow": events[start].get("sourceRow"),
+                "toRow": events[end - 1].get("sourceRow"),
+                "status": status_by_block.get(s["block"], "not-run"),
+            })
+        counts = Counter(b["status"] for b in block_details)
+        remaining_blocks = [b["block"] for b in block_details if b["status"] != "live-pass"]
+        next_gap = None
+        if remaining_blocks:
+            next_gap = {"kind": "block", "block": remaining_blocks[0]}
+        elif uncovered:
+            next_gap = {"kind": "event", "event": uncovered[0]["event"], "sourceRow": uncovered[0].get("sourceRow")}
         workflows[cid] = {
             "status": status,
             "blocks": seq,
+            "blockDetails": block_details,
             "uncovered": uncovered,
             "eventCount": len(events),
             "coveredEvents": covered,
+            "actualDone": counts.get("live-pass", 0),
+            "mockDone": counts.get("mock-pass", 0),
+            "blocked": counts.get("blocked", 0),
+            "notImplemented": counts.get("not-implemented", 0),
+            "notRun": counts.get("not-run", 0),
+            "remaining": len(block_details) - counts.get("live-pass", 0),
+            "remainingBlocks": remaining_blocks,
+            "nextGap": next_gap,
+            "executionNote": info.get("note", ""),
+            "template": template_by_case.get(cid),
         }
+
+    block_statuses = defaultdict(list)
+    for w in workflows.values():
+        for bd in w.get("blockDetails", []):
+            block_statuses[bd["block"]].append(bd["status"])
+
+    def aggregate_status(statuses):
+        if "blocked" in statuses:
+            return "blocked"
+        if "live-pass" in statuses:
+            return "live-pass"
+        if "mock-pass" in statuses:
+            return "mock-pass"
+        if "not-implemented" in statuses:
+            return "not-implemented"
+        return "not-run"
 
     for b in blocks:
         b["usedByCases"] = block_use.get(b["id"], 0)
+        b["executionStatus"] = aggregate_status(block_statuses.get(b["id"], []))
         b.pop("_pattern", None)
+
+    actual_full = [cid for cid, w in workflows.items() if w["actualDone"] == len(w["blockDetails"]) and w["blockDetails"]]
+    actual_partial = [cid for cid, w in workflows.items() if 0 < w["actualDone"] < len(w["blockDetails"])]
+    mock_only = [cid for cid, w in workflows.items() if w["actualDone"] == 0 and w["mockDone"] > 0]
+    blocked_cases = [cid for cid, w in workflows.items() if w["blocked"] > 0]
 
     summary = {
         "caseCount": len(ids),
@@ -198,7 +280,15 @@ def main():
         "eventCoverage": round(covered_events / total_events, 4) if total_events else 0,
         "blockCount": len(blocks),
         "fullCaseIds": full,
-        "blocks": [{"id": b["id"], "status": b["status"], "usedByCases": b["usedByCases"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"]} for b in blocks],
+        "actualFullCount": len(actual_full),
+        "actualPartialCount": len(actual_partial),
+        "mockOnlyCount": len(mock_only),
+        "blockedCaseCount": len(blocked_cases),
+        "actualFullCaseIds": actual_full,
+        "actualPartialCaseIds": actual_partial,
+        "mockOnlyCaseIds": mock_only,
+        "blockedCaseIds": blocked_cases,
+        "blocks": [{"id": b["id"], "status": b["status"], "executionStatus": b["executionStatus"], "usedByCases": b["usedByCases"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"]} for b in blocks],
         "topGaps": [{"count": c, "event": json.loads(k)} for k, c in gap_stats.most_common(25)],
     }
     payload = {"generatedAt": "2026-10-23", "note": "Static block composition; not execution proof.", "blocks": blocks, "summary": summary, "workflows": workflows}
@@ -232,9 +322,20 @@ def main():
         auto_cases[cid] = {
             "status": w["status"],
             "blocks": [x["block"] for x in w["blocks"]],
+            "blockDetails": w["blockDetails"],
             "eventCount": w["eventCount"],
             "coveredEvents": w["coveredEvents"],
             "uncoveredCount": len(w["uncovered"]),
+            "actualDone": w["actualDone"],
+            "mockDone": w["mockDone"],
+            "blocked": w["blocked"],
+            "notImplemented": w["notImplemented"],
+            "notRun": w["notRun"],
+            "remaining": w["remaining"],
+            "remainingBlocks": w["remainingBlocks"],
+            "nextGap": w["nextGap"],
+            "executionNote": w["executionNote"],
+            "template": w["template"],
             "runner": runner_by_case.get(cid),
         }
     auto_payload = {
@@ -249,18 +350,175 @@ def main():
             "eventCoverage": summary["eventCoverage"],
             "blockCount": len(blocks),
             "fullCaseIds": full,
+            "actualFullCount": summary["actualFullCount"],
+            "actualPartialCount": summary["actualPartialCount"],
+            "mockOnlyCount": summary["mockOnlyCount"],
+            "blockedCaseCount": summary["blockedCaseCount"],
             "topGaps": summary["topGaps"],
         },
         "blocks": [{
             "id": b["id"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"],
-            "params": b["params"], "status": b["status"], "note": b["note"],
-            "usedByCases": b["usedByCases"],
+            "params": b["params"], "status": b["status"], "executionStatus": b["executionStatus"],
+            "note": b["note"], "usedByCases": b["usedByCases"],
         } for b in blocks],
         "cases": auto_cases,
         "runners": runner_data,
     }
     auto_js = "window.MSAD_AUTOMATION = " + json.dumps(auto_payload, ensure_ascii=False, separators=(",", ":")) + ";\n"
     (ROOT / "v2" / "data" / "automation.js").write_text(auto_js, encoding="utf-8")
+
+    # Persistent progress ledger. This is the "which book is at which step" table.
+    PROGRESS.mkdir(parents=True, exist_ok=True)
+    def gap_label(g):
+        if not g:
+            return "—"
+        if g.get("kind") == "block":
+            return g.get("block", "—")
+        e = g.get("event", {})
+        return f"{e.get('screen', '')}:{e.get('action') or e.get('assert') or ''}:{e.get('target', '')} (row {g.get('sourceRow', '—')})"
+
+    progress_cases = {}
+    for cid, w in workflows.items():
+        t = w.get("template") or {}
+        progress_cases[cid] = {
+            "caseId": cid,
+            "book": t.get("id", ""),
+            "static": w["status"],
+            "blocks": len(w["blockDetails"]),
+            "actualDone": w["actualDone"],
+            "mockDone": w["mockDone"],
+            "blocked": w["blocked"],
+            "notImplemented": w["notImplemented"],
+            "notRun": w["notRun"],
+            "uncovered": len(w["uncovered"]),
+            "remaining": w["remaining"],
+            "next": gap_label(w["nextGap"]),
+            "note": w["executionNote"],
+        }
+    (OUT / "progress.json").write_text(json.dumps({
+        "generatedAt": "2026-10-23",
+        "summary": summary,
+        "cases": progress_cases,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    block_exec_counts = Counter(b["executionStatus"] for b in blocks)
+    lines = [
+        "# Progress ledger",
+        "",
+        "更新: 2026-10-23",
+        "",
+        "This is the per-book / per-case progress table. It is separate from static block coverage: `block full` does not mean the case was executed.",
+        "",
+        "## Snapshot",
+        "",
+        "| Item | Count |",
+        "|---|---:|",
+        f"| Assigned cases | {len(ids)} |",
+        f"| Static block full | {len(full)} |",
+        f"| Actually fully passed | {len(actual_full)} |",
+        f"| Actually partially passed | {len(actual_partial)} |",
+        f"| Mock-only | {len(mock_only)} |",
+        f"| Environment-blocked cases | {len(blocked_cases)} |",
+        f"| Blocks | {len(blocks)} |",
+        "",
+        "Block execution state:",
+        "",
+        "| State | Blocks |",
+        "|---|---:|",
+    ]
+    for state in ("live-pass", "mock-pass", "blocked", "not-implemented", "not-run"):
+        lines.append(f"| {state} | {block_exec_counts.get(state, 0)} |")
+    lines += [
+        "",
+        "## Blocks",
+        "",
+        "| Block | From → To | Cases | Selector | Execution |",
+        "|---|---|---:|---|---|",
+    ]
+    for b in sorted(blocks, key=lambda x: (-x["usedByCases"], x["id"])):
+        lines.append(f"| `{b['id']}` | {b['fromScreen']} → {b['toScreen']} | {b['usedByCases']} | {b['status']} | {b['executionStatus']} |")
+    lines += [
+        "",
+        "Block state is aggregate across cases: a block with a live pass is `live-pass`; `blocked` wins over `mock-pass` (the agent block is blocked on 009 but mock-pass on 010–012). Per-case mock counts are in `progress/cases.md`.",
+        "",
+        "## Pilot books",
+        "",
+        "`Next (not live)` is the first block that has not passed on the actual SUT. A mock-only block still counts as remaining for actual execution.",
+        "",
+        "| Case | Book / template | Static | Done / blocks | Live | Mock | Blocked | Not impl | Remaining | Next (not live) |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---|",
+    ]
+    for cid in ("AZ-110-01-009", "AZ-110-01-010", "AZ-110-01-011", "AZ-110-01-012", "AZ-110-37-001", "AZ-110-67-001"):
+        p = progress_cases.get(cid)
+        if not p:
+            continue
+        lines.append(f"| `{cid}` | `{p['book']}` | {p['static']} | {p['actualDone']}/{p['blocks']} | {p['actualDone']} | {p['mockDone']} | {p['blocked']} | {p['notImplemented']} | {p['remaining']} | {p['next']} |")
+    lines += [
+        "",
+        "## Next gaps",
+        "",
+        "| Cases | Event |",
+        "|---:|---|",
+    ]
+    for g in summary["topGaps"][:15]:
+        e = g["event"]
+        lines.append(f"| {g['count']} | `{e.get('screen', '')}:{e.get('action') or e.get('assert') or ''}:{e.get('target', '')}:{e.get('dataClass', '')}` |")
+    lines += [
+        "",
+        "## Full ledgers",
+        "",
+        "- `progress/cases.md`: all 450 cases with done/remaining/next",
+        "- `progress/templates.md`: 215 exact procedure templates with aggregate progress",
+        "- `blocks/COVERAGE.md`: static block composition and gaps",
+        "- `../docs/ROADMAP.md`: owner/next-step plan",
+        "",
+        "## 009 note",
+        "",
+        "`AZ-110-01-009` is environment-blocked at block 4/5 (agent search returns no data). Per instruction, do not diagnose further and do not treat it as a selector bug. Continue with block 6–13 and other block families. Keep the case status `blocked` until the environment allows a rerun.",
+    ]
+    (ROOT / "automation" / "PROGRESS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    # All cases ledger
+    case_lines = [
+        "# Case progress ledger",
+        "",
+        "Generated by `tools/build_blocks.py`. `Done` = actually live-passed blocks; `Mock` = mock-only; `Remaining` = blocks not live-passed.",
+        "",
+        "| Case | Book / template | Static | Done/blocks | Live | Mock | Blocked | Not impl | Not run | Uncovered | Next (not live) |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|",
+    ]
+    for cid in ids:
+        p = progress_cases[cid]
+        case_lines.append(f"| `{cid}` | `{p['book']}` | {p['static']} | {p['actualDone']}/{p['blocks']} | {p['actualDone']} | {p['mockDone']} | {p['blocked']} | {p['notImplemented']} | {p['notRun']} | {p['uncovered']} | {p['next']} |")
+    (PROGRESS / "cases.md").write_text("\n".join(case_lines) + "\n", encoding="utf-8")
+
+    # Template aggregates
+    tpl_groups = defaultdict(list)
+    for cid, p in progress_cases.items():
+        if p["book"]:
+            tpl_groups[p["book"]].append(p)
+    tpl_lines = [
+        "# Template progress ledger",
+        "",
+        "Generated by `tools/build_blocks.py`. Each template is an exact 6-field procedure signature; cases in one template share a runner/params shape.",
+        "",
+        "| Template | Tasks | Rows | Static full | Actual full | Mock-only | Blocked | Actual blocks | Remaining blocks | Runner cases | Remaining cases |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for tid in sorted(tpl_groups):
+        ps = tpl_groups[tid]
+        t = next((w["template"] for w in workflows.values() if (w.get("template") or {}).get("id") == tid), {})
+        static_full = sum(1 for p in ps if p["static"] == "full")
+        actual_full_n = sum(1 for p in ps if p["blocks"] and p["actualDone"] == p["blocks"])
+        mock_only_n = sum(1 for p in ps if p["actualDone"] == 0 and p["mockDone"] > 0)
+        blocked_n = sum(1 for p in ps if p["blocked"] > 0)
+        runner_n = sum(1 for p in ps if p["blocked"] >= 0 and auto_cases[p["caseId"]].get("runner"))
+        remaining_n = sum(1 for p in ps if not (p["blocks"] and p["actualDone"] == p["blocks"]))
+        actual_blocks = sum(p["actualDone"] for p in ps)
+        total_blocks = sum(p["blocks"] for p in ps)
+        remaining_blocks = sum(p["remaining"] for p in ps)
+        tpl_lines.append(f"| `{tid}` | {len(ps)} | {t.get('rowCount', '')} | {static_full} | {actual_full_n} | {mock_only_n} | {blocked_n} | {actual_blocks}/{total_blocks} | {remaining_blocks} | {runner_n} | {remaining_n} |")
+    (PROGRESS / "templates.md").write_text("\n".join(tpl_lines) + "\n", encoding="utf-8")
 
     # Coverage report
     lines = [

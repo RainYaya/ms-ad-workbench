@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-10-23",
+  "note": "Explicit execution state for the cases that have been attempted. Cases not listed are not-run. Block matching is not execution.",
+  "cases": {
+    "AZ-110-01-009": {
+      "livePass": [
+        "BLK-AZ-MENU-CREATE-INPUT",
+        "BLK-AZ-INPUT-FILL",
+        "BLK-AZ-INSURANCE-SELECT"
+      ],
+      "mockPass": [],
+      "blocked": [
+        "BLK-AZ-AGENT-SELECT"
+      ],
+      "notImplemented": [
+        "BLK-AZ-REGISTER-UPDATE",
+        "BLK-AZ-UPDATE-SEARCH-ITEM",
+        "BLK-AZ-ITEM-SEARCH-SELECT",
+        "BLK-AZ-INQUIRY-EDIT",
+        "BLK-AZ-CORRECTION-CONFIRM",
+        "BLK-AZ-COMPLETE-REGISTER"
+      ],
+      "notRun": [],
+      "note": "Environment blocks block 4/5: agent search returns no data. Do not diagnose further; continue with other work. Blocks 6-13 are not implemented."
+    },
+    "AZ-110-01-010": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-CREATE-INPUT",
+        "BLK-AZ-INPUT-FILL",
+        "BLK-AZ-INSURANCE-SELECT",
+        "BLK-AZ-AGENT-SELECT"
+      ],
+      "blocked": [],
+      "notImplemented": [
+        "BLK-AZ-REGISTER-UPDATE",
+        "BLK-AZ-UPDATE-SEARCH-ITEM",
+        "BLK-AZ-ITEM-SEARCH-SELECT",
+        "BLK-AZ-INQUIRY-EDIT",
+        "BLK-AZ-CORRECTION-CONFIRM",
+        "BLK-AZ-COMPLETE-REGISTER"
+      ],
+      "notRun": [],
+      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+    },
+    "AZ-110-01-011": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-CREATE-INPUT",
+        "BLK-AZ-INPUT-FILL",
+        "BLK-AZ-INSURANCE-SELECT",
+        "BLK-AZ-AGENT-SELECT"
+      ],
+      "blocked": [],
+      "notImplemented": [
+        "BLK-AZ-REGISTER-UPDATE",
+        "BLK-AZ-UPDATE-SEARCH-ITEM",
+        "BLK-AZ-ITEM-SEARCH-SELECT",
+        "BLK-AZ-INQUIRY-EDIT",
+        "BLK-AZ-CORRECTION-CONFIRM",
+        "BLK-AZ-COMPLETE-REGISTER"
+      ],
+      "notRun": [],
+      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+    },
+    "AZ-110-01-012": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-CREATE-INPUT",
+        "BLK-AZ-INPUT-FILL",
+        "BLK-AZ-INSURANCE-SELECT",
+        "BLK-AZ-AGENT-SELECT"
+      ],
+      "blocked": [],
+      "notImplemented": [
+        "BLK-AZ-REGISTER-UPDATE",
+        "BLK-AZ-UPDATE-SEARCH-ITEM",
+        "BLK-AZ-ITEM-SEARCH-SELECT",
+        "BLK-AZ-INQUIRY-EDIT",
+        "BLK-AZ-CORRECTION-CONFIRM",
+        "BLK-AZ-COMPLETE-REGISTER"
+      ],
+      "notRun": [],
+      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+    },
+    "AZ-110-37-001": {
+      "livePass": [],
+      "mockPass": [],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-CL",
+        "BLK-AZ-COMMON-LOGS"
+      ],
+      "note": "Static composition full; no runner yet."
+    },
+    "AZ-110-67-001": {
+      "livePass": [],
+      "mockPass": [],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-DELETE-OK",
+        "BLK-AZ-COMMON-LOGS"
+      ],
+      "note": "Static composition full; no runner yet."
+    }
+  }
+}

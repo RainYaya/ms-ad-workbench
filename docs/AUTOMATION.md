@@ -30,6 +30,8 @@ powershell -ExecutionPolicy Bypass -File .\run-009.ps1 -CaseId AZ-110-01-009 -Po
 
 Important: `block full` means the procedure events matched block patterns. It is **not** execution proof. The 009 runner currently implements blocks 1–5 only; blocks 6–13 are composition-only.
 
+Per-book progress is in [`../automation/PROGRESS.md`](../automation/PROGRESS.md); all 450 rows are in [`../automation/progress/cases.md`](../automation/progress/cases.md).
+
 Regenerate the viewer payload after editing runners/blocks:
 
 ```bash
@@ -166,21 +168,15 @@ Manifest and screen HTML: `automation/screens/MANIFEST.md`, `automation/screens/
 
 A no-result agent search also saves `block05_row026_agent_no_results.png` and prints a diagnostic.
 
-## 8. Current blocker
+## 8. Environment blocker
 
-Actual SUT `AZ-110-01-009` block 4/5:
+Actual SUT `AZ-110-01-009` block 4/5 is **environment-blocked**:
 
-- Popup opens and values `AHE61` / `252H` are filled.
-- Clicking `#search` leaves `#gyoumu_list tr` empty.
-- The runner prints `agent no-results diagnostic` with href, section, agent code, field agent ID, row count, list text, and body.
-- This is treated as environment/master-data or search-condition issue, not a selector issue, until the result-row DOM is captured.
-
-Search variants to try, in order:
-
-1. `AHE61` + `252H`
-2. clear agent code, keep `AHE61`
-3. clear section/agent, search by `field_agent_id=3028004586`
-4. confirm the master data for `3028004586` under `AHE61/252H`
+- The popup opens; `AHE61` / `252H` are filled.
+- Search returns no data because the environment has no searchable records.
+- This is **not a selector bug** and will not be diagnosed further.
+- Keep the case `blocked`; do not change selectors to “make it pass”.
+- Continue with block 6–13 and other block families. Reload the environment only when data is available.
 
 ## 9. Source selectors
 
@@ -198,8 +194,8 @@ AMB source views prefill selectors for the remaining 009 blocks. See [`../automa
 
 Before adding more case-specific scripts:
 
-1. Capture the agent-search result-row HTML and fix block 4/5.
-2. Implement block 6–13 on 009; capture update/item-search/edit/confirm screens.
+1. Implement block 6–13 on 009 from source selectors + mock; actual concatenation waits for environment.
+2. Add the 照会・検索 and 送信先(写)選択 block families.
 3. Compose 37/67 from the shared 6-event prefix + two tails.
 4. Promote the step inventory into a curated block registry.
 5. Then map cases to workflows/blocks; do not write one runner per case.

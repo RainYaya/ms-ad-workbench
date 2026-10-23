@@ -1216,22 +1216,40 @@ AY-120-01-001"></textarea>
   function gapLabel(e) {
     return `${e.kind}:${e.screen}:${e.action || e.assert || ''}:${e.target || ''}:${e.dataClass || ''}`;
   }
+  function executionBadge(status) {
+    const map = {
+      'live-pass': ['green', 'live'],
+      'mock-pass': ['amber', 'mock'],
+      'blocked': ['red', 'blocked'],
+      'not-implemented': ['gray', 'not impl'],
+      'not-run': ['gray', 'not run'],
+    };
+    const [cls, label] = map[status] || ['gray', status || '—'];
+    return `<span class="badge ${cls}">${esc(label)}</span>`;
+  }
 
   function automationRunHtml(id) {
     const a = autoCase(id);
     if (!a) return '';
     const cov = a.eventCount ? Math.round((a.coveredEvents / a.eventCount) * 1000) / 10 : 0;
-    const blocks = (a.blocks || []).map((bid) => {
-      const b = autoBlock(bid);
-      return `<span class="badge outline" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}">${esc(bid)}</span>`;
+    const details = a.blockDetails || (a.blocks || []).map((bid) => ({ block: bid, status: 'not-run' }));
+    const blocks = details.map((d) => {
+      const b = autoBlock(d.block);
+      const range = d.fromRow != null ? ` row ${d.fromRow}–${d.toRow}` : '';
+      return `<span class="badge outline" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}${range}">${esc(d.block)} ${executionBadge(d.status)}</span>`;
     }).join(' ');
+    const total = details.length;
+    const done = a.actualDone ?? 0;
+    const remaining = a.remaining ?? (total - done);
+    const next = a.nextGap ? (a.nextGap.kind === 'block' ? a.nextGap.block : gapLabel(a.nextGap.event)) : '—';
     const r = a.runner;
     const cmd = r ? runnerCommand(id, r) : '';
     return `<div class="panel" style="margin-bottom:12px">
-      <div class="panel-head"><h3>ブロック実行</h3><span>${autoStatusBadge(a.status)} ${a.blocks.length} blocks / ${cov}% events</span></div>
+      <div class="panel-head"><h3>ブロック実行</h3><span>${autoStatusBadge(a.status)} ${done}/${total} blocks / ${cov}% events</span></div>
       <div class="panel-body small">
         <div class="chips">${blocks || '<span class="muted">block なし</span>'}</div>
-        <p class="muted" style="margin-top:8px">未カバー ${a.uncoveredCount} event。${a.uncoveredCount ? '下の自動化ページでギャップを確認してください。' : '全 event が block に一致しています（実行証明ではありません）。'}</p>
+        <p class="muted" style="margin-top:8px">Remaining: <b>${remaining}</b> blocks / ${a.uncoveredCount} uncovered events. Next: <code>${esc(next)}</code></p>
+        ${a.executionNote ? `<p class="faint">${esc(a.executionNote)}</p>` : ''}
         ${r ? `<p style="margin-top:10px"><b>Runner:</b> ${esc(r.script)} ${runnerStatusBadge(r.status)}</p>
           <pre class="mono" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;overflow:auto">${esc(cmd)}</pre>
           <button class="btn primary" data-action="copy-command" data-case="${esc(id)}">実行コマンドをコピー</button>
@@ -1410,9 +1428,11 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       <td class="small">${esc(a.runner.note || '')}</td>
       <td><button class="btn" data-action="copy-command" data-case="${esc(id)}">コピー</button></td>
     </tr>`).join('');
+    const nextText = (a) => a.nextGap ? (a.nextGap.kind === 'block' ? a.nextGap.block : gapLabel(a.nextGap.event)) : '—';
     const fullRows = full.map(([id, a]) => `<tr>
       <td><span class="mono">${esc(id)}</span></td>
       <td>${(a.blocks || []).map((b) => `<span class="badge outline">${esc(b)}</span>`).join(' ')}</td>
+      <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
       <td class="num">${a.eventCount}</td>
     </tr>`).join('');
     const blockRows = blocks.map((b) => `<tr>
@@ -1420,14 +1440,15 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       <td>${esc(b.fromScreen)} → ${esc(b.toScreen)}</td>
       <td class="num">${fmt(b.usedByCases)}</td>
       <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : '<span class="badge gray">source</span>'}</td>
+      <td>${executionBadge(b.executionStatus)}</td>
       <td class="small">${esc((b.params || []).join(', '))}</td>
     </tr>`).join('');
     const gapRows = gaps.map((g) => `<tr><td class="num">${fmt(g.count)}</td><td><code>${esc(gapLabel(g.event))}</code></td></tr>`).join('');
     const allRows = cases.map(([id, a]) => `<tr>
       <td><span class="mono">${esc(id)}</span></td>
       <td>${autoStatusBadge(a.status)}</td>
-      <td class="num">${a.blocks.length}</td>
-      <td class="num">${a.uncoveredCount}</td>
+      <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
+      <td><code>${esc(nextText(a))}</code></td>
       <td>${a.runner ? runnerStatusBadge(a.runner.status) : '<span class="badge gray">—</span>'}</td>
     </tr>`).join('');
     $('#main').innerHTML = `
@@ -1438,6 +1459,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         ${kpi('ギャップあり', sum.partialCount || 0, 'block 未一致', 'amber')}
         ${kpi('Event カバー', `${pct.toFixed(1)}%`, `${fmt(sum.coveredEvents)} / ${fmt(sum.eventCount)}`, 'blue')}
         ${kpi('Block', sum.blockCount || 0, 'draft registry', 'violet')}
+        ${kpi('実績あり', (sum.actualFullCount || 0) + (sum.actualPartialCount || 0), 'live-pass を含むケース', 'green')}
       </div>
       <section class="panel mt">
         <div class="panel-head"><h3>Runner 可能なケース</h3><span class="hint">コマンドをコピーして SUT 端末で実行</span></div>
@@ -1445,11 +1467,11 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>Block 完全一致（静的）</h3><span class="hint">${full.length} ケース</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>Block composition</th><th class="num">Events</th></tr></thead><tbody>${fullRows || '<tr><td colspan="3" class="muted">なし</td></tr>'}</tbody></table></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>Block composition</th><th class="num">Live / blocks</th><th class="num">Events</th></tr></thead><tbody>${fullRows || '<tr><td colspan="4" class="muted">なし</td></tr>'}</tbody></table></div>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>Block registry</h3><span class="hint">${blocks.length} blocks / 使用ケース数</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>From → To</th><th class="num">Cases</th><th>Status</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>From → To</th><th class="num">Cases</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>未カバー event</h3><span class="hint">次の block 候補</span></div>
@@ -1457,7 +1479,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       </section>
       <details class="panel mt">
         <summary style="cursor:pointer;padding:11px 14px;font-size:13px;font-weight:700">全ケースの composition（${cases.length}）</summary>
-        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>Status</th><th class="num">Blocks</th><th class="num">未カバー</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
+        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>Static</th><th class="num">Live / blocks</th><th>Next</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
       </details>`;
   }
 
