@@ -107,3 +107,11 @@ Short architecture decision log. Each entry is a decision, the reason, and the c
 **Reason:** No build step; the viewer is static. Jekyll processing breaks the generated assets.
 
 **Consequence:** `.nojekyll` is required. Adding a server-side route or build step would break the deployment model.
+
+## D14. Static composition is not execution proof
+
+**Decision:** Show block coverage and runner readiness separately in the viewer; label matched workflows `block full`, not `done`.
+
+**Reason:** A workflow can match every block pattern while selectors are `source-only`, the runner is incomplete, or the actual SUT is blocked. The 009 case is both 100% block-composed and blocked at block 4/5.
+
+**Consequence:** The 自動化 page exposes coverage and runner status independently. `block full` + `blocked` is a valid, visible combination. Do not derive test completion from block coverage.

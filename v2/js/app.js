@@ -5,6 +5,7 @@
   const DATA = window.MSAD_INDEX || { meta: {}, categories: [], scenarios: [], routes: [], caseIndex: {} };
   const REFS = window.MSAD_REFS || {};
   const VALID = window.MSAD_VALIDATION || { counts: {}, warnings: {} };
+  const AUTO = window.MSAD_AUTOMATION || { summary: {}, blocks: [], cases: {}, runners: { runners: [] } };
   const LS = {
     progress: 'msad.progress.v1',
     tasks: 'msad.tasks.v1',
@@ -259,7 +260,7 @@
     if (view === 'case' && id) { state.view = 'case'; if (state.selectedCase !== id) state.tab = 'procedure'; state.selectedCase = id; renderCase(id); return; }
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
-    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'refs'].includes(view) ? view : 'dashboard';
+    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'refs', 'automation'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
     state.selectedRoute = null;
@@ -285,7 +286,7 @@
     const crumb = state.view === 'case' ? `ケース / ${state.selectedCase || ''}`
       : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
         : state.view === 'route' ? `実施順序 / ${state.selectedRoute || ''}`
-          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料' }[state.view] || 'ダッシュボード');
+          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化' }[state.view] || 'ダッシュボード');
     $('#breadcrumb').textContent = crumb;
     $$('#nav .nav-item').forEach((b) => b.classList.toggle('active', b.dataset.view === state.view));
     const meta = DATA.meta || {};
@@ -309,7 +310,8 @@
   }
   function empty(msg) { return `<div class="empty">${esc(msg)}</div>`; }
   function kpi(label, value, sub, cls = '') {
-    return `<div class="kpi ${cls}"><div class="label">${esc(label)}</div><div class="value">${fmt(value)}</div><div class="sub">${esc(sub || '')}</div></div>`;
+    const shown = typeof value === 'number' ? fmt(value) : esc(value);
+    return `<div class="kpi ${cls}"><div class="label">${esc(label)}</div><div class="value">${shown}</div><div class="sub">${esc(sub || '')}</div></div>`;
   }
   function progressLine(name, value, total, cls = '') {
     const p = pct(value, total);
@@ -1173,9 +1175,74 @@ AY-120-01-001"></textarea>
     return out;
   }
 
+  function autoCase(id) { return (AUTO.cases || {})[id] || null; }
+  function autoBlock(id) { return (AUTO.blocks || []).find((b) => b.id === id) || null; }
+
+  function runnerCommand(caseId, r) {
+    const port = r.port || 9223;
+    const base = r.baseUrl || 'http://127.0.0.1:10081/mhkcmwa11/dummy.html';
+    return `powershell -ExecutionPolicy Bypass -File .\\${r.script} -CaseId ${caseId} -Port ${port} -BaseUrl "${base}"`;
+  }
+
+  function copyText(text) {
+    const done = () => toast('コマンドをコピーしました');
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+  function fallbackCopy(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (_) { toast('コピーできません。手動で選択してください'); }
+    ta.remove();
+  }
+
+  function autoStatusBadge(status) {
+    if (status === 'full') return '<span class="badge green">block full</span>';
+    return '<span class="badge amber">gap</span>';
+  }
+  function runnerStatusBadge(status) {
+    if (status === 'blocked') return '<span class="badge red">blocked</span>';
+    if (status === 'mock-verified') return '<span class="badge amber">mock</span>';
+    if (status === 'available') return '<span class="badge green">ready</span>';
+    return `<span class="badge gray">${esc(status || '—')}</span>`;
+  }
+  function gapLabel(e) {
+    return `${e.kind}:${e.screen}:${e.action || e.assert || ''}:${e.target || ''}:${e.dataClass || ''}`;
+  }
+
+  function automationRunHtml(id) {
+    const a = autoCase(id);
+    if (!a) return '';
+    const cov = a.eventCount ? Math.round((a.coveredEvents / a.eventCount) * 1000) / 10 : 0;
+    const blocks = (a.blocks || []).map((bid) => {
+      const b = autoBlock(bid);
+      return `<span class="badge outline" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}">${esc(bid)}</span>`;
+    }).join(' ');
+    const r = a.runner;
+    const cmd = r ? runnerCommand(id, r) : '';
+    return `<div class="panel" style="margin-bottom:12px">
+      <div class="panel-head"><h3>ブロック実行</h3><span>${autoStatusBadge(a.status)} ${a.blocks.length} blocks / ${cov}% events</span></div>
+      <div class="panel-body small">
+        <div class="chips">${blocks || '<span class="muted">block なし</span>'}</div>
+        <p class="muted" style="margin-top:8px">未カバー ${a.uncoveredCount} event。${a.uncoveredCount ? '下の自動化ページでギャップを確認してください。' : '全 event が block に一致しています（実行証明ではありません）。'}</p>
+        ${r ? `<p style="margin-top:10px"><b>Runner:</b> ${esc(r.script)} ${runnerStatusBadge(r.status)}</p>
+          <pre class="mono" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;overflow:auto">${esc(cmd)}</pre>
+          <button class="btn primary" data-action="copy-command" data-case="${esc(id)}">実行コマンドをコピー</button>
+          ${r.scope ? `<p class="faint" style="margin-top:7px">scope: ${esc(r.scope)}</p>` : ''}${r.note ? `<p class="faint" style="margin-top:7px">${esc(r.note)}</p>` : ''}`
+        : `<p class="muted">このケース用の runner はまだありません。block の整備後に追加します。</p>`}
+      </div></div>`;
+  }
+
   function automationHtml(c) {
     const auto = state.automation[c.id] || { scriptType: 'console', locators: [] };
-    return `<details class="panel" style="margin-bottom:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">自動化の使い方</summary><div class="panel-body small">
+    return automationRunHtml(c.id) + `<details class="panel" style="margin-bottom:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">自動化の使い方</summary><div class="panel-body small">
       <p><b>1.</b> 被テストシステムで F12 を開き、対象の入力/ボタンを Elements で選択 → Copy outerHTML。</p>
       <p><b>2.</b> 下の JSON に <code>sourceRow</code>（手順の Excel 行）、<code>action</code>（click / input / assert / wait）、<code>selector</code>、必要なら <code>value</code> / <code>expected</code> を追加。</p>
       <p><b>3.</b> 「Console 片段を生成」を押し、被テストシステムの Console に貼り付けて実行。まずは 1 ステップずつ。</p>
@@ -1322,6 +1389,76 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
   function refreshCaseView(id) {
     if (state.drawerCase === id) renderDrawer(id);
     else renderCase(id);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* automation coverage                                                 */
+  /* ------------------------------------------------------------------ */
+
+  function renderAutomation() {
+    const sum = AUTO.summary || {};
+    const cases = Object.entries(AUTO.cases || {}).sort((a, b) => a[0].localeCompare(b[0]));
+    const runners = cases.filter(([, a]) => a.runner);
+    const full = (sum.fullCaseIds || []).map((id) => [id, AUTO.cases?.[id]]).filter(([, a]) => a);
+    const blocks = [...(AUTO.blocks || [])].sort((a, b) => (b.usedByCases || 0) - (a.usedByCases || 0));
+    const gaps = sum.topGaps || [];
+    const pct = (sum.eventCoverage || 0) * 100;
+    const runnerRows = runners.map(([id, a]) => `<tr>
+      <td><span class="mono">${esc(id)}</span><div class="small muted">${esc(caseById.get(id)?.functionName || '')}</div></td>
+      <td>${runnerStatusBadge(a.runner.status)}</td>
+      <td><span class="mono">${esc(a.runner.script)}</span></td>
+      <td class="small">${esc(a.runner.note || '')}</td>
+      <td><button class="btn" data-action="copy-command" data-case="${esc(id)}">コピー</button></td>
+    </tr>`).join('');
+    const fullRows = full.map(([id, a]) => `<tr>
+      <td><span class="mono">${esc(id)}</span></td>
+      <td>${(a.blocks || []).map((b) => `<span class="badge outline">${esc(b)}</span>`).join(' ')}</td>
+      <td class="num">${a.eventCount}</td>
+    </tr>`).join('');
+    const blockRows = blocks.map((b) => `<tr>
+      <td><span class="mono">${esc(b.id)}</span></td>
+      <td>${esc(b.fromScreen)} → ${esc(b.toScreen)}</td>
+      <td class="num">${fmt(b.usedByCases)}</td>
+      <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : '<span class="badge gray">source</span>'}</td>
+      <td class="small">${esc((b.params || []).join(', '))}</td>
+    </tr>`).join('');
+    const gapRows = gaps.map((g) => `<tr><td class="num">${fmt(g.count)}</td><td><code>${esc(gapLabel(g.event))}</code></td></tr>`).join('');
+    const allRows = cases.map(([id, a]) => `<tr>
+      <td><span class="mono">${esc(id)}</span></td>
+      <td>${autoStatusBadge(a.status)}</td>
+      <td class="num">${a.blocks.length}</td>
+      <td class="num">${a.uncoveredCount}</td>
+      <td>${a.runner ? runnerStatusBadge(a.runner.status) : '<span class="badge gray">—</span>'}</td>
+    </tr>`).join('');
+    $('#main').innerHTML = `
+      ${pageHead('自動化', 'block composition / runner readiness（静的な一致結果。実行証明ではありません）')}
+      <div class="kpis">
+        ${kpi('対象ケース', sum.caseCount || 0, '自分のタスク', 'accent')}
+        ${kpi('Block 一致', sum.fullCount || 0, '静的照合（実行証明ではない）', 'green')}
+        ${kpi('ギャップあり', sum.partialCount || 0, 'block 未一致', 'amber')}
+        ${kpi('Event カバー', `${pct.toFixed(1)}%`, `${fmt(sum.coveredEvents)} / ${fmt(sum.eventCount)}`, 'blue')}
+        ${kpi('Block', sum.blockCount || 0, 'draft registry', 'violet')}
+      </div>
+      <section class="panel mt">
+        <div class="panel-head"><h3>Runner 可能なケース</h3><span class="hint">コマンドをコピーして SUT 端末で実行</span></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>状態</th><th>Script</th><th>Note</th><th></th></tr></thead><tbody>${runnerRows || '<tr><td colspan="5" class="muted">runner はまだありません</td></tr>'}</tbody></table></div>
+      </section>
+      <section class="panel mt">
+        <div class="panel-head"><h3>Block 完全一致（静的）</h3><span class="hint">${full.length} ケース</span></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>Block composition</th><th class="num">Events</th></tr></thead><tbody>${fullRows || '<tr><td colspan="3" class="muted">なし</td></tr>'}</tbody></table></div>
+      </section>
+      <section class="panel mt">
+        <div class="panel-head"><h3>Block registry</h3><span class="hint">${blocks.length} blocks / 使用ケース数</span></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>From → To</th><th class="num">Cases</th><th>Status</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
+      </section>
+      <section class="panel mt">
+        <div class="panel-head"><h3>未カバー event</h3><span class="hint">次の block 候補</span></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th class="num">Cases</th><th>Event</th></tr></thead><tbody>${gapRows || '<tr><td colspan="2" class="muted">なし</td></tr>'}</tbody></table></div>
+      </section>
+      <details class="panel mt">
+        <summary style="cursor:pointer;padding:11px 14px;font-size:13px;font-weight:700">全ケースの composition（${cases.length}）</summary>
+        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>Status</th><th class="num">Blocks</th><th class="num">未カバー</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
+      </details>`;
   }
 
   /* ------------------------------------------------------------------ */
@@ -1540,6 +1677,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         if (act === 'gen-auto') { generateAutomation(action.dataset.case); return; }
         if (act === 'seed-auto') { seedAutomation(action.dataset.case); return; }
         if (act === 'case-json') { exportCase(action.dataset.case); return; }
+        if (act === 'copy-command') { const id = action.dataset.case; const a = autoCase(id); if (a?.runner) copyText(runnerCommand(id, a.runner)); return; }
         if (act === 'suggest-selectors') {
           const html = $('#outerHtmlInput')?.value || '';
           const cands = suggestSelectors(html);
@@ -1632,6 +1770,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         if (act === 'gen-auto') { generateAutomation(action.dataset.case); return; }
         if (act === 'seed-auto') { seedAutomation(action.dataset.case); return; }
         if (act === 'case-json') { exportCase(action.dataset.case); return; }
+        if (act === 'copy-command') { const id = action.dataset.case; const a = autoCase(id); if (a?.runner) copyText(runnerCommand(id, a.runner)); return; }
         if (act === 'suggest-selectors') {
           const html = $('#outerHtmlInput')?.value || '';
           const cands = suggestSelectors(html);
@@ -1713,6 +1852,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     else if (state.view === 'files') renderFiles();
     else if (state.view === 'tasks') renderTasks();
     else if (state.view === 'refs') renderRefs();
+    else if (state.view === 'automation') renderAutomation();
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);
     else if (state.view === 'route' && state.selectedRoute) renderRoute(state.selectedRoute);

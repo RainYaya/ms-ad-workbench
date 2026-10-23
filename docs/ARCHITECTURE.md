@@ -28,6 +28,11 @@ workflow/*.json          ─┘                         v2/data/refs.js
 automation/tasks/*.txt ─> tools/analyze_assigned.py ─> templates.json / ASSIGNED.md
 workflow rows         ─> tools/analyze_steps.py    ─> steps/inventory.json / INVENTORY.md
                                                               │
+automation/runners.json + blocks ─> tools/build_blocks.py ─> blocks/blocks.json / COVERAGE.md
+                                                              │
+                                                              ▼
+                                                   v2/data/automation.js (viewer)
+                                                              │
                                                               ▼
 automation/cdp ─> Edge (CDP) ─> SUT at 127.0.0.1:10081 ─> screenshots/logs
 ```
@@ -45,16 +50,20 @@ The viewer and the runner share **the same normalized procedure data and IDs**, 
 | `v2/data/cases/*.js` | `MSAD_CASES_<CATEGORY>`: full workflow + appendix payloads, lazy-loaded |
 | `v2/data/refs.js` | `MSAD_REFS`: users, timezone, status matrix, ToDo patterns/routes |
 | `v2/data/validation.js` | `MSAD_VALIDATION`: counts and known data-quality warnings |
+| `v2/data/automation.js` | `MSAD_AUTOMATION`: block coverage + runner readiness for the 自動化 page |
 | `tools/build_data.py` | Excel/JSON → normalized data |
 | `tools/verify_routes.py` | Route chain verification against workbook inference |
 | `tools/analyze_assigned.py` | 450-task grouping, template registry, screen registry, assigned plan |
 | `tools/analyze_steps.py` | Raw step inventory and candidate block mining |
+| `tools/build_blocks.py` | Block registry, static composer, coverage report, viewer payload |
 | `automation/AZ-110-01-009.md` | Canonical 009 progress, params, selectors, blockers |
 | `automation/ASSIGNED.md` | 450-task plan and execution order |
 | `automation/templates.json` | 215 exact procedure templates |
 | `automation/screens/` | Captured HTML, screen manifest, screen registry |
+| `automation/blocks/` | Block registry, coverage, pilot composition |
 | `automation/cdp/` | PowerShell CDP client, Edge starter, template runner, mock, params |
 | `automation/steps/` | Composition design + raw inventory |
+| `automation/runners.json` | Runner/case registry consumed by the viewer |
 | `reference/webapps/` | Client source snapshots; local-only by default |
 | `legacy.html` | Previous root application, retained for fallback |
 
@@ -70,6 +79,7 @@ Dashboard
   ├─ routes (implementation order)
   ├─ files (source files / appendices)
   ├─ tasks (imported assignment list)
+  ├─ automation (block coverage, runner commands)
   └─ refs (users, timezone, status matrix, ToDo patterns)
 ```
 
@@ -156,6 +166,7 @@ A block has `fromScreen`, `toScreen`, parameters, and assertions. See [`AUTOMATI
 | Assigned tasks | 450 (309 AZ / 141 AY), 215 exact signatures, 55 screens |
 | 009 | Actual block 1–3 pass; block 4/5 blocked; block 6–13 pending |
 | 010–012 | Parameterized, mock pass; actual pending |
+| Static block composition | 12 full / 438 partial; 3,337/10,803 events (30.9%) |
 
 ## 9. Boundaries / non-goals
 

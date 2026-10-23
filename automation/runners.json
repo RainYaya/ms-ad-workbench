@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-10-23",
+  "baseUrl": "http://127.0.0.1:10081/mhkcmwa11/dummy.html",
+  "port": 9223,
+  "runners": [
+    {
+      "id": "run-009",
+      "script": "run-009.ps1",
+      "paramsFile": "params/AZ-110-01.json",
+      "template": "TPL-AZ-110-01-009",
+      "caseIds": [
+        "AZ-110-01-009",
+        "AZ-110-01-010",
+        "AZ-110-01-011",
+        "AZ-110-01-012"
+      ],
+      "status": "blocked",
+      "note": "009 actual is blocked at block 4/5 (agent search returns no rows). 010-012 mock pass; actual pending.",
+      "blockedCases": [
+        "AZ-110-01-009"
+      ],
+      "mockVerifiedCases": [
+        "AZ-110-01-009",
+        "AZ-110-01-010",
+        "AZ-110-01-011",
+        "AZ-110-01-012"
+      ],
+      "scope": "blocks 1-5 implemented; blocks 6-13 are composition-only"
+    }
+  ]
+}

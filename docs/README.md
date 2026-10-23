@@ -17,4 +17,5 @@ Related working documents:
 - [`../automation/steps/DESIGN.md`](../automation/steps/DESIGN.md) — block composition
 - [`../automation/steps/INVENTORY.md`](../automation/steps/INVENTORY.md) — raw step inventory
 - [`../automation/blocks/PILOT.md`](../automation/blocks/PILOT.md) — 009–012 and 37/67 block pilot
+- [`../automation/blocks/COVERAGE.md`](../automation/blocks/COVERAGE.md) — static composition coverage and gaps
 - [`../automation/screens/SCREENS.md`](../automation/screens/SCREENS.md) — screen capture status

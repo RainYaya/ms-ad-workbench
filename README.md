@@ -19,6 +19,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`automation/ASSIGNED.md`](automation/ASSIGNED.md) | The 450 assigned tasks, templates, and ordering |
 | [`automation/steps/DESIGN.md`](automation/steps/DESIGN.md) | Step/block composition model |
 | [`automation/steps/INVENTORY.md`](automation/steps/INVENTORY.md) | Raw 450-case step inventory and candidate blocks |
+| [`automation/blocks/COVERAGE.md`](automation/blocks/COVERAGE.md) | Static block coverage: 12 full / 438 partial / 30.9% events |
 
 ## Viewer quick start
 
@@ -31,6 +32,8 @@ http://127.0.0.1:8000/v2/index.html
 ```
 
 Data is loaded lazily by category, so the initial page stays small. Progress and imported tasks live in `localStorage`; use **JSON** export for backup, **CSV** for spreadsheet results.
+
+The **自動化** page shows block coverage and runner-ready cases. Each supported case has a copyable PowerShell command; see [`docs/AUTOMATION.md`](docs/AUTOMATION.md).
 
 ## Automation quick start
 
@@ -55,6 +58,7 @@ Do not use a default Edge `User Data` directory with CDP. `start-edge.ps1` handl
 | Route inference | 26 AZ route chains verified by `tools/verify_routes.py` |
 | Viewer | Built and deployed; dashboard, scenarios, routes, tasks, case drawer, evidence, automation tab, JSON/CSV export |
 | 450 assigned tasks | Grouped: 215 exact procedure signatures, 55 screens, 152 singleton signatures |
+| Block composition | 15 draft blocks; 12 cases fully composed, 438 partial; 3,337/10,803 events (30.9%) |
 | `AZ-110-01-009` | Block 1–3 pass on actual SUT; block 4/5 blocked on agent search returning no rows; block 6–13 not implemented |
 | `AZ-110-01-010..012` | Same 44-row procedure; parameterized runner passes mock, not yet run on actual SUT |
 | Reference webapps | Extracted locally; excluded from git/Pages by default |
