@@ -16,6 +16,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`docs/AUTOMATION.md`](docs/AUTOMATION.md) | CDP runner, screens, blocks, params, evidence |
 | [`docs/DECISIONS.md`](docs/DECISIONS.md) | Why the project is shaped this way |
 | [`docs/REFERENCE-WEBAPPS.md`](docs/REFERENCE-WEBAPPS.md) | What the three uploaded webapps are, and what they are not |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Step-by-step plan, owners, acceptance, and what you need to provide |
 | [`automation/ASSIGNED.md`](automation/ASSIGNED.md) | The 450 assigned tasks, templates, and ordering |
 | [`automation/steps/DESIGN.md`](automation/steps/DESIGN.md) | Step/block composition model |
 | [`automation/steps/INVENTORY.md`](automation/steps/INVENTORY.md) | Raw 450-case step inventory and candidate blocks |

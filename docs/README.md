@@ -9,6 +9,7 @@
 | [`AUTOMATION.md`](AUTOMATION.md) | You need to run the SUT, understand the CDP runner, params, blocks, or evidence |
 | [`DECISIONS.md`](DECISIONS.md) | You are about to change a structural assumption |
 | [`REFERENCE-WEBAPPS.md`](REFERENCE-WEBAPPS.md) | You need the uploaded webapp snapshots or their visibility policy |
+| [`ROADMAP.md`](ROADMAP.md) | You need the next steps, owners, acceptance criteria, and material requests |
 
 Related working documents:
 
