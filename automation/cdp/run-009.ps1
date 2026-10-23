@@ -88,6 +88,27 @@ Save-CdpScreenshot -Conn $page -Path (Join-Path $PSScriptRoot '..\logs\009-block
 Write-Host 'STEP 3: insurance popup'
 Invoke-CdpJs -Conn $page -Expression "document.querySelector('input[name=""selectInsuransuItem""]').click(); 'popup opened'" | Out-Null
 $popup = Connect-CdpPage -UrlPattern $PopupPattern -Port $Port -TimeoutSec 20
+try {
+    Wait-CdpJs -Conn $popup -Expression "!!document.querySelector('select[name=""insurance_item_list.selected""]')" -TimeoutSec 20 | Out-Null
+} catch {
+    $diag = ''
+    try {
+        $diag = Invoke-CdpJs -Conn $popup -Expression @'
+JSON.stringify({
+  href: location.href,
+  title: document.title,
+  readyState: document.readyState,
+  selects: [...document.querySelectorAll('select')].map((s) => s.name),
+  iframes: [...document.querySelectorAll('iframe')].map((f) => f.src),
+  body: (document.body?.innerText || '').slice(0, 500)
+})
+'@
+    } catch {
+        $diag = $_.Exception.Message
+    }
+    Write-Host "popup diagnostic: $diag"
+    throw
+}
 $popupResult = Invoke-CdpJs -Conn $popup -Expression @'
 (() => {
   const sel = document.querySelector('select[name="insurance_item_list.selected"]');
