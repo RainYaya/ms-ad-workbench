@@ -1,4 +1,4 @@
-﻿param(
+param(
     [int]$Port = 9222,
     [string]$BaseUrl = 'http://127.0.0.1:10081/mhkcmwa11/',
     [string]$PagePattern = '*127.0.0.1:10081*',

@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
 
 function Receive-CdpMessage {
     param($Conn)
@@ -126,8 +126,14 @@ function Start-CdpEdge {
         [string]$Url = 'about:blank',
         [switch]$Headless
     )
-    $edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
-    if (-not (Test-Path $edge)) { throw "Edge not found: $edge" }
+    $candidates = @(
+        'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
+        'C:\Program Files\Microsoft\Edge\Application\msedge.exe',
+        'C:\Program Files\Google\Chrome\Application\chrome.exe',
+        'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+    )
+    $edge = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+    if (-not $edge) { throw "Edge/Chrome not found. Pass an existing browser path." }
     $edgeArgs = @(
         "--remote-debugging-port=$Port",
         "--user-data-dir=$Profile",
