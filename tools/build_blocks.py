@@ -45,6 +45,25 @@ SPECS = [
     ("BLK-AZ-INQUIRY-EDIT", "AZ-110-01-009", (28, 34), [], [], "source-only", "inquiry check -> 修 -> edit -> OK"),
     ("BLK-AZ-CORRECTION-CONFIRM", "AZ-110-01-009", (34, 40), [], [], "source-only", "agent inquiry 否 -> correction confirm -> register"),
     ("BLK-AZ-COMPLETE-REGISTER", "AZ-110-01-009", (40, 44), [], [], "source-only", "完了登録 -> MAZG101W047 -> update"),
+    # --- 2026-10-24 second read-through: agent-portal & non-browser families ---
+    ("BLK-AZ-AGT-LIST-OPEN-UPDATE", "AZ-200-07-001", (0, 2), [], [], "source-only", "代理店不備一覧 No -> 代理店更新画面 (agent portal open-record flow)"),
+    ("BLK-AZ-AGT-UPDATE-SUSPEND", "AZ-200-07-001", (2, 6), [], ["agent record open"], "source-only", "代理店更新 任意変更 -> 一時中断 -> 表示+テーブル確認"),
+    ("BLK-AZ-AGT-CORRECTION-REGISTER", "AZ-200-07-001", (6, 15), [], ["agent update open"], "source-only", "代理店訂正内容確認 入力 -> 登録 -> 更新戻り + AP/DB/TRログ"),
+    ("BLK-AZ-BATCH-RUN-VERIFY", "AZ-150-05-001", (0, 2), ["batchJob"], [], "source-only", "バッチ実行 -> 操作結果 (minimal non-browser batch skeleton)"),
+    ("BLK-AZ-BATCH-VERIFY", "AZ-150-07-001", (2, 4), ["verifyTargets"], [], "source-only", "集計テーブル + APログ 確認 (batch verification tail)"),
+    ("BLK-AZ-AUTH-ERROR", "AZ-100-06-001", (0, 4), [], [], "source-only", "ダミーログイン -> 権限/システムエラー確認 (auth boundary)"),
+    ("BLK-AZ-SESSION-TIMEOUT", "AZ-200-03-001", (0, 4), [], ["1h idle"], "source-only", "1時間待機 -> No押下 -> セッションタイムアウト確認 (parent)"),
+    ("BLK-AZ-EXTERNAL-AUTH", "AZ-200-01-001", (0, 3), ["authPath"], [], "source-only", "外部認証(IceWall/NTTDGW/大樹)ログイン -> 遷移+URL確認 (non-browser boundary)"),
+    ("BLK-AZ-OPEN-CLOSE-SYS", "AZ-200-02-001", (0, 6), [], ["ops shell access"], "source-only", "閉局シェル -> ログイン -> 閉局確認 (ops/non-browser)"),
+    ("BLK-AZ-AGT-SESSION-TIMEOUT", "AZ-200-03-002", (0, 8), [], ["agent record open"], "source-only", "代理店 子画面で1時間待機 -> 登録 -> タイムアウト確認"),
+    ("BLK-AZ-BATCH-CONVERT-MAIL", "AZ-150-11-001", (0, 4), ["batchJob"], [], "source-only", "メール変換先取込バッチ -> 結果/APログ/変換テーブル確認 (non-browser)"),
+    ("BLK-AZ-AGT-LIST-INITIAL", "AZ-220-01-003", (0, 5), [], ["agent login"], "source-only", "代理店不備一覧 初期表示 -> 参照可能代理店テーブル -> 検索"),
+    ("BLK-AY-TORIKESHI-REGISTER", "AY-100-08-001", (0, 5), ["caseInput"], [], "source-only", "AY新規登録 -> 取消計上申請登録 -> 各項目入力 -> 登録 -> 申請・確認更新"),
+    ("BLK-AY-MENU-SESSION-TIMEOUT", "AY-100-08-002", (0, 4), [], ["1h idle"], "source-only", "AY 1時間待機 -> 新規登録 -> セッションタイムアウト確認"),
+    ("BLK-AZ-AGT-LIST-SEARCH", "AZ-200-07-003", (0, 3), ["caseSearch"], [], "source-only", "代理店不備一覧 各項目入力 -> 検索 -> 結果表示"),
+    ("BLK-AZ-AGT-LIST-INITIAL-EMPTY", "AZ-220-01-004", (0, 3), [], ["agent login, no data"], "source-only", "代理店不備一覧 初期表示 -> 参照可能代理店テーブル -> メッセージエリア(データなし)"),
+    ("BLK-AZ-SYSERR-LOGIN", "AZ-200-04-001", (0, 4), [], ["DB down"], "source-only", "ログイン入力 -> ログイン -> システムエラー+メッセージ確認"),
+    ("BLK-AZ-AGT-CSV-DOWNLOAD", "AZ-200-07-004", (0, 3), ["dlRequestNo"], [], "source-only", "代理店不備一覧 証券番号検索 -> DL申請番号 -> CSV出力"),
 ]
 
 
@@ -57,14 +76,115 @@ def assigned_ids():
     return ids
 
 
+# --- semantic normalization (2026-10-24) --------------------------------
+# Read-through of all 450 assigned books (10,803 events -> 571 raw signatures)
+# showed the same business action written several ways. These rules merge
+# writing variants only; they never merge distinct business actions.
+# Rationale is documented in automation/blocks/SEMANTIC-NORM.md.
+import re as _re
+
+# Screens that are the same business surface under different names/systems.
+# AZ = 申込書品質管理, AY = 異例取扱管理: the sibling subsystem of the same SUT.
+# MS screens vs 代理店 (agent-portal) screens are NOT equated: different roles,
+# different UIs; only name variants of the same portal are merged.
+_SCREEN_EQ = [
+    ("申込書品質管理メニュー", "異例取扱管理メニュー"),          # portal menus (sibling systems)
+    ("その他(申込書品質管理)", "その他(異例取扱管理)"),        # auth/error boundary zones
+]
+_SCREEN_EQ_MAP = {}
+for _a, _b in _SCREEN_EQ:
+    _SCREEN_EQ_MAP[_a] = _a
+    _SCREEN_EQ_MAP[_b] = _a
+# All *バッチ処理 / *ファイル screens share the "run job, read result/logs/tables"
+# skeleton; the job name is a parameter, not a different screen for matching.
+_BATCH_SUFFIXES = ("バッチ処理", "処理", "ファイル")
+
+# transition targets that mean "the portal screen after external auth";
+# the (代理店MS)/(代理店AD) suffix is a role parameter, not a different screen.
+_AUTH_TARGETS = {
+    "申込書品質管理システム (代理店MS)": "PORTAL_AFTER_AUTH",
+    "申込書品質管理システム (代理店AD)": "PORTAL_AFTER_AUTH",
+}
+# login-step label variants: the dummy-login screen is named differently per
+# subsystem; the click target is the menu/login button either way.
+_LOGIN_LABELS = {"ログイン画面": "LOGIN_FILL", "ダミーログイン画面": "LOGIN_FILL", "メニュー画面": "LOGIN_FILL", "ログイン": "LOGIN_GO"}
+
+def _norm_trans_target(t):
+    return _AUTH_TARGETS.get(t, t)
+
+def _screen_class(s):
+    s = (s or "").strip()
+    if s in _SCREEN_EQ_MAP:
+        return _SCREEN_EQ_MAP[s]
+    for suf in _BATCH_SUFFIXES:
+        if s.endswith(suf) and len(s) > len(suf):
+            return "BATCH"
+    return s
+
+def _norm_screen(s):
+    s = (s or "").strip()
+    s = s.replace("－", "-").replace("ー", "-")      # fullwidth hyphen / macron
+    s = s.replace(" ", "").replace("　", "")
+    s = _re.sub(r"画面$", "", s)                      # trailing 画面 is redundant
+    return _screen_class(s)
+
+def _norm_target(t):
+    t = (t or "").strip()
+    for a, b in (("「", ""), ("」", ""), ("『", ""), ("』", "")):
+        t = t.replace(a, b)
+    t = _re.sub(r"押下$", "", t)                      # 「検索」押下 == 検索
+    t = _re.sub(r"ボタン$", "", t)
+    return t
+
+def _norm_dc(kind, verb, dc, screen=None, target=None):
+    # click targets that differ only in literal/none bookkeeping (e.g. a
+    # parameterized row label) are the same click.
+    if kind == "op" and verb == "click":
+        return "none"
+    # Inside the generic batch skeleton the checkpoints (操作結果 / 各種テーブル /
+    # ログ類) are always appendix-referenced or literal; the recorded dataClass
+    # varies by how the writer filled the 内容 column. One canonical class.
+    if screen == "BATCH" and kind == "ast" and verb == "other":
+        return "literal"
+    # login-screen steps are free-text op rows; input/other and literal/none
+    # differences are writing variants of the same login step
+    if kind == "op" and target in ("ログイン画面", "ダミーログイン画面"):
+        return "none"
+    if kind == "op" and verb in ("input", "other") and target in ("ログイン画面", "ダミーログイン画面"):
+        return "none"
+    return dc
+
 def event_pattern(e):
-    """Match key: ignore literal text and bundle reference text, keep data class."""
+    """Match key: ignore literal text and bundle reference text, keep data class.
+
+    Semantic normalization runs first so that writing variants of the same
+    business action compare equal (see SEMANTIC-NORM.md).
+    """
+    verb = e.get("action") or e.get("assert")
+    kind = e["kind"]
+    scr = _norm_screen(e["screen"])
+    dc = _norm_dc(kind, verb, e.get("dataClass", "none"), scr, e.get("target", ""))
+    if kind == "ast" and verb == "transition":
+        # "初期値" vs blank dataKey on the same transition is a writing
+        # variant: the expected value lives in 別紙 either way.
+        dc = "literal" if dc in ("literal", "none", "bundle") else dc
+    tgt = _norm_target(e.get("target", ""))
+    if kind == "ast" and verb == "transition":
+        tgt = _norm_trans_target(tgt)
+    v = verb
+    if kind == "op":
+        if verb in ("input", "other") and tgt in ("ログイン画面", "ダミーログイン画面"):
+            v = "input"   # same login-fill step regardless of listed type
+        if verb == "click" and tgt in ("ログイン", "メニュー画面"):
+            tgt = "LOGIN_GO"
+        elif verb in ("input", "other") and tgt in ("ログイン画面", "ダミーログイン画面"):
+            tgt = "LOGIN_FILL"
     return (
-        e["kind"],
-        e["screen"],
-        e.get("action") or e.get("assert"),
-        e.get("target", ""),
-        e.get("dataClass", "none"),
+        kind,
+        scr,
+        v,
+        tgt,
+        dc,
     )
 
 
@@ -224,7 +344,11 @@ def compose(events, blocks):
         # cover this event as a single-event gap
         best = 1 + dp[i + 1]
         best_block = None
-        for b in blocks:
+        # curated blocks are human-reviewed: when one matches at this
+        # position, auto-mined candidates must not compete for the slot
+        curated_here = [b for b in blocks if b.get("status") != "draft-auto" and match_at(events, i, b)]
+        pool = curated_here or blocks
+        for b in pool:
             if match_at(events, i, b):
                 cost = dp[i + len(b["_pattern"])]
                 is_auto = b.get("status") == "draft-auto"
@@ -278,10 +402,7 @@ def main():
     auto_blocks = mine_auto_blocks(cases, ids, curated)
     blocks = curated + auto_blocks
     for b in blocks:
-        b["_pattern"] = [tuple(x) for x in [
-            (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
-            for p in b["pattern"]
-        ]]
+        b["_pattern"] = [event_pattern(p) for p in b["pattern"]]
     # longest first helps readability; DP re-checks all
     blocks.sort(key=lambda b: (-len(b["_pattern"]), b["id"]))
 
