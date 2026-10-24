@@ -1390,7 +1390,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     const meta = caseById.get(id);
     if (!meta) return;
     const dc = $('#drawerContent');
-    dc.innerHTML = caseHeader(meta) + resultBar(id) + '<div class="loading">手順書を読み込んでいます…</div>';
+    dc.innerHTML = caseHeader(meta) + resultBar(id) + summaryHtml(id) + '<div class="loading">手順書を読み込んでいます…</div>';
     try {
       const data = await ensureCaseData(meta.categoryId);
       if (state.drawerCase !== id) return;
