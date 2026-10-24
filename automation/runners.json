@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-23",
+  "generatedAt": "2026-10-24",
   "baseUrl": "http://127.0.0.1:10081/mhkcmwa11/dummy.html",
   "port": 9223,
   "runners": [
     {
       "id": "run-009",
-      "script": "run-009.ps1",
+      "script": "runner.mjs",
       "paramsFile": "params/AZ-110-01.json",
       "template": "TPL-AZ-110-01-009",
       "caseIds": [
@@ -15,7 +15,7 @@
         "AZ-110-01-012"
       ],
       "status": "blocked",
-      "note": "009 actual is blocked at block 4/5 (agent search returns no rows). 010-012 mock pass; actual pending.",
+      "note": "Node runner (node.exe + playwright-core, portable folder). 009 actual is environment-blocked at block 4/5; 010-012 mock pass. PowerShell era retired.",
       "blockedCases": [
         "AZ-110-01-009"
       ],
@@ -25,7 +25,10 @@
         "AZ-110-01-011",
         "AZ-110-01-012"
       ],
-      "scope": "blocks 1-5 implemented; blocks 6-13 are composition-only"
+      "scope": "blocks 1-5 implemented; blocks 6-13 are composition-only",
+      "launcher": "run.cmd",
+      "launch": "run.cmd AZ-110-01-009"
     }
-  ]
+  ],
+  "runtime": "node"
 }

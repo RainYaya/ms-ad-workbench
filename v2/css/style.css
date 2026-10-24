@@ -355,3 +355,115 @@ body.drawer-open{overflow:hidden}
 .s3-pct{font-size:11px;color:#55605b;margin-left:7px;vertical-align:middle}
 .s3-legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;margin-bottom:10px;flex-wrap:wrap}
 .s3-legend .s3-seg{border-radius:4px}
+
+/* ============================================================
+   VISUAL REFRESH 2026-10-24 — award-tier pass over the workbench
+   Keep: information density, layout-self-explains principle, green identity.
+   Upgrade: type scale, spacing rhythm, depth, motion, micro-interactions.
+   ============================================================ */
+:root{
+  --font-sans:"Segoe UI Variable Display","Segoe UI","Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  --font-jp:"Yu Gothic UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --ink-strong:#0c1512;
+  --shadow-sm:0 1px 2px rgba(12,21,18,.05);
+  --shadow-md:0 2px 6px rgba(12,21,18,.05),0 12px 32px rgba(12,21,18,.07);
+  --shadow-lg:0 24px 64px -12px rgba(12,21,18,.18);
+  --r-sm:8px; --r-md:12px; --r-lg:16px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --focus:0 0 0 3px rgba(15,118,110,.22);
+}
+body{font-family:var(--font-sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* typography rhythm */
+h1,h2,h3,h4{letter-spacing:-.012em}
+.page-head h2{font-size:21px;font-weight:680}
+.panel-head h3{font-size:13.5px;font-weight:640}
+.kpi .value{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi .label{font-size:9.5px;letter-spacing:.1em;font-weight:620}
+.mono{font-size:11.5px;letter-spacing:-.01em}
+
+/* focus visibility (a11y) */
+:focus-visible{outline:none;box-shadow:var(--focus);border-radius:6px}
+
+/* depth + motion on cards */
+.panel,.kpi,.row-card{transition:box-shadow .18s var(--ease),transform .18s var(--ease),border-color .18s var(--ease)}
+.row-card:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);border-color:#b9c8c1}
+.kpi{position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;inset:0;background:radial-gradient(120px 60px at 85% -10%,rgba(15,118,110,.05),transparent 70%);pointer-events:none}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+
+/* buttons: crisper states */
+.btn,.icon-btn{transition:transform .12s var(--ease),box-shadow .15s var(--ease),background .15s,border-color .15s}
+.btn:hover{box-shadow:var(--shadow-sm)}
+.btn:active{transform:scale(.97)}
+.btn.primary{box-shadow:0 1px 2px rgba(15,118,110,.3),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn.primary:hover{box-shadow:0 4px 14px rgba(15,118,110,.32)}
+.nav-item{transition:background .14s,color .14s;position:relative}
+.nav-item.active::before{content:"";position:absolute;left:-12px;top:20%;bottom:20%;width:3px;border-radius:0 3px 3px 0;background:var(--accent)}
+
+/* topbar: glass refined */
+.topbar{background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4)}
+.brand-mark{border-radius:12px;box-shadow:0 6px 16px rgba(15,118,110,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+
+/* tables: hover row highlight + sticky head polish */
+table.data th{background:rgba(247,250,248,.96);backdrop-filter:blur(4px);box-shadow:inset 0 -1px 0 var(--line-2)}
+table.data tbody tr{transition:background .1s}
+table.data tr:hover td{background:rgba(15,118,110,.035)}
+
+/* tabs: underline slide feel */
+.tab{position:relative;transition:color .15s}
+.tab::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
+.tab.active::after{transform:scaleX(1)}
+
+/* progress strip: subtle inner shadow + segment gap */
+.s3-strip{box-shadow:inset 0 1px 2px rgba(12,21,18,.08)}
+.s3-seg{transition:filter .15s}
+.s3-strip:hover .s3-seg{filter:brightness(1.06)}
+
+/* drawer: smoother entrance */
+.case-drawer{transition:transform .26s var(--ease),visibility .26s}
+.drawer-backdrop{transition:opacity .22s var(--ease)}
+
+/* hero: deeper gradient + noise-free glow */
+.hero{background:linear-gradient(140deg,#0f766e 0%,#0b4f4a 58%,#093f3b 100%);box-shadow:0 16px 40px -8px rgba(15,118,110,.35),inset 0 1px 0 rgba(255,255,255,.09)}
+
+/* timeline dots pulse for current step */
+.tl-dot{box-shadow:0 0 0 3px rgba(15,118,110,.12)}
+
+/* toast: float up */
+.toast{animation:toast-in .28s var(--ease);border-radius:10px;box-shadow:var(--shadow-lg)}
+@keyframes toast-in{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* page enter: soft fade-slide */
+#main{animation:page-in .3s var(--ease)}
+@keyframes page-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* details summary chevron spin */
+details.tree-group>summary::before{transition:transform .18s var(--ease)}
+details.tree-group[open]>summary::before{transform:rotate(90deg)}
+details.panel>summary{transition:background .15s;border-radius:inherit}
+details.panel>summary:hover{background:rgba(15,118,110,.04)}
+
+/* badge micro-polish */
+.badge{font-weight:560;letter-spacing:.01em}
+.badge.outline{backdrop-filter:blur(2px)}
+
+/* scrollbars (webkit): slim + theme aware */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#c3ccc7;border-radius:8px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#a9b5af;border-color:transparent;background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+
+/* empty state: friendlier */
+.empty{border-style:solid;background:linear-gradient(180deg,var(--panel),var(--panel-2));color:var(--muted);font-size:12px}
+
+/* reduced motion respect */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* self-review fixes 2026-10-24 */
+.kpi .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi:hover .sub{white-space:normal}
+.s3-legend{gap:10px}
+.s3-legend>span{display:inline-flex;align-items:center;gap:5px}

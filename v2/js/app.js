@@ -1180,9 +1180,9 @@ AY-120-01-001"></textarea>
   function autoBlock(id) { return (AUTO.blocks || []).find((b) => b.id === id) || null; }
 
   function runnerCommand(caseId, r) {
-    const port = r.port || 9223;
-    const base = r.baseUrl || 'http://127.0.0.1:10081/mhkcmwa11/dummy.html';
-    return `powershell -ExecutionPolicy Bypass -File .\\${r.script} -CaseId ${caseId} -Port ${port} -BaseUrl "${base}"`;
+    // Node runtime (portable node.exe + playwright-core); PowerShell era retired.
+    if (r.launch) return `${r.launch} ${caseId}`;
+    return `run.cmd ${caseId}`;
   }
 
   function copyText(text) {
@@ -1515,7 +1515,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         ${kpi('Block', sum.blockCount || 0, `検証 ${sum.status3Counts?.verified || 0} / 実装 ${sum.status3Counts?.coded || 0} / 未着手 ${sum.status3Counts?.planned || 0}`, 'violet')}
       </div>
       <section class="panel mt">
-        <div class="panel-head"><h3>積木進捗（三状態）</h3><span class="hint">緑=検証済（真機通過）／琥珀=実装済（mock 通過・真機未）／灰=未着手／斜線=未カバー</span></div>
+        <div class="panel-head"><h3>積木進捗（三状態）</h3><span class="hint">🟩 検証済（真機通過）・🟧 実装済（mock 通過・真機未）・⬜ 未着手・▨ 未カバー</span></div>
         <div class="panel-body">
           <div class="s3-legend">
             <span class="s3-seg s3-verified" style="width:22px"></span>検証済
