@@ -7,6 +7,7 @@
   const VALID = window.MSAD_VALIDATION || { counts: {}, warnings: {} };
   const AUTO = window.MSAD_AUTOMATION || { summary: {}, blocks: [], cases: {}, runners: { runners: [] } };
   const SUMMARY = window.MSAD_SUMMARIES || { tpl: {}, caseToTpl: {} };
+  const RDEFS = window.MSAD_RUNNER_DEFS || { blocks: {}, params: {}, compositions: {} };
   const SCHEDULE = window.MSAD_SCHEDULE || { cases: {} };
   const LS = {
     progress: 'msad.progress.v1',
@@ -1289,6 +1290,38 @@ AY-120-01-001"></textarea>
       </div></div>`;
   }
 
+
+  function runnerDefHtml(c) {
+    const comp = RDEFS.compositions?.[c.id] || [];
+    const P = RDEFS.params?.[c.id] || {};
+    const rv = (v) => typeof v === 'string' && v.startsWith('params.') ? (P[v.slice(7)] ?? '⚠︎未設定') : (v ?? '');
+    if (!comp.length) return '';
+    const lines = [];
+    let n = 0;
+    for (const bid of comp) {
+      const blk = RDEFS.blocks?.[bid];
+      if (!blk) { lines.push(`// ${bid}: selector 未定義`); continue; }
+      lines.push(`// ── ${bid}${blk.screen ? ' (' + blk.screen + ')' : ''}`);
+      for (const st of (blk.steps || [])) {
+        n++;
+        const sel = st.selector ? String(st.selector).replace(/\{params\.(\w+)\}/g, (_, k) => P[k] ?? '⚠︎') : '';
+        const val = st.value !== undefined ? ` value=${JSON.stringify(rv(st.value))}` : st.label !== undefined ? ` label=${JSON.stringify(rv(st.label))}` : '';
+        const inP = st.in === 'popup' ? ' [popup]' : '';
+        const flags = [st.force && 'force', st.optional && 'optional', st.how && st.how].filter(Boolean).join(',');
+        lines.push(`${String(n).padStart(2, '0')} ${st.action.padEnd(9)} ${sel || (st.url || st.match || '')}${val}${inP}${flags ? '  ;' + flags : ''}`);
+      }
+    }
+    return `<details class="panel" style="margin-top:12px">
+      <summary style="cursor:pointer;padding:11px 14px;font-size:12.5px;font-weight:700">🔧 実行定義（エンジニア向け）— ${comp.length} ブロック / ${n} ステップ</summary>
+      <div class="panel-body" style="padding:0">
+        <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="small muted">
+          この1冊が実行するブロック列と各ステップの実セレクタ（パラメータ代入済み）。runner.mjs が実行時に読み込むのと同じデータ（block-selectors*.json + params/*.json + blocks.json の合成）。
+          テンプレート: <code>automation/node-runner/block-selectors*.json</code> / パラメータ: <code>automation/cdp/params/*.json</code>
+        </div>
+        <pre class="mono" style="margin:0;padding:12px 14px;font-size:11px;line-height:1.7;overflow:auto;max-height:60vh;white-space:pre">${esc(lines.join(String.fromCharCode(10)))}</pre>
+      </div></details>`;
+  }
+
   function automationHtml(c) {
     const a = autoCase(c.id);
     const auto = state.automation[c.id] || { scriptType: 'console', locators: [] };
@@ -1306,7 +1339,7 @@ AY-120-01-001"></textarea>
     if (!a) {
       return `<div class="panel"><div class="panel-body" style="text-align:center;padding:26px">
         <p style="margin:0 0 4px;font-size:15px;font-weight:700">⬜ まだ自動実行できません</p>
-        <p class="muted small" style="margin:0">このケースの積木はまだ実装待ちです。</p></div></div>` + legacy;
+        <p class="muted small" style="margin:0">このケースの積木はまだ実装待ちです。</p></div></div>` + runnerDefHtml(c) + legacy;
     }
 
     const details = a.blockDetails || [];
@@ -1359,7 +1392,7 @@ AY-120-01-001"></textarea>
       <div class="auto-run-steps">
         <div class="auto-run-step"><span class="k">1</span><div>下の「コマンドをコピー」ボタンを押す</div></div>
         <div class="auto-run-step"><span class="k">2</span><div>会社のPCの <code>ms-ad-runner</code> フォルダーで貼り付けて実行（ログイン画面が出たら手動でログイン）</div></div>
-        <div class="auto-run-step"><span class="k">3</span><div>終わると <code>logs\${esc(c.id)}\</code> に証跡（スクリーンショット）が自動保存される</div></div>
+        <div class="auto-run-step"><span class="k">3</span><div>終わると <code>logs${esc(c.id)}\</code> に証跡（スクリーンショット）が自動保存される</div></div>
       </div>
       <pre class="mono auto-cmd">${esc(cmd)}</pre>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
@@ -1372,8 +1405,8 @@ AY-120-01-001"></textarea>
       <div class="panel-head"><h3>🧩 この本の自動化の流れ（${details.length} ブロック）</h3>
         <span class="hint">🟩 検証済＝実機通過 ・ 🟧 実装済＝模擬環境通過 ・ ⬜ 未着手</span></div>
       <div class="auto-steps">${blockRows}</div>
-      ${ranInfo.length ? `<div class="panel-body small" style="border-top:1px solid var(--line-2)">📸 証跡: <a href="../../logs/${esc(c.id)}/" target="_blank">logs\${esc(c.id)}\ を開く</a>（ローカル環境のみ）</div>` : ''}
-    </div>` + legacy;
+      ${ranInfo.length ? `<div class="panel-body small" style="border-top:1px solid var(--line-2)">📸 証跡: <a href="../../logs/${esc(c.id)}/" target="_blank">logs${esc(c.id)}\ を開く</a>（ローカル環境のみ）</div>` : ''}
+    </div>` + runnerDefHtml(c) + legacy;
   }
 
   function memoHtml(c) {
