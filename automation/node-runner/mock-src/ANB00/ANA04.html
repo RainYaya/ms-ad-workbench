@@ -31,11 +31,9 @@ function bodyOnload() {
 	var companyKbn = form.company_kbn.value;
 
 	// 削除時の業務領域表示制御
-	if (appStatus == null || appStatus == '') {
-		document.getElementById('div_gyoumu_area_04').style.visibility = "hidden";
-	}
-	// 申請情報取得時
-	else {
+	// mock: サーバ側の申請情報が無いため、遷移直後でも業務領域を表示・入力可とする
+	// （実機は非表示＋全項目非活性。理由入力欄を操作できるようにするためのmock差分）
+	if (appStatus != null && appStatus != '') {
 		// textareaをすべてreadonlyに
 		readonlyTextarea(form);
 
@@ -195,8 +193,8 @@ function popupAYG901(name){
 		+ '&' + '1' + '=' + clickButtonName
 		+ '&gamid=ANA11&gamcd=ANA00&hubsessid=1';
 
-	// 送信先（写）選択画面のURLを設定
-	var	url = new URL('', window.location.origin);
+	// 送信先（写）選択画面のURLを設定（mock: 実画面を直接開く）
+	var	url = new URL('/ANB00/ANA11.html', window.location.origin);
 	var params = new URLSearchParams(param)
 	url.search = params.toString();
 
@@ -290,7 +288,7 @@ function popupAYG900(name) {
 				+ '&gamid=ANA10&gamcd=ANA00&hubsessid=1';
 
 	//var	url = '<orteus:rewrite action="/tks/TKSPR/AYG900.do" method="controlStart" useLocalEncoding="true"/>';
-	var url = new URL('', window.location.origin);
+	var url = new URL('/ANB00/ANA10.html', window.location.origin);
 	var params = new URLSearchParams(param)
 	url.search = params.toString();
 

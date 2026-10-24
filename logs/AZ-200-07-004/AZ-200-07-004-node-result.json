@@ -1,0 +1,22 @@
+{
+  "caseId": "AZ-200-07-004",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:51.699Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-AGT-CSV-DOWNLOAD",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-1913A9CC",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-AGT-CSV-DOWNLOAD.png",
+    "03_BLK-SGL-1913A9CC.png"
+  ]
+}

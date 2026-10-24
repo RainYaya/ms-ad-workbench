@@ -472,7 +472,9 @@ function popupAZG908(button) {
 
     clickButton(button);
 
-    var url = '';
+    // mock: 実機はサーブレットへPOST。mock-server の POST ルートに合わせて
+    // /AMC00/<view>/<route> を指定し、303 で AMC24.html を子画面に表示する。
+    var url = '/AMC00/AMC24/aZG908Init';
 
     var windowOption = 'width=685px,height=516px,toolbar=no,status=no,menubar=no,resizable=no';
 

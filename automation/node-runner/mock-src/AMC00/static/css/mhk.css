@@ -1,24 +1,24 @@
-body, th, td, input, select, textarea	{ font-family:'‚l‚r ‚oƒSƒVƒbƒN',Arial; }
+body, th, td, input, select, textarea	{ font-family:'ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯',Arial; }
 input	{ border-collapse:collapse; ime-mode:disabled;  }
 td	{ border-collapse:collapse;padding:0px;margin:0px;border:0px;  }
 div	{ margin:0; padding:0;  }
 input.checkbox { vertical-align:middle; }
 #link_tag	{ color:#00655a; cursor : pointer;  text-decoration : underline; }
 body { background-color:#FFFFFF; color:#000000; margin:0px; padding:0px;  }
-/* ƒwƒbƒ_[ */
+/* ãƒ˜ãƒƒãƒ€ãƒ¼ */
 table.tbl_head_area { background-color:#00655a; color:#FFFFFF; text-align:center; margin: 0px;padding: 0px;border-collapse: collapse;border-spacing: 0px; }
 td.cell_head_logo_color	{ background-color:#FFFFFF; color:#000000; }
-/* ƒGƒ‰[ƒƒbƒZ[ƒW */
+/* ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 div.block_msg { border-color:#cccccc; border-style:solid; border-width:1px; border-collapse:collapse; border-spacing:0px;  }
 ul.popup_message_area {margin:0px; padding:0px; list-style:none; }
 ul.popup_message_area_white { background:#FF0000; color:#FFFFFF; margin:0px; padding:0px; list-style:none; }
 ul.popup_message_area_info { background:#D5F5F2; color:#000000; margin:0px; padding:0px; list-style:none; }
 ul.message_area { margin : 0px; padding : 0px; list-style : none; }
 li.message_area { list-style: none;display: inline-block; }
-/* ˆê——‰æ–Ê-‹Æ–±—Ìˆæ */
+/* ä¸€è¦§ç”»é¢-æ¥­å‹™é ˜åŸŸ */
 table.search_table { border-collapse:collapse;border-spacing:0px;empty-cells:show;table-layout:fixed;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc; }
 table.tbl_none_style { border-collapse:collapse;border-spacing:0px;table-layout:fixed;empty-cells:show; }
-td.cell_label_title { background-color: #edeff2;color:#000000;font-family:'‚l‚r ‚oƒSƒVƒbƒN';text-align:center;border-collapse:collapse;border-left:1px solid #cccccc;border-top:1px solid #cccccc; }
+td.cell_label_title { background-color: #edeff2;color:#000000;font-family:'ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯';text-align:center;border-collapse:collapse;border-left:1px solid #cccccc;border-top:1px solid #cccccc; }
 td.cell_slide { border-left:1px solid #cccccc;border-top:1px solid #cccccc; }
 .cell_input_value { background-color: #FFFFFF;color:#000000;border-collapse:collapse;border:1px solid #cccccc;padding:0px;padding-left:2px; margin:0px;margin-left:1px; }
 .input_ime_active   { ime-mode:active; }
@@ -39,7 +39,7 @@ tr.row_blue{ background-color:#88FFFF; }
 tr.row_even	{ background-color:#edeff2; }
 
 
-/* •s”õˆê——‰æ–Ês‚²‚Æ‚Ì”wŒiF */
+/* ä¸å‚™ä¸€è¦§ç”»é¢è¡Œã”ã¨ã®èƒŒæ™¯è‰² */
 .bk_yellow { background-color:#FFFF00; }
 .bk_lite_blue { background-color:#88FFFF; }
 
@@ -48,7 +48,7 @@ table.tbl_layout { table-layout:fixed; }
 .color_red	{ color:#FF0000; }
 
 div.area_btn_color	{ background-color:#333333;  }
-/* ‰ñ“š‰æ–Ê */
+/* å›ç­”ç”»é¢ */
 table.tbl_info_group { border-collapse:collapse;empty-cells:show;table-layout:fixed; }
 td.cell_label_value { border-collapse:collapse;border-left:1px solid #cccccc;border-top:1px solid #cccccc;overflow:hidden;white-space:nowrap;word-break:keep-all; }
 td.cell_textarea_value {border-collapse:collapse;border:1px solid #cccccc;word-break:break-all; }
@@ -61,7 +61,7 @@ input.display_none { display:none; }
 .open_file_opacity	{ position:absolute; right:0px; top:0px; z-index:2; opacity:0; }
 .input_file_text	{ position:absolute; left:0px; top:0px; z-index:1; }
 .input_file_button	{ position:absolute; right:0px; top:0px; z-index:1; }
-/* ’ù³‰æ–Ê */
+/* è¨‚æ­£ç”»é¢ */
 .cell_right	{ text-align:right; }
 .cell_center	{ text-align:center; }
 .cell_left	{ text-align:left; }

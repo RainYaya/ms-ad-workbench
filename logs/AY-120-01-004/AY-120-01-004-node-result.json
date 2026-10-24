@@ -1,0 +1,57 @@
+{
+  "caseId": "AY-120-01-004",
+  "runner": "node",
+  "ts": "2026-10-24T14:37:01.990Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AUTO-E2D0C359",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-40B1188F",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-CE34C5B8",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-2B9786A5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-EB44767A",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-2B9786A5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-D2C3A480",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-DF07A781",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-C17F75BC",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AUTO-E2D0C359.png",
+    "03_BLK-SHR-40B1188F.png",
+    "04_BLK-AUTO-CE34C5B8.png",
+    "05_BLK-AUTO-2B9786A5.png",
+    "06_BLK-SHR-EB44767A.png",
+    "07_BLK-AUTO-2B9786A5.png",
+    "08_BLK-AUTO-D2C3A480.png",
+    "09_BLK-AUTO-DF07A781.png",
+    "10_BLK-SGL-C17F75BC.png"
+  ]
+}

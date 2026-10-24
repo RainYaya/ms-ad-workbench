@@ -1,0 +1,4088 @@
+{
+ "slice": "ay",
+ "generatedAt": "2026-10-24",
+ "blocks": [
+  {
+   "id": "BLK-AUTO-E2D0C359",
+   "count": 95,
+   "cases": [
+    "AY-100-05-001",
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-100-08-003",
+    "AY-100-08-004",
+    "AY-110-02-001",
+    "AY-110-02-002",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012",
+    "AY-120-06-003",
+    "AY-120-06-004",
+    "AY-120-06-005",
+    "AY-120-06-006",
+    "AY-120-06-007",
+    "AY-120-06-008",
+    "AY-120-06-009",
+    "AY-120-06-010",
+    "AY-120-06-011",
+    "AY-120-06-012",
+    "AY-120-07-015",
+    "AY-120-07-016",
+    "AY-120-07-017",
+    "AY-120-07-018",
+    "AY-120-08-001",
+    "AY-120-08-002",
+    "AY-120-08-003",
+    "AY-120-08-004",
+    "AY-120-08-005",
+    "AY-120-08-006",
+    "AY-120-09-004",
+    "AY-120-09-005",
+    "AY-120-09-006",
+    "AY-120-09-007",
+    "AY-120-09-008",
+    "AY-120-09-009",
+    "AY-120-09-010",
+    "AY-120-09-011",
+    "AY-120-09-012",
+    "AY-120-09-013",
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018",
+    "AY-121-04-017",
+    "AY-121-04-018",
+    "AY-121-05-001",
+    "AY-121-05-002",
+    "AY-121-05-003",
+    "AY-121-05-004",
+    "AY-121-05-005",
+    "AY-121-05-006",
+    "AY-121-05-007",
+    "AY-121-05-008",
+    "AY-121-06-011",
+    "AY-121-06-012",
+    "AY-121-06-013",
+    "AY-121-06-014",
+    "AY-121-06-015",
+    "AY-121-06-016",
+    "AY-121-06-017",
+    "AY-121-06-018",
+    "AY-121-07-001",
+    "AY-121-07-002",
+    "AY-121-08-003",
+    "AY-121-08-004",
+    "AY-121-08-005",
+    "AY-121-08-006",
+    "AY-121-08-007",
+    "AY-121-08-008",
+    "AY-121-08-009",
+    "AY-121-08-010",
+    "AY-121-08-011",
+    "AY-121-08-012",
+    "AY-122-01-006",
+    "AY-122-01-007",
+    "AY-122-01-008",
+    "AY-130-01-001",
+    "AY-130-01-002",
+    "AY-130-02-001",
+    "AY-410-01-008",
+    "AY-410-01-009",
+    "AY-410-01-010",
+    "AY-410-01-011"
+   ],
+   "sourceCase": "AY-100-05-001",
+   "fromScreen": "異例取扱管理メニュ-",
+   "toScreen": "照会・検索",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "異例取扱管理メニュ-",
+     "action": "click",
+     "target": "照会・検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "異例取扱管理メニュ-",
+     "assert": "transition",
+     "target": "照会・検索",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-4F9D57E1",
+   "count": 58,
+   "cases": [
+    "AY-120-06-003",
+    "AY-120-06-004",
+    "AY-120-06-005",
+    "AY-120-06-006",
+    "AY-120-06-007",
+    "AY-120-06-008",
+    "AY-120-06-009",
+    "AY-120-06-010",
+    "AY-120-06-011",
+    "AY-120-06-012",
+    "AY-120-07-015",
+    "AY-120-07-016",
+    "AY-120-07-017",
+    "AY-120-07-018",
+    "AY-120-08-002",
+    "AY-120-08-003",
+    "AY-120-08-004",
+    "AY-120-08-005",
+    "AY-120-08-006",
+    "AY-120-09-004",
+    "AY-120-09-005",
+    "AY-120-09-006",
+    "AY-120-09-007",
+    "AY-120-09-008",
+    "AY-120-09-009",
+    "AY-120-09-010",
+    "AY-120-09-011",
+    "AY-120-09-012",
+    "AY-120-09-013",
+    "AY-121-05-002",
+    "AY-121-05-003",
+    "AY-121-05-004",
+    "AY-121-05-005",
+    "AY-121-05-006",
+    "AY-121-05-007",
+    "AY-121-05-008",
+    "AY-121-06-011",
+    "AY-121-06-012",
+    "AY-121-06-013",
+    "AY-121-06-014",
+    "AY-121-06-015",
+    "AY-121-06-016",
+    "AY-121-06-017",
+    "AY-121-06-018",
+    "AY-121-07-002",
+    "AY-121-08-003",
+    "AY-121-08-004",
+    "AY-121-08-005",
+    "AY-121-08-006",
+    "AY-121-08-007",
+    "AY-121-08-008",
+    "AY-121-08-009",
+    "AY-121-08-010",
+    "AY-121-08-011",
+    "AY-121-08-012",
+    "AY-122-01-006",
+    "AY-122-01-007",
+    "AY-122-01-008"
+   ],
+   "sourceCase": "AY-120-01-003",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "display",
+     "target": "照会・検索画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "assert": "transition",
+     "target": "申請・確認更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-27C68433",
+   "count": 52,
+   "cases": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006",
+    "AY-120-04-009",
+    "AY-120-04-010",
+    "AY-120-04-011",
+    "AY-120-04-012",
+    "AY-120-04-013",
+    "AY-120-04-014",
+    "AY-120-04-015",
+    "AY-120-04-016",
+    "AY-120-04-017",
+    "AY-120-04-018",
+    "AY-120-06-003",
+    "AY-120-06-004",
+    "AY-120-06-005",
+    "AY-120-06-006",
+    "AY-120-06-007",
+    "AY-120-06-008",
+    "AY-120-06-009",
+    "AY-120-06-010",
+    "AY-120-06-011",
+    "AY-120-06-012",
+    "AY-121-02-001",
+    "AY-121-02-002",
+    "AY-121-03-005",
+    "AY-121-03-006",
+    "AY-121-03-007",
+    "AY-121-03-008",
+    "AY-121-03-009",
+    "AY-121-03-010",
+    "AY-121-03-011",
+    "AY-121-03-012",
+    "AY-121-03-013",
+    "AY-121-03-014",
+    "AY-121-04-017",
+    "AY-121-04-018",
+    "AY-121-05-001",
+    "AY-121-05-002",
+    "AY-121-05-003",
+    "AY-121-05-004",
+    "AY-121-05-005",
+    "AY-121-05-006",
+    "AY-121-05-007",
+    "AY-121-05-008"
+   ],
+   "sourceCase": "AY-120-02-015",
+   "fromScreen": "送信先(写)選択",
+   "toScreen": "取消計上申請承認",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "input",
+     "target": "氏名入力",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "display",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-042B2DAE",
+   "count": 32,
+   "cases": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006",
+    "AY-120-04-009",
+    "AY-120-04-010",
+    "AY-120-04-011",
+    "AY-120-04-012",
+    "AY-120-04-013",
+    "AY-120-04-014",
+    "AY-120-04-015",
+    "AY-120-04-016",
+    "AY-120-04-017",
+    "AY-120-04-018",
+    "AY-121-02-001",
+    "AY-121-02-002",
+    "AY-121-03-005",
+    "AY-121-03-006",
+    "AY-121-03-007",
+    "AY-121-03-008",
+    "AY-121-03-009",
+    "AY-121-03-010",
+    "AY-121-03-011",
+    "AY-121-03-012",
+    "AY-121-03-013",
+    "AY-121-03-014"
+   ],
+   "sourceCase": "AY-120-02-015",
+   "fromScreen": "異例取扱管理メニュ-",
+   "toScreen": "申請承認一覧",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "異例取扱管理メニュ-",
+     "action": "click",
+     "target": "申請・承認",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "異例取扱管理メニュ-",
+     "assert": "transition",
+     "target": "申請承認一覧",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-2B9786A5",
+   "count": 28,
+   "cases": [
+    "AY-100-07-001",
+    "AY-100-07-002",
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016",
+    "AY-110-01-017",
+    "AY-110-01-018",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012",
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-100-07-001",
+   "fromScreen": "担当者検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "assert": "display",
+     "target": "担当者検索画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "assert": "transition",
+     "target": "申請・確認更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-DF07A781",
+   "count": 26,
+   "cases": [
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016",
+    "AY-110-01-017",
+    "AY-110-01-018",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012",
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-110-01-011",
+   "fromScreen": "送信先(写)選択",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "display",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "assert": "transition",
+     "target": "申請・確認更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-40B1188F",
+   "count": 25,
+   "cases": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012",
+    "AY-120-08-001",
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018",
+    "AY-121-04-017",
+    "AY-121-04-018",
+    "AY-121-05-001",
+    "AY-121-07-001",
+    "AY-130-01-001",
+    "AY-130-01-002"
+   ],
+   "sourceCase": "AY-130-01-001",
+   "fromScreen": "照会・検索",
+   "toScreen": "照会・検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C17F75BC",
+   "count": 23,
+   "cases": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012",
+    "AY-120-08-001",
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018",
+    "AY-121-04-017",
+    "AY-121-04-018",
+    "AY-121-05-001",
+    "AY-121-07-001"
+   ],
+   "sourceCase": "AY-120-01-003",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-E6EAF3BB",
+   "count": 20,
+   "cases": [
+    "AY-120-04-009",
+    "AY-120-04-010",
+    "AY-120-04-011",
+    "AY-120-04-012",
+    "AY-120-04-013",
+    "AY-120-04-014",
+    "AY-120-04-015",
+    "AY-120-04-016",
+    "AY-120-04-017",
+    "AY-120-04-018",
+    "AY-121-03-005",
+    "AY-121-03-006",
+    "AY-121-03-007",
+    "AY-121-03-008",
+    "AY-121-03-009",
+    "AY-121-03-010",
+    "AY-121-03-011",
+    "AY-121-03-012",
+    "AY-121-03-013",
+    "AY-121-03-014"
+   ],
+   "sourceCase": "AY-120-04-009",
+   "fromScreen": "取消計上申請承認",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "action": "click",
+     "target": "承認",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "assert": "transition",
+     "target": "送信先(写)選択",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-FECF904C",
+   "count": 20,
+   "cases": [
+    "AY-120-09-004",
+    "AY-120-09-005",
+    "AY-120-09-006",
+    "AY-120-09-007",
+    "AY-120-09-008",
+    "AY-120-09-009",
+    "AY-120-09-010",
+    "AY-120-09-011",
+    "AY-120-09-012",
+    "AY-120-09-013",
+    "AY-121-08-003",
+    "AY-121-08-004",
+    "AY-121-08-005",
+    "AY-121-08-006",
+    "AY-121-08-007",
+    "AY-121-08-008",
+    "AY-121-08-009",
+    "AY-121-08-010",
+    "AY-121-08-011",
+    "AY-121-08-012"
+   ],
+   "sourceCase": "AY-120-09-004",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "削除",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "display",
+     "target": "申請・確認更新画面",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-CE34C5B8",
+   "count": 18,
+   "cases": [
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016",
+    "AY-110-01-017",
+    "AY-110-01-018",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012"
+   ],
+   "sourceCase": "AY-110-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "担当者検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "申請依頼先選択",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "transition",
+     "target": "担当者検索",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-D2C3A480",
+   "count": 18,
+   "cases": [
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016",
+    "AY-110-01-017",
+    "AY-110-01-018",
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012"
+   ],
+   "sourceCase": "AY-110-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "更新",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "display",
+     "target": "申請・確認更新画面",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "申請依頼",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "transition",
+     "target": "送信先(写)選択",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-1D62D29C",
+   "count": 18,
+   "cases": [
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006",
+    "AY-121-02-001",
+    "AY-121-02-002",
+    "AY-121-03-005",
+    "AY-121-03-006",
+    "AY-121-03-007",
+    "AY-121-03-008",
+    "AY-121-03-009",
+    "AY-121-03-010",
+    "AY-121-03-011",
+    "AY-121-03-012",
+    "AY-121-03-013",
+    "AY-121-03-014"
+   ],
+   "sourceCase": "AY-120-03-001",
+   "fromScreen": "申請承認一覧",
+   "toScreen": "取消計上申請承認",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "承認表示条件の11:承認待ち",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "再表示",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "display",
+     "target": "申請承認一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "承認",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-F974E639",
+   "count": 18,
+   "cases": [
+    "AY-120-06-003",
+    "AY-120-06-004",
+    "AY-120-06-005",
+    "AY-120-06-006",
+    "AY-120-06-007",
+    "AY-120-06-008",
+    "AY-120-06-009",
+    "AY-120-06-010",
+    "AY-120-06-011",
+    "AY-120-06-012",
+    "AY-121-05-001",
+    "AY-121-05-002",
+    "AY-121-05-003",
+    "AY-121-05-004",
+    "AY-121-05-005",
+    "AY-121-05-006",
+    "AY-121-05-007",
+    "AY-121-05-008"
+   ],
+   "sourceCase": "AY-120-06-003",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "要再申請",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "transition",
+     "target": "送信先(写)選択",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+   "count": 12,
+   "cases": [
+    "AY-120-07-015",
+    "AY-120-07-016",
+    "AY-120-07-017",
+    "AY-120-07-018",
+    "AY-121-06-011",
+    "AY-121-06-012",
+    "AY-121-06-013",
+    "AY-121-06-014",
+    "AY-121-06-015",
+    "AY-121-06-016",
+    "AY-121-06-017",
+    "AY-121-06-018"
+   ],
+   "sourceCase": "AY-121-06-016",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "対応登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "申請・確認更新画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-5637DF50",
+   "count": 11,
+   "cases": [
+    "AY-120-08-001",
+    "AY-120-08-002",
+    "AY-120-08-003",
+    "AY-120-08-004",
+    "AY-120-08-005",
+    "AY-120-08-006",
+    "AY-121-07-001",
+    "AY-121-07-002",
+    "AY-122-01-006",
+    "AY-122-01-007",
+    "AY-122-01-008"
+   ],
+   "sourceCase": "AY-120-08-001",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "更新",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "display",
+     "target": "申請・確認更新画面",
+     "dataClass": "bundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-EB44767A",
+   "count": 10,
+   "cases": [
+    "AY-120-01-003",
+    "AY-120-01-004",
+    "AY-120-01-005",
+    "AY-120-01-006",
+    "AY-120-01-007",
+    "AY-120-01-008",
+    "AY-120-01-009",
+    "AY-120-01-010",
+    "AY-120-01-011",
+    "AY-120-01-012"
+   ],
+   "sourceCase": "AY-120-01-003",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "担当者検索",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "申請代行者選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "担当者検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-ADFFD6FB",
+   "count": 10,
+   "cases": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018",
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006"
+   ],
+   "sourceCase": "AY-120-02-015",
+   "fromScreen": "申請承認一覧",
+   "toScreen": "取消計上申請承認",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "課支社長 申請表示条件の10:申請依頼",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "再表示",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "display",
+     "target": "申請承認一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "申請",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-C4218B41",
+   "count": 10,
+   "cases": [
+    "AY-120-04-009",
+    "AY-120-04-010",
+    "AY-120-04-011",
+    "AY-120-04-012",
+    "AY-120-04-013",
+    "AY-120-04-014",
+    "AY-120-04-015",
+    "AY-120-04-016",
+    "AY-120-04-017",
+    "AY-120-04-018"
+   ],
+   "sourceCase": "AY-120-04-009",
+   "fromScreen": "申請承認一覧",
+   "toScreen": "取消計上申請承認",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "部支店長 承認表示条件の11:承認待ち",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "再表示",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "display",
+     "target": "申請承認一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "申請承認一覧",
+     "action": "click",
+     "target": "承認",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請承認一覧",
+     "assert": "transition",
+     "target": "取消計上申請承認",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AY-TORIKESHI-REGISTER",
+   "count": 9,
+   "cases": [
+    "AY-100-08-001",
+    "AY-110-01-011",
+    "AY-110-01-012",
+    "AY-110-01-013",
+    "AY-110-01-014",
+    "AY-110-01-015",
+    "AY-110-01-016",
+    "AY-110-01-017",
+    "AY-110-01-018"
+   ],
+   "sourceCase": "AY-100-08-001",
+   "fromScreen": "異例取扱管理メニュー",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "異例取扱管理メニュー",
+     "target": "新規登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "異例取扱管理メニュー",
+     "target": "取消計上申請登録",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請登録",
+     "target": "登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請登録",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-805D28B8",
+   "count": 8,
+   "cases": [
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006",
+    "AY-121-02-001",
+    "AY-121-02-002"
+   ],
+   "sourceCase": "AY-120-03-001",
+   "fromScreen": "取消計上申請承認",
+   "toScreen": "送信先(写)選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "「承認/要再申請依頼理由」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "不承認",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-C8E42CCF",
+   "count": 8,
+   "cases": [
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-121-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "担当者検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "承認依頼先選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "担当者検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-E30F6E3C",
+   "count": 8,
+   "cases": [
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-121-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "担当者検索",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "承認代行者選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "担当者検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-94A5D816",
+   "count": 8,
+   "cases": [
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-110-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "申請・確認更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "action": "click",
+     "target": "更新",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "assert": "display",
+     "target": "申請・確認更新画面",
+     "dataClass": "bundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-6FA7E251",
+   "count": 8,
+   "cases": [
+    "AY-121-01-011",
+    "AY-121-01-012",
+    "AY-121-01-013",
+    "AY-121-01-014",
+    "AY-121-01-015",
+    "AY-121-01-016",
+    "AY-121-01-017",
+    "AY-121-01-018"
+   ],
+   "sourceCase": "AY-121-01-011",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "承認依頼",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-3222CFC6",
+   "count": 6,
+   "cases": [
+    "AY-120-03-001",
+    "AY-120-03-002",
+    "AY-120-03-003",
+    "AY-120-03-004",
+    "AY-120-03-005",
+    "AY-120-03-006"
+   ],
+   "sourceCase": "AY-120-03-001",
+   "fromScreen": "取消計上申請承認",
+   "toScreen": "送信先(写)選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "「承認依頼/要再申請依頼理由」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "不承認",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-EB3D34F4",
+   "count": 5,
+   "cases": [
+    "AZ-230-01-050",
+    "AZ-230-01-077",
+    "AZ-230-01-104",
+    "AZ-230-01-109",
+    "AZ-230-01-131"
+   ],
+   "sourceCase": "AZ-230-01-050",
+   "fromScreen": "メール通知先選択",
+   "toScreen": "メール通知先選択",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-8546478D",
+   "count": 4,
+   "cases": [
+    "AY-120-02-015",
+    "AY-120-02-016",
+    "AY-120-02-017",
+    "AY-120-02-018"
+   ],
+   "sourceCase": "AY-120-02-015",
+   "fromScreen": "取消計上申請承認",
+   "toScreen": "送信先(写)選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "承認依頼先選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "target": "担当者検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "「氏名」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "「課支社CD」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "target": "担当者検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "target": "取消計上申請承認",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "承認代行者選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "target": "担当者検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "「氏名」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "「課支社CD」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "target": "担当者検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "担当者検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "担当者検索",
+     "target": "取消計上申請承認",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "取消計上申請承認",
+     "target": "承認依頼",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "取消計上申請承認",
+     "target": "送信先(写)選択",
+     "dataClass": "none",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-F557476E",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-103",
+    "AZ-230-01-108"
+   ],
+   "sourceCase": "AZ-230-01-103",
+   "fromScreen": "メール通知先選択",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知しない",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答内容",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-C69800AD",
+   "count": 2,
+   "cases": [
+    "AY-100-07-001",
+    "AY-100-07-002"
+   ],
+   "sourceCase": "AY-100-07-001",
+   "fromScreen": "照会・検索",
+   "toScreen": "担当者検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "申請依頼先選択",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "担当者検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-77BF51A5",
+   "count": 2,
+   "cases": [
+    "AY-100-07-001",
+    "AY-100-07-002"
+   ],
+   "sourceCase": "AY-100-07-001",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "申請依頼",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "target": "「氏名」入力",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "送信先(写)選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "申請・確認更新画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-73B769C8",
+   "count": 2,
+   "cases": [
+    "AY-120-08-001",
+    "AY-121-07-001"
+   ],
+   "sourceCase": "AY-120-08-001",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "申請・確認更新",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-04E83971",
+   "count": 2,
+   "cases": [
+    "AY-121-02-001",
+    "AY-121-05-001"
+   ],
+   "sourceCase": "AY-121-02-001",
+   "fromScreen": "送信先(写)選択",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-F07F5CF4",
+   "count": 2,
+   "cases": [
+    "AY-121-04-017",
+    "AY-121-04-018"
+   ],
+   "sourceCase": "AY-121-04-017",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "不承認取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-CE8B86B5",
+   "count": 2,
+   "cases": [
+    "AY-121-04-017",
+    "AY-121-04-018"
+   ],
+   "sourceCase": "AY-121-04-017",
+   "fromScreen": "申請・確認更新",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "承認依頼取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-DD6D983A",
+   "count": 2,
+   "cases": [
+    "AY-410-01-010",
+    "AY-410-01-011"
+   ],
+   "sourceCase": "AY-410-01-010",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "不承認取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "「氏名」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "システムズ様にメール送信情報を連携",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "メール内のリンクを押下",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "異例取扱管理システム",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C3BC64AD",
+   "count": 1,
+   "cases": [
+    "AZ-112-01-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "メール通知先選択",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "次頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "通知先追加",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "前頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "通知先追加",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "部店課支社コード",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知先再セット",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知する",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知先再セット",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知する",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知先再セット",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知する",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-FF4BE5F2",
+   "count": 1,
+   "cases": [
+    "AZ-510-01-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "メール通知先選択",
+   "toScreen": "リンク",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知する",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メール通知先選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "営業連携",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メール送信ログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メール送信ログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携通知メール(事務(貨物))",
+     "target": "営業連携通知メール",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携通知メール(事務(貨物))",
+     "target": "リンク",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携通知メール(事務(貨物))",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-F8714C90",
+   "count": 1,
+   "cases": [
+    "AZ-210-08-001"
+   ],
+   "sourceCase": "AZ-110-01-009",
+   "fromScreen": "照会内容編集",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会内容編集",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-2268EC8E",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-018"
+   ],
+   "sourceCase": "",
+   "fromScreen": "メール通知先選択",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "通知しない",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-EA9C1EF3",
+   "count": 1,
+   "cases": [
+    "AY-100-05-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "システムエラー画面(親画面)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "「F12」より開発者ツールを開く",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "開発者ツールでctrl+fを使用し、application_idを検索",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "application_idのvalueの値を削除",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "システムエラー画面(親画面)",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7597207A",
+   "count": 1,
+   "cases": [
+    "AY-100-08-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "取消計上申請登録",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "取消計上申請登録",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "任意の項目の値を変更",
+     "dataClass": "none",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "申請・確認更新画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "TRログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-557F51B3",
+   "count": 1,
+   "cases": [
+    "AY-100-08-003"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "照会・検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "申請一覧",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "申請一覧",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "申請一覧",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "申請一覧",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-2B7D45E3",
+   "count": 1,
+   "cases": [
+    "AY-100-08-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "照会・検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "ダウンロードメッセージ",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "DLログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-4C3588A4",
+   "count": 1,
+   "cases": [
+    "AY-110-02-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "「証券番号」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "「明細番号」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "消込状況",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-58EA9045",
+   "count": 1,
+   "cases": [
+    "AY-110-02-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "「証券番号」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "「明細番号」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "消込状況",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-A00738F4",
+   "count": 1,
+   "cases": [
+    "AY-120-03-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "送信先(写)選択",
+   "toScreen": "送信先(写)選択",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "送信先(写)選択",
+     "target": "DBダンプ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-3DB9518B",
+   "count": 1,
+   "cases": [
+    "AY-130-02-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "照会・検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "照会・検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "次頁",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "前頁",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "簡易版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "詳細版",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索結果出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "帳票",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-BE812D08",
+   "count": 1,
+   "cases": [
+    "AY-410-01-008"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "申請依頼取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "「氏名」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "システムズ様にメール送信情報を連携",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "メール内のリンクを押下",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "異例取扱管理システム",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-31F074B9",
+   "count": 1,
+   "cases": [
+    "AY-410-01-009"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会・検索",
+   "toScreen": "申請・確認更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "承認依頼取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "「氏名」",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "送信先(写)選択画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "システムズ様にメール送信情報を連携",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申請・確認更新",
+     "target": "メール内のリンクを押下",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "申請・確認更新",
+     "target": "異例取扱管理システム",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "照会・検索",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会・検索",
+     "target": "申請・確認更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  }
+ ]
+}

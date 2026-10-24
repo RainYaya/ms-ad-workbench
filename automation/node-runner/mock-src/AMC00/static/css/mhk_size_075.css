@@ -4,15 +4,15 @@ input, select { height:15px; line-height:15px; }
 #main	{ width:685px; height:516px; left:0; right:0; margin:auto; }
 div.space	{ margin-top:1.5px; }
 div.space_higher { margin-top:8px; }
-/* ƒwƒbƒ_[ */
+/* ãƒ˜ãƒƒãƒ€ãƒ¼ */
 div.area_head	{ width:100%; height:46.5px;  }
 table.tbl_head_size	{ width:100%; height:100%;  }
 td.size_head_logo	{ width:108px;  }
 td.cell_head_title_font_size	{ font-size:11.5pt;  }
 td.size_head_sysinfo	{ font-size:6pt;width:165px;  }
-/* ƒGƒ‰[ƒƒbƒZ[ƒW */
+/* ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 div.block_msg_size	{ line-height:12px; height:12px;  }
-/* ˆê——‰æ–Ê-‹Æ–±ƒGƒŠƒA */
+/* ä¸€è¦§ç”»é¢-æ¥­å‹™ã‚¨ãƒªã‚¢ */
 div.area_gyoumu	{ width:685px; height:420px; }
 div.size_block_search	{ width:685px; height:90px;  }
 table.tbl_search_size	{ width:685px; height:100%;  }
@@ -75,7 +75,7 @@ input.size_checkbox { height:13.5px;width:9px; }
 td.size_status01{ width:52.5px; }
 td.size_status02{ width:52.5px; }
 td.size_status03{ width:97.5px; }
-/* ‰ñ“š‰æ–Ê */
+/* å›ç­”ç”»é¢ */
 td.size_btn_openclose { height:25px; }
 .btn_type_openclose	{ width:90px; height:21px; margin:0px; padding:0px; }
 .btn_type_othersys	{ width:151.5px; height:22.5px; margin:0px; padding:0px; }
@@ -100,7 +100,7 @@ div.block_answer_scroll_size_close	{ height:280px;  }
 .size_width_value02	{ width:107.5px;  }
 .size_width_fieldId	{ width:198px;  }
 .size_height_btn	{ height:56px;  }
-/* Æ‰ï“à—e */
+/* ç…§ä¼šå†…å®¹ */
 .size_tableRecord_no	{ width:18.5px;  }
 .size_field_name	{ width:165px;  }
 .size_contents_name	{ width:465px;  }
@@ -123,7 +123,7 @@ td.size_upload_col05	{ width:240px; }
 td.size_upload_col06	{ width:33px;  }
 .size_file_text	{ width:188px; height:14px; }
 .size_file_button	{ width:48px; }
-/* ’ù³‰æ–Ê */
+/* è¨‚æ­£ç”»é¢ */
 #main_teisei	{ width:685px; height:499.5px; left:0; right:0; margin:auto; }
 div.block_popup_gyoumu_scrcoll_size   { width:685px; height:475px; }
 div.block_teisei_scroll_size   { width:100%; height:72px; }
@@ -149,7 +149,7 @@ input.size_radiobox { height:13.5px;width:9px; }
 img.title_logo{height:45px;width:106.5px;}
 
 /***********************************/
-/* ƒJƒXƒ^ƒ€ƒc[ƒ‹ƒ`ƒbƒv            */
+/* ã‚«ã‚¹ã‚¿ãƒ ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—            */
 /***********************************/
 
 .tooltip-content {

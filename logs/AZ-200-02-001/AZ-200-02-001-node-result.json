@@ -1,0 +1,22 @@
+{
+  "caseId": "AZ-200-02-001",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:45.976Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-OPEN-CLOSE-SYS",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-01CAB10D",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-OPEN-CLOSE-SYS.png",
+    "03_BLK-SHR-01CAB10D.png"
+  ]
+}

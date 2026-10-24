@@ -7,6 +7,11 @@
   ],
   "steps": [
    {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
     "event": "click route3",
     "action": "click",
     "selector": "input[name='route3']"

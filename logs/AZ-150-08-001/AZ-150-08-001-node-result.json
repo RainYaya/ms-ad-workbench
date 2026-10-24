@@ -1,0 +1,72 @@
+{
+  "caseId": "AZ-150-08-001",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:23.003Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-C649ACE4",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-5CEC3483",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-2EEC5A3D",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-121DF781",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-305661D1",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "03_BLK-AZ-BATCH-VERIFY.png",
+    "04_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "05_BLK-SHR-C649ACE4.png",
+    "06_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "07_BLK-SHR-5CEC3483.png",
+    "08_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "09_BLK-SHR-2EEC5A3D.png",
+    "10_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "11_BLK-SHR-121DF781.png",
+    "12_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "13_BLK-SHR-305661D1.png"
+  ]
+}

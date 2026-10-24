@@ -1,0 +1,27 @@
+{
+  "caseId": "AZ-111-02-004",
+  "runner": "node",
+  "ts": "2026-10-24T14:41:57.270Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-824C0B37",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-MENU-CREATE-INPUT.png",
+    "03_BLK-AZ-INPUT-FILL.png",
+    "04_BLK-SGL-824C0B37.png"
+  ]
+}

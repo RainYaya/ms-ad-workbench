@@ -1290,34 +1290,90 @@ AY-120-01-001"></textarea>
   }
 
   function automationHtml(c) {
+    const a = autoCase(c.id);
     const auto = state.automation[c.id] || { scriptType: 'console', locators: [] };
-    return automationRunHtml(c.id) + `<details class="panel" style="margin-bottom:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">自動化の使い方</summary><div class="panel-body small">
-      <p><b>1.</b> 被テストシステムで F12 を開き、対象の入力/ボタンを Elements で選択 → Copy outerHTML。</p>
-      <p><b>2.</b> 下の JSON に <code>sourceRow</code>（手順の Excel 行）、<code>action</code>（click / input / assert / wait）、<code>selector</code>、必要なら <code>value</code> / <code>expected</code> を追加。</p>
-      <p><b>3.</b> 「Console 片段を生成」を押し、被テストシステムの Console に貼り付けて実行。まずは 1 ステップずつ。</p>
-      <p class="faint">将来は PowerShell + CDP（--remote-debugging-port）で一括実行・スクリーンショット取得に拡張できます。CDP が使えない環境でも Console 片段は動作します。</p>
-      <details><summary class="small muted">PowerShell で画面スクリーンショットを撮る</summary><pre style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:8px;padding:9px;font-size:10.5px;margin-top:6px">Add-Type -AssemblyName System.Windows.Forms,System.Drawing
-$b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-$bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
-$g = [System.Drawing.Graphics]::FromImage($bmp)
-$g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
-$bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
-    </div></details><div class="grid-2">
-      <div class="panel"><div class="panel-head"><h3>ロケーター / 自動化</h3></div><div class="panel-body">
-        <p class="small muted">形式: <code>[{"sourceRow":14,"action":"input","selector":"input[name='policyNo']","value":"AZ11001"}]</code></p>
-        <textarea id="autoJson" style="width:100%;min-height:230px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px">${esc(JSON.stringify(auto, null, 2))}</textarea>
-        <div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap"><button class="btn primary" data-action="save-auto" data-case="${esc(c.id)}">保存</button><button class="btn" data-action="gen-auto" data-case="${esc(c.id)}">Console 片段を生成</button><button class="btn" data-action="seed-auto" data-case="${esc(c.id)}">操作行の雛形を生成</button><button class="btn" data-action="case-json" data-case="${esc(c.id)}">ケースJSON</button></div>
-        <pre id="autoOut" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;max-height:260px;overflow:auto;margin-top:9px">${esc(snippetFor(c.id))}</pre>
-      </div></div>
-      <div class="panel"><div class="panel-head"><h3>ステップ対応表</h3></div><div class="panel-body">
-        <div class="table-wrap"><table class="data"><thead><tr><th>行</th><th>操作</th><th>確認</th></tr></thead><tbody>${(c.workflow?.rows || []).filter((r) => r.operationType || r.verificationType).slice(0, 80).map((r) => `<tr><td class="mono">${r.sourceRow}</td><td>${esc(r.operationType || '')} ${esc(r.operationItem || '')}</td><td>${esc(r.verificationType || '')} ${esc(r.verificationItem || '')}</td></tr>`).join('')}</tbody></table></div>
-      </div></div>
+    const legacy = `<details class="panel" style="margin-top:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px" class="muted">開発者向けツール（ロケーター編集・旧）</summary><div class="panel-body">
+      <p class="small muted">形式: <code>[{"sourceRow":14,"action":"input","selector":"input[name='policyNo']","value":"AZ11001"}]</code></p>
+      <textarea id="autoJson" style="width:100%;min-height:170px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px">${esc(JSON.stringify(auto, null, 2))}</textarea>
+      <div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap"><button class="btn primary" data-action="save-auto" data-case="${esc(c.id)}">保存</button><button class="btn" data-action="gen-auto" data-case="${esc(c.id)}">Console 片段を生成</button><button class="btn" data-action="seed-auto" data-case="${esc(c.id)}">操作行の雛形を生成</button><button class="btn" data-action="case-json" data-case="${esc(c.id)}">ケースJSON</button></div>
+      <pre id="autoOut" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;max-height:240px;overflow:auto;margin-top:9px">${esc(snippetFor(c.id))}</pre>
+      <details style="margin-top:8px"><summary class="small muted" style="cursor:pointer">F12 の outerHTML から selector 候補を生成</summary>
+        <textarea id="outerHtmlInput" placeholder="F12 → Elements → Copy outerHTML を貼り付け" style="width:100%;min-height:90px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px"></textarea>
+        <div style="display:flex;gap:7px;margin-top:8px"><button class="btn" data-action="suggest-selectors" data-case="${esc(c.id)}">候補を生成</button></div>
+        <div id="selectorOut" class="small muted" style="margin-top:8px">まだ候補はありません。</div>
+      </details></div></details>`;
+
+    if (!a) {
+      return `<div class="panel"><div class="panel-body" style="text-align:center;padding:26px">
+        <p style="margin:0 0 4px;font-size:15px;font-weight:700">⬜ まだ自動実行できません</p>
+        <p class="muted small" style="margin:0">このケースの積木はまだ実装待ちです。</p></div></div>` + legacy;
+    }
+
+    const details = a.blockDetails || [];
+    const c3 = a.coverage3 || {};
+    const done = (c3.verified || 0) + (c3.coded || 0);
+    const total = c3.total || a.eventCount || 0;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const canRun = a.status3 === 'verified' || a.status3 === 'coded';
+
+    const heroTxt = a.status3 === 'verified' ? '✅ 自動で最後まで実行できます'
+      : a.status3 === 'coded' ? '🟧 自動実行できます（模擬環境で確認済み）'
+      : '⬜ まだ自動実行できません';
+    const heroSub = a.status3 === 'verified' ? '実機で全ブロック通過済み'
+      : a.status3 === 'coded' ? '会社の実機での確認はこれから'
+      : '積木の実装待ち';
+
+    const rowMap = new Map();
+    (c.workflow?.rows || []).forEach((r) => rowMap.set(r.sourceRow, r));
+    const blockRows = details.map((d, i) => {
+      const rows = [];
+      for (let rn = d.fromRow; rn <= d.toRow; rn++) { const r = rowMap.get(rn); if (r) rows.push(r); }
+      const ops = rows.filter((r) => r.operationItem).map((r) => String(r.operationItem).replace(/「|」/g, '').slice(0, 16));
+      const vfs = rows.filter((r) => r.verificationItem).map((r) => String(r.verificationItem).slice(0, 12));
+      const desc = ops.length ? ops.slice(0, 3).join(' → ') : (vfs.length ? '確認: ' + vfs.slice(0, 2).join('・') : '—');
+      const badge = d.status3 === 'verified' ? '<span class="badge green">検証済</span>' : d.status3 === 'coded' ? '<span class="badge amber">実装済</span>' : '<span class="badge gray">未着手</span>';
+      return `<div class="auto-step ${d.status3 || 'planned'}">
+        <div class="no">${i + 1}</div>
+        <div class="desc">${esc(desc)}<span class="rows">行${d.fromRow}–${d.toRow}　${esc(d.block.replace(/^BLK-/, ''))}</span></div>
+        <div>${badge}</div>
+      </div>`;
+    }).join('');
+
+    const r = a.runner;
+    const cmd = r ? runnerCommand(c.id, r) : `run.cmd ${c.id}`;
+    const ranInfo = [];
+    if (a.actualDone) ranInfo.push(`実機通過 ${a.actualDone} ブロック`);
+    if (a.mockDone) ranInfo.push(`模擬環境通過 ${a.mockDone} ブロック`);
+
+    return `
+    <div class="panel auto-hero">
+      <div class="auto-hero-main">
+        <div class="auto-hero-title">${heroTxt}</div>
+        <div class="small muted">${heroSub}${ranInfo.length ? ' ・ ' + ranInfo.join(' ・ ') : ''}</div>
+      </div>
+      <div class="auto-hero-meter">${s3Strip(a)}</div>
     </div>
-    <details class="panel" style="margin-top:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">F12 の outerHTML から selector 候補を生成</summary><div class="panel-body">
-      <textarea id="outerHtmlInput" placeholder="F12 → Elements → Copy outerHTML を貼り付け" style="width:100%;min-height:100px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px"></textarea>
-      <div style="display:flex;gap:7px;margin-top:8px"><button class="btn" data-action="suggest-selectors" data-case="${esc(c.id)}">候補を生成</button></div>
-      <div id="selectorOut" class="small muted" style="margin-top:8px">まだ候補はありません。</div>
-    </div></details>`;
+    ${canRun ? `
+    <div class="panel auto-runbox">
+      <div class="auto-runbox-head">🚀 3ステップで実行</div>
+      <div class="auto-run-steps">
+        <div class="auto-run-step"><span class="k">1</span><div>下の「コマンドをコピー」ボタンを押す</div></div>
+        <div class="auto-run-step"><span class="k">2</span><div>会社のPCの <code>ms-ad-runner</code> フォルダーで貼り付けて実行（ログイン画面が出たら手動でログイン）</div></div>
+        <div class="auto-run-step"><span class="k">3</span><div>終わると <code>logs\${esc(c.id)}\</code> に証跡（スクリーンショット）が自動保存される</div></div>
+      </div>
+      <pre class="mono auto-cmd">${esc(cmd)}</pre>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
+        <button class="btn primary" data-action="copy-command" data-case="${esc(c.id)}">コマンドをコピー</button>
+        <span class="small muted">目で確かめたい時（自宅PC）: <code>node demo.mjs --case ${esc(c.id)}</code></span>
+      </div>
+    </div>` : `
+    <div class="panel" style="margin-top:12px"><div class="panel-body small muted" style="padding:12px 14px">このケースは積木の実装待ちです。実装されるとここに実行コマンドが表示されます。</div></div>`}
+    <div class="panel" style="margin-top:12px">
+      <div class="panel-head"><h3>🧩 この本の自動化の流れ（${details.length} ブロック）</h3>
+        <span class="hint">🟩 検証済＝実機通過 ・ 🟧 実装済＝模擬環境通過 ・ ⬜ 未着手</span></div>
+      <div class="auto-steps">${blockRows}</div>
+      ${ranInfo.length ? `<div class="panel-body small" style="border-top:1px solid var(--line-2)">📸 証跡: <a href="../../logs/${esc(c.id)}/" target="_blank">logs\${esc(c.id)}\ を開く</a>（ローカル環境のみ）</div>` : ''}
+    </div>` + legacy;
   }
 
   function memoHtml(c) {

@@ -237,6 +237,7 @@ function submitLink101(value) {
             <td class="gyoumu_field_value">1</td>
             <td class="gyoumu_field_value">
               <input type="submit" id="act202to102" onclick="clickButton(this);submit202to102();return false;" value="申請" formaction="/ANA07/" />
+              <input type="submit" id="act202to103" name="act202to103" onclick="clickButton(this)" value="承認" formaction="/ANA04/route44" />
             </td>
           </tr>
           <input type="hidden" />
@@ -281,7 +282,7 @@ function submitLink101(value) {
   <input type="hidden" id="selected_application_id" name="selected_application_id" />
 
   <!--/* 202to102用hiddenボタン */-->
-  <input type="submit" id="hiddenButtonFor202to102" name="hiddenButtonFor202to102" formaction="/ANA07/route44" style="display:none;" >
+  <input type="submit" id="hiddenButtonFor202to102" name="hiddenButtonFor202to102" formaction="/ANA04/route44" style="display:none;" >
   <!--/* Noリンク用hiddenボタン */-->
   <input type="hidden" id="application_id_key_name" name="applicationIdKeyName" />
   <input type="hidden" id="previous_path" name="previousPath" />

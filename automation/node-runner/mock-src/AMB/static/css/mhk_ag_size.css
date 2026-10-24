@@ -1,15 +1,15 @@
 body, th, td, input, select, textarea, div	{ font-size:10pt; }
 input, select { height:20px; line-height:20px; }
 #main	{ width:900px; height:635px; }
-/* �w�b�_�[ */
+/* ヘッダー */
 .area_head	{ width:100%; height:63px; }
 .size_head_logo	{ width:144px;height:60px; }
 .size_head_title	{ width:535px; height:100%; }
 .cell_head_title_font_size	{ font-size:15pt; }
 .size_head_sysinfo	{ font-size:9pt;width:220px;height:100%; }
-/* �G���[���b�Z�[�W */
+/* エラーメッセージ */
 .block_msg_size	{ line-height:16px; height:16px; }
-/* �ꗗ���-�Ɩ��G���A */
+/* 一覧画面-業務エリア */
 .area_gyoumu	{ width:900px; height:530px; }
 .block_open_btn { width:100%; height:28px; margin:4px 0; }
 .block_open_info { width:100%; height:175px; }
@@ -92,7 +92,7 @@ input.size_checkbox { height:18px;width:12px; }
 td.size_status01{ width:70px; }
 td.size_status02{ width:70px; }
 td.size_status03{ width:130px; }
-/* �񓚉�� */
+/* 回答画面 */
 td.size_btn_openclose { height:28px; }
 .btn_type_openclose	{ width:120px; height:28px; margin:0px; padding:0px; }
 .btn_type_othersys	{ width:205px; height:30px; margin:0px; padding:0px; }
@@ -110,7 +110,7 @@ td.size_btn_openclose { height:28px; }
 .size_width_fieldId	{ width:264px;  }
 .size_height_btn	{ height:75px;  }
 .size_height_btn2	{ height:25px;  }
-/* �Ɖ���e */
+/* 照会内容 */
 .size_tableRecord_row { height: 44px; }
 .size_answer_msg_row { height:30px;  }
 .size_answer_title { width :100px; }

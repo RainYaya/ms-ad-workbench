@@ -7,6 +7,13 @@
 <title></title>
 <link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
 <script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script type="text/javascript">
+/* mock fidelity fix: mhk_common.js ZENKAKU_ALPHA_NUMERIC_PATTERN is mojibake-corrupted
+   and mangles ASCII O..~ in toHankaku(). Restore the intended fullwidth class. */
+if (typeof ZENKAKU_ALPHA_NUMERIC_PATTERN !== 'undefined') {
+  ZENKAKU_ALPHA_NUMERIC_PATTERN = new RegExp('[\\uFF10-\\uFF19\\uFF21-\\uFF3A\\uFF41-\\uFF5A]', 'g');
+}
+</script>
 <script>
 var		insuranceItems = [
 	''
@@ -851,7 +858,7 @@ function scrollHeader() {
         <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="onChangeInsuranceItem(this);" tabindex="11" ><option value=""></option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
       </div>
       <div class="gyoumu_field_title grid_column_span2">
-        <input type="hidden" id="select_search_item_key" name="select_search_item" />
+        <input type="hidden" id="select_search_item_key" name="select_search_item" value="1" />
         <select name="select_search_item_list.selected" class="gyoumu_field_title_pulldown" onchange="setSelectSearchItem(this);" tabindex="12" >
           
             <option>1</option>

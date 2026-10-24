@@ -45,6 +45,9 @@ def latest_results() -> dict[str, dict]:
 def main() -> None:
     results = latest_results()
     run_plan = read_json(RUN_PLAN)
+    assigned = set(run_plan.get("A", [])) | set(run_plan.get("C", {}))
+    if assigned:
+        results = {cid: data for cid, data in results.items() if cid in assigned}
     c_missing = {cid: list(blocks) for cid, blocks in run_plan.get("C", {}).items()}
 
     rollup = {}
@@ -103,7 +106,16 @@ def main() -> None:
         case_info["note"] = note
 
     coded = set(exec_data.setdefault("status3Map", {}).get("coded", []))
-    coded |= set(passed_blocks)
+    verified = set(exec_data["status3Map"].get("verified", []))
+    # Keep status3Map aligned with the block registry: selector-only ids and
+    # blocks already promoted to verified must not linger in "coded".
+    registry_path = ROOT / "automation" / "blocks" / "blocks.json"
+    registry_ids = set()
+    if registry_path.exists():
+        registry_ids = {b["id"] for b in read_json(registry_path).get("blocks", [])}
+    coded = (coded - verified) | (set(passed_blocks) - verified)
+    if registry_ids:
+        coded &= registry_ids
     exec_data["status3Map"]["coded"] = sorted(coded)
     exec_data["status3Map"]["note"] = (
         "verified=live SUT pass 2026-10-23 (009 blk1-3); "

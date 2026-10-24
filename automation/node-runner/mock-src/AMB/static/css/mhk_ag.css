@@ -1,22 +1,22 @@
-body, th, td, input, select, textarea	{ font-family:'‚l‚r ‚oƒSƒVƒbƒN',Arial; }
+body, th, td, input, select, textarea	{ font-family:'ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯',Arial; }
 input	{ border-collapse:collapse; }
 td	{ border-collapse:collapse;padding:0px;margin:0px;border:0px;  }
 div	{ margin:0; padding:0;  }
 #link_tag	{ color:#00655a; cursor : pointer;  text-decoration : underline; }
 body { background-color:#FFFFFF; color:#000000; margin:0px; padding:0px; overflow-x:hidden; }
 textarea { overflow-y: scroll; }
-/* ƒwƒbƒ_[ */
+/* ãƒ˜ãƒƒãƒ€ãƒ¼ */
 .tbl_head_area { display:flex;align-items:center;background-color:#00655a;color:#FFF;text-align:center; }
 .tbl_head_area > div { align-content:center; }
 .cell_default_color	{ color:#000; background-color:#FFF; }
 .cell_font_bold	{ font-weight:bold; }
-/* ƒƒbƒZ[ƒW */
+/* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 .block_msg { border:1px solid #CCC; border-collapse:collapse; border-spacing:0px; }
 ul.popup_message_area { margin:0px; padding:0px; list-style:none; }
 ul.popup_message_area_white { background:#FF0000; color:#FFFFFF; margin:0px; padding:0px; list-style:none; }
 ul.message_area { margin : 0px; padding : 0px; list-style : none; }
 li.message_area { list-style: none;display: inline-block; }
-/* ˆê——‰æ–Ê-‹Æ–±—Ìˆæ */
+/* ä¸€è¦§ç”»é¢-æ¥­å‹™é ˜åŸŸ */
 .block_open_btn { width:100%; height:28px; margin:4px 0; }
 .cell_label_title { line-height:24px;background-color: #edeff2;color:#000;text-align:center;border-left:1px solid #cccccc;border-top:1px solid #cccccc; }
 .cell_label_value { text-align:center;border-left:1px solid #cccccc;border-top:1px solid #cccccc;overflow:hidden;white-space:nowrap;word-break:keep-all;border-collapse:collapse; }

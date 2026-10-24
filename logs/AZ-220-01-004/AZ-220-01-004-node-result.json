@@ -1,0 +1,17 @@
+{
+  "caseId": "AZ-220-01-004",
+  "runner": "node",
+  "ts": "2026-10-24T14:43:46.968Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-AGT-LIST-INITIAL-EMPTY",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-AGT-LIST-INITIAL-.png"
+  ]
+}

@@ -1,0 +1,823 @@
+{
+ "BLK-AUTO-FCB405E4": {
+  "screen": "AMA04+AMA28 popup",
+  "cases": [
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-078",
+   "AZ-230-01-079",
+   "AZ-230-01-080",
+   "AZ-230-01-105",
+   "AZ-230-01-106",
+   "AZ-230-01-107",
+   "AZ-230-01-110",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 メール通知先選択",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "click 通知しない",
+    "action": "click",
+    "selector": "input[name='sendOff']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ表示(MAZG911l002)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "メッセージ/OK=confirm自動承諾（mockはダイアログのみ、OKボタン無し）=真機人工"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code",
+    "note": "通知しない→親画面更新（aZG101UpdateBusinessNotify）を確認"
+   },
+   {
+    "event": "ast ToDo連携テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#policy_number",
+    "note": "非浏览器=真機人工（ToDo連携区分DBダンプ確認）"
+   }
+  ]
+ },
+ "BLK-AUTO-7A70187A": {
+  "screen": "AMA04+AMA28 popup",
+  "cases": [
+   "AZ-230-01-017",
+   "AZ-230-01-020",
+   "AZ-230-01-050",
+   "AZ-230-01-074",
+   "AZ-230-01-077",
+   "AZ-230-01-101",
+   "AZ-230-01-102",
+   "AZ-230-01-104",
+   "AZ-230-01-109",
+   "AZ-230-01-131",
+   "AZ-230-01-155"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 メール通知先選択",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "click 通知しない",
+    "action": "click",
+    "selector": "input[name='sendOff']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ表示(MAZG911l002)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "メッセージ/OK=confirm自動承諾（mockはダイアログのみ、OKボタン無し）=真機人工"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code",
+    "note": "通知しない→親画面更新（aZG101UpdateBusinessNotify）を確認"
+   }
+  ]
+ },
+ "BLK-AZ-OPEN-CLOSE-SYS": {
+  "screen": "dummy-login->menu",
+  "cases": [
+   "AZ-200-02-001",
+   "AZ-200-02-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/dummy.html"
+   },
+   {
+    "event": "ast 運用AP 閉局用シェル実行/画面HC",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=UserID]",
+    "note": "閉局用シェルスクリプト実行+画面HC=非浏览器=真機人工"
+   },
+   {
+    "event": "input ログイン画面",
+    "action": "fill",
+    "selector": "input[name=UserID]",
+    "value": "0000000001"
+   },
+   {
+    "event": "click ログイン",
+    "action": "click",
+    "selector": "input[name=menu_cm]"
+   },
+   {
+    "event": "ast 遷移 閉局画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100",
+    "note": "閉局画面(ログイン不可)=真機人工; mockはダミーログイン遷移で代替確認"
+   },
+   {
+    "event": "ast 運用AP 開局用シェル実行/画面HC",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to200",
+    "note": "開局用シェルスクリプト実行+画面HC=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-01CAB10D": {
+  "screen": "dummy-login->AMC22->AMC23",
+  "cases": [
+   "AZ-200-02-001",
+   "AZ-200-02-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/dummy.html"
+   },
+   {
+    "event": "ast 画面HC(ログイン前)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=UserID]",
+    "note": "運用AP画面HC/シェル=非浏览器=真機人工"
+   },
+   {
+    "event": "input ログイン画面",
+    "action": "fill",
+    "selector": "input[name=UserID]",
+    "value": "0000000001"
+   },
+   {
+    "event": "click ログイン",
+    "action": "click",
+    "selector": "input[name=menu_cm]"
+   },
+   {
+    "event": "ast 遷移 不備一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100",
+    "note": "ログイン後メニュー到達を確認（不備一覧は次step）"
+   },
+   {
+    "event": "goto 代理店 不備一覧",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 回答入力",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act104to22",
+    "note": "AMC23 不備内容入力(回答入力)表示"
+   },
+   {
+    "event": "ast 運用AP 閉局シェル/画面HC",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act104to22",
+    "note": "閉局用シェルスクリプト実行+画面HC=非浏览器=真機人工"
+   },
+   {
+    "event": "click 不備一覧",
+    "action": "click",
+    "selector": "#act104to22"
+   },
+   {
+    "event": "ast 遷移 閉局",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#select",
+    "note": "閉局画面=真機人工（mockは不備一覧へ戻るのみ）"
+   }
+  ]
+ },
+ "BLK-SHR-8F1D192A": {
+  "screen": "ANA01(batch)",
+  "cases": [
+   "AY-110-02-001",
+   "AY-110-02-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast 操作結果/画面HC",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route3",
+    "note": "計上情報消込処理=バッチ/非浏览器=真機人工"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route4",
+    "note": "APログ確認=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SGL-0C5A44D1": {
+  "screen": "ANA01(batch)",
+  "cases": [
+   "AY-100-08-005"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route3",
+    "note": "非浏览器=真機人工（DBダンプ確認）"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route4",
+    "note": "非浏览器=真機人工（APログ確認）"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route5",
+    "note": "非浏览器=真機人工（DBログ確認）"
+   }
+  ]
+ },
+ "BLK-SGL-7EE83E5A": {
+  "screen": "AMA01->AMA26(+AMA27)",
+  "cases": [
+   "AZ-112-01-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "click メール登録",
+    "action": "click",
+    "selector": "#act001to207"
+   },
+   {
+    "event": "ast 遷移 営業連携メール通知先登録",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "input 各項目(部店課支社コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "ast 表示 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 次頁",
+    "action": "click",
+    "selector": "#nextPage",
+    "force": true
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 前頁",
+    "action": "click",
+    "selector": "#prevPage",
+    "force": true
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 全解除",
+    "action": "click",
+    "selector": "#all_clear"
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "click 全解除",
+    "action": "click",
+    "selector": "#all_clear"
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "click 追加",
+    "action": "click",
+    "selector": "#add_user",
+    "note": "mockの追加popupはURL空串(/)を開くため次stepで検索画面へ直接遷移"
+   },
+   {
+    "event": "goto 個別メール通知先検索",
+    "action": "goto",
+    "url": "/AMB/AMA27.html"
+   },
+   {
+    "event": "ast 遷移 個別メール通知先検索",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table27"
+   },
+   {
+    "event": "input 各項目(氏名)",
+    "action": "fill",
+    "selector": "#user_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "input 各項目(部店課支社コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "ast 表示 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#gyoumu_list a"
+   },
+   {
+    "event": "goto 親画面 個別メール通知先一覧",
+    "action": "goto",
+    "url": "/AMB/AMA26.html"
+   },
+   {
+    "event": "ast 個別メール通知先一覧(親画面)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#list_table",
+    "note": "親画面の個別通知先一覧を確認（mockは親への行追加なし）"
+   },
+   {
+    "event": "goto 個別メール通知先検索",
+    "action": "goto",
+    "url": "/AMB/AMA27.html"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "ast 表示 メッセージボックス",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#popup_message_area",
+    "note": "メッセージ=alert自動承諾（mockにメッセージ本文なし）=真機人工"
+   },
+   {
+    "event": "input 各項目",
+    "action": "fill",
+    "selector": "#user_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "ast 表示 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#gyoumu_list a"
+   },
+   {
+    "event": "goto 親画面 個別メール通知先一覧",
+    "action": "goto",
+    "url": "/AMB/AMA26.html"
+   },
+   {
+    "event": "ast 個別メール通知先一覧(親画面)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#list_table"
+   },
+   {
+    "event": "goto 個別メール通知先検索",
+    "action": "goto",
+    "url": "/AMB/AMA27.html"
+   },
+   {
+    "event": "ast 表示 メッセージボックス(重複)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#popup_message_area",
+    "note": "重複選択メッセージ=alert自動承諾=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='close']",
+    "note": "mockは単独タブのためwindow.close抑止→画面継続"
+   },
+   {
+    "event": "ast 個別メール通知先検索画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table27"
+   },
+   {
+    "event": "goto 営業連携メール通知先登録",
+    "action": "goto",
+    "url": "/AMB/AMA26.html"
+   },
+   {
+    "event": "click メール通知",
+    "action": "check",
+    "selector": "#section_mail_send_flag_1"
+   },
+   {
+    "event": "ast 表示 メール通知",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#sendCount"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "click 全選択",
+    "action": "click",
+    "selector": "#all_select"
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_clear"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "click 次頁",
+    "action": "click",
+    "selector": "#nextPage",
+    "force": true
+   },
+   {
+    "event": "click 全選択",
+    "action": "click",
+    "selector": "#all_select"
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_clear"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "input 各項目",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "click メール通知",
+    "action": "click",
+    "selector": "#section_mail_send_flag_0"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "input 各項目",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search"
+   },
+   {
+    "event": "click 全解除",
+    "action": "click",
+    "selector": "#all_clear",
+    "force": true,
+    "note": "メール通知否で全解除/全選択/追加はdisabled→forceで押下"
+   },
+   {
+    "event": "ast 所属課支社別メール通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#all_select"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 営業連携メール通知先登録画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code"
+   },
+   {
+    "event": "click メニュー",
+    "action": "click",
+    "selector": "#act207to001"
+   },
+   {
+    "event": "ast 遷移 申込書品質管理メニュー",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to207"
+   }
+  ]
+ },
+ "BLK-SGL-EF37895C": {
+  "screen": "AMA04+AMA19 popup",
+  "cases": [
+   "AZ-100-05-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 訂正内容確認書",
+    "action": "click",
+    "selector": "input[name='act101to906']"
+   },
+   {
+    "event": "ast 遷移 訂正内容確認",
+    "action": "popup",
+    "match": "AMA19|aZG906"
+   },
+   {
+    "event": "input 確認者(募集人または社員)",
+    "action": "fill",
+    "selector": "#confirm_user_name",
+    "value": "test",
+    "in": "popup"
+   },
+   {
+    "event": "click eメールによる確認の場合",
+    "action": "check",
+    "selector": "#email_confirm_check",
+    "in": "popup"
+   },
+   {
+    "event": "ast 開発者ツール表示(application_form_id確認)",
+    "action": "assert",
+    "assert": "hidden",
+    "selector": "#application_form_id",
+    "in": "popup",
+    "note": "F12/開発者ツール検索=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 開発者ツール表示(value削除後)",
+    "action": "assert",
+    "assert": "hidden",
+    "selector": "#application_form_id",
+    "in": "popup",
+    "note": "application_form_idのvalue削除=非浏览器=真機人工"
+   },
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "#regist",
+    "in": "popup",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 システムエラー画面(子画面)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#close",
+    "in": "popup",
+    "note": "システムエラー画面(子画面)/エラーメッセージMAZG000E001=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-AUTO-F8714C90": {
+  "screen": "AMA04+AMA15 popup",
+  "cases": [
+   "AZ-210-08-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "enable 修",
+    "action": "enable",
+    "selector": "input[name='editInquiryContents[0]']",
+    "note": "照会内容チェックボックスONで活性化するがmock初期はdisabled"
+   },
+   {
+    "event": "click 修",
+    "action": "click",
+    "selector": "input[name='editInquiryContents[0]']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 照会内容編集",
+    "action": "popup",
+    "match": "AMA15|aZG902"
+   },
+   {
+    "event": "input 各項目(編集照会内容)",
+    "action": "fill",
+    "selector": "textarea[name='inquiry_content_name_edit']",
+    "value": "params.inquiryContent",
+    "in": "popup"
+   },
+   {
+    "event": "click OK",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#section_code",
+    "note": "mockは子画面close簡略（OK後もpopup残存）"
+   }
+  ]
+ }
+}

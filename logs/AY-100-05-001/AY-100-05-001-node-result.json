@@ -1,0 +1,22 @@
+{
+  "caseId": "AY-100-05-001",
+  "runner": "node",
+  "ts": "2026-10-24T14:36:27.021Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AUTO-E2D0C359",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-EA9C1EF3",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AUTO-E2D0C359.png",
+    "03_BLK-SGL-EA9C1EF3.png"
+  ]
+}

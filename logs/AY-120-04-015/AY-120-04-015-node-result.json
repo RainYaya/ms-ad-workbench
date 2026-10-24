@@ -1,0 +1,32 @@
+{
+  "caseId": "AY-120-04-015",
+  "runner": "node",
+  "ts": "2026-10-24T14:37:40.327Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AUTO-042B2DAE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-C4218B41",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-E6EAF3BB",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-27C68433",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AUTO-042B2DAE.png",
+    "03_BLK-AUTO-C4218B41.png",
+    "04_BLK-AUTO-E6EAF3BB.png",
+    "05_BLK-AUTO-27C68433.png"
+  ]
+}

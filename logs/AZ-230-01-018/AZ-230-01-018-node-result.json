@@ -1,0 +1,77 @@
+{
+  "caseId": "AZ-230-01-018",
+  "runner": "node",
+  "ts": "2026-10-24T14:44:03.838Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-SHR-5F5035B5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-REGISTER-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-04A78248",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-5C1EFE0E",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-D844ADE8",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-3477BB6F",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-D6459D48",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-E1BDF237",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-2739DA75",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-2268EC8E",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-3477BB6F",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-SHR-5F5035B5.png",
+    "03_BLK-AZ-MENU-CREATE-INPUT.png",
+    "04_BLK-AZ-INPUT-FILL.png",
+    "05_BLK-AZ-REGISTER-UPDATE.png",
+    "06_BLK-AUTO-04A78248.png",
+    "07_BLK-AUTO-5C1EFE0E.png",
+    "08_BLK-AUTO-D844ADE8.png",
+    "09_BLK-AUTO-3477BB6F.png",
+    "10_BLK-SHR-D6459D48.png",
+    "11_BLK-AUTO-E1BDF237.png",
+    "12_BLK-AUTO-2739DA75.png",
+    "13_BLK-SGL-2268EC8E.png",
+    "14_BLK-AUTO-3477BB6F.png"
+  ]
+}

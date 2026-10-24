@@ -1,7 +1,8 @@
 {
  "common": {
   "userId": "MS3N",
-  "menuSelector": "input[name=menu_cm]"
+  "menuSelector": "input[name=menu_cm]",
+  "loginUrl": "/AMB/dummy.html"
  },
  "cases": {
   "AZ-200-01-001": {
@@ -91,7 +92,8 @@
   "AY-100-06-003": {
    "user": "?",
    "pointCheck": "?",
-   "menuSelector": "input[value=\"異例メニュー画面\"]"
+   "menuSelector": "input[value=\"異例メニュー画面\"]",
+   "loginUrl": "/ANB00/dummy.html"
   },
   "AZ-200-04-001": {
    "user": "?",
@@ -100,12 +102,14 @@
   "AY-100-04-001": {
    "user": "?",
    "pointCheck": "?",
-   "menuSelector": "input[value=\"異例メニュー画面\"]"
+   "menuSelector": "input[value=\"異例メニュー画面\"]",
+   "loginUrl": "/ANB00/dummy.html"
   },
   "AY-100-04-002": {
    "user": "?",
    "pointCheck": "?",
-   "menuSelector": "input[value=\"異例メニュー画面\"]"
+   "menuSelector": "input[value=\"異例メニュー画面\"]",
+   "loginUrl": "/ANB00/dummy.html"
   },
   "AY-100-08-002": {
    "user": "?",

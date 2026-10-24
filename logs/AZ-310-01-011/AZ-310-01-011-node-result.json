@@ -1,0 +1,67 @@
+{
+  "caseId": "AZ-310-01-011",
+  "runner": "node",
+  "ts": "2026-10-24T14:45:31.966Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INSURANCE-SELECT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-AGENT-SELECT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-REGISTER-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-04A78248",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-7AAEDA04",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-6F1B4715",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-12DB90A3",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-MENU-CREATE-INPUT.png",
+    "03_BLK-AZ-INPUT-FILL.png",
+    "04_BLK-AZ-INSURANCE-SELECT.png",
+    "05_BLK-AZ-AGENT-SELECT.png",
+    "06_BLK-AZ-REGISTER-UPDATE.png",
+    "07_BLK-AUTO-04A78248.png",
+    "08_BLK-AZ-ITEM-SEARCH-SELEC.png",
+    "09_BLK-AZ-INQUIRY-EDIT.png",
+    "10_BLK-AUTO-7AAEDA04.png",
+    "11_BLK-AUTO-6F1B4715.png",
+    "12_BLK-AUTO-12DB90A3.png"
+  ]
+}

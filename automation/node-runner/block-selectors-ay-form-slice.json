@@ -1,0 +1,1716 @@
+{
+ "BLK-AUTO-27C68433": {
+  "screen": "ANA11->ANA04",
+  "cases": [
+   "AY-120-02-015",
+   "AY-120-02-016",
+   "AY-120-02-017",
+   "AY-120-02-018",
+   "AY-120-03-001",
+   "AY-120-03-002",
+   "AY-120-03-003",
+   "AY-120-03-004",
+   "AY-120-03-005",
+   "AY-120-03-006",
+   "AY-120-04-009",
+   "AY-120-04-010",
+   "AY-120-04-011",
+   "AY-120-04-012",
+   "AY-120-04-013",
+   "AY-120-04-014",
+   "AY-120-04-015",
+   "AY-120-04-016",
+   "AY-120-04-017",
+   "AY-120-04-018",
+   "AY-120-06-003",
+   "AY-120-06-004",
+   "AY-120-06-005",
+   "AY-120-06-006",
+   "AY-120-06-007",
+   "AY-120-06-008",
+   "AY-120-06-009",
+   "AY-120-06-010",
+   "AY-120-06-011",
+   "AY-120-06-012",
+   "AY-121-02-001",
+   "AY-121-02-002",
+   "AY-121-03-005",
+   "AY-121-03-006",
+   "AY-121-03-007",
+   "AY-121-03-008",
+   "AY-121-03-009",
+   "AY-121-03-010",
+   "AY-121-03-011",
+   "AY-121-03-012",
+   "AY-121-03-013",
+   "AY-121-03-014",
+   "AY-121-04-017",
+   "AY-121-04-018",
+   "AY-121-05-001",
+   "AY-121-05-002",
+   "AY-121-05-003",
+   "AY-121-05-004",
+   "AY-121-05-005",
+   "AY-121-05-006",
+   "AY-121-05-007",
+   "AY-121-05-008"
+  ],
+  "steps": [
+   {
+    "event": "ast 送信先(写)選択 popup表示",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 検索結果表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No(送信先一覧へ追加)",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "click OK",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ(MAYG901I00x)",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#popup_message_area",
+    "contains": "MAYG901",
+    "in": "popup",
+    "note": "mockはメッセージを画面内表示。真機はポップアップMsg=真機人工"
+   },
+   {
+    "event": "click OK(確認Msg)",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 取消計上申請承認画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001, #act102to001",
+    "note": "popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正"
+   }
+  ]
+ },
+ "BLK-AUTO-2B9786A5": {
+  "screen": "ANA10->ANA03",
+  "cases": [
+   "AY-100-07-001",
+   "AY-100-07-002",
+   "AY-110-01-011",
+   "AY-110-01-012",
+   "AY-110-01-013",
+   "AY-110-01-014",
+   "AY-110-01-015",
+   "AY-110-01-016",
+   "AY-110-01-017",
+   "AY-110-01-018",
+   "AY-120-01-003",
+   "AY-120-01-004",
+   "AY-120-01-005",
+   "AY-120-01-006",
+   "AY-120-01-007",
+   "AY-120-01-008",
+   "AY-120-01-009",
+   "AY-120-01-010",
+   "AY-120-01-011",
+   "AY-120-01-012",
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "ast 担当者検索 popup表示",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "input 課支社CD",
+    "action": "fill",
+    "selector": "#section_code_key",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 検索結果表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No(選択)",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "選択した担当者情報が呼出元へ設定される"
+   }
+  ]
+ },
+ "BLK-AUTO-DF07A781": {
+  "screen": "ANA11->ANA03",
+  "cases": [
+   "AY-110-01-011",
+   "AY-110-01-012",
+   "AY-110-01-013",
+   "AY-110-01-014",
+   "AY-110-01-015",
+   "AY-110-01-016",
+   "AY-110-01-017",
+   "AY-110-01-018",
+   "AY-120-01-003",
+   "AY-120-01-004",
+   "AY-120-01-005",
+   "AY-120-01-006",
+   "AY-120-01-007",
+   "AY-120-01-008",
+   "AY-120-01-009",
+   "AY-120-01-010",
+   "AY-120-01-011",
+   "AY-120-01-012",
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "ast 送信先(写)選択 popup表示",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "input 課支社CD",
+    "action": "fill",
+    "selector": "#section_code_key",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 検索結果表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No(送信先一覧へ追加)",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "click OK",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ(MAYG901I00x)",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#popup_message_area",
+    "contains": "MAYG901",
+    "in": "popup",
+    "note": "mockはメッセージを画面内表示。真機はポップアップMsg=真機人工"
+   },
+   {
+    "event": "click OK(確認Msg)",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "popup OK後、呼出元(申請・確認更新)へ戻る"
+   }
+  ]
+ },
+ "BLK-AUTO-E6EAF3BB": {
+  "screen": "ANA04->ANA11",
+  "cases": [
+   "AY-120-04-009",
+   "AY-120-04-010",
+   "AY-120-04-011",
+   "AY-120-04-012",
+   "AY-120-04-013",
+   "AY-120-04-014",
+   "AY-120-04-015",
+   "AY-120-04-016",
+   "AY-120-04-017",
+   "AY-120-04-018",
+   "AY-121-03-005",
+   "AY-121-03-006",
+   "AY-121-03-007",
+   "AY-121-03-008",
+   "AY-121-03-009",
+   "AY-121-03-010",
+   "AY-121-03-011",
+   "AY-121-03-012",
+   "AY-121-03-013",
+   "AY-121-03-014"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "click 承認",
+    "action": "click",
+    "selector": "#approveButton",
+    "force": true,
+    "note": "mockは申請ステータス無しのためラベルは承認依頼表示"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-AUTO-FECF904C": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-120-09-004",
+   "AY-120-09-005",
+   "AY-120-09-006",
+   "AY-120-09-007",
+   "AY-120-09-008",
+   "AY-120-09-009",
+   "AY-120-09-010",
+   "AY-120-09-011",
+   "AY-120-09-012",
+   "AY-120-09-013",
+   "AY-121-08-003",
+   "AY-121-08-004",
+   "AY-121-08-005",
+   "AY-121-08-006",
+   "AY-121-08-007",
+   "AY-121-08-008",
+   "AY-121-08-009",
+   "AY-121-08-010",
+   "AY-121-08-011",
+   "AY-121-08-012"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 削除",
+    "action": "click",
+    "selector": "#deleteApplication",
+    "force": true
+   },
+   {
+    "event": "ast メッセージ(MAYG101I001)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "削除確認Msg=JS confirm auto-accept=真機人工"
+   },
+   {
+    "event": "click OK(確認Msg)",
+    "action": "wait",
+    "ms": 400,
+    "note": "確認Msg OK=JS confirm auto-accept"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "削除後MAYG101I100表示。mockは再表示のみ=真機人工"
+   }
+  ]
+ },
+ "BLK-AUTO-CE34C5B8": {
+  "screen": "ANA03->ANA10",
+  "cases": [
+   "AY-110-01-011",
+   "AY-110-01-012",
+   "AY-110-01-013",
+   "AY-110-01-014",
+   "AY-110-01-015",
+   "AY-110-01-016",
+   "AY-110-01-017",
+   "AY-110-01-018",
+   "AY-120-01-003",
+   "AY-120-01-004",
+   "AY-120-01-005",
+   "AY-120-01-006",
+   "AY-120-01-007",
+   "AY-120-01-008",
+   "AY-120-01-009",
+   "AY-120-01-010",
+   "AY-120-01-011",
+   "AY-120-01-012"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "input 各項目(契約者名)",
+    "action": "fill",
+    "selector": "#insurant_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "click 申請依頼先選択",
+    "action": "click",
+    "selector": "input[name='selectReqApplicantUser']"
+   },
+   {
+    "event": "ast 遷移 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   }
+  ]
+ },
+ "BLK-AUTO-D2C3A480": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-110-01-011",
+   "AY-110-01-012",
+   "AY-110-01-013",
+   "AY-110-01-014",
+   "AY-110-01-015",
+   "AY-110-01-016",
+   "AY-110-01-017",
+   "AY-110-01-018",
+   "AY-120-01-003",
+   "AY-120-01-004",
+   "AY-120-01-005",
+   "AY-120-01-006",
+   "AY-120-01-007",
+   "AY-120-01-008",
+   "AY-120-01-009",
+   "AY-120-01-010",
+   "AY-120-01-011",
+   "AY-120-01-012"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001"
+   },
+   {
+    "event": "click 申請依頼",
+    "action": "click",
+    "selector": "#requestApplicationButton"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-AUTO-F974E639": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-120-06-003",
+   "AY-120-06-004",
+   "AY-120-06-005",
+   "AY-120-06-006",
+   "AY-120-06-007",
+   "AY-120-06-008",
+   "AY-120-06-009",
+   "AY-120-06-010",
+   "AY-120-06-011",
+   "AY-120-06-012",
+   "AY-121-05-001",
+   "AY-121-05-002",
+   "AY-121-05-003",
+   "AY-121-05-004",
+   "AY-121-05-005",
+   "AY-121-05-006",
+   "AY-121-05-007",
+   "AY-121-05-008"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 要再申請",
+    "action": "click",
+    "selector": "#requestApplicationButton",
+    "note": "手順書の「要再申請」=申請依頼ボタン(ソースに要再申請ラベル無し: ANA03 2267)"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-AY-SHINSEI-TAIOUTOUROKU": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-120-07-015",
+   "AY-120-07-016",
+   "AY-120-07-017",
+   "AY-120-07-018",
+   "AY-121-06-011",
+   "AY-121-06-012",
+   "AY-121-06-013",
+   "AY-121-06-014",
+   "AY-121-06-015",
+   "AY-121-06-016",
+   "AY-121-06-017",
+   "AY-121-06-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "input 登録内容入力",
+    "action": "fill",
+    "selector": "#disapprove_correspond",
+    "value": "params.defectContent"
+   },
+   {
+    "event": "click 対応登録",
+    "action": "click",
+    "selector": "#actionRegist",
+    "force": true,
+    "note": "mockは申請ステータス無しのため非活性→force"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001"
+   }
+  ]
+ },
+ "BLK-AUTO-5637DF50": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-120-08-001",
+   "AY-120-08-002",
+   "AY-120-08-003",
+   "AY-120-08-004",
+   "AY-120-08-005",
+   "AY-120-08-006",
+   "AY-121-07-001",
+   "AY-121-07-002",
+   "AY-122-01-006",
+   "AY-122-01-007",
+   "AY-122-01-008"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "input 各項目(契約者名)",
+    "action": "fill",
+    "selector": "#insurant_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001"
+   }
+  ]
+ },
+ "BLK-SHR-EB44767A": {
+  "screen": "ANA03->ANA10",
+  "cases": [
+   "AY-120-01-003",
+   "AY-120-01-004",
+   "AY-120-01-005",
+   "AY-120-01-006",
+   "AY-120-01-007",
+   "AY-120-01-008",
+   "AY-120-01-009",
+   "AY-120-01-010",
+   "AY-120-01-011",
+   "AY-120-01-012"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 申請代行者選択",
+    "action": "click",
+    "selector": "input[name='selectActApplicantUser']"
+   },
+   {
+    "event": "ast 遷移 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   }
+  ]
+ },
+ "BLK-SHR-805D28B8": {
+  "screen": "ANA04->ANA11",
+  "cases": [
+   "AY-120-03-001",
+   "AY-120-03-002",
+   "AY-120-03-003",
+   "AY-120-03-004",
+   "AY-120-03-005",
+   "AY-120-03-006",
+   "AY-121-02-001",
+   "AY-121-02-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "input 承認依頼/要再申請依頼理由",
+    "action": "fill",
+    "selector": "#section_approve_reject",
+    "value": "params.defectContent"
+   },
+   {
+    "event": "click 不承認",
+    "action": "click",
+    "selector": "#disapproveButton",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SHR-C8E42CCF": {
+  "screen": "ANA03->ANA10",
+  "cases": [
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "input 各項目(契約者名)",
+    "action": "fill",
+    "selector": "#insurant_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "click 承認依頼先選択",
+    "action": "click",
+    "selector": "input[name='selectReqApproverUser']"
+   },
+   {
+    "event": "ast 遷移 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   }
+  ]
+ },
+ "BLK-SHR-E30F6E3C": {
+  "screen": "ANA03->ANA10",
+  "cases": [
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 承認代行者選択",
+    "action": "click",
+    "selector": "input[name='selectActApproverUser']"
+   },
+   {
+    "event": "ast 遷移 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   }
+  ]
+ },
+ "BLK-AUTO-94A5D816": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001"
+   }
+  ]
+ },
+ "BLK-SHR-6FA7E251": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-121-01-011",
+   "AY-121-01-012",
+   "AY-121-01-013",
+   "AY-121-01-014",
+   "AY-121-01-015",
+   "AY-121-01-016",
+   "AY-121-01-017",
+   "AY-121-01-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 承認依頼",
+    "action": "click",
+    "selector": "#requestApplicationButton"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SHR-3222CFC6": {
+  "screen": "ANA04->ANA11",
+  "cases": [
+   "AY-120-03-001",
+   "AY-120-03-002",
+   "AY-120-03-003",
+   "AY-120-03-004",
+   "AY-120-03-005",
+   "AY-120-03-006"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "input 承認/要再申請依頼理由",
+    "action": "fill",
+    "selector": "#department_approve_reject",
+    "value": "params.defectContent"
+   },
+   {
+    "event": "click 不承認",
+    "action": "click",
+    "selector": "#disapproveButton",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SHR-EB3D34F4": {
+  "screen": "AMB/AMA04",
+  "cases": [
+   "AZ-230-01-050",
+   "AZ-230-01-077",
+   "AZ-230-01-104",
+   "AZ-230-01-109",
+   "AZ-230-01-131"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "ast ToDo連携テーブル/APログ/FAZZ000A011",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "ToDo連携区分/AP_AZB022.log/FAZZ000A011=非浏览器=真機人工（mockは不備内容入力画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-8546478D": {
+  "screen": "ANA04",
+  "cases": [
+   "AY-120-02-015",
+   "AY-120-02-016",
+   "AY-120-02-017",
+   "AY-120-02-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "click 承認依頼先選択",
+    "action": "click",
+    "selector": "input[name='selectReqApproverUser']"
+   },
+   {
+    "event": "ast 表示 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "input 課支社CD",
+    "action": "fill",
+    "selector": "#section_code_key",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 担当者検索画面(検索結果)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No(承認依頼先)",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 取消計上申請承認画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001"
+   },
+   {
+    "event": "click 承認代行者選択",
+    "action": "click",
+    "selector": "input[name='selectActApproverUser']"
+   },
+   {
+    "event": "ast 遷移 担当者検索画面",
+    "action": "popup",
+    "match": "ANA10|aYG900"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "input 課支社CD",
+    "action": "fill",
+    "selector": "#section_code_key",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 担当者検索画面(検索結果)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No(承認代行者)",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 取消計上申請承認画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001"
+   },
+   {
+    "event": "click 承認依頼",
+    "action": "click",
+    "selector": "#approveButton",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SHR-F557476E": {
+  "screen": "AMA28->AMA04",
+  "cases": [
+   "AZ-230-01-103",
+   "AZ-230-01-108"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携(メール通知先選択を開く)",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true,
+    "note": "営業連携ボタンはvisibility_hidden=force"
+   },
+   {
+    "event": "ast 遷移 メール通知先選択画面",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "click 通知しない",
+    "action": "click",
+    "selector": "input[name='sendOff']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ(MAZG911I002)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "MAZG911I002=JS confirm auto-accept=真機人工"
+   },
+   {
+    "event": "click OK",
+    "action": "wait",
+    "ms": 400,
+    "note": "通知しない確認OK=auto-accept"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "click 回答内容",
+    "action": "click",
+    "selector": "select[name='list[0].answer_contents.selected']",
+    "note": "回答内容プルダウン(mockは選択肢未描画)。回答入力欄もサーバ描画項目のためmockには可視項目が無い=真機人工"
+   },
+   {
+    "event": "click 回答",
+    "action": "click",
+    "selector": "#updateAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新(回答後)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SHR-77BF51A5": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-100-07-001",
+   "AY-100-07-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 申請依頼",
+    "action": "click",
+    "selector": "#requestApplicationButton"
+   },
+   {
+    "event": "ast 表示 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name_key",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 送信先(写)選択画面(検索結果)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup"
+   },
+   {
+    "event": "click OK",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ(MAYG901I001)",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#popup_message_area",
+    "contains": "MAYG901",
+    "in": "popup",
+    "note": "mockはメッセージを画面内表示。真機はポップアップMsg=真機人工"
+   },
+   {
+    "event": "click OK(確認Msg)",
+    "action": "click",
+    "selector": "input[name='ok']",
+    "in": "popup"
+   },
+   {
+    "event": "ast エラーメッセージ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "バリデーション例外Msg=非浏览器/真機人工（mockは画面在位で代理）"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "画面項目変化なし"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "APログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "DBログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "データ未更新=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-73B769C8": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-120-08-001",
+   "AY-121-07-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "APログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "DBログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "データ更新=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-04E83971": {
+  "screen": "ANA04",
+  "cases": [
+   "AY-121-02-001",
+   "AY-121-05-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "APログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "DBログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "データ更新=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-F07F5CF4": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-121-04-017",
+   "AY-121-04-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 不承認取消",
+    "action": "click",
+    "selector": "#cancelButton",
+    "force": true,
+    "note": "ステータス依存ラベル。mockは非表示→force（処理はpopupAYG901('cancel')）"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SHR-CE8B86B5": {
+  "screen": "ANA03->ANA11",
+  "cases": [
+   "AY-121-04-017",
+   "AY-121-04-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "click 承認依頼取消",
+    "action": "click",
+    "selector": "#cancelButton",
+    "force": true,
+    "note": "ステータス依存ラベル。mockは非表示→force（処理はpopupAYG901('cancel')）"
+   },
+   {
+    "event": "ast 遷移 送信先(写)選択画面",
+    "action": "popup",
+    "match": "ANA11|aYG901"
+   }
+  ]
+ },
+ "BLK-SGL-C3BC64AD": {
+  "screen": "AMA28",
+  "cases": [
+   "AZ-112-01-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携(メール通知先選択を開く)",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true,
+    "note": "営業連携ボタンはvisibility_hidden=force"
+   },
+   {
+    "event": "ast 遷移 popup表示",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click 次頁",
+    "action": "click",
+    "selector": "#nextPage",
+    "in": "popup",
+    "force": true,
+    "note": "mockはページ情報が無いため頁ボタン非表示→force"
+   },
+   {
+    "event": "ast 表示 通知先追加(次頁)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click 前頁",
+    "action": "click",
+    "selector": "#prevPage",
+    "in": "popup",
+    "force": true,
+    "note": "同上"
+   },
+   {
+    "event": "ast 表示 通知先追加(前頁)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "input 氏名",
+    "action": "fill",
+    "selector": "#user_name",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "input 通知先部課コード",
+    "action": "fill",
+    "selector": "#section_code_set",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 メッセージボックス",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#warning_message",
+    "in": "popup",
+    "note": "MAZG911W101=メッセージボックス。mockは文言未実装(枠のみ)=真機人工"
+   },
+   {
+    "event": "click 通知先再セット",
+    "action": "click",
+    "selector": "#reset",
+    "in": "popup"
+   },
+   {
+    "event": "click 通知する",
+    "action": "click",
+    "selector": "input[name='sendOn']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "通知先再セット+通知するの繰返し(MAZG911W106/W105)はmock未実装。初回で通知成立し画面が閉じる=真機人工"
+   }
+  ]
+ },
+ "BLK-SGL-FF4BE5F2": {
+  "screen": "AMA28->AMA04",
+  "cases": [
+   "AZ-510-01-005"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携(メール通知先選択を開く)",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 メール通知先選択画面",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "input 各項目(氏名)",
+    "action": "fill",
+    "selector": "#user_name",
+    "value": "params.customerName",
+    "in": "popup"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#gyoumu_list a",
+    "in": "popup",
+    "note": "AMA28のNoリンクはmock未配線（selectNoのlist項目hidden未整備）"
+   },
+   {
+    "event": "ast 表示 通知先一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#mail_send_list",
+    "in": "popup"
+   },
+   {
+    "event": "click 通知する",
+    "action": "click",
+    "selector": "input[name='sendOn']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 メール通知先選択画面(閉じる)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "OK=JS confirm auto-accept"
+   },
+   {
+    "event": "ast 表示 営業連携",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "営業連携結果=非浏览器=真機人工"
+   },
+   {
+    "event": "ast メール送信ログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "MAZG101I524/I525=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 営業連携通知メール/リンク",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "メール受信・リンク遷移=非浏览器=真機人工"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SGL-2268EC8E": {
+  "screen": "AMA28->AMA04",
+  "cases": [
+   "AZ-230-01-018"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携(メール通知先選択を開く)",
+    "action": "click",
+    "selector": "#updateBusinessNotify",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 メール通知先選択画面",
+    "action": "popup",
+    "match": "AMA28|aZG911"
+   },
+   {
+    "event": "click 通知しない",
+    "action": "click",
+    "selector": "input[name='sendOff']",
+    "in": "popup"
+   },
+   {
+    "event": "ast メッセージ(MAZG911I002)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "JS confirm auto-accept=真機人工"
+   },
+   {
+    "event": "click OK",
+    "action": "wait",
+    "ms": 400
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "click 連携取消",
+    "action": "click",
+    "selector": "#updateNotifyCancel",
+    "force": true
+   },
+   {
+    "event": "ast メッセージ(連携取消)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "確認Msg=JS confirm auto-accept=真機人工"
+   },
+   {
+    "event": "click OK",
+    "action": "wait",
+    "ms": 400
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SGL-7597207A": {
+  "screen": "ANA03",
+  "cases": [
+   "AY-100-08-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "登録データ=非浏览器=真機人工（mockは更新画面在位で代理）"
+   },
+   {
+    "event": "input 任意の項目(契約者名)",
+    "action": "fill",
+    "selector": "#insurant_name",
+    "value": "params.customerName"
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "#update"
+   },
+   {
+    "event": "ast 表示 申請・確認更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001"
+   },
+   {
+    "event": "ast 取消計上申請テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "更新日=非浏览器=真機人工"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "APログ時刻=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "DBログ時刻=非浏览器=真機人工"
+   },
+   {
+    "event": "ast TRログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act101to001",
+    "note": "TRログ時刻=非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SGL-A00738F4": {
+  "screen": "ANA04",
+  "cases": [
+   "AY-120-03-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA04.html"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "APログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "DBログ出力=非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBダンプ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act102to001",
+    "note": "DBダンプ更新=非浏览器=真機人工"
+   }
+  ]
+ }
+}

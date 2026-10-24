@@ -1,0 +1,22 @@
+{
+  "caseId": "AZ-120-03-001",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:17.278Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-4CB0EA5C",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-MENU-SEARCH-LIST.png",
+    "03_BLK-SGL-4CB0EA5C.png"
+  ]
+}

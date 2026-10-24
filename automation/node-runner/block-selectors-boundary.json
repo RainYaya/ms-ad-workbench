@@ -17,6 +17,11 @@
   ],
   "steps": [
    {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
+   {
     "event": "input UserID",
     "action": "fill",
     "selector": "input[name=UserID]",
@@ -49,6 +54,11 @@
   ],
   "steps": [
    {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
     "event": "ast 1時間待機",
     "action": "wait",
     "ms": 300,
@@ -71,6 +81,11 @@
    "AY-100-06-003"
   ],
   "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
    {
     "event": "input ダミーログイン",
     "action": "fill",
@@ -100,6 +115,11 @@
   ],
   "steps": [
    {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
+   {
     "event": "input ログイン",
     "action": "fill",
     "selector": "input[name=UserID]",
@@ -126,6 +146,11 @@
   ],
   "steps": [
    {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
     "event": "ast AYメニュー可視",
     "action": "assert",
     "assert": "visible",
@@ -142,6 +167,11 @@
    "AZ-150-12-002"
   ],
   "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
    {
     "event": "ast バッチ入口確認",
     "action": "assert",

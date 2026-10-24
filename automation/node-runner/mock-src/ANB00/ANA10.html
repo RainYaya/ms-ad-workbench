@@ -56,18 +56,53 @@ function popupCloseNo(indexNo) {
 	// 親画面チェック処理
 	windowOpenerClosedCheck();
 
-	var buttonName = '1';
+	// 呼出元項目名（URLパラメータ 1=ユーザID&1=課支社CD&1=検索モード&1=呼出元項目名）
+	var buttonName = 'req_applicant';
+	try {
+		var urlValues = new URLSearchParams(window.location.search).getAll('1');
+		if (urlValues.length >= 4) {
+			buttonName = urlValues[3];
+		}
+	} catch (e) {
+		buttonName = 'req_applicant';
+	}
 	var	form = document.tks_TKSPRForm;
-	var openerDoc = window.opener.document;
+	var openerDoc = (window.opener && !window.opener.closed) ? window.opener.document : null;
 
-	openerDoc.tks_TKSPRForm[buttonName + '_name'].value      = form['list[' + indexNo + '].user_name'].value;
-	openerDoc.getElementById(buttonName + '_name').innerText = form['list[' + indexNo + '].user_name'].value;
-	openerDoc.getElementById(buttonName + '_name').title     = form['list[' + indexNo + '].user_name'].value;
-	openerDoc.tks_TKSPRForm[buttonName + '_id'].value        = form['list[' + indexNo + '].user_id'].value;
-	openerDoc.tks_TKSPRForm[buttonName + '_sec_code'].value  = form['list[' + indexNo + '].section_code'].value;
+	if (openerDoc && openerDoc.tks_TKSPRForm) {
+		var openerForm = openerDoc.tks_TKSPRForm;
+		var setOpenerField = function(fieldName, value) {
+			var elm = openerForm.elements ? openerForm.elements[fieldName] : null;
+			if (elm && elm.value !== undefined) {
+				elm.value = value;
+			}
+		};
+		var userName = form['list[' + indexNo + '].user_name'].value;
 
-	if(buttonName == 'req_approver'){
-		openerDoc.tks_TKSPRForm.req_approver_check_sec_code1_5.value = form['list[' + indexNo + '].section_codes'].value;
+		setOpenerField(buttonName + '_name', userName);
+		setOpenerField(buttonName + '_id', form['list[' + indexNo + '].user_id'].value);
+		setOpenerField(buttonName + '_sec_code', form['list[' + indexNo + '].section_code'].value);
+
+		if(buttonName == 'req_approver'){
+			setOpenerField('req_approver_check_sec_code1_5', form['list[' + indexNo + '].section_codes'].value);
+		}
+
+		// 呼出元の氏名表示欄を更新
+		var labelElm = openerDoc.getElementById(buttonName + '_name');
+		if (labelElm) {
+			if (labelElm.tagName == 'INPUT') {
+				labelElm.value = userName;
+			} else {
+				labelElm.innerText = userName;
+				labelElm.title = userName;
+			}
+		}
+
+		// 呼出元画面の再表示ボタン（「1」）が存在する場合のみ押下
+		var returnButton = openerDoc.getElementById('1');
+		if (returnButton) {
+			returnButton.click();
+		}
 	}
 
 	window.close();
@@ -196,7 +231,7 @@ function custom_Submit(form) {
 						<tr class="row_odd">
 							<td class="gyoumu_field_value">
 								<div>
-									<a href="#">1</a>
+									<a href="javascript:void(0);" onclick="popupCloseNo(0)">1</a>
 								</div>
 							</td>
 							<td class="gyoumu_field_value">1</td>
@@ -216,6 +251,11 @@ function custom_Submit(form) {
 	</div>
 
 	<input type="hidden" id="hide_gyoumu_area_flag" name="hide_gyoumu_area_flag" />
+	<!--/* 検索結果行の値（popupCloseNo が呼出元へ設定する） */-->
+	<input type="hidden" name="list[0].user_name" value="部支店長" />
+	<input type="hidden" name="list[0].user_id" value="3028004586" />
+	<input type="hidden" name="list[0].section_code" value="ABM62" />
+	<input type="hidden" name="list[0].section_codes" value="ABM62" />
 
 	<!--/* ボタンエリア */-->
 	<div id="ButtonP" class="popup_button_area_10">

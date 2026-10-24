@@ -1,7 +1,7 @@
 {
   "caseId": "AY-100-04-001",
   "runner": "node",
-  "ts": "2026-10-24T12:43:33.231Z",
+  "ts": "2026-10-24T14:36:26.449Z",
   "status": "pass",
   "blocks": [
     {
@@ -9,6 +9,7 @@
       "status": "pass"
     }
   ],
+  "skipped": [],
   "shots": [
     "01_menu.png",
     "02_BLK-AZ-SYSERR-LOGIN.png"

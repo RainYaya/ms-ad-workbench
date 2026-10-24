@@ -3,15 +3,15 @@ input, select { height:20px; line-height:20px; }
 #main	{ width:900px; height:675px; left:0; right:0; margin:auto; }
 div.space	{ margin-top:2px; }
 div.space_higher { margin-top:4px; }
-/* ƒwƒbƒ_[ */
+/* ãƒ˜ãƒƒãƒ€ãƒ¼ */
 div.area_head	{ width:100%; height:62px;  }
 table.tbl_head_size	{ width:100%; height:100%;  }
 td.size_head_logo	{ width:144px;  }
 td.cell_head_title_font_size	{ font-size:15pt;  }
 td.size_head_sysinfo	{ font-size:9pt;width:220px;  }
-/* ƒGƒ‰[ƒƒbƒZ[ƒW */
+/* ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 div.block_msg_size	{ line-height:16px; height:16px;  }
-/* ˆê——‰æ–Ê-‹Æ–±ƒGƒŠƒA */
+/* ä¸€è¦§ç”»é¢-æ¥­å‹™ã‚¨ãƒªã‚¢ */
 div.area_gyoumu	{ width:900px; height:558px; }
 div.size_block_search	{ width:900px; height:124px;  }
 table.tbl_search_size	{ width:900px; height:100%;  }
@@ -74,7 +74,7 @@ input.size_checkbox { height:18px;width:12px; }
 td.size_status01{ width:70px; }
 td.size_status02{ width:70px; }
 td.size_status03{ width:130px; }
-/* ‰ñ“š‰æ–Ê */
+/* å›ç­”ç”»é¢ */
 td.size_btn_openclose { height:28px; }
 .btn_type_openclose	{ width:120px; height:28px; margin:0px; padding:0px; }
 .btn_type_othersys	{ width:202px; height:30px; margin:0px; padding:0px; }
@@ -99,7 +99,7 @@ div.block_answer_scroll_size_close	{ height:380px; }
 .size_width_value02	{ width:142px;  }
 .size_width_fieldId	{ width:264px;  }
 .size_height_btn	{ height:75px;  }
-/* Æ‰ï“à—e */
+/* ç…§ä¼šå†…å®¹ */
 .size_tableRecord_no	{ width:25px;  }
 .size_field_name	{ width:220px;  }
 .size_contents_name	{ width:620px;  }
@@ -122,7 +122,7 @@ td.size_upload_col05	{ width:320px; }
 td.size_upload_col06	{ width:44px;  }
 .size_file_text	{ width:252px; height:20px; }
 .size_file_button	{ width:64px; }
-/* ’ù³‰æ–Ê */
+/* è¨‚æ­£ç”»é¢ */
 #main_teisei	{ width:900px; height:654px; left:0; right:0; margin:auto; }
 div.block_popup_gyoumu_scrcoll_size   { width:900px; height:620px; }
 div.block_teisei_scroll_size   { width:100%; height:92px; }
@@ -148,7 +148,7 @@ input.size_radiobox { height:18px;width:12px; }
 img.title_logo{height:60px;width:142px;}
 
 /***********************************/
-/* ƒJƒXƒ^ƒ€ƒc[ƒ‹ƒ`ƒbƒv            */
+/* ã‚«ã‚¹ã‚¿ãƒ ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—            */
 /***********************************/
 
 .tooltip-content {

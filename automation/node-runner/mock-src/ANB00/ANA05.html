@@ -608,6 +608,63 @@ function submitLink101(value) {
     }
 }
 
+// 検索結果出力（押下時のメッセージボックス表示。送信はOK押下後に行う）
+function outputCsvGuard(button) {
+    clickButton(button);
+
+    var form = document.tks_TKSPRForm;
+    var downloadNumber = form.download_number.value;
+    var confirmArea = document.getElementById('download_confirm_area');
+    var resultArea = document.getElementById('download_result_area');
+    var okButton = document.getElementById('download_ok');
+    var formatLabel = form.format_check_2.checked ? '帳票（詳細版）' : '帳票（簡易版）';
+
+    resultArea.style.display = 'none';
+    resultArea.innerHTML = '';
+
+    if (downloadNumber != '' && downloadNumber.charAt(0).toUpperCase() != 'Z') {
+        // ダウンロード申請番号が不正（バリデーション例外）
+        confirmArea.className = 'message_area download_error';
+        confirmArea.innerHTML = '<div class="message_text">エラーメッセージ：バリデーション例外が発生しました。'
+            + '（ダウンロード申請番号 ' + downloadNumber + ' / MAYG200E001）</div>';
+    } else {
+        confirmArea.className = 'message_area download_confirm';
+        confirmArea.innerHTML = '<div class="message_text">MAYG200I001：' + formatLabel
+            + '（申請・確認情報ファイル AYR004.csv）を出力します。よろしいですか？</div>';
+    }
+
+    confirmArea.style.display = 'block';
+    okButton.style.display = 'inline-block';
+
+    // 画面内メッセージボックスのため送信は抑止する
+    return false;
+}
+
+// メッセージボックスの「OK」押下
+function outputCsvOk() {
+    var form = document.tks_TKSPRForm;
+    var downloadNumber = form.download_number.value;
+    var confirmArea = document.getElementById('download_confirm_area');
+    var resultArea = document.getElementById('download_result_area');
+    var okButton = document.getElementById('download_ok');
+
+    confirmArea.style.display = 'none';
+    okButton.style.display = 'none';
+
+    if (downloadNumber != '' && downloadNumber.charAt(0).toUpperCase() != 'Z') {
+        // バリデーション例外時はダウンロードしない
+        return false;
+    }
+
+    var formatLabel = form.format_check_2.checked ? '帳票（詳細版）' : '帳票（簡易版）';
+    resultArea.className = 'message_area download_result';
+    resultArea.innerHTML = '<div class="message_text">ダウンロードメッセージ：' + formatLabel
+        + ' 申請・確認情報ファイル（AYR004.csv）をダウンロードしました。DLログに出力しました。</div>';
+    resultArea.style.display = 'block';
+
+    return false;
+}
+
 </script>
 
 </head>
@@ -837,14 +894,18 @@ function submitLink101(value) {
       <input type="text" id="download_number" name="download_number" maxlength="10" />
     </div>
     <div>
-      1<!--
-   --><input type="radio" id="format_check_1" name="format_check" value="1" />1
-      <input type="radio" id="format_check_2" name="format_check" value="2" />1
+      <input type="radio" id="format_check_1" name="format_check" value="1" /><label for="format_check_1">簡易版</label>
+      <input type="radio" id="format_check_2" name="format_check" value="2" /><label for="format_check_2">詳細版</label>
     </div>
     <div>
-      <input type="submit" formaction="/ANA05/route30" id="outputCSV" name="outputCSV" value="検索結果出力" class="output_csv_button" onclick="clickButton(this);sdeDisableCheckSubmitOnce()">
+      <input type="submit" formaction="/ANA05/route30" id="outputCSV" name="outputCSV" value="検索結果出力" class="output_csv_button" onclick="return outputCsvGuard(this)">
     </div>
   </div>
+  <div class="message_area" id="download_confirm_area" style="display:none;"></div>
+  <div>
+    <input type="button" id="download_ok" name="download_ok" value="OK" class="button_area_button" style="display:none;" onclick="return outputCsvOk()" />
+  </div>
+  <div class="message_area" id="download_result_area" style="display:none;"></div>
   <div class="gyoumu_search_count">
     1/1ページ　検索結果1件
   </div>

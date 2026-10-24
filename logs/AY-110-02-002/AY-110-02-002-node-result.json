@@ -1,0 +1,27 @@
+{
+  "caseId": "AY-110-02-002",
+  "runner": "node",
+  "ts": "2026-10-24T14:36:55.038Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-SHR-8F1D192A",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-E2D0C359",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-58EA9045",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-SHR-8F1D192A.png",
+    "03_BLK-AUTO-E2D0C359.png",
+    "04_BLK-SGL-58EA9045.png"
+  ]
+}

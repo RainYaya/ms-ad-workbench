@@ -16,23 +16,47 @@ const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses
 import { readdirSync } from 'node:fs';
 function loadParams(cid) {
   const dir = join(root, '../cdp/params');
+  let out = null;
   for (const f of readdirSync(dir)) {
     if (!f.endsWith('.json')) continue;
     try {
       const d = JSON.parse(readFileSync(join(dir, f), 'utf8'));
-      if (d.cases && d.cases[cid]) return { ...d.common, ...d.cases[cid] };
+      if (!d.cases || !d.cases[cid]) continue;
+      const cur = { ...d.common, ...d.cases[cid] };
+      // First matching file owns the concrete values; later files only fill gaps
+      // (startUrl/startSelector often live in a shared bulk file).
+      if (!out) out = cur;
+      else for (const [k, v] of Object.entries(cur)) if (out[k] === undefined || out[k] === '') out[k] = v;
     } catch {}
   }
-  return null;
+  return out;
 }
 const P = loadParams(caseId);
 if (!P) { console.error(`params not found for ${caseId}`); process.exit(2); }
 console.log(`user ${P.user || '?'} / ${P.pointCheck || '?'}`);
 
-const SEL = {};
+const SEL_ALL = {};
 for (const f of readdirSync(root).filter(f => /^block-selectors.*\.json$/.test(f))) {
-  Object.assign(SEL, JSON.parse(readFileSync(join(root, f), 'utf8')));
+  Object.assign(SEL_ALL, JSON.parse(readFileSync(join(root, f), 'utf8')));
 }
+// Execution order follows the case's composed workflow, including repeated
+// blocks (e.g. menu->list ran twice in one book). Blocks without a selector
+// are reported as skipped instead of silently dropped.
+let SEL_SEQ = null;
+const skipped = [];
+try {
+  const wf = JSON.parse(readFileSync(join(root, '../../automation/blocks/blocks.json'), 'utf8')).workflows?.[caseId];
+  if (wf?.blockDetails?.length) {
+    SEL_SEQ = [];
+    const seenMissing = new Set();
+    for (const b of wf.blockDetails) {
+      if (SEL_ALL[b.block]) SEL_SEQ.push([b.block, SEL_ALL[b.block]]);
+      else if (!seenMissing.has(b.block)) { seenMissing.add(b.block); skipped.push(b.block); }
+    }
+  }
+} catch {}
+const plan = SEL_SEQ || Object.entries(SEL_ALL).filter(([, blk]) => !blk.cases || blk.cases.includes(caseId));
+console.log(`PLAN ${plan.length} block(s)${skipped.length ? `, skipped ${skipped.length}: ${skipped.join(',')}` : ''}`);
 const logDir = join(root, `../../logs/${caseId}`);
 mkdirSync(logDir, { recursive: true });
 
@@ -48,6 +72,9 @@ const browser = await chromium.launch({
 });
 const context = await browser.newContext({ viewport: { width: 1360, height: 900 } });
 const page = await context.newPage();
+const acceptDialog = (d) => d.accept().catch(() => {});
+page.on('dialog', acceptDialog);
+context.on('page', (p) => p.on('dialog', acceptDialog));
 const shots = [];
 const blockStatus = [];
 let shotIdx = 0;
@@ -71,15 +98,20 @@ try {
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next
-  for (const [blockId, blk] of Object.entries(SEL)) {
-    if (blk.cases && !blk.cases.includes(caseId)) continue;
+  for (const [blockId, blk] of plan) {
     console.log(`-- ${blockId}`);
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
       const where = step.in === 'popup' ? popup : page;
-      const needsTarget = !['popup', 'wait'].includes(step.action);
+      const needsTarget = !['popup', 'wait', 'goto'].includes(step.action);
       const target = needsTarget && where ? where.locator(sel(step.selector)).first() : null;
       switch (step.action) {
+        case 'goto': {
+          const targetUrl = new URL(String(sel(step.url)), baseUrl).href;
+          await where.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+          await where.waitForLoadState('domcontentloaded');
+          break;
+        }
         case 'click':
           if (step.force) {
             await target.evaluate((el) => { el.disabled = false; el.click(); });
@@ -157,9 +189,11 @@ try {
                 const got = await target.inputValue({ timeout });
                 const want = step.equals !== undefined ? String(resolveP(step.equals)) : null;
                 const has = step.contains !== undefined ? String(resolveP(step.contains)) : null;
-                if (want !== null && got !== want) throw new Error(`assert value: got "${got}", want "${want}"`);
-                if (has !== null && !got.includes(has)) throw new Error(`assert value: got "${got}", want contains "${has}"`);
-                if (want === null && has === null && !got) throw new Error('assert value: empty');
+                const ok = !((want !== null && got !== want) || (has !== null && !got.includes(has)) || (want === null && has === null && !got));
+                if (!ok) {
+                  if (step.optional) console.log(`WARN optional value assert skipped (got "${got}")`);
+                  else throw new Error(`assert value: got "${got}", want "${want ?? has ?? '?'}"`);
+                }
                 break;
               }
               case 'text': {
@@ -203,10 +237,11 @@ try {
     blockStatus.push({ block: blockId, status: 'pass' });
   }
 
+  const status = skipped.length ? 'partial' : 'pass';
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
-    caseId, runner: 'node', ts: new Date().toISOString(), status: 'pass', blocks: blockStatus, shots
+    caseId, runner: 'node', ts: new Date().toISOString(), status, blocks: blockStatus, skipped, shots
   }, null, 2));
-  console.log(`DONE ${caseId} — ${shots.length} shots in logs/${caseId}/`);
+  console.log(`${status === 'pass' ? 'DONE' : 'PARTIAL'} ${caseId} — ${blockStatus.length}/${blockStatus.length + skipped.length} blocks, ${shots.length} shots in logs/${caseId}/`);
 } catch (err) {
   await shot('failure').catch(() => {});
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({

@@ -1071,6 +1071,11 @@ function popupAZG905() {
 }
 
 // CLボタン押下
+// mock 補完: server-rendered の CL ボタン用（実機は clearImperfectInfo と同等の行クリア）
+function imperfectClear(button) {
+    clickButton(button);
+}
+
 function clearImperfectInfo(button) {
     clickButton(button);
     var     form    = document.mhk_MHKPRForm;
@@ -1667,7 +1672,7 @@ function openCameraApp() {
     <div class="gyoumu_field_title">種目</div>
     <div class="gyoumu_field_value_left">
       <input type="hidden" id="selected_large_item_code" name="large_item_code" />
-      <select name="large_item_list.selected" class="gyoumu_field_control" disabled="true" tabindex="4"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+      <select name="large_item_list.selected" class="gyoumu_field_control" disabled="true" tabindex="4"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option><option value="5">自動車</option><option value="7">自動車(7)</option><option value="9">その他(9)</option></select>
     </div>
     <div class="gyoumu_field_title">保険種類</div>
     <div class="gyoumu_field_value_left">
@@ -1864,7 +1869,7 @@ function openCameraApp() {
   <div class="item">
     <div class="gyoumu_field_title">依頼区分</div>
     <div class="gyoumu_field_value_left">
-      <fieldset id="agent_deal_flag_td" disabled="true"><!--
+      <fieldset id="agent_deal_flag_td"><!--
       --><input type="radio" id="agent_deal_flag_1" name="agent_deal_flag_radio" value="1" onclick="onClickAgentDealFlag()" tabindex="28" /><!--
       --><label>照会</label><!--
       --><input type="radio" id="agent_deal_flag_2" name="agent_deal_flag_radio" value="2" onclick="onClickAgentDealFlag()" tabindex="29" /><!--
@@ -1946,10 +1951,9 @@ function openCameraApp() {
               onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();">
               1</td>
             <td class="sticky_table_value select_agent_inquiry_flag">
-              <select onchange="setAgentInquiryFlag(this);">
-                
-                  <option>1</option>
-                
+              <select name="list[0].agent_inquiry_flag.selected" onchange="setAgentInquiryFlag(this);">
+                <option value="1">要</option>
+                <option value="0">否</option>
               </select>
             </td>
             <td class="sticky_table_value">
@@ -1963,9 +1967,11 @@ function openCameraApp() {
           <tr class="div2_table_row2">
             <td class="sticky_table_title txt_aln_c" colspan="3">回答内容</td>
             <td class="sticky_table_value" colspan="7">
-              <select class="gyoumu_field_control" onchange="setAnswerContents(this);">
+              <select name="list[0].answer_contents.selected" class="gyoumu_field_control" onchange="setAnswerContents(this);">
               
-                <option>1</option>
+                <option value="0">0：その他</option>
+                <option value="10000">10000：リストから</option>
+                <option value="1">1：回答</option>
               
               </select>
             </td>
@@ -2154,8 +2160,8 @@ function openCameraApp() {
       onclick="clickButton(this)" value="更新" formaction="/AMA04/aZG101Update">
   </div>
   <div class="button_width_60">
-    <input type="submit" class="button_area_button visibility_hidden" id="print" name="print"
-      onclick="clickButton(this)" value="印刷" formaction="/AMA04/aZG101Print">
+    <input type="button" class="button_area_button visibility_hidden" id="print" name="print"
+      onclick="clickButton(this);popupAZG901();" value="印刷">
   </div>
   <div class="button_width_60">
     <input type="submit" class="button_area_button visibility_hidden" id="updateAnswer" name="updateAnswer"
@@ -2193,6 +2199,128 @@ function openCameraApp() {
 
 
 <!-- mock: server-rendered list rows (0..19) -->
+<!-- mock: tableRecordList display-state fields read by AMA04 js (0..19) -->
+<input type="hidden" name="tableRecordList[0].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[0].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[0].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[0].answer_message" value="">
+<input type="hidden" name="tableRecordList[0].answer_contents" value="">
+<input type="hidden" name="tableRecordList[0].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[1].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[1].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[1].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[1].answer_message" value="">
+<input type="hidden" name="tableRecordList[1].answer_contents" value="">
+<input type="hidden" name="tableRecordList[1].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[2].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[2].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[2].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[2].answer_message" value="">
+<input type="hidden" name="tableRecordList[2].answer_contents" value="">
+<input type="hidden" name="tableRecordList[2].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[3].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[3].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[3].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[3].answer_message" value="">
+<input type="hidden" name="tableRecordList[3].answer_contents" value="">
+<input type="hidden" name="tableRecordList[3].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[4].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[4].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[4].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[4].answer_message" value="">
+<input type="hidden" name="tableRecordList[4].answer_contents" value="">
+<input type="hidden" name="tableRecordList[4].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[5].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[5].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[5].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[5].answer_message" value="">
+<input type="hidden" name="tableRecordList[5].answer_contents" value="">
+<input type="hidden" name="tableRecordList[5].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[6].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[6].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[6].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[6].answer_message" value="">
+<input type="hidden" name="tableRecordList[6].answer_contents" value="">
+<input type="hidden" name="tableRecordList[6].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[7].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[7].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[7].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[7].answer_message" value="">
+<input type="hidden" name="tableRecordList[7].answer_contents" value="">
+<input type="hidden" name="tableRecordList[7].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[8].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[8].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[8].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[8].answer_message" value="">
+<input type="hidden" name="tableRecordList[8].answer_contents" value="">
+<input type="hidden" name="tableRecordList[8].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[9].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[9].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[9].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[9].answer_message" value="">
+<input type="hidden" name="tableRecordList[9].answer_contents" value="">
+<input type="hidden" name="tableRecordList[9].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[10].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[10].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[10].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[10].answer_message" value="">
+<input type="hidden" name="tableRecordList[10].answer_contents" value="">
+<input type="hidden" name="tableRecordList[10].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[11].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[11].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[11].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[11].answer_message" value="">
+<input type="hidden" name="tableRecordList[11].answer_contents" value="">
+<input type="hidden" name="tableRecordList[11].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[12].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[12].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[12].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[12].answer_message" value="">
+<input type="hidden" name="tableRecordList[12].answer_contents" value="">
+<input type="hidden" name="tableRecordList[12].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[13].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[13].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[13].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[13].answer_message" value="">
+<input type="hidden" name="tableRecordList[13].answer_contents" value="">
+<input type="hidden" name="tableRecordList[13].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[14].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[14].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[14].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[14].answer_message" value="">
+<input type="hidden" name="tableRecordList[14].answer_contents" value="">
+<input type="hidden" name="tableRecordList[14].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[15].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[15].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[15].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[15].answer_message" value="">
+<input type="hidden" name="tableRecordList[15].answer_contents" value="">
+<input type="hidden" name="tableRecordList[15].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[16].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[16].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[16].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[16].answer_message" value="">
+<input type="hidden" name="tableRecordList[16].answer_contents" value="">
+<input type="hidden" name="tableRecordList[16].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[17].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[17].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[17].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[17].answer_message" value="">
+<input type="hidden" name="tableRecordList[17].answer_contents" value="">
+<input type="hidden" name="tableRecordList[17].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[18].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[18].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[18].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[18].answer_message" value="">
+<input type="hidden" name="tableRecordList[18].answer_contents" value="">
+<input type="hidden" name="tableRecordList[18].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[19].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[19].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[19].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[19].answer_message" value="">
+<input type="hidden" name="tableRecordList[19].answer_contents" value="">
+<input type="hidden" name="tableRecordList[19].inquiry_contents_name" value="1">
+
 <input type="hidden" name="list[0].answer_message">
 <input type="hidden" name="list[0].dd" value="1">
 <input type="hidden" name="list[0].disabled_flag" value="0">

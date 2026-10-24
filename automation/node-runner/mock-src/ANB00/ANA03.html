@@ -692,7 +692,8 @@ function controlComplianceNumber() {
 
 // 承認後・不承認後の対応エリアの活性／非活性制御
 function controlActionRegistArea(flag) {
-  document.tks_TKSPRForm.disapprove_correspond.readOnly = !flag;
+  // mock: 申請ステータスを持たないため、対応登録内容は常に入力可とする
+  document.tks_TKSPRForm.disapprove_correspond.readOnly = false;
   document.tks_TKSPRForm.actionRegist.disabled = !flag;
   if (flag) {
     document.tks_TKSPRForm.disapprove_correspond.style.color = '#000000';
@@ -838,6 +839,58 @@ function custom_bodyLoad() {
   if (mailsendResultMessage != '') {
     alert(mailsendResultMessage);
   }
+
+  // mock: サーバが描画する申請情報の代わりに検証用の初期値を設定する
+  mockPrefill(form);
+}
+
+// mock: 実機ではサーバ側で設定される項目値を画面ロード時に補完する
+// （フラット化したmockでは空のため、申請依頼/承認依頼の入力チェックが通らない）
+function mockPrefill(form) {
+  var setVal = function (name, value) {
+    var elm = form.elements[name];
+    if (elm) { elm.value = value; }
+  };
+
+  setVal('section_code', 'ABM62');
+  setVal('agent_code', '252H');
+  setVal('policy_number', 'AZ11001');
+  setVal('insurant_name', '黒川　京子');
+  setVal('cancel_application_date', '2026/10/30');
+  setVal('start_date', '2026/11/01');
+  setVal('notification_date', '2026/10/30');
+  setVal('concrete_explanation', 'モック初期値');
+
+  var largeItem = form.elements['large_item_list.selected'];
+  if (largeItem) { largeItem.value = 'B'; }
+
+  // 異例取扱理由・具体的内容はJSで選択肢を組み立てるためロード後に設定する
+  var fillSelectFromArray = function (name, values) {
+    var sel = form.elements[name];
+    if (!sel || sel.options.length > 1) { return; }
+    for (var i = 1; i < values.length; i++) {
+      var opt = document.createElement('option');
+      opt.value = values[i];
+      opt.text = values[i];
+      sel.appendChild(opt);
+    }
+    if (sel.options.length > 1) { sel.value = values[1]; }
+  };
+  fillSelectFromArray('cancel_reason_list.selected', cancelReasons);
+  fillSelectFromArray('concrete_content_list.selected', concreteContents);
+
+  var needlessRadio = document.getElementById('agent_invitation_status_2');
+  if (needlessRadio) { needlessRadio.checked = true; }
+
+  // 承認パターン(課支社長/部支店長)で必須となる依頼先・代行者
+  setVal('req_applicant_id', '3028004586');
+  setVal('req_applicant_sec_code', 'ABM62');
+  setVal('req_approver_id', '3028004586');
+  setVal('req_approver_sec_code', 'ABM62');
+  setVal('act_applicant_id', '3028004585');
+  setVal('act_applicant_sec_code', 'ABM62');
+  setVal('act_approver_id', '3028004585');
+  setVal('act_approver_sec_code', 'ABM62');
 }
 
 // 入力エリア初期表示制御

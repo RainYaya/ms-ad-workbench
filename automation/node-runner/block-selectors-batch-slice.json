@@ -1,0 +1,617 @@
+{
+ "BLK-SHR-5F5035B5": {
+  "screen": "申込書品質管理メニュー(AMA01)",
+  "cases": [
+   "AZ-230-01-011",
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-014",
+   "AZ-230-01-015",
+   "AZ-230-01-016",
+   "AZ-230-01-017",
+   "AZ-230-01-018",
+   "AZ-230-01-019",
+   "AZ-230-01-020",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-043",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-050",
+   "AZ-230-01-071",
+   "AZ-230-01-072",
+   "AZ-230-01-073",
+   "AZ-230-01-074",
+   "AZ-230-01-075",
+   "AZ-230-01-076",
+   "AZ-230-01-077",
+   "AZ-230-01-078",
+   "AZ-230-01-079",
+   "AZ-230-01-080",
+   "AZ-230-01-101",
+   "AZ-230-01-102",
+   "AZ-230-01-103",
+   "AZ-230-01-104",
+   "AZ-230-01-105",
+   "AZ-230-01-106",
+   "AZ-230-01-107",
+   "AZ-230-01-108",
+   "AZ-230-01-109",
+   "AZ-230-01-110",
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-139",
+   "AZ-230-01-140",
+   "AZ-230-01-151",
+   "AZ-230-01-152",
+   "AZ-230-01-153",
+   "AZ-230-01-154",
+   "AZ-230-01-155",
+   "AZ-230-01-156",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "ast 前提行(1回目/18:00-19:00送信前打鍵)確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100",
+    "note": "手順前提行=非浏览器=真機人工（mockはメニュー画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-AUTO-3477BB6F": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-230-01-011",
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-014",
+   "AZ-230-01-015",
+   "AZ-230-01-016",
+   "AZ-230-01-017",
+   "AZ-230-01-018",
+   "AZ-230-01-019",
+   "AZ-230-01-020",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-043",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-050",
+   "AZ-230-01-071",
+   "AZ-230-01-072",
+   "AZ-230-01-073",
+   "AZ-230-01-074",
+   "AZ-230-01-075",
+   "AZ-230-01-076",
+   "AZ-230-01-077",
+   "AZ-230-01-078",
+   "AZ-230-01-079",
+   "AZ-230-01-080"
+  ],
+  "steps": [
+   {
+    "event": "ast JP1バッチ実行＋ToDo連携テーブル/APログ/FAZZ000A011確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋ToDo連携テーブル(TODO連携区分1:送信済)/APログ(AP_AZB022.log)/FAZZ000A011追記=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-AUTO-C8903BF5": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-230-01-101",
+   "AZ-230-01-102",
+   "AZ-230-01-103",
+   "AZ-230-01-104",
+   "AZ-230-01-105",
+   "AZ-230-01-106",
+   "AZ-230-01-107",
+   "AZ-230-01-108",
+   "AZ-230-01-109",
+   "AZ-230-01-110",
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-139",
+   "AZ-230-01-140",
+   "AZ-230-01-151",
+   "AZ-230-01-152",
+   "AZ-230-01-153",
+   "AZ-230-01-154",
+   "AZ-230-01-155",
+   "AZ-230-01-156",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "ast JP1バッチ実行＋ToDo連携テーブル/APログ/FAZZ000A011A確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋ToDo連携テーブル(レコード無し)/APログ(AP_AZB022A.log)/FAZZ000A011A追記なし=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-D6459D48": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-230-01-015",
+   "AZ-230-01-016",
+   "AZ-230-01-017",
+   "AZ-230-01-018",
+   "AZ-230-01-020",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-043",
+   "AZ-230-01-044",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-050",
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-151"
+  ],
+  "steps": [
+   {
+    "event": "ast JP1バッチ実行＋ToDo連携テーブル/APログ/FAZZ000A011確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋ToDo連携テーブル(レコード無し)/APログ(AP_AZB022.log)/FAZZ000A011追記なし=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-AZ-BATCH-RUN-VERIFY": {
+  "screen": "BATCH(集計バッチ)",
+  "cases": [
+   "AY-100-08-005",
+   "AZ-150-04-002",
+   "AZ-150-05-001",
+   "AZ-150-06-001",
+   "AZ-150-07-001",
+   "AZ-150-08-001",
+   "AZ-150-10-004",
+   "AZ-200-07-005",
+   "AZ-200-07-006"
+  ],
+  "steps": [
+   {
+    "event": "ast バッチ実行＋操作結果/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行/操作結果/APログ(エラー件数0件)=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-AUTO-8C0E3438": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-139"
+  ],
+  "steps": [
+   {
+    "event": "ast JP1バッチ実行＋ToDo連携テーブル/APログ/FAZZ000A011A確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行×3＋ToDo連携テーブル(1:送信済)/APログ(AP_AZB022A.log)/FAZZ000A011A追記=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-F1E0B9E5": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-050"
+  ],
+  "steps": [
+   {
+    "event": "ast JP1バッチ実行＋ToDo連携テーブル確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋ToDo連携テーブル(レコード無し)=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-AZ-BATCH-VERIFY": {
+  "screen": "BATCH(不備項目集計)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 不備項目集計バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "不備項目集計バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-C649ACE4": {
+  "screen": "BATCH(不備内容集計)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 不備内容集計バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "不備内容集計バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-5CEC3483": {
+  "screen": "BATCH(登録件数集計)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 登録件数集計バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "登録件数集計バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-2EEC5A3D": {
+  "screen": "BATCH(フリーコード集計)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast フリーコード集計バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "フリーコード集計バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-121DF781": {
+  "screen": "BATCH(募集人情報引込)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 募集人情報引込バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "募集人情報引込バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SHR-305661D1": {
+  "screen": "BATCH(募集人集計)",
+  "cases": [
+   "AZ-150-07-001",
+   "AZ-150-08-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 募集人集計バッチ実行＋テーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "募集人集計バッチ実行＋集計テーブル反映/APログ件数=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-4EB596EB": {
+  "screen": "BATCH(ユーザIDマスタ取込)",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "ast ユーザIDマスタ取込＋ユーザIDマスタテーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "ユーザIDマスタ取込＋ユーザIDマスタテーブル反映/APログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-ECBA7661": {
+  "screen": "BATCH(照会内容マスタ取込)",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "ast 照会内容マスタ取込＋照会内容マスタテーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "照会内容マスタ取込＋照会内容マスタテーブル反映/APログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-E3AD1DD9": {
+  "screen": "BATCH(項目テーブル取込)",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "ast 項目テーブル取込＋項目マスタテーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "項目テーブル取込＋項目マスタテーブル反映/APログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-6BEAE496": {
+  "screen": "BATCH(回答内容マスタ取込)",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "ast 回答内容マスタ取込＋回答内容マスタテーブル/APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "回答内容マスタ取込＋回答内容マスタテーブル反映/APログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-75D5F75B": {
+  "screen": "BATCH(親子集計)",
+  "cases": [
+   "AZ-150-05-001"
+  ],
+  "steps": [
+   {
+    "event": "ast 親子集計バッチ実行＋APログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "親子集計バッチ実行＋APログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-B84FFF40": {
+  "screen": "BATCH(閲覧システム連携ファイル作成)",
+  "cases": [
+   "AZ-150-10-004"
+  ],
+  "steps": [
+   {
+    "event": "ast バッチ実行＋APログ/連携ファイル/事後作業/操作結果確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋APログ/閲覧システム連携ファイル/事後作業/操作結果=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-0EF7DA98": {
+  "screen": "BATCH(ToDo連携データ作成)",
+  "cases": [
+   "AZ-200-07-005"
+  ],
+  "steps": [
+   {
+    "event": "ast バッチ実行＋ToDo連携テーブル/APログ/DBログ/FAZZ000A011確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋ToDo連携テーブル/APログ/DBログ/FAZZ000A011=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-B69EF548": {
+  "screen": "BATCH(大樹生命連携データ作成)",
+  "cases": [
+   "AZ-200-07-006"
+  ],
+  "steps": [
+   {
+    "event": "ast バッチ実行＋連携データファイル/APログ/DBログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, form#mhk_MHKPRForm",
+    "note": "バッチ実行＋大樹生命連携データファイル/APログ/DBログ=非浏览器=真機人工（mockは画面在位で代理）"
+   }
+  ]
+ },
+ "BLK-SGL-F54CCD41": {
+  "screen": "申込書品質管理メニュー(AMA01)→親子集計予約(AMA06)→[親子集計状況確認(AMA11)はmock自動再読込で不可]",
+  "cases": [
+   "AZ-150-06-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "ast 親子集計バッチAPログ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to103",
+    "note": "親子集計バッチAPログ=非浏览器=真機人工（mockは親子集計ボタン在位で代理）"
+   },
+   {
+    "event": "click 親子集計",
+    "action": "click",
+    "selector": "#act001to103"
+   },
+   {
+    "event": "ast 遷移 親子集計予約",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act103to204"
+   },
+   {
+    "event": "ast 状況確認/予約番号検索",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act103to204",
+    "note": "状況確認押下後の親子集計状況確認(AMA11)は mock の locationReloadIntervals が空で自動再読込ループになり自動化不可＝非浏览器=真機人工；mock修正は他slice所有"
+   }
+  ]
+ },
+ "BLK-SGL-C651052A": {
+  "screen": "代理店 不備一覧(AMC22)→代理店 不備内容入力画面(更新)(AMC23)",
+  "cases": [
+   "AZ-230-01-019"
+  ],
+  "steps": [
+   {
+    "event": "ast ToDo連携バッチ実行＋確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "form#mhk_MHKPRForm",
+    "note": "ToDo連携データ作成バッチ実行/確認=非浏览器=真機人工（mockは画面在位で代理）"
+   },
+   {
+    "event": "goto 代理店 不備一覧",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "input 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-9EBB1470": {
+  "screen": "不備一覧(AMA07)→不備内容入力画面-更新(AMA04)",
+  "cases": [
+   "AZ-230-01-045"
+  ],
+  "steps": [
+   {
+    "event": "ast ToDo連携バッチ実行＋確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "form#mhk_MHKPRForm",
+    "note": "ToDo連携データ作成バッチ実行/確認=非浏览器=真機人工（mockは画面在位で代理）"
+   },
+   {
+    "event": "goto 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 部店課支社",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#gyoumu_list a"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#update"
+   }
+  ]
+ }
+}

@@ -1,60 +1,60 @@
-// ‰æ–Êƒ[ƒhŠ®—¹ƒtƒ‰ƒO‚ğfalse‚Å‰Šú‰»
+// ç”»é¢ãƒ­ãƒ¼ãƒ‰å®Œäº†ãƒ•ãƒ©ã‚°ã‚’falseã§åˆæœŸåŒ–
 var loadComplete = false;
-// ‰æ–Êƒ[ƒh’†‚ÉƒTƒuƒ~ƒbƒg‚ªŒÄ‚Ño‚³‚ê‚½ê‡‚ÌƒƒbƒZ[ƒW
-var LOADING_SUBMIT_ERROR_MESSAGE = "‰æ–Ê•\¦’†‚Ì‚½‚ßAÀs‚Å‚«‚Ü‚¹‚ñB\n‰æ–Ê•\¦Š®—¹ŒãAÄ“xÀs‚µ‚Ä‚­‚¾‚³‚¢B";
-// USERAGENT‚ğ•Û
+// ç”»é¢ãƒ­ãƒ¼ãƒ‰ä¸­ã«ã‚µãƒ–ãƒŸãƒƒãƒˆãŒå‘¼ã³å‡ºã•ã‚ŒãŸå ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+var LOADING_SUBMIT_ERROR_MESSAGE = "ç”»é¢è¡¨ç¤ºä¸­ã®ãŸã‚ã€å®Ÿè¡Œã§ãã¾ã›ã‚“ã€‚\nç”»é¢è¡¨ç¤ºå®Œäº†å¾Œã€å†åº¦å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚";
+// USERAGENTã‚’ä¿æŒ
 var USER_AGENT = navigator.userAgent;
-// “ü—Í§ŒÀ‘ÎÛ‹L†‚ğ¦‚·³‹K•\Œ»
+// å…¥åŠ›åˆ¶é™å¯¾è±¡è¨˜å·ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	PROHIBITION_CHAR_PATTERN = new RegExp(".*[%\\\"\\\'\\\\,]+.*", "m");
-// ”šˆÈŠO‚ğ¦‚·³‹K•\Œ»
+// æ•°å­—ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	NO_NUMERIC_PATTERN = new RegExp("[^0-9]+", "g");
-// ‰p”šˆÈŠO‚ğ¦‚·³‹K•\Œ»
+// è‹±æ•°å­—ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	NO_ALPHA_NUMERIC_PATTERN = new RegExp("[^0-9a-zA-Z]+", "g");
-// ‰p”šˆÈŠO‚ğ¦‚·³‹K•\Œ»(‰pš‚Í‘å•¶š‚Ì‚İ)
+// è‹±æ•°å­—ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾(è‹±å­—ã¯å¤§æ–‡å­—ã®ã¿)
 var	NO_UPPER_ALPHA_NUMERIC_PATTERN = new RegExp("[^0-9A-Z]+", "g");
-// ‰pšˆÈŠO‚ğ¦‚·³‹K•\Œ»
+// è‹±å­—ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	NO_ALPHA_PATTERN = new RegExp("[^a-zA-Z]+", "g");
-// ‰p”ƒJƒiˆÈŠO‚ğ¦‚·³‹K•\Œ»
-var NO_ALPHA_NUMERIC_KANA_PATTERN = new RegExp("[^0-9a-zA-Z¦-ß]+", "g");
-// Æ‰ï“à—eƒR[ƒh“ü—Í‰Â”\•¶šˆÈŠO‚ğ¦‚·³‹K•\Œ»(u*‚à‚µ‚­‚Í‰p”švˆÈŠO)
+// è‹±æ•°ã‚«ãƒŠä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
+var NO_ALPHA_NUMERIC_KANA_PATTERN = new RegExp("[^0-9a-zA-Zï½¦-ï¾Ÿ]+", "g");
+// ç…§ä¼šå†…å®¹ã‚³ãƒ¼ãƒ‰å…¥åŠ›å¯èƒ½æ–‡å­—ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾(ã€Œ*ã‚‚ã—ãã¯è‹±æ•°å­—ã€ä»¥å¤–)
 var	INQUIRY_CONTENTS_CODE_PATTERN = new RegExp("(^[*]$)|(^[a-zA-Z0-9]*)$", "g");
 
-// ƒjƒbƒZƒCe‘ã—“X‚Ì‰ÛxĞƒR[ƒhA‘ã—“XƒR[ƒh
+// ãƒ‹ãƒƒã‚»ã‚¤è¦ªä»£ç†åº—ã®èª²æ”¯ç¤¾ã‚³ãƒ¼ãƒ‰ã€ä»£ç†åº—ã‚³ãƒ¼ãƒ‰
 var NISSEI_PARENT_SECTION_CODE = "EED60";
 var NISSEI_PARENT_AGENT_CODE = "NS00";
 
-// Z¶ƒ†[ƒU‚Å‚È‚¢ê‡
+// ä½ç”Ÿãƒ¦ãƒ¼ã‚¶ã§ãªã„å ´åˆ
 var NOT_SUMISEI_USER = "notSumiseiUser";
 
-// ”šAƒXƒ‰ƒbƒVƒ…ˆÈŠO‚ğ¦‚·³‹K•\Œ»
+// æ•°å­—ã€ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	NO_NUMERIC_SLASH_PATTERN = new RegExp("[^0-9/]+", "g");
-// ”šAƒnƒCƒtƒ“ˆÈŠO‚ğ¦‚·³‹K•\Œ»
+// æ•°å­—ã€ãƒã‚¤ãƒ•ãƒ³ä»¥å¤–ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
 var	NO_NUMERIC_HYPHEN_PATTERN = new RegExp("[^0-9\-]+", "g");
 
-// ƒNƒŠƒbƒN‚³‚ê‚½ƒ{ƒ^ƒ“–¼‚ğ•Û‚·‚é
+// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸãƒœã‚¿ãƒ³åã‚’ä¿æŒã™ã‚‹
 var		clickButtonName = '';
 
-// ¶ƒgƒŠƒ€—p³‹K•\Œ»
+// å·¦ãƒˆãƒªãƒ ç”¨æ­£è¦è¡¨ç¾
 var	LEFT_TRIM_PATTERN	= new RegExp("^[ ]*", "g");
 
-// ¶ƒgƒŠƒ€—p³‹K•\Œ»
+// å·¦ãƒˆãƒªãƒ ç”¨æ­£è¦è¡¨ç¾
 var	RIGHT_TRIM_PATTERN	= new RegExp("[ ]*$", "g");
 
-//”¼ŠpƒXƒy[ƒXƒgƒŠƒ€—p³‹K•\Œ»
+//åŠè§’ã‚¹ãƒšãƒ¼ã‚¹ãƒˆãƒªãƒ ç”¨æ­£è¦è¡¨ç¾
 var HANKAKU_SPACE_TRIM_PATTERN = new RegExp("[ ]", "g");
 
-//‘SŠp‰p”š‚ğ¦‚·³‹K•\Œ»
-var ZENKAKU_ALPHA_NUMERIC_PATTERN = new RegExp("[‚`-‚y‚-‚š‚O-‚X]","g");
-//‘SŠpƒXƒy[ƒX‚ğ¦‚·³‹K•\Œ»
-var ZENKAKU_SPACE_PATTERN = new RegExp("[@]","g");
+//å…¨è§’è‹±æ•°å­—ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
+var ZENKAKU_ALPHA_NUMERIC_PATTERN = new RegExp("[ï¼¡-ï¼ºï½-ï½šï¼-ï¼™]","g");
+//å…¨è§’ã‚¹ãƒšãƒ¼ã‚¹ã‚’ç¤ºã™æ­£è¦è¡¨ç¾
+var ZENKAKU_SPACE_PATTERN = new RegExp("[ã€€]","g");
 
 var submitStatus = false;
 var disableCheckSubmitStatus = false;
 
-// ƒTƒCƒYCSS‚ğƒ[ƒh‚·‚é
+// ã‚µã‚¤ã‚ºCSSã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 var displayResult = getMagnification(window.screen.width, window.screen.height);
 
-// ‰ğ‘œ“x‚É‚æ‚èA‰æ–Ê•\¦”{—¦‚ğ•Ô‹p‚·‚é
+// è§£åƒåº¦ã«ã‚ˆã‚Šã€ç”»é¢è¡¨ç¤ºå€ç‡ã‚’è¿”å´ã™ã‚‹
 function getMagnification(width, height) {
 
 	if (width >= 2736 && height >= 1824) {
@@ -93,42 +93,42 @@ function sdeDisableCheckSubmitOnce() {
     disableCheckSubmitStatus = true;
 }
 
-// ~ƒ{ƒ^ƒ“–³Œø‰»
+// Ã—ãƒœã‚¿ãƒ³ç„¡åŠ¹åŒ–
 function closeDisable() {
 	try {
 		//closeObject.On();
 	}
 	catch(e) {
-		// ~ƒ{ƒ^ƒ“–³Œø‰»ActiveX–¢ƒCƒ“ƒXƒg[ƒ‹
+		// Ã—ãƒœã‚¿ãƒ³ç„¡åŠ¹åŒ–ActiveXæœªã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ™‚
 		;
 	}
 }
 
-// ~ƒ{ƒ^ƒ“—LŒø‰»
+// Ã—ãƒœã‚¿ãƒ³æœ‰åŠ¹åŒ–
 function closeEnable() {
 	try {
 		//closeObject.Off();
 	}
 	catch(e) {
-		// ~ƒ{ƒ^ƒ“–³Œø‰»ActiveX–¢ƒCƒ“ƒXƒg[ƒ‹
+		// Ã—ãƒœã‚¿ãƒ³ç„¡åŠ¹åŒ–ActiveXæœªã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ™‚
 		;
 	}
 }
 
-// ˆ—’†‚É”ñ•\¦‚É‚·‚é‘ÎÛ‚Æ‚È‚éƒAƒ“ƒJ[‚Å‚ ‚é‚©”»’f‚ğs‚¤
+// å‡¦ç†ä¸­ã«éè¡¨ç¤ºã«ã™ã‚‹å¯¾è±¡ã¨ãªã‚‹ã‚¢ãƒ³ã‚«ãƒ¼ã§ã‚ã‚‹ã‹åˆ¤æ–­ã‚’è¡Œã†
 function isHideAnchor(element) {
-	// ©g‚ÌƒEƒCƒ“ƒhƒE‘JˆÚ‚·‚éƒAƒ“ƒJ[‚©‚Â
-	// ƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹ˆÈŠO‚Ìê‡
+	// è‡ªèº«ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é·ç§»ã™ã‚‹ã‚¢ãƒ³ã‚«ãƒ¼ã‹ã¤
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ä»¥å¤–ã®å ´åˆ
 	return (!element.target || element.target == '' || element.target == '_self');
 }
 
-// ˆ—’†‚É”ñ•\¦‚É‚·‚é‘ÎÛ‚Æ‚È‚éƒAƒ“ƒJ[‚Å‚ ‚é‚©”»’f‚ğs‚¤
+// å‡¦ç†ä¸­ã«éè¡¨ç¤ºã«ã™ã‚‹å¯¾è±¡ã¨ãªã‚‹ã‚¢ãƒ³ã‚«ãƒ¼ã§ã‚ã‚‹ã‹åˆ¤æ–­ã‚’è¡Œã†
 function isHideEventAnchor(element) {
-	// ©g‚ÌƒEƒCƒ“ƒhƒE‘JˆÚ‚·‚éƒAƒ“ƒJ[
+	// è‡ªèº«ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é·ç§»ã™ã‚‹ã‚¢ãƒ³ã‚«ãƒ¼
 	return isHideAnchor(element) && element.slot != 'download';
 }
 
-// ‰æ–Êã‚Ì‘S‚Ä‚ÌƒAƒ“ƒJ[‚Æƒ{ƒ^ƒ“‚ğ”ñ•\¦‚É‚·‚é
+// ç”»é¢ä¸Šã®å…¨ã¦ã®ã‚¢ãƒ³ã‚«ãƒ¼ã¨ãƒœã‚¿ãƒ³ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 function hideButtonAndAnchors(form) {
 	// hide submit buttons
 	var	element;
@@ -155,23 +155,23 @@ function clickAnchorEvent() {
 	hideButtonAndAnchors(document.forms[0]);
 }
 
-// ‹Æ–±‰æ–Êƒ[ƒh‚ÉŒÄ‚Ño‚·‹¤’Êˆ—
+// æ¥­å‹™ç”»é¢ãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã³å‡ºã™å…±é€šå‡¦ç†
 function commonBodyOnload() {
-	// ƒGƒ“ƒ^[ƒL[‰Ÿ‰º‚Ì“®ì‚ğ—}§
+	// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®å‹•ä½œã‚’æŠ‘åˆ¶
 	document.onkeypress = custom_KeyPress;
 
-	// XVƒL[‚ğ—}~
+	// æ›´æ–°ã‚­ãƒ¼ã‚’æŠ‘æ­¢
 	document.onkeydown = cancelReloadEvt;
 
-	// ƒNƒŠƒbƒNƒ{ƒ^ƒ“–¼‚ğ‰Šú‰»
+	// ã‚¯ãƒªãƒƒã‚¯ãƒœã‚¿ãƒ³åã‚’åˆæœŸåŒ–
 	clickButtonName = '';
-	// ~ƒ{ƒ^ƒ“‚ğ–³Œø‰»‚·‚é
+	// Ã—ãƒœã‚¿ãƒ³ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹
 	closeDisable();
 
 	var	ancs = document.getElementsByName('link_tag');
 	var element;
 	var i;
-	// ƒAƒ“ƒJ[‚ğ‘–¸
+	// ã‚¢ãƒ³ã‚«ãƒ¼ã‚’èµ°æŸ»
 	for (i = 0 ; i < ancs.length ; i++) {
 		element = ancs[i];
 
@@ -183,30 +183,30 @@ function commonBodyOnload() {
 			}
 		}
 	}
-	// ‰æ–Êƒ[ƒhŠ®—¹ƒtƒ‰ƒO‚ğtrue‚Éİ’è
+	// ç”»é¢ãƒ­ãƒ¼ãƒ‰å®Œäº†ãƒ•ãƒ©ã‚°ã‚’trueã«è¨­å®š
 	loadComplete = true;
 }
 
-// ƒ|ƒbƒvƒAƒbƒv‰æ–Êƒ[ƒh‚ÉŒÄ‚Ño‚·‹¤’Êˆ—
+// ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ç”»é¢ãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã³å‡ºã™å…±é€šå‡¦ç†
 function commonPopupBodyOnload() {
-	// ƒGƒ“ƒ^[ƒL[‰Ÿ‰º‚Ì“®ì‚ğ—}§
+	// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®å‹•ä½œã‚’æŠ‘åˆ¶
 	document.onkeypress = custom_KeyPress;
-	// ƒNƒŠƒbƒNƒ{ƒ^ƒ“–¼‚ğ‰Šú‰»
+	// ã‚¯ãƒªãƒƒã‚¯ãƒœã‚¿ãƒ³åã‚’åˆæœŸåŒ–
 	clickButtonName = '';
-	// ~ƒ{ƒ^ƒ“‚ğ–³Œø‰»‚·‚é
+	// Ã—ãƒœã‚¿ãƒ³ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹
 	closeDisable();
-	// ‰æ–Êƒ[ƒhŠ®—¹ƒtƒ‰ƒO‚ğtrue‚Éİ’è
+	// ç”»é¢ãƒ­ãƒ¼ãƒ‰å®Œäº†ãƒ•ãƒ©ã‚°ã‚’trueã«è¨­å®š
 	loadComplete = true;
 }
 
-// ƒ{ƒ^ƒ“ƒNƒŠƒbƒN‚ÉŒÄ‚Ño‚·ƒƒ\ƒbƒh
+// ãƒœã‚¿ãƒ³ã‚¯ãƒªãƒƒã‚¯æ™‚ã«å‘¼ã³å‡ºã™ãƒ¡ã‚½ãƒƒãƒ‰
 function clickButton(button) {
-	// ƒNƒŠƒbƒNƒ{ƒ^ƒ“–¼‚ğ•Û‚·‚é•Ï”‚É
-	// ƒ{ƒ^ƒ“ƒIƒuƒWƒFƒNƒg‚Ìname‘®«‚ğİ’è
+	// ã‚¯ãƒªãƒƒã‚¯ãƒœã‚¿ãƒ³åã‚’ä¿æŒã™ã‚‹å¤‰æ•°ã«
+	// ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®nameå±æ€§ã‚’è¨­å®š
 	clickButtonName = button.name;
 }
 
-// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒOƒ‚[ƒh‚Å‰æ–Ê‚ğ‹N“®‚·‚é
+// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ç”»é¢ã‚’èµ·å‹•ã™ã‚‹
 function showPopup(url, width, height) {
 
 	var result = window.showModalDialog(
@@ -222,7 +222,7 @@ function showPopup(url, width, height) {
 	return result;
 }
 
-//ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒOƒ‚[ƒh‚Å‰æ–Ê‚ğ‹N“®‚·‚éiƒIƒvƒVƒ‡ƒ“w’èj
+//ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ç”»é¢ã‚’èµ·å‹•ã™ã‚‹ï¼ˆã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šï¼‰
 function showPopupWithOption(url, option) {
 
 	var result = window.showModalDialog(url, "Modal", option);
@@ -230,7 +230,7 @@ function showPopupWithOption(url, option) {
 	return result;
 }
 
-//ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒOƒ‚[ƒh‚Å‰æ–Ê‚ğ‹N“®‚·‚éiƒIƒvƒVƒ‡ƒ“w’èj
+//ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ç”»é¢ã‚’èµ·å‹•ã™ã‚‹ï¼ˆã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šï¼‰
 function showPopupWithParam(url, param, option) {
 
 	var result = window.showModalDialog(url, param, option);
@@ -238,7 +238,7 @@ function showPopupWithParam(url, param, option) {
 	return result;
 }
 
-// ’[––ID‚ğƒŒƒWƒXƒgƒŠ‚©‚çæ“¾‚·‚é
+// ç«¯æœ«IDã‚’ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‹ã‚‰å–å¾—ã™ã‚‹
 function getMachineCode() {
 	var		ksisanNo = "";
 	try {
@@ -258,21 +258,21 @@ function getMachineCode() {
 	return ksisanNo;
 }
 
-// “ú•t€–ÚƒtƒH[ƒJƒXƒCƒ“‚Ìˆ—
+// æ—¥ä»˜é …ç›®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¤ãƒ³æ™‚ã®å‡¦ç†
 function dateFiledInput(field) {
 
-	// YYYY/MM/DDŒ`®‚Ì“ú•tƒtƒH[ƒ}ƒbƒg‚ª•s³‚Ìê‡Aˆ—‚ğs‚í‚È‚¢
+	// YYYY/MM/DDå½¢å¼ã®æ—¥ä»˜ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒä¸æ­£ã®å ´åˆã€å‡¦ç†ã‚’è¡Œã‚ãªã„
 	if (field.maxLength > 7) {
 		if (!checkFormatYMD(field.value.split('/'))) {
 			return;
 		}
 	}
 
-	// ”šˆÈŠO‚Ì•¶š‚ğíœ‚·‚é
+	// æ•°å­—ä»¥å¤–ã®æ–‡å­—ã‚’å‰Šé™¤ã™ã‚‹
 	field.value = field.value.replace(NO_NUMERIC_PATTERN, '');
 }
 
-// “ú•t€–ÚƒtƒH[ƒJƒXƒAƒEƒg‚Ìˆ—
+// æ—¥ä»˜é …ç›®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¢ã‚¦ãƒˆæ™‚ã®å‡¦ç†
 function dateFiledOutput(field, maxlength) {
 
 	if (maxlength > 6) {
@@ -283,28 +283,28 @@ function dateFiledOutput(field, maxlength) {
 		var dfStrArray = dfStr.split('/');
 
 		if (dfStrArray.length == 1) {
-			// ƒXƒ‰ƒbƒVƒ…‚ª‚È‚¢ê‡A“ú•t•ÒWˆ—‚Ö
+			// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ãŒãªã„å ´åˆã€æ—¥ä»˜ç·¨é›†å‡¦ç†ã¸
 
 		} else if (checkFormatYMD(dfStrArray)) {
-			// “ú•tƒtƒH[ƒ}ƒbƒg³í
+			// æ—¥ä»˜ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ­£å¸¸
 
 			if (dfStrArray[1].length == 1) {
-				// Œ‚ª1Œ…‚Ìê‡A‘O0ƒpƒfƒBƒ“ƒO
+				// æœˆãŒ1æ¡ã®å ´åˆã€å‰0ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 				dfStrArray[1] = '0' + dfStrArray[1];
 			}
 
 			if (dfStrArray[2].length == 1) {
-				// “ú‚ª1Œ…‚Ìê‡A‘O0ƒpƒfƒBƒ“ƒO
+				// æ—¥ãŒ1æ¡ã®å ´åˆã€å‰0ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 				dfStrArray[2] = '0' + dfStrArray[2];
 			}
 
-			// ƒXƒ‰ƒbƒVƒ…‚ğ‘}“ü‚µ‚½“ú•t‚ğƒtƒB[ƒ‹ƒh‚Éİ’è‚µAˆ—I—¹
+			// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ã‚’æŒ¿å…¥ã—ãŸæ—¥ä»˜ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è¨­å®šã—ã€å‡¦ç†çµ‚äº†
 			field.value = dfStrArray[0] + '/' + dfStrArray[1] + '/' + dfStrArray[2];
 
 			return;
 
 		} else {
-			// “ú•tƒtƒH[ƒ}ƒbƒgˆÙí‚Ìê‡Aˆ—I—¹
+			// æ—¥ä»˜ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆç•°å¸¸ã®å ´åˆã€å‡¦ç†çµ‚äº†
 			return;
 		}
 	}
@@ -324,7 +324,7 @@ function dateFiledOutput(field, maxlength) {
 	field.value = convStr;
 }
 
-// YYYY/MM/DDŒ`®‚ÌƒtƒH[ƒ}ƒbƒgƒ`ƒFƒbƒN
+// YYYY/MM/DDå½¢å¼ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 function checkFormatYMD(trgArray) {
 
 	if (trgArray.length != 3
@@ -334,26 +334,26 @@ function checkFormatYMD(trgArray) {
 		|| trgArray[2].length < 1
 		|| trgArray[2].length > 2) {
 
-		// “ú•tƒtƒH[ƒ}ƒbƒg•s³
+		// æ—¥ä»˜ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆä¸æ­£
 		return false;
 	} else {
 		return true;
 	}
 }
 
-// –¾×”Ô†ƒtƒH[ƒJƒXƒAƒEƒg‚Ìˆ—
+// æ˜ç´°ç•ªå·ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¢ã‚¦ãƒˆæ™‚ã®å‡¦ç†
 function subPolicyNumberOutput(field) {
 	var	convStr = field.value;
 	//convStr = convStr.replace(NO_ALPHA_NUMERIC_PATTERN, '');
 
-	// •¶š“ü—Í‚Å‚©‚Â10•¶š–¢–‚Ìê‡
+	// æ–‡å­—å…¥åŠ›æ™‚ã§ã‹ã¤10æ–‡å­—æœªæº€ã®å ´åˆ
 	if ( convStr != null && 0 < convStr.length && convStr.length < 10 ) {
 		convStr = "0000000000".substr(0, 10 - convStr.length) + convStr;
 	}
 	field.value = convStr;
 }
 
-// ƒoƒŠƒf[ƒVƒ‡ƒ“ƒ`ƒFƒbƒN‚ÌƒƒbƒZ[ƒW•\¦
+// ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 function showValidateMessage(form, field, message) {
 	var	focusField;
 	if (field.type == 'hidden') {
@@ -369,17 +369,17 @@ function showValidateMessage(form, field, message) {
 	focusField.focus();
 }
 
-// ³‹K•\Œ»ƒ`ƒFƒbƒN
+// æ­£è¦è¡¨ç¾ãƒã‚§ãƒƒã‚¯
 function isRegExp(form, field, regex, not, message) {
 	if ( !isEmptyField(field) ) {
-		// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+		// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 		var		value = field.value;
 
 		var		matchFlag = value.match(regex) != null;
 		if ( not ) {
 			matchFlag = !matchFlag;
 		}
-		// ğŒ‚Éˆê’v‚µ‚È‚©‚Á‚½‚çƒGƒ‰[ƒƒbƒZ[ƒW•\¦•ƒtƒH[ƒJƒXİ’è
+		// æ¡ä»¶ã«ä¸€è‡´ã—ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºï¼†ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 		if ( !matchFlag ) {
 			showValidateMessage(form, field, message);
 			return false;
@@ -388,14 +388,14 @@ function isRegExp(form, field, regex, not, message) {
 	return true;
 }
 
-// ‹óƒtƒB[ƒ‹ƒhƒ`ƒFƒbƒN
+// ç©ºãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒã‚§ãƒƒã‚¯
 function isEmptyField(field) {
 	return (field == null || field.value == null || field.value == '');
 }
 
-// •K{ƒ`ƒFƒbƒN
+// å¿…é ˆãƒã‚§ãƒƒã‚¯
 function isRequired(form, field, message) {
-	// •¶š—ñ“ü—Íƒ`ƒFƒbƒN
+	// æ–‡å­—åˆ—å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 	if ( isEmptyField(field) ) {
 		showValidateMessage(form, field, message);
 		return false;
@@ -403,48 +403,48 @@ function isRequired(form, field, message) {
 	return true;
 }
 
-// ‰pšƒ`ƒFƒbƒN
+// è‹±å­—ãƒã‚§ãƒƒã‚¯
 function isAlpha(form, field, message) {
-	// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+	// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	return isRegExp(form, field, NO_ALPHA_PATTERN, true, message);
 }
 
-// ‰p”•¶šƒ`ƒFƒbƒN
+// è‹±æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯
 function isAlphaNumeric(form, field, message) {
-	// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+	// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	return isRegExp(form, field, NO_ALPHA_NUMERIC_PATTERN, true, message);
 }
 
-// ‰p”•¶šƒ`ƒFƒbƒN(‰pš‚Í‘å•¶š)
+// è‹±æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯(è‹±å­—ã¯å¤§æ–‡å­—)
 function isUpperAlphaNumeric(form, field, message) {
-	// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+	// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	return isRegExp(form, field, NO_UPPER_ALPHA_NUMERIC_PATTERN, true, message);
 }
 
-// ‰p”•¶šƒ`ƒFƒbƒN
+// è‹±æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯
 function isNumeric(form, field, message) {
-	// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+	// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	return isRegExp(form, field, NO_NUMERIC_PATTERN, true, message);
 }
 
-// ‰p”ƒJƒi•¶šƒ`ƒFƒbƒN
+// è‹±æ•°ã‚«ãƒŠæ–‡å­—ãƒã‚§ãƒƒã‚¯
 function isAlphaNumericKana(form, field, message) {
-    // •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+    // ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
     return isRegExp(form, field, NO_ALPHA_NUMERIC_KANA_PATTERN, true, message);
 }
 
-// ”¼Šp”š‚Æu-iƒnƒCƒtƒ“jvƒ`ƒFƒbƒN
+// åŠè§’æ•°å­—ã¨ã€Œ-ï¼ˆãƒã‚¤ãƒ•ãƒ³ï¼‰ã€ãƒã‚§ãƒƒã‚¯
 function isNumericHyphen(form, field, message) {
-	// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+	// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	return isRegExp(form, field, NO_NUMERIC_HYPHEN_PATTERN, true, message);
 }
 
-// ‹Ö~•¶šƒ`ƒFƒbƒN
+// ç¦æ­¢æ–‡å­—ãƒã‚§ãƒƒã‚¯
 function isProhibitionChar(form, field, message) {
 	return isRegExp(form, field, PROHIBITION_CHAR_PATTERN, true, message);
 }
 
-// Æ‰ïCDƒ`ƒFƒbƒN
+// ç…§ä¼šCDãƒã‚§ãƒƒã‚¯
 function isInqueryContentsCode(form, field, message) {
 	return isRegExp(form, field, INQUIRY_CONTENTS_CODE_PATTERN, false, message);
 }
@@ -460,7 +460,7 @@ function checkDate(y, m, d) {
 	return false;
 }
 
-// “ú•tƒ`ƒFƒbƒN
+// æ—¥ä»˜ãƒã‚§ãƒƒã‚¯
 function isValidDateYMD(form, field, message) {
 	if ( !isEmptyField(field) ) {
 		var	dateArray = field.value.split("/");
@@ -476,7 +476,7 @@ function isValidDateYMD(form, field, message) {
 	return true;
 }
 
-// “ú•tƒ`ƒFƒbƒN
+// æ—¥ä»˜ãƒã‚§ãƒƒã‚¯
 function isValidDate(form, yearField, monthField, dayField, message) {
 	var	result = false;
 	result = checkDate(parseInt(yearField.value, 10), parseInt(monthField.value, 10), parseInt(dayField.value, 10) );
@@ -487,7 +487,7 @@ function isValidDate(form, yearField, monthField, dayField, message) {
 	return true;
 }
 
-// Å¬ƒoƒCƒg”(”¼Šp•¶š”)ƒ`ƒFƒbƒN
+// æœ€å°ãƒã‚¤ãƒˆæ•°(åŠè§’æ–‡å­—æ•°)ãƒã‚§ãƒƒã‚¯
 function isMinLenB(form, field, minlength, message) {
 	if ( !isEmptyField(field) && calcByteSize(field.value) < minlength ) {
 		showValidateMessage(form, field, message);
@@ -496,7 +496,7 @@ function isMinLenB(form, field, minlength, message) {
 	return true;
 }
 
-// Å‘åƒoƒCƒg”(”¼Šp•¶š”)ƒ`ƒFƒbƒN
+// æœ€å¤§ãƒã‚¤ãƒˆæ•°(åŠè§’æ–‡å­—æ•°)ãƒã‚§ãƒƒã‚¯
 function isMaxLenB(form, field, maxlength, message) {
 	if ( !isEmptyField(field) && calcByteSize(field.value) > maxlength ) {
 		showValidateMessage(form, field, message);
@@ -505,7 +505,7 @@ function isMaxLenB(form, field, maxlength, message) {
 	return true;
 }
 
-// Å‘åƒoƒCƒg”(”¼Šp•¶š”)ƒ`ƒFƒbƒN
+// æœ€å¤§ãƒã‚¤ãƒˆæ•°(åŠè§’æ–‡å­—æ•°)ãƒã‚§ãƒƒã‚¯
 function isMaxLenBWithoutRegExp(form, field, maxlength, reg, message) {
 	if ( !isEmptyField(field) && calcByteSize(field.value.replace(reg, "")) > maxlength ) {
 		showValidateMessage(form, field, message);
@@ -514,7 +514,7 @@ function isMaxLenBWithoutRegExp(form, field, maxlength, reg, message) {
 	return true;
 }
 
-// ƒoƒCƒg”(”¼Šp•¶š”)ƒ`ƒFƒbƒN
+// ãƒã‚¤ãƒˆæ•°(åŠè§’æ–‡å­—æ•°)ãƒã‚§ãƒƒã‚¯
 function isLenB(form, field, maxlength, message) {
 	if ( !isEmptyField(field) && calcByteSize(field.value) != maxlength ) {
 		showValidateMessage(form, field, message);
@@ -523,7 +523,7 @@ function isLenB(form, field, maxlength, message) {
 	return true;
 }
 
-// ”’l ”ÍˆÍƒ`ƒFƒbƒN
+// æ•°å€¤ ç¯„å›²ãƒã‚§ãƒƒã‚¯
 function isIntRange(form, field, min, max, message) {
 	if ( !isEmptyField(field) ) {
 		var		value = parseInt(field.value, 10);
@@ -538,11 +538,11 @@ function isIntRange(form, field, min, max, message) {
 	}
 }
 
-// ”¼Šp•¶šƒ`ƒFƒbƒN
+// åŠè§’æ–‡å­—ãƒã‚§ãƒƒã‚¯
 function isAllHankaku(form, field, message) {
 	var	value = field.value;
 
-	// •¶š”‚ÆƒoƒCƒgƒTƒCƒY‚ªˆÙ‚È‚éê‡A‘SŠp•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é
+	// æ–‡å­—æ•°ã¨ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã€å…¨è§’æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã‚‹
 	if ( !isEmptyField(field) && value.length != calcByteSize(value) ) {
 		showValidateMessage(form, field, message);
 		return false;
@@ -550,7 +550,7 @@ function isAllHankaku(form, field, message) {
 	return true;
 }
 
-// “ú•tƒ`ƒFƒbƒN
+// æ—¥ä»˜ãƒã‚§ãƒƒã‚¯
 function isValidYearMonth(form, yearMonthField, message) {
 	if ( !isEmptyField(yearMonthField) ) {
 		var	yearMonth = yearMonthField.value;
@@ -566,7 +566,7 @@ function isValidYearMonth(form, yearMonthField, message) {
 	return true;
 }
 
-// •¶š—ñ’·ƒ`ƒFƒbƒN
+// æ–‡å­—åˆ—é•·ãƒã‚§ãƒƒã‚¯
 function isStringLength(str, slength, slenCount) {
     if (str == undefined || str == null) {
         return true;
@@ -596,10 +596,10 @@ function isStringLength(str, slength, slenCount) {
     return false;
 }
 
-// ‘SŠp•¶š‚Ìƒ`ƒFƒbƒN
+// å…¨è§’æ–‡å­—ã®ãƒã‚§ãƒƒã‚¯
 function isZenkaku(code2) {
 
-    // LF‚Ìê‡‚Í2ƒoƒCƒgŠ·Z
+    // LFã®å ´åˆã¯2ãƒã‚¤ãƒˆæ›ç®—
     if (code2 == 0x000A) {
         return true;
     }
@@ -614,12 +614,12 @@ function isZenkaku(code2) {
     return true;
 }
 
-// Z¶ƒpƒXƒ[ƒh“ü—Íƒ`ƒFƒbƒN
+// ä½ç”Ÿãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 function checkSumiseiPassword(form, inputPassword, sumiseiPassword, message){
 
        if( sumiseiPassword.value != NOT_SUMISEI_USER ){
 
-         // Z¶ƒpƒXƒ[ƒh‚ğƒfƒR[ƒh‚µ‚½’l
+         // ä½ç”Ÿãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ãŸå€¤
          var decodeSumiseiPass  = atob(sumiseiPassword);
 
          if ( inputPassword.value == decodeSumiseiPass ) {
@@ -633,10 +633,10 @@ function checkSumiseiPassword(form, inputPassword, sumiseiPassword, message){
    return true;
  }
 
-// Z¶E‘å÷”FØŠÖ˜A‘ã—“Xƒ`ƒFƒbƒN
+// ä½ç”Ÿãƒ»å¤§æ¨¹èªè¨¼æ™‚é–¢é€£ä»£ç†åº—ãƒã‚§ãƒƒã‚¯
 function checkRelationAgent(form, field, message) {
 
-	// ƒ`ƒFƒbƒN‚³‚ê‚Ä‚¢‚éê‡
+	// ãƒã‚§ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹å ´åˆ
 	if ( field.checked ) {
 		showValidateMessage(form, field, message);
 		return false;
@@ -644,7 +644,7 @@ function checkRelationAgent(form, field, message) {
 	return true;
 }
 
-// ƒoƒCƒgƒTƒCƒY‚ÌZo
+// ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã®ç®—å‡º
 function calcByteSize(value) {
     var byteSize =0;
 
@@ -653,7 +653,7 @@ function calcByteSize(value) {
         var charCode = value.charCodeAt(i);
 
         if (charCode == 0x000D) {
-            // CR‚Ìê‡‚Í–³‹‚µAŒã‘±‚ÌLF‚Å2ƒoƒCƒgŠ·Z‚·‚éiIE8ˆÈ‰º‘Îôj
+            // CRã®å ´åˆã¯ç„¡è¦–ã—ã€å¾Œç¶šã®LFã§2ãƒã‚¤ãƒˆæ›ç®—ã™ã‚‹ï¼ˆIE8ä»¥ä¸‹å¯¾ç­–ï¼‰
         } else if (isZenkaku(charCode)) {
             byteSize = byteSize + 2;
         } else {
@@ -663,7 +663,7 @@ function calcByteSize(value) {
     return byteSize;
 }
 
-// —v‘f–¼‚©‚çƒCƒ“ƒfƒbƒNƒX”Ô†‚ğæ“¾
+// è¦ç´ åã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã‚’å–å¾—
 function getNameToIndexNo(name) {
 	var		regexHead	= new RegExp(".+\\[", "g");
 	var		regexTail	= new RegExp("].*", "g");
@@ -671,7 +671,7 @@ function getNameToIndexNo(name) {
 	return parseInt(indexNo, 10);
 }
 
-// ƒGƒ“ƒ^[ƒL[‰Ÿ‰º‚Ìˆ—‚ÌƒJƒXƒ^ƒ}ƒCƒY
+// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®å‡¦ç†ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
 function custom_KeyPress(){
 
 	var src = window.event.srcElement;
@@ -688,7 +688,7 @@ function custom_KeyPress(){
 	return true;
 }
 
-// —v‘f”z—ñ“à‚Å–¢“ü—Í‚Ì€–Ú‚ğƒ`ƒFƒbƒN‚·‚é
+// è¦ç´ é…åˆ—å†…ã§æœªå…¥åŠ›ã®é …ç›®ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 function checkAllInput(form, checkFields, message, required) {
 	var		inputField = 0;
 	var		i;
@@ -703,21 +703,21 @@ function checkAllInput(form, checkFields, message, required) {
 			inputField++;
 		}
 	}
-	// •K{ƒtƒ‰ƒO‚ªfalse‚Å‚·‚×‚Ä‚Ì€–Ú‚ª–¢“ü—Í‚Í
-	// –¢“ü—ÍƒtƒB[ƒ‹ƒh‚ğnull‚ÅƒNƒŠƒA
+	// å¿…é ˆãƒ•ãƒ©ã‚°ãŒfalseã§ã™ã¹ã¦ã®é …ç›®ãŒæœªå…¥åŠ›æ™‚ã¯
+	// æœªå…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’nullã§ã‚¯ãƒªã‚¢
 	if ( inputField == 0 && !required ) {
 		firstEmptyField = null;
 	}
-	// –¢“ü—ÍƒtƒB[ƒ‹ƒh‚ª‘¶İ‚·‚é‚©H
+	// æœªå…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŒå­˜åœ¨ã™ã‚‹ã‹ï¼Ÿ
 	if ( firstEmptyField != null ) {
-		// ‘¶İ‚µ‚½‚çƒƒbƒZ[ƒW•\¦‚ğs‚¤
+		// å­˜åœ¨ã—ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚’è¡Œã†
 		showValidateMessage(form, firstEmptyField, message);
 		inputField = -1;
 	}
 	return inputField;
 }
 
-// ƒ‰ƒWƒIƒ{ƒ^ƒ“‚Å‘I‘ğ’†‚Ì’l‚ğæ“¾‚·‚é
+// ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã§é¸æŠä¸­ã®å€¤ã‚’å–å¾—ã™ã‚‹
 function getRadioSelectedValue(radio) {
 	var		selectedValue = null;
 	for(i = 0 ; i< radio.length ; i++ ) {
@@ -730,7 +730,7 @@ function getRadioSelectedValue(radio) {
 	return selectedValue;
 }
 
-// ‰EƒgƒŠƒ€
+// å³ãƒˆãƒªãƒ 
 function rtrim(value) {
 	var	result = '';
 	if ( value != null && value.length > 0 ) {
@@ -739,7 +739,7 @@ function rtrim(value) {
 	return result;
 }
 
-// ¶ƒgƒŠƒ€
+// å·¦ãƒˆãƒªãƒ 
 function ltrim(value) {
 	var	result = '';
 	if ( value != null && value.length > 0 ) {
@@ -752,13 +752,13 @@ function trim(value) {
 	return ltrim(rtrim(value));
 }
 
-//”¼ŠpƒXƒy[ƒXƒgƒŠƒ€
+//åŠè§’ã‚¹ãƒšãƒ¼ã‚¹ãƒˆãƒªãƒ 
 function trimHankakuSpace(field){
 	field.value = field.value.replace(HANKAKU_SPACE_TRIM_PATTERN,'');
 	return;;
 }
 
-// XVƒL[—}~
+// æ›´æ–°ã‚­ãƒ¼æŠ‘æ­¢
 function cancelReloadEvt() {
  	if( window.event.ctrlKey ){
 		var keyCodeValue = window.event.keyCode;
@@ -778,13 +778,13 @@ function cancelReloadEvt() {
 	return true;
 }
 
-// ‘å•¶š•ÏŠ·
+// å¤§æ–‡å­—å¤‰æ›
 function toUpper(field) {
 	field.value = field.value.toUpperCase();
 	return;
 }
 
-//”¼Šp•ÏŠ·
+//åŠè§’å¤‰æ›
 function toHankaku(field){
 	field.value = field.value.replace(ZENKAKU_ALPHA_NUMERIC_PATTERN,
 					function(s){
@@ -793,10 +793,10 @@ function toHankaku(field){
 	return;
 }
 
-// •åWlŒŸõ‰æ–Ê•\¦‘O‚Ì“ü—Íƒ`ƒFƒbƒN
+// å‹Ÿé›†äººæ¤œç´¢ç”»é¢è¡¨ç¤ºå‰ã®å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 function formValidateForPopupAZG905(form) {
 
-	// ‰ÛxĞCD
+	// èª²æ”¯ç¤¾CD
 	if ( isEmptyField(form.section_code) ) {
 		return false;
 	} else if (
@@ -805,14 +805,14 @@ function formValidateForPopupAZG905(form) {
 		return false;
 	}
 
-	// ‘ã—“XCD
+	// ä»£ç†åº—CD
 	if ( !isEmptyField(form.agent_code) ) {
 		if (isRegExpNotMessage(form, form.agent_code, NO_ALPHA_NUMERIC_PATTERN, false) ) {
 			return false;
 		}
 	}
 
-	// •åWlID
+	// å‹Ÿé›†äººID
 	if ( !isEmptyField(form.field_agent_id) ) {
 		if ( calcByteSize(form.field_agent_id.value) < 3 ||
 			 isRegExpNotMessage(form, form.field_agent_id, NO_ALPHA_NUMERIC_PATTERN, false) ) {
@@ -823,10 +823,10 @@ function formValidateForPopupAZG905(form) {
 	return true;
 }
 
-// ³‹K•\Œ»ƒ`ƒFƒbƒNiƒƒbƒZ[ƒW•\¦‚È‚µj
+// æ­£è¦è¡¨ç¾ãƒã‚§ãƒƒã‚¯ï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãªã—ï¼‰
 function isRegExpNotMessage(form, field, regex, not) {
 	if ( !isEmptyField(field) ) {
-		// •s³•¶š‚ğŠÜ‚ñ‚Å‚¢‚é‚©H
+		// ä¸æ­£æ–‡å­—ã‚’å«ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 		var		value = field.value;
 
 		var		matchFlag = value.match(regex) != null;
@@ -841,7 +841,7 @@ function isRegExpNotMessage(form, field, regex, not) {
 	return true;
 }
 
-// ƒjƒbƒZƒCe‘ã—“Xƒ`ƒFƒbƒN
+// ãƒ‹ãƒƒã‚»ã‚¤è¦ªä»£ç†åº—ãƒã‚§ãƒƒã‚¯
 function isNisseiParentAgent(section, agent) {
 	var	result = false;
 	if ( !isEmptyField(section) && !isEmptyField(agent) ) {
@@ -855,9 +855,9 @@ function isNisseiParentAgent(section, agent) {
 
 
 function preSubmit(form) {
-    // ƒ[ƒhŠ®—¹ƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+    // ãƒ­ãƒ¼ãƒ‰å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
     if ( loadComplete == false) {
-    	// false‚Ìê‡A‰æ–Êƒ[ƒh’†‚Æ‚İ‚È‚µƒ[ƒh’†ƒƒbƒZ[ƒW‚ğ•\¦
+    	// falseã®å ´åˆã€ç”»é¢ãƒ­ãƒ¼ãƒ‰ä¸­ã¨ã¿ãªã—ãƒ­ãƒ¼ãƒ‰ä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 	alert(LOADING_SUBMIT_ERROR_MESSAGE);
       	return false;
     }
@@ -915,7 +915,7 @@ function popupClose(button) {
 	window.close();
 }
 
-//ƒJƒXƒ^ƒ€ƒc[ƒ‹ƒ`ƒbƒv
+//ã‚«ã‚¹ã‚¿ãƒ ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—
 function Tooltip() {
     this.content = document.createElement('div');
     this.content.className = 'tooltip-content';
@@ -931,11 +931,11 @@ Tooltip.prototype.Show = function(text, x, y) {
         this.content.removeChild(this.content.lastChild);
     }
 
-    // “Áê•¶š‚É‘Î‚µ‚ÄƒAƒ“ƒGƒXƒP[ƒvˆ—‚ÌÀ{
-    var _CRLF = "\u0fff"; // ‰üs‘Îô
-    var _AMP  = "\u0026"; // &‘Îô
-    var _LT   = "\u003C"; // <‘Îô
-    var _GT   = "\u003E"; // >‘Îô
+    // ç‰¹æ®Šæ–‡å­—ã«å¯¾ã—ã¦ã‚¢ãƒ³ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—å‡¦ç†ã®å®Ÿæ–½
+    var _CRLF = "\u0fff"; // æ”¹è¡Œå¯¾ç­–
+    var _AMP  = "\u0026"; // &å¯¾ç­–
+    var _LT   = "\u003C"; // <å¯¾ç­–
+    var _GT   = "\u003E"; // >å¯¾ç­–
 
     this.content.appendChild
         (document.createTextNode
@@ -953,15 +953,15 @@ Tooltip.prototype.Show = function(text, x, y) {
         .replace(new RegExp(_LT, 'g'), '<')
         .replace(new RegExp(_GT, 'g'), '>');
 
-    // body‚É’Ç‰Á
+    // bodyã«è¿½åŠ 
     if (this.content.parentNode != document.body) {
         document.body.appendChild(this.content);
     }
 
-    // •\¦ˆÊ’uFXÀ•Wi—v‘f‚ÌXÀ•Wj
+    // è¡¨ç¤ºä½ç½®ï¼šXåº§æ¨™ï¼ˆè¦ç´ ã®Xåº§æ¨™ï¼‰
     this.content.style.left = x + 'px';
 
-    // •\¦ˆÊ’uFYÀ•Wi—v‘f‚Ìã‘¤j
+    // è¡¨ç¤ºä½ç½®ï¼šYåº§æ¨™ï¼ˆè¦ç´ ã®ä¸Šå´ï¼‰
     this.content.style.top = (y - this.content.clientHeight - Tooltip.OFFSET) + 'px';
 
     this.content.style.visibility = 'visible';
@@ -973,7 +973,7 @@ Tooltip.prototype.Hide = function() {
 
 Tooltip.prototype.Schedule = function(targetElement) {
 
-    // tag‚Ì”»’è‚ğs‚¢Avalue‚ ‚é‚¢‚ÍinnerHTML‚Ì’l‚ğİ’è‚·‚é
+    // tagã®åˆ¤å®šã‚’è¡Œã„ã€valueã‚ã‚‹ã„ã¯innerHTMLã®å€¤ã‚’è¨­å®šã™ã‚‹
 	var targetValue = "";
 	if (targetElement.tagName == 'TEXTAREA') {
 		targetValue = targetElement.value;
@@ -981,17 +981,17 @@ Tooltip.prototype.Schedule = function(targetElement) {
 		targetValue = targetElement.innerHTML;
 	}
 
-	// Æ‰ï“à—e–¢İ’è‚Ìs‚Í–³‹‚·‚é
+	// ç…§ä¼šå†…å®¹æœªè¨­å®šã®è¡Œã¯ç„¡è¦–ã™ã‚‹
     if (trim(targetValue) == '&nbsp;' || !targetValue) {
         return;
     }
 
-    // •ÒW‰Â”\ƒtƒB[ƒ‹ƒh‚Éfocus‚Í•\¦‚µ‚È‚¢
+    // ç·¨é›†å¯èƒ½ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«focusæ™‚ã¯è¡¨ç¤ºã—ãªã„
     if (targetElement === document.activeElement && targetElement.isTextEdit) {
         return;
     }
 
-    // ƒc[ƒ‹ƒ`ƒbƒv‚ğ•\¦‚·‚é—v‘f‚ÌˆÊ’u‚ğæ“¾‚·‚é
+    // ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—ã‚’è¡¨ç¤ºã™ã‚‹è¦ç´ ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
     var targetTop = targetElement.getBoundingClientRect().top;
     var targetLeft = targetElement.getBoundingClientRect().left;
 
@@ -1031,8 +1031,8 @@ Tooltip.prototype.Scroll = function() {
 
 var tooltip = new Tooltip();
 
-// formaction ‘®«‚ğ‚Â submit/button ‚ªƒNƒŠƒbƒN‚³‚ê‚½Û‚ÉA
-// ƒtƒH[ƒ€‚Ì action ‚ğ“®“I‚É‘‚«Š·‚¦‚Ä‚©‚ç‘—M‚·‚éƒXƒNƒŠƒvƒg
+// formaction å±æ€§ã‚’æŒã¤ submit/button ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸéš›ã«ã€
+// ãƒ•ã‚©ãƒ¼ãƒ ã® action ã‚’å‹•çš„ã«æ›¸ãæ›ãˆã¦ã‹ã‚‰é€ä¿¡ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 (function () {
 
     function supportsFormAction() {

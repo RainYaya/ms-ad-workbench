@@ -1,0 +1,2140 @@
+{
+  "BLK-AUTO-E2D0C359": {
+    "screen": "AYG001->AYG200",
+    "cases": [
+      "AY-100-05-001",
+      "AY-100-07-001",
+      "AY-100-07-002",
+      "AY-100-08-003",
+      "AY-100-08-004",
+      "AY-110-02-001",
+      "AY-110-02-002",
+      "AY-120-01-003",
+      "AY-120-01-004",
+      "AY-120-01-005",
+      "AY-120-01-006",
+      "AY-120-01-007",
+      "AY-120-01-008",
+      "AY-120-01-009",
+      "AY-120-01-010",
+      "AY-120-01-011",
+      "AY-120-01-012",
+      "AY-120-06-003",
+      "AY-120-06-004",
+      "AY-120-06-005",
+      "AY-120-06-006",
+      "AY-120-06-007",
+      "AY-120-06-008",
+      "AY-120-06-009",
+      "AY-120-06-010",
+      "AY-120-06-011",
+      "AY-120-06-012",
+      "AY-120-07-015",
+      "AY-120-07-016",
+      "AY-120-07-017",
+      "AY-120-07-018",
+      "AY-120-08-001",
+      "AY-120-08-002",
+      "AY-120-08-003",
+      "AY-120-08-004",
+      "AY-120-08-005",
+      "AY-120-08-006",
+      "AY-120-09-004",
+      "AY-120-09-005",
+      "AY-120-09-006",
+      "AY-120-09-007",
+      "AY-120-09-008",
+      "AY-120-09-009",
+      "AY-120-09-010",
+      "AY-120-09-011",
+      "AY-120-09-012",
+      "AY-120-09-013",
+      "AY-121-01-011",
+      "AY-121-01-012",
+      "AY-121-01-013",
+      "AY-121-01-014",
+      "AY-121-01-015",
+      "AY-121-01-016",
+      "AY-121-01-017",
+      "AY-121-01-018",
+      "AY-121-04-017",
+      "AY-121-04-018",
+      "AY-121-05-001",
+      "AY-121-05-002",
+      "AY-121-05-003",
+      "AY-121-05-004",
+      "AY-121-05-005",
+      "AY-121-05-006",
+      "AY-121-05-007",
+      "AY-121-05-008",
+      "AY-121-06-011",
+      "AY-121-06-012",
+      "AY-121-06-013",
+      "AY-121-06-014",
+      "AY-121-06-015",
+      "AY-121-06-016",
+      "AY-121-06-017",
+      "AY-121-06-018",
+      "AY-121-07-001",
+      "AY-121-07-002",
+      "AY-121-08-003",
+      "AY-121-08-004",
+      "AY-121-08-005",
+      "AY-121-08-006",
+      "AY-121-08-007",
+      "AY-121-08-008",
+      "AY-121-08-009",
+      "AY-121-08-010",
+      "AY-121-08-011",
+      "AY-121-08-012",
+      "AY-122-01-006",
+      "AY-122-01-007",
+      "AY-122-01-008",
+      "AY-130-01-001",
+      "AY-130-01-002",
+      "AY-130-02-001",
+      "AY-410-01-008",
+      "AY-410-01-009",
+      "AY-410-01-010",
+      "AY-410-01-011"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA01.html"
+      },
+      {
+        "event": "ast AYメニュー表示",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#route3"
+      },
+      {
+        "event": "click 照会・検索",
+        "action": "click",
+        "selector": "#route3"
+      },
+      {
+        "event": "ast transition 照会・検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select"
+      },
+      {
+        "event": "ast 検索結果エリア",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      }
+    ]
+  },
+  "BLK-AUTO-042B2DAE": {
+    "screen": "AYG001->AYG202B",
+    "cases": [
+      "AY-120-02-015",
+      "AY-120-02-016",
+      "AY-120-02-017",
+      "AY-120-02-018",
+      "AY-120-03-001",
+      "AY-120-03-002",
+      "AY-120-03-003",
+      "AY-120-03-004",
+      "AY-120-03-005",
+      "AY-120-03-006",
+      "AY-120-04-009",
+      "AY-120-04-010",
+      "AY-120-04-011",
+      "AY-120-04-012",
+      "AY-120-04-013",
+      "AY-120-04-014",
+      "AY-120-04-015",
+      "AY-120-04-016",
+      "AY-120-04-017",
+      "AY-120-04-018",
+      "AY-121-02-001",
+      "AY-121-02-002",
+      "AY-121-03-005",
+      "AY-121-03-006",
+      "AY-121-03-007",
+      "AY-121-03-008",
+      "AY-121-03-009",
+      "AY-121-03-010",
+      "AY-121-03-011",
+      "AY-121-03-012",
+      "AY-121-03-013",
+      "AY-121-03-014"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA01.html"
+      },
+      {
+        "event": "ast AYメニュー表示",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#route4"
+      },
+      {
+        "event": "click 申請・承認",
+        "action": "click",
+        "selector": "#route4"
+      },
+      {
+        "event": "ast transition 申請承認一覧画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#department_app_status_2"
+      },
+      {
+        "event": "ast 承認表示条件",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#section_app_status_2"
+      }
+    ]
+  },
+  "BLK-AUTO-4F9D57E1": {
+    "screen": "AYG200->AYG101",
+    "cases": [
+      "AY-120-06-003",
+      "AY-120-06-004",
+      "AY-120-06-005",
+      "AY-120-06-006",
+      "AY-120-06-007",
+      "AY-120-06-008",
+      "AY-120-06-009",
+      "AY-120-06-010",
+      "AY-120-06-011",
+      "AY-120-06-012",
+      "AY-120-07-015",
+      "AY-120-07-016",
+      "AY-120-07-017",
+      "AY-120-07-018",
+      "AY-120-08-002",
+      "AY-120-08-003",
+      "AY-120-08-004",
+      "AY-120-08-005",
+      "AY-120-08-006",
+      "AY-120-09-004",
+      "AY-120-09-005",
+      "AY-120-09-006",
+      "AY-120-09-007",
+      "AY-120-09-008",
+      "AY-120-09-009",
+      "AY-120-09-010",
+      "AY-120-09-011",
+      "AY-120-09-012",
+      "AY-120-09-013",
+      "AY-121-05-002",
+      "AY-121-05-003",
+      "AY-121-05-004",
+      "AY-121-05-005",
+      "AY-121-05-006",
+      "AY-121-05-007",
+      "AY-121-05-008",
+      "AY-121-06-011",
+      "AY-121-06-012",
+      "AY-121-06-013",
+      "AY-121-06-014",
+      "AY-121-06-015",
+      "AY-121-06-016",
+      "AY-121-06-017",
+      "AY-121-06-018",
+      "AY-121-07-002",
+      "AY-121-08-003",
+      "AY-121-08-004",
+      "AY-121-08-005",
+      "AY-121-08-006",
+      "AY-121-08-007",
+      "AY-121-08-008",
+      "AY-121-08-009",
+      "AY-121-08-010",
+      "AY-121-08-011",
+      "AY-121-08-012",
+      "AY-122-01-006",
+      "AY-122-01-007",
+      "AY-122-01-008"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-SHR-40B1188F": {
+    "screen": "AYG200",
+    "cases": [
+      "AY-120-01-003",
+      "AY-120-01-004",
+      "AY-120-01-005",
+      "AY-120-01-006",
+      "AY-120-01-007",
+      "AY-120-01-008",
+      "AY-120-01-009",
+      "AY-120-01-010",
+      "AY-120-01-011",
+      "AY-120-01-012",
+      "AY-120-08-001",
+      "AY-121-01-011",
+      "AY-121-01-012",
+      "AY-121-01-013",
+      "AY-121-01-014",
+      "AY-121-01-015",
+      "AY-121-01-016",
+      "AY-121-01-017",
+      "AY-121-01-018",
+      "AY-121-04-017",
+      "AY-121-04-018",
+      "AY-121-05-001",
+      "AY-121-07-001",
+      "AY-130-01-001",
+      "AY-130-01-002"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "note": "0件時の非表示はモック未再現（検索結果行は固定1件）"
+      },
+      {
+        "event": "ast 検索条件エリア",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#normalSearch"
+      }
+    ]
+  },
+  "BLK-SGL-C17F75BC": {
+    "screen": "AYG200->AYG101",
+    "cases": [
+      "AY-120-01-003",
+      "AY-120-01-004",
+      "AY-120-01-005",
+      "AY-120-01-006",
+      "AY-120-01-007",
+      "AY-120-01-008",
+      "AY-120-01-009",
+      "AY-120-01-010",
+      "AY-120-01-011",
+      "AY-120-01-012",
+      "AY-120-08-001",
+      "AY-121-01-011",
+      "AY-121-01-012",
+      "AY-121-01-013",
+      "AY-121-01-014",
+      "AY-121-01-015",
+      "AY-121-01-016",
+      "AY-121-01-017",
+      "AY-121-01-018",
+      "AY-121-04-017",
+      "AY-121-04-018",
+      "AY-121-05-001",
+      "AY-121-07-001"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "ast 検索結果表示",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-AUTO-1D62D29C": {
+    "screen": "AYG202B->AYG102",
+    "cases": [
+      "AY-120-03-001",
+      "AY-120-03-002",
+      "AY-120-03-003",
+      "AY-120-03-004",
+      "AY-120-03-005",
+      "AY-120-03-006",
+      "AY-121-02-001",
+      "AY-121-02-002",
+      "AY-121-03-005",
+      "AY-121-03-006",
+      "AY-121-03-007",
+      "AY-121-03-008",
+      "AY-121-03-009",
+      "AY-121-03-010",
+      "AY-121-03-011",
+      "AY-121-03-012",
+      "AY-121-03-013",
+      "AY-121-03-014"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA07.html"
+      },
+      {
+        "event": "check 承認表示条件 11:承認待ち",
+        "action": "check",
+        "selector": "#department_app_status_2"
+      },
+      {
+        "event": "click 再表示",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 申請承認一覧画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "ast 承認表示条件 再表示後",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#department_app_status_2"
+      },
+      {
+        "event": "click 承認",
+        "action": "click",
+        "selector": "#act202to103"
+      },
+      {
+        "event": "ast transition 取消計上申請承認画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_04"
+      }
+    ]
+  },
+  "BLK-AUTO-ADFFD6FB": {
+    "screen": "AYG202B->AYG102",
+    "cases": [
+      "AY-120-02-015",
+      "AY-120-02-016",
+      "AY-120-02-017",
+      "AY-120-02-018",
+      "AY-120-03-001",
+      "AY-120-03-002",
+      "AY-120-03-003",
+      "AY-120-03-004",
+      "AY-120-03-005",
+      "AY-120-03-006"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA07.html"
+      },
+      {
+        "event": "check 課支社長 申請表示条件 10:申請依頼",
+        "action": "check",
+        "selector": "#section_app_status_2"
+      },
+      {
+        "event": "click 再表示",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 申請承認一覧画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "ast 申請表示条件 再表示後",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#section_app_status_2"
+      },
+      {
+        "event": "click 申請",
+        "action": "click",
+        "selector": "#act202to102"
+      },
+      {
+        "event": "ast transition 取消計上申請承認画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_04"
+      }
+    ]
+  },
+  "BLK-AUTO-C4218B41": {
+    "screen": "AYG202B->AYG102",
+    "cases": [
+      "AY-120-04-009",
+      "AY-120-04-010",
+      "AY-120-04-011",
+      "AY-120-04-012",
+      "AY-120-04-013",
+      "AY-120-04-014",
+      "AY-120-04-015",
+      "AY-120-04-016",
+      "AY-120-04-017",
+      "AY-120-04-018"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA07.html"
+      },
+      {
+        "event": "check 部支店長 承認表示条件 11:承認待ち",
+        "action": "check",
+        "selector": "#department_app_status_2"
+      },
+      {
+        "event": "click 再表示",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 申請承認一覧画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "ast 承認表示条件 再表示後",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#department_app_status_2"
+      },
+      {
+        "event": "click 承認",
+        "action": "click",
+        "selector": "#act202to103"
+      },
+      {
+        "event": "ast transition 取消計上申請承認画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_04"
+      }
+    ]
+  },
+  "BLK-AY-TORIKESHI-REGISTER": {
+    "screen": "AYG001->AYG100->AYG101",
+    "cases": [
+      "AY-100-08-001",
+      "AY-110-01-011",
+      "AY-110-01-012",
+      "AY-110-01-013",
+      "AY-110-01-014",
+      "AY-110-01-015",
+      "AY-110-01-016",
+      "AY-110-01-017",
+      "AY-110-01-018"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA01.html"
+      },
+      {
+        "event": "click 新規登録",
+        "action": "click",
+        "selector": "#route2"
+      },
+      {
+        "event": "ast transition 取消計上申請登録画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#regist"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "fill 保険契約者名",
+        "action": "fill",
+        "selector": "#insurant_name",
+        "value": "テスト太郎"
+      },
+      {
+        "event": "select 大種目 自賠責",
+        "action": "fill",
+        "how": "select",
+        "selector": "select[name='large_item_list.selected']",
+        "value": "B"
+      },
+      {
+        "event": "fill 申込日",
+        "action": "fill",
+        "selector": "#cancel_application_date",
+        "value": "2026/10/01"
+      },
+      {
+        "event": "fill 始期日",
+        "action": "fill",
+        "selector": "#start_date",
+        "value": "2026/10/01"
+      },
+      {
+        "event": "fill 届出日",
+        "action": "fill",
+        "selector": "#notification_date",
+        "value": "2026/10/02"
+      },
+      {
+        "event": "click 登録",
+        "action": "click",
+        "selector": "#regist"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-SHR-C69800AD": {
+    "screen": "AYG200->AYG101->AYG900",
+    "cases": [
+      "AY-100-07-001",
+      "AY-100-07-002"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "fill ダウンロード申請番号",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "A999999999"
+      },
+      {
+        "event": "click 検索結果出力",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message エラーメッセージ",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "MAYG200",
+        "note": "非浏览器=真機人工（バリデーション/システム例外メッセージ本文）"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請依頼先選択",
+        "action": "click",
+        "selector": "input[name='selectReqApplicantUser']",
+        "force": true
+      },
+      {
+        "event": "popup 担当者検索",
+        "action": "popup",
+        "match": "ANA10"
+      },
+      {
+        "event": "ast transition 担当者検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "in": "popup"
+      }
+    ]
+  },
+  "BLK-SHR-DD6D983A": {
+    "screen": "AYG200->AYG101->AYG901",
+    "cases": [
+      "AY-410-01-010",
+      "AY-410-01-011"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 不承認取消",
+        "action": "click",
+        "selector": "#cancelButton",
+        "force": true
+      },
+      {
+        "event": "popup 送信先(写)選択",
+        "action": "popup",
+        "match": "ANA11"
+      },
+      {
+        "event": "fill 氏名",
+        "action": "fill",
+        "selector": "#user_name_key",
+        "value": "黒川　京子",
+        "in": "popup"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#search",
+        "in": "popup"
+      },
+      {
+        "event": "ast display 送信先(写)選択画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "in": "popup"
+      },
+      {
+        "event": "click No",
+        "action": "click",
+        "selector": "#gyoumu_list a",
+        "in": "popup"
+      },
+      {
+        "event": "ast 送信先(写)一覧に追加",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select_name_list",
+        "in": "popup"
+      },
+      {
+        "event": "click OK",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast message メッセージ",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#popup_message_area",
+        "contains": "MAYG901",
+        "in": "popup",
+        "note": "非浏览器=真機人工（ポップアップMsg本文）"
+      },
+      {
+        "event": "click OK 確定",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面に復帰",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "ast other APログ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（APログ）"
+      },
+      {
+        "event": "ast other 取消計上申請テーブル",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（取消計上申請テーブル）"
+      },
+      {
+        "event": "ast other メール送信情報連携",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（システムズ様へメール送信情報連携）"
+      },
+      {
+        "event": "ast other メール内リンク",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（メール内リンク押下）"
+      },
+      {
+        "event": "goto 照会・検索画面",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "ast other 異例取扱管理システム 照会・検索へ遷移",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select",
+        "note": "非浏览器=真機人工（メールリンクから照会・検索へ遷移）"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-SGL-EA9C1EF3": {
+    "screen": "AYG200->AYG101",
+    "cases": [
+      "AY-100-05-001"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "ast 開発者ツールでapplication_id確認",
+        "action": "assert",
+        "assert": "value",
+        "selector": "#application_id",
+        "equals": "",
+        "note": "非浏览器=真機人工（F12開発者ツールでapplication_idのvalueを削除）"
+      },
+      {
+        "event": "ast 更新ボタン表示",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#update"
+      },
+      {
+        "event": "click 更新",
+        "action": "click",
+        "selector": "#update",
+        "force": true
+      },
+      {
+        "event": "ast transition システムエラー画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（システムエラー画面はANA03側で未モック）"
+      },
+      {
+        "event": "ast message エラーメッセージ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#message_area",
+        "note": "非浏览器=真機人工（MAYG000E001）"
+      }
+    ]
+  },
+  "BLK-SGL-557F51B3": {
+    "screen": "AYG200<->AYG101",
+    "cases": [
+      "AY-100-08-003"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 検索結果",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請一覧",
+        "action": "click",
+        "selector": "#act101to200",
+        "force": true
+      },
+      {
+        "event": "ast transition 照会・検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select"
+      },
+      {
+        "event": "fill 課支社CD 2周目",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD 2周目",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号 2周目",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索 2周目",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 検索結果 2周目",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク 2周目",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面 2周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請一覧 2周目",
+        "action": "click",
+        "selector": "#act101to200",
+        "force": true
+      },
+      {
+        "event": "ast transition 照会・検索画面 2周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select"
+      },
+      {
+        "event": "fill 課支社CD 3周目",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD 3周目",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号 3周目",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索 3周目",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 検索結果 3周目",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク 3周目",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面 3周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請一覧 3周目",
+        "action": "click",
+        "selector": "#act101to200",
+        "force": true
+      },
+      {
+        "event": "ast transition 照会・検索画面 3周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select"
+      },
+      {
+        "event": "fill 課支社CD 4周目",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD 4周目",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号 4周目",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索 4周目",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 検索結果 4周目",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク 4周目",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面 4周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請一覧 4周目",
+        "action": "click",
+        "selector": "#act101to200",
+        "force": true
+      },
+      {
+        "event": "ast transition 照会・検索画面 4周目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select"
+      }
+    ]
+  },
+  "BLK-SGL-2B7D45E3": {
+    "screen": "AYG200 download",
+    "cases": [
+      "AY-100-08-004"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY10008003"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "fill ダウンロード申請番号",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "Z990000002"
+      },
+      {
+        "event": "click 検索結果出力",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message メッセージボックス",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "MAYG200I001",
+        "note": "非浏览器=真機人工（ポップアップMsg）"
+      },
+      {
+        "event": "click OK",
+        "action": "click",
+        "selector": "#download_ok"
+      },
+      {
+        "event": "ast display ダウンロードメッセージ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#download_result_area"
+      },
+      {
+        "event": "ast message 申請・確認情報ファイル",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_result_area",
+        "contains": "AYR004.csv"
+      },
+      {
+        "event": "ast other DLログ",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_result_area",
+        "contains": "DLログ",
+        "note": "非浏览器=真機人工（DLログ）"
+      }
+    ]
+  },
+  "BLK-SGL-4C3588A4": {
+    "screen": "AYG200->AYG101",
+    "cases": [
+      "AY-110-02-001"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11002"
+      },
+      {
+        "event": "fill 明細番号",
+        "action": "fill",
+        "selector": "#sub_policy_number",
+        "value": "0000000019"
+      },
+      {
+        "event": "check 消込状況 30:登録完了",
+        "action": "check",
+        "selector": "#reconciliation_status_4"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "ast other APログ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（APログ）"
+      },
+      {
+        "event": "ast other DBログ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（DBログ）"
+      },
+      {
+        "event": "ast other 取消計上申請テーブル",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（取消計上申請テーブル）"
+      }
+    ]
+  },
+  "BLK-SGL-58EA9045": {
+    "screen": "AYG200->AYG101",
+    "cases": [
+      "AY-110-02-002"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11002"
+      },
+      {
+        "event": "fill 明細番号",
+        "action": "fill",
+        "selector": "#sub_policy_number",
+        "value": "0000000020"
+      },
+      {
+        "event": "check 消込状況 30:登録完了",
+        "action": "check",
+        "selector": "#reconciliation_status_4"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "rows",
+        "selector": "#gyoumu_list a",
+        "min": 1
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-SGL-3DB9518B": {
+    "screen": "AYG200 帳票",
+    "cases": [
+      "AY-130-02-001"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "note": "0件時表示はモック未再現"
+      },
+      {
+        "event": "fill ダウンロード申請番号",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "Z990000002"
+      },
+      {
+        "event": "check 簡易版",
+        "action": "check",
+        "selector": "#format_check_1"
+      },
+      {
+        "event": "click 検索結果出力 簡易版",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 簡易版",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "check 詳細版",
+        "action": "check",
+        "selector": "#format_check_2"
+      },
+      {
+        "event": "click 検索結果出力 詳細版",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 詳細版",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票（詳細版）",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "fill 課支社CD 2回目",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD 2回目",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "click 検索 2回目",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面 2回目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "fill ダウンロード申請番号 2回目",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "Z990000002"
+      },
+      {
+        "event": "check 簡易版 2回目",
+        "action": "check",
+        "selector": "#format_check_1"
+      },
+      {
+        "event": "click 検索結果出力 簡易版 2回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 簡易版 2回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "check 詳細版 2回目",
+        "action": "check",
+        "selector": "#format_check_2"
+      },
+      {
+        "event": "click 検索結果出力 詳細版 2回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 詳細版 2回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票（詳細版）",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "click 次頁",
+        "action": "click",
+        "selector": "#nextPage"
+      },
+      {
+        "event": "ast display 2ページ目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "click 前頁",
+        "action": "click",
+        "selector": "#prevPage"
+      },
+      {
+        "event": "ast display 1ページ目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "fill ダウンロード申請番号 3回目",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "Z990000002"
+      },
+      {
+        "event": "check 簡易版 3回目",
+        "action": "check",
+        "selector": "#format_check_1"
+      },
+      {
+        "event": "click 検索結果出力 簡易版 3回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 簡易版 3回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "check 詳細版 3回目",
+        "action": "check",
+        "selector": "#format_check_2"
+      },
+      {
+        "event": "click 検索結果出力 詳細版 3回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 詳細版 3回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票（詳細版）",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "fill 課支社CD 3回目",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "click 検索 3回目",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "ast display 照会・検索画面 3回目",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list"
+      },
+      {
+        "event": "fill ダウンロード申請番号 4回目",
+        "action": "fill",
+        "selector": "#download_number",
+        "value": "Z990000002"
+      },
+      {
+        "event": "check 簡易版 4回目",
+        "action": "check",
+        "selector": "#format_check_1"
+      },
+      {
+        "event": "click 検索結果出力 簡易版 4回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 簡易版 4回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      },
+      {
+        "event": "check 詳細版 4回目",
+        "action": "check",
+        "selector": "#format_check_2"
+      },
+      {
+        "event": "click 検索結果出力 詳細版 4回目",
+        "action": "click",
+        "selector": "#outputCSV"
+      },
+      {
+        "event": "ast message 帳票 詳細版 4回目",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#download_confirm_area",
+        "contains": "帳票（詳細版）",
+        "note": "非浏览器=真機人工（ダウンロード可否）"
+      }
+    ]
+  },
+  "BLK-SGL-BE812D08": {
+    "screen": "AYG200->AYG101->AYG901",
+    "cases": [
+      "AY-410-01-008"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 申請依頼取消",
+        "action": "click",
+        "selector": "#cancelButton",
+        "force": true
+      },
+      {
+        "event": "popup 送信先(写)選択",
+        "action": "popup",
+        "match": "ANA11"
+      },
+      {
+        "event": "fill 氏名",
+        "action": "fill",
+        "selector": "#user_name_key",
+        "value": "黒川　京子",
+        "in": "popup"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#search",
+        "in": "popup"
+      },
+      {
+        "event": "ast display 送信先(写)選択画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "in": "popup"
+      },
+      {
+        "event": "click No",
+        "action": "click",
+        "selector": "#gyoumu_list a",
+        "in": "popup"
+      },
+      {
+        "event": "ast 送信先(写)一覧に追加",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select_name_list",
+        "in": "popup"
+      },
+      {
+        "event": "click OK",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast message メッセージ",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#popup_message_area",
+        "contains": "MAYG901",
+        "in": "popup",
+        "note": "非浏览器=真機人工（ポップアップMsg本文）"
+      },
+      {
+        "event": "click OK 確定",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面に復帰",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "ast other APログ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（APログ）"
+      },
+      {
+        "event": "ast other 取消計上申請テーブル",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（取消計上申請テーブル）"
+      },
+      {
+        "event": "ast other メール送信情報連携",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（システムズ様へメール送信情報連携）"
+      },
+      {
+        "event": "ast other メール内リンク",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（メール内リンク押下）"
+      },
+      {
+        "event": "goto 照会・検索画面",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "ast other 異例取扱管理システム 照会・検索へ遷移",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select",
+        "note": "非浏览器=真機人工（メールリンクから照会・検索へ遷移）"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  },
+  "BLK-SGL-31F074B9": {
+    "screen": "AYG200->AYG101->AYG901",
+    "cases": [
+      "AY-410-01-009"
+    ],
+    "steps": [
+      {
+        "event": "goto start screen",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "click 承認依頼取消",
+        "action": "click",
+        "selector": "#cancelButton",
+        "force": true
+      },
+      {
+        "event": "popup 送信先(写)選択",
+        "action": "popup",
+        "match": "ANA11"
+      },
+      {
+        "event": "fill 氏名",
+        "action": "fill",
+        "selector": "#user_name_key",
+        "value": "黒川　京子",
+        "in": "popup"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#search",
+        "in": "popup"
+      },
+      {
+        "event": "ast display 送信先(写)選択画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#gyoumu_list",
+        "in": "popup"
+      },
+      {
+        "event": "click No",
+        "action": "click",
+        "selector": "#gyoumu_list a",
+        "in": "popup"
+      },
+      {
+        "event": "ast 送信先(写)一覧に追加",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select_name_list",
+        "in": "popup"
+      },
+      {
+        "event": "click OK",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast message メッセージ",
+        "action": "assert",
+        "assert": "text",
+        "selector": "#popup_message_area",
+        "contains": "MAYG901",
+        "in": "popup",
+        "note": "非浏览器=真機人工（ポップアップMsg本文）"
+      },
+      {
+        "event": "click OK 確定",
+        "action": "click",
+        "selector": "input[name='ok']",
+        "in": "popup"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面に復帰",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      },
+      {
+        "event": "ast other APログ",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（APログ）"
+      },
+      {
+        "event": "ast other 取消計上申請テーブル",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（取消計上申請テーブル）"
+      },
+      {
+        "event": "ast other メール送信情報連携",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（システムズ様へメール送信情報連携）"
+      },
+      {
+        "event": "ast other メール内リンク",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03",
+        "note": "非浏览器=真機人工（メール内リンク押下）"
+      },
+      {
+        "event": "goto 照会・検索画面",
+        "action": "goto",
+        "url": "/ANB00/ANA05.html"
+      },
+      {
+        "event": "ast other 異例取扱管理システム 照会・検索へ遷移",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#select",
+        "note": "非浏览器=真機人工（メールリンクから照会・検索へ遷移）"
+      },
+      {
+        "event": "fill 課支社CD",
+        "action": "fill",
+        "selector": "#section_code",
+        "value": "AHE61"
+      },
+      {
+        "event": "fill 代理店CD",
+        "action": "fill",
+        "selector": "#agent_code",
+        "value": "252H"
+      },
+      {
+        "event": "fill 証券番号",
+        "action": "fill",
+        "selector": "#policy_number",
+        "value": "AY11001"
+      },
+      {
+        "event": "click 検索",
+        "action": "click",
+        "selector": "#select"
+      },
+      {
+        "event": "click No リンク",
+        "action": "click",
+        "selector": "#gyoumu_list a[name='link101']"
+      },
+      {
+        "event": "ast transition 申請・確認更新画面",
+        "action": "assert",
+        "assert": "visible",
+        "selector": "#div_gyoumu_area_03"
+      }
+    ]
+  }
+}

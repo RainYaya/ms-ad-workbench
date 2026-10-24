@@ -1,0 +1,22 @@
+{
+  "caseId": "AZ-200-03-002",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:49.480Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-EEFF5DB3",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-AGT-SESSION-TIMEO.png",
+    "03_BLK-SHR-EEFF5DB3.png"
+  ]
+}

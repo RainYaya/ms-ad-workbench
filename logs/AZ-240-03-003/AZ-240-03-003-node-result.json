@@ -1,16 +1,22 @@
 {
   "caseId": "AZ-240-03-003",
   "runner": "node",
-  "ts": "2026-10-24T12:35:26.988Z",
+  "ts": "2026-10-24T14:45:20.893Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-DDA3A833",
       "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-D0DDEEE4",
+      "status": "pass"
     }
   ],
+  "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-DDA3A833.png"
+    "02_BLK-AUTO-DDA3A833.png",
+    "03_BLK-SHR-D0DDEEE4.png"
   ]
 }

@@ -97,67 +97,73 @@ function deleteSelectedName() {
 }
 
 function popupClose(button) {
-  // 親画面チェック処理
-  windowOpenerClosedCheck();
-
   var form = document.tks_TKSPRForm;
-  var openerDoc = window.opener.document;
+  var opt = document.getElementById("select_name_list").options;
 
   if (button.name == 'ok') {
     // OKボタン押下時
 
-    var limit_count = form.select_name_list_limit_count.value;
-    var opt = document.getElementById("select_name_list").options;
-
-	// 送信先(写)一覧設定ユーザ数が上限件数を超える場合はエラー
-	if(opt.length > limit_count) {
-	  var limit_msg = form.limit_message.value;
-
-      alert(limit_msg);
+    var limit_count = parseInt(form.select_name_list_limit_count.value, 10);
+    // 送信先(写)一覧設定ユーザ数が上限件数を超える場合はエラー
+    if (!isNaN(limit_count) && opt.length > limit_count) {
+      alert(form.limit_message.value);
       form.select_name_list.focus();
       return false;
     }
 
-    if (!window.confirm(form.ok_massage.value)) {
+    // 1回目の押下: 確認メッセージを画面内に表示する（真機のポップアップMsg相当）
+    if (form.ok_massage_shown.value != '1') {
+      var messageArea = document.getElementById('popup_message_area');
+      if (messageArea) {
+        messageArea.innerText = form.ok_massage.value != ''
+          ? form.ok_massage.value
+          : 'MAYG901I001：送信先（写）を設定しました。';
+        messageArea.className = 'popup_message_area popup_message_confirm';
+      }
+      form.ok_massage_shown.value = '1';
       return false;
     }
 
-    var retArray = new Array();
+    // 2回目の押下: 呼出元へ送信先(写)を設定して閉じる
+    var openerDoc = (window.opener && !window.opener.closed) ? window.opener.document : null;
 
-    for(i = 0; i < opt.length; i++) {
-      retArray.push(opt[i].value);
+    if (openerDoc && openerDoc.tks_TKSPRForm) {
+      // CC送信先アドレス(カンマ区切り文字列)を作成
+      var ccAddressItems = '';
+      for (var i = 0; i < opt.length; i++) {
+        if (ccAddressItems != '') {
+          ccAddressItems += ',';
+        }
+        ccAddressItems += opt[i].value;
+      }
+
+      // CC送信先アドレスの要素生成
+      var ccAddressElm = openerDoc.createElement("input");
+      ccAddressElm.type = "hidden";
+      ccAddressElm.name = "ccAddress";
+      ccAddressElm.value = ccAddressItems;
+
+      // フォームにCC送信先アドレス(カンマ区切り文字列)の要素追加
+      openerDoc.tks_TKSPRForm.appendChild(ccAddressElm);
+
+      // 呼出元の戻り送信ボタン（存在する場合のみ押下）
+      var returnButton = openerDoc.getElementById(form.buttonName.value);
+      if (!returnButton) {
+        returnButton = openerDoc.getElementById('1');
+      }
+      if (returnButton) {
+        returnButton.click();
+      }
     }
+
+    window.close();
+    return false;
 
   } else {
     // キャンセルボタン押下時
-    if (form.hide_gyoumu_area_flag.value != '1') {
-      if (!window.confirm('')) {
-        return false;
-      }
-      window.close();
-    }
+    window.close();
+    return false;
   }
-
-  // CC送信先アドレス(カンマ区切り文字列)を作成
-  var ccAddressItems = '';
-  for(var i = 0; i < retArray.length; i++) {
-    if (ccAddressItems != '') {
-      ccAddressItems += ',';
-    }
-    ccAddressItems += retArray[i];
-  }
-  // CC送信先アドレスの要素生成
-  var ccAddressElm = openerDoc.createElement("input");
-  ccAddressElm.type = "hidden";
-  ccAddressElm.name = "ccAddress";
-  ccAddressElm.value = ccAddressItems;
-
-  // フォームにCC送信先アドレス(カンマ区切り文字列)の要素追加
-  openerDoc.tks_TKSPRForm.appendChild(ccAddressElm);
-
-  openerDoc.getElementById('1').click();
-
-  window.close();
 }
 
 // 検索(前頁、次頁)のバリデート
@@ -338,7 +344,7 @@ function custom_Submit(form) {
                 <tr class="row_odd">
                   <td class="gyoumu_field_value">
                     <div align="center">
-                      <a href="#">1</a>
+                      <a href="javascript:void(0);" onclick="selectNo(0)">1</a>
                     </div>
                   </td>
                   <td class="gyoumu_field_value">1</td>
@@ -391,12 +397,19 @@ function custom_Submit(form) {
   </div>
   <input type="hidden" id="pageNumber" name="pageNumber" />
   <input type="hidden" id="pageSize" name="pageSize" />
-  <input type="hidden" id="buttonName" name="buttonName" />
+  <input type="hidden" id="buttonName" name="buttonName" value="approve" />
   <input type="hidden" id="totalPage" name="totalPage" />
   <input type="hidden" id="totalCount" name="totalCount" />
-  <input type="hidden" id="ok_massage" name="ok_massage" />
-  <input type="hidden" id="select_name_list_limit_count" name="select_name_list_limit_count" />
-  <input type="hidden" id="limit_message" name="limit_message" />
+  <input type="hidden" id="ok_massage" name="ok_massage" value="MAYG901I001：送信先（写）を設定しました。" />
+  <input type="hidden" id="select_name_list_limit_count" name="select_name_list_limit_count" value="10" />
+  <input type="hidden" id="limit_message" name="limit_message" value="送信先（写）の上限件数を超えています。" />
+  <input type="hidden" id="ok_massage_shown" name="ok_massage_shown" value="" />
+
+  <!--/* 検索結果行の値（selectNo が送信先一覧へ追加する） */-->
+  <input type="hidden" name="list[0].mail_address" value="kurokawa@example.co.jp" />
+  <input type="hidden" name="list[0].user_name" value="黒川　京子" />
+  <input type="hidden" name="list[0].section_code" value="ABM62" />
+  <input type="hidden" name="list[0].section_codes" value="ABM62" />
 
   <!--/* 動的作成の送信先（写）を受け取る枠 */-->
 </form>

@@ -1,0 +1,27 @@
+{
+  "caseId": "AZ-111-05-010",
+  "runner": "node",
+  "ts": "2026-10-24T14:42:14.375Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-213E7E7D",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-MENU-SEARCH-LIST.png",
+    "03_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "04_BLK-SGL-213E7E7D.png"
+  ]
+}

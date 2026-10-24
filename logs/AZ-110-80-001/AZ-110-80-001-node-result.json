@@ -1,9 +1,45 @@
 {
   "caseId": "AZ-110-80-001",
   "runner": "node",
-  "ts": "2026-10-24T12:34:24.608Z",
+  "ts": "2026-10-24T14:42:04.422Z",
   "status": "pass",
   "blocks": [
+    {
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-04A78248",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-04A78248",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-C90A0006",
+      "status": "pass"
+    },
     {
       "block": "BLK-AUTO-DDA3A833",
       "status": "pass"
@@ -11,11 +47,46 @@
     {
       "block": "BLK-SHR-F9A1D656",
       "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-CCA9B958",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-4C432C14",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-8FE40BE8",
+      "status": "pass"
     }
   ],
+  "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-DDA3A833.png",
-    "03_BLK-SHR-F9A1D656.png"
+    "02_BLK-AZ-MENU-SEARCH-LIST.png",
+    "03_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "04_BLK-AUTO-04A78248.png",
+    "05_BLK-AZ-ITEM-SEARCH-SELEC.png",
+    "06_BLK-AZ-INQUIRY-EDIT.png",
+    "07_BLK-AUTO-04A78248.png",
+    "08_BLK-AZ-ITEM-SEARCH-SELEC.png",
+    "09_BLK-AZ-INQUIRY-EDIT.png",
+    "10_BLK-SHR-C90A0006.png",
+    "11_BLK-AUTO-DDA3A833.png",
+    "12_BLK-SHR-F9A1D656.png",
+    "13_BLK-AZ-MENU-SEARCH-LIST.png",
+    "14_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "15_BLK-SGL-CCA9B958.png",
+    "16_BLK-AUTO-4C432C14.png",
+    "17_BLK-AUTO-8FE40BE8.png"
   ]
 }

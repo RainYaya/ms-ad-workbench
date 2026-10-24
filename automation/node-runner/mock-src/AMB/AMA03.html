@@ -20,19 +20,26 @@ function custom_BodyOnload() {
 	commonBodyOnload();
 	onChangeLargeItem();
 
-	var searchIndexErrMsg = '1';
+	var searchIndexErrMsg = '';
 
 	if ( searchIndexErrMsg != '') {
 		// 保種の再選択
 		var selectedIndex = document.mhk_MHKPRForm.insuranceSelectedIndex.value;
 		var insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
 
-		insuranceItemObj.selectedIndex = selectedIndex;
-		document.getElementById('insurance_item_title').title = insuranceItemObj.options[selectedIndex].text;
+		if (insuranceItemObj.options[selectedIndex]) {
+			insuranceItemObj.selectedIndex = selectedIndex;
+			document.getElementById('insurance_item_title').title = insuranceItemObj.options[selectedIndex].text;
+		}
 
 		// 振分検索エラーメッセージ表示
 		alert(searchIndexErrMsg);
 	}
+}
+
+// mock 補完: 画面 submit ハンドラ（実機 Struts の submitAZG100 相当）
+function submitAZG100(form, param) {
+	return custom_Submit(form);
 }
 
 function custom_Submit(form) {
@@ -405,7 +412,7 @@ function setSumupStatusSelect(obj) {
       <div class="gyoumu_field_title">種目</div>
       <div class="gyoumu_field_value_left">
         <input type="hidden" id="selected_large_item_code" name="large_item_code" />
-        <select name="large_item_list.selected" class="gyoumu_field_control" onchange="setLargeItemSelect(this);onChangeLargeItem();" tabindex="3"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+        <select name="large_item_list.selected" class="gyoumu_field_control" onchange="setLargeItemSelect(this);onChangeLargeItem();" tabindex="3"><option value=""></option><option value="5">自動車</option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
       </div>
 
       <div class="gyoumu_field_title">保険種類</div>

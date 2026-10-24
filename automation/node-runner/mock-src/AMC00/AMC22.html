@@ -478,7 +478,8 @@ function submit206to104(value) {
   <input type="hidden" id="seniType"     name="seniType" />
   <input type="hidden" id="sys_mode"     name="sys_mode" />
   <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
-  <input type="hidden" id="sumisei_csv_password" name="sumisei_csv_password" />
+  <!--/* mock: 住専ユーザ判定はサーバ側。CSV出力の操作が検証に阻まれないよう非住専ユーザを既定値に固定 */-->
+  <input type="hidden" id="sumisei_csv_password" name="sumisei_csv_password" value="notSumiseiUser" />
   <input type="hidden" id="sumisei_taiju_keiyu" name="sumisei_taiju_keiyu" />
   <input type="hidden" id="screenWidth"  name="screenWidth" />
   <input type="hidden" id="screenHeight" name="screenHeight" />

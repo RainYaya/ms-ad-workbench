@@ -1,0 +1,92 @@
+{
+  "caseId": "AZ-230-01-137",
+  "runner": "node",
+  "ts": "2026-10-24T14:45:08.561Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-SHR-5F5035B5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AZ-REGISTER-UPDATE",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-04A78248",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-5C1EFE0E",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-10E5C587",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-C8903BF5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-D6459D48",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-E1BDF237",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-FB883F72",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-4C432C14",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SHR-BF46F797",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-8C0E3438",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AUTO-C8903BF5",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-SGL-60F6A775",
+      "status": "pass"
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-SHR-5F5035B5.png",
+    "03_BLK-AZ-MENU-CREATE-INPUT.png",
+    "04_BLK-AZ-INPUT-FILL.png",
+    "05_BLK-AZ-REGISTER-UPDATE.png",
+    "06_BLK-AUTO-04A78248.png",
+    "07_BLK-AUTO-5C1EFE0E.png",
+    "08_BLK-AUTO-10E5C587.png",
+    "09_BLK-AUTO-C8903BF5.png",
+    "10_BLK-SHR-D6459D48.png",
+    "11_BLK-AUTO-E1BDF237.png",
+    "12_BLK-SHR-FB883F72.png",
+    "13_BLK-AUTO-4C432C14.png",
+    "14_BLK-SHR-BF46F797.png",
+    "15_BLK-AUTO-8C0E3438.png",
+    "16_BLK-AUTO-C8903BF5.png",
+    "17_BLK-SGL-60F6A775.png"
+  ]
+}
