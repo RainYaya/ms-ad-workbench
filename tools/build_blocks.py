@@ -287,6 +287,17 @@ def main():
 
     exec_data = json.loads(EXEC_STATUS.read_text(encoding="utf-8"))
     exec_cases = exec_data.get("cases", {})
+    # Three-state model (2026-10-24, user-approved): verified / coded / planned.
+    # Source of truth is status3Map in execution-status.json, not scattered flags.
+    s3_map = exec_data.get("status3Map", {})
+    S3_VERIFIED = set(s3_map.get("verified", []))
+    S3_CODED = set(s3_map.get("coded", []))
+    def status3_of(block_id):
+        if block_id in S3_VERIFIED:
+            return "verified"
+        if block_id in S3_CODED:
+            return "coded"
+        return "planned"
     template_by_case = {}
     if TEMPLATES.exists():
         tpl_data = json.loads(TEMPLATES.read_text(encoding="utf-8"))
@@ -316,16 +327,31 @@ def main():
         info = exec_cases.get(cid, {})
         status_by_block = execution_map(info)
         block_details = []
-        for s in seq:
-            start, end = s["start"], s["end"]
+        for s_ in seq:
+            start, end = s_["start"], s_["end"]
             block_details.append({
-                "block": s["block"],
+                "block": s_["block"],
                 "start": start,
                 "end": end,
                 "fromRow": events[start].get("sourceRow"),
                 "toRow": events[end - 1].get("sourceRow"),
-                "status": status_by_block.get(s["block"], "not-run"),
+                "status": status_by_block.get(s_["block"], "not-run"),
+                "status3": status3_of(s_["block"]),
             })
+        cov3 = {"planned": 0, "coded": 0, "verified": 0}
+        for s_ in seq:
+            cov3[status3_of(s_["block"])] += s_["end"] - s_["start"]
+        cov3["uncovered"] = len(uncovered)
+        cov3["total"] = len(events)
+        s3_list = [bd["status3"] for bd in block_details]
+        if block_details and all(x == "verified" for x in s3_list):
+            case_s3 = "verified"
+        elif any(x in ("coded", "verified") for x in s3_list):
+            case_s3 = "coded"
+        elif block_details:
+            case_s3 = "planned"
+        else:
+            case_s3 = "none"
         counts = Counter(b["status"] for b in block_details)
         remaining_blocks = [b["block"] for b in block_details if b["status"] != "live-pass"]
         next_gap = None
@@ -335,6 +361,8 @@ def main():
             next_gap = {"kind": "event", "event": uncovered[0]["event"], "sourceRow": uncovered[0].get("sourceRow")}
         workflows[cid] = {
             "status": status,
+            "status3": case_s3,
+            "coverage3": cov3,
             "blocks": seq,
             "blockDetails": block_details,
             "uncovered": uncovered,
@@ -391,6 +419,7 @@ def main():
     for b in blocks:
         b["usedByCases"] = block_use.get(b["id"], 0)
         b["executionStatus"] = aggregate_status(block_statuses.get(b["id"], []))
+        b["status3"] = status3_of(b["id"])
         b.pop("_pattern", None)
 
     actual_full = [cid for cid, w in workflows.items() if w["actualDone"] == len(w["blockDetails"]) and w["blockDetails"]]
@@ -421,8 +450,14 @@ def main():
         "blockedCaseIds": blocked_cases,
         "blocks": [{"id": b["id"], "status": b["status"], "executionStatus": b["executionStatus"], "usedByCases": b["usedByCases"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"]} for b in blocks],
         "topGaps": [{"count": c, "event": json.loads(k)} for k, c in gap_stats.most_common(25)],
+        "status3Counts": dict(Counter(status3_of(b["id"]) for b in blocks)),
+        "status3CaseCounts": dict(Counter(w["status3"] for w in workflows.values())),
+        "status3EventCoverage": {
+            k: sum(w["coverage3"][k] for w in workflows.values())
+            for k in ("planned", "coded", "verified", "uncovered", "total")
+        },
     }
-    payload = {"generatedAt": "2026-10-23", "note": "Static block composition; not execution proof.", "blocks": blocks, "summary": summary, "workflows": workflows}
+    payload = {"generatedAt": "2026-10-24", "note": "Static block composition; not execution proof.", "blocks": blocks, "summary": summary, "workflows": workflows}
     (OUT / "blocks.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     (OUT / "workflows.json").write_text(json.dumps(workflows, ensure_ascii=False, indent=1), encoding="utf-8")
 
@@ -452,6 +487,8 @@ def main():
     for cid, w in workflows.items():
         auto_cases[cid] = {
             "status": w["status"],
+            "status3": w["status3"],
+            "coverage3": w["coverage3"],
             "blocks": [x["block"] for x in w["blocks"]],
             "blockDetails": w["blockDetails"],
             "eventCount": w["eventCount"],
@@ -470,7 +507,7 @@ def main():
             "runner": runner_by_case.get(cid),
         }
     auto_payload = {
-        "generatedAt": "2026-10-23",
+        "generatedAt": "2026-10-24",
         "note": "Static composition and runner availability; not execution proof.",
         "summary": {
             "caseCount": len(ids),
@@ -490,10 +527,14 @@ def main():
             "mockOnlyCount": summary["mockOnlyCount"],
             "blockedCaseCount": summary["blockedCaseCount"],
             "topGaps": summary["topGaps"],
+            "status3Counts": summary["status3Counts"],
+            "status3CaseCounts": summary["status3CaseCounts"],
+            "status3EventCoverage": summary["status3EventCoverage"],
         },
         "blocks": [{
             "id": b["id"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"],
             "params": b["params"], "status": b["status"], "executionStatus": b["executionStatus"],
+            "status3": b["status3"],
             "note": b["note"], "usedByCases": b["usedByCases"],
         } for b in blocks],
         "cases": auto_cases,
@@ -519,6 +560,8 @@ def main():
             "caseId": cid,
             "book": t.get("id", ""),
             "static": w["status"],
+            "status3": w["status3"],
+            "coverage3": w["coverage3"],
             "blocks": len(w["blockDetails"]),
             "actualDone": w["actualDone"],
             "mockDone": w["mockDone"],
@@ -531,7 +574,7 @@ def main():
             "note": w["executionNote"],
         }
     (OUT / "progress.json").write_text(json.dumps({
-        "generatedAt": "2026-10-23",
+        "generatedAt": "2026-10-24",
         "summary": summary,
         "cases": progress_cases,
     }, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -557,8 +600,12 @@ def main():
         f"| Environment-blocked cases | {len(blocked_cases)} |",
         f"| Blocks | {len(blocks)} ({summary['curatedBlockCount']} curated + {summary['autoBlockCount']} auto) |",
         f"| Event coverage | {summary['eventCoverage']:.1%} auto-inclusive / {summary['curatedEventCoverage']:.1%} curated-only |",
+        f"| Status3 blocks | verified {summary['status3Counts'].get('verified', 0)} / coded {summary['status3Counts'].get('coded', 0)} / planned {summary['status3Counts'].get('planned', 0)} |",
+        f"| Status3 cases | verified {summary['status3CaseCounts'].get('verified', 0)} / coded {summary['status3CaseCounts'].get('coded', 0)} / planned {summary['status3CaseCounts'].get('planned', 0)} / none {summary['status3CaseCounts'].get('none', 0)} |",
         "",
-        "Block execution state:",
+        "Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.",
+        "",
+        "Block execution state (legacy):",
         "",
         "| State | Blocks |",
         "|---|---:|",
@@ -569,11 +616,11 @@ def main():
         "",
         "## Blocks",
         "",
-        "| Block | From → To | Cases | Selector | Execution |",
-        "|---|---|---:|---|---|",
+        "| Block | From → To | Cases | Selector | Execution | Status3 |",
+        "|---|---|---:|---|---|---|",
     ]
     for b in sorted(blocks, key=lambda x: (-x["usedByCases"], x["id"])):
-        lines.append(f"| `{b['id']}` | {b['fromScreen']} → {b['toScreen']} | {b['usedByCases']} | {b['status']} | {b['executionStatus']} |")
+        lines.append(f"| `{b['id']}` | {b['fromScreen']} → {b['toScreen']} | {b['usedByCases']} | {b['status']} | {b['executionStatus']} | {b['status3']} |")
     lines += [
         "",
         "Block state is aggregate across cases: a block with a live pass is `live-pass`; `blocked` wins over `mock-pass` (the agent block is blocked on 009 but mock-pass on 010–012). Per-case mock counts are in `progress/cases.md`.",

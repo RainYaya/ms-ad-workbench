@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-23",
+ "generatedAt": "2026-10-24",
  "summary": {
   "caseCount": 450,
   "fullCount": 34,
@@ -677,13 +677,39 @@
      "target": "メール通知先選択"
     }
    }
-  ]
+  ],
+  "status3Counts": {
+   "planned": 41,
+   "coded": 1,
+   "verified": 3
+  },
+  "status3CaseCounts": {
+   "planned": 303,
+   "none": 49,
+   "coded": 97,
+   "verified": 1
+  },
+  "status3EventCoverage": {
+   "planned": 6561,
+   "coded": 296,
+   "verified": 488,
+   "uncovered": 3458,
+   "total": 10803
+  }
  },
  "cases": {
   "AZ-100-05-003": {
    "caseId": "AZ-100-05-003",
    "book": "TPL-AZ-100-05-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 14
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -699,6 +725,14 @@
    "caseId": "AZ-100-05-004",
    "book": "TPL-AZ-100-05-004",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 16,
+    "total": 18
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -714,6 +748,14 @@
    "caseId": "AZ-100-06-001",
    "book": "TPL-AZ-100-06-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -729,6 +771,14 @@
    "caseId": "AZ-100-06-003",
    "book": "TPL-AZ-100-06-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -744,6 +794,14 @@
    "caseId": "AZ-110-01-009",
    "book": "TPL-AZ-110-01-009",
    "static": "full",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 28,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 0,
+    "total": 44
+   },
    "blocks": 10,
    "actualDone": 3,
    "mockDone": 0,
@@ -759,6 +817,14 @@
    "caseId": "AZ-110-01-010",
    "book": "TPL-AZ-110-01-009",
    "static": "full",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 28,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 0,
+    "total": 44
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 4,
@@ -774,6 +840,14 @@
    "caseId": "AZ-110-01-011",
    "book": "TPL-AZ-110-01-009",
    "static": "full",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 28,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 0,
+    "total": 44
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 4,
@@ -789,6 +863,14 @@
    "caseId": "AZ-110-01-012",
    "book": "TPL-AZ-110-01-009",
    "static": "full",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 28,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 0,
+    "total": 44
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 4,
@@ -804,6 +886,14 @@
    "caseId": "AZ-110-02-001",
    "book": "TPL-AZ-110-02-001",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 10,
+    "total": 46
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -819,6 +909,14 @@
    "caseId": "AZ-110-02-002",
    "book": "TPL-AZ-110-02-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 6,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -834,6 +932,14 @@
    "caseId": "AZ-110-02-003",
    "book": "TPL-AZ-110-02-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 6,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -849,6 +955,14 @@
    "caseId": "AZ-110-02-004",
    "book": "TPL-AZ-110-02-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 6,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -864,6 +978,14 @@
    "caseId": "AZ-110-05-008",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -879,6 +1001,14 @@
    "caseId": "AZ-110-05-009",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -894,6 +1024,14 @@
    "caseId": "AZ-110-05-010",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -909,6 +1047,14 @@
    "caseId": "AZ-110-05-011",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -924,6 +1070,14 @@
    "caseId": "AZ-110-05-012",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -939,6 +1093,14 @@
    "caseId": "AZ-110-05-013",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -954,6 +1116,14 @@
    "caseId": "AZ-110-05-014",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -969,6 +1139,14 @@
    "caseId": "AZ-110-05-015",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -984,6 +1162,14 @@
    "caseId": "AZ-110-05-016",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -999,6 +1185,14 @@
    "caseId": "AZ-110-05-017",
    "book": "TPL-AZ-110-05-008",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 4,
+    "total": 42
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -1014,6 +1208,14 @@
    "caseId": "AZ-110-13-005",
    "book": "TPL-AZ-110-13-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -1029,6 +1231,14 @@
    "caseId": "AZ-110-14-001",
    "book": "TPL-AZ-110-14-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1044,6 +1254,14 @@
    "caseId": "AZ-110-15-001",
    "book": "TPL-AZ-110-15-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 16
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1059,6 +1277,14 @@
    "caseId": "AZ-110-16-001",
    "book": "TPL-AZ-110-16-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 30
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -1074,6 +1300,14 @@
    "caseId": "AZ-110-17-001",
    "book": "TPL-AZ-110-17-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 29
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -1089,6 +1323,14 @@
    "caseId": "AZ-110-17-002",
    "book": "TPL-AZ-110-17-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 24,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 25
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -1104,6 +1346,14 @@
    "caseId": "AZ-110-17-003",
    "book": "TPL-AZ-110-17-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 24,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 25
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -1119,6 +1369,14 @@
    "caseId": "AZ-110-18-001",
    "book": "TPL-AZ-110-18-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1134,6 +1392,14 @@
    "caseId": "AZ-110-19-001",
    "book": "TPL-AZ-110-19-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 24,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 27
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -1149,6 +1415,14 @@
    "caseId": "AZ-110-19-002",
    "book": "TPL-AZ-110-13-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -1164,6 +1438,14 @@
    "caseId": "AZ-110-24-009",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1179,6 +1461,14 @@
    "caseId": "AZ-110-24-010",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1194,6 +1484,14 @@
    "caseId": "AZ-110-24-011",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1209,6 +1507,14 @@
    "caseId": "AZ-110-24-012",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1224,6 +1530,14 @@
    "caseId": "AZ-110-24-013",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1239,6 +1553,14 @@
    "caseId": "AZ-110-24-014",
    "book": "TPL-AZ-110-24-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1254,6 +1576,14 @@
    "caseId": "AZ-110-25-001",
    "book": "TPL-AZ-110-25-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 15
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1269,6 +1599,14 @@
    "caseId": "AZ-110-25-002",
    "book": "TPL-AZ-110-25-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 11
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1284,6 +1622,14 @@
    "caseId": "AZ-110-25-003",
    "book": "TPL-AZ-110-25-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 11
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1299,6 +1645,14 @@
    "caseId": "AZ-110-25-004",
    "book": "TPL-AZ-110-25-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 11
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1314,6 +1668,14 @@
    "caseId": "AZ-110-33-004",
    "book": "TPL-AZ-110-33-004",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 8
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1329,6 +1691,14 @@
    "caseId": "AZ-110-34-001",
    "book": "TPL-AZ-110-15-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 16
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1344,6 +1714,14 @@
    "caseId": "AZ-110-35-001",
    "book": "TPL-AZ-110-35-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 30
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -1359,6 +1737,14 @@
    "caseId": "AZ-110-36-001",
    "book": "TPL-AZ-110-36-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 14
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1374,6 +1760,14 @@
    "caseId": "AZ-110-37-001",
    "book": "TPL-AZ-110-37-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 14
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1389,6 +1783,14 @@
    "caseId": "AZ-110-38-001",
    "book": "TPL-AZ-110-38-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 19
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1404,6 +1806,14 @@
    "caseId": "AZ-110-39-001",
    "book": "TPL-AZ-110-14-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1419,6 +1829,14 @@
    "caseId": "AZ-110-40-001",
    "book": "TPL-AZ-110-35-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 30
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -1434,6 +1852,14 @@
    "caseId": "AZ-110-41-001",
    "book": "TPL-AZ-110-36-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 14
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1449,6 +1875,14 @@
    "caseId": "AZ-110-42-001",
    "book": "TPL-AZ-110-37-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 14
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1464,6 +1898,14 @@
    "caseId": "AZ-110-62-001",
    "book": "TPL-AZ-110-62-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1479,6 +1921,14 @@
    "caseId": "AZ-110-63-001",
    "book": "TPL-AZ-110-63-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 26,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -1494,6 +1944,14 @@
    "caseId": "AZ-110-64-001",
    "book": "TPL-AZ-110-64-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1509,6 +1967,14 @@
    "caseId": "AZ-110-65-001",
    "book": "TPL-AZ-110-62-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -1524,6 +1990,14 @@
    "caseId": "AZ-110-66-001",
    "book": "TPL-AZ-110-63-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 26,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -1539,6 +2013,14 @@
    "caseId": "AZ-110-67-001",
    "book": "TPL-AZ-110-67-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 13
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1554,6 +2036,14 @@
    "caseId": "AZ-110-68-001",
    "book": "TPL-AZ-110-67-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 13
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1569,6 +2059,14 @@
    "caseId": "AZ-110-69-001",
    "book": "TPL-AZ-110-67-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 13
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1584,6 +2082,14 @@
    "caseId": "AZ-110-70-001",
    "book": "TPL-AZ-110-67-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 13
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1599,6 +2105,14 @@
    "caseId": "AZ-110-71-001",
    "book": "TPL-AZ-110-67-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 13
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -1614,6 +2128,14 @@
    "caseId": "AZ-110-79-001",
    "book": "TPL-AZ-110-79-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 38,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 46
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -1629,6 +2151,14 @@
    "caseId": "AZ-110-80-001",
    "book": "TPL-AZ-110-80-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 48,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 60
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -1644,6 +2174,14 @@
    "caseId": "AZ-110-81-001",
    "book": "TPL-AZ-110-81-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 32
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -1659,6 +2197,14 @@
    "caseId": "AZ-110-82-001",
    "book": "TPL-AZ-110-82-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 48,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 60
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -1674,6 +2220,14 @@
    "caseId": "AZ-111-02-003",
    "book": "TPL-AZ-111-02-003",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 6,
+    "uncovered": 5,
+    "total": 13
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -1689,6 +2243,14 @@
    "caseId": "AZ-111-02-004",
    "book": "TPL-AZ-111-02-004",
    "static": "partial",
+   "status3": "verified",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 4,
+    "total": 7
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1704,6 +2266,14 @@
    "caseId": "AZ-111-02-005",
    "book": "TPL-AZ-111-02-003",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 6,
+    "uncovered": 5,
+    "total": 13
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -1719,6 +2289,14 @@
    "caseId": "AZ-111-02-006",
    "book": "TPL-AZ-111-02-003",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 6,
+    "uncovered": 5,
+    "total": 13
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -1734,6 +2312,14 @@
    "caseId": "AZ-111-03-001",
    "book": "TPL-AZ-111-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1749,6 +2335,14 @@
    "caseId": "AZ-111-03-002",
    "book": "TPL-AZ-111-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1764,6 +2358,14 @@
    "caseId": "AZ-111-03-003",
    "book": "TPL-AZ-111-03-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1779,6 +2381,14 @@
    "caseId": "AZ-111-03-004",
    "book": "TPL-AZ-111-03-004",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1794,6 +2404,14 @@
    "caseId": "AZ-111-03-005",
    "book": "TPL-AZ-111-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1809,6 +2427,14 @@
    "caseId": "AZ-111-03-006",
    "book": "TPL-AZ-111-03-006",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1824,6 +2450,14 @@
    "caseId": "AZ-111-05-005",
    "book": "TPL-AZ-111-05-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1839,6 +2473,14 @@
    "caseId": "AZ-111-05-006",
    "book": "TPL-AZ-111-05-006",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1854,6 +2496,14 @@
    "caseId": "AZ-111-05-007",
    "book": "TPL-AZ-111-05-007",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 16
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1869,6 +2519,14 @@
    "caseId": "AZ-111-05-008",
    "book": "TPL-AZ-111-05-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 9,
+    "total": 15
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1884,6 +2542,14 @@
    "caseId": "AZ-111-05-009",
    "book": "TPL-AZ-111-05-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1899,6 +2565,14 @@
    "caseId": "AZ-111-05-010",
    "book": "TPL-AZ-111-05-010",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1914,6 +2588,14 @@
    "caseId": "AZ-111-05-011",
    "book": "TPL-AZ-111-05-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1929,6 +2611,14 @@
    "caseId": "AZ-111-05-012",
    "book": "TPL-AZ-111-05-012",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -1944,6 +2634,14 @@
    "caseId": "AZ-112-01-001",
    "book": "TPL-AZ-112-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 95,
+    "total": 95
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -1959,6 +2657,14 @@
    "caseId": "AZ-120-03-001",
    "book": "TPL-AZ-120-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 12
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -1974,6 +2680,14 @@
    "caseId": "AZ-120-03-002",
    "book": "TPL-AZ-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 16,
+    "total": 18
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -1989,6 +2703,14 @@
    "caseId": "AZ-120-04-001",
    "book": "TPL-AZ-120-04-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 5
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2004,6 +2726,14 @@
    "caseId": "AZ-150-04-002",
    "book": "TPL-AZ-150-04-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 4,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 57,
+    "total": 61
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -2019,6 +2749,14 @@
    "caseId": "AZ-150-05-001",
    "book": "TPL-AZ-150-05-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2034,6 +2772,14 @@
    "caseId": "AZ-150-06-001",
    "book": "TPL-AZ-150-06-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 10
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2049,6 +2795,14 @@
    "caseId": "AZ-150-07-001",
    "book": "TPL-AZ-150-07-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 24,
+    "total": 24
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2064,6 +2818,14 @@
    "caseId": "AZ-150-08-001",
    "book": "TPL-AZ-150-07-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 24,
+    "total": 24
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2079,6 +2841,14 @@
    "caseId": "AZ-150-10-004",
    "book": "TPL-AZ-150-10-004",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 6
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2094,6 +2864,14 @@
    "caseId": "AZ-150-11-001",
    "book": "TPL-AZ-150-11-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2109,6 +2887,14 @@
    "caseId": "AZ-150-11-002",
    "book": "TPL-AZ-150-11-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2124,6 +2910,14 @@
    "caseId": "AZ-150-12-001",
    "book": "TPL-AZ-150-11-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2139,6 +2933,14 @@
    "caseId": "AZ-150-12-002",
    "book": "TPL-AZ-150-11-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2154,6 +2956,14 @@
    "caseId": "AZ-150-13-001",
    "book": "TPL-AZ-150-13-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 55,
+    "total": 55
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2169,6 +2979,14 @@
    "caseId": "AZ-150-13-002",
    "book": "TPL-AZ-150-13-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 55,
+    "total": 55
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2184,6 +3002,14 @@
    "caseId": "AZ-150-13-003",
    "book": "TPL-AZ-150-13-003",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 25
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2199,6 +3025,14 @@
    "caseId": "AZ-150-13-004",
    "book": "TPL-AZ-150-13-003",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 25
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -2214,6 +3048,14 @@
    "caseId": "AZ-160-01-004",
    "book": "TPL-AZ-160-01-004",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 21,
+    "total": 23
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2229,6 +3071,14 @@
    "caseId": "AZ-160-01-005",
    "book": "TPL-AZ-160-01-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 21,
+    "total": 23
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2244,6 +3094,14 @@
    "caseId": "AZ-160-01-006",
    "book": "TPL-AZ-160-01-006",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 21,
+    "total": 23
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2259,6 +3117,14 @@
    "caseId": "AZ-160-01-007",
    "book": "TPL-AZ-160-01-007",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 21,
+    "total": 23
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2274,6 +3140,14 @@
    "caseId": "AZ-160-03-001",
    "book": "TPL-AZ-160-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 9
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2289,6 +3163,14 @@
    "caseId": "AZ-160-03-002",
    "book": "TPL-AZ-160-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 9
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2304,6 +3186,14 @@
    "caseId": "AZ-160-03-003",
    "book": "TPL-AZ-160-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 9
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -2319,6 +3209,14 @@
    "caseId": "AZ-310-01-011",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2334,6 +3232,14 @@
    "caseId": "AZ-310-01-012",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2349,6 +3255,14 @@
    "caseId": "AZ-310-01-013",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2364,6 +3278,14 @@
    "caseId": "AZ-310-01-014",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2379,6 +3301,14 @@
    "caseId": "AZ-310-01-015",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2394,6 +3324,14 @@
    "caseId": "AZ-310-01-016",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2409,6 +3347,14 @@
    "caseId": "AZ-310-01-017",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2424,6 +3370,14 @@
    "caseId": "AZ-310-01-018",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2439,6 +3393,14 @@
    "caseId": "AZ-310-01-019",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2454,6 +3416,14 @@
    "caseId": "AZ-310-01-020",
    "book": "TPL-AZ-310-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -2469,6 +3439,14 @@
    "caseId": "AZ-310-02-012",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2484,6 +3462,14 @@
    "caseId": "AZ-310-02-013",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2499,6 +3485,14 @@
    "caseId": "AZ-310-02-014",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2514,6 +3508,14 @@
    "caseId": "AZ-310-02-015",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2529,6 +3531,14 @@
    "caseId": "AZ-310-02-016",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2544,6 +3554,14 @@
    "caseId": "AZ-310-02-017",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2559,6 +3577,14 @@
    "caseId": "AZ-310-02-018",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2574,6 +3600,14 @@
    "caseId": "AZ-310-02-019",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2589,6 +3623,14 @@
    "caseId": "AZ-310-02-020",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2604,6 +3646,14 @@
    "caseId": "AZ-310-02-021",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2619,6 +3669,14 @@
    "caseId": "AZ-310-04-020",
    "book": "TPL-AZ-310-04-020",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2634,6 +3692,14 @@
    "caseId": "AZ-310-04-021",
    "book": "TPL-AZ-310-04-020",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2649,6 +3715,14 @@
    "caseId": "AZ-310-04-022",
    "book": "TPL-AZ-310-04-020",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2664,6 +3738,14 @@
    "caseId": "AZ-310-04-023",
    "book": "TPL-AZ-310-04-020",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2679,6 +3761,14 @@
    "caseId": "AZ-310-04-024",
    "book": "TPL-AZ-310-04-020",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2694,6 +3784,14 @@
    "caseId": "AZ-310-05-001",
    "book": "TPL-AZ-310-05-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 31
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -2709,6 +3807,14 @@
    "caseId": "AZ-310-06-001",
    "book": "TPL-AZ-310-06-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 10
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -2724,6 +3830,14 @@
    "caseId": "AZ-310-07-001",
    "book": "TPL-AZ-310-07-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 23
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2739,6 +3853,14 @@
    "caseId": "AZ-310-08-001",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2754,6 +3876,14 @@
    "caseId": "AZ-310-09-001",
    "book": "TPL-AZ-310-09-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 18,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 25
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -2769,6 +3899,14 @@
    "caseId": "AZ-310-16-008",
    "book": "TPL-AZ-310-16-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -2784,6 +3922,14 @@
    "caseId": "AZ-310-16-009",
    "book": "TPL-AZ-310-16-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 12
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -2799,6 +3945,14 @@
    "caseId": "AZ-310-17-001",
    "book": "TPL-AZ-310-17-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 16
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -2814,6 +3968,14 @@
    "caseId": "AZ-310-18-001",
    "book": "TPL-AZ-110-36-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 14
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -2829,6 +3991,14 @@
    "caseId": "AZ-310-19-001",
    "book": "TPL-AZ-110-25-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 15
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2844,6 +4014,14 @@
    "caseId": "AZ-310-20-001",
    "book": "TPL-AZ-110-64-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2859,6 +4037,14 @@
    "caseId": "AZ-310-21-001",
    "book": "TPL-AZ-110-37-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 14
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2874,6 +4060,14 @@
    "caseId": "AZ-310-22-001",
    "book": "TPL-AZ-110-38-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2889,6 +4083,14 @@
    "caseId": "AZ-310-23-001",
    "book": "TPL-AZ-110-14-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2904,6 +4106,14 @@
    "caseId": "AZ-310-24-001",
    "book": "TPL-AZ-310-24-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 16
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2919,6 +4129,14 @@
    "caseId": "AZ-310-34-001",
    "book": "TPL-AZ-310-34-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 14
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2934,6 +4152,14 @@
    "caseId": "AZ-310-35-001",
    "book": "TPL-AZ-110-64-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2949,6 +4175,14 @@
    "caseId": "AZ-310-36-001",
    "book": "TPL-AZ-110-62-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2964,6 +4198,14 @@
    "caseId": "AZ-310-37-001",
    "book": "TPL-AZ-310-37-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 19
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -2979,6 +4221,14 @@
    "caseId": "AZ-310-38-001",
    "book": "TPL-AZ-110-36-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 14
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -2994,6 +4244,14 @@
    "caseId": "AZ-310-39-001",
    "book": "TPL-AZ-110-64-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3009,6 +4267,14 @@
    "caseId": "AZ-310-40-001",
    "book": "TPL-AZ-310-40-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 34
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -3024,6 +4290,14 @@
    "caseId": "AZ-310-41-001",
    "book": "TPL-AZ-310-41-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 38,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 9,
+    "total": 47
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -3039,6 +4313,14 @@
    "caseId": "AZ-310-42-001",
    "book": "TPL-AZ-310-42-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 38,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 50
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -3054,6 +4336,14 @@
    "caseId": "AZ-310-43-001",
    "book": "TPL-AZ-310-43-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 26,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 11,
+    "total": 37
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -3069,6 +4359,14 @@
    "caseId": "AZ-410-05-002",
    "book": "TPL-AZ-410-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 22
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3084,6 +4382,14 @@
    "caseId": "AZ-410-05-003",
    "book": "TPL-AZ-410-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 22
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3099,6 +4405,14 @@
    "caseId": "AZ-410-06-001",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3114,6 +4428,14 @@
    "caseId": "AZ-410-06-002",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3129,6 +4451,14 @@
    "caseId": "AZ-410-06-003",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3144,6 +4474,14 @@
    "caseId": "AZ-410-07-001",
    "book": "TPL-AZ-410-07-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3159,6 +4497,14 @@
    "caseId": "AZ-410-08-001",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3174,6 +4520,14 @@
    "caseId": "AZ-410-09-001",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3189,6 +4543,14 @@
    "caseId": "AZ-410-10-001",
    "book": "TPL-AZ-310-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3204,6 +4566,14 @@
    "caseId": "AZ-410-11-001",
    "book": "TPL-AZ-110-62-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3219,6 +4589,14 @@
    "caseId": "AZ-510-01-005",
    "book": "TPL-AZ-510-01-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 16,
+    "total": 22
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -3234,6 +4612,14 @@
    "caseId": "AZ-200-01-001",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3249,6 +4635,14 @@
    "caseId": "AZ-200-01-002",
    "book": "TPL-AZ-200-01-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3264,6 +4658,14 @@
    "caseId": "AZ-200-01-003",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3279,6 +4681,14 @@
    "caseId": "AZ-200-01-004",
    "book": "TPL-AZ-200-01-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3294,6 +4704,14 @@
    "caseId": "AZ-200-01-005",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3309,6 +4727,14 @@
    "caseId": "AZ-200-01-006",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3324,6 +4750,14 @@
    "caseId": "AZ-200-01-007",
    "book": "TPL-AZ-200-01-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3339,6 +4773,14 @@
    "caseId": "AZ-200-01-008",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3354,6 +4796,14 @@
    "caseId": "AZ-200-01-009",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3369,6 +4819,14 @@
    "caseId": "AZ-200-01-030",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3384,6 +4842,14 @@
    "caseId": "AZ-200-01-031",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3399,6 +4865,14 @@
    "caseId": "AZ-200-01-032",
    "book": "TPL-AZ-200-01-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3414,6 +4888,14 @@
    "caseId": "AZ-200-02-001",
    "book": "TPL-AZ-200-02-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 16,
+    "total": 16
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3429,6 +4911,14 @@
    "caseId": "AZ-200-02-002",
    "book": "TPL-AZ-200-02-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 16,
+    "total": 16
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3444,6 +4934,14 @@
    "caseId": "AZ-200-03-001",
    "book": "TPL-AZ-200-03-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3459,6 +4957,14 @@
    "caseId": "AZ-200-03-002",
    "book": "TPL-AZ-200-03-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 10
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3474,6 +4980,14 @@
    "caseId": "AZ-200-03-003",
    "book": "TPL-AZ-200-03-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3489,6 +5003,14 @@
    "caseId": "AZ-200-03-004",
    "book": "TPL-AZ-200-03-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 10
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3504,6 +5026,14 @@
    "caseId": "AZ-200-04-001",
    "book": "TPL-AZ-200-04-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3519,6 +5049,14 @@
    "caseId": "AZ-200-07-001",
    "book": "TPL-AZ-200-07-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 15
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3534,6 +5072,14 @@
    "caseId": "AZ-200-07-002",
    "book": "TPL-AZ-200-03-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3549,6 +5095,14 @@
    "caseId": "AZ-200-07-003",
    "book": "TPL-AZ-200-07-003",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 12
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3564,6 +5118,14 @@
    "caseId": "AZ-200-07-004",
    "book": "TPL-AZ-200-07-004",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 10
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3579,6 +5141,14 @@
    "caseId": "AZ-200-07-005",
    "book": "TPL-AZ-200-07-005",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 6
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3594,6 +5164,14 @@
    "caseId": "AZ-200-07-006",
    "book": "TPL-AZ-200-07-006",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 5
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -3609,6 +5187,14 @@
    "caseId": "AZ-210-05-013",
    "book": "TPL-AZ-210-05-013",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 1,
+    "total": 37
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -3624,6 +5210,14 @@
    "caseId": "AZ-210-05-014",
    "book": "TPL-AZ-210-05-013",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 1,
+    "total": 37
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -3639,6 +5233,14 @@
    "caseId": "AZ-210-05-015",
    "book": "TPL-AZ-210-05-013",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 1,
+    "total": 37
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -3654,6 +5256,14 @@
    "caseId": "AZ-210-05-016",
    "book": "TPL-AZ-210-05-013",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 1,
+    "total": 37
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -3669,6 +5279,14 @@
    "caseId": "AZ-210-08-001",
    "book": "TPL-AZ-210-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 19,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 13,
+    "total": 32
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -3684,6 +5302,14 @@
    "caseId": "AZ-210-09-001",
    "book": "TPL-AZ-210-09-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 22,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 29
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -3699,6 +5325,14 @@
    "caseId": "AZ-210-10-001",
    "book": "TPL-AZ-110-37-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 14
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3714,6 +5348,14 @@
    "caseId": "AZ-210-11-001",
    "book": "TPL-AZ-210-11-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 18
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -3729,6 +5371,14 @@
    "caseId": "AZ-210-12-001",
    "book": "TPL-AZ-210-12-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 18
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -3744,6 +5394,14 @@
    "caseId": "AZ-210-13-001",
    "book": "TPL-AZ-210-13-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 22,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 9,
+    "total": 31
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -3759,6 +5417,14 @@
    "caseId": "AZ-210-14-001",
    "book": "TPL-AZ-110-37-001",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 14
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -3774,6 +5440,14 @@
    "caseId": "AZ-210-15-001",
    "book": "TPL-AZ-210-15-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3789,6 +5463,14 @@
    "caseId": "AZ-210-16-001",
    "book": "TPL-AZ-210-12-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 18
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -3804,6 +5486,14 @@
    "caseId": "AZ-210-17-001",
    "book": "TPL-AZ-210-13-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 22,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 9,
+    "total": 31
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -3819,6 +5509,14 @@
    "caseId": "AZ-210-30-001",
    "book": "TPL-AZ-210-30-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 21
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -3834,6 +5532,14 @@
    "caseId": "AZ-210-31-001",
    "book": "TPL-AZ-210-31-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 28
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -3849,6 +5555,14 @@
    "caseId": "AZ-210-32-001",
    "book": "TPL-AZ-210-32-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3864,6 +5578,14 @@
    "caseId": "AZ-210-33-001",
    "book": "TPL-AZ-210-15-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 18
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -3879,6 +5601,14 @@
    "caseId": "AZ-210-34-001",
    "book": "TPL-AZ-210-12-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 18
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -3894,6 +5624,14 @@
    "caseId": "AZ-210-35-001",
    "book": "TPL-AZ-210-35-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 22,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 30
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -3909,6 +5647,14 @@
    "caseId": "AZ-210-36-001",
    "book": "TPL-AZ-210-36-001",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 21,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 7,
+    "total": 44
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -3924,6 +5670,14 @@
    "caseId": "AZ-210-36-002",
    "book": "TPL-AZ-210-36-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 21,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 3,
+    "total": 40
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -3939,6 +5693,14 @@
    "caseId": "AZ-210-36-003",
    "book": "TPL-AZ-210-36-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 21,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 3,
+    "total": 40
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -3954,6 +5716,14 @@
    "caseId": "AZ-210-36-004",
    "book": "TPL-AZ-210-36-002",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 21,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 3,
+    "total": 40
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -3969,6 +5739,14 @@
    "caseId": "AZ-210-37-008",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -3984,6 +5762,14 @@
    "caseId": "AZ-210-37-009",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -3999,6 +5785,14 @@
    "caseId": "AZ-210-37-010",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4014,6 +5808,14 @@
    "caseId": "AZ-210-37-011",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4029,6 +5831,14 @@
    "caseId": "AZ-210-37-012",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4044,6 +5854,14 @@
    "caseId": "AZ-210-37-013",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4059,6 +5877,14 @@
    "caseId": "AZ-210-37-014",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4074,6 +5900,14 @@
    "caseId": "AZ-210-37-015",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4089,6 +5923,14 @@
    "caseId": "AZ-210-37-016",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4104,6 +5946,14 @@
    "caseId": "AZ-210-37-017",
    "book": "TPL-AZ-210-37-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 17
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4119,6 +5969,14 @@
    "caseId": "AZ-210-46-003",
    "book": "TPL-AZ-210-46-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 13
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -4134,6 +5992,14 @@
    "caseId": "AZ-210-46-004",
    "book": "TPL-AZ-210-46-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 13
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -4149,6 +6015,14 @@
    "caseId": "AZ-210-46-005",
    "book": "TPL-AZ-210-46-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 13
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -4164,6 +6038,14 @@
    "caseId": "AZ-210-46-006",
    "book": "TPL-AZ-210-46-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 13
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -4179,6 +6061,14 @@
    "caseId": "AZ-210-46-007",
    "book": "TPL-AZ-210-46-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 6,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 13
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -4194,6 +6084,14 @@
    "caseId": "AZ-210-47-001",
    "book": "TPL-AZ-210-47-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 24
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4209,6 +6107,14 @@
    "caseId": "AZ-210-48-001",
    "book": "TPL-AZ-210-48-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4224,6 +6130,14 @@
    "caseId": "AZ-210-49-001",
    "book": "TPL-AZ-210-49-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4239,6 +6153,14 @@
    "caseId": "AZ-210-50-001",
    "book": "TPL-AZ-210-50-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 4,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 8
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -4254,6 +6176,14 @@
    "caseId": "AZ-210-51-001",
    "book": "TPL-AZ-210-51-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 16
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4269,6 +6199,14 @@
    "caseId": "AZ-210-60-001",
    "book": "TPL-AZ-210-60-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4284,6 +6222,14 @@
    "caseId": "AZ-210-61-001",
    "book": "TPL-AZ-210-60-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4299,6 +6245,14 @@
    "caseId": "AZ-210-62-001",
    "book": "TPL-AZ-210-62-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4314,6 +6268,14 @@
    "caseId": "AZ-210-63-001",
    "book": "TPL-AZ-210-63-001",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 22,
+    "coded": 8,
+    "verified": 8,
+    "uncovered": 5,
+    "total": 43
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4329,6 +6291,14 @@
    "caseId": "AZ-210-64-001",
    "book": "TPL-AZ-210-51-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 16
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4344,6 +6314,14 @@
    "caseId": "AZ-210-65-001",
    "book": "TPL-AZ-210-65-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 10,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 12
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4359,6 +6337,14 @@
    "caseId": "AZ-210-66-001",
    "book": "TPL-AZ-210-66-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -4374,6 +6360,14 @@
    "caseId": "AZ-210-67-001",
    "book": "TPL-AZ-210-67-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 26
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4389,6 +6383,14 @@
    "caseId": "AZ-210-68-001",
    "book": "TPL-AZ-210-68-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 21
+   },
    "blocks": 5,
    "actualDone": 0,
    "mockDone": 0,
@@ -4404,6 +6406,14 @@
    "caseId": "AZ-220-01-003",
    "book": "TPL-AZ-220-01-003",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 5
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -4419,6 +6429,14 @@
    "caseId": "AZ-220-01-004",
    "book": "TPL-AZ-220-01-004",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 3
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -4434,6 +6452,14 @@
    "caseId": "AZ-230-01-011",
    "book": "TPL-AZ-230-01-011",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 25,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 6,
+    "total": 34
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4449,6 +6475,14 @@
    "caseId": "AZ-230-01-012",
    "book": "TPL-AZ-230-01-012",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 2,
+    "total": 35
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4464,6 +6498,14 @@
    "caseId": "AZ-230-01-013",
    "book": "TPL-AZ-230-01-013",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 4,
+    "total": 37
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4479,6 +6521,14 @@
    "caseId": "AZ-230-01-014",
    "book": "TPL-AZ-230-01-014",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 9,
+    "total": 28
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4494,6 +6544,14 @@
    "caseId": "AZ-230-01-015",
    "book": "TPL-AZ-230-01-015",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 8,
+    "total": 31
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4509,6 +6567,14 @@
    "caseId": "AZ-230-01-016",
    "book": "TPL-AZ-230-01-016",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 9,
+    "total": 32
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4524,6 +6590,14 @@
    "caseId": "AZ-230-01-017",
    "book": "TPL-AZ-230-01-017",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 24,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 14,
+    "total": 41
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4539,6 +6613,14 @@
    "caseId": "AZ-230-01-018",
    "book": "TPL-AZ-230-01-018",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 24,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4554,6 +6636,14 @@
    "caseId": "AZ-230-01-019",
    "book": "TPL-AZ-230-01-019",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 45
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4569,6 +6659,14 @@
    "caseId": "AZ-230-01-020",
    "book": "TPL-AZ-230-01-020",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 18,
+    "total": 41
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4584,6 +6682,14 @@
    "caseId": "AZ-230-01-041",
    "book": "TPL-AZ-230-01-041",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 34,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 17,
+    "total": 54
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -4599,6 +6705,14 @@
    "caseId": "AZ-230-01-042",
    "book": "TPL-AZ-230-01-042",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 39,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 15,
+    "total": 57
+   },
    "blocks": 12,
    "actualDone": 0,
    "mockDone": 0,
@@ -4614,6 +6728,14 @@
    "caseId": "AZ-230-01-043",
    "book": "TPL-AZ-230-01-043",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 35
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4629,6 +6751,14 @@
    "caseId": "AZ-230-01-044",
    "book": "TPL-AZ-230-01-044",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 19,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 36,
+    "total": 58
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4644,6 +6774,14 @@
    "caseId": "AZ-230-01-045",
    "book": "TPL-AZ-230-01-045",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 31,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 32,
+    "total": 66
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -4659,6 +6797,14 @@
    "caseId": "AZ-230-01-046",
    "book": "TPL-AZ-230-01-046",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 34,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 18,
+    "total": 55
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -4674,6 +6820,14 @@
    "caseId": "AZ-230-01-047",
    "book": "TPL-AZ-230-01-047",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 28,
+    "total": 60
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4689,6 +6843,14 @@
    "caseId": "AZ-230-01-048",
    "book": "TPL-AZ-230-01-048",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 37,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 7,
+    "total": 47
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -4704,6 +6866,14 @@
    "caseId": "AZ-230-01-049",
    "book": "TPL-AZ-230-01-049",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 42,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 18,
+    "total": 63
+   },
    "blocks": 12,
    "actualDone": 0,
    "mockDone": 0,
@@ -4719,6 +6889,14 @@
    "caseId": "AZ-230-01-050",
    "book": "TPL-AZ-230-01-050",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 31,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 14,
+    "total": 48
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4734,6 +6912,14 @@
    "caseId": "AZ-230-01-071",
    "book": "TPL-AZ-230-01-071",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 6,
+    "total": 26
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4749,6 +6935,14 @@
    "caseId": "AZ-230-01-072",
    "book": "TPL-AZ-230-01-072",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 5,
+    "total": 25
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4764,6 +6958,14 @@
    "caseId": "AZ-230-01-073",
    "book": "TPL-AZ-230-01-073",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 25,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 12,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4779,6 +6981,14 @@
    "caseId": "AZ-230-01-074",
    "book": "TPL-AZ-230-01-074",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 24,
+    "total": 43
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4794,6 +7004,14 @@
    "caseId": "AZ-230-01-075",
    "book": "TPL-AZ-230-01-075",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 19,
+    "total": 38
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4809,6 +7027,14 @@
    "caseId": "AZ-230-01-076",
    "book": "TPL-AZ-230-01-076",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 37,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 25,
+    "total": 65
+   },
    "blocks": 12,
    "actualDone": 0,
    "mockDone": 0,
@@ -4824,6 +7050,14 @@
    "caseId": "AZ-230-01-077",
    "book": "TPL-AZ-230-01-077",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 10,
+    "total": 28
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4839,6 +7073,14 @@
    "caseId": "AZ-230-01-078",
    "book": "TPL-AZ-230-01-078",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 9,
+    "total": 27
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4854,6 +7096,14 @@
    "caseId": "AZ-230-01-079",
    "book": "TPL-AZ-230-01-079",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 25,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 41
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4869,6 +7119,14 @@
    "caseId": "AZ-230-01-080",
    "book": "TPL-AZ-230-01-080",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 9,
+    "total": 42
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -4884,6 +7142,14 @@
    "caseId": "AZ-230-01-101",
    "book": "TPL-AZ-230-01-101",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 20,
+    "total": 39
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4899,6 +7165,14 @@
    "caseId": "AZ-230-01-102",
    "book": "TPL-AZ-230-01-102",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 17,
+    "total": 36
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4914,6 +7188,14 @@
    "caseId": "AZ-230-01-103",
    "book": "TPL-AZ-230-01-103",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 22,
+    "total": 41
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4929,6 +7211,14 @@
    "caseId": "AZ-230-01-104",
    "book": "TPL-AZ-230-01-104",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 36
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4944,6 +7234,14 @@
    "caseId": "AZ-230-01-105",
    "book": "TPL-AZ-230-01-105",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 20,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 12,
+    "total": 35
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -4959,6 +7257,14 @@
    "caseId": "AZ-230-01-106",
    "book": "TPL-AZ-230-01-106",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 26,
+    "total": 44
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -4974,6 +7280,14 @@
    "caseId": "AZ-230-01-107",
    "book": "TPL-AZ-230-01-107",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 25,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 17,
+    "total": 45
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -4989,6 +7303,14 @@
    "caseId": "AZ-230-01-108",
    "book": "TPL-AZ-230-01-108",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 23,
+    "total": 41
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5004,6 +7326,14 @@
    "caseId": "AZ-230-01-109",
    "book": "TPL-AZ-230-01-109",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 15,
+    "total": 34
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5019,6 +7349,14 @@
    "caseId": "AZ-230-01-110",
    "book": "TPL-AZ-230-01-110",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 14,
+    "total": 33
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5034,6 +7372,14 @@
    "caseId": "AZ-230-01-131",
    "book": "TPL-AZ-230-01-131",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 32,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 13,
+    "total": 48
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -5049,6 +7395,14 @@
    "caseId": "AZ-230-01-132",
    "book": "TPL-AZ-230-01-132",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 32,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 12,
+    "total": 47
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -5064,6 +7418,14 @@
    "caseId": "AZ-230-01-133",
    "book": "TPL-AZ-230-01-133",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 37,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 21,
+    "total": 61
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -5079,6 +7441,14 @@
    "caseId": "AZ-230-01-134",
    "book": "TPL-AZ-230-01-134",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 42,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 17,
+    "total": 62
+   },
    "blocks": 12,
    "actualDone": 0,
    "mockDone": 0,
@@ -5094,6 +7464,14 @@
    "caseId": "AZ-230-01-135",
    "book": "TPL-AZ-230-01-135",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 47,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 15,
+    "total": 65
+   },
    "blocks": 13,
    "actualDone": 0,
    "mockDone": 0,
@@ -5109,6 +7487,14 @@
    "caseId": "AZ-230-01-136",
    "book": "TPL-AZ-230-01-136",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 32,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 11,
+    "total": 46
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -5124,6 +7510,14 @@
    "caseId": "AZ-230-01-137",
    "book": "TPL-AZ-230-01-137",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 34,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 8,
+    "total": 45
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -5139,6 +7533,14 @@
    "caseId": "AZ-230-01-138",
    "book": "TPL-AZ-230-01-138",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 49,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 10,
+    "total": 62
+   },
    "blocks": 14,
    "actualDone": 0,
    "mockDone": 0,
@@ -5154,6 +7556,14 @@
    "caseId": "AZ-230-01-139",
    "book": "TPL-AZ-230-01-139",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 34,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 17,
+    "total": 54
+   },
    "blocks": 11,
    "actualDone": 0,
    "mockDone": 0,
@@ -5169,6 +7579,14 @@
    "caseId": "AZ-230-01-140",
    "book": "TPL-AZ-230-01-140",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 15,
+    "total": 34
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5184,6 +7602,14 @@
    "caseId": "AZ-230-01-151",
    "book": "TPL-AZ-230-01-151",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 22,
+    "total": 53
+   },
    "blocks": 10,
    "actualDone": 0,
    "mockDone": 0,
@@ -5199,6 +7625,14 @@
    "caseId": "AZ-230-01-152",
    "book": "TPL-AZ-230-01-152",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 6,
+    "total": 26
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -5214,6 +7648,14 @@
    "caseId": "AZ-230-01-153",
    "book": "TPL-AZ-230-01-153",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 5,
+    "total": 25
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -5229,6 +7671,14 @@
    "caseId": "AZ-230-01-154",
    "book": "TPL-AZ-230-01-154",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 25,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 12,
+    "total": 40
+   },
    "blocks": 9,
    "actualDone": 0,
    "mockDone": 0,
@@ -5244,6 +7694,14 @@
    "caseId": "AZ-230-01-155",
    "book": "TPL-AZ-230-01-155",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 24,
+    "total": 43
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5259,6 +7717,14 @@
    "caseId": "AZ-230-01-156",
    "book": "TPL-AZ-230-01-156",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 16,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 19,
+    "total": 38
+   },
    "blocks": 7,
    "actualDone": 0,
    "mockDone": 0,
@@ -5274,6 +7740,14 @@
    "caseId": "AZ-230-01-157",
    "book": "TPL-AZ-230-01-157",
    "static": "partial",
+   "status3": "coded",
+   "coverage3": {
+    "planned": 37,
+    "coded": 0,
+    "verified": 3,
+    "uncovered": 25,
+    "total": 65
+   },
    "blocks": 12,
    "actualDone": 0,
    "mockDone": 0,
@@ -5289,6 +7763,14 @@
    "caseId": "AZ-240-03-002",
    "book": "TPL-AZ-240-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 4,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 6
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5304,6 +7786,14 @@
    "caseId": "AZ-240-03-003",
    "book": "TPL-AZ-240-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 4,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 6
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5319,6 +7809,14 @@
    "caseId": "AY-100-04-001",
    "book": "TPL-AY-100-04-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5334,6 +7832,14 @@
    "caseId": "AY-100-04-002",
    "book": "TPL-AY-100-04-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5349,6 +7855,14 @@
    "caseId": "AY-100-05-001",
    "book": "TPL-AY-100-05-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 12,
+    "total": 14
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5364,6 +7878,14 @@
    "caseId": "AY-100-06-003",
    "book": "TPL-AY-100-06-003",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5379,6 +7901,14 @@
    "caseId": "AY-100-07-001",
    "book": "TPL-AY-100-07-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 96,
+    "total": 124
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -5394,6 +7924,14 @@
    "caseId": "AY-100-07-002",
    "book": "TPL-AY-100-07-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 28,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 96,
+    "total": 124
+   },
    "blocks": 8,
    "actualDone": 0,
    "mockDone": 0,
@@ -5409,6 +7947,14 @@
    "caseId": "AY-100-08-001",
    "book": "TPL-AY-100-08-001",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 13,
+    "total": 13
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5424,6 +7970,14 @@
    "caseId": "AY-100-08-002",
    "book": "TPL-AY-100-08-002",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 4
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5439,6 +7993,14 @@
    "caseId": "AY-100-08-003",
    "book": "TPL-AY-100-08-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 28,
+    "total": 30
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5454,6 +8016,14 @@
    "caseId": "AY-100-08-004",
    "book": "TPL-AY-100-08-004",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 12
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5469,6 +8039,14 @@
    "caseId": "AY-100-08-005",
    "book": "TPL-AY-100-08-005",
    "static": "partial",
+   "status3": "none",
+   "coverage3": {
+    "planned": 0,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 5
+   },
    "blocks": 0,
    "actualDone": 0,
    "mockDone": 0,
@@ -5484,6 +8062,14 @@
    "caseId": "AY-110-01-011",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5499,6 +8085,14 @@
    "caseId": "AY-110-01-012",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5514,6 +8108,14 @@
    "caseId": "AY-110-01-013",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5529,6 +8131,14 @@
    "caseId": "AY-110-01-014",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5544,6 +8154,14 @@
    "caseId": "AY-110-01-015",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5559,6 +8177,14 @@
    "caseId": "AY-110-01-016",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5574,6 +8200,14 @@
    "caseId": "AY-110-01-017",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5589,6 +8223,14 @@
    "caseId": "AY-110-01-018",
    "book": "TPL-AY-110-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 17,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 25
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5604,6 +8246,14 @@
    "caseId": "AY-110-02-001",
    "book": "TPL-AY-110-02-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 13,
+    "total": 15
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5619,6 +8269,14 @@
    "caseId": "AY-110-02-002",
    "book": "TPL-AY-110-02-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 10,
+    "total": 12
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5634,6 +8292,14 @@
    "caseId": "AY-120-01-003",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5649,6 +8315,14 @@
    "caseId": "AY-120-01-004",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5664,6 +8338,14 @@
    "caseId": "AY-120-01-005",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5679,6 +8361,14 @@
    "caseId": "AY-120-01-006",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5694,6 +8384,14 @@
    "caseId": "AY-120-01-007",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5709,6 +8407,14 @@
    "caseId": "AY-120-01-008",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5724,6 +8430,14 @@
    "caseId": "AY-120-01-009",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5739,6 +8453,14 @@
    "caseId": "AY-120-01-010",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5754,6 +8476,14 @@
    "caseId": "AY-120-01-011",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5769,6 +8499,14 @@
    "caseId": "AY-120-01-012",
    "book": "TPL-AY-120-01-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 29,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -5784,6 +8522,14 @@
    "caseId": "AY-120-02-015",
    "book": "TPL-AY-120-02-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 8,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 33
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5799,6 +8545,14 @@
    "caseId": "AY-120-02-016",
    "book": "TPL-AY-120-02-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 8,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 33
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5814,6 +8568,14 @@
    "caseId": "AY-120-02-017",
    "book": "TPL-AY-120-02-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 8,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 33
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5829,6 +8591,14 @@
    "caseId": "AY-120-02-018",
    "book": "TPL-AY-120-02-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 8,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 25,
+    "total": 33
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -5844,6 +8614,14 @@
    "caseId": "AY-120-03-001",
    "book": "TPL-AY-120-03-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 21,
+    "total": 42
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5859,6 +8637,14 @@
    "caseId": "AY-120-03-002",
    "book": "TPL-AY-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 36
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5874,6 +8660,14 @@
    "caseId": "AY-120-03-003",
    "book": "TPL-AY-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 36
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5889,6 +8683,14 @@
    "caseId": "AY-120-03-004",
    "book": "TPL-AY-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 36
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5904,6 +8706,14 @@
    "caseId": "AY-120-03-005",
    "book": "TPL-AY-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 36
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5919,6 +8729,14 @@
    "caseId": "AY-120-03-006",
    "book": "TPL-AY-120-03-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 21,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 15,
+    "total": 36
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -5934,6 +8752,14 @@
    "caseId": "AY-120-04-009",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -5949,6 +8775,14 @@
    "caseId": "AY-120-04-010",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -5964,6 +8798,14 @@
    "caseId": "AY-120-04-011",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -5979,6 +8821,14 @@
    "caseId": "AY-120-04-012",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -5994,6 +8844,14 @@
    "caseId": "AY-120-04-013",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6009,6 +8867,14 @@
    "caseId": "AY-120-04-014",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6024,6 +8890,14 @@
    "caseId": "AY-120-04-015",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6039,6 +8913,14 @@
    "caseId": "AY-120-04-016",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6054,6 +8936,14 @@
    "caseId": "AY-120-04-017",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6069,6 +8959,14 @@
    "caseId": "AY-120-04-018",
    "book": "TPL-AY-120-04-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 12,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6084,6 +8982,14 @@
    "caseId": "AY-120-06-003",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6099,6 +9005,14 @@
    "caseId": "AY-120-06-004",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6114,6 +9028,14 @@
    "caseId": "AY-120-06-005",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6129,6 +9051,14 @@
    "caseId": "AY-120-06-006",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6144,6 +9074,14 @@
    "caseId": "AY-120-06-007",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6159,6 +9097,14 @@
    "caseId": "AY-120-06-008",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6174,6 +9120,14 @@
    "caseId": "AY-120-06-009",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6189,6 +9143,14 @@
    "caseId": "AY-120-06-010",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6204,6 +9166,14 @@
    "caseId": "AY-120-06-011",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6219,6 +9189,14 @@
    "caseId": "AY-120-06-012",
    "book": "TPL-AY-120-06-003",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6234,6 +9212,14 @@
    "caseId": "AY-120-07-015",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -6249,6 +9235,14 @@
    "caseId": "AY-120-07-016",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -6264,6 +9258,14 @@
    "caseId": "AY-120-07-017",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -6279,6 +9281,14 @@
    "caseId": "AY-120-07-018",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -6294,6 +9304,14 @@
    "caseId": "AY-120-08-001",
    "book": "TPL-AY-120-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6309,6 +9327,14 @@
    "caseId": "AY-120-08-002",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6324,6 +9350,14 @@
    "caseId": "AY-120-08-003",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6339,6 +9373,14 @@
    "caseId": "AY-120-08-004",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6354,6 +9396,14 @@
    "caseId": "AY-120-08-005",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6369,6 +9419,14 @@
    "caseId": "AY-120-08-006",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6384,6 +9442,14 @@
    "caseId": "AY-120-09-004",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6399,6 +9465,14 @@
    "caseId": "AY-120-09-005",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6414,6 +9488,14 @@
    "caseId": "AY-120-09-006",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6429,6 +9511,14 @@
    "caseId": "AY-120-09-007",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6444,6 +9534,14 @@
    "caseId": "AY-120-09-008",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6459,6 +9557,14 @@
    "caseId": "AY-120-09-009",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6474,6 +9580,14 @@
    "caseId": "AY-120-09-010",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6489,6 +9603,14 @@
    "caseId": "AY-120-09-011",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6504,6 +9626,14 @@
    "caseId": "AY-120-09-012",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6519,6 +9649,14 @@
    "caseId": "AY-120-09-013",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6534,6 +9672,14 @@
    "caseId": "AY-121-01-011",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6549,6 +9695,14 @@
    "caseId": "AY-121-01-012",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6564,6 +9718,14 @@
    "caseId": "AY-121-01-013",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6579,6 +9741,14 @@
    "caseId": "AY-121-01-014",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6594,6 +9764,14 @@
    "caseId": "AY-121-01-015",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6609,6 +9787,14 @@
    "caseId": "AY-121-01-016",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6624,6 +9810,14 @@
    "caseId": "AY-121-01-017",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6639,6 +9833,14 @@
    "caseId": "AY-121-01-018",
    "book": "TPL-AY-121-01-011",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 27,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 7,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6654,6 +9856,14 @@
    "caseId": "AY-121-02-001",
    "book": "TPL-AY-121-02-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 8,
+    "total": 21
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6669,6 +9879,14 @@
    "caseId": "AY-121-02-002",
    "book": "TPL-AY-121-02-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 18
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6684,6 +9902,14 @@
    "caseId": "AY-121-03-005",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6699,6 +9925,14 @@
    "caseId": "AY-121-03-006",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6714,6 +9948,14 @@
    "caseId": "AY-121-03-007",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6729,6 +9971,14 @@
    "caseId": "AY-121-03-008",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6744,6 +9994,14 @@
    "caseId": "AY-121-03-009",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6759,6 +10017,14 @@
    "caseId": "AY-121-03-010",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6774,6 +10040,14 @@
    "caseId": "AY-121-03-011",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6789,6 +10063,14 @@
    "caseId": "AY-121-03-012",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6804,6 +10086,14 @@
    "caseId": "AY-121-03-013",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6819,6 +10109,14 @@
    "caseId": "AY-121-03-014",
    "book": "TPL-AY-121-03-005",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 13,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 17
+   },
    "blocks": 2,
    "actualDone": 0,
    "mockDone": 0,
@@ -6834,6 +10132,14 @@
    "caseId": "AY-121-04-017",
    "book": "TPL-AY-121-04-017",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6849,6 +10155,14 @@
    "caseId": "AY-121-04-018",
    "book": "TPL-AY-121-04-017",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 30,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 34
+   },
    "blocks": 6,
    "actualDone": 0,
    "mockDone": 0,
@@ -6864,6 +10178,14 @@
    "caseId": "AY-121-05-001",
    "book": "TPL-AY-121-05-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 5,
+    "total": 20
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6879,6 +10201,14 @@
    "caseId": "AY-121-05-002",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6894,6 +10224,14 @@
    "caseId": "AY-121-05-003",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6909,6 +10247,14 @@
    "caseId": "AY-121-05-004",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6924,6 +10270,14 @@
    "caseId": "AY-121-05-005",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6939,6 +10293,14 @@
    "caseId": "AY-121-05-006",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6954,6 +10316,14 @@
    "caseId": "AY-121-05-007",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6969,6 +10339,14 @@
    "caseId": "AY-121-05-008",
    "book": "TPL-AY-121-05-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 15,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 2,
+    "total": 17
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -6984,6 +10362,14 @@
    "caseId": "AY-121-06-011",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -6999,6 +10385,14 @@
    "caseId": "AY-121-06-012",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7014,6 +10408,14 @@
    "caseId": "AY-121-06-013",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7029,6 +10431,14 @@
    "caseId": "AY-121-06-014",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7044,6 +10454,14 @@
    "caseId": "AY-121-06-015",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7059,6 +10477,14 @@
    "caseId": "AY-121-06-016",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7074,6 +10500,14 @@
    "caseId": "AY-121-06-017",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7089,6 +10523,14 @@
    "caseId": "AY-121-06-018",
    "book": "TPL-AY-120-07-015",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 14,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 6,
+    "total": 20
+   },
    "blocks": 4,
    "actualDone": 0,
    "mockDone": 0,
@@ -7104,6 +10546,14 @@
    "caseId": "AY-121-07-001",
    "book": "TPL-AY-120-08-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 4,
+    "total": 13
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7119,6 +10569,14 @@
    "caseId": "AY-121-07-002",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7134,6 +10592,14 @@
    "caseId": "AY-121-08-003",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7149,6 +10615,14 @@
    "caseId": "AY-121-08-004",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7164,6 +10638,14 @@
    "caseId": "AY-121-08-005",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7179,6 +10661,14 @@
    "caseId": "AY-121-08-006",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7194,6 +10684,14 @@
    "caseId": "AY-121-08-007",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7209,6 +10707,14 @@
    "caseId": "AY-121-08-008",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7224,6 +10730,14 @@
    "caseId": "AY-121-08-009",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7239,6 +10753,14 @@
    "caseId": "AY-121-08-010",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7254,6 +10776,14 @@
    "caseId": "AY-121-08-011",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7269,6 +10799,14 @@
    "caseId": "AY-121-08-012",
    "book": "TPL-AY-120-09-004",
    "static": "full",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 11,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 0,
+    "total": 11
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7284,6 +10822,14 @@
    "caseId": "AY-122-01-006",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7299,6 +10845,14 @@
    "caseId": "AY-122-01-007",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7314,6 +10868,14 @@
    "caseId": "AY-122-01-008",
    "book": "TPL-AY-120-08-002",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 9,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 1,
+    "total": 10
+   },
    "blocks": 3,
    "actualDone": 0,
    "mockDone": 0,
@@ -7329,6 +10891,14 @@
    "caseId": "AY-130-01-001",
    "book": "TPL-AY-130-01-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 5
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7344,6 +10914,14 @@
    "caseId": "AY-130-01-002",
    "book": "TPL-AY-130-01-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 3,
+    "total": 5
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7359,6 +10937,14 @@
    "caseId": "AY-130-02-001",
    "book": "TPL-AY-130-02-001",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 64,
+    "total": 66
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7374,6 +10960,14 @@
    "caseId": "AY-410-01-008",
    "book": "TPL-AY-410-01-008",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 23,
+    "total": 25
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7389,6 +10983,14 @@
    "caseId": "AY-410-01-009",
    "book": "TPL-AY-410-01-009",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 23,
+    "total": 25
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7404,6 +11006,14 @@
    "caseId": "AY-410-01-010",
    "book": "TPL-AY-410-01-010",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 23,
+    "total": 25
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,
@@ -7419,6 +11029,14 @@
    "caseId": "AY-410-01-011",
    "book": "TPL-AY-410-01-010",
    "static": "partial",
+   "status3": "planned",
+   "coverage3": {
+    "planned": 2,
+    "coded": 0,
+    "verified": 0,
+    "uncovered": 23,
+    "total": 25
+   },
    "blocks": 1,
    "actualDone": 0,
    "mockDone": 0,

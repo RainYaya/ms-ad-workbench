@@ -1228,6 +1228,32 @@ AY-120-01-001"></textarea>
     return `<span class="badge ${cls}">${esc(label)}</span>`;
   }
 
+  // ---- three-state model (planned / coded / verified) ------------------
+  const S3_JP = { verified: '検証済', coded: '実装済', planned: '未着手', none: '無一致' };
+  function s3Badge(s3) {
+    const cls = s3 === 'verified' ? 'green' : s3 === 'coded' ? 'amber' : s3 === 'none' ? 'gray' : 'blue';
+    return `<span class="badge ${cls}">${S3_JP[s3] || s3}</span>`;
+  }
+  // horizontal progress strip: one segment per block, colored by status3,
+  // plus a hatched tail for uncovered events. Widths are proportional to events.
+  function s3Strip(a, opts = {}) {
+    const details = a.blockDetails || [];
+    if (!details.length && !a.coverage3) return '<span class="muted small">—</span>';
+    const segs = [];
+    for (const d of details) {
+      const n = (d.end ?? d.start ?? 0) - (d.start ?? 0) || 1;
+      segs.push({ cls: d.status3 || 'planned', n, block: d.block, fromRow: d.fromRow, toRow: d.toRow });
+    }
+    if (a.coverage3 && a.coverage3.uncovered > 0) segs.push({ cls: 'uncovered', n: a.coverage3.uncovered, block: '未カバー' });
+    const total = segs.reduce((t, x) => t + x.n, 0) || 1;
+    const bars = segs.map((x) => `<span class="s3-seg s3-${x.cls}" style="width:${(x.n / total) * 100}%" title="${esc(x.block)} (row ${x.fromRow ?? '?'}–${x.toRow ?? '?'}) : ${S3_JP[x.cls] || x.cls} / ${x.n} events"></span>`).join('');
+    const c3 = a.coverage3 || {};
+    const done = (c3.verified || 0) + (c3.coded || 0);
+    const pct = c3.total ? Math.round((done / c3.total) * 100) : 0;
+    return `<div class="s3-strip${opts.compact ? ' compact' : ''}" role="img" aria-label="automation progress">${bars}</div>` +
+      (opts.showPct === false ? '' : `<span class="s3-pct">${pct}%</span>`);
+  }
+
   function automationRunHtml(id) {
     const a = autoCase(id);
     if (!a) return '';
@@ -1236,7 +1262,8 @@ AY-120-01-001"></textarea>
     const blocks = details.map((d) => {
       const b = autoBlock(d.block);
       const range = d.fromRow != null ? ` row ${d.fromRow}–${d.toRow}` : '';
-      return `<span class="badge outline" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}${range}">${esc(d.block)} ${executionBadge(d.status)}</span>`;
+      const s3c = d.status3 === 'verified' ? 'green' : d.status3 === 'coded' ? 'amber' : 'gray';
+      return `<span class="badge outline" style="border-left:3px solid var(--${d.status3 === 'verified' ? 'green' : d.status3 === 'coded' ? 'amber' : 'line'})" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}${range} : ${S3_JP[d.status3] || ''}">${esc(d.block)} <span class="badge ${s3c}">${S3_JP[d.status3] || d.status3}</span></span>`;
     }).join(' ');
     const total = details.length;
     const done = a.actualDone ?? 0;
@@ -1245,7 +1272,8 @@ AY-120-01-001"></textarea>
     const r = a.runner;
     const cmd = r ? runnerCommand(id, r) : '';
     return `<div class="panel" style="margin-bottom:12px">
-      <div class="panel-head"><h3>ブロック実行</h3><span>${autoStatusBadge(a.status)} ${done}/${total} blocks / ${cov}% events</span></div>
+      <div style="padding:10px 14px 0">${s3Strip(a)}</div>
+      <div class="panel-head"><h3>ブロック実行</h3><span>${s3Badge(a.status3)} ${autoStatusBadge(a.status)} ${done}/${total} blocks / ${cov}% events</span></div>
       <div class="panel-body small">
         <div class="chips">${blocks || '<span class="muted">block なし</span>'}</div>
         <p class="muted" style="margin-top:8px">Remaining: <b>${remaining}</b> blocks / ${a.uncoveredCount} uncovered events. Next: <code>${esc(next)}</code></p>
@@ -1446,6 +1474,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     const gapRows = gaps.map((g) => `<tr><td class="num">${fmt(g.count)}</td><td><code>${esc(gapLabel(g.event))}</code></td></tr>`).join('');
     const allRows = cases.map(([id, a]) => `<tr>
       <td><span class="mono">${esc(id)}</span></td>
+      <td>${s3Badge(a.status3)}</td>
       <td>${autoStatusBadge(a.status)}</td>
       <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
       <td><code>${esc(nextText(a))}</code></td>
@@ -1455,12 +1484,33 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       ${pageHead('自動化', 'block composition / runner readiness（静的な一致結果。実行証明ではありません）')}
       <div class="kpis">
         ${kpi('対象ケース', sum.caseCount || 0, '自分のタスク', 'accent')}
-        ${kpi('Block 一致', sum.fullCount || 0, `静的照合 / curated ${sum.curatedFullCount || 0}（実行証明ではない）`, 'green')}
-        ${kpi('ギャップあり', sum.partialCount || 0, 'block 未一致', 'amber')}
-        ${kpi('Event カバー', `${pct.toFixed(1)}%`, `${fmt(sum.coveredEvents)} / ${fmt(sum.eventCount)}`, 'blue')}
-        ${kpi('Block', sum.blockCount || 0, `${sum.curatedBlockCount || 0} curated + ${sum.autoBlockCount || 0} auto`, 'violet')}
-        ${kpi('実績あり', (sum.actualFullCount || 0) + (sum.actualPartialCount || 0), 'live-pass を含むケース', 'green')}
+        ${kpi('検証済', sum.status3CaseCounts?.verified || 0, '真機で全ブロック通過', 'green')}
+        ${kpi('実装済', sum.status3CaseCounts?.coded || 0, 'コードあり / 真機は未完', 'amber')}
+        ${kpi('未着手', sum.status3CaseCounts?.planned || 0, 'ブロック一致だが未実装', 'blue')}
+        ${kpi('無一致', sum.status3CaseCounts?.none || 0, 'ブロックが組めない単例等', 'gray')}
+        ${kpi('Block', sum.blockCount || 0, `検証 ${sum.status3Counts?.verified || 0} / 実装 ${sum.status3Counts?.coded || 0} / 未着手 ${sum.status3Counts?.planned || 0}`, 'violet')}
       </div>
+      <section class="panel mt">
+        <div class="panel-head"><h3>積木進捗（三状態）</h3><span class="hint">緑=検証済（真機通過）／琥珀=実装済（mock 通過・真機未）／灰=未着手／斜線=未カバー</span></div>
+        <div class="panel-body">
+          <div class="s3-legend">
+            <span class="s3-seg s3-verified" style="width:22px"></span>検証済
+            <span class="s3-seg s3-coded" style="width:22px"></span>実装済
+            <span class="s3-seg s3-planned" style="width:22px"></span>未着手
+            <span class="s3-seg s3-uncovered" style="width:22px"></span>未カバー
+          </div>
+          <div class="table-wrap" style="max-height:56vh">
+            <table class="data"><thead><tr><th>ケース</th><th>状態</th><th style="min-width:220px">進捗（ブロック構成比）</th><th class="num">実装+検証 / 全 event</th><th>次の一手</th></tr></thead>
+            <tbody>${cases.map(([id, a]) => `<tr>
+              <td><span class="mono" style="cursor:pointer" data-case="${esc(id)}">${esc(id)}</span></td>
+              <td>${s3Badge(a.status3)}</td>
+              <td>${s3Strip(a, { compact: true })}</td>
+              <td class="num">${((a.coverage3?.verified || 0) + (a.coverage3?.coded || 0))} / ${a.coverage3?.total ?? a.eventCount}</td>
+              <td class="small"><code>${esc(nextText(a))}</code></td>
+            </tr>`).join('')}</tbody></table>
+          </div>
+        </div>
+      </section>
       <section class="panel mt">
         <div class="panel-head"><h3>Runner 可能なケース</h3><span class="hint">コマンドをコピーして SUT 端末で実行</span></div>
         <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>状態</th><th>Script</th><th>Note</th><th></th></tr></thead><tbody>${runnerRows || '<tr><td colspan="5" class="muted">runner はまだありません</td></tr>'}</tbody></table></div>
@@ -1479,7 +1529,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       </section>
       <details class="panel mt">
         <summary style="cursor:pointer;padding:11px 14px;font-size:13px;font-weight:700">全ケースの composition（${cases.length}）</summary>
-        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>Static</th><th class="num">Live / blocks</th><th>Next</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
+        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>三状態</th><th>Static</th><th class="num">Live / blocks</th><th>Next</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
       </details>`;
   }
 

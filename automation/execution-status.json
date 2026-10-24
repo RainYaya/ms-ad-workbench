@@ -109,5 +109,16 @@
       ],
       "note": "Static composition full; no runner yet."
     }
+  },
+  "status3Map": {
+    "verified": [
+      "BLK-AZ-MENU-CREATE-INPUT",
+      "BLK-AZ-INPUT-FILL",
+      "BLK-AZ-INSURANCE-SELECT"
+    ],
+    "coded": [
+      "BLK-AZ-AGENT-SELECT"
+    ],
+    "note": "verified=live SUT pass 2026-10-23 (009 blk1-3); coded=implemented+mock-passed, live not yet (AGENT-SELECT: env-blocked on 009, mock-pass 010-012); planned=everything else. 2026-10-24 user-approved."
   }
 }
