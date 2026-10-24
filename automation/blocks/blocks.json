@@ -611,7 +611,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-7EE83E5A",
@@ -1257,7 +1258,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-269893EF",
@@ -1651,7 +1653,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-557F51B3",
@@ -1954,7 +1957,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-C3BC64AD",
@@ -2201,7 +2205,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-31F074B9",
@@ -2448,7 +2453,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-BE812D08",
@@ -2695,7 +2701,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-DD6D983A",
@@ -2942,7 +2949,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-8546478D",
@@ -3138,7 +3146,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-BDA7A359",
@@ -3308,7 +3317,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-6F09B48C",
@@ -3513,7 +3523,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-FF4BE5F2",
@@ -3697,7 +3708,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-77BF51A5",
@@ -3872,7 +3884,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-EA9C1EF3",
@@ -4019,7 +4032,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-2B7D45E3",
@@ -4145,7 +4159,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-3017A3AA",
@@ -4252,7 +4267,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-4C3588A4",
@@ -4378,7 +4394,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-4CB0EA5C",
@@ -4485,7 +4502,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-EF37895C",
@@ -4604,7 +4622,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-01CAB10D",
@@ -4732,7 +4751,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-C69800AD",
@@ -4853,7 +4873,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-CORRECTION-REGISTER",
@@ -4974,7 +4995,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-C9C58BF8",
@@ -5074,7 +5096,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-EBEB83B0",
@@ -5186,7 +5209,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-23229D4F",
@@ -5300,7 +5324,8 @@
    "_autoCount": 10,
    "_firstRow": 24,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-27C68433",
@@ -5400,7 +5425,8 @@
    "_autoCount": 52,
    "_firstRow": 39,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-8C0E3438",
@@ -5507,7 +5533,8 @@
    "_autoCount": 9,
    "_firstRow": 55,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-A315BF06",
@@ -5623,7 +5650,8 @@
    "_autoCount": 9,
    "_firstRow": 36,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-DF07A781",
@@ -5725,7 +5753,8 @@
    "_autoCount": 26,
    "_firstRow": 31,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGENT-SELECT",
@@ -5829,7 +5858,8 @@
    ],
    "usedByCases": 46,
    "executionStatus": "blocked",
-   "status3": "coded"
+   "status3": "coded",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-SESSION-TIMEOUT",
@@ -5922,7 +5952,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-0B2CB156",
@@ -6027,7 +6058,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-1ECE1684",
@@ -6134,7 +6166,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-41743CCA",
@@ -6227,7 +6260,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-7597207A",
@@ -6346,7 +6380,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-F54CCD41",
@@ -6451,7 +6486,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-1D4C0178",
@@ -6565,7 +6601,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-F056442C",
@@ -6658,7 +6695,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-08AD77A3",
@@ -6767,7 +6805,8 @@
    "_autoCount": 8,
    "_firstRow": 22,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-23BC6F7B",
@@ -6876,7 +6915,8 @@
    "_autoCount": 7,
    "_firstRow": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-720382DE",
@@ -6969,7 +7009,8 @@
    "_autoCount": 13,
    "_firstRow": 69,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-C2B6BA33",
@@ -7057,7 +7098,8 @@
    "_autoCount": 5,
    "_firstRow": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-ECE76B71",
@@ -7166,7 +7208,8 @@
    "_autoCount": 5,
    "_firstRow": 36,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-1913A9CC",
@@ -7264,7 +7307,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-2268EC8E",
@@ -7364,7 +7408,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-3EFB9C18",
@@ -7448,7 +7493,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-58EA9045",
@@ -7532,7 +7578,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-952A7140",
@@ -7616,7 +7663,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-C651052A",
@@ -7700,7 +7748,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-FBFD5CAD",
@@ -7786,7 +7835,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-950C5CC5",
@@ -7886,7 +7936,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-B42FB7FD",
@@ -7979,7 +8030,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-F557476E",
@@ -8065,7 +8117,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-01795032",
@@ -8167,7 +8220,8 @@
    "_autoCount": 6,
    "_firstRow": 54,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-6AD0E114",
@@ -8269,7 +8323,8 @@
    "_autoCount": 10,
    "_firstRow": 21,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-8FE40BE8",
@@ -8371,7 +8426,8 @@
    "_autoCount": 7,
    "_firstRow": 54,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-BABA9D55",
@@ -8473,7 +8529,8 @@
    "_autoCount": 8,
    "_firstRow": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-CORRECTION-CONFIRM",
@@ -8550,7 +8607,8 @@
    ],
    "usedByCases": 14,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-INQUIRY-EDIT",
@@ -8627,7 +8685,8 @@
    ],
    "usedByCases": 99,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-ITEM-SEARCH-SELECT",
@@ -8704,7 +8763,8 @@
    ],
    "usedByCases": 117,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-OPEN-CLOSE-SYS",
@@ -8783,7 +8843,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-213E7E7D",
@@ -8862,7 +8923,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-7A4080AD",
@@ -8941,7 +9003,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-86B0B8B9",
@@ -9020,7 +9083,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-9EBB1470",
@@ -9097,7 +9161,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-A5BF2BD4",
@@ -9176,7 +9241,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-CEAA65E9",
@@ -9253,7 +9319,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-DB2830E2",
@@ -9332,7 +9399,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-DE4B3B14",
@@ -9411,7 +9479,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-F1F96812",
@@ -9490,7 +9559,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-FCF80BAC",
@@ -9569,7 +9639,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-B3B9104B",
@@ -9646,7 +9717,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-D9AE66FC",
@@ -9725,7 +9797,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-0AD75340",
@@ -9799,7 +9872,8 @@
    "_autoCount": 18,
    "_firstRow": 35,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-10E5C587",
@@ -9880,7 +9954,8 @@
    "_autoCount": 14,
    "_firstRow": 26,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-18958C37",
@@ -9952,7 +10027,8 @@
    "_autoCount": 9,
    "_firstRow": 40,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-1D62D29C",
@@ -10024,7 +10100,8 @@
    "_autoCount": 18,
    "_firstRow": 47,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-2B5F6E76",
@@ -10105,7 +10182,8 @@
    "_autoCount": 8,
    "_firstRow": 31,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-2B9786A5",
@@ -10179,7 +10257,8 @@
    "_autoCount": 28,
    "_firstRow": 28,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-4F9D57E1",
@@ -10253,7 +10332,8 @@
    "_autoCount": 81,
    "_firstRow": 16,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-7364B069",
@@ -10332,7 +10412,8 @@
    "_autoCount": 8,
    "_firstRow": 48,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-9750F4CE",
@@ -10404,7 +10485,8 @@
    "_autoCount": 21,
    "_firstRow": 39,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-ADFFD6FB",
@@ -10476,7 +10558,8 @@
    "_autoCount": 10,
    "_firstRow": 16,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-C4218B41",
@@ -10548,7 +10631,8 @@
    "_autoCount": 10,
    "_firstRow": 16,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-DEBE0BEE",
@@ -10620,7 +10704,8 @@
    "_autoCount": 20,
    "_firstRow": 30,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-E1BDF237",
@@ -10692,7 +10777,8 @@
    "_autoCount": 30,
    "_firstRow": 30,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-FCB405E4",
@@ -10773,7 +10859,8 @@
    "_autoCount": 13,
    "_firstRow": 62,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AY-TORIKESHI-REGISTER",
@@ -10845,7 +10932,8 @@
    ],
    "usedByCases": 10,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-LIST-INITIAL",
@@ -10917,7 +11005,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-INSURANCE-SELECT",
@@ -10989,7 +11078,8 @@
    ],
    "usedByCases": 46,
    "executionStatus": "live-pass",
-   "status3": "verified"
+   "status3": "verified",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-2995218F",
@@ -11061,7 +11151,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-4E8C4FC2",
@@ -11126,7 +11217,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-5BDEF314",
@@ -11198,7 +11290,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-7EB4CA64",
@@ -11268,7 +11361,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-C90A0006",
@@ -11331,7 +11425,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-2C41848F",
@@ -11391,7 +11486,8 @@
    "_autoCount": 30,
    "_firstRow": 52,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-3477BB6F",
@@ -11463,7 +11559,8 @@
    "_autoCount": 30,
    "_firstRow": 47,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-7A70187A",
@@ -11528,7 +11625,8 @@
    "_autoCount": 11,
    "_firstRow": 48,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-9EB5A282",
@@ -11593,7 +11691,8 @@
    "_autoCount": 53,
    "_firstRow": 16,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-C8903BF5",
@@ -11665,7 +11764,8 @@
    "_autoCount": 27,
    "_firstRow": 51,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-C898B5B4",
@@ -11723,7 +11823,8 @@
    "_autoCount": 11,
    "_firstRow": 52,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-D2C3A480",
@@ -11790,7 +11891,8 @@
    "_autoCount": 18,
    "_firstRow": 27,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-D844ADE8",
@@ -11857,7 +11959,8 @@
    "_autoCount": 42,
    "_firstRow": 26,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-DDA3A833",
@@ -11917,7 +12020,8 @@
    "_autoCount": 32,
    "_firstRow": 53,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-FECF904C",
@@ -11982,7 +12086,8 @@
    "_autoCount": 20,
    "_firstRow": 21,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AY-MENU-SESSION-TIMEOUT",
@@ -12047,7 +12152,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-UPDATE-SUSPEND",
@@ -12112,7 +12218,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AUTH-ERROR",
@@ -12175,7 +12282,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-BATCH-CONVERT-MAIL",
@@ -12247,7 +12355,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-COMMON-LOGS",
@@ -12324,7 +12433,8 @@
    ],
    "usedByCases": 30,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-AZ-COMPLETE-REGISTER",
@@ -12387,7 +12497,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
@@ -12447,7 +12558,8 @@
    ],
    "usedByCases": 308,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-SESSION-TIMEOUT",
@@ -12512,7 +12624,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-SYSERR-LOGIN",
@@ -12577,7 +12690,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-UPDATE-CL",
@@ -12640,7 +12754,8 @@
    ],
    "usedByCases": 5,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-UPDATE-SEARCH-ITEM",
@@ -12703,7 +12818,8 @@
    ],
    "usedByCases": 6,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-0D2D641B",
@@ -12768,7 +12884,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-0EF7DA98",
@@ -12845,7 +12962,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-70B071E3",
@@ -12910,7 +13028,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-824C0B37",
@@ -12980,7 +13099,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-AB15C319",
@@ -13057,7 +13177,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-B84FFF40",
@@ -13129,7 +13250,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-D0508D0D",
@@ -13185,7 +13307,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-E008F918",
@@ -13262,7 +13385,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-106D33F6",
@@ -13320,7 +13444,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-63C4E6D6",
@@ -13376,7 +13501,8 @@
    ],
    "usedByCases": 9,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-73BCFD18",
@@ -13439,7 +13565,8 @@
    ],
    "usedByCases": 7,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-CD763243",
@@ -13509,7 +13636,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-D155DA21",
@@ -13581,7 +13709,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-D606FB03",
@@ -13658,7 +13787,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-AUTO-12DB90A3",
@@ -13709,7 +13839,8 @@
    "_autoCount": 11,
    "_firstRow": 51,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-559E7D1D",
@@ -13769,7 +13900,8 @@
    "_autoCount": 17,
    "_firstRow": 45,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-5637DF50",
@@ -13822,7 +13954,8 @@
    "_autoCount": 11,
    "_firstRow": 21,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-5C1EFE0E",
@@ -13875,7 +14008,8 @@
    "_autoCount": 59,
    "_firstRow": 27,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-6F1B4715",
@@ -13928,7 +14062,8 @@
    "_autoCount": 28,
    "_firstRow": 51,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-C7A1F3E5",
@@ -13981,7 +14116,8 @@
    "_autoCount": 12,
    "_firstRow": 38,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-CE34C5B8",
@@ -14034,7 +14170,8 @@
    "_autoCount": 18,
    "_firstRow": 19,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-F8714C90",
@@ -14087,7 +14224,8 @@
    "_autoCount": 63,
    "_firstRow": 45,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AY-SHINSEI-TAIOUTOUROKU",
@@ -14138,7 +14276,8 @@
    ],
    "usedByCases": 24,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-CSV-DOWNLOAD",
@@ -14189,7 +14328,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-LIST-INITIAL-EMPTY",
@@ -14247,7 +14387,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-AGT-LIST-SEARCH",
@@ -14298,7 +14439,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-EXTERNAL-AUTH",
@@ -14356,7 +14498,8 @@
    ],
    "usedByCases": 12,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AZ-UPDATE-DELETE-OK",
@@ -14407,7 +14550,8 @@
    ],
    "usedByCases": 7,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-022A6268",
@@ -14465,7 +14609,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-03D12845",
@@ -14516,7 +14661,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-0C5A44D1",
@@ -14579,7 +14725,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-20C0D517",
@@ -14630,7 +14777,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-263830F1",
@@ -14673,7 +14821,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-2FF1643E",
@@ -14724,7 +14873,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-637D567D",
@@ -14775,7 +14925,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-7EBD5C1C",
@@ -14826,7 +14977,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-9B567CC5",
@@ -14877,7 +15029,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-A00738F4",
@@ -14940,7 +15093,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-B69EF548",
@@ -15003,7 +15157,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-C16D256A",
@@ -15052,7 +15207,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SGL-F9980EBC",
@@ -15103,7 +15259,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-04E83971",
@@ -15166,7 +15323,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-3222CFC6",
@@ -15215,7 +15373,8 @@
    ],
    "usedByCases": 6,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-40B1188F",
@@ -15266,7 +15425,8 @@
    ],
    "usedByCases": 27,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-73B769C8",
@@ -15329,7 +15489,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-805D28B8",
@@ -15378,7 +15539,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-8F1D192A",
@@ -15436,7 +15598,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-C8E42CCF",
@@ -15487,7 +15650,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-CC41ACD0",
@@ -15545,7 +15709,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-F09E159A",
@@ -15603,7 +15768,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-F0C72208",
@@ -15654,7 +15820,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-AUTO-042B2DAE",
@@ -15698,7 +15865,8 @@
    "_autoCount": 32,
    "_firstRow": 14,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-04A78248",
@@ -15742,7 +15910,8 @@
    "_autoCount": 126,
    "_firstRow": 34,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-2739DA75",
@@ -15786,7 +15955,8 @@
    "_autoCount": 29,
    "_firstRow": 83,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-4C432C14",
@@ -15832,7 +16002,8 @@
    "_autoCount": 110,
    "_firstRow": 54,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-AUTO-7AAEDA04",
@@ -15876,7 +16047,8 @@
    "_autoCount": 29,
    "_firstRow": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-94A5D816",
@@ -15922,7 +16094,8 @@
    "_autoCount": 37,
    "_firstRow": 27,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-AUTO-B8DF200B",
@@ -15968,7 +16141,8 @@
    "_autoCount": 32,
    "_firstRow": 22,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-AUTO-C8BDC3F2",
@@ -16012,7 +16186,8 @@
    "_autoCount": 28,
    "_firstRow": 32,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-E0B41407",
@@ -16058,7 +16233,8 @@
    "_autoCount": 54,
    "_firstRow": 32,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-AUTO-E2D0C359",
@@ -16102,7 +16278,8 @@
    "_autoCount": 95,
    "_firstRow": 14,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-E6EAF3BB",
@@ -16146,7 +16323,8 @@
    "_autoCount": 20,
    "_firstRow": 21,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-F974E639",
@@ -16190,7 +16368,8 @@
    "_autoCount": 18,
    "_firstRow": 23,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AUTO-FED6C2EF",
@@ -16234,7 +16413,8 @@
    "_autoCount": 22,
    "_firstRow": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-AZ-AGT-LIST-OPEN-UPDATE",
@@ -16276,7 +16456,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AZ-BATCH-RUN-VERIFY",
@@ -16320,7 +16501,8 @@
    ],
    "usedByCases": 44,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-AZ-BATCH-VERIFY",
@@ -16371,7 +16553,8 @@
    ],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-AZ-MENU-CREATE-INPUT",
@@ -16413,7 +16596,8 @@
    ],
    "usedByCases": 174,
    "executionStatus": "live-pass",
-   "status3": "verified"
+   "status3": "verified",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AZ-MENU-SEARCH-LIST",
@@ -16455,7 +16639,8 @@
    ],
    "usedByCases": 348,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AZ-REGISTER-UPDATE",
@@ -16497,7 +16682,8 @@
    ],
    "usedByCases": 166,
    "executionStatus": "not-implemented",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SGL-0DF6BF48",
@@ -16541,7 +16727,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-134186E1",
@@ -16585,7 +16772,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-1CC6C3EC",
@@ -16629,7 +16817,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-1E78A599",
@@ -16673,7 +16862,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-1E856949",
@@ -16717,7 +16907,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-224C9DEF",
@@ -16761,7 +16952,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-2DDFC25D",
@@ -16805,7 +16997,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-42508787",
@@ -16847,7 +17040,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SGL-4EB596EB",
@@ -16896,7 +17090,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-6BEAE496",
@@ -16945,7 +17140,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-86665200",
@@ -16989,7 +17185,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-8986EB9F",
@@ -17023,7 +17220,8 @@
    "assertions": [],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-90299E43",
@@ -17067,7 +17265,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-98A9A5DE",
@@ -17109,7 +17308,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SGL-BA4B4F43",
@@ -17153,7 +17353,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-BBEBCD49",
@@ -17197,7 +17398,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-CCA9B958",
@@ -17231,7 +17433,8 @@
    "assertions": [],
    "usedByCases": 17,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-E3AD1DD9",
@@ -17280,7 +17483,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-ECBA7661",
@@ -17329,7 +17533,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-121DF781",
@@ -17378,7 +17583,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-2EEC5A3D",
@@ -17427,7 +17633,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-305661D1",
@@ -17476,7 +17683,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-311D55A3",
@@ -17520,7 +17728,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-5CEC3483",
@@ -17569,7 +17778,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-5F5035B5",
@@ -17603,7 +17813,8 @@
    "assertions": [],
    "usedByCases": 57,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-6FA7E251",
@@ -17645,7 +17856,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SHR-72F034C6",
@@ -17689,7 +17901,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-B0028D4D",
@@ -17723,7 +17936,8 @@
    "assertions": [],
    "usedByCases": 18,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-C649ACE4",
@@ -17772,7 +17986,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-CE8B86B5",
@@ -17814,7 +18029,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SHR-D0DDEEE4",
@@ -17858,7 +18074,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-D6459D48",
@@ -17892,7 +18109,8 @@
    "assertions": [],
    "usedByCases": 25,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-E30F6E3C",
@@ -17934,7 +18152,8 @@
    ],
    "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SHR-EB44767A",
@@ -17976,7 +18195,8 @@
    ],
    "usedByCases": 10,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SHR-ED323C11",
@@ -18010,7 +18230,8 @@
    "assertions": [],
    "usedByCases": 6,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-ED876A58",
@@ -18052,7 +18273,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-EEFF5DB3",
@@ -18101,7 +18323,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "family"
   },
   {
    "id": "BLK-SHR-F07F5CF4",
@@ -18143,7 +18366,8 @@
    ],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-AZ-INPUT-FILL",
@@ -18172,7 +18396,8 @@
    "assertions": [],
    "usedByCases": 174,
    "executionStatus": "live-pass",
-   "status3": "verified"
+   "status3": "verified",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SGL-13EBF209",
@@ -18199,7 +18424,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-639A108B",
@@ -18226,7 +18452,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-75D5F75B",
@@ -18261,7 +18488,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-C14B22C2",
@@ -18288,7 +18516,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-CB6C5414",
@@ -18315,7 +18544,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-CFBFBCCB",
@@ -18342,7 +18572,8 @@
    "assertions": [],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-FE33E38E",
@@ -18369,7 +18600,8 @@
    "assertions": [],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-072E06D9",
@@ -18404,7 +18636,8 @@
    ],
    "usedByCases": 7,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-288BB000",
@@ -18431,7 +18664,8 @@
    "assertions": [],
    "usedByCases": 9,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-340D4343",
@@ -18466,7 +18700,8 @@
    ],
    "usedByCases": 3,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-394B713D",
@@ -18501,7 +18736,8 @@
    ],
    "usedByCases": 0,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-3F6DEDE2",
@@ -18528,7 +18764,8 @@
    "assertions": [],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-669A1809",
@@ -18555,7 +18792,8 @@
    "assertions": [],
    "usedByCases": 19,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-7A684D49",
@@ -18582,7 +18820,8 @@
    "assertions": [],
    "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-B1D2CD03",
@@ -18609,7 +18848,8 @@
    "assertions": [],
    "usedByCases": 20,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-BF46F797",
@@ -18644,7 +18884,8 @@
    ],
    "usedByCases": 15,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-CD031FED",
@@ -18671,7 +18912,8 @@
    "assertions": [],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-E593E2FC",
@@ -18700,7 +18942,8 @@
    "assertions": [],
    "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SHR-EB3D34F4",
@@ -18735,7 +18978,8 @@
    ],
    "usedByCases": 5,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SHR-F9A1D656",
@@ -18762,7 +19006,8 @@
    "assertions": [],
    "usedByCases": 22,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SHR-FB883F72",
@@ -18789,7 +19034,8 @@
    "assertions": [],
    "usedByCases": 11,
    "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-act"
   },
   {
    "id": "BLK-SGL-7A863F7A",
@@ -18797,8 +19043,8 @@
    "toScreen": "不備内容入力画面-更新",
    "params": [],
    "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
+   "status": "draft-shared",
+   "note": "Shared run family (promoted from singleton after cross-book dedup).",
    "sourceCase": "AZ-110-25-002",
    "eventRange": [
     21,
@@ -18822,79 +19068,10 @@
      "assert": "display"
     }
    ],
-   "usedByCases": 1,
+   "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-E1FCFE32",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-110-25-003",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-D8B7B517",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-110-25-004",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-6163165A",
@@ -18902,8 +19079,8 @@
    "toScreen": "帳票印刷",
    "params": [],
    "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
+   "status": "draft-shared",
+   "note": "Shared run family (promoted from singleton after cross-book dedup).",
    "sourceCase": "AZ-110-38-001",
    "eventRange": [
     28,
@@ -18969,86 +19146,10 @@
      "assert": "other"
     }
    ],
-   "usedByCases": 1,
+   "usedByCases": 2,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-D0AB4651",
-   "fromScreen": "帳票印刷",
-   "toScreen": "帳票印刷",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-310-05-001",
-   "eventRange": [
-    41,
-    44
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "APログ",
-     "dataClass": "literal",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "DBログ",
-     "dataClass": "literal",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "申込書テーブル",
-     "dataClass": "none",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "申込不備テーブル",
-     "dataClass": "none",
-     "assert": "other"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "APログ",
-     "dataClass": "literal",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "DBログ",
-     "dataClass": "literal",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "申込書テーブル",
-     "dataClass": "none",
-     "assert": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "帳票印刷",
-     "target": "申込不備テーブル",
-     "dataClass": "none",
-     "assert": "other"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-148C85C9",
@@ -19090,182 +19191,8 @@
    ],
    "usedByCases": 1,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-303AEAC9",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-210-12-001",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-1B4BF2A2",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-210-13-001",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-E23DBBCE",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-210-16-001",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-AE6EB457",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-210-17-001",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-75C48000",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-210-34-001",
-   "eventRange": [
-    21,
-    21
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "不備内容入力画面-更新",
-     "dataClass": "literal",
-     "assert": "display"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   },
   {
    "id": "BLK-SGL-F1E0B9E5",
@@ -19273,8 +19200,8 @@
    "toScreen": "ToDo連携データ作成バッチ処理",
    "params": [],
    "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
+   "status": "draft-shared",
+   "note": "Shared run family (promoted from singleton after cross-book dedup).",
    "sourceCase": "AZ-230-01-047",
    "eventRange": [
     71,
@@ -19305,135 +19232,10 @@
      "assert": "other"
     }
    ],
-   "usedByCases": 1,
+   "usedByCases": 4,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-B3C6DD9B",
-   "fromScreen": "ToDo連携データ作成バッチ処理",
-   "toScreen": "ToDo連携データ作成バッチ処理",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-048",
-   "eventRange": [
-    58,
-    59
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "",
-     "dataClass": "literal",
-     "action": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-1B069429",
-   "fromScreen": "ToDo連携データ作成バッチ処理",
-   "toScreen": "ToDo連携データ作成バッチ処理",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-049",
-   "eventRange": [
-    74,
-    75
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "",
-     "dataClass": "literal",
-     "action": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-2A271F57",
-   "fromScreen": "ToDo連携データ作成バッチ処理",
-   "toScreen": "ToDo連携データ作成バッチ処理",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-050",
-   "eventRange": [
-    62,
-    63
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "",
-     "dataClass": "literal",
-     "action": "other"
-    },
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "ToDo連携データ作成バッチ処理",
-     "target": "ToDo連携テーブル",
-     "dataClass": "literal",
-     "assert": "other"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-fill"
   },
   {
    "id": "BLK-SGL-60F6A775",
@@ -19441,8 +19243,8 @@
    "toScreen": "不備内容入力画面-更新",
    "params": [],
    "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
+   "status": "draft-shared",
+   "note": "Shared run family (promoted from singleton after cross-book dedup).",
    "sourceCase": "AZ-230-01-071",
    "eventRange": [
     32,
@@ -19466,254 +19268,10 @@
      "assert": "message"
     }
    ],
-   "usedByCases": 1,
+   "usedByCases": 8,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-A7A45418",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-072",
-   "eventRange": [
-    31,
-    31
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-ED36F3F7",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-136",
-   "eventRange": [
-    47,
-    47
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-CAE0EE28",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-137",
-   "eventRange": [
-    46,
-    46
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-27AD1952",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-138",
-   "eventRange": [
-    63,
-    63
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-1447D55E",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-139",
-   "eventRange": [
-    40,
-    40
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-E2606837",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-152",
-   "eventRange": [
-    32,
-    32
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-1435D445",
-   "fromScreen": "不備内容入力画面-更新",
-   "toScreen": "不備内容入力画面-更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AZ-230-01-153",
-   "eventRange": [
-    31,
-    31
-   ],
-   "pattern": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "不備内容入力画面-更新",
-     "target": "メッセージ",
-     "dataClass": "literal",
-     "assert": "message"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-verify"
   },
   {
    "id": "BLK-SGL-C17F75BC",
@@ -19721,8 +19279,8 @@
    "toScreen": "申請・確認更新",
    "params": [],
    "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
+   "status": "draft-shared",
+   "note": "Shared run family (promoted from singleton after cross-book dedup).",
    "sourceCase": "AY-120-01-003",
    "eventRange": [
     19,
@@ -19753,1017 +19311,10 @@
      "assert": "transition"
     }
    ],
-   "usedByCases": 1,
+   "usedByCases": 25,
    "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-050E9572",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-004",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-E7ED8F75",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-005",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-500054A5",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-006",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-29F9D148",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-007",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-080CC956",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-008",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-74421551",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-009",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-9EB34116",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-010",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-C6CBD31A",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-011",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-CD166B4D",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-01-012",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-A4318C73",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-120-08-001",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-B7D80D28",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-011",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-69D8E501",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-012",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-C251A9BE",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-013",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-C4BF402E",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-014",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-5AD5D6D9",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-015",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-CEF7E580",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-016",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-1E608D6F",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-017",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-A75DE243",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-01-018",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-FCAF8476",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-04-017",
-   "eventRange": [
-    21,
-    22
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-142F0449",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-04-017",
-   "eventRange": [
-    41,
-    42
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-61178197",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-04-018",
-   "eventRange": [
-    21,
-    22
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-4C369412",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-04-018",
-   "eventRange": [
-    41,
-    42
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-2C9248F3",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-05-001",
-   "eventRange": [
-    21,
-    22
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
-  },
-  {
-   "id": "BLK-SGL-2B53277F",
-   "fromScreen": "照会・検索",
-   "toScreen": "申請・確認更新",
-   "params": [],
-   "preconditions": [],
-   "status": "draft-singleton",
-   "note": "Final-sweep singleton; guarantees 100% row coverage.",
-   "sourceCase": "AY-121-07-001",
-   "eventRange": [
-    19,
-    20
-   ],
-   "pattern": [
-    {
-     "kind": "op",
-     "screen": "照会・検索",
-     "target": "No",
-     "dataClass": "none",
-     "action": "click"
-    },
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "assertions": [
-    {
-     "kind": "ast",
-     "screen": "照会・検索",
-     "target": "申請・確認更新",
-     "dataClass": "bundle",
-     "assert": "transition"
-    }
-   ],
-   "usedByCases": 1,
-   "executionStatus": "not-run",
-   "status3": "planned"
+   "status3": "planned",
+   "kind": "primitive-nav"
   }
  ],
  "summary": {
@@ -20773,7 +19324,7 @@
   "eventCount": 10803,
   "coveredEvents": 8897,
   "eventCoverage": 0.8236,
-  "blockCount": 294,
+  "blockCount": 252,
   "fullCaseIds": [
    "AZ-100-05-003",
    "AZ-100-05-004",
@@ -23217,41 +21768,17 @@
    },
    {
     "id": "BLK-SGL-7A863F7A",
-    "status": "draft-singleton",
+    "status": "draft-shared",
     "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-E1FCFE32",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-D8B7B517",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
+    "usedByCases": 8,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
    },
    {
     "id": "BLK-SGL-6163165A",
-    "status": "draft-singleton",
+    "status": "draft-shared",
     "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "帳票印刷",
-    "toScreen": "帳票印刷"
-   },
-   {
-    "id": "BLK-SGL-D0AB4651",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
+    "usedByCases": 2,
     "fromScreen": "帳票印刷",
     "toScreen": "帳票印刷"
    },
@@ -23264,338 +21791,26 @@
     "toScreen": "不備内容入力画面-更新"
    },
    {
-    "id": "BLK-SGL-303AEAC9",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-1B4BF2A2",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-E23DBBCE",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-AE6EB457",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-75C48000",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
     "id": "BLK-SGL-F1E0B9E5",
-    "status": "draft-singleton",
+    "status": "draft-shared",
     "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "ToDo連携データ作成バッチ処理",
-    "toScreen": "ToDo連携データ作成バッチ処理"
-   },
-   {
-    "id": "BLK-SGL-B3C6DD9B",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "ToDo連携データ作成バッチ処理",
-    "toScreen": "ToDo連携データ作成バッチ処理"
-   },
-   {
-    "id": "BLK-SGL-1B069429",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "ToDo連携データ作成バッチ処理",
-    "toScreen": "ToDo連携データ作成バッチ処理"
-   },
-   {
-    "id": "BLK-SGL-2A271F57",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
+    "usedByCases": 4,
     "fromScreen": "ToDo連携データ作成バッチ処理",
     "toScreen": "ToDo連携データ作成バッチ処理"
    },
    {
     "id": "BLK-SGL-60F6A775",
-    "status": "draft-singleton",
+    "status": "draft-shared",
     "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-A7A45418",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-ED36F3F7",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-CAE0EE28",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-27AD1952",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-1447D55E",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-E2606837",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "不備内容入力画面-更新",
-    "toScreen": "不備内容入力画面-更新"
-   },
-   {
-    "id": "BLK-SGL-1435D445",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
+    "usedByCases": 8,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
    },
    {
     "id": "BLK-SGL-C17F75BC",
-    "status": "draft-singleton",
+    "status": "draft-shared",
     "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-050E9572",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-E7ED8F75",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-500054A5",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-29F9D148",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-080CC956",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-74421551",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-9EB34116",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-C6CBD31A",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-CD166B4D",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-A4318C73",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-B7D80D28",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-69D8E501",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-C251A9BE",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-C4BF402E",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-5AD5D6D9",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-CEF7E580",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-1E608D6F",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-A75DE243",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-FCAF8476",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-142F0449",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-61178197",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-4C369412",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-2C9248F3",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
-    "fromScreen": "照会・検索",
-    "toScreen": "申請・確認更新"
-   },
-   {
-    "id": "BLK-SGL-2B53277F",
-    "status": "draft-singleton",
-    "executionStatus": "not-run",
-    "usedByCases": 1,
+    "usedByCases": 25,
     "fromScreen": "照会・検索",
     "toScreen": "申請・確認更新"
    }
@@ -23853,7 +22068,7 @@
    }
   ],
   "status3Counts": {
-   "planned": 290,
+   "planned": 248,
    "coded": 1,
    "verified": 3
   },
@@ -29708,7 +27923,7 @@
      "end": 11
     },
     {
-     "block": "BLK-SGL-E1FCFE32",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -29760,7 +27975,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-E1FCFE32",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -29833,7 +28048,7 @@
      "end": 11
     },
     {
-     "block": "BLK-SGL-D8B7B517",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -29885,7 +28100,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-D8B7B517",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -41444,7 +39659,7 @@
      "end": 27
     },
     {
-     "block": "BLK-SGL-D0AB4651",
+     "block": "BLK-SGL-6163165A",
      "start": 27,
      "end": 31
     }
@@ -41523,7 +39738,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-D0AB4651",
+     "block": "BLK-SGL-6163165A",
      "start": 27,
      "end": 31,
      "fromRow": 41,
@@ -48216,7 +46431,7 @@
      "end": 18
     },
     {
-     "block": "BLK-SGL-303AEAC9",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -48268,7 +46483,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-303AEAC9",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -48356,7 +46571,7 @@
      "end": 31
     },
     {
-     "block": "BLK-SGL-1B4BF2A2",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -48435,7 +46650,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-1B4BF2A2",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -48718,7 +46933,7 @@
      "end": 18
     },
     {
-     "block": "BLK-SGL-E23DBBCE",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -48770,7 +46985,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-E23DBBCE",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -48858,7 +47073,7 @@
      "end": 31
     },
     {
-     "block": "BLK-SGL-AE6EB457",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -48937,7 +47152,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-AE6EB457",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -49502,7 +47717,7 @@
      "end": 18
     },
     {
-     "block": "BLK-SGL-75C48000",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8
     }
@@ -49554,7 +47769,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-75C48000",
+     "block": "BLK-SGL-7A863F7A",
      "start": 7,
      "end": 8,
      "fromRow": 21,
@@ -58409,7 +56624,7 @@
      "end": 47
     },
     {
-     "block": "BLK-SGL-B3C6DD9B",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 41,
      "end": 43
     }
@@ -58551,7 +56766,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-B3C6DD9B",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 41,
      "end": 43,
      "fromRow": 58,
@@ -58704,7 +56919,7 @@
      "end": 63
     },
     {
-     "block": "BLK-SGL-1B069429",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 57,
      "end": 59
     }
@@ -58882,7 +57097,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-1B069429",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 57,
      "end": 59,
      "fromRow": 74,
@@ -59029,7 +57244,7 @@
      "end": 48
     },
     {
-     "block": "BLK-SGL-2A271F57",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 42,
      "end": 44
     }
@@ -59189,7 +57404,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-2A271F57",
+     "block": "BLK-SGL-F1E0B9E5",
      "start": 42,
      "end": 44,
      "fromRow": 62,
@@ -59534,7 +57749,7 @@
      "end": 25
     },
     {
-     "block": "BLK-SGL-A7A45418",
+     "block": "BLK-SGL-60F6A775",
      "start": 17,
      "end": 18
     }
@@ -59640,7 +57855,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-A7A45418",
+     "block": "BLK-SGL-60F6A775",
      "start": 17,
      "end": 18,
      "fromRow": 31,
@@ -65577,7 +63792,7 @@
      "end": 46
     },
     {
-     "block": "BLK-SGL-ED36F3F7",
+     "block": "BLK-SGL-60F6A775",
      "start": 30,
      "end": 31
     }
@@ -65746,7 +63961,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-ED36F3F7",
+     "block": "BLK-SGL-60F6A775",
      "start": 30,
      "end": 31,
      "fromRow": 47,
@@ -65882,7 +64097,7 @@
      "end": 45
     },
     {
-     "block": "BLK-SGL-CAE0EE28",
+     "block": "BLK-SGL-60F6A775",
      "start": 29,
      "end": 30
     }
@@ -66024,7 +64239,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-CAE0EE28",
+     "block": "BLK-SGL-60F6A775",
      "start": 29,
      "end": 30,
      "fromRow": 46,
@@ -66182,7 +64397,7 @@
      "end": 62
     },
     {
-     "block": "BLK-SGL-27AD1952",
+     "block": "BLK-SGL-60F6A775",
      "start": 46,
      "end": 47
     }
@@ -66369,7 +64584,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-27AD1952",
+     "block": "BLK-SGL-60F6A775",
      "start": 46,
      "end": 47,
      "fromRow": 63,
@@ -66517,7 +64732,7 @@
      "end": 54
     },
     {
-     "block": "BLK-SGL-1447D55E",
+     "block": "BLK-SGL-60F6A775",
      "start": 26,
      "end": 27
     }
@@ -66677,7 +64892,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-1447D55E",
+     "block": "BLK-SGL-60F6A775",
      "start": 26,
      "end": 27,
      "fromRow": 40,
@@ -67319,7 +65534,7 @@
      "end": 26
     },
     {
-     "block": "BLK-SGL-E2606837",
+     "block": "BLK-SGL-60F6A775",
      "start": 18,
      "end": 19
     }
@@ -67434,7 +65649,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-E2606837",
+     "block": "BLK-SGL-60F6A775",
      "start": 18,
      "end": 19,
      "fromRow": 32,
@@ -67544,7 +65759,7 @@
      "end": 25
     },
     {
-     "block": "BLK-SGL-1435D445",
+     "block": "BLK-SGL-60F6A775",
      "start": 17,
      "end": 18
     }
@@ -67650,7 +65865,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-1435D445",
+     "block": "BLK-SGL-60F6A775",
      "start": 17,
      "end": 18,
      "fromRow": 31,
@@ -71226,7 +69441,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-050E9572",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -71305,7 +69520,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-050E9572",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -71396,7 +69611,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-E7ED8F75",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -71475,7 +69690,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-E7ED8F75",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -71566,7 +69781,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-500054A5",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -71645,7 +69860,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-500054A5",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -71736,7 +69951,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-29F9D148",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -71815,7 +70030,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-29F9D148",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -71906,7 +70121,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-080CC956",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -71985,7 +70200,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-080CC956",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -72076,7 +70291,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-74421551",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -72155,7 +70370,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-74421551",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -72246,7 +70461,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-9EB34116",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -72325,7 +70540,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-9EB34116",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -72416,7 +70631,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-C6CBD31A",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -72495,7 +70710,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-C6CBD31A",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -72586,7 +70801,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-CD166B4D",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -72665,7 +70880,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-CD166B4D",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -77110,7 +75325,7 @@
      "end": 13
     },
     {
-     "block": "BLK-SGL-A4318C73",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -77153,7 +75368,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-A4318C73",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -78460,7 +76675,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-B7D80D28",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -78548,7 +76763,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-B7D80D28",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -78645,7 +76860,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-69D8E501",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -78733,7 +76948,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-69D8E501",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -78830,7 +77045,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-C251A9BE",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -78918,7 +77133,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-C251A9BE",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -79015,7 +77230,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-C4BF402E",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -79103,7 +77318,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-C4BF402E",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -79200,7 +77415,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-5AD5D6D9",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -79288,7 +77503,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-5AD5D6D9",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -79385,7 +77600,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-CEF7E580",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -79473,7 +77688,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-CEF7E580",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -79570,7 +77785,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-1E608D6F",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -79658,7 +77873,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-1E608D6F",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -79755,7 +77970,7 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-A75DE243",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -79843,7 +78058,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-A75DE243",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,
@@ -81102,12 +79317,12 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-FCAF8476",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     },
     {
-     "block": "BLK-SGL-142F0449",
+     "block": "BLK-SGL-C17F75BC",
      "start": 22,
      "end": 24
     }
@@ -81186,7 +79401,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-FCAF8476",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 21,
@@ -81195,7 +79410,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-142F0449",
+     "block": "BLK-SGL-C17F75BC",
      "start": 22,
      "end": 24,
      "fromRow": 41,
@@ -81286,12 +79501,12 @@
      "end": 34
     },
     {
-     "block": "BLK-SGL-61178197",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     },
     {
-     "block": "BLK-SGL-4C369412",
+     "block": "BLK-SGL-C17F75BC",
      "start": 22,
      "end": 24
     }
@@ -81370,7 +79585,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-61178197",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 21,
@@ -81379,7 +79594,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-4C369412",
+     "block": "BLK-SGL-C17F75BC",
      "start": 22,
      "end": 24,
      "fromRow": 41,
@@ -81455,7 +79670,7 @@
      "end": 20
     },
     {
-     "block": "BLK-SGL-2C9248F3",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -81507,7 +79722,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-2C9248F3",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 21,
@@ -83255,7 +81470,7 @@
      "end": 13
     },
     {
-     "block": "BLK-SGL-2B53277F",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7
     }
@@ -83298,7 +81513,7 @@
      "status3": "planned"
     },
     {
-     "block": "BLK-SGL-2B53277F",
+     "block": "BLK-SGL-C17F75BC",
      "start": 5,
      "end": 7,
      "fromRow": 19,

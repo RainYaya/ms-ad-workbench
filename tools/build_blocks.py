@@ -431,6 +431,33 @@ def shared_and_singletons_from_gaps(cases, ids, workflows, blocks):
     return out
 
 
+def classify_block(b):
+    """Every block is either a business FLOW (family / reviewed sequence) or
+    a PRIMITIVE (single atomic interaction reused everywhere with parameters).
+
+    Primitives are the ~dozens of operations this SUT is actually made of:
+    navigate, fill, popup-select, verify-screen, verify-artifact, batch,
+    auth, wait. Families compose them into reviewable business sequences.
+    """
+    pat = b["pattern"]
+    n = len(pat)
+    # artifact-verification runs: all events are ast, no transition
+    if all(p["kind"] == "ast" and p.get("assert") != "transition" for p in pat):
+        return "primitive-verify"
+    # single op(+single screen assert) == one atomic interaction
+    if n <= 2 and pat[0]["kind"] == "op":
+        # click + transition = pure navigation
+        if n == 2 and pat[1].get("assert") == "transition":
+            return "primitive-nav"
+        # inputBundle / input + anything short = fill
+        if pat[0].get("action") in ("input", "inputBundle", "other"):
+            return "primitive-fill"
+        return "primitive-act"
+    if n == 1 and pat[0]["kind"] == "ast":
+        return "primitive-verify"
+    return "family"
+
+
 def compose(events, blocks):
     """DP maximizing covered events. Ties prefer longer blocks."""
     n = len(events)
@@ -699,11 +726,38 @@ def main():
         if cur:
             runs.append(cur)
         added = 0
+        # signature index for dedup: same normalized run = same block, cross-book
+        fs_sig = {}
+        for b in blocks:
+            fs_sig.setdefault(tuple(map(tuple, b["_pattern"])), b["id"])
         for run in runs:
             if not run:
                 continue
             pat = tuple(event_pattern(e) for e in run)
+            dup_id = fs_sig.get(pat)
+            if dup_id:
+                # reuse the existing block (possibly another book's singleton
+                # or a family block) instead of minting a duplicate
+                bid = dup_id
+                start_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[0].get("sourceRow"))
+                end_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[-1].get("sourceRow")) + 1
+                w["blocks"].append({"block": bid, "start": start_idx, "end": end_idx})
+                w["blockDetails"].append({
+                    "block": bid, "start": start_idx, "end": end_idx,
+                    "fromRow": run[0].get("sourceRow"), "toRow": run[-1].get("sourceRow"),
+                    "status": "not-run", "status3": "planned",
+                })
+                w["coverage3"]["planned"] += len(run)
+                w["coverage3"]["uncovered"] -= len(run)
+                block_use[bid] = block_use.get(bid, 0) + 1
+                blk_obj = next(b for b in blocks if b["id"] == bid)
+                blk_obj["usedByCases"] = block_use[bid]
+                if blk_obj.get("status") == "draft-singleton":
+                    blk_obj["status"] = "draft-shared"
+                    blk_obj["note"] = "Shared run family (promoted from singleton after cross-book dedup)."
+                continue
             bid = "BLK-SGL-" + hashlib.sha1((cid + "final" + str(run[0].get("sourceRow"))).encode("utf-8")).hexdigest()[:8].upper()
+            fs_sig[pat] = bid
             existing = next((b for b in blocks if b["id"] == bid), None)
             if not existing:
                 transitions = [p for p in pat if p[0] == "ast" and p[2] == "transition"]
@@ -780,6 +834,7 @@ def main():
         b["usedByCases"] = block_use.get(b["id"], 0)
         b["executionStatus"] = aggregate_status(block_statuses.get(b["id"], []))
         b["status3"] = status3_of(b["id"])
+        b["kind"] = classify_block(b)
         b.pop("_pattern", None)
 
     # after the final sweep every workflow is composed; recompute the
@@ -899,7 +954,7 @@ def main():
         "blocks": [{
             "id": b["id"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"],
             "params": b["params"], "status": b["status"], "executionStatus": b["executionStatus"],
-            "status3": b["status3"],
+            "status3": b["status3"], "kind": b["kind"],
             "note": b["note"], "usedByCases": b["usedByCases"],
         } for b in blocks],
         "cases": auto_cases,

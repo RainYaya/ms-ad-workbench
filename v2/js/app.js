@@ -1521,7 +1521,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>Block registry</h3><span class="hint">${blocks.length} blocks / 使用ケース数</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>From → To</th><th class="num">Cases</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>種別</th><th>From → To</th><th class="num">Cases</th><th>Status3</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>未カバー event</h3><span class="hint">次の block 候補</span></div>

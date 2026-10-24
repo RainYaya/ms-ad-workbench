@@ -15,9 +15,9 @@ This is the per-book / per-case progress table. It is separate from static block
 | Actually partially passed | 1 |
 | Mock-only | 3 |
 | Environment-blocked cases | 1 |
-| Blocks | 294 (34 curated + 59 auto) |
+| Blocks | 252 (34 curated + 59 auto) |
 | Event coverage | 82.4% auto-inclusive / 35.2% curated-only |
-| Status3 blocks | verified 3 / coded 1 / planned 290 |
+| Status3 blocks | verified 3 / coded 1 / planned 248 |
 | Status3 cases | verified 0 / coded 98 / planned 352 / none 0 |
 
 Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.
@@ -30,7 +30,7 @@ Block execution state (legacy):
 | mock-pass | 0 |
 | blocked | 1 |
 | not-implemented | 6 |
-| not-run | 284 |
+| not-run | 242 |
 
 ## Blocks
 
@@ -77,6 +77,7 @@ Block execution state (legacy):
 | `BLK-SHR-40B1188F` | 照会・検索 → 照会・検索 | 27 | draft-shared | not-run | planned |
 | `BLK-AUTO-1D62D29C` | 申請承認一覧 → 取消計上申請承認 | 26 | draft-auto | not-run | planned |
 | `BLK-AUTO-FCB405E4` | メ-ル通知先選択 → メ-ル通知先選択 | 26 | draft-auto | not-run | planned |
+| `BLK-SGL-C17F75BC` | 照会・検索 → 申請・確認更新 | 25 | draft-shared | not-run | planned |
 | `BLK-SHR-D6459D48` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 25 | draft-shared | not-run | planned |
 | `BLK-AUTO-9EB5A282` | 不備一覧 → 不備内容入力画面-更新 | 24 | draft-auto | not-run | planned |
 | `BLK-AY-SHINSEI-TAIOUTOUROKU` | 申請・確認更新 → 申請・確認更新 | 24 | source-only | not-run | planned |
@@ -119,6 +120,8 @@ Block execution state (legacy):
 | `BLK-SHR-63C4E6D6` | 帳票印刷 → 不備内容入力画面-更新 | 9 | draft-shared | not-run | planned |
 | `BLK-AUTO-08AD77A3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-auto | not-run | planned |
 | `BLK-AUTO-2B5F6E76` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-auto | not-run | planned |
+| `BLK-SGL-60F6A775` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-shared | not-run | planned |
+| `BLK-SGL-7A863F7A` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-shared | not-run | planned |
 | `BLK-SHR-6FA7E251` | 申請・確認更新 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
 | `BLK-SHR-77BF51A5` | 申請・確認更新 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
 | `BLK-SHR-805D28B8` | 取消計上申請承認 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
@@ -142,6 +145,7 @@ Block execution state (legacy):
 | `BLK-AZ-BATCH-VERIFY` | 不備項目集計バッチ処理 → 不備項目集計バッチ処理 | 4 | source-only | not-run | planned |
 | `BLK-AZ-COMPLETE-REGISTER` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | source-only | not-implemented | planned |
 | `BLK-AZ-OPEN-CLOSE-SYS` | 運用AP → 閉局 | 4 | source-only | not-run | planned |
+| `BLK-SGL-F1E0B9E5` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 4 | draft-shared | not-run | planned |
 | `BLK-SHR-1D4C0178` | 帳票印刷 → 帳票印刷 | 4 | draft-shared | not-run | planned |
 | `BLK-SHR-6F09B48C` | 不備一覧 → ToDo再送設定バッチ処理 | 4 | draft-shared | not-run | planned |
 | `BLK-SHR-8546478D` | 取消計上申請承認 → 送信先(写)選択 | 4 | draft-shared | not-run | planned |
@@ -162,6 +166,7 @@ Block execution state (legacy):
 | `BLK-AUTO-F8714C90` | 照会内容編集 → 不備内容入力画面-更新 | 2 | draft-auto | not-run | planned |
 | `BLK-AZ-AGT-CSV-DOWNLOAD` | 代理店 不備一覧 → 代理店 不備一覧 | 2 | source-only | not-run | planned |
 | `BLK-SGL-1ECE1684` | 帳票印刷 → 不備内容入力画面-更新 | 2 | draft-singleton | not-run | planned |
+| `BLK-SGL-6163165A` | 帳票印刷 → 帳票印刷 | 2 | draft-shared | not-run | planned |
 | `BLK-SGL-8986EB9F` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-singleton | not-run | planned |
 | `BLK-SGL-A00738F4` | 送信先(写)選択 → 送信先(写)選択 | 2 | draft-singleton | not-run | planned |
 | `BLK-SGL-FE33E38E` | 不備一覧 → 不備一覧 | 2 | draft-singleton | not-run | planned |
@@ -203,8 +208,6 @@ Block execution state (legacy):
 | `BLK-AZ-AGT-UPDATE-SUSPEND` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | source-only | not-run | planned |
 | `BLK-SGL-022A6268` | 不備一覧 → ヘルプ | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-03D12845` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-050E9572` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-080CC956` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-0B2CB156` | 不備内容入力画面-更新 → システムエラー画面(親画面) | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-0C5A44D1` | 計上情報消込処理 → 計上情報消込処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-0D2D641B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
@@ -212,15 +215,9 @@ Block execution state (legacy):
 | `BLK-SGL-0EF7DA98` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-134186E1` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-13EBF209` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-142F0449` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-1435D445` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-1447D55E` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-148C85C9` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-1913A9CC` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-1B069429` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-1B4BF2A2` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-1CC6C3EC` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-1E608D6F` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-1E78A599` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-1E856949` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-20C0D517` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
@@ -228,44 +225,28 @@ Block execution state (legacy):
 | `BLK-SGL-224C9DEF` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-2268EC8E` | メール通知先選択 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-263830F1` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-27AD1952` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-2995218F` | 帳票印刷 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-29F9D148` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-2A271F57` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-2B53277F` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-2B7D45E3` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-2C9248F3` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-2DDFC25D` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-2FF1643E` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-3017A3AA` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-303AEAC9` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-31F074B9` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-3DB9518B` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-3EFB9C18` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-41743CCA` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-42508787` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-4C3588A4` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-4C369412` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-4CB0EA5C` | 不備一覧 → 不備一覧 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-4EB596EB` | ユーザIDマスタ取込処理 → ユーザIDマスタ取込処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-500054A5` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-557F51B3` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-58EA9045` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-5AD5D6D9` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-60F6A775` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-61178197` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-6163165A` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-637D567D` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-639A108B` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-69D8E501` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-6BEAE496` | 回答内容マスタ取込処理 → 回答内容マスタ取込処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-70B071E3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-74421551` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-7597207A` | 取消計上申請登録 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-75C48000` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-75D5F75B` | 親子集計バッチ処理 → 親子集計バッチ処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-7A4080AD` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-7A863F7A` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-7EBD5C1C` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-7EE83E5A` | 申込書品質管理メニュー → 申込書品質管理メニュー | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-824C0B37` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 1 | draft-singleton | not-run | planned |
@@ -275,17 +256,10 @@ Block execution state (legacy):
 | `BLK-SGL-952A7140` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-98A9A5DE` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-9B567CC5` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-9EB34116` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-9EBB1470` | ToDo連携データ作成バッチ処理 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-A4318C73` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-A5BF2BD4` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-A75DE243` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-A7A45418` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-AB15C319` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-AE6EB457` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-B3C6DD9B` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-B69EF548` | 大樹生命連携データ作成バッチ処理 → 大樹生命連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-B7D80D28` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-B84FFF40` | 閲覧システム連携ファイル作成バッチ処理 → 閲覧システム連携ファイル作成バッチ処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-BA4B4F43` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-BBEBCD49` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
@@ -293,40 +267,24 @@ Block execution state (legacy):
 | `BLK-SGL-BE812D08` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-C14B22C2` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-C16D256A` | 不備一覧 → 不備一覧 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-C17F75BC` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-C251A9BE` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-C3BC64AD` | メール通知先選択 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-C4BF402E` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-C651052A` | ToDo連携データ作成バッチ処理 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-C6CBD31A` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-C9C58BF8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-CAE0EE28` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-CB6C5414` | 項目名検索 → 項目名検索 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-CD166B4D` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-CEAA65E9` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-CEF7E580` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-CFBFBCCB` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-D0508D0D` | 不備内容入力画面-更新 → 照会内容編集 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-D0AB4651` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-D8B7B517` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-DB2830E2` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-DE4B3B14` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-E008F918` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-E1FCFE32` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-E23DBBCE` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-E2606837` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-E3AD1DD9` | 項目テーブル取込処理 → 項目テーブル取込処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-E7ED8F75` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-EA9C1EF3` | 照会・検索 → システムエラー画面(親画面) | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-ECBA7661` | 照会内容マスタ取込処理 → 照会内容マスタ取込処理 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-ED36F3F7` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-EF37895C` | 訂正内容確認 → システムエラー画面(子画面) | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-F1E0B9E5` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-F1F96812` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-F54CCD41` | 親子集計バッチ処理 → 親子集計予約 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-F9980EBC` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-FBFD5CAD` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
-| `BLK-SGL-FCAF8476` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-FCF80BAC` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
 | `BLK-SGL-FF4BE5F2` | メール通知先選択 → リンク | 1 | draft-singleton | not-run | planned |
 | `BLK-SHR-394B713D` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 0 | draft-shared | not-run | planned |
