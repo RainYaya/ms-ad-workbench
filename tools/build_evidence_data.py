@@ -80,7 +80,10 @@ for cid in CASES:
             manual_rows.add(row)
         rows[str(row)] = {"status": status, "file": e.get("file") if e else None, "item": e.get("item") if e else None, "type": e.get("type") if e else None}
     ms = manual_steps(cid, manual_rows)
+    xlsx = ROOT / "evidence" / f"{cid}.xlsx"
     data[cid] = {"summary": summary, "rows": rows, "manualSteps": ms, "status": result.get("status")}
+    if xlsx.exists():
+        data[cid]["xlsx"] = f"../evidence/{cid}.xlsx"
     for k in counts:
         counts[k] += summary[k]
     if ms or summary["manual"]:

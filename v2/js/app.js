@@ -47,7 +47,9 @@
     appendixSheet: {},
     appendixView: 'compact',
     query: '',
-    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false },
+    manualFilter: 'all',
+    manualQuery: '',
+    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false, manual: false, manualOp: false, autoOnly: false, evMissing: false },
     progress: load(LS.progress, {}),
     tasks: load(LS.tasks, { ids: [], importedAt: '' }),
     automation: load(LS.automation, {}),
@@ -100,6 +102,11 @@
     BLOCKED: { label: '不可', cls: 'red', dot: 'blocked' },
   };
 
+  const EVIDENCE = window.MSAD_EVIDENCE || {};
+  function evcase(id) { return EVIDENCE[id] || { summary: {}, rows: {}, manualSteps: [] }; }
+  function evsum(id) { return evcase(id).summary || {}; }
+  function manualCount(id) { return (evcase(id).manualSteps || []).length; }
+  function manualOpCount(id) { return (evcase(id).manualSteps || []).filter((m) => m.phase === '操作').length; }
   function pget(id) { return state.progress[id] || {}; }
   function caseStatus(id) {
     const p = pget(id);
@@ -263,7 +270,7 @@
     if (view === 'case' && id) { state.view = 'case'; if (state.selectedCase !== id) state.tab = 'procedure'; state.selectedCase = id; renderCase(id); return; }
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
-    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation'].includes(view) ? view : 'dashboard';
+    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation', 'manual'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
     state.selectedRoute = null;
@@ -289,7 +296,7 @@
     const crumb = state.view === 'case' ? `ケース / ${state.selectedCase || ''}`
       : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
         : state.view === 'route' ? `実施順序 / ${state.selectedRoute || ''}`
-          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化' }[state.view] || 'ダッシュボード');
+          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化', manual: '証跡・人工' }[state.view] || 'ダッシュボード');
     $('#breadcrumb').textContent = crumb;
     $$('#nav .nav-item').forEach((b) => b.classList.toggle('active', b.dataset.view === state.view));
     const meta = DATA.meta || {};
@@ -447,6 +454,10 @@
         const ids = casesByScenario.get(s.id) || [];
         if (!ids.some((c) => c.hasAppendix === false || c.hasWorkflow === false)) return false;
       }
+      if (state.filters.manual && !ids.some((id) => manualCount(id) > 0 || evsum(id).manual > 0)) return false;
+      if (state.filters.manualOp && !ids.some((id) => manualOpCount(id) > 0)) return false;
+      if (state.filters.autoOnly && !ids.every((id) => manualCount(id) === 0 && (evsum(id).manual || 0) === 0)) return false;
+      if (state.filters.evMissing && !ids.some((id) => (evsum(id).missing || 0) > 0)) return false;
       return true;
     });
   }
@@ -460,15 +471,20 @@
     }
     const body = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([cid, ss]) => {
       const cat = categoryById.get(cid) || { id: cid };
-      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company ? 'open' : ''}>
+      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company || state.filters.manual || state.filters.manualOp || state.filters.autoOnly || state.filters.evMissing ? 'open' : ''}>
         <summary><span class="mono">${esc(cid)}</span> <span>${esc(cat.functionArea || '')}</span> <span class="badge outline">${ss.length} シナリオ</span></summary>
         <div class="tree-body">
           ${ss.map((s) => {
             const ids = (casesByScenario.get(s.id) || []).map((c) => c.id);
             const r = rollup(ids);
+            const mc = ids.reduce((n, id) => n + manualCount(id), 0);
+            const mo = ids.reduce((n, id) => n + manualOpCount(id), 0);
+            const hm = ids.reduce((n, id) => n + (evsum(id).manual || 0), 0);
+            const em = ids.reduce((n, id) => n + (evsum(id).missing || 0), 0);
+            const chips = [mc ? `<span class="badge amber" title="人工確認/操作の手顺行">人工 ${mc}</span>` : '', mo ? `<span class="badge blue">人工操作 ${mo}</span>` : '', hm ? `<span class="badge violet">HC人工 ${hm}</span>` : '', em ? `<span class="badge red">未取得 ${em}</span>` : ''].filter(Boolean).join(' ');
             return `<div class="row-card" data-scenario="${esc(s.id)}">
               <div class="id">${esc(s.id)}</div>
-              <div style="min-width:0;flex:1"><p class="title">${esc(s.title)}</p><div class="meta">${esc(s.userType || '')} / ${esc(s.executionType || '')} / ${esc(s.functionArea || '')}　X=${s.x}　MS ${s.msCount || 0} / AD ${s.adCount || 0}${s.hasRoute ? '　<span class="badge green">実施順序あり</span>' : ''}</div></div>
+              <div style="min-width:0;flex:1"><p class="title">${esc(s.title)}</p><div class="meta">${esc(s.userType || '')} / ${esc(s.executionType || '')} / ${esc(s.functionArea || '')}　X=${s.x}　MS ${s.msCount || 0} / AD ${s.adCount || 0}${s.hasRoute ? '　<span class="badge green">実施順序あり</span>' : ''}</div>${chips ? `<div class="chips" style="margin-top:4px">${chips}</div>` : ''}</div>
               <div class="right">${statusBadge(caseStatus(ids.find((id) => pget(id).execution) || ids[0] || ''))}<span class="small muted">${r.executed}/${r.total}</span></div>
             </div>`;
           }).join('')}
@@ -1100,15 +1116,21 @@ AY-120-01-001"></textarea>
     const auto = (window.MSAD_EVIDENCE || {})[c.id] || {};
     const statuses = auto.rows || {};
     const s = auto.summary || {};
-    const badge = (st) => ({ exact: ['自動', 'green'], blockEnd: ['塊尾', 'amber'], manual: ['人工', 'red'], missing: ['未取得', 'red'] }[st] || ['未実行', '']);
+    const badge = (st) => ({ exact: ['自動', 'green'], blockEnd: ['近似', 'amber'], manual: ['人工確認', 'violet'], missing: ['未取得', 'red'] }[st] || ['未実行', '']);
     const done = items.filter((x) => p.evidence?.[x.key]).length;
-    const sum = s.hc ? `画面HC ${s.hc} ／ 自動 ${s.exact || 0} ／ 塊尾 ${s.blockEnd || 0} ／ 人工 ${s.manual || 0} ／ 未取得 ${s.missing || 0}` : '実行結果なし';
+    const sum = s.hc ? `画面HC ${s.hc} ／ 自動 ${s.exact || 0} ／ 近似 ${s.blockEnd || 0} ／ 人工 ${s.manual || 0} ／ 未取得 ${s.missing || 0}` : '実行結果なし';
     const manual = auto.manualSteps || [];
-    const manualPanel = manual.length ? `<div class="panel"><div class="panel-head"><h3>人工確認項目</h3><span class="hint">${manual.length}</span></div><div class="panel-body small"><ul>${manual.map((m) => `<li><b>行${m.row}</b> [${esc(m.phase)}] ${esc(m.item)} <span class="muted">— ${esc(m.reason)}</span></li>`).join('')}</ul></div></div>` : '';
-    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length} ・ ${sum}</span></div><div class="panel-body"><div class="evidence-list">${items.map((x) => {
-      const st = statuses[String(x.row)]?.status;
+    const manualPanel = manual.length ? `<div class="panel mt"><div class="panel-head"><h3>人工確認項目</h3><span class="hint">${manual.length} 件（真機で確認）</span></div><div class="panel-body"><div class="evidence-list">${manual.map((m) => {
+      const key = `manual:${m.row}:${m.phase}`;
+      return `<label class="ev-item ${p.evidence?.[key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[key] ? 'checked' : ''}><span><b>行${m.row}</b> [${esc(m.phase)}] ${esc(m.item)}</span><span class="ev-type">${esc(m.reason)}</span></label>`;
+    }).join('')}</div></div></div>` : '';
+    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length} ・ ${sum}</span>${auto.xlsx ? `<a class="btn" href="${esc(auto.xlsx)}" download>Excel証跡</a>` : ''}</div><div class="panel-body"><div class="evidence-list">${items.map((x) => {
+      const e = statuses[String(x.row)];
+      const st = e?.status;
       const [label, color] = st ? badge(st) : (x.type === '画面HC' ? ['未取得', 'red'] : ['目視', '']);
-      return `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span>${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : '#15803d'}">${label}</b>` : ''}</span></label>`;
+      const src = e?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(e.file)}` : '';
+      const thumb = src ? `<img class="ev-thumb" loading="lazy" src="${esc(src)}" data-lightbox="${esc(src)}" alt="Excel ${x.row}">` : (st === 'manual' ? '<span class="ev-manual">人工確認</span>' : '');
+      return `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span class="ev-main">${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : color === 'violet' ? '#6d28d9' : '#15803d'}">${label}</b>` : ''}</span>${thumb}</label>`;
     }).join('')}</div></div></div>${manualPanel}`;
   }
 
@@ -1629,6 +1651,68 @@ AY-120-01-001"></textarea>
     }));
   }
 
+
+  /* ------------------------------------------------------------------ */
+  /* evidence / manual inbox                                             */
+  /* ------------------------------------------------------------------ */
+
+  function renderManual() {
+    const all = Object.keys(EVIDENCE).sort();
+    const q = (state.manualQuery || '').toLowerCase();
+    const filter = state.manualFilter || 'all';
+    const rows = all.map((id) => {
+      const s = evsum(id) || {};
+      const ms = evcase(id).manualSteps || [];
+      const op = ms.filter((m) => m.phase === '操作').length;
+      const chk = ms.filter((m) => m.phase === '確認').length;
+      return { id, s, ms, op, chk, status: evcase(id).status };
+    }).filter((r) => {
+      if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
+      if (filter === 'manual') return (r.s.manual || 0) > 0;
+      if (filter === 'manualOp') return r.op > 0;
+      if (filter === 'missing') return (r.s.missing || 0) > 0;
+      if (filter === 'auto') return r.ms.length === 0 && (r.s.manual || 0) === 0;
+      return true;
+    });
+    const totalManual = all.reduce((n, id) => n + (evsum(id).manual || 0), 0);
+    const totalMissing = all.reduce((n, id) => n + (evsum(id).missing || 0), 0);
+    const totalOp = all.reduce((n, id) => n + (evcase(id).manualSteps || []).filter((m) => m.phase === '操作').length, 0);
+    const totalChk = all.reduce((n, id) => n + (evcase(id).manualSteps || []).filter((m) => m.phase === '確認').length, 0);
+    const fbtn = (k, label) => `<button class="btn ${filter === k ? 'primary' : ''}" data-manual-filter="${k}">${label}</button>`;
+    const body = rows.map((r) => {
+      const s = r.s || {};
+      const short = r.ms.slice(0, 2).map((m) => `行${m.row} [${esc(m.phase)}] ${esc(m.item)}`).join(' / ');
+      return `<tr class="case-row-click" data-case="${esc(r.id)}">
+        <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div></td>
+        <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
+        <td class="num">${s.hc || 0}</td>
+        <td class="num">${s.exact || 0}</td>
+        <td class="num">${s.blockEnd || 0}</td>
+        <td class="num">${s.manual || 0}</td>
+        <td class="num">${s.missing ? `<span class="badge red">${s.missing}</span>` : 0}</td>
+        <td class="num">${r.op}</td>
+        <td class="num">${r.chk}</td>
+        <td class="small">${short || '<span class="muted">—</span>'}</td>
+      </tr>`;
+    }).join('');
+    $('#main').innerHTML = `${pageHead('証跡・人工', '画面HCの自動取得と、真機で人が確認する項目', `<input id="manualQuery" class="input" placeholder="ケースID / 機能名で検索" value="${esc(state.manualQuery || '')}"> <a class="btn" href="../evidence/index.xlsx" download>Excel索引</a>`)}
+      <div class="kpis">
+        ${kpi('対象ケース', all.length, '証跡データあり', 'accent')}
+        ${kpi('画面HC 人工', totalManual, '无截图 / 要人确认', 'violet')}
+        ${kpi('人工操作', totalOp, 'F12・JP1・待機など', 'blue')}
+        ${kpi('人工確認', totalChk, 'AP/DBログ・表など', 'amber')}
+        ${kpi('証跡未取得', totalMissing, '要修正', 'red')}
+      </div>
+      <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}
+        <span class="hint" style="margin-left:auto">${rows.length} 件</span>
+      </div></div>
+      <section class="panel mt"><div class="table-wrap"><table class="data">
+        <thead><tr><th>ケース</th><th>実行</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
+        <tbody>${body || '<tr><td colspan="10" class="muted">該当なし</td></tr>'}</tbody>
+      </table></div></section>`;
+  }
+
   function renderAutomation() {
     const sum = AUTO.summary || {};
     const cases = Object.entries(AUTO.cases || {}).sort((a, b) => a[0].localeCompare(b[0]));
@@ -1895,6 +1979,23 @@ AY-120-01-001"></textarea>
     $('#filterStatus').addEventListener('change', (e) => { state.filters.status = e.target.value; render(); });
     $('#filterAssigned').addEventListener('change', (e) => { state.filters.assigned = e.target.checked; render(); });
     $('#filterMissing').addEventListener('change', (e) => { state.filters.missing = e.target.checked; render(); });
+    $('#filterManual').addEventListener('change', (e) => { state.filters.manual = e.target.checked; render(); });
+    $('#filterManualOp').addEventListener('change', (e) => { state.filters.manualOp = e.target.checked; render(); });
+    $('#filterAutoOnly').addEventListener('change', (e) => { state.filters.autoOnly = e.target.checked; render(); });
+    $('#filterEvMissing').addEventListener('change', (e) => { state.filters.evMissing = e.target.checked; render(); });
+    $('#main').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-manual-filter]');
+      if (b) { state.manualFilter = b.dataset.manualFilter; renderManual(); }
+    });
+    $('#main').addEventListener('input', (e) => {
+      if (e.target.id === 'manualQuery') {
+        const v = e.target.value;
+        state.manualQuery = v;
+        renderManual();
+        const el = document.getElementById('manualQuery');
+        if (el) { el.focus(); el.setSelectionRange(v.length, v.length); }
+      }
+    });
     $('#filterOld').addEventListener('change', (e) => { state.filters.old = e.target.checked; render(); });
     $('#filterRoute').addEventListener('change', (e) => { state.filters.route = e.target.checked; render(); });
     $('#btnTasks').addEventListener('click', () => go('tasks'));
@@ -1982,6 +2083,9 @@ AY-120-01-001"></textarea>
         toast('保存しました');
         if (field === 'execution' || field === 'verify' || field === 'result') renderCase(id);
       }
+      const lb = el.closest('[data-lightbox]');
+      if (lb) { $('#lightboxImg').src = lb.dataset.lightbox; $('#lightbox').hidden = false; return; }
+      if (el.id === 'lightbox' || el.id === 'lightboxClose') { $('#lightbox').hidden = true; return; }
       if (el.matches('[data-evidence]')) {
         const id = el.dataset.caseId;
         const key = el.dataset.evidence;
@@ -2086,6 +2190,7 @@ AY-120-01-001"></textarea>
       }
     });
 
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#lightbox').hidden = true; });
     window.addEventListener('hashchange', applyRoute);
   }
 
@@ -2127,6 +2232,7 @@ AY-120-01-001"></textarea>
     else if (state.view === 'refs') renderRefs();
     else if (state.view === 'schedule') renderSchedule();
     else if (state.view === 'automation') renderAutomation();
+    else if (state.view === 'manual') renderManual();
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);
     else if (state.view === 'route' && state.selectedRoute) renderRoute(state.selectedRoute);

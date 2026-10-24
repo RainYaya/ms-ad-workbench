@@ -467,7 +467,8 @@
      "reason": "非浏览器确认"
     }
    ],
-   "status": "pass"
+   "status": "pass",
+   "xlsx": "../evidence/AY-100-07-001.xlsx"
   },
   "AY-100-07-002": {
    "summary": {
@@ -9275,7 +9276,8 @@
      "reason": "非浏览器（開発者ツール等）"
     }
    ],
-   "status": "pass"
+   "status": "pass",
+   "xlsx": "../evidence/AZ-100-05-003.xlsx"
   },
   "AZ-100-05-004": {
    "summary": {
