@@ -13,9 +13,26 @@ const baseUrl = arg('base-url', 'http://127.0.0.1:10081/mhkcmwa11/dummy.html');
 const headed = process.argv.includes('--headed');
 const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses bundled edge channel
 
-const paramsAll = JSON.parse(readFileSync(join(root, '../cdp/params/AZ-110-01.json'), 'utf8'));
-const P = { ...paramsAll.common, ...paramsAll.cases[caseId] };
-const SEL = JSON.parse(readFileSync(join(root, 'block-selectors.json'), 'utf8'));
+import { readdirSync } from 'node:fs';
+function loadParams(cid) {
+  const dir = join(root, '../cdp/params');
+  for (const f of readdirSync(dir)) {
+    if (!f.endsWith('.json')) continue;
+    try {
+      const d = JSON.parse(readFileSync(join(dir, f), 'utf8'));
+      if (d.cases && d.cases[cid]) return { ...d.common, ...d.cases[cid] };
+    } catch {}
+  }
+  return null;
+}
+const P = loadParams(caseId);
+if (!P) { console.error(`params not found for ${caseId}`); process.exit(2); }
+console.log(`user ${P.user || '?'} / ${P.pointCheck || '?'}`);
+
+const SEL = {};
+for (const f of readdirSync(root).filter(f => /^block-selectors.*\.json$/.test(f))) {
+  Object.assign(SEL, JSON.parse(readFileSync(join(root, f), 'utf8')));
+}
 const logDir = join(root, `../../logs/${caseId}`);
 mkdirSync(logDir, { recursive: true });
 
@@ -32,6 +49,7 @@ const browser = await chromium.launch({
 const context = await browser.newContext({ viewport: { width: 1360, height: 900 } });
 const page = await context.newPage();
 const shots = [];
+const blockStatus = [];
 let shotIdx = 0;
 async function shot(name) {
   const file = `${String(++shotIdx).padStart(2, '0')}_${name}.png`;
@@ -45,11 +63,13 @@ const sel = (s) => String(s ?? '').replace(/\{params\.(\w+)\}/g, (_, k) => P[k] 
 
 try {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForSelector('#act001to100', { timeout: 120000 }); // login is manual on the SUT
+  // login is manual on the SUT; AZ menu has #act001to100, AY(ANB00) menu has route buttons
+  await page.waitForSelector('#act001to100, #route2, #route3', { timeout: 120000 });
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next
   for (const [blockId, blk] of Object.entries(SEL)) {
+    if (blk.cases && !blk.cases.includes(caseId)) continue;
     console.log(`-- ${blockId}`);
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
@@ -125,16 +145,17 @@ try {
       if (step.shot) await shot(step.shot);
     }
     await shot(blockId.slice(0, 24));
+    blockStatus.push({ block: blockId, status: 'pass' });
   }
 
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
-    caseId, runner: 'node', ts: new Date().toISOString(), status: 'pass', shots
+    caseId, runner: 'node', ts: new Date().toISOString(), status: 'pass', blocks: blockStatus, shots
   }, null, 2));
   console.log(`DONE ${caseId} — ${shots.length} shots in logs/${caseId}/`);
 } catch (err) {
   await shot('failure').catch(() => {});
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
-    caseId, runner: 'node', ts: new Date().toISOString(), status: 'fail', error: String(err), shots
+    caseId, runner: 'node', ts: new Date().toISOString(), status: 'fail', error: String(err), blocks: blockStatus, shots
   }, null, 2));
   console.error(`FAIL ${caseId}:`, err.message, err.stack ? String(err.stack).split(String.fromCharCode(10)).slice(1,4).join(' | ') : '');
   process.exitCode = 1;

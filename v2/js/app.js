@@ -1570,6 +1570,19 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     </tr>`).join('');
     $('#main').innerHTML = `
       ${pageHead('自動化', 'block composition / runner readiness（静的な一致結果。実行証明ではありません）')}
+      <div class="panel" style="margin-bottom:14px;border-left:4px solid var(--accent)">
+        <div class="panel-body" style="display:flex;gap:22px;flex-wrap:wrap;align-items:center">
+          <div style="min-width:180px">
+            <div style="font-size:15px;font-weight:700">自動化の使い方</div>
+            <div class="small muted">① 本を開く → ② run.cmd コピー → ③ 会社機で実行 → ④ 証跡は logs/ に自動保存</div>
+          </div>
+          <div class="s3-legend" style="margin:0">
+            <span class="s3-seg s3-verified" style="width:26px"></span><b>検証済</b><span class="small muted">＝会社機の実システムで通過</span>
+            <span class="s3-seg s3-coded" style="width:26px"></span><b>実装済</b><span class="small muted">＝コード有・模擬環境で通過</span>
+            <span class="s3-seg s3-planned" style="width:26px"></span><b>未着手</b><span class="small muted">＝手順は積木化済・コード待ち</span>
+          </div>
+        </div>
+      </div>
       <div class="kpis">
         ${kpi('対象ケース', sum.caseCount || 0, '自分のタスク', 'accent')}
         ${kpi('検証済', sum.status3CaseCounts?.verified || 0, '真機で全ブロック通過', 'green')}

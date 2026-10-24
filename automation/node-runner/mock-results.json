@@ -1,0 +1,316 @@
+{
+ "generatedAt": "2026-10-24",
+ "runner": "node-mock",
+ "results": {
+  "AY-110-01-011": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AY-MENU-SEARCH",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AY-SEARCH-OPEN",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AY-UPDATE",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AY-110-01-012": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AY-MENU-SEARCH",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AY-SEARCH-OPEN",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AY-UPDATE",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AZ-110-01-009": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-CREATE-INPUT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INPUT-FILL",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INSURANCE-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-AGENT-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-REGISTER-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-SEARCH-ITEM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INQUIRY-EDIT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-CORRECTION-CONFIRM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-COMPLETE-REGISTER",
+     "status": "pass"
+    }
+   ],
+   "shots": 11
+  },
+  "AZ-110-01-010": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-CREATE-INPUT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INPUT-FILL",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INSURANCE-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-AGENT-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-REGISTER-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-SEARCH-ITEM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INQUIRY-EDIT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-CORRECTION-CONFIRM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-COMPLETE-REGISTER",
+     "status": "pass"
+    }
+   ],
+   "shots": 11
+  },
+  "AZ-110-01-011": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-CREATE-INPUT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INPUT-FILL",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INSURANCE-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-AGENT-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-REGISTER-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-SEARCH-ITEM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INQUIRY-EDIT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-CORRECTION-CONFIRM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-COMPLETE-REGISTER",
+     "status": "pass"
+    }
+   ],
+   "shots": 11
+  },
+  "AZ-110-01-012": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-CREATE-INPUT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INPUT-FILL",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INSURANCE-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-AGENT-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-REGISTER-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-SEARCH-ITEM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-INQUIRY-EDIT",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-CORRECTION-CONFIRM",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-COMPLETE-REGISTER",
+     "status": "pass"
+    }
+   ],
+   "shots": 11
+  },
+  "AZ-110-37-001": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-SEARCH-LIST",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-CL",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AZ-110-37-002": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-SEARCH-LIST",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-CL",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AZ-110-37-003": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-SEARCH-LIST",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-CL",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AZ-110-37-004": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-SEARCH-LIST",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-CL",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  },
+  "AZ-110-37-005": {
+   "status": "pass",
+   "blocks": [
+    {
+     "block": "BLK-AZ-MENU-SEARCH-LIST",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+     "status": "pass"
+    },
+    {
+     "block": "BLK-AZ-UPDATE-CL",
+     "status": "pass"
+    }
+   ],
+   "shots": 4
+  }
+ }
+}

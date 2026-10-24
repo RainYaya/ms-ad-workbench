@@ -108,7 +108,7 @@ function popupAYG900(name) {
 		+ '&' + '1' + '=' + name
 		+ '&gamid=ANA10&gamcd=ANA00&hubsessid=1';
 	//var url = '<orteus:rewrite action="/tks/TKSPR/AYG900.do" method="controlStart" useLocalEncoding="true"/>';
-	var url = new URL('', window.location.origin);
+	var url = new URL('/ANB00/ANA10.html', window.location.origin);
 	var params = new URLSearchParams(param)
 	url.search = params.toString();
 
@@ -196,7 +196,7 @@ function popupAYG901(name){
 
 	// 送信先（写）選択画面のURLを設定
 	//var url = '<orteus:rewrite action="/tks/TKSPR/AYG901.do" method="controlStart" useLocalEncoding="true"/>';
-	var	url = new URL('', window.location.origin);
+	var	url = new URL('/ANB00/ANA11.html', window.location.origin);
 	var params = new URLSearchParams(param)
 	url.search = params.toString();
 

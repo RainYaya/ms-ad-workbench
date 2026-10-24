@@ -13,12 +13,12 @@ This is the per-book / per-case progress table. It is separate from static block
 | Curated-only full | 46 |
 | Actually fully passed | 0 |
 | Actually partially passed | 1 |
-| Mock-only | 3 |
+| Mock-only | 5 |
 | Environment-blocked cases | 1 |
 | Blocks | 252 (34 curated + 59 auto) |
 | Event coverage | 82.4% auto-inclusive / 35.2% curated-only |
-| Status3 blocks | verified 3 / coded 1 / planned 248 |
-| Status3 cases | verified 0 / coded 98 / planned 352 / none 0 |
+| Status3 blocks | verified 3 / coded 11 / planned 238 |
+| Status3 cases | verified 0 / coded 277 / planned 173 / none 0 |
 
 Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.
 
@@ -27,26 +27,26 @@ Block execution state (legacy):
 | State | Blocks |
 |---|---:|
 | live-pass | 3 |
-| mock-pass | 0 |
+| mock-pass | 1 |
 | blocked | 1 |
 | not-implemented | 6 |
-| not-run | 242 |
+| not-run | 241 |
 
 ## Blocks
 
 | Block | From → To | Cases | Selector | Execution | Status3 |
 |---|---|---:|---|---|---|
-| `BLK-AZ-MENU-SEARCH-LIST` | 申込書品質管理メニュー → 不備一覧 | 348 | source-only | not-run | planned |
-| `BLK-AZ-LIST-FILTER-OPEN-UPDATE` | 不備一覧 → 不備内容入力画面-更新 | 308 | source-only | not-run | planned |
+| `BLK-AZ-MENU-SEARCH-LIST` | 申込書品質管理メニュー → 不備一覧 | 348 | source-only | not-run | coded |
+| `BLK-AZ-LIST-FILTER-OPEN-UPDATE` | 不備一覧 → 不備内容入力画面-更新 | 308 | source-only | not-run | coded |
 | `BLK-AUTO-04A78248` | 不備内容入力画面-更新 → 項目名検索 | 229 | draft-auto | not-run | planned |
 | `BLK-AZ-INPUT-FILL` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 174 | live-verified | live-pass | verified |
 | `BLK-AZ-MENU-CREATE-INPUT` | 申込書品質管理メニュー → 不備内容入力画面-新規 | 174 | live-verified | live-pass | verified |
 | `BLK-AUTO-E2D0C359` | 異例取扱管理メニュ- → 照会・検索 | 170 | draft-auto | not-run | planned |
-| `BLK-AZ-REGISTER-UPDATE` | 不備内容入力画面-新規 → 不備内容入力画面-更新 | 166 | source-only | not-implemented | planned |
+| `BLK-AZ-REGISTER-UPDATE` | 不備内容入力画面-新規 → 不備内容入力画面-更新 | 166 | source-only | not-implemented | coded |
 | `BLK-AUTO-5C1EFE0E` | 項目名検索 → 不備内容入力画面-更新 | 118 | draft-auto | not-run | planned |
-| `BLK-AZ-ITEM-SEARCH-SELECT` | 項目名検索 → 不備内容入力画面-更新 | 117 | source-only | not-implemented | planned |
+| `BLK-AZ-ITEM-SEARCH-SELECT` | 項目名検索 → 不備内容入力画面-更新 | 117 | source-only | not-implemented | coded |
 | `BLK-AUTO-4F9D57E1` | 照会・検索 → 申請・確認更新 | 105 | draft-auto | not-run | planned |
-| `BLK-AZ-INQUIRY-EDIT` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 99 | source-only | not-implemented | planned |
+| `BLK-AZ-INQUIRY-EDIT` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 99 | source-only | not-implemented | coded |
 | `BLK-AUTO-2B9786A5` | 担当者検索 → 申請・確認更新 | 96 | draft-auto | not-run | planned |
 | `BLK-AUTO-27C68433` | 送信先(写)選択 → 取消計上申請承認 | 93 | draft-auto | not-run | planned |
 | `BLK-AUTO-3477BB6F` | BATCH → BATCH | 90 | draft-auto | not-run | planned |
@@ -100,7 +100,7 @@ Block execution state (legacy):
 | `BLK-SHR-BF46F797` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 15 | draft-shared | not-run | planned |
 | `BLK-AUTO-6F1B4715` | 訂正内容確認 → 不備内容入力画面-更新 | 14 | draft-auto | not-run | planned |
 | `BLK-AUTO-8FE40BE8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 14 | draft-auto | not-run | planned |
-| `BLK-AZ-CORRECTION-CONFIRM` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 14 | source-only | not-implemented | planned |
+| `BLK-AZ-CORRECTION-CONFIRM` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 14 | source-only | not-implemented | coded |
 | `BLK-AUTO-5637DF50` | 申請・確認更新 → 申請・確認更新 | 13 | draft-auto | not-run | planned |
 | `BLK-AUTO-12DB90A3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 12 | draft-auto | not-run | planned |
 | `BLK-AZ-EXTERNAL-AUTH` | その他(申込書品質管理) → 申込書品質管理システム (代理店MS) | 12 | source-only | not-run | planned |
@@ -111,7 +111,7 @@ Block execution state (legacy):
 | `BLK-AUTO-23BC6F7B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 10 | draft-auto | not-run | planned |
 | `BLK-AUTO-6AD0E114` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 10 | draft-auto | not-run | planned |
 | `BLK-AUTO-C4218B41` | 申請承認一覧 → 取消計上申請承認 | 10 | draft-auto | not-run | planned |
-| `BLK-AY-TORIKESHI-REGISTER` | 異例取扱管理メニュー → 申請・確認更新 | 10 | source-only | not-run | planned |
+| `BLK-AY-TORIKESHI-REGISTER` | 異例取扱管理メニュー → 申請・確認更新 | 10 | source-only | mock-pass | coded |
 | `BLK-SHR-EB44767A` | 申請・確認更新 → 担当者検索 | 10 | draft-shared | not-run | planned |
 | `BLK-AUTO-A315BF06` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-auto | not-run | planned |
 | `BLK-AUTO-BABA9D55` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-auto | not-run | planned |
@@ -132,18 +132,18 @@ Block execution state (legacy):
 | `BLK-AZ-UPDATE-DELETE-OK` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 7 | source-only | not-run | planned |
 | `BLK-SHR-072E06D9` | 不備一覧 → 不備一覧 | 7 | draft-shared | not-run | planned |
 | `BLK-SHR-73BCFD18` | 代理店 不備内容入力画面(更新) → 代理店 不備一覧 | 7 | draft-shared | not-run | planned |
-| `BLK-AZ-UPDATE-SEARCH-ITEM` | 不備内容入力画面-更新 → 項目名検索 | 6 | source-only | not-implemented | planned |
+| `BLK-AZ-UPDATE-SEARCH-ITEM` | 不備内容入力画面-更新 → 項目名検索 | 6 | source-only | not-implemented | coded |
 | `BLK-SHR-3222CFC6` | 取消計上申請承認 → 送信先(写)選択 | 6 | draft-shared | not-run | planned |
 | `BLK-SHR-ED323C11` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 6 | draft-shared | not-run | planned |
 | `BLK-AUTO-C2B6BA33` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 5 | draft-auto | not-run | planned |
-| `BLK-AZ-UPDATE-CL` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 5 | source-only | not-run | planned |
+| `BLK-AZ-UPDATE-CL` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 5 | source-only | not-run | coded |
 | `BLK-SHR-EB3D34F4` | メール通知先選択 → メール通知先選択 | 5 | draft-shared | not-run | planned |
 | `BLK-AUTO-720382DE` | BATCH → BATCH | 4 | draft-auto | not-run | planned |
 | `BLK-AZ-AGT-LIST-SEARCH` | 代理店 不備一覧 → 代理店 不備一覧 | 4 | source-only | not-run | planned |
 | `BLK-AZ-AGT-SESSION-TIMEOUT` | 代理店 不備一覧 → 代理店 訂正内容確認 | 4 | source-only | not-run | planned |
 | `BLK-AZ-BATCH-CONVERT-MAIL` | メール変換先取込通知バッチ処理 → メール変換先取込通知バッチ処理 | 4 | source-only | not-run | planned |
 | `BLK-AZ-BATCH-VERIFY` | 不備項目集計バッチ処理 → 不備項目集計バッチ処理 | 4 | source-only | not-run | planned |
-| `BLK-AZ-COMPLETE-REGISTER` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | source-only | not-implemented | planned |
+| `BLK-AZ-COMPLETE-REGISTER` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | source-only | not-implemented | coded |
 | `BLK-AZ-OPEN-CLOSE-SYS` | 運用AP → 閉局 | 4 | source-only | not-run | planned |
 | `BLK-SGL-F1E0B9E5` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 4 | draft-shared | not-run | planned |
 | `BLK-SHR-1D4C0178` | 帳票印刷 → 帳票印刷 | 4 | draft-shared | not-run | planned |

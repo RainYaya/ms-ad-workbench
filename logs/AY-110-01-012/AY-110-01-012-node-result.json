@@ -1,0 +1,26 @@
+{
+  "caseId": "AY-110-01-012",
+  "runner": "node",
+  "ts": "2026-10-24T11:42:23.556Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AY-MENU-SEARCH",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AY-SEARCH-OPEN",
+      "status": "pass"
+    },
+    {
+      "block": "BLK-AY-UPDATE",
+      "status": "pass"
+    }
+  ],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AY-MENU-SEARCH.png",
+    "03_BLK-AY-SEARCH-OPEN.png",
+    "04_BLK-AY-UPDATE.png"
+  ]
+}

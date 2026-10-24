@@ -1,0 +1,97 @@
+{
+ "BLK-AZ-MENU-SEARCH-LIST": {
+  "screen": "AZG001→AZG200",
+  "cases": [
+   "AZ-110-37-001",
+   "AZ-110-37-002",
+   "AZ-110-37-003",
+   "AZ-110-37-004",
+   "AZ-110-37-005",
+   "AZ-310-22-001"
+  ],
+  "steps": [
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#act001to200"
+   },
+   {
+    "event": "ast 遷移 不備一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#select"
+   }
+  ]
+ },
+ "BLK-AZ-LIST-FILTER-OPEN-UPDATE": {
+  "screen": "AZG200→AZG101",
+  "cases": [
+   "AZ-110-37-001",
+   "AZ-110-37-002",
+   "AZ-110-37-003",
+   "AZ-110-37-004",
+   "AZ-110-37-005"
+  ],
+  "steps": [
+   {
+    "event": "inputBundle 各項目",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 結果表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No.リンク",
+    "action": "click",
+    "selector": "#gyoumu_list a[name=link]"
+   },
+   {
+    "event": "ast 遷移 更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ },
+ "BLK-AZ-UPDATE-CL": {
+  "screen": "AZG101",
+  "cases": [
+   "AZ-110-37-001",
+   "AZ-110-37-002",
+   "AZ-110-37-003",
+   "AZ-110-37-004",
+   "AZ-110-37-005"
+  ],
+  "steps": [
+   {
+    "event": "click CL",
+    "action": "click",
+    "selector": "input[name=\"imperfectClear[0]\"]",
+    "force": true
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "input[name=\"update\"]",
+    "force": true
+   },
+   {
+    "event": "ast 表示確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ }
+}

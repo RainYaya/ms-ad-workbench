@@ -782,7 +782,7 @@ function scrollHeader() {
   <!--/* 業務固有領域 */-->
   <input type="hidden" id="pageNumber" name="page_no" />
   <input type="hidden" id="totalPage" name="total_page" />
-  <input type="hidden" id="totalCount" name="totalCount" />
+  <input type="hidden" id="totalCount" name="totalCount" value="1" />
   <input type="hidden" id="company_kbn" name="company_kbn" />
 
   <div id="gyoumu_area" class="wrapper07 gyoumu_area">
@@ -1186,7 +1186,7 @@ function scrollHeader() {
             <!--/* No. */-->
             <td>
               <div>
-                <a href="javascript:void(0);" name="link">1</a>
+                <a href="javascript:void(0);" name="link" onclick="clickButton(this);document.mhk_MHKPRForm.act200to101.click();">1</a>
               </div>
             </td>
             <!--/* 選択 */-->

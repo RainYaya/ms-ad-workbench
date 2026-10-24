@@ -108,6 +108,74 @@
         "BLK-AZ-COMMON-LOGS"
       ],
       "note": "Static composition full; no runner yet."
+    },
+    "AY-110-01-011": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AY-TORIKESHI-REGISTER"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
+    },
+    "AY-110-01-012": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AY-TORIKESHI-REGISTER"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
+    },
+    "AZ-110-37-002": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-CL"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-simulation full/partial pass via node runner."
+    },
+    "AZ-110-37-003": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-CL"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-simulation full/partial pass via node runner."
+    },
+    "AZ-110-37-004": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-CL"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-simulation full/partial pass via node runner."
+    },
+    "AZ-110-37-005": {
+      "livePass": [],
+      "mockPass": [
+        "BLK-AZ-MENU-SEARCH-LIST",
+        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+        "BLK-AZ-UPDATE-CL"
+      ],
+      "blocked": [],
+      "notImplemented": [],
+      "notRun": [],
+      "note": "2026-10-24 source-simulation full/partial pass via node runner."
     }
   },
   "status3Map": {
@@ -117,8 +185,21 @@
       "BLK-AZ-INSURANCE-SELECT"
     ],
     "coded": [
-      "BLK-AZ-AGENT-SELECT"
+      "BLK-AZ-AGENT-SELECT",
+      "BLK-AZ-REGISTER-UPDATE",
+      "BLK-AZ-UPDATE-SEARCH-ITEM",
+      "BLK-AZ-ITEM-SEARCH-SELECT",
+      "BLK-AZ-INQUIRY-EDIT",
+      "BLK-AZ-CORRECTION-CONFIRM",
+      "BLK-AZ-COMPLETE-REGISTER",
+      "BLK-AZ-MENU-SEARCH-LIST",
+      "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "BLK-AZ-UPDATE-CL",
+      "BLK-AY-MENU-SEARCH",
+      "BLK-AY-SEARCH-OPEN",
+      "BLK-AY-UPDATE",
+      "BLK-AY-TORIKESHI-REGISTER"
     ],
-    "note": "verified=live SUT pass 2026-10-23 (009 blk1-3); coded=implemented+mock-passed, live not yet (AGENT-SELECT: env-blocked on 009, mock-pass 010-012); planned=everything else. 2026-10-24 user-approved."
+    "note": "verified=live SUT pass 2026-10-23 (009 blk1-3); coded=implemented+mock/source-sim pass (2026-10-24: full-flow 009-012, AZG200 37-001..005, AY 110-01-011/012 on source simulation); planned=rest. User-approved three-state model."
   }
 }
