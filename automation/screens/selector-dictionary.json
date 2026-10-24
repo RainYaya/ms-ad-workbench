@@ -1,0 +1,704 @@
+[
+ {
+  "file": "AZG001_menu.html",
+  "screenCode": "AZG001",
+  "screenName": "申込書品質管理メニュー画面",
+  "buttons": [
+   {
+    "selector": "#act001to100",
+    "by": "id",
+    "value": "新規登録",
+    "onclick": ""
+   },
+   {
+    "selector": "#act001to200",
+    "by": "id",
+    "value": "検索",
+    "onclick": "clickButton(this);"
+   },
+   {
+    "selector": "#act001to201",
+    "by": "id",
+    "value": "集計",
+    "onclick": "clickButton(this);"
+   },
+   {
+    "selector": "#act001to103",
+    "by": "id",
+    "value": "親子集計",
+    "onclick": "clickButton(this);"
+   },
+   {
+    "selector": "#act001to207",
+    "by": "id",
+    "value": "メール登録",
+    "onclick": "clickButton(this);"
+   },
+   {
+    "selector": "#close",
+    "by": "id",
+    "value": "",
+    "onclick": ""
+   }
+  ],
+  "inputs": [
+   {
+    "selector": "input[name=\"_csrf\"]",
+    "by": "name",
+    "hidden": true,
+    "value": "b695932c-0746-447e-9"
+   },
+   {
+    "selector": "#GateFLG",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   },
+   {
+    "selector": "#ai21__aid",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#ai21__gid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA01"
+   },
+   {
+    "selector": "#ai21__data",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#dousaMode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#gamcd",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA00"
+   },
+   {
+    "selector": "#gamid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA01"
+   },
+   {
+    "selector": "#hubsessid",
+    "by": "id",
+    "hidden": true,
+    "value": "410d32bf-bb84-4a31-9"
+   },
+   {
+    "selector": "#H0000A_Z6",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000A_Z6_M",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#pfkey",
+    "by": "id",
+    "hidden": true,
+    "value": "child"
+   },
+   {
+    "selector": "#seniType",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#sys_mode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000_NEXTGM",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#company_kbn",
+    "by": "id",
+    "hidden": true,
+    "value": "MS"
+   },
+   {
+    "selector": "#manual_pass",
+    "by": "id",
+    "hidden": true,
+    "value": "http://www.portal.s1"
+   },
+   {
+    "selector": "#use_division_online",
+    "by": "id",
+    "hidden": true,
+    "value": "2"
+   }
+  ],
+  "selects": [],
+  "tables": [],
+  "forms": [
+   {
+    "selector": "#mhk_MHKPRForm",
+    "name": "mhk_MHKPRForm"
+   }
+  ]
+ },
+ {
+  "file": "AZG100_input.html",
+  "screenCode": "AZG100",
+  "screenName": "不備内容入力画面",
+  "buttons": [
+   {
+    "selector": "input[name=\"selectInsuransuItem\"]",
+    "by": "name",
+    "value": "....",
+    "onclick": "onClickSelectInsurance();"
+   },
+   {
+    "selector": "input[name=\"selectFieldAgent\"]",
+    "by": "name",
+    "value": "....",
+    "onclick": "popupAZG905()"
+   },
+   {
+    "selector": "#act100to001",
+    "by": "id",
+    "value": "メニュー",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "#act100to200",
+    "by": "id",
+    "value": "一覧画面",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "#regist",
+    "by": "id",
+    "value": "登録",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "#close",
+    "by": "id",
+    "value": "",
+    "onclick": ""
+   }
+  ],
+  "inputs": [
+   {
+    "selector": "#policy_number",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#sub_policy_number",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#section_code",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#agent_code",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#sub_agent_code",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#free_code_1",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#field_agent_id",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#insurant_name",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#start_date",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#change_date",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#sumup_year_month",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#daily_report_send",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#sumup_section_code",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#reminder_date",
+    "by": "id",
+    "value": "2026/10/30"
+   },
+   {
+    "selector": "input[name=\"_csrf\"]",
+    "by": "name",
+    "hidden": true,
+    "value": "b695932c-0746-447e-9"
+   },
+   {
+    "selector": "#GateFLG",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   },
+   {
+    "selector": "#ai21__aid",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#ai21__gid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA03"
+   },
+   {
+    "selector": "#ai21__data",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#dousaMode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#gamcd",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA00"
+   },
+   {
+    "selector": "#gamid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA03"
+   },
+   {
+    "selector": "#hubsessid",
+    "by": "id",
+    "hidden": true,
+    "value": "410d32bf-bb84-4a31-9"
+   },
+   {
+    "selector": "#H0000A_Z6",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000A_Z6_M",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#pfkey",
+    "by": "id",
+    "hidden": true,
+    "value": "child"
+   },
+   {
+    "selector": "#seniType",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#sys_mode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000_NEXTGM",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#company_kbn",
+    "by": "id",
+    "hidden": true,
+    "value": "MS"
+   },
+   {
+    "selector": "#selected_input_type_code",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#selected_large_item_code",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#selected_insurance_item_code",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#selected_application_form_type_code",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#selected_sumup_status_code",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#insuranceSelectedIndex",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   }
+  ],
+  "selects": [
+   {
+    "selector": "select[name=\"input_type_list.selected\"]",
+    "by": "name",
+    "options": [
+     "=",
+     "1=契約入力",
+     "2=現地",
+     "3=センター",
+     "4=口座振替",
+     "5=クレカ",
+     "6=スマホ決済",
+     "7=入金照合"
+    ]
+   },
+   {
+    "selector": "select[name=\"large_item_list.selected\"]",
+    "by": "name",
+    "options": [
+     "=",
+     "1=自動車",
+     "3=火災",
+     "4=積立火災",
+     "5=新種",
+     "6=積立新種",
+     "7=傷害",
+     "8=積傷/積特"
+    ]
+   },
+   {
+    "selector": "select[name=\"insurance_item_list.selected\"]",
+    "by": "name",
+    "options": [
+     "="
+    ]
+   },
+   {
+    "selector": "select[name=\"application_form_type_list.selected\"]",
+    "by": "name",
+    "options": [
+     "=",
+     "1=新規",
+     "2=更改",
+     "3=変更・他",
+     "4=自動継続",
+     "5=ＤＮ１明細"
+    ]
+   },
+   {
+    "selector": "select[name=\"sumup_status_list.selected\"]",
+    "by": "name",
+    "options": [
+     "=",
+     "1=未計上",
+     "2=計上済"
+    ]
+   }
+  ],
+  "tables": [],
+  "forms": [
+   {
+    "selector": "#mhk_MHKPRForm",
+    "name": "mhk_MHKPRForm"
+   }
+  ]
+ },
+ {
+  "file": "AZG905_agent_search.html",
+  "screenCode": "AZG905",
+  "screenName": "募集人検索",
+  "buttons": [
+   {
+    "selector": "#search",
+    "by": "id",
+    "value": "検　索",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "#prevPage",
+    "by": "id",
+    "value": "前 頁",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "#nextPage",
+    "by": "id",
+    "value": "次 頁",
+    "onclick": "clickButton(this)"
+   },
+   {
+    "selector": "input[name=\"closeSelect\"]",
+    "by": "name",
+    "value": "選択",
+    "onclick": "popupCloseSelect();"
+   },
+   {
+    "selector": "input[name=\"close\"]",
+    "by": "name",
+    "value": "閉じる",
+    "onclick": "popupClose(this);"
+   }
+  ],
+  "inputs": [
+   {
+    "selector": "#section_code_key",
+    "by": "id",
+    "value": "AHE61"
+   },
+   {
+    "selector": "#agent_code_key",
+    "by": "id",
+    "value": "252H"
+   },
+   {
+    "selector": "#field_agent_id_key",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "#field_agent_name_key",
+    "by": "id",
+    "value": ""
+   },
+   {
+    "selector": "input[name=\"_csrf\"]",
+    "by": "name",
+    "hidden": true,
+    "value": "ee211cbb-c9aa-41c1-a"
+   },
+   {
+    "selector": "#GateFLG",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   },
+   {
+    "selector": "#ai21__aid",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#ai21__gid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA18"
+   },
+   {
+    "selector": "#ai21__data",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#dousaMode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#gamcd",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA00"
+   },
+   {
+    "selector": "#gamid",
+    "by": "id",
+    "hidden": true,
+    "value": "AMA18"
+   },
+   {
+    "selector": "#hubsessid",
+    "by": "id",
+    "hidden": true,
+    "value": "0d1152bf-7dd3-48df-8"
+   },
+   {
+    "selector": "#H0000A_Z6",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000A_Z6_M",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#pfkey",
+    "by": "id",
+    "hidden": true,
+    "value": "child"
+   },
+   {
+    "selector": "#seniType",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#sys_mode",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#H0000_NEXTGM",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#hide_gyoumu_area_flag",
+    "by": "id",
+    "hidden": true,
+    "value": ""
+   },
+   {
+    "selector": "#pageNumber",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   },
+   {
+    "selector": "#pageSize",
+    "by": "id",
+    "hidden": true,
+    "value": "10"
+   },
+   {
+    "selector": "#totalPage",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   },
+   {
+    "selector": "#totalCount",
+    "by": "id",
+    "hidden": true,
+    "value": "0"
+   }
+  ],
+  "selects": [],
+  "tables": [
+   {
+    "selector": "#table18",
+    "rows": 1
+   }
+  ],
+  "forms": [
+   {
+    "selector": "#mhk_MHKPRForm",
+    "name": "mhk_MHKPRForm"
+   }
+  ]
+ },
+ {
+  "file": "insurance_item_select.html",
+  "screenCode": "INS",
+  "screenName": "保険種類選択",
+  "buttons": [
+   {
+    "selector": "input[name=\"ok\"]",
+    "by": "name",
+    "value": "ＯＫ",
+    "onclick": "popupClose(this);"
+   },
+   {
+    "selector": "input[name=\"cancel\"]",
+    "by": "name",
+    "value": "キャンセル",
+    "onclick": "popupClose(this);"
+   }
+  ],
+  "inputs": [],
+  "selects": [
+   {
+    "selector": "select[name=\"insurance_item_list.selected\"]",
+    "by": "name",
+    "options": [
+     "=",
+     "00A0=00 ： 自賠責"
+    ]
+   }
+  ],
+  "tables": [],
+  "forms": [
+   {
+    "selector": "#",
+    "name": "form1"
+   }
+  ]
+ }
+]
