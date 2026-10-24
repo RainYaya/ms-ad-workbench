@@ -1,6 +1,6 @@
 # Decisions
 
-更新: 2026-10-23
+更新: 2026-10-24
 
 Short architecture decision log. Each entry is a decision, the reason, and the consequence. Revisit only if the stated condition changes.
 
@@ -123,3 +123,43 @@ Short architecture decision log. Each entry is a decision, the reason, and the c
 **Reason:** Auto mining raises mechanical coverage quickly and exposes reusable shapes, but it can overfit surface text and produce blocks that are not safe to execute.
 
 **Consequence:** The viewer and ledger show both auto-inclusive and curated-only coverage. `draft-auto` blocks never carry a live/mock execution status; they are `not-run`/`not-implemented` until manually promoted.
+
+## D13. Semantic normalization precedes block matching (2026-10-24)
+
+**Decision:** `event_pattern()` normalizes writing variants (quotes/押下/画面 suffixes, fullwidth dashes, click dataClass, transition dataClass, AZ/AY sibling menus, generic batch screens, login labels) before any block matching or mining.
+
+**Reason:** 450 books written by many authors describe the same business action several ways; raw string comparison left 49 books unmatched (e.g. AZ-150-13-004 vs AZ-160-01-004 differ only in notation). Business-distinct actions (権限エラー ≠ システムエラー, MS ≠ 代理店, button names) are never merged.
+
+**Consequence:** All match/mining paths go through the same normalization. Adding a new variant rule means editing one function and re-running build_blocks. See `automation/blocks/SEMANTIC-NORM.md`.
+
+## D14. Every book must be 100% covered (no naked events)
+
+**Decision:** After composition, any uncovered run becomes a shared block (cross-book) or a per-book singleton block via a final sweep.
+
+**Reason:** A book missing steps cannot be automated end-to-end; uncovered rows also inflated statistics (a false "verified" case came from ignoring uncovered rows).
+
+**Consequence:** `uncovered` is always 0; singleton blocks are implementation TODOs, not abstractions. Block count includes these deliberately.
+
+## D15. Blocks are classified: primitives vs families
+
+**Decision:** Every block carries `kind`: family / primitive-nav / primitive-act / primitive-fill / primitive-verify.
+
+**Reason:** The SUT is ~dozens of parameterized operations; single-event blocks and click+transition pairs are atoms, not business flows. Mixing them inflated the registry (294 blocks) and hid real duplication.
+
+**Consequence:** Registry reads in two groups; parameterized merging of same-skeleton families is done per-family with human review, never automated (更新/確認済/完了登録 share a skeleton with different business consequences).
+
+## D16. Execution truth lives only in status3Map (three states)
+
+**Decision:** planned / coded / verified, single source in `automation/execution-status.json:status3Map`; build regenerates everything downstream.
+
+**Reason:** The previous six-plus status codes were unreadable and produced a 68% "coverage" that counted never-executed drafts. Static composition and execution progress are separate dimensions and must never share a KPI.
+
+**Consequence:** Changing a block's state = edit status3Map + re-run build_blocks. Viewer, PROGRESS.md, blocks.json all refresh; no second ledger.
+
+## D17. Toolchain: node.exe + playwright-core replaces PowerShell CDP (planned)
+
+**Decision:** The runner will be Node (single-file node.exe + playwright-core folder), deployed to the company machine via GitHub download; PowerShell remains only as a thin launcher.
+
+**Reason:** PS hand-rolled WebSocket CDP (185 lines) made every block a quoting ordeal; Edge-155 default-profile CDP and popup races consumed days. Playwright eliminates those classes of bugs. Company machine allows files but no installs; portability verified pending (node hello-world).
+
+**Consequence:** Runner development targets the captured HTML in `automation/screens/` (dev machine) with live verification only on the company machine. Four screens are still missing (AZG101/AZG900/AZG902/AZG906) and must be captured by the user.
