@@ -67869,13 +67869,13 @@
   }
  },
  "AY-120-07-015": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -67890,6 +67890,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -67898,6 +67903,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -67920,6 +67930,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -67936,83 +67955,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -68026,13 +67995,13 @@
   }
  },
  "AY-120-07-016": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -68047,6 +68016,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -68055,6 +68029,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -68077,6 +68056,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -68093,83 +68081,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -68183,13 +68121,13 @@
   }
  },
  "AY-120-07-017": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -68204,6 +68142,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -68212,6 +68155,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -68234,6 +68182,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -68250,83 +68207,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -68340,13 +68247,13 @@
   }
  },
  "AY-120-07-018": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -68361,6 +68268,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -68369,6 +68281,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -68391,6 +68308,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -68407,83 +68333,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -73979,13 +73855,13 @@
   }
  },
  "AY-121-06-011": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74000,6 +73876,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74008,6 +73889,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74030,6 +73916,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74046,83 +73941,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74136,13 +73981,13 @@
   }
  },
  "AY-121-06-012": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74157,6 +74002,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74165,6 +74015,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74187,6 +74042,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74203,83 +74067,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74293,13 +74107,13 @@
   }
  },
  "AY-121-06-013": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74314,6 +74128,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74322,6 +74141,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74344,6 +74168,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74360,83 +74193,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74450,13 +74233,13 @@
   }
  },
  "AY-121-06-014": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74471,6 +74254,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74479,6 +74267,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74501,6 +74294,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74517,83 +74319,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74607,13 +74359,13 @@
   }
  },
  "AY-121-06-015": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74628,6 +74380,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74636,6 +74393,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74658,6 +74420,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74674,83 +74445,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74764,13 +74485,13 @@
   }
  },
  "AY-121-06-016": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74785,6 +74506,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74793,6 +74519,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74815,6 +74546,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74831,83 +74571,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -74921,13 +74611,13 @@
   }
  },
  "AY-121-06-017": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -74942,6 +74632,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -74950,6 +74645,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -74972,6 +74672,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -74988,83 +74697,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",
@@ -75078,13 +74737,13 @@
   }
  },
  "AY-121-06-018": {
-  "status": "partial",
+  "status": "full",
   "status3": "planned",
   "coverage3": {
-   "planned": 14,
+   "planned": 20,
    "coded": 0,
    "verified": 0,
-   "uncovered": 6,
+   "uncovered": 0,
    "total": 20
   },
   "blocks": [
@@ -75099,6 +74758,11 @@
     "end": 7
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12
@@ -75107,6 +74771,11 @@
     "block": "BLK-AUTO-4F9D57E1",
     "start": 12,
     "end": 17
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20
    }
   ],
   "blockDetails": [
@@ -75129,6 +74798,15 @@
     "status3": "planned"
    },
    {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 7,
+    "end": 10,
+    "fromRow": 22,
+    "toRow": 24,
+    "status": "not-run",
+    "status3": "planned"
+   },
+   {
     "block": "BLK-AUTO-E2D0C359",
     "start": 10,
     "end": 12,
@@ -75145,83 +74823,33 @@
     "toRow": 35,
     "status": "not-run",
     "status3": "planned"
+   },
+   {
+    "block": "BLK-AY-SHINSEI-TAIOUTOUROKU",
+    "start": 17,
+    "end": 20,
+    "fromRow": 36,
+    "toRow": 38,
+    "status": "not-run",
+    "status3": "planned"
    }
   ],
-  "uncovered": [
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 22
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 23
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 24
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "各項目",
-     "dataClass": "bundle",
-     "action": "inputBundle"
-    },
-    "sourceRow": 36
-   },
-   {
-    "event": {
-     "kind": "op",
-     "screen": "申請・確認更新",
-     "target": "対応登録",
-     "dataClass": "none",
-     "action": "click"
-    },
-    "sourceRow": 37
-   },
-   {
-    "event": {
-     "kind": "ast",
-     "screen": "申請・確認更新",
-     "target": "申請・確認更新画面",
-     "dataClass": "bundle",
-     "assert": "display"
-    },
-    "sourceRow": 38
-   }
-  ],
+  "uncovered": [],
   "eventCount": 20,
-  "coveredEvents": 14,
+  "coveredEvents": 20,
   "actualDone": 0,
   "mockDone": 0,
   "blocked": 0,
   "notImplemented": 0,
-  "notRun": 4,
-  "remaining": 4,
+  "notRun": 6,
+  "remaining": 6,
   "remainingBlocks": [
    "BLK-AUTO-E2D0C359",
    "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU",
    "BLK-AUTO-E2D0C359",
-   "BLK-AUTO-4F9D57E1"
+   "BLK-AUTO-4F9D57E1",
+   "BLK-AY-SHINSEI-TAIOUTOUROKU"
   ],
   "nextGap": {
    "kind": "block",

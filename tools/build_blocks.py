@@ -64,6 +64,7 @@ SPECS = [
     ("BLK-AZ-AGT-LIST-INITIAL-EMPTY", "AZ-220-01-004", (0, 3), [], ["agent login, no data"], "source-only", "代理店不備一覧 初期表示 -> 参照可能代理店テーブル -> メッセージエリア(データなし)"),
     ("BLK-AZ-SYSERR-LOGIN", "AZ-200-04-001", (0, 4), [], ["DB down"], "source-only", "ログイン入力 -> ログイン -> システムエラー+メッセージ確認"),
     ("BLK-AZ-AGT-CSV-DOWNLOAD", "AZ-200-07-004", (0, 3), ["dlRequestNo"], [], "source-only", "代理店不備一覧 証券番号検索 -> DL申請番号 -> CSV出力"),
+    ("BLK-AY-SHINSEI-TAIOUTOUROKU", "AY-121-06-016", (7, 10), ["caseInput"], [], "source-only", "申請・確認更新 各項目入力 -> 対応登録 -> 画面確認 (used by 12 books, x2 each)"),
 ]
 
 

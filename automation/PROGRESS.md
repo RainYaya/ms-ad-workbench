@@ -9,15 +9,15 @@ This is the per-book / per-case progress table. It is separate from static block
 | Item | Count |
 |---|---:|
 | Assigned cases | 450 |
-| Static block full (curated + auto) | 78 |
+| Static block full (curated + auto) | 90 |
 | Curated-only full | 46 |
 | Actually fully passed | 0 |
 | Actually partially passed | 1 |
 | Mock-only | 3 |
 | Environment-blocked cases | 1 |
-| Blocks | 61 (33 curated + 28 auto) |
-| Event coverage | 72.3% auto-inclusive / 34.5% curated-only |
-| Status3 blocks | verified 3 / coded 1 / planned 57 |
+| Blocks | 62 (34 curated + 28 auto) |
+| Event coverage | 72.9% auto-inclusive / 35.2% curated-only |
+| Status3 blocks | verified 3 / coded 1 / planned 58 |
 | Status3 cases | verified 1 / coded 97 / planned 352 / none 0 |
 
 Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.
@@ -30,7 +30,7 @@ Block execution state (legacy):
 | mock-pass | 0 |
 | blocked | 1 |
 | not-implemented | 6 |
-| not-run | 51 |
+| not-run | 52 |
 
 ## Blocks
 
@@ -63,6 +63,7 @@ Block execution state (legacy):
 | `BLK-AUTO-4C432C14` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 28 | draft-auto | not-run | planned |
 | `BLK-AUTO-DF07A781` | 送信先(写)選択 → 申請・確認更新 | 26 | draft-auto | not-run | planned |
 | `BLK-AUTO-9750F4CE` | 不備一覧 → 不備内容入力画面-更新 | 24 | draft-auto | not-run | planned |
+| `BLK-AY-SHINSEI-TAIOUTOUROKU` | 申請・確認更新 → 申請・確認更新 | 24 | source-only | not-run | planned |
 | `BLK-AZ-BATCH-RUN-VERIFY` | 親子集計バッチ処理 → 親子集計バッチ処理 | 22 | source-only | not-run | planned |
 | `BLK-AUTO-DEBE0BEE` | 代理店不備一覧 → 代理店 不備内容入力画面(更新) | 20 | draft-auto | not-run | planned |
 | `BLK-AUTO-FECF904C` | 申請・確認更新 → 申請・確認更新 | 20 | draft-auto | not-run | planned |
@@ -121,7 +122,6 @@ Block state is aggregate across cases: a block with a live pass is `live-pass`; 
 | 86 | `不備内容入力画面-更新:display:不備内容入力画面-更新:bundle` |
 | 65 | `不備内容入力画面-更新:other:ToDo連携テーブル:literal` |
 | 62 | `申請・確認更新:transition:送信先(写)選択:literal` |
-| 61 | `申請・確認更新:inputBundle:各項目:bundle` |
 | 55 | `不備内容入力画面-更新:other::literal` |
 | 52 | `申請・確認更新:transition:担当者検索:literal` |
 | 46 | `ToDo連携データ作成バッチ処理:other::literal` |
@@ -131,6 +131,7 @@ Block state is aggregate across cases: a block with a live pass is `live-pass`; 
 | 38 | `不備内容入力画面-更新:click:連携取消:none` |
 | 38 | `異例取扱管理メニュー:click:申請・承認:none` |
 | 38 | `異例取扱管理メニュー:transition:申請承認一覧:literal` |
+| 37 | `申請・確認更新:inputBundle:各項目:bundle` |
 | 35 | `不備内容入力画面-更新:click:印刷:none` |
 
 ## Full ledgers
