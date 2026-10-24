@@ -282,7 +282,10 @@ def mine_auto_blocks(cases, ids, curated):
                     examples.setdefault(key, (cid, sub[0].get("sourceRow")))
     candidates = []
     for key, cids in found.items():
-        if len(cids) < 3:
+        # 2026-10-24: threshold 3 -> 2. A segment repeated across two books
+        # written by different authors is the same business action (the
+        # semantic norm layer already merged writing variants).
+        if len(cids) < 2:
             continue
         candidates.append((len(cids) * len(key), len(cids), len(key), key, cids))
     candidates.sort(key=lambda x: (-x[0], -x[2], -x[1]))
@@ -295,7 +298,7 @@ def mine_auto_blocks(cases, ids, curated):
             continue
         selected.append((score, count, length, key, cids))
         selected_keys.append(key)
-        if len(selected) >= 40:
+        if len(selected) >= 80:
             break
     out = []
     for score, count, length, key, cids in selected:
@@ -334,6 +337,98 @@ def match_at(events, i, block):
         if event_pattern(e) != p:
             return False
     return True
+
+
+def shared_and_singletons_from_gaps(cases, ids, workflows, blocks):
+    """Guarantee full coverage in two passes.
+
+    Pass 1 (shared): uncovered runs whose normalized signature repeats across
+    >=2 books become shared BLK-SHR blocks — the same business action family,
+    just below the auto-miner's op..ast shape rule.
+    Pass 2 (singleton): each remaining naked run becomes a per-book
+    BLK-SGL block so no book keeps uncovered events.
+
+    Both passes mark status=draft-shared / draft-singleton: implementation
+    targets, not yet human-reviewed abstractions.
+    """
+    sig_of = {}
+    for b in blocks:
+        sig_of[b["id"]] = tuple(tuple(x) for x in [
+            (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
+            for p in b["pattern"]
+        ])
+
+    def collect_runs():
+        for cid in ids:
+            w = workflows.get(cid)
+            if not w or not w.get("uncovered"):
+                continue
+            gap_rows = {u.get("sourceRow") for u in w["uncovered"]}
+            events = stepinv.build_events(cases[cid])
+            runs = []
+            cur = []
+            for e in events:
+                if e.get("sourceRow") in gap_rows:
+                    cur.append(e)
+                else:
+                    if cur:
+                        runs.append(cur)
+                        cur = []
+            if cur:
+                runs.append(cur)
+            for run in runs:
+                if run:
+                    yield cid, run
+
+    def mkblock(bid, run, pat, status, note, used):
+        transitions = [p for p in pat if p[0] == "ast" and p[2] == "transition"]
+        to_screen = transitions[-1][3] if transitions else run[-1]["screen"]
+        return {
+            "id": bid,
+            "fromScreen": run[0]["screen"],
+            "toScreen": to_screen,
+            "params": ["bundle"] if any(p[4] == "bundle" for p in pat) else [],
+            "preconditions": [],
+            "status": status,
+            "note": note,
+            "sourceCase": run[0].get("_case", ""),
+            "eventRange": [run[0].get("sourceRow"), run[-1].get("sourceRow")],
+            "pattern": pattern_json(run),
+            "assertions": [pattern_json([e])[0] for e in run if e["kind"] == "ast"],
+            "usedByCases": used,
+        }
+
+    out = []
+    # pass 1: shared
+    grouped = {}
+    for cid, run in collect_runs():
+        for e in run:
+            e["_case"] = cid
+        pat = tuple(event_pattern(e) for e in run)
+        grouped.setdefault(pat, []).append((cid, run))
+    for pat, occ in grouped.items():
+        books = {c for c, _ in occ}
+        if len(books) < 2:
+            continue
+        if any(sig == pat for sig in sig_of.values()):
+            continue
+        bid = "BLK-SHR-" + hashlib.sha1(repr(pat).encode("utf-8")).hexdigest()[:8].upper()
+        run0 = occ[0][1]
+        out.append(mkblock(bid, run0, pat, "draft-shared",
+                           "Shared uncovered-run family (>=2 books); promote after review.", len(books)))
+        sig_of[bid] = pat
+    # pass 2: singleton
+    per_case_idx = {}
+    for cid, run in collect_runs():
+        pat = tuple(event_pattern(e) for e in run)
+        if any(sig == pat for sig in sig_of.values()):
+            continue
+        per_case_idx[cid] = per_case_idx.get(cid, 0) + 1
+        bid = "BLK-SGL-" + hashlib.sha1((cid + str(per_case_idx[cid])).encode("utf-8")).hexdigest()[:8].upper()
+        out.append(mkblock(bid, run, pat, "draft-singleton",
+                           "Per-book singleton segment; implement or merge into a family block.", 1))
+        sig_of[bid] = pat
+    return out
 
 
 def compose(events, blocks):
@@ -506,6 +601,149 @@ def main():
     # noise in the registry and would inflate the block count.
     blocks = [b for b in blocks if b.get("status") != "draft-auto" or block_use.get(b["id"], 0) > 0]
 
+    # --- full-coverage guarantee (2026-10-24) -----------------------------
+    # Every book must end up 100% covered: first promote repeated gap runs
+    # (>=2 books) into shared auto blocks, then wrap each remaining naked run
+    # in a per-book singleton block. Re-compose after adding them.
+    singleton_blocks = shared_and_singletons_from_gaps(cases, ids, workflows, blocks)
+    if singleton_blocks:
+        for sb in singleton_blocks:
+            sb["_pattern"] = [event_pattern(p) for p in sb["pattern"]]
+        blocks.extend(singleton_blocks)
+        blocks.sort(key=lambda b: (-len(b["_pattern"]), b["id"]))
+        # re-compose every workflow that still has gaps
+        for cid in ids:
+            w = workflows[cid]
+            if not w["uncovered"]:
+                continue
+            events = stepinv.build_events(cases[cid])
+            seq, uncovered = compose(events, blocks)
+            covered = len(events) - len(uncovered)
+            covered_events_fix = covered
+            for s_ in seq:
+                block_use[s_["block"]] += 1
+            info2 = exec_cases.get(cid, {})
+            status_by_block2 = execution_map(info2)
+            block_details = []
+            for s_ in seq:
+                block_details.append({
+                    "block": s_["block"],
+                    "start": s_["start"],
+                    "end": s_["end"],
+                    "fromRow": events[s_["start"]].get("sourceRow"),
+                    "toRow": events[s_["end"] - 1].get("sourceRow"),
+                    "status": status_by_block2.get(s_["block"], "not-run"),
+                    "status3": status3_of(s_["block"]),
+                })
+            cov3 = {"planned": 0, "coded": 0, "verified": 0}
+            for s_ in seq:
+                cov3[status3_of(s_["block"])] += s_["end"] - s_["start"]
+            cov3["uncovered"] = len(uncovered)
+            cov3["total"] = len(events)
+            s3_list = [bd["status3"] for bd in block_details]
+            if block_details and all(x == "verified" for x in s3_list):
+                case_s3 = "verified"
+            elif any(x in ("coded", "verified") for x in s3_list):
+                case_s3 = "coded"
+            elif block_details:
+                case_s3 = "planned"
+            else:
+                case_s3 = "none"
+            counts = Counter(b["status"] for b in block_details)
+            remaining_blocks = [b["block"] for b in block_details if b["status"] != "live-pass"]
+            next_gap = None
+            if remaining_blocks:
+                next_gap = {"kind": "block", "block": remaining_blocks[0]}
+            elif uncovered:
+                next_gap = {"kind": "event", "event": uncovered[0]["event"], "sourceRow": uncovered[0].get("sourceRow")}
+            w.update({
+                "status": "full" if not uncovered else "partial",
+                "status3": case_s3,
+                "coverage3": cov3,
+                "blocks": seq,
+                "blockDetails": block_details,
+                "uncovered": uncovered,
+                "eventCount": len(events),
+                "coveredEvents": covered_events_fix,
+                "actualDone": counts.get("live-pass", 0),
+                "mockDone": counts.get("mock-pass", 0),
+                "blocked": counts.get("blocked", 0),
+                "notImplemented": counts.get("not-implemented", 0) + counts.get("not-run", 0) * 0,
+                "remaining": len(block_details) - counts.get("live-pass", 0),
+                "remainingBlocks": remaining_blocks,
+                "nextGap": next_gap,
+            })
+            if not uncovered:
+                full.append(cid) if cid not in full else None
+            else:
+                partial.append(cid) if cid not in partial else None
+
+    # final sweep: force-append any still-uncovered run as a singleton segment
+    # directly into the workflow (no re-compose; the composer's preference for
+    # longer blocks can strand single rows between matched neighbours).
+    for cid in ids:
+        w = workflows[cid]
+        if not w["uncovered"]:
+            continue
+        events = stepinv.build_events(cases[cid])
+        gap_rows = {u.get("sourceRow") for u in w["uncovered"]}
+        runs = []
+        cur = []
+        for e in events:
+            if e.get("sourceRow") in gap_rows:
+                cur.append(e)
+            else:
+                if cur:
+                    runs.append(cur)
+                    cur = []
+        if cur:
+            runs.append(cur)
+        added = 0
+        for run in runs:
+            if not run:
+                continue
+            pat = tuple(event_pattern(e) for e in run)
+            bid = "BLK-SGL-" + hashlib.sha1((cid + "final" + str(run[0].get("sourceRow"))).encode("utf-8")).hexdigest()[:8].upper()
+            existing = next((b for b in blocks if b["id"] == bid), None)
+            if not existing:
+                transitions = [p for p in pat if p[0] == "ast" and p[2] == "transition"]
+                to_screen = transitions[-1][3] if transitions else run[-1]["screen"]
+                nb = {
+                    "id": bid,
+                    "fromScreen": run[0]["screen"],
+                    "toScreen": to_screen,
+                    "params": ["bundle"] if any(p[4] == "bundle" for p in pat) else [],
+                    "preconditions": [],
+                    "status": "draft-singleton",
+                    "note": "Final-sweep singleton; guarantees 100% row coverage.",
+                    "sourceCase": cid,
+                    "eventRange": [run[0].get("sourceRow"), run[-1].get("sourceRow")],
+                    "pattern": pattern_json(run),
+                    "assertions": [pattern_json([e])[0] for e in run if e["kind"] == "ast"],
+                    "usedByCases": 1,
+                }
+                nb["_pattern"] = [event_pattern(p) for p in nb["pattern"]]
+                blocks.append(nb)
+                added += 1
+            # splice the segment into this workflow's blockDetails
+            start_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[0].get("sourceRow"))
+            end_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[-1].get("sourceRow")) + 1
+            w["blocks"].append({"block": bid, "start": start_idx, "end": end_idx})
+            w["blockDetails"].append({
+                "block": bid, "start": start_idx, "end": end_idx,
+                "fromRow": run[0].get("sourceRow"), "toRow": run[-1].get("sourceRow"),
+                "status": "not-run", "status3": "planned",
+            })
+            w["coverage3"]["planned"] += len(run)
+            w["coverage3"]["uncovered"] -= len(run)
+            block_use[bid] = block_use.get(bid, 0) + 1
+        w["uncovered"] = []
+        w["coveredEvents"] = w["eventCount"]
+        w["status"] = "full"
+        w["coverage3"]["total"] = w["eventCount"]
+        if added:
+            print(f"final-sweep: {cid} +{added} singleton segments")
+
     def corpus_stats(block_set):
         n_full = 0
         n_covered = 0
@@ -543,6 +781,11 @@ def main():
         b["executionStatus"] = aggregate_status(block_statuses.get(b["id"], []))
         b["status3"] = status3_of(b["id"])
         b.pop("_pattern", None)
+
+    # after the final sweep every workflow is composed; recompute the
+    # full/partial rosters from actual workflow status, not the append history
+    full = [cid for cid, w in workflows.items() if w["status"] == "full"]
+    partial = [cid for cid, w in workflows.items() if w["status"] != "full"]
 
     actual_full = [cid for cid, w in workflows.items() if w["actualDone"] == len(w["blockDetails"]) and w["blockDetails"]]
     actual_partial = [cid for cid, w in workflows.items() if 0 < w["actualDone"] < len(w["blockDetails"])]

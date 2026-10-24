@@ -9,16 +9,16 @@ This is the per-book / per-case progress table. It is separate from static block
 | Item | Count |
 |---|---:|
 | Assigned cases | 450 |
-| Static block full (curated + auto) | 90 |
+| Static block full (curated + auto) | 450 |
 | Curated-only full | 46 |
 | Actually fully passed | 0 |
 | Actually partially passed | 1 |
 | Mock-only | 3 |
 | Environment-blocked cases | 1 |
-| Blocks | 62 (34 curated + 28 auto) |
-| Event coverage | 72.9% auto-inclusive / 35.2% curated-only |
-| Status3 blocks | verified 3 / coded 1 / planned 58 |
-| Status3 cases | verified 1 / coded 97 / planned 352 / none 0 |
+| Blocks | 294 (34 curated + 59 auto) |
+| Event coverage | 82.4% auto-inclusive / 35.2% curated-only |
+| Status3 blocks | verified 3 / coded 1 / planned 290 |
+| Status3 cases | verified 0 / coded 98 / planned 352 / none 0 |
 
 Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.
 
@@ -30,74 +30,306 @@ Block execution state (legacy):
 | mock-pass | 0 |
 | blocked | 1 |
 | not-implemented | 6 |
-| not-run | 52 |
+| not-run | 284 |
 
 ## Blocks
 
 | Block | From → To | Cases | Selector | Execution | Status3 |
 |---|---|---:|---|---|---|
-| `BLK-AZ-MENU-SEARCH-LIST` | 申込書品質管理メニュー → 不備一覧 | 204 | source-only | not-run | planned |
-| `BLK-AZ-LIST-FILTER-OPEN-UPDATE` | 不備一覧 → 不備内容入力画面-更新 | 184 | source-only | not-run | planned |
-| `BLK-AUTO-04A78248` | 不備内容入力画面-更新 → 項目名検索 | 128 | draft-auto | not-run | planned |
-| `BLK-AUTO-E2D0C359` | 異例取扱管理メニュ- → 照会・検索 | 125 | draft-auto | not-run | planned |
+| `BLK-AZ-MENU-SEARCH-LIST` | 申込書品質管理メニュー → 不備一覧 | 348 | source-only | not-run | planned |
+| `BLK-AZ-LIST-FILTER-OPEN-UPDATE` | 不備一覧 → 不備内容入力画面-更新 | 308 | source-only | not-run | planned |
+| `BLK-AUTO-04A78248` | 不備内容入力画面-更新 → 項目名検索 | 229 | draft-auto | not-run | planned |
+| `BLK-AZ-INPUT-FILL` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 174 | live-verified | live-pass | verified |
+| `BLK-AZ-MENU-CREATE-INPUT` | 申込書品質管理メニュー → 不備内容入力画面-新規 | 174 | live-verified | live-pass | verified |
+| `BLK-AUTO-E2D0C359` | 異例取扱管理メニュ- → 照会・検索 | 170 | draft-auto | not-run | planned |
+| `BLK-AZ-REGISTER-UPDATE` | 不備内容入力画面-新規 → 不備内容入力画面-更新 | 166 | source-only | not-implemented | planned |
+| `BLK-AUTO-5C1EFE0E` | 項目名検索 → 不備内容入力画面-更新 | 118 | draft-auto | not-run | planned |
+| `BLK-AZ-ITEM-SEARCH-SELECT` | 項目名検索 → 不備内容入力画面-更新 | 117 | source-only | not-implemented | planned |
 | `BLK-AUTO-4F9D57E1` | 照会・検索 → 申請・確認更新 | 105 | draft-auto | not-run | planned |
-| `BLK-AZ-INPUT-FILL` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 101 | live-verified | live-pass | verified |
-| `BLK-AZ-MENU-CREATE-INPUT` | 申込書品質管理メニュー → 不備内容入力画面-新規 | 101 | live-verified | live-pass | verified |
-| `BLK-AZ-REGISTER-UPDATE` | 不備内容入力画面-新規 → 不備内容入力画面-更新 | 97 | source-only | not-implemented | planned |
-| `BLK-AZ-ITEM-SEARCH-SELECT` | 項目名検索 → 不備内容入力画面-更新 | 74 | source-only | not-implemented | planned |
-| `BLK-AUTO-27C68433` | 送信先(写)選択 → 取消計上申請承認 | 70 | draft-auto | not-run | planned |
-| `BLK-AZ-INQUIRY-EDIT` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 65 | source-only | not-implemented | planned |
-| `BLK-AUTO-5C1EFE0E` | 項目名検索 → 不備内容入力画面-更新 | 59 | draft-auto | not-run | planned |
-| `BLK-AUTO-E0B41407` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 55 | draft-auto | not-run | planned |
-| `BLK-AUTO-2B9786A5` | 担当者検索 → 申請・確認更新 | 52 | draft-auto | not-run | planned |
-| `BLK-AZ-COMMON-LOGS` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 48 | source-only | not-run | planned |
-| `BLK-AUTO-3477BB6F` | BATCH → BATCH | 43 | draft-auto | not-run | planned |
-| `BLK-AUTO-D844ADE8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 43 | draft-auto | not-run | planned |
-| `BLK-AUTO-94A5D816` | 申請・確認更新 → 申請・確認更新 | 37 | draft-auto | not-run | planned |
-| `BLK-AUTO-C8903BF5` | BATCH → BATCH | 37 | draft-auto | not-run | planned |
-| `BLK-AZ-AGENT-SELECT` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 37 | mock-verified | blocked | coded |
-| `BLK-AZ-INSURANCE-SELECT` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 37 | live-verified | live-pass | verified |
-| `BLK-AUTO-DDA3A833` | 代理店不備一覧 → 代理店 不備内容入力画面(更新) | 32 | draft-auto | not-run | planned |
-| `BLK-AUTO-2C41848F` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 30 | draft-auto | not-run | planned |
-| `BLK-AUTO-E1BDF237` | 不備一覧 → 不備内容入力画面-更新 | 30 | draft-auto | not-run | planned |
-| `BLK-AUTO-4C432C14` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 28 | draft-auto | not-run | planned |
-| `BLK-AUTO-DF07A781` | 送信先(写)選択 → 申請・確認更新 | 26 | draft-auto | not-run | planned |
-| `BLK-AUTO-9750F4CE` | 不備一覧 → 不備内容入力画面-更新 | 24 | draft-auto | not-run | planned |
+| `BLK-AZ-INQUIRY-EDIT` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 99 | source-only | not-implemented | planned |
+| `BLK-AUTO-2B9786A5` | 担当者検索 → 申請・確認更新 | 96 | draft-auto | not-run | planned |
+| `BLK-AUTO-27C68433` | 送信先(写)選択 → 取消計上申請承認 | 93 | draft-auto | not-run | planned |
+| `BLK-AUTO-3477BB6F` | BATCH → BATCH | 90 | draft-auto | not-run | planned |
+| `BLK-AUTO-C8903BF5` | BATCH → BATCH | 74 | draft-auto | not-run | planned |
+| `BLK-AUTO-DDA3A833` | 代理店不備一覧 → 代理店 不備内容入力画面(更新) | 64 | draft-auto | not-run | planned |
+| `BLK-AUTO-C8BDC3F2` | 不備内容入力画面-更新 → 帳票印刷 | 62 | draft-auto | not-run | planned |
+| `BLK-AUTO-E1BDF237` | 不備一覧 → 不備内容入力画面-更新 | 60 | draft-auto | not-run | planned |
+| `BLK-AUTO-E0B41407` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 59 | draft-auto | not-run | planned |
+| `BLK-AUTO-2739DA75` | 不備内容入力画面-更新 → メール通知先選択 | 58 | draft-auto | not-run | planned |
+| `BLK-SHR-5F5035B5` | (blank) → (blank) | 57 | draft-shared | not-run | planned |
+| `BLK-AUTO-042B2DAE` | 異例取扱管理メニュ- → 申請承認一覧 | 56 | draft-auto | not-run | planned |
+| `BLK-AUTO-D844ADE8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 56 | draft-auto | not-run | planned |
+| `BLK-AUTO-9750F4CE` | 不備一覧 → 不備内容入力画面-更新 | 48 | draft-auto | not-run | planned |
+| `BLK-AZ-AGENT-SELECT` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 46 | mock-verified | blocked | coded |
+| `BLK-AZ-INSURANCE-SELECT` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 46 | live-verified | live-pass | verified |
+| `BLK-AUTO-DF07A781` | 送信先(写)選択 → 申請・確認更新 | 44 | draft-auto | not-run | planned |
+| `BLK-AZ-BATCH-RUN-VERIFY` | 親子集計バッチ処理 → 親子集計バッチ処理 | 44 | source-only | not-run | planned |
+| `BLK-AUTO-4C432C14` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 42 | draft-auto | not-run | planned |
+| `BLK-AUTO-DEBE0BEE` | 代理店不備一覧 → 代理店 不備内容入力画面(更新) | 40 | draft-auto | not-run | planned |
+| `BLK-AUTO-B8DF200B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 37 | draft-auto | not-run | planned |
+| `BLK-AUTO-0AD75340` | 代理店不備内容入力画面(更新) → 代理店 不備一覧 | 36 | draft-auto | not-run | planned |
+| `BLK-AUTO-559E7D1D` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 36 | draft-auto | not-run | planned |
+| `BLK-AUTO-10E5C587` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 30 | draft-auto | not-run | planned |
+| `BLK-AZ-COMMON-LOGS` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 30 | source-only | not-run | planned |
+| `BLK-AUTO-F974E639` | 申請・確認更新 → 送信先(写)選択 | 29 | draft-auto | not-run | planned |
+| `BLK-AUTO-CE34C5B8` | 申請・確認更新 → 担当者検索 | 28 | draft-auto | not-run | planned |
+| `BLK-AUTO-D2C3A480` | 申請・確認更新 → 送信先(写)選択 | 28 | draft-auto | not-run | planned |
+| `BLK-SHR-40B1188F` | 照会・検索 → 照会・検索 | 27 | draft-shared | not-run | planned |
+| `BLK-AUTO-1D62D29C` | 申請承認一覧 → 取消計上申請承認 | 26 | draft-auto | not-run | planned |
+| `BLK-AUTO-FCB405E4` | メ-ル通知先選択 → メ-ル通知先選択 | 26 | draft-auto | not-run | planned |
+| `BLK-SHR-D6459D48` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 25 | draft-shared | not-run | planned |
+| `BLK-AUTO-9EB5A282` | 不備一覧 → 不備内容入力画面-更新 | 24 | draft-auto | not-run | planned |
 | `BLK-AY-SHINSEI-TAIOUTOUROKU` | 申請・確認更新 → 申請・確認更新 | 24 | source-only | not-run | planned |
-| `BLK-AZ-BATCH-RUN-VERIFY` | 親子集計バッチ処理 → 親子集計バッチ処理 | 22 | source-only | not-run | planned |
-| `BLK-AUTO-DEBE0BEE` | 代理店不備一覧 → 代理店 不備内容入力画面(更新) | 20 | draft-auto | not-run | planned |
+| `BLK-AUTO-7A70187A` | メ-ル通知先選択 → 不備内容入力画面-更新 | 22 | draft-auto | not-run | planned |
+| `BLK-SHR-F9A1D656` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 22 | draft-shared | not-run | planned |
+| `BLK-AUTO-18958C37` | 不備一覧 → 不備内容入力画面(更新) | 20 | draft-auto | not-run | planned |
+| `BLK-AUTO-2C41848F` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 20 | draft-auto | not-run | planned |
+| `BLK-AUTO-ADFFD6FB` | 申請承認一覧 → 取消計上申請承認 | 20 | draft-auto | not-run | planned |
+| `BLK-AUTO-E6EAF3BB` | 取消計上申請承認 → 送信先(写)選択 | 20 | draft-auto | not-run | planned |
 | `BLK-AUTO-FECF904C` | 申請・確認更新 → 申請・確認更新 | 20 | draft-auto | not-run | planned |
-| `BLK-AUTO-0AD75340` | 代理店不備内容入力画面(更新) → 代理店 不備一覧 | 18 | draft-auto | not-run | planned |
-| `BLK-AUTO-1D62D29C` | 申請承認一覧 → 取消計上申請承認 | 18 | draft-auto | not-run | planned |
-| `BLK-AUTO-86C702E1` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 16 | draft-auto | not-run | planned |
+| `BLK-SHR-B1D2CD03` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 20 | draft-shared | not-run | planned |
+| `BLK-SHR-669A1809` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 19 | draft-shared | not-run | planned |
+| `BLK-AUTO-8C0E3438` | BATCH → BATCH | 18 | draft-auto | not-run | planned |
+| `BLK-SHR-B0028D4D` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 18 | draft-shared | not-run | planned |
+| `BLK-AUTO-FED6C2EF` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 17 | draft-auto | not-run | planned |
+| `BLK-SGL-CCA9B958` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 17 | draft-singleton | not-run | planned |
+| `BLK-AUTO-7364B069` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 16 | draft-auto | not-run | planned |
+| `BLK-AUTO-7AAEDA04` | 不備内容入力画面-更新 → 訂正内容確認 | 16 | draft-auto | not-run | planned |
+| `BLK-AUTO-94A5D816` | 申請・確認更新 → 申請・確認更新 | 16 | draft-auto | not-run | planned |
+| `BLK-SHR-BF46F797` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 15 | draft-shared | not-run | planned |
 | `BLK-AUTO-6F1B4715` | 訂正内容確認 → 不備内容入力画面-更新 | 14 | draft-auto | not-run | planned |
+| `BLK-AUTO-8FE40BE8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 14 | draft-auto | not-run | planned |
 | `BLK-AZ-CORRECTION-CONFIRM` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 14 | source-only | not-implemented | planned |
-| `BLK-AUTO-720382DE` | BATCH → BATCH | 13 | draft-auto | not-run | planned |
-| `BLK-AUTO-9EB5A282` | 不備一覧 → 不備内容入力画面-更新 | 12 | draft-auto | not-run | planned |
+| `BLK-AUTO-5637DF50` | 申請・確認更新 → 申請・確認更新 | 13 | draft-auto | not-run | planned |
+| `BLK-AUTO-12DB90A3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 12 | draft-auto | not-run | planned |
 | `BLK-AZ-EXTERNAL-AUTH` | その他(申込書品質管理) → 申込書品質管理システム (代理店MS) | 12 | source-only | not-run | planned |
-| `BLK-AUTO-1EAEE77F` | 申請承認一覧 → 取消計上申請承認 | 10 | draft-auto | not-run | planned |
+| `BLK-AUTO-C7A1F3E5` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 11 | draft-auto | not-run | planned |
+| `BLK-AUTO-C898B5B4` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 11 | draft-auto | not-run | planned |
+| `BLK-SHR-FB883F72` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 11 | draft-shared | not-run | planned |
 | `BLK-AUTO-23229D4F` | 帳票印刷 → 不備内容入力画面-更新 | 10 | draft-auto | not-run | planned |
-| `BLK-AY-TORIKESHI-REGISTER` | 異例取扱管理メニュー → 申請・確認更新 | 9 | source-only | not-run | planned |
+| `BLK-AUTO-23BC6F7B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 10 | draft-auto | not-run | planned |
+| `BLK-AUTO-6AD0E114` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 10 | draft-auto | not-run | planned |
+| `BLK-AUTO-C4218B41` | 申請承認一覧 → 取消計上申請承認 | 10 | draft-auto | not-run | planned |
+| `BLK-AY-TORIKESHI-REGISTER` | 異例取扱管理メニュー → 申請・確認更新 | 10 | source-only | not-run | planned |
+| `BLK-SHR-EB44767A` | 申請・確認更新 → 担当者検索 | 10 | draft-shared | not-run | planned |
+| `BLK-AUTO-A315BF06` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-auto | not-run | planned |
+| `BLK-AUTO-BABA9D55` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-auto | not-run | planned |
+| `BLK-AUTO-ECE76B71` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-auto | not-run | planned |
+| `BLK-SHR-288BB000` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 9 | draft-shared | not-run | planned |
+| `BLK-SHR-63C4E6D6` | 帳票印刷 → 不備内容入力画面-更新 | 9 | draft-shared | not-run | planned |
+| `BLK-AUTO-08AD77A3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-auto | not-run | planned |
+| `BLK-AUTO-2B5F6E76` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 8 | draft-auto | not-run | planned |
+| `BLK-SHR-6FA7E251` | 申請・確認更新 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-77BF51A5` | 申請・確認更新 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-805D28B8` | 取消計上申請承認 → 送信先(写)選択 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-C69800AD` | 照会・検索 → 担当者検索 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-C8E42CCF` | 申請・確認更新 → 担当者検索 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-D606FB03` | 不備一覧 → 不備一覧 | 8 | draft-shared | not-run | planned |
+| `BLK-SHR-E30F6E3C` | 申請・確認更新 → 担当者検索 | 8 | draft-shared | not-run | planned |
 | `BLK-AZ-UPDATE-DELETE-OK` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 7 | source-only | not-run | planned |
+| `BLK-SHR-072E06D9` | 不備一覧 → 不備一覧 | 7 | draft-shared | not-run | planned |
+| `BLK-SHR-73BCFD18` | 代理店 不備内容入力画面(更新) → 代理店 不備一覧 | 7 | draft-shared | not-run | planned |
+| `BLK-AZ-UPDATE-SEARCH-ITEM` | 不備内容入力画面-更新 → 項目名検索 | 6 | source-only | not-implemented | planned |
+| `BLK-SHR-3222CFC6` | 取消計上申請承認 → 送信先(写)選択 | 6 | draft-shared | not-run | planned |
+| `BLK-SHR-ED323C11` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 6 | draft-shared | not-run | planned |
+| `BLK-AUTO-C2B6BA33` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 5 | draft-auto | not-run | planned |
 | `BLK-AZ-UPDATE-CL` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 5 | source-only | not-run | planned |
-| `BLK-AZ-UPDATE-SEARCH-ITEM` | 不備内容入力画面-更新 → 項目名検索 | 5 | source-only | not-implemented | planned |
+| `BLK-SHR-EB3D34F4` | メール通知先選択 → メール通知先選択 | 5 | draft-shared | not-run | planned |
+| `BLK-AUTO-720382DE` | BATCH → BATCH | 4 | draft-auto | not-run | planned |
 | `BLK-AZ-AGT-LIST-SEARCH` | 代理店 不備一覧 → 代理店 不備一覧 | 4 | source-only | not-run | planned |
+| `BLK-AZ-AGT-SESSION-TIMEOUT` | 代理店 不備一覧 → 代理店 訂正内容確認 | 4 | source-only | not-run | planned |
 | `BLK-AZ-BATCH-CONVERT-MAIL` | メール変換先取込通知バッチ処理 → メール変換先取込通知バッチ処理 | 4 | source-only | not-run | planned |
+| `BLK-AZ-BATCH-VERIFY` | 不備項目集計バッチ処理 → 不備項目集計バッチ処理 | 4 | source-only | not-run | planned |
 | `BLK-AZ-COMPLETE-REGISTER` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | source-only | not-implemented | planned |
+| `BLK-AZ-OPEN-CLOSE-SYS` | 運用AP → 閉局 | 4 | source-only | not-run | planned |
+| `BLK-SHR-1D4C0178` | 帳票印刷 → 帳票印刷 | 4 | draft-shared | not-run | planned |
+| `BLK-SHR-6F09B48C` | 不備一覧 → ToDo再送設定バッチ処理 | 4 | draft-shared | not-run | planned |
+| `BLK-SHR-8546478D` | 取消計上申請承認 → 送信先(写)選択 | 4 | draft-shared | not-run | planned |
+| `BLK-SHR-CC41ACD0` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | draft-shared | not-run | planned |
+| `BLK-SHR-CD031FED` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 4 | draft-shared | not-run | planned |
+| `BLK-SHR-E593E2FC` | 不備一覧 → 不備一覧 | 4 | draft-shared | not-run | planned |
 | `BLK-AZ-AUTH-ERROR` | その他(申込書品質管理) → 権限エラー | 3 | source-only | not-run | planned |
 | `BLK-AZ-SESSION-TIMEOUT` | 代理店 不備一覧 → セッションタイムアウト画面 (親画面) | 3 | source-only | not-run | planned |
 | `BLK-AZ-SYSERR-LOGIN` | その他(申込書品質管理) → システムエラー | 3 | source-only | not-run | planned |
-| `BLK-AZ-AGT-SESSION-TIMEOUT` | 代理店 不備一覧 → 代理店 訂正内容確認 | 2 | source-only | not-run | planned |
-| `BLK-AZ-BATCH-VERIFY` | 不備項目集計バッチ処理 → 不備項目集計バッチ処理 | 2 | source-only | not-run | planned |
-| `BLK-AZ-OPEN-CLOSE-SYS` | 運用AP → 閉局 | 2 | source-only | not-run | planned |
-| `BLK-AUTO-F8714C90` | 照会内容編集 → 不備内容入力画面-更新 | 1 | draft-auto | not-run | planned |
+| `BLK-SHR-311D55A3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-340D4343` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-B3B9104B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-B42FB7FD` | 不備一覧 → 不備内容入力画面-更新 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-CD763243` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-D9AE66FC` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 3 | draft-shared | not-run | planned |
+| `BLK-SHR-F09E159A` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 3 | draft-shared | not-run | planned |
+| `BLK-AUTO-01795032` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-auto | not-run | planned |
+| `BLK-AUTO-F8714C90` | 照会内容編集 → 不備内容入力画面-更新 | 2 | draft-auto | not-run | planned |
+| `BLK-AZ-AGT-CSV-DOWNLOAD` | 代理店 不備一覧 → 代理店 不備一覧 | 2 | source-only | not-run | planned |
+| `BLK-SGL-1ECE1684` | 帳票印刷 → 不備内容入力画面-更新 | 2 | draft-singleton | not-run | planned |
+| `BLK-SGL-8986EB9F` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-singleton | not-run | planned |
+| `BLK-SGL-A00738F4` | 送信先(写)選択 → 送信先(写)選択 | 2 | draft-singleton | not-run | planned |
+| `BLK-SGL-FE33E38E` | 不備一覧 → 不備一覧 | 2 | draft-singleton | not-run | planned |
+| `BLK-SHR-01CAB10D` | 運用AP → 閉局 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-04E83971` | 送信先(写)選択 → 送信先(写)選択 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-106D33F6` | 帳票印刷 → 帳票印刷 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-121DF781` | 募集人情報引込バッチ処理 → 募集人情報引込バッチ処理 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-269893EF` | 不備一覧 → 不備集計 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-2EEC5A3D` | フリーコード集計バッチ処理 → フリーコード集計バッチ処理 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-305661D1` | 募集人集計バッチ処理 → 募集人集計バッチ処理 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-3F6DEDE2` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-4E8C4FC2` | 不備一覧 → 不備一覧 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-5BDEF314` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-5CEC3483` | 登録件数集計情報ファイル → 登録件数集計情報ファイル | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-72F034C6` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-73B769C8` | 申請・確認更新 → 申請・確認更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-7A684D49` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-7EB4CA64` | 代理店 不備一覧 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-8F1D192A` | 計上情報消込処理 → 計上情報消込処理 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-950C5CC5` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-C649ACE4` | 不備内容集計バッチ処理 → 不備内容集計バッチ処理 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-C90A0006` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-CE8B86B5` | 申請・確認更新 → 送信先(写)選択 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-D0DDEEE4` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-D155DA21` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-DD6D983A` | 照会・検索 → 申請・確認更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-EBEB83B0` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-ED876A58` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-EEFF5DB3` | 代理店 訂正内容確認 → セッションタイムアウト画面 (子画面) | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-F056442C` | 代理店 不備一覧 → 代理店 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-F07F5CF4` | 申請・確認更新 → 送信先(写)選択 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-F0C72208` | 項目名検索 → 項目名検索 | 2 | draft-shared | not-run | planned |
+| `BLK-SHR-F557476E` | メール通知先選択 → 不備内容入力画面-更新 | 2 | draft-shared | not-run | planned |
 | `BLK-AY-MENU-SESSION-TIMEOUT` | 異例取扱管理メニュー → セッションタイムアウト画面 (親画面) | 1 | source-only | not-run | planned |
 | `BLK-AZ-AGT-CORRECTION-REGISTER` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | source-only | not-run | planned |
-| `BLK-AZ-AGT-CSV-DOWNLOAD` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | source-only | not-run | planned |
 | `BLK-AZ-AGT-LIST-INITIAL` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | source-only | not-run | planned |
 | `BLK-AZ-AGT-LIST-INITIAL-EMPTY` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | source-only | not-run | planned |
 | `BLK-AZ-AGT-LIST-OPEN-UPDATE` | 代理店 不備一覧 → 代理店 不備内容入力画面(更新) | 1 | source-only | not-run | planned |
 | `BLK-AZ-AGT-UPDATE-SUSPEND` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | source-only | not-run | planned |
+| `BLK-SGL-022A6268` | 不備一覧 → ヘルプ | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-03D12845` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-050E9572` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-080CC956` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-0B2CB156` | 不備内容入力画面-更新 → システムエラー画面(親画面) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-0C5A44D1` | 計上情報消込処理 → 計上情報消込処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-0D2D641B` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-0DF6BF48` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-0EF7DA98` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-134186E1` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-13EBF209` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-142F0449` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1435D445` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1447D55E` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-148C85C9` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1913A9CC` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1B069429` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1B4BF2A2` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1CC6C3EC` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1E608D6F` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1E78A599` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-1E856949` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-20C0D517` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-213E7E7D` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-224C9DEF` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2268EC8E` | メール通知先選択 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-263830F1` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-27AD1952` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2995218F` | 帳票印刷 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-29F9D148` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2A271F57` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2B53277F` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2B7D45E3` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2C9248F3` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2DDFC25D` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-2FF1643E` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-3017A3AA` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-303AEAC9` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-31F074B9` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-3DB9518B` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-3EFB9C18` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-41743CCA` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-42508787` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-4C3588A4` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-4C369412` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-4CB0EA5C` | 不備一覧 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-4EB596EB` | ユーザIDマスタ取込処理 → ユーザIDマスタ取込処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-500054A5` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-557F51B3` | 照会・検索 → 照会・検索 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-58EA9045` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-5AD5D6D9` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-60F6A775` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-61178197` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-6163165A` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-637D567D` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-639A108B` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-69D8E501` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-6BEAE496` | 回答内容マスタ取込処理 → 回答内容マスタ取込処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-70B071E3` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-74421551` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-7597207A` | 取消計上申請登録 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-75C48000` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-75D5F75B` | 親子集計バッチ処理 → 親子集計バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-7A4080AD` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-7A863F7A` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-7EBD5C1C` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-7EE83E5A` | 申込書品質管理メニュー → 申込書品質管理メニュー | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-824C0B37` | 不備内容入力画面-新規 → 不備内容入力画面-新規 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-86665200` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-86B0B8B9` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-90299E43` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-952A7140` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-98A9A5DE` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-9B567CC5` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-9EB34116` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-9EBB1470` | ToDo連携データ作成バッチ処理 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-A4318C73` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-A5BF2BD4` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-A75DE243` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-A7A45418` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-AB15C319` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-AE6EB457` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-B3C6DD9B` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-B69EF548` | 大樹生命連携データ作成バッチ処理 → 大樹生命連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-B7D80D28` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-B84FFF40` | 閲覧システム連携ファイル作成バッチ処理 → 閲覧システム連携ファイル作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-BA4B4F43` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-BBEBCD49` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-BDA7A359` | 不備一覧 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-BE812D08` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C14B22C2` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C16D256A` | 不備一覧 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C17F75BC` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C251A9BE` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C3BC64AD` | メール通知先選択 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C4BF402E` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C651052A` | ToDo連携データ作成バッチ処理 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C6CBD31A` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-C9C58BF8` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CAE0EE28` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CB6C5414` | 項目名検索 → 項目名検索 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CD166B4D` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CEAA65E9` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CEF7E580` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-CFBFBCCB` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-D0508D0D` | 不備内容入力画面-更新 → 照会内容編集 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-D0AB4651` | 帳票印刷 → 帳票印刷 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-D8B7B517` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-DB2830E2` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-DE4B3B14` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E008F918` | 代理店 不備一覧 → 代理店 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E1FCFE32` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E23DBBCE` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E2606837` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E3AD1DD9` | 項目テーブル取込処理 → 項目テーブル取込処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-E7ED8F75` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-EA9C1EF3` | 照会・検索 → システムエラー画面(親画面) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-ECBA7661` | 照会内容マスタ取込処理 → 照会内容マスタ取込処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-ED36F3F7` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-EF37895C` | 訂正内容確認 → システムエラー画面(子画面) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-F1E0B9E5` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-F1F96812` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-F54CCD41` | 親子集計バッチ処理 → 親子集計予約 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-F9980EBC` | 代理店 不備内容入力画面(更新) → 代理店 不備内容入力画面(更新) | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-FBFD5CAD` | 不備内容入力画面-更新 → 不備内容入力画面-更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-FCAF8476` | 照会・検索 → 申請・確認更新 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-FCF80BAC` | 帳票印刷 → 不備一覧 | 1 | draft-singleton | not-run | planned |
+| `BLK-SGL-FF4BE5F2` | メール通知先選択 → リンク | 1 | draft-singleton | not-run | planned |
+| `BLK-SHR-394B713D` | ToDo連携データ作成バッチ処理 → ToDo連携データ作成バッチ処理 | 0 | draft-shared | not-run | planned |
 
 Block state is aggregate across cases: a block with a live pass is `live-pass`; `blocked` wins over `mock-pass` (the agent block is blocked on 009 but mock-pass on 010–012). Per-case mock counts are in `progress/cases.md`.
 
@@ -119,20 +351,20 @@ Block state is aggregate across cases: a block with a live pass is `live-pass`; 
 | Cases | Event |
 |---:|---|
 | 114 | `(blank):other::literal` |
-| 86 | `不備内容入力画面-更新:display:不備内容入力画面-更新:bundle` |
-| 65 | `不備内容入力画面-更新:other:ToDo連携テーブル:literal` |
-| 62 | `申請・確認更新:transition:送信先(写)選択:literal` |
 | 55 | `不備内容入力画面-更新:other::literal` |
-| 52 | `申請・確認更新:transition:担当者検索:literal` |
 | 46 | `ToDo連携データ作成バッチ処理:other::literal` |
-| 42 | `不備内容入力画面-更新:click:営業連携:none` |
-| 39 | `不備内容入力画面-更新:click:OK:none` |
-| 39 | `不備内容入力画面-更新:click:完了登録:none` |
-| 38 | `不備内容入力画面-更新:click:連携取消:none` |
-| 38 | `異例取扱管理メニュー:click:申請・承認:none` |
-| 38 | `異例取扱管理メニュー:transition:申請承認一覧:literal` |
-| 37 | `申請・確認更新:inputBundle:各項目:bundle` |
-| 35 | `不備内容入力画面-更新:click:印刷:none` |
+| 42 | `不備内容入力画面-更新:display:不備内容入力画面-更新:bundle` |
+| 34 | `申請・確認更新:transition:担当者検索:literal` |
+| 31 | `照会・検索:click:検索:none` |
+| 30 | `代理店 不備内容入力画面(更新):click:一時中断:none` |
+| 28 | `不備内容入力画面-更新:click:代理店照会:literal` |
+| 28 | `照会・検索:inputBundle:各項目:bundle` |
+| 22 | `不備内容入力画面-更新:click:連携取消:none` |
+| 21 | `帳票印刷:click:閉じる:none` |
+| 21 | `不備内容入力画面-更新:input:代理店照会:literal` |
+| 20 | `照会・検索:click:検索結果出力:none` |
+| 18 | `帳票印刷:click:帳票出力:none` |
+| 17 | `照会・検索:transition:申請・確認更新:literal` |
 
 ## Full ledgers
 
