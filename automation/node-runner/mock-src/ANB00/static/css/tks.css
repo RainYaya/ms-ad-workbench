@@ -1,0 +1,2167 @@
+/********************/
+/* 共通設定項目     */
+/********************/
+
+body, th, td, input, select, textarea {
+	font-size: 10pt;
+	font-family: 'ＭＳ Ｐゴシック';
+}
+
+body.body_common {
+	background-color: #ffffdc;
+	color			: #000000;
+	font-size		: 10pt;
+	font-family		: 'ＭＳ Ｐゴシック';
+	margin-top		: 0px;
+	margin-left		: 5px;
+}
+
+/* ポップアップ画面用 */
+body.popup_body_common {
+	background-color: #ffffdc;
+	color			: #000000;
+	font-size		: 10pt;
+	font-family		: 'ＭＳ Ｐゴシック';
+	margin-top		: 0px;
+	margin-left		: 5px;
+	margin-right	: 5px;
+}
+
+.indent_title{
+	margin-left:8px
+}
+
+.margin_bottom_5px{
+	margin-bottom : 5px;
+}
+
+.title_mark_gray {
+	color: gray;
+}
+
+.title_mark_blue {
+	color: #5088CC;
+}
+
+.title_mark_red {
+	color: #CC5050;
+}
+
+.title_mark_green{
+	color: #90BB60;
+}
+
+.title_mark_orange{
+	color: orange;
+}
+
+.title_mark_purple{
+	color: #8060C0;
+}
+
+.title_mark_pink{
+	color: pink;
+}
+
+.title_mark_purple2{
+	color: #9999FF;
+}
+
+.title_char_black {
+	color: #000000;
+}
+
+.explanation {
+    color       : red;
+    font-size   : 10pt;
+    text-align  : left;
+    height: 19px;
+}
+
+.explanation2 {
+    color       : red;
+    font-size   : 10pt;
+    text-align  : left;
+}
+
+/*****************************/
+/* 業務画面 - タイトルエリア */
+/*****************************/
+.title_area {
+    display     : flex;
+    width       : 876px;
+    height      : 36px;
+    border      : 1px solid;
+    border-color: white gray gray white;
+
+    > div {
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        border         : 1px solid;
+        border-color   : gray white white gray;
+    }
+}
+
+div.title_area_logo {
+    background-color: #FFF;
+    width           : 220px;
+}
+
+div.title_area_title {
+    color           : #FFF;
+    background-color: #006;
+    width           : 334px;
+}
+
+div.title_area_sysinfo {
+    justify-content : right;
+    background-color: #FFF;
+    width           : 324px;
+
+    > span {
+      /*font-size : 9px;*/
+      transform : scale(0.7) translate(20%);
+      text-align: right;
+    }
+}
+
+/*****************************/
+/* メッセージエリア */
+/*****************************/
+/* 業務画面用 */
+.message_area {
+	width       : 876px;
+	height      : 22px;
+	margin      : 0px;
+	padding     : 0px;
+	border      : 1px solid;
+    border-color: white gray gray white;
+
+}
+
+.message_text {
+	width       : inherit;
+	height      : inherit;
+	line-height : 1.5;
+	color       : #f00; /* 赤色 */
+	text-align  : left;
+	border      : 1px solid;
+    border-color: gray white white gray;
+}
+
+ul.message_area,
+li.message_area {
+	width     : 878px;
+	height    : 20px;
+	border    : none;
+	margin    : 0px;
+	padding   : 0px;
+	list-style: none;
+}
+
+/* ポップアップ画面用 */
+div.popup_message_area {
+  height      : 22px;
+  margin          : 0px;
+  padding         : 0px;
+  text-align      : left;
+  font-size       : 9pt;
+  color           : #f00; /* 赤色 */
+}
+
+ul.popup_message_area {
+  margin          : 0px;
+  padding         : 0px;
+  list-style      : none;
+  text-align      : left;
+}
+
+li.popup_message_area {
+  margin          : 1px;
+  padding         : 1px;
+  display         : inline-block;
+}
+
+/***************************/
+/* 業務画面 - 業務エリア   */
+/***************************/
+.gyoumu_area {
+	width           : 876px;
+	border          : 1px solid gray;
+	margin-bottom   : 5px;
+	padding-bottom  : 18px;
+}
+
+.gyoumu_area_02 {
+	width           : 876px;
+	border          : 1px solid gray;
+	margin-top      : 5px;
+	padding-bottom  : 5px;
+}
+
+.gyoumu_area_outer_scroll {
+	width           : 876px;
+	border          : 1px solid gray;
+	margin          : 5px 0;
+	padding-bottom  : 18px;
+}
+
+.gyoumu_field {
+	background-color: #e6ffe6;  /* 薄黄色 */
+	padding         : 0px;
+	width           : 100%;
+	height          : 100%;
+	box-sizing      : border-box;
+	border          : 1px solid #cccccc;
+}
+
+.gyoumu_field_input{
+	background-color: white;	/* 白色 */
+	width           : 100%;
+	height          : 100%;
+	box-sizing      : border-box;
+	text-align      : left;
+
+	> select,input,textarea{
+		width           : 100%;
+		height          : 100%;
+		box-sizing      : border-box;
+		border          : 1px solid #cccccc;
+	}
+}
+
+.gyoumu_field_title {
+	background-color: #2529ba;	/* 青色 */
+	color           : #FFFFFF;	/* 白 */
+	font-family     : 'ＭＳ Ｐゴシック';
+	font-size       : 10pt;
+	text-align      : center;
+	padding-top     : 4px;
+	box-sizing      : border-box;
+	border          : 1px solid #cccccc;
+}
+
+.gyoumu_field_value {
+	background-color: #e6ffe6;  /* 薄黄色 */
+	font-family     : 'ＭＳ Ｐゴシック';
+	font-size       : 10pt;
+	text-align      : center;
+	height          : 22px;
+	line-height     : 22px;
+	padding         : 0px;
+	box-sizing      : border-box;
+	border          : 1px solid #cccccc;
+	overflow        : hidden;
+}
+
+.gyoumu_field_value_left {
+	background-color: #e6ffe6;  /* 薄黄色 */
+	font-family     : 'ＭＳ Ｐゴシック';
+	font-size       : 10pt;
+	text-align      : left;
+	height          : 22px;
+	line-height     : 22px;
+	padding         : 0px;
+	box-sizing      : border-box;
+	border          : 1px solid #cccccc;
+	overflow        : hidden;
+}
+
+.gyoumu_field_value_right {
+	background-color: #e6ffe6;  /* 薄黄色 */
+	font-family     : 'ＭＳ Ｐゴシック';
+	font-size       : 10pt;
+	text-align      : right;
+	height          : 22px;
+	line-height     : 22px;
+	padding         : 0px;
+	box-sizing      : border-box;
+	border          : 1px solid #cccccc;
+	overflow        : hidden;
+}
+
+.date_input_area{
+	> input:nth-of-type(1){
+		width : 28px;
+	}
+	> input:nth-of-type(2){
+		width : 13.5px;
+	}
+	> input:nth-of-type(3){
+		width : 13.5px;
+	}
+	> input:nth-of-type(4){
+		width : 28px;
+	}
+	> input:nth-of-type(5){
+		width : 13.5px;
+	}
+	> input:nth-of-type(6){
+		width : 13.5px;
+	}
+}
+
+.date_input_area_02{
+	> input:nth-of-type(1){
+		width : 28px;
+	}
+	> input:nth-of-type(2){
+		width : 13.5px;
+	}
+	> input:nth-of-type(3){
+		width : 28px;
+	}
+	> input:nth-of-type(4){
+		width : 13.5px;
+	}
+}
+
+.gyoumu_search_count {
+    FONT-SIZE   : 10pt;
+    TEXT-ALIGN  : right;
+	HEIGHT: 19px;
+}
+
+div.gyoumu_list_data_scroll {
+	width: 858px;
+	overflow-y: scroll;
+	border-width: 2px;
+	border-style: ridge;
+	border-color: white;
+}
+
+div.gyoumu_input_field_scroll {
+	width: 893px;
+	height: 366px;
+	overflow-y: scroll;
+	border-width: 0px;
+}
+
+/* テーブルヘッダ */
+tr.row_title {
+	background-color:#66aa99;
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	font-size:10pt;
+	text-align:center;
+	font-family:"ＭＳ ゴシック",Arial;
+}
+
+td.column_title {
+	background-color:#66aa99;
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	font-size:10pt;
+	text-align:center;
+	font-family:"ＭＳ ゴシック",Arial;
+}
+
+/* テーブル奇数行 */
+tr.row_odd {
+	background-color:#bfefdf;
+	color:black;
+	font-weight:normal;
+	font-style:normal;
+	font-size:10pt;
+	font-family:"ＭＳ ゴシック",Arial;
+}
+
+/* テーブル偶数行 */
+tr.row_even {
+	background-color:#ffffe0;
+	color:black;
+	font-weight:normal;
+	font-style:normal;
+	font-size:10pt;
+	font-family:"ＭＳ ゴシック",Arial;
+}
+
+/*****************************/
+/* 業務画面 - ボタンエリア   */
+/*****************************/
+/* ボタン部 */
+div.button_area {
+	display     : flex;
+	position	: absolute;
+	bottom		: 5px;
+	left		: 6px;
+	width		: 876px;
+	height		: 25px;
+}
+
+/* 共通ボタン */
+.button_area_navigate {
+	display     : flex;
+	width		: 284px;
+	font-size	: 10pt;
+	text-align	: left;
+	height		: 25px;
+}
+
+/* 処理実行ボタン */
+.button_area_normal_operation {
+	display     : flex;
+	width		: 384px;
+	font-size	: 10pt;
+	text-align	: left;
+	height		: 25px;
+}
+
+/* 削除ボタン */
+.button_area_delete_operation {
+	display     : flex;
+	width		: 150px;
+	font-size	: 10pt;
+	text-align	: left;
+	height		: 25px;
+}
+
+/* 終了ボタン */
+.button_area_end {
+	width		: 60px;
+	font-size	: 10pt;
+	text-align	: left;
+	height		: 25px;
+}
+
+.button_area_button {
+	width			: 100%;
+	height			: 100%;
+}
+
+.button_area_button_length3 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 60px;
+}
+
+.button_area_button_length4 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 75px;
+}
+
+.button_area_button_length5 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 90px;
+}
+
+.button_area_button_length6 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 100px;
+}
+
+.button_area_button_length8 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 125px;
+}
+
+.button_area_button_length10 {
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 2px;
+    width: 140px;
+}
+
+.button_area_space {
+	height		: 25px;
+	width		: 4px;
+	margin-left	: 0px;
+	margin-right: 2px;
+}
+
+.button_area_space_02 {
+	height		: 25px;
+	width		: 34px;
+	margin-left	: 0px;
+	margin-right: 2px;
+}
+
+/***********************************/
+/* ポップアップ画面 - ボタンエリア */
+/***********************************/
+
+/* 担当者検索画面 */
+div.popup_button_area_10 {
+	display		: flex;
+	position	: absolute;
+	bottom		: 5px;
+	height		: 25px;
+	width		: 490px;
+
+	> div:nth-child(1){
+		margin-left :180px;
+	}
+	> div:nth-child(4){
+		width : 182px;
+	}
+}
+
+/* 送信先（写）選択画面 */
+div.popup_button_area_11 {
+	display		: flex;
+	position	: absolute;
+	bottom		: 5px;
+	height		: 25px;
+	width		: 795px;
+
+	> div:nth-child(1){
+		margin-left : 150px;
+	}
+	> div:nth-child(4){
+		margin-left : 220px;
+	}
+	> div:nth-child(5){
+		margin-left : 130px;
+	}
+	> div:nth-child(6){
+		margin-left : 40px;
+	}
+}
+
+.popup_button_area {
+	display		: flex;
+	height		: 25px;
+	width		: 98%;
+	position	: absolute;
+	bottom		: 5px;
+	> div:nth-child(1){
+		width	: 100%;
+	}
+}
+
+.popup_button_area_operation {
+	display		: fixed;
+	font-size	: 10pt;
+	text-align	: left;
+	height		: 25px;
+}
+
+.popup_button_area_close {
+	display		: fixed;
+	font-size	: 10pt;
+	text-align	: right;
+	height		: 25px;
+}
+
+input.popup_button_area_button {
+	display		: fixed;
+	height		: 25px;
+	margin-left	: 0px;
+	margin-right: 0px;
+}
+
+/***********************/
+/* ANA01: メニュー画面 */
+/***********************/
+
+.menu_area {
+	display              : grid;
+	grid-template-columns: 110px 1fr;
+	grid-template-rows   : repeat(5, 22px);
+	gap                  : 40px 0;
+	width                : 678px;
+	margin-top           : 115px;
+	margin-left          : 200px;
+}
+
+/* 画面左側：ボタン */
+.menu_area > .item:nth-child(odd) {
+	margin-left: 10px;
+
+	> input {
+		height: 22px;
+		width: 100px;
+	}
+}
+
+/* 画面右側：文言 */
+.menu_area > .item:nth-child(even) {
+	align-self: center;
+
+	/* コロン */
+	> span {
+	  display: inline-block;
+	  text-align: center;
+	  width: 20px;
+	}
+}
+
+.menu_explanation_area {
+	height      : 40px;
+	margin-left	: 188px;
+}
+
+.menu_explanation {
+	font-size	: 10pt;
+	color		: red;
+	margin-top	: 30px;
+}
+
+.menu_button{
+	width           : 100%;
+	height          : 100%;
+}
+
+.tool_link_font_margin1{
+	margin-left:188px;
+}
+
+.tool_link_font_margin2{
+	margin-left:206px;
+}
+
+/*******************************/
+/* ANA02: 取消計上申請登録画面 */
+/*******************************/
+/* ステータス */
+.grid_area_02_01 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(3, 22px) repeat(2, 5px 22px);
+
+	> span.empty:nth-of-type(1){
+		grid-area:1/7/2/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:3/5/4/9;
+	}
+	> span.empty:nth-of-type(3){
+		grid-area:4/1/5/9;
+	}
+	> span.empty:nth-of-type(4){
+		grid-area:5/5/6/9;
+	}
+	> span.empty:nth-of-type(5){
+		grid-area:6/1/7/9;
+	}
+}
+
+/* 契約情報(１.申請・確認基準項目) */
+.grid_area_02_02 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-template-rows   : 22px 85px;
+	padding-bottom  : 18px;
+
+	> div:nth-child(1){
+		grid-area:1/1/3/2;
+		padding-top:40px;
+	}
+	> div:nth-child(3){
+		 padding         : 5px;
+	}
+}
+
+/* 契約情報(２.該当契約内容) */
+.grid_area_02_03 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(4, 22px) 5px 22px 5px 60px;
+
+	> div:nth-of-type(14){
+		grid-area:2/6/3/9;
+	}
+	> div:nth-of-type(18){
+		grid-area:3/4/4/6;
+	}
+	> div:nth-of-type(19){
+		grid-area:3/6/4/9;
+	}
+	> div:nth-of-type(21){
+		grid-area:4/2/5/4;
+	}
+	> div:nth-of-type(22){
+		grid-area  :4/4/5/9;
+		line-height: 22px;
+	}
+	> div:nth-of-type(31){
+		padding-top:10px;
+	}
+	> div:nth-of-type(32){
+		grid-area:8/2/9/9;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area:5/1/6/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:7/1/8/9;
+	}
+
+}
+
+/* 申請事由(３．手続の時期) */
+.title_02_01{
+	margin-left    :8px;
+	width          :355px;
+	display        :inline-block;
+}
+
+.grid_area_02_04 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 310px 110px);
+	grid-template-rows   : 22px 22px;
+
+	> div:nth-of-type(odd){
+		width            :310px;
+	}
+	> div:nth-of-type(even){
+		width            :110px;
+	}
+}
+
+/*******************************/
+/* ANA03: 申請・確認更新画面 */
+/*******************************/
+/* ステータス */
+.grid_area_03_01 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(3, 22px) repeat(2, 5px 22px);
+
+	> div:nth-of-type(19){
+		grid-area:3/5/4/8;
+	}
+	> div:nth-of-type(20){
+		grid-area:3/8/4/9;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area:1/7/2/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:4/1/5/9;
+	}
+	> span.empty:nth-of-type(3){
+		grid-area:5/5/6/9;
+	}
+	> span.empty:nth-of-type(4){
+		grid-area:6/1/7/9;
+	}
+}
+
+/* 契約情報(１.申請・確認基準項目) */
+.grid_area_03_02 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-template-rows   : 22px 85px;
+	padding-bottom  : 18px;
+
+	> div:nth-child(1){
+		grid-area:1/1/3/2;
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-child(3){
+		 padding         :5px;
+	}
+}
+
+/* 契約情報(２.該当契約内容) */
+.grid_area_03_03 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(4, 22px) 5px 22px 5px 60px;
+
+	> div:nth-of-type(14){
+		grid-area:2/6/3/9;
+	}
+	> div:nth-of-type(18){
+		grid-area:3/4/4/6;
+	}
+	> div:nth-of-type(19){
+		grid-area:3/6/4/9;
+	}
+	> div:nth-of-type(21){
+		grid-area:4/2/5/4;
+	}
+	> div:nth-of-type(22){
+		grid-area  :4/4/5/6;
+		line-height: 22px;
+	}
+	> div:nth-of-type(23){
+		grid-area:4/6/5/9;
+	}
+	> div:nth-of-type(32){
+		padding-top:10px;
+	}
+	> div:nth-of-type(33){
+		grid-area:8/2/9/9;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area:5/1/6/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:7/1/8/9;
+	}
+}
+/* 変更事由 */
+#change_reason{
+	display              : grid;
+	grid-template-columns:110px 210px;
+	grid-template-rows   : 22px;
+
+	> div:nth-of-type(1){
+		width        :100%;
+		height       :100%;
+	}
+
+	> div:nth-of-type(2){
+		width        :100%;
+		height       :100%;
+		text-align   :left;
+	}
+}
+
+/* 申請事由(３．手続の時期) */
+.title_03_01{
+	margin-left    :8px;
+	width          :355px;
+	display        :inline-block;
+}
+
+.grid_area_03_04 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 310px 110px);
+	grid-template-rows   : 22px 22px;
+
+	> div:nth-of-type(odd){
+		width            :310px;
+	}
+	> div:nth-of-type(even){
+		width            :110px;
+	}
+}
+
+/* 申請事由(４．異例取扱理由) */
+.grid_area_03_05 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(6, 110px) 180px;
+	grid-template-rows   : 22px;
+}
+
+.grid_area_03_06 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 110px 730px;
+	grid-template-rows   : 22px 45px 22px 95px 60px;
+
+	> div:nth-of-type(1){
+		grid-area   : 1/1/3/2;
+		padding-top : 22px;
+	}
+	> div:nth-of-type(3){
+		padding     : 5px;
+	}
+	> div:nth-of-type(4){
+		grid-area   : 3/1/5/2;
+		padding-top : 47px;
+	}
+	> div:nth-of-type(6){
+		padding     : 5px;
+	}
+	> div:nth-of-type(7){
+		padding-top : 19px;
+	}
+}
+
+/* 代理店へのヒアリング*/
+.grid_area_03_07_01 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 210px 630px;
+	grid-template-rows   : 22px;
+}
+
+.grid_area_03_07_02 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 5px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 420px;
+	grid-template-rows   : 22px 22px;
+
+	> div:nth-of-type(4){
+		grid-area  :1/4/2/6;
+	}
+	> div:nth-of-type(6){
+		grid-area  :2/2/3/4;
+	}
+}
+
+.grid_area_03_07_03 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 108px 312px;
+	grid-template-rows   : 22px 22px ;
+
+	> div:nth-of-type(1){
+		grid-area  :1/1/2/5;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area  :1/5/2/7;
+	}
+}
+
+.grid_area_03_07_04{
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-auto-rows:auto;
+
+	> div:nth-of-type(1){
+		grid-column:1;
+		grid-row-start  :1;
+		grid-row-end    : 100;
+		display         : grid;
+		place-items     :center;
+	}
+	> div:not(:first-child){
+		height       : 22px;
+		grid-column  :2/3;
+		border-right :1px solid #cccccc;
+		border-top   :none;
+		border-bottom:none;
+	}
+	> div:last-child{
+		border-bottom:1px solid #cccccc;
+	}
+	> div:nth-of-type(2){
+		border-top:1px solid #cccccc;
+	}
+}
+
+.grid_area_03_07_05 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 100px 640px;
+	grid-template-rows   : repeat(3, 22px) 60px;
+
+	> div:nth-of-type(1){
+		grid-area       :1/1/4/2;
+		display         : grid;
+		place-items     :center;
+	}
+	> div:nth-of-type(4){
+		grid-area            :2/2/3/4;
+		border-bottom-style  : none;
+	}
+	> div:nth-of-type(5){
+		grid-area            :3/2/4/4;
+		border-top-style     : none;
+	}
+	> div:nth-of-type(6){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(7){
+		grid-area  :4/2/5/4;
+	}
+}
+
+/* 保険契約者へのヒアリング*/
+.grid_area_03_08_01 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 210px 630px;
+	grid-template-rows   : 22px;
+}
+
+.grid_area_03_08_02 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 5px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 420px;
+	grid-template-rows   : 22px 22px;
+
+	> div:nth-of-type(4){
+		grid-area  :1/4/2/6;
+	}
+	> div:nth-of-type(6){
+		grid-area  :2/2/3/4;
+	}
+}
+
+.grid_area_03_08_03 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 108px 312px;
+	grid-template-rows   : 22px 22px ;
+
+	> div:nth-of-type(1){
+		grid-area  :1/1/2/5;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area  :1/5/2/7;
+	}
+}
+
+.grid_area_03_08_04{
+
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-auto-rows:auto;
+
+	> div:nth-of-type(1){
+		grid-column:1;
+		grid-row-start  : 1;
+		grid-row-end    : 100;
+		display         : grid;
+		place-items     : center;
+	}
+	> div:not(:first-child){
+		height       : 22px;
+		grid-column  : 2/3;
+		border-right : 1px solid #cccccc;
+		border-top   : none;
+		border-bottom: none;
+	}
+	> div:last-child{
+		border-bottom:1px solid #cccccc;
+	}
+	> div:nth-of-type(2){
+		border-top:1px solid #cccccc;
+	}
+}
+
+.grid_area_03_08_05 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 100px 150px 490px;
+	grid-template-rows   : repeat(4, 22px) 60px;
+
+	> div:nth-of-type(1){
+		grid-area       :1/1/4/2;
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(3){
+		grid-area       :1/3/2/5;
+	}
+	> div:nth-of-type(4){
+		grid-area            :2/2/3/5;
+		border-bottom-style  : none;
+	}
+	> div:nth-of-type(5){
+		grid-area            :3/2/4/5;
+		border-top-style     : none;
+	}
+	> div:nth-of-type(7){
+		grid-area       :4/2/5/4;
+	}
+	> div:nth-of-type(9){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(10){
+		grid-area  :5/2/6/5;
+	}
+}
+
+/* 苦情／不祥事件情報*/
+.grid_area_03_09 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 420px 100px 210px 110px;
+	grid-template-rows   : 22px 22px;
+}
+
+.complianceNotice_area_03{
+	margin-left  : 36px;
+}
+
+.gyoumu_line_03{
+	margin-top  : 18px;
+	margin-left : 18px;
+	width       : 840px;
+}
+
+.grid_area_03_10 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 100px;
+	grid-template-rows   : 22px;
+
+	input{
+		height: 100%;
+	}
+}
+
+/* 申請依頼情報*/
+.grid_area_03_11 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 110px 100px 10px 50px 30px 440px;
+	grid-template-rows   : 22px 22px 5px 50px;
+
+	> span.empty:nth-of-type(4){
+		grid-area: 2/6/3/8;
+	}
+	> span.empty:nth-of-type(5){
+		grid-area:3/1/4/8;
+	}
+	> div:nth-of-type(10){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(11){
+		grid-area  :4/2/5/8;
+	}
+
+}
+
+.app_req_button_03{
+	margin-top           : 5px;
+	margin-left          : 18px;
+	width                : 100px;
+	> input{
+		width            : 100%;
+	}
+}
+
+/* 承認後・不承認後の対応*/
+.grid_area_03_12 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-template-rows   : 60px;
+
+	> div:nth-of-type(1){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(3){
+		margin-top : 5px;
+		> input{
+			width      :100%;
+		}
+	}
+}
+
+/*******************************/
+/* ANA04: 取消計上申請承認画面 */
+/*******************************/
+#div_gyoumu_area_04 textarea{
+	background-color: #e6ffe6;
+}
+
+/* ステータス */
+.grid_area_04_01 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(3, 22px) repeat(2, 5px 22px);
+
+	> div:nth-of-type(19){
+		grid-area:3/5/4/8;
+	}
+	> div:nth-of-type(20){
+		grid-area:3/8/4/9;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area:1/7/2/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:4/1/5/9;
+	}
+	> span.empty:nth-of-type(3){
+		grid-area:5/5/6/9;
+	}
+	> span.empty:nth-of-type(4){
+		grid-area:6/1/7/9;
+	}
+}
+
+/* 契約情報(１.申請・確認基準項目) */
+.grid_area_04_02 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-template-rows   : 85px;
+	padding-bottom       : 18px;
+
+	> div:nth-child(1){
+		display         : grid;
+		place-items     : center;
+	}
+}
+
+/* 契約情報(２.該当契約内容) */
+.grid_area_04_03 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(4, 100px 110px);
+	grid-template-rows   : repeat(4, 22px) 5px 22px 5px 60px;
+
+	> div:nth-of-type(14){
+		grid-area:2/6/3/9;
+	}
+	> div:nth-of-type(18){
+		grid-area:3/4/4/6;
+	}
+	> div:nth-of-type(19){
+		grid-area:3/6/4/9;
+	}
+	> div:nth-of-type(21){
+		grid-area:4/2/5/4;
+	}
+	> div:nth-of-type(22){
+		grid-area  :4/4/5/9;
+		line-height: 22px;
+	}
+	> div:nth-of-type(31){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(32){
+		grid-area:8/2/9/9;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area:5/1/6/9;
+	}
+	> span.empty:nth-of-type(2){
+		grid-area:7/1/8/9;
+	}
+}
+
+/* 申請事由(３．手続の時期) */
+.grid_area_04_04 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 310px 110px);
+	grid-template-rows   : 22px 22px;
+
+	> div:nth-of-type(7){
+		grid-column: span 2;
+	}
+}
+
+/* 申請事由(４．異例取扱理由) */
+.grid_area_04_05 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 110px 730px;
+	grid-template-rows   : 45px 95px 60px;
+
+	> div:nth-of-type(1){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(3){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(5){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(5){
+		height           : 100%;
+	}
+}
+
+/* 代理店へのヒアリング*/
+.grid_area_04_06_01 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 5px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 420px;
+	grid-template-rows   : repeat(3, 22px);
+
+	> div:nth-of-type(1){
+		grid-area   : 1/1/2/3;
+	}
+	> div:nth-of-type(2){
+		grid-area   : 1/3/2/6;
+	}
+	> div:nth-of-type(6){
+		grid-area   : 2/4/3/6;
+	}
+	> div:nth-of-type(8){
+		grid-area   : 3/2/4/4;
+	}
+}
+
+.grid_area_04_06_02 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 108px 312px;
+	grid-template-rows   : 22px 22px ;
+
+	> div:nth-of-type(1){
+		grid-area  :1/1/2/5;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area  :1/5/2/7;
+	}
+}
+
+.grid_area_04_06_03{
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-auto-rows:auto;
+
+	> div:nth-of-type(1){
+		grid-column:1;
+		grid-row-start  :1;
+		grid-row-end    : 100;
+		display         : grid;
+		place-items     :center;
+	}
+	> div:not(:first-child){
+		height       : 22px;
+		grid-column  :2/3;
+		border-right :1px solid #cccccc;
+		border-top   :none;
+		border-bottom:none;
+	}
+	> div:last-child{
+		border-bottom:1px solid #cccccc;
+	}
+	> div:nth-of-type(2){
+		border-top:1px solid #cccccc;
+	}
+}
+
+.grid_area_04_06_04 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 100px 640px;
+	grid-template-rows   : repeat(3, 22px) 60px;
+
+	> div:nth-of-type(1){
+		grid-area       :1/1/4/2;
+		display         : grid;
+		place-items     :center;
+	}
+	> div:nth-of-type(4){
+		grid-area            :2/2/3/4;
+		border-bottom-style  : none;
+	}
+	> div:nth-of-type(5){
+		grid-area            :3/2/4/4;
+		border-top-style     : none;
+	}
+	> div:nth-of-type(6){
+		display         : grid;
+		place-items     :center;
+	}
+	> div:nth-of-type(7){
+		grid-area  :4/2/5/4;
+	}
+}
+
+/* 保険契約者へのヒアリング*/
+.grid_area_04_07_01 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	margin-bottom        : 5px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 420px;
+	grid-template-rows   : repeat(3, 22px);
+
+	> div:nth-of-type(1){
+		grid-area   : 1/1/2/3;
+	}
+	> div:nth-of-type(2){
+		grid-area   : 1/3/2/6;
+	}
+	> div:nth-of-type(6){
+		grid-area   : 2/4/3/6;
+	}
+	> div:nth-of-type(8){
+		grid-area   : 3/2/4/4;
+	}
+}
+
+.grid_area_04_07_02 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 110px) 108px 312px;
+	grid-template-rows   : 22px 22px ;
+
+	> div:nth-of-type(1){
+		grid-area  :1/1/2/5;
+	}
+	> span.empty:nth-of-type(1){
+		grid-area  :1/5/2/7;
+	}
+}
+
+.grid_area_04_07_03{
+
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 740px;
+	grid-auto-rows:auto;
+
+	> div:nth-of-type(1){
+		grid-column:1;
+		grid-row-start  : 1;
+		grid-row-end    : 100;
+		display         : grid;
+		place-items     : center;
+	}
+	> div:not(:first-child){
+		height       : 22px;
+		grid-column  : 2/3;
+		border-right : 1px solid #cccccc;
+		border-top   : none;
+		border-bottom: none;
+	}
+	> div:last-child{
+		border-bottom:1px solid #cccccc;
+	}
+	> div:nth-of-type(2){
+		border-top:1px solid #cccccc;
+	}
+}
+
+.grid_area_04_07_04 {
+	margin-top           : 0px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 100px 640px;
+	grid-template-rows   : repeat(4, 22px) 60px;
+
+	> div:nth-of-type(1){
+		grid-area       :1/1/4/2;
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(4){
+		grid-area            :2/2/3/4;
+		border-bottom-style  : none;
+	}
+	> div:nth-of-type(5){
+		grid-area            :3/2/4/4;
+		border-top-style     : none;
+	}
+	> div:nth-of-type(7){
+		grid-area       :4/2/5/4;
+	}
+	> div:nth-of-type(8){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(9){
+		grid-area  :5/2/6/4;
+	}
+}
+
+/* 苦情／不祥事件情報*/
+.grid_area_04_08 {
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 420px 100px 210px 110px;
+	grid-template-rows   : 22px 22px;
+}
+
+/* 申請依頼情報*/
+.grid_area_04_09 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 110px 190px 440px;
+	grid-template-rows   : 22px 22px 5px 50px;
+
+	> span.empty:nth-of-type(2){
+		grid-area  :2/3/3/5;
+	}
+	> span.empty:nth-of-type(3){
+		grid-area: 3/1/4/5;
+	}
+	> div:nth-of-type(6){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(7){
+		grid-area  :4/2/5/5;
+	}
+}
+
+.grid_area_04_10 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: 100px 110px 100px 10px 50px 30px 440px;
+	grid-template-rows   : 22px 22px 5px 50px;
+
+	> span.empty:nth-of-type(4){
+		grid-area: 2/6/3/8;
+	}
+	> span.empty:nth-of-type(5){
+		grid-area:3/1/4/8;
+	}
+	> div:nth-of-type(10){
+		display         : grid;
+		place-items     : center;
+	}
+	> div:nth-of-type(11){
+		grid-area  :4/2/5/8;
+	}
+}
+
+.grid_area_04_11 {
+	margin-top           : 5px;
+	margin-left          : 18px;
+	display              : grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows   : 24px;
+	gap                  : 270px;
+
+	input{
+		width  : 100%;
+		height : 100%;
+	}
+}
+
+.approve_button {
+	background-color: #d99795;
+}
+
+/*******************************/
+/* ANA05: 照会・検索画面       */
+/*******************************/
+input.search_button_05 {
+    width: 60px;
+    height: 25px;
+}
+
+.grid_area_05_01{
+	margin-top           : 5px;
+	display              : grid;
+	grid-template-columns: repeat(2, 95px 105px) repeat(2, 135px 105px);
+	grid-template-rows   : repeat(12, 22px);
+
+	> div:nth-of-type(7){
+		grid-area: 1/7/2/9;
+	}
+	> div:nth-of-type(17){
+		grid-area  :3/2/4/5;
+	}
+	> div:nth-of-type(23){
+		grid-area  :4/2/5/5;
+	}
+	> div:nth-of-type(29){
+		grid-area  :5/2/6/5;
+	}
+	> div:nth-of-type(35){
+		grid-area  :6/2/7/5;
+	}
+	> div:nth-of-type(38){
+		grid-area: 6/7/7/9;
+	}
+	> div:nth-of-type(40){
+		grid-area  :7/2/8/9;
+	}
+	> div:nth-of-type(42){
+		grid-area  :8/2/9/9;
+	}
+	> div:nth-of-type(44){
+		grid-area  :9/2/10/7;
+	}
+	> div:nth-of-type(47){
+		grid-area  :10/1/11/3;
+	}
+	> div:nth-of-type(48){
+		grid-area  :10/3/11/9;
+	}
+	> div:nth-of-type(50){
+		grid-area  :11/2/12/9;
+	}
+	> div:nth-of-type(51){
+		grid-column  :span 2;
+	}
+	> div:nth-of-type(53){
+		grid-column  :span 2;
+	}
+
+}
+
+.flex_area_05_01 {
+	display              : flex;
+	height               : 26px;
+
+	> div:nth-of-type(1){
+		width  : 60px;
+		height : 100%;
+	}
+	> div:nth-of-type(2){
+		margin-left  : 338px;
+		width        : 120px;
+		height       : 100%;
+		display      : grid;
+		place-items  : center;
+	}
+	> div:nth-of-type(3){
+		width       : 108px;
+		height      : 100%;
+	}
+	> div:nth-of-type(4){
+		margin-left  : 4px;
+		height       : 100%;
+	}
+	> div:nth-of-type(5){
+		margin-left  : 10px;
+		> input{
+			height :22px;
+		}
+	}
+}
+
+.table_area_05{
+	overflow-y  : scroll;
+	height       : 225px;
+
+}
+
+.table_area_05 table {
+	border-collapse ; separate;
+	border-spacing  : 0;
+	width           : 100%;
+	table-layout    : fixed;
+}
+
+.table_area_05 th  {
+	position       : sticky;
+	height         : 14px;
+	vertical-align : bottom;
+	top            : 0;
+	left           : 0;
+
+}
+
+.row2_05 th{
+	top     : 15px;
+	!important;
+}
+
+.table_area_05 th ,
+.table_area_05 td {
+	white-space : nowrap;
+	overflow    : hidden;
+	padding     : 0;
+}
+
+.colgroup05 col:nth-child(1)  { width: 25px;}
+.colgroup05 col:nth-child(2)  { width: 62px;}
+.colgroup05 col:nth-child(3)  { width: 67px;}
+.colgroup05 col:nth-child(4)  { width: 95px;}
+.colgroup05 col:nth-child(5)  { width: 47px;}
+.colgroup05 col:nth-child(6)  { width: 85px;}
+.colgroup05 col:nth-child(7)  { width: 85px;}
+.colgroup05 col:nth-child(8)  { width: 85px;}
+.colgroup05 col:nth-child(9)  { width: 85px;}
+.colgroup05 col:nth-child(10) { width: 40px;}
+.colgroup05 col:nth-child(11) { width: 40px;}
+.colgroup05 col:nth-child(12) { width: 40px;}
+.colgroup05 col:nth-child(13) { width: 70px;}
+.colgroup05 col:nth-child(14) { width: 44px;}
+
+/*******************/
+/* ANA06: 集計画面 */
+/*******************/
+
+/* 基本情報 */
+.grid_area_06_01 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: repeat(3, 100px 110px) 230px;
+	grid-template-rows   : repeat(4, 22px);
+
+	> div:nth-of-type(2){
+		grid-area:1/2/2/8;
+	}
+	> div:nth-of-type(11){
+		grid-area:3/2/4/8;
+	}
+	> div:nth-of-type(13){
+		grid-area:4/2/5/8;
+	}
+}
+
+/* 申請案件 / 課支社確認案件 */
+.grid_area_06_02 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: 100px 760px;
+	grid-template-rows   : 22px;
+}
+
+/***************************/
+/* ANA07: 申請承認一覧画面 */
+/***************************/
+
+.grid_area_07_01 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: 100px 760px;
+	grid-template-rows   : 22px;
+}
+
+.search_button_07 {
+    height: 25px;
+}
+
+input.search_button_07 {
+    width: 60px;
+    height: 25px;
+}
+
+.notice_07 {
+    color: red;
+    font-family: 'ＭＳ Ｐゴシック';
+	font-size: 10pt;
+	height: 19px;
+}
+.char_right_07 {
+    font-family: 'ＭＳ Ｐゴシック';
+	font-size: 10pt;
+	height: 19px;
+	text-align: right;
+}
+
+.table_area_07{
+	overflow-y  : scroll;
+	height       : 350px;
+
+}
+
+.table_area_07 table {
+	border-collapse : separate;
+	border-spacing  : 0;
+	width           : 100%;
+	table-layout    : fixed;
+}
+
+.table_area_07 th  {
+	position       : sticky;
+	height         : 14px;
+	vertical-align : bottom;
+	top            : 0;
+	left           : 0;
+}
+
+.table_area_07 th ,
+.table_area_07 td {
+	white-space : nowrap;
+	overflow    : hidden;
+	padding     : 0;
+}
+
+.colgroup07 col:nth-child(1)  { width: 25px;}
+.colgroup07 col:nth-child(2)  { width: 57px;}
+.colgroup07 col:nth-child(3)  { width: 57px;}
+.colgroup07 col:nth-child(4)  { width: 61px;}
+.colgroup07 col:nth-child(5)  { width: 95px;}
+.colgroup07 col:nth-child(6)  { width: 46px;}
+.colgroup07 col:nth-child(7)  { width: 95px;}
+.colgroup07 col:nth-child(8)  { width: 46px;}
+.colgroup07 col:nth-child(9)  { width: 77px;}
+.colgroup07 col:nth-child(10) { width: 65px;}
+.colgroup07 col:nth-child(11) { width: 77px;}
+.colgroup07 col:nth-child(12) { width: 65px;}
+.colgroup07 col:nth-child(13) { width: 30px;}
+.colgroup07 col:nth-child(14) { width: 30px;}
+.colgroup07 col:nth-child(15) { width: 44px;}
+
+/*****************************/
+/* ANA08: 申請・確認一覧画面 */
+/*****************************/
+
+.grid_area_08_01 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: repeat(2, 100px 115px) 120px 290px;
+	grid-template-rows   : repeat(2, 22px);
+
+	> div:nth-of-type(8){
+		grid-area:2/2/3/7;
+	}
+}
+
+.grid_area_08_02 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: 100px 330px 120px 290px;
+	grid-template-rows   : repeat(3, 22px);
+
+	> div:nth-of-type(2){
+		grid-area:1/2/2/5;
+	}
+	> div:nth-of-type(4){
+		grid-area:2/2/3/5;
+	}
+}
+
+.grid_area_08_03 {
+	margin-top           : 8px;
+	margin-left          : 8px;
+	display              : grid;
+	grid-template-columns: 100px 330px 120px 105px 100px 85px;
+	grid-template-rows   : repeat(3, 22px);
+
+	> div:nth-of-type(2){
+		grid-area:1/2/2/7;
+	}
+	> div:nth-of-type(6){
+		grid-area:2/4/3/7;
+	}
+}
+
+.flex_area_08_01 {
+	display              : flex;
+	height               : 26px;
+
+	> div:nth-of-type(1){
+		width  : 60px;
+		height : 100%;
+	}
+	> div:nth-of-type(2){
+		width:818px;
+		text-align: right;
+	}
+}
+
+input.search_button_08 {
+    width: 60px;
+    height: 25px;
+}
+
+.gyoumu_help_area_08 {
+    border-width: 0px;
+    display: none;
+    margin-top: 10px;
+
+    > iframe{
+    	width : 878px;
+    	height: 222px;
+    }
+}
+
+.helpLink_08 {
+    text-decoration: underline;
+    color: #0000FF;
+    cursor: pointer;
+}
+
+.table_area_08{
+	overflow-y  : scroll;
+	height       : 220px;
+
+}
+
+.table_area_08 table {
+	border-collapse : separate;
+	border-spacing  : 0;
+	width          : 100%;
+	table-layout   : fixed;
+}
+
+.table_area_08 th  {
+	position       : sticky;
+	height         : 14px;
+	vertical-align : bottom;
+	top            : 0;
+	left           : 0;
+
+}
+
+.row2_08 th{
+	top     : 15px;
+	!important;
+}
+
+.table_area_08 th ,
+.table_area_08 td {
+	white-space : nowrap;
+	overflow    : hidden;
+	padding     : 0;
+}
+
+.colgroup08 col:nth-child(1)  { width: 25px;}
+.colgroup08 col:nth-child(2)  { width: 62px;}
+.colgroup08 col:nth-child(3)  { width: 62px;}
+.colgroup08 col:nth-child(4)  { width: 95px;}
+.colgroup08 col:nth-child(5)  { width: 46px;}
+.colgroup08 col:nth-child(6)  { width: 85px;}
+.colgroup08 col:nth-child(7)  { width: 85px;}
+.colgroup08 col:nth-child(8)  { width: 85px;}
+.colgroup08 col:nth-child(9)  { width: 35px;}
+.colgroup08 col:nth-child(10) { width: 35px;}
+.colgroup08 col:nth-child(11) { width: 60px;}
+.colgroup08 col:nth-child(12) { width: 85px;}
+.colgroup08 col:nth-child(13) { width: 35px;}
+.colgroup08 col:nth-child(14) { width: 35px;}
+.colgroup08 col:nth-child(14) { width: 35px;}
+
+/*****************************/
+/* ANA10: 担当者検索画面     */
+/*****************************/
+
+.grid_area_10_01 {
+	margin-top           : 8px;
+	display              : grid;
+	grid-template-columns: repeat(2, 130px);
+	grid-template-rows   : repeat(2, 22px);
+
+	> div:nth-of-type(odd){
+		text-align : left;
+	}
+}
+
+.search_button_10 {
+	height: 25px;
+	width: 60px;
+	margin:left: 0px;
+	margin-right: 2px;
+}
+
+input.search_button_10 {
+	width: 60px;
+	height: 25px;
+}
+
+.table_area_10 table {
+	border-collapse : separate;
+	border-spacing  : 0;
+	width          : 100%;
+	table-layout   : fixed;
+}
+
+.table_area_10 th ,
+.table_area_10 td {
+	white-space : nowrap;
+	overflow    : hidden;
+	padding     : 0;
+}
+
+.colgroup10 col:nth-child(1)  { width:40px ;}
+.colgroup10 col:nth-child(2)  { width:90px ;}
+.colgroup10 col:nth-child(3)  { width:160px;}
+.colgroup10 col:nth-child(4)  { width:130px;}
+.colgroup10 col:nth-child(5)  { width:60px ;}
+
+/********************************/
+/* ANA11: 送信先（写）選択画面  */
+/********************************/
+
+.flex_area_11_01{
+	display : flex;
+	> div:nth-of-type(1){
+		margin-right : 10px;
+	}
+}
+
+.flex_area_11_02{
+	display    : flex;
+	margin-top : 5px;
+	> div:nth-of-type(1){
+		width        : 480px;
+		margin-right : 10px;
+	}
+	> div:nth-of-type(2){
+		width        : 300px;
+		margin-right : 10px;
+	}
+}
+
+.grid_area_11_01 {
+	margin-top           : 8px;
+	display              : grid;
+	grid-template-columns: repeat(2, 130px);
+	grid-template-rows   : repeat(2, 22px);
+
+	> div:nth-of-type(odd){
+		text-align : left;
+	}
+}
+
+.search_button_11 {
+	height: 25px;
+	width: 60px;
+	margin:left: 0px;
+	margin-right: 2px;
+}
+
+input.search_button_11 {
+	width: 60px;
+	height: 25px;
+}
+
+.grid_area_11_02 {
+	margin-top           : 8px;
+	display              : grid;
+	grid-template-columns: auto;
+	grid-template-rows   : repeat(4, 19px);
+
+	> div:nth-of-type(odd){
+		text-align : left;
+	}
+}
+
+.gyoumu_line_11{
+	margin-top    : 5px;
+	margin-bottom : 10px;
+	width         : 795px;
+	color         : #000066;
+	text-align    : center;
+}
+
+.table_area_11 table {
+	margin-top      :10px;
+	border-collapse : separate;
+	border-spacing  : 0;
+	width          : 100%;
+	table-layout   : fixed;
+}
+
+.table_area_11 th ,
+.table_area_11 td {
+	white-space : nowrap;
+	overflow    : hidden;
+	padding     : 0;
+}
+
+.colgroup11 col:nth-child(1)  { width:40px ;}
+.colgroup11 col:nth-child(2)  { width:90px ;}
+.colgroup11 col:nth-child(3)  { width:160px;}
+.colgroup11 col:nth-child(4)  { width:130px;}
+.colgroup11 col:nth-child(5)  { width:60px ;}
+
+.title_area_11{
+	margin-top :13px;
+	height     :19px;
+}
+
+.input_area_11{
+	height:230px;
+}
+
+/************/
+/* 閉局画面 */
+/************/
+.body_heikyoku {
+	background-color: #ffffff;
+	font-size       : 10pt;
+	font-family     : "ＭＳ Ｐ明朝", serif;
+	color           : #343434;
+	margin          : 0px;
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
+	width           : 100vw;
+	height          : 100vh;
+}
+
+.wrapperHeikyoku {
+	width  : 640px;
+	height : 150px;
+	display: flex;
+}
+
+.wrapperHeikyoku > .item:nth-child(1) {
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
+	padding         : 10px;
+	background-color: #746c65;
+	width           : 220px;
+
+	> span {
+		font-size: 40pt;
+		color    : #f0f0f0;
+	}
+
+	.color_red {
+		color: #ff0000;
+	}
+}
+
+.wrapperHeikyoku > .item:nth-child(2) {
+	display        : flex;
+	flex-direction : column;
+	justify-content: space-evenly;
+	padding        : 10px;
+	border         : 1px solid #746c65;
+	width          : 420px;
+	text-align     : center;
+
+	> div:nth-child(1) {
+		font-size     : 20pt;
+		letter-spacing: 0.5rem;
+		font-weight   : bold;
+	}
+
+	> div:nth-child(2) {
+		font-family: "ＭＳ 明朝";
+	}
+
+	> div:nth-child(3) {
+		font-family: "ＭＳ 明朝";
+		text-align : right;
+	}
+}
+
+a.heikyoku_close:link,
+a.heikyoku_close:visited {
+	text-decoration-line: none;
+	color               : #343434;
+}
+
+a.heikyoku_close:hover {
+	text-decoration-line: underline;
+	color               : #ff0080;
+}

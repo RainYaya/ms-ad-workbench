@@ -61,7 +61,8 @@
       "detailNo": "0000000011",
       "item": "種目共通",
       "largeItemValue": "Z",
-      "insuranceLabel": "00 ： 種目共通"
+      "insuranceLabel": "00 ： 種目共通",
+      "inputType": "5"
     },
     "AZ-110-01-012": {
       "routeId": "AZ-R112",
@@ -71,7 +72,8 @@
       "detailNo": "0000000012",
       "item": "その他",
       "largeItemValue": "0",
-      "insuranceLabel": "00 ： その他"
+      "insuranceLabel": "00 ： その他",
+      "inputType": "9"
     }
   }
 }

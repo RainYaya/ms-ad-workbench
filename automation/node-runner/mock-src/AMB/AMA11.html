@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script>
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+// 画面ロード時の初期処理
+function custom_bodyLoad() {
+    commonBodyOnload();
+	var	form = document.mhk_MHKPRForm;
+
+	document.images['title_logo'].src = form.logo_pass.value;
+
+	var	gyoumu_list = document.getElementById('gyoumu_list');
+	// 件数0件の場合における検索結果欄の非表示制御
+	if ( parseInt(form.totalCount.value) == 0 ) {
+		gyoumu_list.style.visibility = "hidden";
+	}
+	else {
+		gyoumu_list.style.visibility = "visible";
+	}
+	// 前頁ボタン制御(ページ番号 > 1のみ表示)
+	if ( parseInt(form.pageNumber.value) > 1 ) {
+		form.prevPage.style.visibility = "visible";
+	}
+	else {
+		form.prevPage.style.visibility = "hidden";
+	}
+	// 次ページボタン制御(ページ番号 > 1のみ表示)
+	if ( parseInt(form.totalPage.value) > parseInt(form.pageNumber.value) ) {
+		form.nextPage.style.visibility = "visible";
+	}
+	else {
+		form.nextPage.style.visibility = "hidden";
+	}
+	var	intervals = document.getElementById('locationReloadIntervals').value;
+	setTimeout('reload()', intervals);
+}
+
+function reload() {
+    var hiddenButton = document.mhk_MHKPRForm.hiddenButtonForReload;
+    if(hiddenButton != null) {
+        hiddenButton.click();
+    }
+}
+
+// 検索(前頁、次頁、完了登録含む)のバリデート
+function searchValidate() {
+	var form = document.mhk_MHKPRForm;
+	// 予約番号
+	if ( !isLenB(form, form.reserve_no_key, 12, '') ||
+		 !isAlphaNumeric(form, form.reserve_no_key, '') ) {
+		return false;
+	}
+	return true;
+}
+
+function custom_Submit(form) {
+	// 終了ボタン押下
+	if ( clickButtonName == '204toClose' ) {
+		if ( window.confirm('') ) {
+			return true;
+		} else {
+			return false;
+		}
+	} else if (	clickButtonName == 'select'		||
+				clickButtonName == 'nextPage'	||
+				clickButtonName == 'prevPage') {
+		// メッセージエリアのメッセージをクリア
+		document.getElementById('message_area').innerText = '';
+		// 検索条件のバリデートを実行
+		return searchValidate();
+	} else {
+		// 削ボタン、再実行、ダウンロード押下時は予約番号、ファイル名を設定する
+		if (clickButtonName != null && clickButtonName != "" && clickButtonName != "act204to001"
+				&& clickButtonName != "act204to103" && clickButtonName != "close" && clickButtonName != "link103") {
+			// メッセージエリアのメッセージをクリア
+		    document.getElementById('message_area').innerText = '';
+			var indexNo = getNameToIndexNo(clickButtonName);
+			if ( !isNaN(indexNo) ) {
+				var	form = document.mhk_MHKPRForm;
+		    	form.selected_reserve_no.value = form['tableRecordList[' + indexNo + '].reserve_no'].value;
+		    	form.selected_file_name.value = form['tableRecordList[' + indexNo + '].file_name'].value;
+		    	var selectKey = '「reserve_no='+form['tableRecordList[' + indexNo + '].reserve_no'].value;
+		    	selectKey = selectKey + ',total_year_month_from='+form['tableRecordList[' + indexNo + '].total_year_month_from'].value;
+		    	selectKey = selectKey + ',total_year_month_to='+form['tableRecordList[' + indexNo + '].total_year_month_to'].value;
+		    	selectKey = selectKey + ',large_item_code='+form['tableRecordList[' + indexNo + '].large_item_code'].value;
+		    	selectKey = selectKey + ',large_item_remove='+form['tableRecordList[' + indexNo + '].large_item_remove'].value;
+		    	selectKey = selectKey + ',input_type_flag='+form['tableRecordList[' + indexNo + '].input_type_flag'].value;
+		    	selectKey = selectKey + ',application_form_type_flag='+form['tableRecordList[' + indexNo + '].application_form_type_flag'].value;
+		    	selectKey = selectKey + ',total_unit_flag='+form['tableRecordList[' + indexNo + '].total_unit_flag'].value;
+		    	selectKey = selectKey + ',output_target_flag='+form['tableRecordList[' + indexNo + '].output_target_flag'].value;
+		    	selectKey = selectKey + '」';
+		    	form.select_key.value = selectKey;
+		    }
+		    // 削除ボタン押下時
+			if (clickButtonName.length > 6 && clickButtonName.slice(0,6) == 'delete') {
+				// 確認ダイアログ
+				if (window.confirm('')) {
+					return true;
+				} else {
+					// キャンセル選択
+					return false;
+				}
+			}
+			else if(clickButtonName.length > 8 && clickButtonName.slice(0,8) == 'download') {
+				// アクティブなボタンからフォーカスをはずす
+				document.activeElement.blur();
+			}
+		}
+		return true;
+	}
+}
+
+// 「削」ボタンsubmit
+function submitDelete() {
+    var hiddenButton = document.mhk_MHKPRForm.hiddenButtonForDelete;
+    if(hiddenButton != null) {
+    	hiddenButton.click();
+    }
+}
+
+//「再実行」ボタンsubmit
+function submitUpdate() {
+    var hiddenButton = document.mhk_MHKPRForm.hiddenButtonForUpdate;
+    if(hiddenButton != null) {
+    	hiddenButton.click();
+    }
+}
+
+//「ﾀﾞｳﾝﾛｰﾄﾞ」ボタンsubmit
+function submitDownload() {
+    var hiddenButton = document.mhk_MHKPRForm.hiddenButtonForDownload;
+    if(hiddenButton != null) {
+    	hiddenButton.click();
+    }
+}
+
+//「No」リンクsubmit
+function submitLink103(value) {
+    // テーブルキーを設定
+    document.mhk_MHKPRForm.totalReserveKeyName.value = value;
+    var hiddenButton = document.mhk_MHKPRForm.hiddenButtonForLink103;
+    if(hiddenButton != null) {
+    	hiddenButton.click();
+    }
+}
+
+</script>
+</head>
+<body class="body_common" onload="custom_bodyLoad()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG204(this,null);">
+  <input type="hidden" />
+  <!--/* タイトルエリア */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br/>
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA11" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA11" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <!--/* 業務固有領域 */-->
+  <input type="hidden" id="logo_pass" name="logo_pass" />
+
+  <input type="hidden" id="pageNumber" name="pageNumber" />
+  <input type="hidden" id="pageSize" name="pageSize" />
+  <input type="hidden" id="totalPage" name="totalPage" />
+  <input type="hidden" id="totalCount" name="totalCount" />
+  <input type="hidden" id="locationReloadIntervals" name="locationReloadIntervals" />
+  <input type="hidden" id="selectKey" name="selectKey" />
+  <input type="hidden" id="selected_reserve_no" name="selected_reserve_no" />
+  <input type="hidden" id="selected_file_name" name="selected_file_name" />
+  <input type="hidden" id="select_key" name="select_key" />
+
+  <!--/* 検索条件領域 */-->
+  <div id="gyoumu_area">
+
+    <div class="wrapper11 gyoumu_area">
+      <div class="item">
+        <div class="gyoumu_field_title">予約番号</div>
+        <div class="gyoumu_field_value gyoumu_field_control gyoumu_field_control_style">
+          <input type="text" id="reserve_no" name="reserve_no_key"  class="gyoumu_field_control" maxlength="12" onblur="toUpper(this);" tabindex="1">
+        </div>
+        <div class="gyoumu_field_title">ステータス</div>
+        <div class="gyoumu_field_value_left gyoumu_field_control gyoumu_field_control_style">
+          <input type="checkbox" id="status_1" name="status_1" value="00" tabindex="2" />1
+          <input type="checkbox" id="status_2" name="status_2" value="10" tabindex="3" />1
+          <input type="checkbox" id="status_3" name="status_3" value="20" tabindex="4" />1
+          <input type="checkbox" id="status_4" name="status_4" value="21" tabindex="5" />1
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="button_width_60">
+          <input type="submit" class="button_area_button" id="select" name="select" onclick="clickButton(this)" value="検索" tabindex="6" formaction="/AMA11/aZG204Select">
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="color_red">※予約を行った情報のみ表示されます。 <br/>　 ダウンロード完了後は、すみやかに削除してください。（「削」ボタンを押下）</div>
+        <div class="gyoumu_search_count">
+          1/1ページ　検索結果1件
+        </div>
+      </div>
+
+        <!--/* 検索結果領域 */-->
+        <div class="sticky_table_wrapper size_table11">
+          <table id="table11" class="sticky_table">
+            <colgroup class="colgroup11">
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+            </colgroup>
+            <thead>
+              <tr class="sticky_table_thead_tr">
+                <th class="sticky_table_title" rowspan="2">削<br />除</th>
+                <th class="sticky_table_title" rowspan="2">No.</th>
+                <th class="sticky_table_title" rowspan="2">予約番号</th>
+                <th class="sticky_table_title" rowspan="2">受付時間</th>
+                <th class="sticky_table_title" rowspan="2">完了時間</th>
+                <th class="sticky_table_title" colspan="3">親代理店</th>
+                <th class="sticky_table_title" rowspan="2">ステータス</th>
+                <th class="sticky_table_title" rowspan="2">1</th>
+              </tr>
+              <tr class="sticky_table_thead_tr">
+                <th class="sticky_table_title">部店課<br />支社ｺｰﾄﾞ</th>
+                <th class="sticky_table_title">代理店<br />ｺｰﾄﾞ</th>
+                <th class="sticky_table_title">代理店名</th>
+              </tr>
+            </thead>
+            <tbody id="gyoumu_list">
+              
+                <tr>
+                  <td class="sticky_table_value gyoumu_field_value">
+                    <input type="submit" id="delete" onclick="clickButton(this);submitDelete();return false;" class="gyoumu_field_control" value="削" />
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    <div align="center">
+                      <a href="javascript:void(0);" name="link103">
+                        1
+                      </a>
+                    </div>
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value">
+                    1
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  
+                    <td class="sticky_table_value">
+                      <input type="submit" id="update" onclick="clickButton(this);submitUpdate();return false;" class="gyoumu_field_control" value="再実行" formaction="/AMA11/" />
+                    </td>
+                  
+                  
+                    <td class="sticky_table_value">
+                      <input type="submit" id="download" onclick="clickButton(this);submitDownload();return false;" class="gyoumu_field_control" value="ﾀﾞｳﾝﾛｰﾄﾞ" formaction="/AMA11/" />
+                    </td>
+                  
+                </tr>
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+              
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+  </div>
+
+  <!--/* ボタンエリア */-->
+  <div class="button_area size_button_area11">
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act204to001" name="act204to001" onclick="clickButton(this)"
+          value="メニュー" formaction="/AMA11/aZG204To01">
+    </div>
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act204to103" name="act204to103" onclick="clickButton(this)"
+          value="予約" formaction="/AMA11/aZG204To06">
+    </div>
+    <div class="button_width_60">
+      <input type="submit" class="button_area_button" id="prevPage" name="prevPage" onclick="clickButton(this)"
+          value="前 頁" formaction="/AMA11/aZG204PrevPage">
+    </div>
+    <div class="button_width_60">
+      <input type="submit" class="button_area_button" id="nextPage" name="nextPage" onclick="clickButton(this)"
+          value="次 頁" formaction="/AMA11/aZG204NextPage">
+    </div>
+    <div class="button_width_60">
+      <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+    </div>
+  </div>
+
+  <!--/* リロード用hiddenボタン */-->
+  <input type="submit" id="hiddenButtonForReload" name="hiddenButtonForReload" formaction="/AMA11/aZG204Location" class="display_none" >
+  <!--/* 削除用hiddenボタン */-->
+  <input type="submit" id="hiddenButtonForDelete" name="hiddenButtonForDelete" formaction="/AMA11/aZG204Delete" class="display_none" >
+  <!--/* 更新（再実行）用hiddenボタン */-->
+  <input type="submit" id="hiddenButtonForUpdate" name="hiddenButtonForUpdate" formaction="/AMA11/aZG204Update" class="display_none" >
+  <!--/* ﾀﾞｳﾝﾛｰﾄﾞ用hiddenボタン */-->
+  <input type="submit" id="hiddenButtonForDownload" name="hiddenButtonForDownload" formaction="/AMA11/aZG204Download" class="display_none" onclick="sdeDisableCheckSubmitOnce()">
+  <!--/* Noリンク用hiddenボタン */-->
+  <input type="hidden" id="total_reserve_key_name" name="totalReserveKeyName" />
+  <input type="submit" id="hiddenButtonForLink103" name="hiddenButtonForLink103" formaction="/AMA11/aZG204To06" class="display_none" >
+  <input type="submit" id="close" name="close" formaction="/AMA11/close" class="display_none" >
+</form>
+</body>
+
+</html>

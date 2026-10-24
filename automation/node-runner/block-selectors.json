@@ -175,7 +175,7 @@
    {
     "event": "ast 遷移 募集人検索",
     "action": "popup",
-    "match": "AZG905|agent.html"
+    "match": "AZG905|agent.html|AMA18"
    },
    {
     "event": "input 部店課支社コード",
@@ -189,6 +189,13 @@
     "action": "fill",
     "selector": "#agent_code_key",
     "value": "params.agentCode",
+    "in": "popup"
+   },
+   {
+    "event": "input 募集人ID",
+    "action": "fill",
+    "selector": "#field_agent_id_key",
+    "value": "params.fieldAgentId",
     "in": "popup"
    },
    {
@@ -225,6 +232,194 @@
     "selector": "#field_agent_id",
     "equals": "params.fieldAgentId",
     "in": null
+   }
+  ]
+ },
+ "BLK-AZ-REGISTER-UPDATE": {
+  "screen": "AZG100→AZG101",
+  "steps": [
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "#regist"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ },
+ "BLK-AZ-UPDATE-SEARCH-ITEM": {
+  "screen": "AZG101→AZG900",
+  "steps": [
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "input[name=\"imperfectSearch[0]\"]"
+   },
+   {
+    "event": "ast 遷移 項目名検索",
+    "action": "popup",
+    "match": "AMA13|aZG900"
+   }
+  ]
+ },
+ "BLK-AZ-ITEM-SEARCH-SELECT": {
+  "screen": "AZG900",
+  "steps": [
+   {
+    "event": "inputBundle 項目コード",
+    "action": "fill",
+    "selector": "select[name=\"field_list.selected\"]",
+    "value": "params.itemCode",
+    "how": "selectByLabelPrefix",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "input[name=\"search\"]",
+    "in": "popup"
+   },
+   {
+    "event": "ast 検索結果",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "select[name=\"field_list.selected\"] option",
+    "min": 1,
+    "in": "popup"
+   },
+   {
+    "event": "click 選択",
+    "action": "click",
+    "selector": "input[name=\"select\"]",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ },
+ "BLK-AZ-INQUIRY-EDIT": {
+  "screen": "AZG101+AZG902",
+  "steps": [
+   {
+    "event": "click 照会内容チェックボックス",
+    "action": "check",
+    "selector": "input[name=\"list[0].inquiry_contents_edit_flag\"]"
+   },
+   {
+    "event": "enable 修",
+    "action": "enable",
+    "selector": "input[name=\"editInquiryContents[0]\"]"
+   },
+   {
+    "event": "click 修",
+    "action": "click",
+    "selector": "input[name=\"editInquiryContents[0]\"]"
+   },
+   {
+    "event": "ast 遷移 照会内容編集",
+    "action": "popup",
+    "match": "AMA15|aZG902"
+   },
+   {
+    "event": "inputBundle 各項目",
+    "action": "fill",
+    "selector": "textarea",
+    "value": "params.editedInquiryContent",
+    "in": "popup"
+   },
+   {
+    "event": "click OK",
+    "action": "click",
+    "selector": "input[name=\"ok\"], input[value=\"　ＯＫ　\"]",
+    "in": "popup"
+   },
+   {
+    "event": "ast 反映確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ },
+ "BLK-AZ-CORRECTION-CONFIRM": {
+  "screen": "AZG101+AZG906",
+  "steps": [
+   {
+    "event": "click 訂正内容確認書",
+    "action": "click",
+    "selector": "input[name=\"act101to906\"]"
+   },
+   {
+    "event": "ast 遷移 訂正内容確認",
+    "action": "popup",
+    "match": "AMA19|aZG906"
+   },
+   {
+    "event": "input 確認者",
+    "action": "fill",
+    "selector": "input[name=\"confirm_user_name\"]",
+    "value": "params.confirmer",
+    "in": "popup"
+   },
+   {
+    "event": "input 確認相手",
+    "action": "fill",
+    "selector": "input[name=\"confirm_target_name\"]",
+    "value": "params.counterparty",
+    "in": "popup"
+   },
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "input[name=\"regist\"]",
+    "in": "popup",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
+   }
+  ]
+ },
+ "BLK-AZ-COMPLETE-REGISTER": {
+  "screen": "AZG101",
+  "steps": [
+   {
+    "event": "click 完了登録",
+    "action": "click",
+    "selector": "input[name=\"updateCompleteDate\"]",
+    "force": true
+   },
+   {
+    "event": "ast エラーメッセージ MAZG101W047",
+    "action": "assert",
+    "assert": "text",
+    "selector": "body",
+    "contains": "MAZG101W047",
+    "note": "mock无后端消息，真SUT断言",
+    "optional": true
+   },
+   {
+    "event": "click 更新",
+    "action": "click",
+    "selector": "input[name=\"update\"]",
+    "force": true
+   },
+   {
+    "event": "ast 営業対応状況 未対応",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
    }
   ]
  }

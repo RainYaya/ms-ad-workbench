@@ -48,9 +48,9 @@ try {
   await page.waitForSelector('#act001to100', { timeout: 120000 }); // login is manual on the SUT
   await shot('menu');
 
+  let popup = null; // case-scoped: popups opened in one block persist to the next
   for (const [blockId, blk] of Object.entries(SEL)) {
     console.log(`-- ${blockId}`);
-    let popup = null;
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
       const where = step.in === 'popup' ? popup : page;
@@ -58,15 +58,37 @@ try {
       const target = needsTarget && where ? where.locator(sel(step.selector)).first() : null;
       switch (step.action) {
         case 'click':
-          await target.click({ timeout: 15000 });
+          if (step.force) {
+            await target.evaluate((el) => { el.disabled = false; el.click(); });
+          } else {
+            await target.click({ timeout: 15000 });
+          }
           break;
         case 'fill':
           if (step.how === 'select') {
             await target.selectOption(String(resolveP(step.value)));
+          } else if (step.how === 'selectByLabelPrefix') {
+            const opts = await target.locator('option').all();
+            const norm = (t) => String(t ?? '').replace(/\s+/g, '').replace(/：/g, ':');
+            const want = norm(resolveP(step.value));
+            let hit = null;
+            for (const o of opts) { const t = norm(await o.textContent()); if (t && (t.startsWith(want) || want.startsWith(t))) { hit = await o.getAttribute('value'); break; } }
+            if (hit == null) throw new Error(`option prefix not found: ${want}`);
+            await target.selectOption(hit);
           } else {
             await target.fill(String(resolveP(step.value) ?? ''), { timeout: 10000 });
           }
           break;
+        case 'selectByLabelPrefix': {
+          const opts = await target.locator('option').all();
+          const norm2 = (t) => String(t ?? '').replace(/\s+/g, '').replace(/：/g, ':');
+          const want2 = norm2(resolveP(step.value));
+          let hit2 = null;
+          for (const o of opts) { const t = norm2(await o.textContent()); if (t && (t.startsWith(want2) || want2.startsWith(t))) { hit2 = await o.getAttribute('value'); break; } }
+          if (hit2 == null) throw new Error(`option prefix not found: ${want2}`);
+          await target.selectOption(hit2);
+          break;
+        }
         case 'selectOptionByLabel': {
           const opts = await target.locator('option').all();
           const norm = (t) => t.replace(/\s+/g, '').replace(/\uFF1A/g, ':');
@@ -77,6 +99,12 @@ try {
           await target.selectOption(hit);
           break;
         }
+        case 'enable':
+          await target.evaluate((el) => { el.disabled = false; });
+          break;
+        case 'check':
+          await target.check({ timeout: 10000 });
+          break;
         case 'popup': {
           const find = () => context.pages().find(p => {
             const u = p.url();

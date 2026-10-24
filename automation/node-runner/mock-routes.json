@@ -1,0 +1,904 @@
+{
+  "generatedAt": "2026-10-24",
+  "routes": {
+    "AMA01/aZG001To03": {
+      "next": "/AMB/AMA03.html",
+      "guess": false,
+      "why": "ボタン「新規登録」(act001to100) → 入力画面 AMA03"
+    },
+    "AMA01/aZG001To06": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "id act001to103 → 103=AMA06 予約登録"
+    },
+    "AMA01/aZG001To07": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "id act001to200 → 200=AMA07 一覧"
+    },
+    "AMA01/aZG001To08": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "id act001to201 → 201=AMA08 集計"
+    },
+    "AMA01/aZG001To26": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "id act001to207 → 207=AMA26"
+    },
+    "AMA01/close": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "close: 画面閉じるのみ（mock は自画面再表示）"
+    },
+    "AMA03/aZG100Regist": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "登録 → 更新画面 AMA04（block 6 と一致）"
+    },
+    "AMA03/aZG100To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "AMA03/aZG100To07": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "ボタン「一覧画面」→ 200=AMA07"
+    },
+    "AMA03/close": {
+      "next": "/AMB/AMA03.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA04/aZG101CancelCompleteDate": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "完了取消 → 自画面再表示"
+    },
+    "AMA04/aZG101CopyRegist": {
+      "next": "/AMB/AMA03.html",
+      "guess": true,
+      "why": "コピー登録 → 新規入力画面 AMA03 へコピー（要复核）"
+    },
+    "AMA04/aZG101Delete": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "削除 → 自画面再表示"
+    },
+    "AMA04/aZG101DownloadFile": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "ファイルダウンロード(hidden) → 自画面"
+    },
+    "AMA04/aZG101Initial": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "初期化(hidden) → 自画面再表示"
+    },
+    "AMA04/aZG101Print": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "印刷 → 自画面"
+    },
+    "AMA04/aZG101PrintInvoice": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "送り状印刷 → 自画面"
+    },
+    "AMA04/aZG101PrintInvoicePDF": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "送り状PDF(hidden) → 自画面"
+    },
+    "AMA04/aZG101To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "メニューへ"
+    },
+    "AMA04/aZG101To03": {
+      "next": "/AMB/AMA03.html",
+      "guess": false,
+      "why": "ボタン「入力画面」"
+    },
+    "AMA04/aZG101To07": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "ボタン「一覧画面」→ 200=AMA07"
+    },
+    "AMA04/aZG101Update": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "更新 → 更新画面自画面再表示"
+    },
+    "AMA04/aZG101UpdateAgentNotify": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "代理店通知更新(hidden) → 自画面"
+    },
+    "AMA04/aZG101UpdateAnswer": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "回答更新 → 自画面"
+    },
+    "AMA04/aZG101UpdateBusinessNotify": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "営業通知更新(hidden) → 自画面"
+    },
+    "AMA04/aZG101UpdateCompleteDate": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "完了登録 → 自画面再表示"
+    },
+    "AMA04/aZG101UpdateNotifyCancel": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "通知取消 → 自画面"
+    },
+    "AMA04/close": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA06/aZG103Delete": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "削除 → 自画面再表示"
+    },
+    "AMA06/aZG103Feasible": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "実行可能判定(hidden) → 自画面"
+    },
+    "AMA06/aZG103Regist": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "予約実行 → 自画面再表示"
+    },
+    "AMA06/aZG103To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "AMA06/aZG103To11": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "ボタン「状況確認」→ 204=AMA11"
+    },
+    "AMA06/close": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA07/aZG200NextPage": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "AMA07/aZG200OutputCSV": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "検索結果出力 → 自画面"
+    },
+    "AMA07/aZG200PrevPage": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "AMA07/aZG200Select": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "検索 → 一覧自画面再表示"
+    },
+    "AMA07/aZG200To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "AMA07/aZG200To03": {
+      "next": "/AMB/AMA03.html",
+      "guess": false,
+      "why": "ボタン「入力画面」"
+    },
+    "AMA07/aZG200To04": {
+      "next": "/AMB/AMA04.html",
+      "guess": false,
+      "why": "id act200to101（No.リンク）→ 101=AMA04 更新画面"
+    },
+    "AMA07/aZG200UpdateCompleteDate": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "一覧から完了登録 → 自画面"
+    },
+    "AMA07/close": {
+      "next": "/AMB/AMA07.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA08/aZG201OutputSumupContents": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "集計出力 → 自画面"
+    },
+    "AMA08/aZG201OutputSumupField": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "集計出力 → 自画面"
+    },
+    "AMA08/aZG201OutputSumupFieldAgent": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "集計出力 → 自画面"
+    },
+    "AMA08/aZG201OutputSumupFreeCode": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "集計出力 → 自画面"
+    },
+    "AMA08/aZG201OutputSumupRegistCount": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "集計出力 → 自画面"
+    },
+    "AMA08/aZG201To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "メニューへ"
+    },
+    "AMA08/close": {
+      "next": "/AMB/AMA08.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA11/": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "JS submit（download/再実行）→ 自画面"
+    },
+    "AMA11/aZG204Delete": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "削除(hidden) → 自画面"
+    },
+    "AMA11/aZG204Download": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "ダウンロード(hidden) → 自画面"
+    },
+    "AMA11/aZG204Location": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "再読込(hidden) → 自画面"
+    },
+    "AMA11/aZG204NextPage": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "AMA11/aZG204PrevPage": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "AMA11/aZG204Select": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "検索 → 自画面"
+    },
+    "AMA11/aZG204To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "AMA11/aZG204To06": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "ボタン「予約」/ id hiddenButtonForLink103 → 103=AMA06"
+    },
+    "AMA11/aZG204Update": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "更新(hidden) → 自画面"
+    },
+    "AMA11/close": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA12/aZG301To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "id act301to001 → メニュー AMA01"
+    },
+    "AMA12/aZG301To06": {
+      "next": "/AMB/AMA06.html",
+      "guess": false,
+      "why": "id act301to103 → AMA06"
+    },
+    "AMA12/aZG301To11": {
+      "next": "/AMB/AMA11.html",
+      "guess": false,
+      "why": "id act301to204 → AMA11"
+    },
+    "AMA12/close": {
+      "next": "/AMB/AMA12.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA13/aZG900Search": {
+      "next": "/AMB/AMA13.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "AMA13/aZG900Select": {
+      "next": "/AMB/AMA13.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "AMA14/aZG901CopyClipboard": {
+      "next": "/AMB/AMA14.html",
+      "guess": false,
+      "why": "popup → 自画面"
+    },
+    "AMA14/aZG901Print": {
+      "next": "/AMB/AMA14.html",
+      "guess": false,
+      "why": "popup → 自画面"
+    },
+    "AMA18/aZG905NextPage": {
+      "next": "/AMB/AMA18.html",
+      "guess": false,
+      "why": "popup 次頁 → 自画面"
+    },
+    "AMA18/aZG905PrevPage": {
+      "next": "/AMB/AMA18.html",
+      "guess": false,
+      "why": "popup 前頁 → 自画面"
+    },
+    "AMA18/aZG905Search": {
+      "next": "/AMB/AMA18.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "AMA19/aZG906Delete": {
+      "next": "/AMB/AMA19.html",
+      "guess": false,
+      "why": "popup 削除 → 自画面"
+    },
+    "AMA19/aZG906Regist": {
+      "next": "/AMB/AMA19.html",
+      "guess": false,
+      "why": "popup 登録 → 自画面"
+    },
+    "AMA26/aZG207NextPage": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "AMA26/aZG207PrevPage": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "AMA26/aZG207Select": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "検索 → 自画面"
+    },
+    "AMA26/aZG207To01": {
+      "next": "/AMB/AMA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "AMA26/aZG207Update": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "更新 → 自画面"
+    },
+    "AMA26/close": {
+      "next": "/AMB/AMA26.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMA27/aZG910NextPage": {
+      "next": "/AMB/AMA27.html",
+      "guess": false,
+      "why": "popup 次頁 → 自画面"
+    },
+    "AMA27/aZG910PrevPage": {
+      "next": "/AMB/AMA27.html",
+      "guess": false,
+      "why": "popup 前頁 → 自画面"
+    },
+    "AMA27/aZG910Search": {
+      "next": "/AMB/AMA27.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "AMA28/aZG911NextPage": {
+      "next": "/AMB/AMA28.html",
+      "guess": false,
+      "why": "popup 次頁 → 自画面"
+    },
+    "AMA28/aZG911PrevPage": {
+      "next": "/AMB/AMA28.html",
+      "guess": false,
+      "why": "popup 前頁 → 自画面"
+    },
+    "AMA28/aZG911Reset": {
+      "next": "/AMB/AMA28.html",
+      "guess": false,
+      "why": "popup 通知先再セット → 自画面"
+    },
+    "AMA28/aZG911Select": {
+      "next": "/AMB/AMA28.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "AMAZT/close": {
+      "next": "/AMB/AMAZT.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "AMAZW/close": {
+      "next": "/AMB/AMAZW.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "AMAZZ/close": {
+      "next": "/AMB/AMAZZ.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "AMC22/aZG206NextPage": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "AMC22/aZG206OutputCSV": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "ＣＳＶ出力 → 自画面"
+    },
+    "AMC22/aZG206PrevPage": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "AMC22/aZG206Search": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "検索 → 一覧自画面"
+    },
+    "AMC22/aZG206To23": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "id act206to104 → 104=AMC23 不備照会"
+    },
+    "AMC22/close": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMC23/aZG104CopyClipboard": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "メール用コピー → 自画面"
+    },
+    "AMC23/aZG104DownloadFile": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "ファイルダウンロード(hidden) → 自画面"
+    },
+    "AMC23/aZG104Initial": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "初期化(hidden) → 自画面"
+    },
+    "AMC23/aZG104Print": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "印刷 → 自画面"
+    },
+    "AMC23/aZG104PrintInvoice": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "送り状印刷 → 自画面"
+    },
+    "AMC23/aZG104PrintPDF": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "PDF印刷(hidden) → 自画面"
+    },
+    "AMC23/aZG104To22": {
+      "next": "/AMC00/AMC22.html",
+      "guess": false,
+      "why": "ボタン「不備一覧」→ AMC22"
+    },
+    "AMC23/aZG104UpdateAnswer": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "回答/確認済 → 自画面再表示"
+    },
+    "AMC23/aZG104UpdateTempAnswer": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "一時中断 → 自画面再表示"
+    },
+    "AMC23/close": {
+      "next": "/AMC00/AMC23.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "AMC24/aZG908Delete": {
+      "next": "/AMC00/AMC24.html",
+      "guess": false,
+      "why": "popup 削除 → 自画面"
+    },
+    "AMC24/aZG908Regist": {
+      "next": "/AMC00/AMC24.html",
+      "guess": false,
+      "why": "popup 登録 → 自画面"
+    },
+    "AMCZT/close": {
+      "next": "/AMC00/AMCZT.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "AMCZW/close": {
+      "next": "/AMC00/AMCZW.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "AMCZZ/close": {
+      "next": "/AMC00/AMCZZ.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "ANA01/close": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA01/route2": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "ボタン「新規登録」→ 申請入力 ANA03(AYG101)（対応付け要复核）"
+    },
+    "ANA01/route3": {
+      "next": "/ANB00/ANA05.html",
+      "guess": true,
+      "why": "ボタン「照会・検索」→ 一覧 ANA05（要复核）"
+    },
+    "ANA01/route4": {
+      "next": "/ANB00/ANA02.html",
+      "guess": true,
+      "why": "ボタン「申請・承認」→ ANA02（要复核）"
+    },
+    "ANA01/route5": {
+      "next": "/ANB00/ANA06.html",
+      "guess": true,
+      "why": "ボタン「集計」→ ANA06（要复核）"
+    },
+    "ANA02/close": {
+      "next": "/ANB00/ANA02.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA02/route7": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA02/route8": {
+      "next": "/ANB00/ANA05.html",
+      "guess": true,
+      "why": "ボタン「申請一覧」→ ANA05（要复核）"
+    },
+    "ANA02/route8A": {
+      "next": "/ANB00/ANA05.html",
+      "guess": true,
+      "why": "hidden: 照会・検索一覧へ戻る（要复核）"
+    },
+    "ANA02/route8B": {
+      "next": "/ANB00/ANA07.html",
+      "guess": true,
+      "why": "hidden: 申請承認一覧(AYG202)へ戻る（要复核）"
+    },
+    "ANA02/route9": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "ボタン「登録」→ 申請入力 ANA03（要复核）"
+    },
+    "ANA03/": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "JS submit（担当確認/申請一覧/コンプラ確認）→ 自画面"
+    },
+    "ANA03/close": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA03/route10": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "申請依頼実行（popupAYG901 経由）→ 自画面再表示"
+    },
+    "ANA03/route11": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA03/route12A": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "JS route12Submit: 照会・検索画面へ戻る（コメント実証）"
+    },
+    "ANA03/route12B": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "JS route12Submit: AYG202=申請承認一覧 → ANA07"
+    },
+    "ANA03/route12C": {
+      "next": "/ANB00/ANA05.html",
+      "guess": true,
+      "why": "JS route12Submit: AYG203=申請・確認一覧（該当view不明→ANA05）"
+    },
+    "ANA03/route13": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "ボタン「新規入力」→ 自画面"
+    },
+    "ANA03/route14": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "ボタン「更新」→ 自画面"
+    },
+    "ANA03/route15": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "ボタン「取消」→ 自画面"
+    },
+    "ANA03/route16": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "ボタン「削除」→ 自画面（実機は一覧戻りの可能性あり）"
+    },
+    "ANA03/route17": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "ボタン「対応登録」→ 自画面"
+    },
+    "ANA03/route18": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "コンプラ確認/確認取消（route18Submit）→ 自画面"
+    },
+    "ANA04/": {
+      "next": "/ANB00/ANA04.html",
+      "guess": false,
+      "why": "JS submit（業務Ｇ長確認/申請一覧）→ 自画面"
+    },
+    "ANA04/close": {
+      "next": "/ANB00/ANA04.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA04/route31": {
+      "next": "/ANB00/ANA04.html",
+      "guess": true,
+      "why": "ボタン「承認」→ 自画面（実機は一覧戻りの可能性あり）"
+    },
+    "ANA04/route32": {
+      "next": "/ANB00/ANA04.html",
+      "guess": true,
+      "why": "ボタン「不承認」→ 自画面（同上）"
+    },
+    "ANA04/route33": {
+      "next": "/ANB00/ANA04.html",
+      "guess": true,
+      "why": "ボタン「要再申請依頼」→ 自画面（同上）"
+    },
+    "ANA04/route34": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA04/route35A": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "JS route35Submit: 照会・検索画面へ戻る（コメント実証）"
+    },
+    "ANA04/route35B": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "JS route35Submit: AYG202=申請承認一覧 → ANA07"
+    },
+    "ANA04/route36": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "ボタン「新規入力」→ ANA03 入力画面（要复核）"
+    },
+    "ANA05/": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "JS submit → 自画面"
+    },
+    "ANA05/close": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA05/route23": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA05/route24": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "ボタン「新規入力」→ ANA03（要复核）"
+    },
+    "ANA05/route25": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "ANA05/route26": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "ANA05/route27": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "hidden id hiddenButtonFor200to102（申請）→ 申請入力（要复核）"
+    },
+    "ANA05/route28": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "ボタン「検索」→ 自画面"
+    },
+    "ANA05/route29": {
+      "next": "/ANB00/ANA03.html",
+      "guess": false,
+      "why": "hidden id hiddenButtonForLink101（No.リンク）→ AYG101=ANA03"
+    },
+    "ANA05/route30": {
+      "next": "/ANB00/ANA05.html",
+      "guess": false,
+      "why": "ボタン「検索結果出力」→ 自画面"
+    },
+    "ANA06/close": {
+      "next": "/ANB00/ANA06.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA06/route41": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA06/route42": {
+      "next": "/ANB00/ANA06.html",
+      "guess": false,
+      "why": "ボタン「集計」→ 自画面"
+    },
+    "ANA07/": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "JS submit → 自画面"
+    },
+    "ANA07/close": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "close（自画面再表示）"
+    },
+    "ANA07/route43": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "ボタン「再表示」→ 自画面"
+    },
+    "ANA07/route44": {
+      "next": "/ANB00/ANA03.html",
+      "guess": true,
+      "why": "hidden id hiddenButtonFor202to102（申請）→ 申請入力（要复核）"
+    },
+    "ANA07/route45": {
+      "next": "/ANB00/ANA01.html",
+      "guess": false,
+      "why": "ボタン「メニュー」"
+    },
+    "ANA07/route46": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "前頁 → 自画面"
+    },
+    "ANA07/route47": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "次頁 → 自画面"
+    },
+    "ANA07/route48": {
+      "next": "/ANB00/ANA07.html",
+      "guess": false,
+      "why": "hidden id hiddenButtonForLink101（No.リンク）→ AYG101=ANA03"
+    },
+    "ANA10/route20": {
+      "next": "/ANB00/ANA10.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "ANA10/route21": {
+      "next": "/ANB00/ANA10.html",
+      "guess": false,
+      "why": "popup 前頁 → 自画面"
+    },
+    "ANA10/route22": {
+      "next": "/ANB00/ANA10.html",
+      "guess": false,
+      "why": "popup 次頁 → 自画面"
+    },
+    "ANA11/route38": {
+      "next": "/ANB00/ANA11.html",
+      "guess": false,
+      "why": "popup 検索 → 自画面"
+    },
+    "ANA11/route39": {
+      "next": "/ANB00/ANA11.html",
+      "guess": false,
+      "why": "popup 前頁 → 自画面"
+    },
+    "ANA11/route40": {
+      "next": "/ANB00/ANA11.html",
+      "guess": false,
+      "why": "popup 次頁 → 自画面"
+    },
+    "ANAZT/close": {
+      "next": "/ANB00/ANAZT.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "ANAZW/close": {
+      "next": "/ANB00/ANAZW.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    },
+    "ANAZZ/close": {
+      "next": "/ANB00/ANAZZ.html",
+      "guess": false,
+      "why": "子popup close（実機は window.close）"
+    }
+  },
+  "popups": {
+    "AMA03": [
+      "popupAZG905 -> /AMB/AMA18.html",
+      "insurance -> /AMB/insurance_item_select.html"
+    ],
+    "AMA04": [
+      "popupAZG900 -> /AMB/AMA13.html",
+      "popupAZG901 -> /AMB/AMA14.html",
+      "popupAZG902 -> /AMB/AMA15.html",
+      "popupAZG905 -> /AMB/AMA18.html",
+      "popupAZG906 -> /AMB/AMA19.html",
+      "popupAZG909 -> /AMB/AMA25.html",
+      "popupAZG911 -> /AMB/AMA28.html",
+      "popupAZG912 -> /AMB/AMA29.html",
+      "insurance -> /AMB/insurance_item_select.html"
+    ],
+    "AMA07": [
+      "popupAgentModeJpg -> 代理店画面サンプル（外部/JPG）",
+      "openHelp -> ヘルプ（外部）"
+    ],
+    "ANA03": [
+      "popupAYG900 -> /ANB00/ANA10.html",
+      "popupAYG901 -> /ANB00/ANA11.html"
+    ],
+    "ANA04": [
+      "popupAYG900 -> /ANB00/ANA10.html",
+      "(URL /ANA11) -> /ANB00/ANA11.html"
+    ]
+  }
+}
