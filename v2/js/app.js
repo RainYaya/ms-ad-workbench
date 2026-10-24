@@ -6,6 +6,7 @@
   const REFS = window.MSAD_REFS || {};
   const VALID = window.MSAD_VALIDATION || { counts: {}, warnings: {} };
   const AUTO = window.MSAD_AUTOMATION || { summary: {}, blocks: [], cases: {}, runners: { runners: [] } };
+  const SUMMARY = window.MSAD_SUMMARIES || { tpl: {}, caseToTpl: {} };
   const LS = {
     progress: 'msad.progress.v1',
     tasks: 'msad.tasks.v1',
@@ -1336,8 +1337,31 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     return procedureHtml(c);
   }
 
+  function summaryHtml(id) {
+    const tid = SUMMARY.caseToTpl?.[id];
+    if (!tid) return '';
+    const t = SUMMARY.tpl?.[tid];
+    if (!t) return '';
+    const same = t.cases.length > 1 ? `${t.cases.length} 本同模板` : '単一';
+    return `<details class="panel" style="margin-bottom:10px;border-left:3px solid var(--accent,#0e7490)">
+      <summary style="cursor:pointer;padding:10px 13px;font-size:12.5px;font-weight:700">要約 — ${esc(t.biz.split('（')[0])} <span class="badge outline">${same}</span></summary>
+      <div class="panel-body small" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <p style="margin:0 0 4px"><b>業務</b></p><p class="small" style="margin:0">${esc(t.biz)}</p>
+          <p style="margin:8px 0 4px"><b>画面流</b></p><p class="small muted" style="margin:0">${esc(t.flow)}</p>
+          <p style="margin:8px 0 4px"><b>自動化</b></p><p class="small muted" style="margin:0">${esc(t.auto)}</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px"><b>操作</b></p>
+          <div class="small" style="white-space:pre-wrap;max-height:180px;overflow:auto">${esc(t.ops)}</div>
+        </div>
+      </div>
+      ${t.diff ? `<details style="margin-top:8px"><summary class="small muted" style="cursor:pointer">同模板差異（${t.cases.length} 本）</summary><div class="small" style="white-space:pre-wrap">${esc(t.diff)}</div></details>` : ''}
+    </details>`;
+  }
+
   function caseContentHtml(meta, c) {
-    return caseHeader(meta) + resultBar(meta.id) + caseTabsHtml(c) + caseBodyHtml(c);
+    return caseHeader(meta) + resultBar(meta.id) + summaryHtml(meta.id) + caseTabsHtml(c) + caseBodyHtml(c);
   }
 
   async function renderCase(id) {
@@ -1346,7 +1370,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     state.view = 'case';
     state.selectedCase = id;
     updateTopbar();
-    $('#main').innerHTML = caseHeader(meta) + resultBar(id) + '<div class="loading">手順書を読み込んでいます…</div>';
+    $('#main').innerHTML = caseHeader(meta) + resultBar(id) + summaryHtml(id) + '<div class="loading">手順書を読み込んでいます…</div>';
     try {
       const data = await ensureCaseData(meta.categoryId);
       if (state.selectedCase !== id) return;
