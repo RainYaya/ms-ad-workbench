@@ -7,6 +7,7 @@
   const VALID = window.MSAD_VALIDATION || { counts: {}, warnings: {} };
   const AUTO = window.MSAD_AUTOMATION || { summary: {}, blocks: [], cases: {}, runners: { runners: [] } };
   const SUMMARY = window.MSAD_SUMMARIES || { tpl: {}, caseToTpl: {} };
+  const SCHEDULE = window.MSAD_SCHEDULE || { cases: {} };
   const LS = {
     progress: 'msad.progress.v1',
     tasks: 'msad.tasks.v1',
@@ -261,7 +262,7 @@
     if (view === 'case' && id) { state.view = 'case'; if (state.selectedCase !== id) state.tab = 'procedure'; state.selectedCase = id; renderCase(id); return; }
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
-    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'refs', 'automation'].includes(view) ? view : 'dashboard';
+    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
     state.selectedRoute = null;
@@ -949,6 +950,7 @@ AY-120-01-001"></textarea>
         <div class="case-meta">
           <span class="badge outline">${esc(meta.scenarioId)}${sc?.title ? ` ${esc(sc.title)}` : ''}</span>
           ${companyBadge(meta.company)}
+          ${scheduleOf(meta.id) ? `<span class="badge amber">予定 ${esc(scheduleOf(meta.id).startLabel)}〜${esc(scheduleOf(meta.id).endLabel)}</span>` : ''}
           ${caseUserMap.get(meta.id) ? `<span class="badge blue">利用者 ${esc(caseUserMap.get(meta.id).id || '')}${caseUserMap.get(meta.id).point ? ` / ${esc(caseUserMap.get(meta.id).point)}` : ''}</span>` : ''}
           ${meta.item ? `<span class="badge gray">${esc(meta.item)}</span>` : ''}
           ${meta.comparisonMark === '〇' ? '<span class="badge violet">現新比較</span>' : ''}
@@ -1465,6 +1467,68 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
   /* automation coverage                                                 */
   /* ------------------------------------------------------------------ */
 
+  function scheduleOf(id) { return SCHEDULE.cases?.[id] || null; }
+
+  function renderSchedule() {
+    const entries = Object.entries(SCHEDULE.cases || {}).map(([id, s]) => {
+      const meta = caseById.get(id);
+      const p = pget(id);
+      const a = autoCase(id);
+      const done = !!(p.execution && p.execution !== '未実施');
+      return { id, ...s, title: meta?.functionName || s.fn, done, s3: a?.status3 || 'planned', cov: a?.coverage3 || null };
+    }).sort((x, y) => (x.start < y.start ? -1 : x.start > y.start ? 1 : x.id < y.id ? -1 : 1));
+    // group by start date
+    const groups = [];
+    for (const e of entries) {
+      const last = groups[groups.length - 1];
+      if (last && last.start === e.start) last.items.push(e);
+      else groups.push({ start: e.start, end: e.end, items: [e] });
+    }
+    const total = entries.length;
+    const doneCount = entries.filter((e) => e.done).length;
+    const today = new Date().toISOString().slice(0, 10);
+    const weekMs = 7 * 86400000;
+    const rows = groups.map((g) => {
+      const gDone = g.items.filter((i) => i.done).length;
+      const isNow = today >= g.start && today <= new Date(new Date(g.end).getTime() + weekMs).toISOString().slice(0, 10);
+      const items = g.items.map((i) => {
+        const strip = i.cov ? s3Strip({ coverage3: i.cov, blockDetails: null }, { compact: true, showPct: false }) : '';
+        return `<tr class="case-row-click" data-case="${esc(i.id)}">
+          <td><span class="mono">${esc(i.id)}</span></td>
+          <td>${esc(i.title || '')}</td>
+          <td>${i.id.includes('AD') || i.company === 'AD' ? '<span class="badge gray">AD</span>' : '<span class="badge blue">MS</span>'}</td>
+          <td>${i.done ? '<span class="badge green">実施済</span>' : '<span class="badge outline">未実施</span>'}</td>
+          <td style="min-width:110px">${strip || '<span class="faint small">—</span>'}</td>
+          <td class="small muted">${esc(i.endLabel)}</td>
+        </tr>`;
+      }).join('');
+      return `<div class="panel sched-group ${isNow ? 'now' : ''}" style="margin-bottom:12px">
+        <div class="panel-head" style="cursor:pointer" data-schedgroup="${esc(g.start)}">
+          <h3><span class="mono">${esc(g.items[0].startLabel)}</span> 〜 <span class="mono">${esc(g.endLabel)}</span> <span class="badge outline">${g.items.length} 本</span>${isNow ? " <span class=\"badge green\">今周</span>" : ""}</h3>
+          <span class="hint">${gDone ? `${gDone}/${g.items.length} 実施済` : '未開始'}</span>
+        </div>
+        <div class="table-wrap" style="max-height:44vh"><table class="data"><thead><tr><th>ケース</th><th>機能</th><th>会社</th><th>実施</th><th>自動化進捗</th><th>終了予定</th></tr></thead><tbody>${items}</tbody></table></div>
+      </div>`;
+    }).join('');
+    $('#main').innerHTML = `
+      ${pageHead('日程', '担当 450 本の実施予定（開始日順・同日グループ）。必ずしも日付順にやる必要はなく、前後の本とつながって進める想定')}
+      <div class="kpis" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+        ${kpi('総本数', total, '自分の担当', 'accent')}
+        ${kpi('実施済', doneCount, '記録より', 'green')}
+        ${kpi('未実施', total - doneCount, '', 'blue')}
+        ${kpi('予定枠', groups.length, '開始日グループ', 'violet')}
+        ${kpi('最初の開始', entries[0]?.startLabel || '—', entries[0]?.id || '', 'amber')}
+      </div>
+      <div class="s3-legend" style="margin:2px 0 10px"><span class="small muted">グループヘッダをクリックで開閉。行クリックでケースを開く。</span></div>
+      ${rows}`;
+    // toggle groups
+    $$('#main [data-schedgroup]').forEach((h) => h.addEventListener('click', () => {
+      const wrap = h.closest('.sched-group');
+      const body = wrap.querySelector('.table-wrap');
+      body.style.display = body.style.display === 'none' ? '' : 'none';
+    }));
+  }
+
   function renderAutomation() {
     const sum = AUTO.summary || {};
     const cases = Object.entries(AUTO.cases || {}).sort((a, b) => a[0].localeCompare(b[0]));
@@ -1948,6 +2012,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     else if (state.view === 'files') renderFiles();
     else if (state.view === 'tasks') renderTasks();
     else if (state.view === 'refs') renderRefs();
+    else if (state.view === 'schedule') renderSchedule();
     else if (state.view === 'automation') renderAutomation();
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);
