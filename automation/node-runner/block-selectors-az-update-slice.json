@@ -1301,11 +1301,22 @@
     "url": "/AMB/AMA04.html"
    },
    {
-    "event": "ast 開発者ツールで application_form_id 削除",
-    "action": "assert",
-    "assert": "visible",
-    "selector": "input[name='update']",
-    "note": "開発者ツール操作=真機人工（mockではhidden値削除の代替なし）"
+    "event": "manual 開発者ツールを開く",
+    "action": "manual",
+    "note": "F12開発者ツール=非浏览器/真機人工（画面HCは手動証跡）",
+    "shotRow": 22
+   },
+   {
+    "event": "setValue application_form_id 削除",
+    "action": "setValue",
+    "selector": "#application_form_id",
+    "value": ""
+   },
+   {
+    "event": "manual application_form_id の value 削除",
+    "action": "manual",
+    "note": "開発者ツールでの値削除=非浏览器/真機人工",
+    "shotRow": 24
    },
    {
     "event": "click 更新",
@@ -1317,8 +1328,16 @@
     "event": "ast 遷移 システムエラー画面",
     "action": "assert",
     "assert": "visible",
-    "selector": "input[name='update']",
-    "note": "システムエラー画面=画面未収録=真機人工"
+    "selector": "#error_message",
+    "shotRow": 26
+   },
+   {
+    "event": "ast エラーメッセージ MAZG000E001",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#error_message",
+    "contains": "MAZG000E001",
+    "shotRow": 27
    }
   ]
  },

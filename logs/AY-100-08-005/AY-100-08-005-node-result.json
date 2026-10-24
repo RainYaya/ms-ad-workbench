@@ -1,22 +1,44 @@
 {
   "caseId": "AY-100-08-005",
   "runner": "node",
-  "ts": "2026-10-24T14:36:41.362Z",
+  "ts": "2026-10-24T23:15:31.806Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        15
+      ]
     },
     {
       "block": "BLK-SGL-0C5A44D1",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "03_BLK-SGL-0C5A44D1.png"
+    "02_r015_操作結果.png",
+    "03_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "04_BLK-SGL-0C5A44D1.png"
+  ],
+  "evidence": [
+    {
+      "row": 15,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "02_r015_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    }
   ]
 }

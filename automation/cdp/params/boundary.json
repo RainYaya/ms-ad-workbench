@@ -2,7 +2,8 @@
  "common": {
   "userId": "MS3N",
   "menuSelector": "input[name=menu_cm]",
-  "loginUrl": "/AMB/dummy.html"
+  "loginUrl": "/AMB/dummy.html",
+  "errorCode": "MAZG000E001"
  },
  "cases": {
   "AZ-200-01-001": {
@@ -97,19 +98,25 @@
   },
   "AZ-200-04-001": {
    "user": "?",
-   "pointCheck": "?"
+   "pointCheck": "?",
+   "userId": "SYSERR",
+   "errorCode": "MAZG000E001"
   },
   "AY-100-04-001": {
    "user": "?",
    "pointCheck": "?",
    "menuSelector": "input[value=\"異例メニュー画面\"]",
-   "loginUrl": "/ANB00/dummy.html"
+   "loginUrl": "/ANB00/dummy.html",
+   "userId": "SYSERR",
+   "errorCode": "MAYG000E001"
   },
   "AY-100-04-002": {
    "user": "?",
    "pointCheck": "?",
    "menuSelector": "input[value=\"異例メニュー画面\"]",
-   "loginUrl": "/ANB00/dummy.html"
+   "loginUrl": "/ANB00/dummy.html",
+   "userId": "SYSERR",
+   "errorCode": "MAYG000E001"
   },
   "AY-100-08-002": {
    "user": "?",

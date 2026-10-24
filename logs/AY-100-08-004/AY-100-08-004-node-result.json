@@ -1,22 +1,57 @@
 {
   "caseId": "AY-100-08-004",
   "runner": "node",
-  "ts": "2026-10-24T14:36:34.356Z",
+  "ts": "2026-10-24T23:15:31.172Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-E2D0C359",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SGL-2B7D45E3",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        18,
+        23
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
     "02_BLK-AUTO-E2D0C359.png",
-    "03_BLK-SGL-2B7D45E3.png"
+    "03_r018_照会・検索画面.png",
+    "04_r023_ダウンロードメッセージ.png",
+    "05_BLK-SGL-2B7D45E3.png"
+  ],
+  "evidence": [
+    {
+      "row": 18,
+      "type": "表示",
+      "item": "照会・検索画面",
+      "file": "03_r018_照会・検索画面.png",
+      "exact": true,
+      "block": "BLK-SGL-2B7D45E3",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
+    },
+    {
+      "row": 23,
+      "type": "表示",
+      "item": "ダウンロードメッセージ",
+      "file": "04_r023_ダウンロードメッセージ.png",
+      "exact": true,
+      "block": "BLK-SGL-2B7D45E3",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
+    }
   ]
 }

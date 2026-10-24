@@ -1604,7 +1604,7 @@ function openCameraApp() {
   <input type="hidden" id="sys_mode"     name="sys_mode" />
   <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
 
-  <input type="hidden" id="application_form_id" name="application_form_id" />
+  <input type="hidden" id="application_form_id" name="application_form_id" value="0000000001" />
   <input type="hidden" id="operation_mode" name="operation_mode" />
   <input type="hidden" id="import_execute_flag" name="import_execute_flag" />
   <input type="hidden" id="popup_AZG901_flag" name="popup_AZG901_flag" />
@@ -2157,7 +2157,7 @@ function openCameraApp() {
   </div>
   <div class="button_width_60">
     <input type="submit" class="button_area_button visibility_hidden" id="update" name="update"
-      onclick="clickButton(this)" value="更新" formaction="/AMA04/aZG101Update">
+      onclick="if(!document.mhk_MHKPRForm.application_form_id.value){location.href='/AMB/system_error.html';return false;}clickButton(this)" value="更新" formaction="/AMA04/aZG101Update">
   </div>
   <div class="button_width_60">
     <input type="button" class="button_area_button visibility_hidden" id="print" name="print"

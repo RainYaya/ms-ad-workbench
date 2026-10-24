@@ -131,11 +131,17 @@
     "selector": "{params.menuSelector}"
    },
    {
-    "event": "ast システムエラー",
+    "event": "ast 遷移 システムエラー画面",
     "action": "assert",
     "assert": "visible",
-    "selector": "#act001to100, #route2, #route3",
-    "note": "DB接続失敗画面=真機人工"
+    "selector": "#error_message"
+   },
+   {
+    "event": "ast エラーメッセージ MAZG000E001",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#error_message",
+    "contains": "params.errorCode"
    }
   ]
  },

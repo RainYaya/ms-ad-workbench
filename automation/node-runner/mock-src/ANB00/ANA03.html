@@ -2373,7 +2373,7 @@ function editExplainAndInsuranceConfirm(form) {
     <!--/* 処理実行ボタン */-->
     <div class="button_area_normal_operation">
       <div class="button_area_button_length3">
-        <input type="submit" formaction="/ANA03/route14" id="update" name="update" value="更新" class="button_area_button" onclick="clickButton(this)">
+        <input type="submit" formaction="/ANA03/route14" id="update" name="update" value="更新" class="button_area_button" onclick="if(!document.tks_TKSPRForm.application_id.value){location.href='/ANB00/system_error.html';return false;}clickButton(this)">
       </div>
       <div class="button_area_space"></div>
       <div class="button_area_button_length6">
@@ -2393,7 +2393,7 @@ function editExplainAndInsuranceConfirm(form) {
       </div>
     </div>
   </div>
-  <input type="hidden" id="application_id" name="application_id" />
+  <input type="hidden" id="application_id" name="application_id" value="AY00000001" />
   <input type="hidden" id="application_status" name="application_status" value="00" />
   <input type="hidden" id="app_input_user_id" name="app_input_user_id" />
   <input type="hidden" id="applicant_id" name="applicant_id" />

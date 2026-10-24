@@ -1,72 +1,128 @@
 {
   "caseId": "AZ-230-01-137",
   "runner": "node",
-  "ts": "2026-10-24T14:45:08.561Z",
+  "ts": "2026-10-24T23:22:08.975Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-SHR-5F5035B5",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-MENU-CREATE-INPUT",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-INPUT-FILL",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-REGISTER-UPDATE",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        20
+      ]
     },
     {
       "block": "BLK-AUTO-04A78248",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AUTO-5C1EFE0E",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        25
+      ]
     },
     {
       "block": "BLK-AUTO-10E5C587",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        29
+      ]
     },
     {
       "block": "BLK-AUTO-C8903BF5",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SHR-D6459D48",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AUTO-E1BDF237",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SHR-FB883F72",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AUTO-4C432C14",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        48
+      ]
     },
     {
       "block": "BLK-SHR-BF46F797",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AUTO-8C0E3438",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AUTO-C8903BF5",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SGL-60F6A775",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     }
   ],
   "skipped": [],
@@ -75,18 +131,68 @@
     "02_BLK-SHR-5F5035B5.png",
     "03_BLK-AZ-MENU-CREATE-INPUT.png",
     "04_BLK-AZ-INPUT-FILL.png",
-    "05_BLK-AZ-REGISTER-UPDATE.png",
-    "06_BLK-AUTO-04A78248.png",
-    "07_BLK-AUTO-5C1EFE0E.png",
-    "08_BLK-AUTO-10E5C587.png",
-    "09_BLK-AUTO-C8903BF5.png",
-    "10_BLK-SHR-D6459D48.png",
-    "11_BLK-AUTO-E1BDF237.png",
-    "12_BLK-SHR-FB883F72.png",
-    "13_BLK-AUTO-4C432C14.png",
-    "14_BLK-SHR-BF46F797.png",
-    "15_BLK-AUTO-8C0E3438.png",
-    "16_BLK-AUTO-C8903BF5.png",
-    "17_BLK-SGL-60F6A775.png"
+    "05_r020_不備内容入力画面-更新.png",
+    "06_BLK-AZ-REGISTER-UPDATE.png",
+    "07_BLK-AUTO-04A78248.png",
+    "08_r025_不備内容入力画面-更新.png",
+    "09_BLK-AUTO-5C1EFE0E.png",
+    "10_r029_不備内容入力画面-更新.png",
+    "11_BLK-AUTO-10E5C587.png",
+    "12_BLK-AUTO-C8903BF5.png",
+    "13_BLK-SHR-D6459D48.png",
+    "14_BLK-AUTO-E1BDF237.png",
+    "15_BLK-SHR-FB883F72.png",
+    "16_r048_不備内容入力画面-更新.png",
+    "17_BLK-AUTO-4C432C14.png",
+    "18_BLK-SHR-BF46F797.png",
+    "19_BLK-AUTO-8C0E3438.png",
+    "20_BLK-AUTO-C8903BF5.png",
+    "21_BLK-SGL-60F6A775.png"
+  ],
+  "evidence": [
+    {
+      "row": 20,
+      "type": "遷移",
+      "item": "不備内容入力画面-更新",
+      "file": "05_r020_不備内容入力画面-更新.png",
+      "exact": true,
+      "block": "BLK-AZ-REGISTER-UPDATE",
+      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
+    },
+    {
+      "row": 25,
+      "type": "遷移",
+      "item": "不備内容入力画面-更新",
+      "file": "08_r025_不備内容入力画面-更新.png",
+      "exact": true,
+      "block": "BLK-AUTO-5C1EFE0E",
+      "url": "http://127.0.0.1:10091/AMB/AMA13.html",
+      "title": "",
+      "text": "1 種目 保険種類 1 項目ｺｰﾄﾞ 項目名 照会ｺｰﾄﾞ 照会内容 T0：損保取引確認書 T007：「損保取引確認書」の添付がもれています。 注意：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。 不備内容 1"
+    },
+    {
+      "row": 29,
+      "type": "表示",
+      "item": "不備内容入力画面-更新",
+      "file": "10_r029_不備内容入力画面-更新.png",
+      "exact": true,
+      "block": "BLK-AUTO-10E5C587",
+      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
+    },
+    {
+      "row": 48,
+      "type": "表示",
+      "item": "不備内容入力画面-更新",
+      "file": "16_r048_不備内容入力画面-更新.png",
+      "exact": true,
+      "block": "BLK-AUTO-4C432C14",
+      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
+    }
   ]
 }

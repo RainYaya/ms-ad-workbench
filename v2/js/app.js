@@ -1097,8 +1097,19 @@ AY-120-01-001"></textarea>
     const items = evidenceItems(c);
     if (!items.length) return empty('証跡項目がありません。');
     const p = pget(c.id);
+    const auto = (window.MSAD_EVIDENCE || {})[c.id] || {};
+    const statuses = auto.rows || {};
+    const s = auto.summary || {};
+    const badge = (st) => ({ exact: ['自動', 'green'], blockEnd: ['塊尾', 'amber'], manual: ['人工', 'red'], missing: ['未取得', 'red'] }[st] || ['未実行', '']);
     const done = items.filter((x) => p.evidence?.[x.key]).length;
-    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length}</span></div><div class="panel-body"><div class="evidence-list">${items.map((x) => `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span>${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row}</span></label>`).join('')}</div></div></div>`;
+    const sum = s.hc ? `画面HC ${s.hc} ／ 自動 ${s.exact || 0} ／ 塊尾 ${s.blockEnd || 0} ／ 人工 ${s.manual || 0} ／ 未取得 ${s.missing || 0}` : '実行結果なし';
+    const manual = auto.manualSteps || [];
+    const manualPanel = manual.length ? `<div class="panel"><div class="panel-head"><h3>人工確認項目</h3><span class="hint">${manual.length}</span></div><div class="panel-body small"><ul>${manual.map((m) => `<li><b>行${m.row}</b> [${esc(m.phase)}] ${esc(m.item)} <span class="muted">— ${esc(m.reason)}</span></li>`).join('')}</ul></div></div>` : '';
+    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length} ・ ${sum}</span></div><div class="panel-body"><div class="evidence-list">${items.map((x) => {
+      const st = statuses[String(x.row)]?.status;
+      const [label, color] = st ? badge(st) : (x.type === '画面HC' ? ['未取得', 'red'] : ['目視', '']);
+      return `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span>${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : '#15803d'}">${label}</b>` : ''}</span></label>`;
+    }).join('')}</div></div></div>${manualPanel}`;
   }
 
   function snippetFor(id) {

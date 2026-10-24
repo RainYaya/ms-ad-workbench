@@ -256,7 +256,7 @@ function formValidate(form) {
 <input type="hidden" id="sys_mode"     name="sys_mode" />
 <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
 
-<input type="hidden" id="application_form_id" name="application_form_id" />
+<input type="hidden" id="application_form_id" name="application_form_id" value="0000000001" />
 <input type="hidden" id="regist_flag" name="regist_flag" />
 <input type="hidden" id="delete_flag" name="delete_flag" />
 
@@ -499,7 +499,7 @@ function formValidate(form) {
   <div id="ButtonP" class="popup_button_area size_button_area19">
     <!--/* 処理実行ボタン */-->
     <div class="button_width_60">
-      <input type="submit"  class="popup_button_area_button visibility_hidden" id="regist" onclick="clickButton(this);" value="登録" name="regist" formaction="/AMA19/aZG906Regist">
+      <input type="submit"  class="popup_button_area_button visibility_hidden" id="regist" onclick="if(!document.mhk_MHKPRForm.application_form_id.value){location.href='/AMB/system_error_child.html';return false;}clickButton(this);" value="登録" name="regist" formaction="/AMA19/aZG906Regist">
     </div>
     <div class="button_width_60">
       <input type="submit"  class="popup_button_area_button visibility_hidden" id="delete" onclick="clickButton(this);" value="削除" name="delete" formaction="/AMA19/aZG906Delete">

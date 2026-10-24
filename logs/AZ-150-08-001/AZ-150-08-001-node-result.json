@@ -1,72 +1,194 @@
 {
   "caseId": "AZ-150-08-001",
   "runner": "node",
-  "ts": "2026-10-24T14:42:23.003Z",
+  "ts": "2026-10-24T23:19:21.090Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        15
+      ]
     },
     {
       "block": "BLK-AZ-BATCH-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        19
+      ]
     },
     {
       "block": "BLK-SHR-C649ACE4",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        23
+      ]
     },
     {
       "block": "BLK-SHR-5CEC3483",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        27
+      ]
     },
     {
       "block": "BLK-SHR-2EEC5A3D",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        31
+      ]
     },
     {
       "block": "BLK-SHR-121DF781",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        35
+      ]
     },
     {
       "block": "BLK-SHR-305661D1",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "03_BLK-AZ-BATCH-VERIFY.png",
-    "04_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "05_BLK-SHR-C649ACE4.png",
+    "02_r015_操作結果.png",
+    "03_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "04_BLK-AZ-BATCH-VERIFY.png",
+    "05_r019_操作結果.png",
     "06_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "07_BLK-SHR-5CEC3483.png",
-    "08_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "09_BLK-SHR-2EEC5A3D.png",
-    "10_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "11_BLK-SHR-121DF781.png",
+    "07_BLK-SHR-C649ACE4.png",
+    "08_r023_操作結果.png",
+    "09_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "10_BLK-SHR-5CEC3483.png",
+    "11_r027_操作結果.png",
     "12_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "13_BLK-SHR-305661D1.png"
+    "13_BLK-SHR-2EEC5A3D.png",
+    "14_r031_操作結果.png",
+    "15_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "16_BLK-SHR-121DF781.png",
+    "17_r035_操作結果.png",
+    "18_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "19_BLK-SHR-305661D1.png"
+  ],
+  "evidence": [
+    {
+      "row": 15,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "02_r015_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 19,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "05_r019_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 23,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "08_r023_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 27,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "11_r027_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 31,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "14_r031_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 35,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "17_r035_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    }
   ]
 }

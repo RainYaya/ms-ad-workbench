@@ -1,27 +1,93 @@
 {
   "caseId": "AY-121-08-009",
   "runner": "node",
-  "ts": "2026-10-24T14:39:50.750Z",
+  "ts": "2026-10-24T23:17:34.620Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-E2D0C359",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        15
+      ]
     },
     {
       "block": "BLK-AUTO-4F9D57E1",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        18,
+        20
+      ]
     },
     {
       "block": "BLK-AUTO-FECF904C",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        24
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-E2D0C359.png",
-    "03_BLK-AUTO-4F9D57E1.png",
-    "04_BLK-AUTO-FECF904C.png"
+    "02_r015_照会・検索画面.png",
+    "03_BLK-AUTO-E2D0C359.png",
+    "04_r018_照会・検索画面.png",
+    "05_r020_申請・確認更新画面.png",
+    "06_BLK-AUTO-4F9D57E1.png",
+    "07_r024_申請・確認更新画面.png",
+    "08_BLK-AUTO-FECF904C.png"
+  ],
+  "evidence": [
+    {
+      "row": 15,
+      "type": "遷移",
+      "item": "照会・検索画面",
+      "file": "02_r015_照会・検索画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-E2D0C359",
+      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：取消計上申請内容の新規登録 ：条件を指定して照会・検索 申請依頼・承認も可能 ：管下の申請・承認案件の一覧表示 ：条件を指定して集計 遡及取消再計上・遡及始期日変更で「異例取扱理由コード［T35］」が「６」に該当する場合、 異例取扱理由の「具体的説明」欄は入力"
+    },
+    {
+      "row": 18,
+      "type": "表示",
+      "item": "照会・検索画面",
+      "file": "04_r018_照会・検索画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-4F9D57E1",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
+    },
+    {
+      "row": 20,
+      "type": "遷移",
+      "item": "申請・確認更新画面",
+      "file": "05_r020_申請・確認更新画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-4F9D57E1",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
+    },
+    {
+      "row": 24,
+      "type": "表示",
+      "item": "申請・確認更新画面",
+      "file": "07_r024_申請・確認更新画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-FECF904C",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
+    }
   ]
 }

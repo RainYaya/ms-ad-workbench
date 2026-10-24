@@ -66,11 +66,17 @@
     "force": true
    },
    {
-    "event": "ast 訂正内容確認",
+    "event": "ast 遷移 訂正内容確認",
+    "action": "popup",
+    "match": "AMA19|aZG906"
+   },
+   {
+    "event": "ast 開発者ツール表示",
     "action": "assert",
     "assert": "visible",
-    "selector": "input[name='update']",
-    "note": "popup=AMA19"
+    "selector": "#confirm_user_name",
+    "in": "popup",
+    "shotRow": 21
    }
   ]
  },

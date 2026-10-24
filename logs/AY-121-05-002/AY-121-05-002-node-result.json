@@ -1,32 +1,128 @@
 {
   "caseId": "AY-121-05-002",
   "runner": "node",
-  "ts": "2026-10-24T14:39:10.419Z",
+  "ts": "2026-10-24T23:17:12.279Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-E2D0C359",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        17
+      ]
     },
     {
       "block": "BLK-AUTO-4F9D57E1",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        20,
+        22
+      ]
     },
     {
       "block": "BLK-AUTO-F974E639",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        24
+      ]
     },
     {
       "block": "BLK-AUTO-27C68433",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        27,
+        32
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-E2D0C359.png",
-    "03_BLK-AUTO-4F9D57E1.png",
-    "04_BLK-AUTO-F974E639.png",
-    "05_BLK-AUTO-27C68433.png"
+    "02_r017_照会・検索画面.png",
+    "03_BLK-AUTO-E2D0C359.png",
+    "04_r020_照会・検索画面.png",
+    "05_r022_申請・確認更新画面.png",
+    "06_BLK-AUTO-4F9D57E1.png",
+    "07_r024_送信先(写)選択画面.png",
+    "08_BLK-AUTO-F974E639.png",
+    "09_r027_送信先(写)選択画面.png",
+    "10_r032_取消計上申請承認画面.png",
+    "11_BLK-AUTO-27C68433.png"
+  ],
+  "evidence": [
+    {
+      "row": 17,
+      "type": "遷移",
+      "item": "照会・検索画面",
+      "file": "02_r017_照会・検索画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-E2D0C359",
+      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：取消計上申請内容の新規登録 ：条件を指定して照会・検索 申請依頼・承認も可能 ：管下の申請・承認案件の一覧表示 ：条件を指定して集計 遡及取消再計上・遡及始期日変更で「異例取扱理由コード［T35］」が「６」に該当する場合、 異例取扱理由の「具体的説明」欄は入力"
+    },
+    {
+      "row": 20,
+      "type": "表示",
+      "item": "照会・検索画面",
+      "file": "04_r020_照会・検索画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-4F9D57E1",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
+    },
+    {
+      "row": 22,
+      "type": "遷移",
+      "item": "申請・確認更新画面",
+      "file": "05_r022_申請・確認更新画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-4F9D57E1",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
+    },
+    {
+      "row": 24,
+      "type": "遷移",
+      "item": "送信先(写)選択画面",
+      "file": "07_r024_送信先(写)選択画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-F974E639",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "title": "",
+      "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
+    },
+    {
+      "row": 27,
+      "type": "表示",
+      "item": "送信先(写)選択画面",
+      "file": "09_r027_送信先(写)選択画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-27C68433",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "title": "",
+      "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
+    },
+    {
+      "row": 32,
+      "type": "遷移",
+      "item": "取消計上申請承認画面",
+      "file": "10_r032_取消計上申請承認画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-27C68433",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html",
+      "title": "",
+      "text": "MAYG901I001：送信先（写）を設定しました。 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態"
+    }
   ]
 }

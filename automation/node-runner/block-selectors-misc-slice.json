@@ -722,36 +722,40 @@
    {
     "event": "ast 遷移 訂正内容確認",
     "action": "popup",
-    "match": "AMA19|aZG906"
+    "match": "AMA19|aZG906",
+    "noEvidence": true
    },
    {
-    "event": "input 確認者(募集人または社員)",
+    "event": "input 確認者",
     "action": "fill",
     "selector": "#confirm_user_name",
     "value": "test",
     "in": "popup"
    },
    {
-    "event": "click eメールによる確認の場合",
+    "event": "check eメール",
     "action": "check",
     "selector": "#email_confirm_check",
     "in": "popup"
    },
    {
-    "event": "ast 開発者ツール表示(application_form_id確認)",
-    "action": "assert",
-    "assert": "hidden",
-    "selector": "#application_form_id",
-    "in": "popup",
-    "note": "F12/開発者ツール検索=非浏览器=真機人工"
+    "event": "manual 開発者ツール表示",
+    "action": "manual",
+    "note": "F12/開発者ツール検索=非浏览器/真機人工",
+    "shotRow": 26
    },
    {
-    "event": "ast 開発者ツール表示(value削除後)",
-    "action": "assert",
-    "assert": "hidden",
+    "event": "manual application_form_id value削除",
+    "action": "manual",
+    "note": "開発者ツールでの値削除=非浏览器/真機人工",
+    "shotRow": 28
+   },
+   {
+    "event": "setValue application_form_id 削除",
+    "action": "setValue",
     "selector": "#application_form_id",
-    "in": "popup",
-    "note": "application_form_idのvalue削除=非浏览器=真機人工"
+    "value": "",
+    "in": "popup"
    },
    {
     "event": "click 登録",
@@ -764,9 +768,18 @@
     "event": "ast 遷移 システムエラー画面(子画面)",
     "action": "assert",
     "assert": "visible",
-    "selector": "#close",
+    "selector": "#error_message",
     "in": "popup",
-    "note": "システムエラー画面(子画面)/エラーメッセージMAZG000E001=非浏览器=真機人工"
+    "shotRow": 30
+   },
+   {
+    "event": "ast エラーメッセージ MAZG000E001",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#error_message",
+    "contains": "MAZG000E001",
+    "in": "popup",
+    "shotRow": 31
    }
   ]
  },

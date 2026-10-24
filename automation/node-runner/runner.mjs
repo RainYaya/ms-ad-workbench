@@ -42,6 +42,11 @@ for (const f of readdirSync(root).filter(f => /^block-selectors.*\.json$/.test(f
 // Execution order follows the case's composed workflow, including repeated
 // blocks (e.g. menu->list ran twice in one book). Blocks without a selector
 // are reported as skipped instead of silently dropped.
+// Per-case procedure rows that require a 画面HC capture.
+const EVIDENCE = (() => {
+  try { return JSON.parse(readFileSync(join(root, '../../automation/blocks/case-evidence.json'), 'utf8')); }
+  catch { return {}; }
+})();
 let SEL_SEQ = null;
 const skipped = [];
 try {
@@ -49,10 +54,11 @@ try {
   if (wf?.blockDetails?.length) {
     SEL_SEQ = [];
     const seenMissing = new Set();
-    for (const b of wf.blockDetails) {
-      if (SEL_ALL[b.block]) SEL_SEQ.push([b.block, SEL_ALL[b.block]]);
+    const evBlocks = EVIDENCE[caseId]?.blocks || [];
+    wf.blockDetails.forEach((b, idx) => {
+      if (SEL_ALL[b.block]) SEL_SEQ.push([b.block, SEL_ALL[b.block], evBlocks[idx]]);
       else if (!seenMissing.has(b.block)) { seenMissing.add(b.block); skipped.push(b.block); }
-    }
+    });
   }
 } catch {}
 const plan = SEL_SEQ || Object.entries(SEL_ALL).filter(([, blk]) => !blk.cases || blk.cases.includes(caseId));
@@ -78,11 +84,21 @@ context.on('page', (p) => p.on('dialog', acceptDialog));
 const shots = [];
 const blockStatus = [];
 let shotIdx = 0;
-async function shot(name) {
+async function shot(name, where = page) {
   const file = `${String(++shotIdx).padStart(2, '0')}_${name}.png`;
-  await page.screenshot({ path: join(logDir, file), fullPage: false });
+  await where.screenshot({ path: join(logDir, file), fullPage: false });
   shots.push(file);
   console.log('SHOT', file);
+  return file;
+}
+const evidence = [];
+const safeName = (s) => String(s ?? 'hc').replace(/[\\/:*?"<>|\s]/g, '_').slice(0, 32);
+async function pageMeta(p) {
+  return {
+    url: p.url(),
+    title: await p.title().catch(() => ''),
+    text: ((await p.locator('body').innerText({ timeout: 1000 }).catch(() => '')) || '').replace(/\s+/g, ' ').slice(0, 160),
+  };
 }
 
 // value interpolation for selectors containing {params.x}
@@ -98,14 +114,22 @@ try {
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next
-  for (const [blockId, blk] of plan) {
+  for (const [blockId, blk, evBlock] of plan) {
     console.log(`-- ${blockId}`);
+    let assertSeq = 0;
+    const capturedRows = new Set();
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
       const where = step.in === 'popup' ? popup : page;
-      const needsTarget = !['popup', 'wait', 'goto'].includes(step.action);
+      const needsTarget = !['popup', 'wait', 'goto', 'manual'].includes(step.action);
       const target = needsTarget && where ? where.locator(sel(step.selector)).first() : null;
       switch (step.action) {
+        case 'manual':
+          console.log('MANUAL', step.event || '', step.note || '');
+          break;
+        case 'setValue':
+          await target.evaluate((el, v) => { el.value = v; }, String(resolveP(step.value) ?? ''));
+          break;
         case 'goto': {
           const targetUrl = new URL(String(sel(step.url)), baseUrl).href;
           await where.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
@@ -231,21 +255,56 @@ try {
           break;
         }
       }
+      if (step.action === 'assert' || step.action === 'popup' || step.action === 'manual') {
+        let ev = null;
+        if (step.noEvidence) {
+          // Transition already captured by the owning block; do not consume a row.
+        } else if (step.shotRow !== undefined) {
+          ev = (evBlock?.asserts || []).find((a) => a.row === Number(step.shotRow)) || { row: Number(step.shotRow), type: step.assert || '表示', item: step.event || '' };
+        } else {
+          ev = evBlock?.asserts?.[assertSeq];
+          assertSeq++;
+        }
+        if (ev?.hc && !capturedRows.has(ev.row)) {
+          if (step.action === 'manual') {
+            evidence.push({ row: ev.row, type: ev.type, item: ev.item, file: null, exact: false, manual: true, block: blockId, note: step.note || '非浏览器=真機人工' });
+            capturedRows.add(ev.row);
+          } else {
+            const targetPage = step.action === 'popup' ? (popup || where) : where;
+            const file = await shot(`r${String(ev.row).padStart(3, '0')}_${safeName(ev.item || ev.type || 'hc')}`, targetPage);
+            evidence.push({ row: ev.row, type: ev.type, item: ev.item, file, exact: true, block: blockId, ...(await pageMeta(targetPage)) });
+            capturedRows.add(ev.row);
+          }
+        }
+      }
       if (step.shot) await shot(step.shot);
     }
     await shot(blockId.slice(0, 24));
-    blockStatus.push({ block: blockId, status: 'pass' });
+    // Any remaining 画面HC row in this block is captured once at block end.
+    const hcRows = new Set();
+    for (const a of evBlock?.asserts || []) if (a.hc) hcRows.add(a.row);
+    if (evBlock?.toHc) hcRows.add(evBlock.toRow);
+    for (const row of hcRows) {
+      if (capturedRows.has(row)) continue;
+      const meta = (evBlock.asserts || []).find((a) => a.row === row) || {};
+      const file = await shot(`r${String(row).padStart(3, '0')}_${safeName(meta.item || meta.type || 'hc')}_blockend`);
+      evidence.push({ row, type: meta.type, item: meta.item, file, exact: false, block: blockId, note: 'block end capture', ...(await pageMeta(page)) });
+      capturedRows.add(row);
+    }
+    blockStatus.push({ block: blockId, status: 'pass', fromRow: evBlock?.fromRow, toRow: evBlock?.toRow, hcRows: [...capturedRows] });
   }
 
   const status = skipped.length ? 'partial' : 'pass';
+  writeFileSync(join(logDir, `${caseId}-evidence.json`), JSON.stringify({ caseId, evidence }, null, 1));
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
-    caseId, runner: 'node', ts: new Date().toISOString(), status, blocks: blockStatus, skipped, shots
+    caseId, runner: 'node', ts: new Date().toISOString(), status, blocks: blockStatus, skipped, shots, evidence
   }, null, 2));
   console.log(`${status === 'pass' ? 'DONE' : 'PARTIAL'} ${caseId} — ${blockStatus.length}/${blockStatus.length + skipped.length} blocks, ${shots.length} shots in logs/${caseId}/`);
 } catch (err) {
   await shot('failure').catch(() => {});
+  writeFileSync(join(logDir, `${caseId}-evidence.json`), JSON.stringify({ caseId, evidence }, null, 1));
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
-    caseId, runner: 'node', ts: new Date().toISOString(), status: 'fail', error: String(err), blocks: blockStatus, shots
+    caseId, runner: 'node', ts: new Date().toISOString(), status: 'fail', error: String(err), blocks: blockStatus, shots, evidence
   }, null, 2));
   console.error(`FAIL ${caseId}:`, err.message, err.stack ? String(err.stack).split(String.fromCharCode(10)).slice(1,4).join(' | ') : '');
   process.exitCode = 1;

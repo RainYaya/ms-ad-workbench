@@ -1,17 +1,36 @@
 {
   "caseId": "AZ-200-01-030",
   "runner": "node",
-  "ts": "2026-10-24T14:42:44.231Z",
+  "ts": "2026-10-24T23:19:43.326Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-EXTERNAL-AUTH",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        15
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AZ-EXTERNAL-AUTH.png"
+    "02_r015_申込書品質管理システム_(代理店MS).png",
+    "03_BLK-AZ-EXTERNAL-AUTH.png"
+  ],
+  "evidence": [
+    {
+      "row": 15,
+      "type": "遷移",
+      "item": "申込書品質管理システム (代理店MS)",
+      "file": "02_r015_申込書品質管理システム_(代理店MS).png",
+      "exact": true,
+      "block": "BLK-AZ-EXTERNAL-AUTH",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    }
   ]
 }

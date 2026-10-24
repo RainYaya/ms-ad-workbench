@@ -1,22 +1,44 @@
 {
   "caseId": "AZ-240-03-002",
   "runner": "node",
-  "ts": "2026-10-24T14:45:20.673Z",
+  "ts": "2026-10-24T23:22:22.234Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-DDA3A833",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        17
+      ]
     },
     {
       "block": "BLK-SHR-D0DDEEE4",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-DDA3A833.png",
-    "03_BLK-SHR-D0DDEEE4.png"
+    "02_r017_代理店_不備内容入力画面(更新).png",
+    "03_BLK-AUTO-DDA3A833.png",
+    "04_BLK-SHR-D0DDEEE4.png"
+  ],
+  "evidence": [
+    {
+      "row": 17,
+      "type": "遷移",
+      "item": "代理店 不備内容入力画面(更新)",
+      "file": "02_r017_代理店_不備内容入力画面(更新).png",
+      "exact": true,
+      "block": "BLK-AUTO-DDA3A833",
+      "url": "http://127.0.0.1:10091/AMC22/aZG206Search",
+      "title": "",
+      "text": " 1 1/1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 年 月 計上状態 1 募集人ID 登録日 年 月 日 1 年 月 日 回答締切日 年 月 日 1 年 月 日 対応状況 1：未対応1 2：対応中1 3"
+    }
   ]
 }

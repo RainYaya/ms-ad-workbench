@@ -1,22 +1,58 @@
 {
   "caseId": "AY-100-08-001",
   "runner": "node",
-  "ts": "2026-10-24T14:36:34.631Z",
+  "ts": "2026-10-24T23:15:30.578Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AY-TORIKESHI-REGISTER",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        18
+      ]
     },
     {
       "block": "BLK-SGL-7597207A",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        22
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AY-TORIKESHI-REGISTE.png",
-    "03_BLK-SGL-7597207A.png"
+    "02_r018_申請・確認更新画面.png",
+    "03_BLK-AY-TORIKESHI-REGISTE.png",
+    "04_r022_申請・確認更新画面.png",
+    "05_BLK-SGL-7597207A.png"
+  ],
+  "evidence": [
+    {
+      "row": 18,
+      "type": "遷移",
+      "item": "申請・確認更新画面",
+      "file": "02_r018_申請・確認更新画面.png",
+      "exact": true,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
+    },
+    {
+      "row": 22,
+      "type": "表示",
+      "item": "申請・確認更新画面",
+      "file": "04_r022_申請・確認更新画面.png",
+      "exact": true,
+      "block": "BLK-SGL-7597207A",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
+    }
   ]
 }

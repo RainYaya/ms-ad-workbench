@@ -1,32 +1,87 @@
 {
   "caseId": "AZ-150-13-001",
   "runner": "node",
-  "ts": "2026-10-24T14:42:31.238Z",
+  "ts": "2026-10-24T23:19:29.197Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-MENU-SEARCH-LIST",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SHR-6F09B48C",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        20
+      ]
     },
     {
       "block": "BLK-AZ-MENU-SEARCH-LIST",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": []
     },
     {
       "block": "BLK-SHR-269893EF",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        38,
+        58
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
     "02_BLK-AZ-MENU-SEARCH-LIST.png",
-    "03_BLK-SHR-6F09B48C.png",
-    "04_BLK-AZ-MENU-SEARCH-LIST.png",
-    "05_BLK-SHR-269893EF.png"
+    "03_r020_不備一覧画面.png",
+    "04_BLK-SHR-6F09B48C.png",
+    "05_BLK-AZ-MENU-SEARCH-LIST.png",
+    "06_r038_不備一覧画面.png",
+    "07_r058_不備集計画面.png",
+    "08_BLK-SHR-269893EF.png"
+  ],
+  "evidence": [
+    {
+      "row": 20,
+      "type": "表示",
+      "item": "不備一覧画面",
+      "file": "03_r020_不備一覧画面.png",
+      "exact": true,
+      "block": "BLK-SHR-6F09B48C",
+      "url": "http://127.0.0.1:10091/AMB/AMA07.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
+    },
+    {
+      "row": 38,
+      "type": "表示",
+      "item": "不備一覧画面",
+      "file": "06_r038_不備一覧画面.png",
+      "exact": true,
+      "block": "BLK-SHR-269893EF",
+      "url": "http://127.0.0.1:10091/AMB/AMA07.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
+    },
+    {
+      "row": 58,
+      "type": "その他",
+      "item": "不備集計画面",
+      "file": "07_r058_不備集計画面.png",
+      "exact": true,
+      "block": "BLK-SHR-269893EF",
+      "url": "http://127.0.0.1:10091/AMB/AMA07.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
+    }
   ]
 }

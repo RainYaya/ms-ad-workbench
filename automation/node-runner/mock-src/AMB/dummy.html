@@ -598,6 +598,7 @@
 if (window.set_EventForCM) {
   var __orig = window.set_EventForCM;
   window.set_EventForCM = function (t) {
+    if (document.mainForm && document.mainForm.UserID && document.mainForm.UserID.value === 'SYSERR') { location.href = '/AMB/system_error.html'; return; }
     if (t === 'MHK001') { location.href = '/AMB/AMA01.html'; return; }
     if (t === 'TKS001') { location.href = '/ANB00/ANA01.html'; return; }
     if (t === 'MHK004') { location.href = '/AMB/AMA07.html'; return; }

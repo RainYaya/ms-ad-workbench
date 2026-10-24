@@ -1,17 +1,50 @@
 {
   "caseId": "AZ-200-03-001",
   "runner": "node",
-  "ts": "2026-10-24T14:42:46.691Z",
+  "ts": "2026-10-24T23:19:45.252Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-SESSION-TIMEOUT",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        16,
+        17
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AZ-SESSION-TIMEOUT.png"
+    "02_r016_セッションタイムアウト画面_(親画面).png",
+    "03_BLK-AZ-SESSION-TIMEOUT.png",
+    "04_r017_エラーメッセージ_blockend.png"
+  ],
+  "evidence": [
+    {
+      "row": 16,
+      "type": "遷移",
+      "item": "セッションタイムアウト画面 (親画面)",
+      "file": "02_r016_セッションタイムアウト画面_(親画面).png",
+      "exact": true,
+      "block": "BLK-AZ-SESSION-TIMEOUT",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 17,
+      "type": "出力(Msg)",
+      "item": "エラーメッセージ",
+      "file": "04_r017_エラーメッセージ_blockend.png",
+      "exact": false,
+      "block": "BLK-AZ-SESSION-TIMEOUT",
+      "note": "block end capture",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    }
   ]
 }

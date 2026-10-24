@@ -1,22 +1,59 @@
 {
   "caseId": "AZ-150-06-001",
   "runner": "node",
-  "ts": "2026-10-24T14:42:21.243Z",
+  "ts": "2026-10-24T23:19:20.013Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-BATCH-RUN-VERIFY",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        15
+      ]
     },
     {
       "block": "BLK-SGL-F54CCD41",
-      "status": "pass"
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null,
+      "hcRows": [
+        27
+      ]
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "03_BLK-SGL-F54CCD41.png"
+    "02_r015_操作結果.png",
+    "03_BLK-AZ-BATCH-RUN-VERIFY.png",
+    "04_BLK-SGL-F54CCD41.png",
+    "05_r027_親子集計状況確認画面_blockend.png"
+  ],
+  "evidence": [
+    {
+      "row": 15,
+      "type": "その他",
+      "item": "操作結果",
+      "file": "02_r015_操作結果.png",
+      "exact": true,
+      "block": "BLK-AZ-BATCH-RUN-VERIFY",
+      "url": "http://127.0.0.1:10091/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    },
+    {
+      "row": 27,
+      "type": "表示",
+      "item": "親子集計状況確認画面",
+      "file": "05_r027_親子集計状況確認画面_blockend.png",
+      "exact": false,
+      "block": "BLK-SGL-F54CCD41",
+      "note": "block end capture",
+      "url": "http://127.0.0.1:10091/AMB/AMA06.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 予約番号 1 ステータス 1 受付時間 11 開始時間 11 完了時間 11 ■抽出条件 登録年月 年 1 月 1 1 年 1 月 1 種目 自賠責 貨物 種目共通 その他 1貨物は除く1 入力区分 契約入力1現地1センター1口座振替1その他 ※｢"
+    }
   ]
 }
