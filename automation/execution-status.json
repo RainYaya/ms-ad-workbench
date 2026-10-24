@@ -1,205 +1,814 @@
 {
-  "generatedAt": "2026-10-23",
-  "note": "Explicit execution state for the cases that have been attempted. Cases not listed are not-run. Block matching is not execution.",
-  "cases": {
-    "AZ-110-01-009": {
-      "livePass": [
-        "BLK-AZ-MENU-CREATE-INPUT",
-        "BLK-AZ-INPUT-FILL",
-        "BLK-AZ-INSURANCE-SELECT"
-      ],
-      "mockPass": [],
-      "blocked": [
-        "BLK-AZ-AGENT-SELECT"
-      ],
-      "notImplemented": [
-        "BLK-AZ-REGISTER-UPDATE",
-        "BLK-AZ-UPDATE-SEARCH-ITEM",
-        "BLK-AZ-ITEM-SEARCH-SELECT",
-        "BLK-AZ-INQUIRY-EDIT",
-        "BLK-AZ-CORRECTION-CONFIRM",
-        "BLK-AZ-COMPLETE-REGISTER"
-      ],
-      "notRun": [],
-      "note": "Environment blocks block 4/5: agent search returns no data. Do not diagnose further; continue with other work. Blocks 6-13 are not implemented."
-    },
-    "AZ-110-01-010": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-CREATE-INPUT",
-        "BLK-AZ-INPUT-FILL",
-        "BLK-AZ-INSURANCE-SELECT",
-        "BLK-AZ-AGENT-SELECT"
-      ],
-      "blocked": [],
-      "notImplemented": [
-        "BLK-AZ-REGISTER-UPDATE",
-        "BLK-AZ-UPDATE-SEARCH-ITEM",
-        "BLK-AZ-ITEM-SEARCH-SELECT",
-        "BLK-AZ-INQUIRY-EDIT",
-        "BLK-AZ-CORRECTION-CONFIRM",
-        "BLK-AZ-COMPLETE-REGISTER"
-      ],
-      "notRun": [],
-      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
-    },
-    "AZ-110-01-011": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-CREATE-INPUT",
-        "BLK-AZ-INPUT-FILL",
-        "BLK-AZ-INSURANCE-SELECT",
-        "BLK-AZ-AGENT-SELECT"
-      ],
-      "blocked": [],
-      "notImplemented": [
-        "BLK-AZ-REGISTER-UPDATE",
-        "BLK-AZ-UPDATE-SEARCH-ITEM",
-        "BLK-AZ-ITEM-SEARCH-SELECT",
-        "BLK-AZ-INQUIRY-EDIT",
-        "BLK-AZ-CORRECTION-CONFIRM",
-        "BLK-AZ-COMPLETE-REGISTER"
-      ],
-      "notRun": [],
-      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
-    },
-    "AZ-110-01-012": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-CREATE-INPUT",
-        "BLK-AZ-INPUT-FILL",
-        "BLK-AZ-INSURANCE-SELECT",
-        "BLK-AZ-AGENT-SELECT"
-      ],
-      "blocked": [],
-      "notImplemented": [
-        "BLK-AZ-REGISTER-UPDATE",
-        "BLK-AZ-UPDATE-SEARCH-ITEM",
-        "BLK-AZ-ITEM-SEARCH-SELECT",
-        "BLK-AZ-INQUIRY-EDIT",
-        "BLK-AZ-CORRECTION-CONFIRM",
-        "BLK-AZ-COMPLETE-REGISTER"
-      ],
-      "notRun": [],
-      "note": "Mock pass for blocks 1-5; actual SUT not run yet."
-    },
-    "AZ-110-37-001": {
-      "livePass": [],
-      "mockPass": [],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-CL",
-        "BLK-AZ-COMMON-LOGS"
-      ],
-      "note": "Static composition full; no runner yet."
-    },
-    "AZ-110-67-001": {
-      "livePass": [],
-      "mockPass": [],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-DELETE-OK",
-        "BLK-AZ-COMMON-LOGS"
-      ],
-      "note": "Static composition full; no runner yet."
-    },
-    "AY-110-01-011": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AY-TORIKESHI-REGISTER"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
-    },
-    "AY-110-01-012": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AY-TORIKESHI-REGISTER"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
-    },
-    "AZ-110-37-002": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-CL"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-simulation full/partial pass via node runner."
-    },
-    "AZ-110-37-003": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-CL"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-simulation full/partial pass via node runner."
-    },
-    "AZ-110-37-004": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-CL"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-simulation full/partial pass via node runner."
-    },
-    "AZ-110-37-005": {
-      "livePass": [],
-      "mockPass": [
-        "BLK-AZ-MENU-SEARCH-LIST",
-        "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-        "BLK-AZ-UPDATE-CL"
-      ],
-      "blocked": [],
-      "notImplemented": [],
-      "notRun": [],
-      "note": "2026-10-24 source-simulation full/partial pass via node runner."
-    }
+ "generatedAt": "2026-10-24",
+ "note": "Explicit execution state for the cases that have been attempted. Cases not listed are not-run. Block matching is not execution.",
+ "cases": {
+  "AZ-110-01-009": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AGENT-SELECT",
+    "BLK-AZ-COMPLETE-REGISTER",
+    "BLK-AZ-CORRECTION-CONFIRM",
+    "BLK-AZ-INPUT-FILL",
+    "BLK-AZ-INQUIRY-EDIT",
+    "BLK-AZ-INSURANCE-SELECT",
+    "BLK-AZ-ITEM-SEARCH-SELECT",
+    "BLK-AZ-MENU-CREATE-INPUT",
+    "BLK-AZ-REGISTER-UPDATE",
+    "BLK-AZ-UPDATE-SEARCH-ITEM"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-009/."
   },
-  "status3Map": {
-    "verified": [
-      "BLK-AZ-MENU-CREATE-INPUT",
-      "BLK-AZ-INPUT-FILL",
-      "BLK-AZ-INSURANCE-SELECT"
-    ],
-    "coded": [
-      "BLK-AZ-AGENT-SELECT",
-      "BLK-AZ-REGISTER-UPDATE",
-      "BLK-AZ-UPDATE-SEARCH-ITEM",
-      "BLK-AZ-ITEM-SEARCH-SELECT",
-      "BLK-AZ-INQUIRY-EDIT",
-      "BLK-AZ-CORRECTION-CONFIRM",
-      "BLK-AZ-COMPLETE-REGISTER",
-      "BLK-AZ-MENU-SEARCH-LIST",
-      "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
-      "BLK-AZ-UPDATE-CL",
-      "BLK-AY-MENU-SEARCH",
-      "BLK-AY-SEARCH-OPEN",
-      "BLK-AY-UPDATE",
-      "BLK-AY-TORIKESHI-REGISTER"
-    ],
-    "note": "verified=live SUT pass 2026-10-23 (009 blk1-3); coded=implemented+mock/source-sim pass (2026-10-24: full-flow 009-012, AZG200 37-001..005, AY 110-01-011/012 on source simulation); planned=rest. User-approved three-state model."
+  "AZ-110-01-010": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AGENT-SELECT",
+    "BLK-AZ-COMPLETE-REGISTER",
+    "BLK-AZ-CORRECTION-CONFIRM",
+    "BLK-AZ-INPUT-FILL",
+    "BLK-AZ-INQUIRY-EDIT",
+    "BLK-AZ-INSURANCE-SELECT",
+    "BLK-AZ-ITEM-SEARCH-SELECT",
+    "BLK-AZ-MENU-CREATE-INPUT",
+    "BLK-AZ-REGISTER-UPDATE",
+    "BLK-AZ-UPDATE-SEARCH-ITEM"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-010/."
+  },
+  "AZ-110-01-011": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AGENT-SELECT",
+    "BLK-AZ-COMPLETE-REGISTER",
+    "BLK-AZ-CORRECTION-CONFIRM",
+    "BLK-AZ-INPUT-FILL",
+    "BLK-AZ-INQUIRY-EDIT",
+    "BLK-AZ-INSURANCE-SELECT",
+    "BLK-AZ-ITEM-SEARCH-SELECT",
+    "BLK-AZ-MENU-CREATE-INPUT",
+    "BLK-AZ-REGISTER-UPDATE",
+    "BLK-AZ-UPDATE-SEARCH-ITEM"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-011/."
+  },
+  "AZ-110-01-012": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AGENT-SELECT",
+    "BLK-AZ-COMPLETE-REGISTER",
+    "BLK-AZ-CORRECTION-CONFIRM",
+    "BLK-AZ-INPUT-FILL",
+    "BLK-AZ-INQUIRY-EDIT",
+    "BLK-AZ-INSURANCE-SELECT",
+    "BLK-AZ-ITEM-SEARCH-SELECT",
+    "BLK-AZ-MENU-CREATE-INPUT",
+    "BLK-AZ-REGISTER-UPDATE",
+    "BLK-AZ-UPDATE-SEARCH-ITEM"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-012/."
+  },
+  "AZ-110-37-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-UPDATE-CL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [
+    "BLK-AZ-COMMON-LOGS"
+   ],
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-001/. Remaining (run-plan): BLK-AZ-COMMON-LOGS."
+  },
+  "AZ-110-67-001": {
+   "livePass": [],
+   "mockPass": [],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-UPDATE-DELETE-OK",
+    "BLK-AZ-COMMON-LOGS"
+   ],
+   "note": "Static composition full; no runner yet."
+  },
+  "AY-110-01-011": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AY-MENU-SEARCH",
+    "BLK-AY-SEARCH-OPEN",
+    "BLK-AY-TORIKESHI-REGISTER",
+    "BLK-AY-UPDATE"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AY-110-01-011/. Remaining (run-plan): BLK-AUTO-CE34C5B8, BLK-AUTO-2B9786A5, BLK-AUTO-D2C3A480, BLK-AUTO-DF07A781."
+  },
+  "AY-110-01-012": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AY-MENU-SEARCH",
+    "BLK-AY-SEARCH-OPEN",
+    "BLK-AY-TORIKESHI-REGISTER",
+    "BLK-AY-UPDATE"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AY-110-01-012/. Remaining (run-plan): BLK-AUTO-CE34C5B8, BLK-AUTO-2B9786A5, BLK-AUTO-D2C3A480, BLK-AUTO-DF07A781."
+  },
+  "AZ-110-37-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-UPDATE-CL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-002/."
+  },
+  "AZ-110-37-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-UPDATE-CL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-003/."
+  },
+  "AZ-110-37-004": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-UPDATE-CL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-004/."
+  },
+  "AZ-110-37-005": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+    "BLK-AZ-MENU-SEARCH-LIST",
+    "BLK-AZ-UPDATE-CL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-005/."
+  },
+  "AY-100-04-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SYSERR-LOGIN"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AY-100-04-001/."
+  },
+  "AY-100-04-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SYSERR-LOGIN"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AY-100-04-002/."
+  },
+  "AY-100-08-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AY-MENU-SESSION-TIMEOUT"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AY-100-08-002/."
+  },
+  "AZ-100-06-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AUTH-ERROR"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-100-06-001/."
+  },
+  "AZ-100-06-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AUTH-ERROR"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-100-06-003/."
+  },
+  "AZ-110-80-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-110-80-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-C90A0006, BLK-SGL-CCA9B958, BLK-AUTO-4C432C14, BLK-AUTO-8FE40BE8."
+  },
+  "AZ-110-82-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-110-82-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-C90A0006, BLK-SGL-639A108B, BLK-SGL-CCA9B958, BLK-AUTO-4C432C14, BLK-AUTO-8FE40BE8."
+  },
+  "AZ-150-11-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-BATCH-CONVERT-MAIL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-11-001/."
+  },
+  "AZ-150-11-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-BATCH-CONVERT-MAIL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-11-002/."
+  },
+  "AZ-150-12-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-BATCH-CONVERT-MAIL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-12-001/."
+  },
+  "AZ-150-12-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-BATCH-CONVERT-MAIL"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-12-002/."
+  },
+  "AZ-200-01-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-001/."
+  },
+  "AZ-200-01-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-002/."
+  },
+  "AZ-200-01-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-003/."
+  },
+  "AZ-200-01-004": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-004/."
+  },
+  "AZ-200-01-005": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-005/."
+  },
+  "AZ-200-01-006": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-006/."
+  },
+  "AZ-200-01-007": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-007/."
+  },
+  "AZ-200-01-008": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-008/."
+  },
+  "AZ-200-01-009": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-009/."
+  },
+  "AZ-200-01-030": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-030/."
+  },
+  "AZ-200-01-031": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-031/."
+  },
+  "AZ-200-01-032": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-EXTERNAL-AUTH"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-032/."
+  },
+  "AZ-200-03-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SESSION-TIMEOUT"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-03-001/."
+  },
+  "AZ-200-03-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SESSION-TIMEOUT"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-03-003/."
+  },
+  "AZ-200-04-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SYSERR-LOGIN"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-04-001/."
+  },
+  "AZ-200-07-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-SESSION-TIMEOUT"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-07-002/."
+  },
+  "AZ-210-30-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-30-001/. Remaining (run-plan): BLK-SHR-D606FB03."
+  },
+  "AZ-210-31-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-31-001/. Remaining (run-plan): BLK-SGL-41743CCA, BLK-SHR-D606FB03."
+  },
+  "AZ-210-37-008": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-008/."
+  },
+  "AZ-210-37-009": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-009/."
+  },
+  "AZ-210-37-010": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-010/."
+  },
+  "AZ-210-37-011": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-011/."
+  },
+  "AZ-210-37-012": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-012/."
+  },
+  "AZ-210-37-013": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-013/."
+  },
+  "AZ-210-37-014": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-014/."
+  },
+  "AZ-210-37-015": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-015/."
+  },
+  "AZ-210-37-016": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-016/."
+  },
+  "AZ-210-37-017": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-017/."
+  },
+  "AZ-210-50-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-50-001/. Remaining (run-plan): BLK-SGL-E008F918."
+  },
+  "AZ-210-67-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-67-001/. Remaining (run-plan): BLK-SGL-CEAA65E9, BLK-SHR-D606FB03."
+  },
+  "AZ-210-68-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-68-001/. Remaining (run-plan): BLK-SGL-13EBF209, BLK-SHR-D606FB03."
+  },
+  "AZ-240-03-002": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-240-03-002/. Remaining (run-plan): BLK-SHR-D0DDEEE4."
+  },
+  "AZ-240-03-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-240-03-003/. Remaining (run-plan): BLK-SHR-D0DDEEE4."
+  },
+  "AZ-310-02-012": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-012/."
+  },
+  "AZ-310-02-013": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-013/."
+  },
+  "AZ-310-02-014": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-014/."
+  },
+  "AZ-310-02-015": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-015/."
+  },
+  "AZ-310-02-016": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-016/."
+  },
+  "AZ-310-02-017": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-017/."
+  },
+  "AZ-310-02-018": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-018/."
+  },
+  "AZ-310-02-019": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-019/."
+  },
+  "AZ-310-02-020": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-020/."
+  },
+  "AZ-310-02-021": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833",
+    "BLK-SHR-F9A1D656"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-021/."
+  },
+  "AZ-310-07-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-07-001/. Remaining (run-plan): BLK-SGL-263830F1, BLK-SHR-D606FB03."
+  },
+  "AZ-310-41-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-41-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-ED323C11, BLK-AUTO-C7A1F3E5, BLK-SGL-F9980EBC, BLK-SHR-669A1809, BLK-AUTO-8FE40BE8."
+  },
+  "AZ-310-42-001": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AUTO-DDA3A833"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-42-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-ED323C11, BLK-AUTO-C7A1F3E5, BLK-SGL-637D567D, BLK-SHR-669A1809, BLK-AUTO-E0B41407, BLK-SHR-669A1809, BLK-AUTO-8FE40BE8."
+  },
+  "AY-100-06-003": {
+   "livePass": [],
+   "mockPass": [
+    "BLK-AZ-AUTH-ERROR"
+   ],
+   "blocked": [],
+   "notImplemented": [],
+   "notRun": [],
+   "note": "node mock pass: 1 block(s) in logs/AY-100-06-003/."
   }
+ },
+ "status3Map": {
+  "verified": [
+   "BLK-AZ-MENU-CREATE-INPUT",
+   "BLK-AZ-INPUT-FILL",
+   "BLK-AZ-INSURANCE-SELECT"
+  ],
+  "coded": [
+   "BLK-AUTO-DDA3A833",
+   "BLK-AY-MENU-SESSION-TIMEOUT",
+   "BLK-AY-TORIKESHI-REGISTER",
+   "BLK-AZ-AGENT-SELECT",
+   "BLK-AZ-AUTH-ERROR",
+   "BLK-AZ-BATCH-CONVERT-MAIL",
+   "BLK-AZ-COMPLETE-REGISTER",
+   "BLK-AZ-CORRECTION-CONFIRM",
+   "BLK-AZ-EXTERNAL-AUTH",
+   "BLK-AZ-INQUIRY-EDIT",
+   "BLK-AZ-ITEM-SEARCH-SELECT",
+   "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+   "BLK-AZ-MENU-SEARCH-LIST",
+   "BLK-AZ-REGISTER-UPDATE",
+   "BLK-AZ-SESSION-TIMEOUT",
+   "BLK-AZ-SYSERR-LOGIN",
+   "BLK-AZ-UPDATE-CL",
+   "BLK-AZ-UPDATE-SEARCH-ITEM",
+   "BLK-SHR-F9A1D656"
+  ],
+  "note": "verified=live SUT pass 2026-10-23 (009 blk1-3); coded=implemented+mock/source-sim pass (2026-10-24: full-flow 009-012, AZG200 37-001..005, AY 110-01-011/012, A 30 books, agency DDA3A833/F9A1D656); planned=rest."
+ }
 }

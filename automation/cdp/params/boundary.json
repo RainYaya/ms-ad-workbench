@@ -1,0 +1,131 @@
+{
+ "common": {
+  "userId": "MS3N",
+  "menuSelector": "input[name=menu_cm]"
+ },
+ "cases": {
+  "AZ-200-01-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-002": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-003": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-004": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-005": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-006": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-007": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-008": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-009": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-030": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-031": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-01-032": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-03-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-03-003": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-07-002": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-07-003": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-07-004": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-07-005": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-200-07-006": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-100-06-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-100-06-003": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AY-100-06-003": {
+   "user": "?",
+   "pointCheck": "?",
+   "menuSelector": "input[value=\"異例メニュー画面\"]"
+  },
+  "AZ-200-04-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AY-100-04-001": {
+   "user": "?",
+   "pointCheck": "?",
+   "menuSelector": "input[value=\"異例メニュー画面\"]"
+  },
+  "AY-100-04-002": {
+   "user": "?",
+   "pointCheck": "?",
+   "menuSelector": "input[value=\"異例メニュー画面\"]"
+  },
+  "AY-100-08-002": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-150-11-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-150-11-002": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-150-12-001": {
+   "user": "?",
+   "pointCheck": "?"
+  },
+  "AZ-150-12-002": {
+   "user": "?",
+   "pointCheck": "?"
+  }
+ }
+}

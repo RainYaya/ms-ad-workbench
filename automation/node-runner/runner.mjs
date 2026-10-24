@@ -63,8 +63,11 @@ const sel = (s) => String(s ?? '').replace(/\{params\.(\w+)\}/g, (_, k) => P[k] 
 
 try {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  if (P.startUrl) {
+    await page.goto(new URL(P.startUrl, baseUrl).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  }
   // login is manual on the SUT; AZ menu has #act001to100, AY(ANB00) menu has route buttons
-  await page.waitForSelector('#act001to100, #route2, #route3', { timeout: 120000 });
+  await page.waitForSelector(P.startSelector || '#act001to100, #route2, #route3, input[name=UserID], input[name=menu_cm]', { timeout: 120000 });
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next
@@ -74,7 +77,7 @@ try {
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
       const where = step.in === 'popup' ? popup : page;
-      const needsTarget = !['popup'].includes(step.action);
+      const needsTarget = !['popup', 'wait'].includes(step.action);
       const target = needsTarget && where ? where.locator(sel(step.selector)).first() : null;
       switch (step.action) {
         case 'click':
@@ -119,9 +122,61 @@ try {
           await target.selectOption(hit);
           break;
         }
+        case 'wait':
+          await page.waitForTimeout(step.ms || 1000);
+          break;
         case 'enable':
           await target.evaluate((el) => { el.disabled = false; });
           break;
+        case 'wait':
+          await where.waitForTimeout(Number(step.ms) || 0);
+          break;
+        case 'assert': {
+          const timeout = Number(step.timeout) || 10000;
+          try {
+            switch (step.assert) {
+              case 'visible':
+                await target.waitFor({ state: 'visible', timeout });
+                break;
+              case 'hidden':
+                await target.waitFor({ state: 'hidden', timeout });
+                break;
+              case 'rows': {
+                const min = Number(step.min) || 1;
+                const deadline = Date.now() + timeout;
+                let n = 0;
+                while (Date.now() < deadline) {
+                  n = await target.count();
+                  if (n >= min) break;
+                  await where.waitForTimeout(200);
+                }
+                if (n < min) throw new Error(`assert rows: got ${n}, want >= ${min} (${step.selector})`);
+                break;
+              }
+              case 'value': {
+                const got = await target.inputValue({ timeout });
+                const want = step.equals !== undefined ? String(resolveP(step.equals)) : null;
+                const has = step.contains !== undefined ? String(resolveP(step.contains)) : null;
+                if (want !== null && got !== want) throw new Error(`assert value: got "${got}", want "${want}"`);
+                if (has !== null && !got.includes(has)) throw new Error(`assert value: got "${got}", want contains "${has}"`);
+                if (want === null && has === null && !got) throw new Error('assert value: empty');
+                break;
+              }
+              case 'text': {
+                const got = (await target.textContent({ timeout })) || '';
+                const want = step.contains !== undefined ? String(resolveP(step.contains)) : '';
+                if (want && !got.includes(want)) throw new Error(`assert text: "${want}" not found (${got.slice(0, 120)})`);
+                break;
+              }
+              default:
+                throw new Error(`unknown assert kind: ${step.assert}`);
+            }
+          } catch (e) {
+            if (step.optional) { console.log(`WARN optional assert failed: ${step.event || step.selector}: ${e.message}`); break; }
+            throw e;
+          }
+          break;
+        }
         case 'check':
           await target.check({ timeout: 10000 });
           break;

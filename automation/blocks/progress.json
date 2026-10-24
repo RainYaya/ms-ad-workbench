@@ -465,23 +465,79 @@
   "curatedFullCount": 46,
   "curatedEventCoverage": 0.3518,
   "actualFullCount": 0,
-  "actualPartialCount": 1,
-  "mockOnlyCount": 5,
-  "blockedCaseCount": 1,
+  "actualPartialCount": 0,
+  "mockOnlyCount": 65,
+  "blockedCaseCount": 0,
   "actualFullCaseIds": [],
-  "actualPartialCaseIds": [
-   "AZ-110-01-009"
-  ],
+  "actualPartialCaseIds": [],
   "mockOnlyCaseIds": [
+   "AZ-100-06-001",
+   "AZ-100-06-003",
+   "AZ-110-01-009",
    "AZ-110-01-010",
    "AZ-110-01-011",
    "AZ-110-01-012",
+   "AZ-110-37-001",
+   "AZ-110-80-001",
+   "AZ-110-82-001",
+   "AZ-150-11-001",
+   "AZ-150-11-002",
+   "AZ-150-12-001",
+   "AZ-150-12-002",
+   "AZ-310-02-012",
+   "AZ-310-02-013",
+   "AZ-310-02-014",
+   "AZ-310-02-015",
+   "AZ-310-02-016",
+   "AZ-310-02-017",
+   "AZ-310-02-018",
+   "AZ-310-02-019",
+   "AZ-310-02-020",
+   "AZ-310-02-021",
+   "AZ-310-07-001",
+   "AZ-310-41-001",
+   "AZ-310-42-001",
+   "AZ-200-01-001",
+   "AZ-200-01-002",
+   "AZ-200-01-003",
+   "AZ-200-01-004",
+   "AZ-200-01-005",
+   "AZ-200-01-006",
+   "AZ-200-01-007",
+   "AZ-200-01-008",
+   "AZ-200-01-009",
+   "AZ-200-01-030",
+   "AZ-200-01-031",
+   "AZ-200-01-032",
+   "AZ-200-03-001",
+   "AZ-200-03-003",
+   "AZ-200-04-001",
+   "AZ-200-07-002",
+   "AZ-210-30-001",
+   "AZ-210-31-001",
+   "AZ-210-37-008",
+   "AZ-210-37-009",
+   "AZ-210-37-010",
+   "AZ-210-37-011",
+   "AZ-210-37-012",
+   "AZ-210-37-013",
+   "AZ-210-37-014",
+   "AZ-210-37-015",
+   "AZ-210-37-016",
+   "AZ-210-37-017",
+   "AZ-210-50-001",
+   "AZ-210-67-001",
+   "AZ-210-68-001",
+   "AZ-240-03-002",
+   "AZ-240-03-003",
+   "AY-100-04-001",
+   "AY-100-04-002",
+   "AY-100-06-003",
+   "AY-100-08-002",
    "AY-110-01-011",
    "AY-110-01-012"
   ],
-  "blockedCaseIds": [
-   "AZ-110-01-009"
-  ],
+  "blockedCaseIds": [],
   "blocks": [
    {
     "id": "BLK-SGL-3DB9518B",
@@ -718,7 +774,7 @@
    {
     "id": "BLK-AZ-AGENT-SELECT",
     "status": "mock-verified",
-    "executionStatus": "blocked",
+    "executionStatus": "mock-pass",
     "usedByCases": 46,
     "fromScreen": "不備内容入力画面-新規",
     "toScreen": "不備内容入力画面-新規"
@@ -942,7 +998,7 @@
    {
     "id": "BLK-AZ-CORRECTION-CONFIRM",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 14,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
@@ -950,7 +1006,7 @@
    {
     "id": "BLK-AZ-INQUIRY-EDIT",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 99,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
@@ -958,7 +1014,7 @@
    {
     "id": "BLK-AZ-ITEM-SEARCH-SELECT",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 117,
     "fromScreen": "項目名検索",
     "toScreen": "不備内容入力画面-更新"
@@ -1198,7 +1254,7 @@
    {
     "id": "BLK-AZ-INSURANCE-SELECT",
     "status": "live-verified",
-    "executionStatus": "live-pass",
+    "executionStatus": "mock-pass",
     "usedByCases": 46,
     "fromScreen": "不備内容入力画面-新規",
     "toScreen": "不備内容入力画面-新規"
@@ -1310,7 +1366,7 @@
    {
     "id": "BLK-AUTO-DDA3A833",
     "status": "draft-auto",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 64,
     "fromScreen": "代理店不備一覧",
     "toScreen": "代理店 不備内容入力画面(更新)"
@@ -1326,7 +1382,7 @@
    {
     "id": "BLK-AY-MENU-SESSION-TIMEOUT",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 1,
     "fromScreen": "異例取扱管理メニュー",
     "toScreen": "セッションタイムアウト画面 (親画面)"
@@ -1342,7 +1398,7 @@
    {
     "id": "BLK-AZ-AUTH-ERROR",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 3,
     "fromScreen": "その他(申込書品質管理)",
     "toScreen": "権限エラー"
@@ -1350,7 +1406,7 @@
    {
     "id": "BLK-AZ-BATCH-CONVERT-MAIL",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 4,
     "fromScreen": "メール変換先取込通知バッチ処理",
     "toScreen": "メール変換先取込通知バッチ処理"
@@ -1366,7 +1422,7 @@
    {
     "id": "BLK-AZ-COMPLETE-REGISTER",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 4,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
@@ -1374,7 +1430,7 @@
    {
     "id": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 308,
     "fromScreen": "不備一覧",
     "toScreen": "不備内容入力画面-更新"
@@ -1382,7 +1438,7 @@
    {
     "id": "BLK-AZ-SESSION-TIMEOUT",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 3,
     "fromScreen": "代理店 不備一覧",
     "toScreen": "セッションタイムアウト画面 (親画面)"
@@ -1390,7 +1446,7 @@
    {
     "id": "BLK-AZ-SYSERR-LOGIN",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 3,
     "fromScreen": "その他(申込書品質管理)",
     "toScreen": "システムエラー"
@@ -1398,7 +1454,7 @@
    {
     "id": "BLK-AZ-UPDATE-CL",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 5,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "不備内容入力画面-更新"
@@ -1406,7 +1462,7 @@
    {
     "id": "BLK-AZ-UPDATE-SEARCH-ITEM",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 6,
     "fromScreen": "不備内容入力画面-更新",
     "toScreen": "項目名検索"
@@ -1622,7 +1678,7 @@
    {
     "id": "BLK-AZ-EXTERNAL-AUTH",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 12,
     "fromScreen": "その他(申込書品質管理)",
     "toScreen": "申込書品質管理システム (代理店MS)"
@@ -1950,7 +2006,7 @@
    {
     "id": "BLK-AZ-MENU-CREATE-INPUT",
     "status": "live-verified",
-    "executionStatus": "live-pass",
+    "executionStatus": "mock-pass",
     "usedByCases": 174,
     "fromScreen": "申込書品質管理メニュー",
     "toScreen": "不備内容入力画面-新規"
@@ -1958,7 +2014,7 @@
    {
     "id": "BLK-AZ-MENU-SEARCH-LIST",
     "status": "source-only",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 348,
     "fromScreen": "申込書品質管理メニュー",
     "toScreen": "不備一覧"
@@ -1966,7 +2022,7 @@
    {
     "id": "BLK-AZ-REGISTER-UPDATE",
     "status": "source-only",
-    "executionStatus": "not-implemented",
+    "executionStatus": "mock-pass",
     "usedByCases": 166,
     "fromScreen": "不備内容入力画面-新規",
     "toScreen": "不備内容入力画面-更新"
@@ -2278,7 +2334,7 @@
    {
     "id": "BLK-AZ-INPUT-FILL",
     "status": "live-verified",
-    "executionStatus": "live-pass",
+    "executionStatus": "mock-pass",
     "usedByCases": 174,
     "fromScreen": "不備内容入力画面-新規",
     "toScreen": "不備内容入力画面-新規"
@@ -2438,7 +2494,7 @@
    {
     "id": "BLK-SHR-F9A1D656",
     "status": "draft-shared",
-    "executionStatus": "not-run",
+    "executionStatus": "mock-pass",
     "usedByCases": 22,
     "fromScreen": "代理店 不備内容入力画面(更新)",
     "toScreen": "代理店 不備内容入力画面(更新)"
@@ -2753,17 +2809,17 @@
    }
   ],
   "status3Counts": {
-   "planned": 238,
-   "coded": 11,
+   "planned": 230,
+   "coded": 19,
    "verified": 3
   },
   "status3CaseCounts": {
-   "coded": 277,
-   "planned": 173
+   "coded": 306,
+   "planned": 144
   },
   "status3EventCoverage": {
-   "planned": 7662,
-   "coded": 2653,
+   "planned": 7420,
+   "coded": 2895,
    "verified": 488,
    "uncovered": 0,
    "total": 10803
@@ -2820,47 +2876,47 @@
    "caseId": "AZ-100-06-001",
    "book": "TPL-AZ-100-06-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-AUTH-ERROR",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-100-06-001/."
   },
   "AZ-100-06-003": {
    "caseId": "AZ-100-06-003",
    "book": "TPL-AZ-100-06-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-AUTH-ERROR",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-100-06-003/."
   },
   "AZ-110-01-009": {
    "caseId": "AZ-110-01-009",
@@ -2875,15 +2931,15 @@
     "total": 44
    },
    "blocks": 10,
-   "actualDone": 3,
-   "mockDone": 0,
-   "blocked": 1,
-   "notImplemented": 6,
+   "actualDone": 0,
+   "mockDone": 10,
+   "blocked": 0,
+   "notImplemented": 0,
    "notRun": 0,
    "uncovered": 0,
-   "remaining": 7,
-   "next": "BLK-AZ-AGENT-SELECT",
-   "note": "Environment blocks block 4/5: agent search returns no data. Do not diagnose further; continue with other work. Blocks 6-13 are not implemented."
+   "remaining": 10,
+   "next": "BLK-AZ-MENU-CREATE-INPUT",
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-009/."
   },
   "AZ-110-01-010": {
    "caseId": "AZ-110-01-010",
@@ -2899,14 +2955,14 @@
    },
    "blocks": 10,
    "actualDone": 0,
-   "mockDone": 4,
+   "mockDone": 10,
    "blocked": 0,
-   "notImplemented": 6,
+   "notImplemented": 0,
    "notRun": 0,
    "uncovered": 0,
    "remaining": 10,
    "next": "BLK-AZ-MENU-CREATE-INPUT",
-   "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-010/."
   },
   "AZ-110-01-011": {
    "caseId": "AZ-110-01-011",
@@ -2922,14 +2978,14 @@
    },
    "blocks": 10,
    "actualDone": 0,
-   "mockDone": 4,
+   "mockDone": 10,
    "blocked": 0,
-   "notImplemented": 6,
+   "notImplemented": 0,
    "notRun": 0,
    "uncovered": 0,
    "remaining": 10,
    "next": "BLK-AZ-MENU-CREATE-INPUT",
-   "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-011/."
   },
   "AZ-110-01-012": {
    "caseId": "AZ-110-01-012",
@@ -2945,14 +3001,14 @@
    },
    "blocks": 10,
    "actualDone": 0,
-   "mockDone": 4,
+   "mockDone": 10,
    "blocked": 0,
-   "notImplemented": 6,
+   "notImplemented": 0,
    "notRun": 0,
    "uncovered": 0,
    "remaining": 10,
    "next": "BLK-AZ-MENU-CREATE-INPUT",
-   "note": "Mock pass for blocks 1-5; actual SUT not run yet."
+   "note": "node mock pass: 10 block(s) in logs/AZ-110-01-012/."
   },
   "AZ-110-02-001": {
    "caseId": "AZ-110-02-001",
@@ -3842,14 +3898,14 @@
    },
    "blocks": 4,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 3,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 4,
+   "notRun": 1,
    "uncovered": 0,
    "remaining": 4,
    "next": "BLK-AZ-MENU-SEARCH-LIST",
-   "note": "Static composition full; no runner yet."
+   "note": "node mock pass: 3 block(s) in logs/AZ-110-37-001/. Remaining (run-plan): BLK-AZ-COMMON-LOGS."
   },
   "AZ-110-38-001": {
    "caseId": "AZ-110-38-001",
@@ -4225,22 +4281,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 24,
-    "coded": 36,
+    "planned": 19,
+    "coded": 41,
     "verified": 0,
     "uncovered": 0,
     "total": 60
    },
    "blocks": 16,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 13,
+   "notRun": 12,
    "uncovered": 0,
    "remaining": 16,
    "next": "BLK-AZ-MENU-SEARCH-LIST",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-110-80-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-C90A0006, BLK-SGL-CCA9B958, BLK-AUTO-4C432C14, BLK-AUTO-8FE40BE8."
   },
   "AZ-110-81-001": {
    "caseId": "AZ-110-81-001",
@@ -4271,22 +4327,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 24,
-    "coded": 36,
+    "planned": 20,
+    "coded": 40,
     "verified": 0,
     "uncovered": 0,
     "total": 60
    },
    "blocks": 16,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 13,
+   "notRun": 12,
    "uncovered": 0,
    "remaining": 16,
    "next": "BLK-AZ-MENU-SEARCH-LIST",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-110-82-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-C90A0006, BLK-SGL-639A108B, BLK-SGL-CCA9B958, BLK-AUTO-4C432C14, BLK-AUTO-8FE40BE8."
   },
   "AZ-111-02-003": {
    "caseId": "AZ-111-02-003",
@@ -4936,93 +4992,93 @@
    "caseId": "AZ-150-11-001",
    "book": "TPL-AZ-150-11-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-BATCH-CONVERT-MAIL",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-11-001/."
   },
   "AZ-150-11-002": {
    "caseId": "AZ-150-11-002",
    "book": "TPL-AZ-150-11-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-BATCH-CONVERT-MAIL",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-11-002/."
   },
   "AZ-150-12-001": {
    "caseId": "AZ-150-12-001",
    "book": "TPL-AZ-150-11-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-BATCH-CONVERT-MAIL",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-12-001/."
   },
   "AZ-150-12-002": {
    "caseId": "AZ-150-12-002",
    "book": "TPL-AZ-150-11-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-BATCH-CONVERT-MAIL",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-150-12-002/."
   },
   "AZ-150-13-001": {
    "caseId": "AZ-150-13-001",
@@ -5513,22 +5569,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-012/."
   },
   "AZ-310-02-013": {
    "caseId": "AZ-310-02-013",
@@ -5536,22 +5592,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-013/."
   },
   "AZ-310-02-014": {
    "caseId": "AZ-310-02-014",
@@ -5559,22 +5615,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-014/."
   },
   "AZ-310-02-015": {
    "caseId": "AZ-310-02-015",
@@ -5582,22 +5638,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-015/."
   },
   "AZ-310-02-016": {
    "caseId": "AZ-310-02-016",
@@ -5605,22 +5661,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-016/."
   },
   "AZ-310-02-017": {
    "caseId": "AZ-310-02-017",
@@ -5628,22 +5684,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-017/."
   },
   "AZ-310-02-018": {
    "caseId": "AZ-310-02-018",
@@ -5651,22 +5707,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-018/."
   },
   "AZ-310-02-019": {
    "caseId": "AZ-310-02-019",
@@ -5674,22 +5730,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-019/."
   },
   "AZ-310-02-020": {
    "caseId": "AZ-310-02-020",
@@ -5697,22 +5753,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-020/."
   },
   "AZ-310-02-021": {
    "caseId": "AZ-310-02-021",
@@ -5720,22 +5776,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-310-02-021/."
   },
   "AZ-310-04-020": {
    "caseId": "AZ-310-04-020",
@@ -5904,22 +5960,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 11,
-    "coded": 12,
+    "planned": 7,
+    "coded": 16,
     "verified": 0,
     "uncovered": 0,
     "total": 23
    },
    "blocks": 7,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 7,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-07-001/. Remaining (run-plan): BLK-SGL-263830F1, BLK-SHR-D606FB03."
   },
   "AZ-310-08-001": {
    "caseId": "AZ-310-08-001",
@@ -6364,22 +6420,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 23,
-    "coded": 24,
+    "planned": 19,
+    "coded": 28,
     "verified": 0,
     "uncovered": 0,
     "total": 47
    },
    "blocks": 14,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 11,
+   "notRun": 10,
    "uncovered": 0,
    "remaining": 14,
    "next": "BLK-AZ-MENU-SEARCH-LIST",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-41-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-ED323C11, BLK-AUTO-C7A1F3E5, BLK-SGL-F9980EBC, BLK-SHR-669A1809, BLK-AUTO-8FE40BE8."
   },
   "AZ-310-42-001": {
    "caseId": "AZ-310-42-001",
@@ -6387,22 +6443,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 26,
-    "coded": 24,
+    "planned": 22,
+    "coded": 28,
     "verified": 0,
     "uncovered": 0,
     "total": 50
    },
    "blocks": 16,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 12,
+   "notRun": 11,
    "uncovered": 0,
    "remaining": 16,
    "next": "BLK-AZ-MENU-SEARCH-LIST",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-310-42-001/. Remaining (run-plan): BLK-AUTO-04A78248, BLK-AUTO-04A78248, BLK-SHR-ED323C11, BLK-AUTO-C7A1F3E5, BLK-SGL-637D567D, BLK-SHR-669A1809, BLK-AUTO-E0B41407, BLK-SHR-669A1809, BLK-AUTO-8FE40BE8."
   },
   "AZ-310-43-001": {
    "caseId": "AZ-310-43-001",
@@ -6684,277 +6740,277 @@
    "caseId": "AZ-200-01-001",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-001/."
   },
   "AZ-200-01-002": {
    "caseId": "AZ-200-01-002",
    "book": "TPL-AZ-200-01-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-002/."
   },
   "AZ-200-01-003": {
    "caseId": "AZ-200-01-003",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-003/."
   },
   "AZ-200-01-004": {
    "caseId": "AZ-200-01-004",
    "book": "TPL-AZ-200-01-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-004/."
   },
   "AZ-200-01-005": {
    "caseId": "AZ-200-01-005",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-005/."
   },
   "AZ-200-01-006": {
    "caseId": "AZ-200-01-006",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-006/."
   },
   "AZ-200-01-007": {
    "caseId": "AZ-200-01-007",
    "book": "TPL-AZ-200-01-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-007/."
   },
   "AZ-200-01-008": {
    "caseId": "AZ-200-01-008",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-008/."
   },
   "AZ-200-01-009": {
    "caseId": "AZ-200-01-009",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-009/."
   },
   "AZ-200-01-030": {
    "caseId": "AZ-200-01-030",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-030/."
   },
   "AZ-200-01-031": {
    "caseId": "AZ-200-01-031",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-031/."
   },
   "AZ-200-01-032": {
    "caseId": "AZ-200-01-032",
    "book": "TPL-AZ-200-01-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 3,
-    "coded": 0,
+    "planned": 0,
+    "coded": 3,
     "verified": 0,
     "uncovered": 0,
     "total": 3
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-EXTERNAL-AUTH",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-01-032/."
   },
   "AZ-200-02-001": {
    "caseId": "AZ-200-02-001",
@@ -7006,24 +7062,24 @@
    "caseId": "AZ-200-03-001",
    "book": "TPL-AZ-200-03-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SESSION-TIMEOUT",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-03-001/."
   },
   "AZ-200-03-002": {
    "caseId": "AZ-200-03-002",
@@ -7052,24 +7108,24 @@
    "caseId": "AZ-200-03-003",
    "book": "TPL-AZ-200-03-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SESSION-TIMEOUT",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-03-003/."
   },
   "AZ-200-03-004": {
    "caseId": "AZ-200-03-004",
@@ -7098,24 +7154,24 @@
    "caseId": "AZ-200-04-001",
    "book": "TPL-AZ-200-04-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SYSERR-LOGIN",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-04-001/."
   },
   "AZ-200-07-001": {
    "caseId": "AZ-200-07-001",
@@ -7144,24 +7200,24 @@
    "caseId": "AZ-200-07-002",
    "book": "TPL-AZ-200-03-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SESSION-TIMEOUT",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-200-07-002/."
   },
   "AZ-200-07-003": {
    "caseId": "AZ-200-07-003",
@@ -7583,22 +7639,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 9,
-    "coded": 12,
+    "planned": 4,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 21
    },
    "blocks": 7,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 7,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-30-001/. Remaining (run-plan): BLK-SHR-D606FB03."
   },
   "AZ-210-31-001": {
    "caseId": "AZ-210-31-001",
@@ -7606,22 +7662,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 16,
-    "coded": 12,
+    "planned": 12,
+    "coded": 16,
     "verified": 0,
     "uncovered": 0,
     "total": 28
    },
    "blocks": 7,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 7,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-31-001/. Remaining (run-plan): BLK-SGL-41743CCA, BLK-SHR-D606FB03."
   },
   "AZ-210-32-001": {
    "caseId": "AZ-210-32-001",
@@ -7813,22 +7869,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-008/."
   },
   "AZ-210-37-009": {
    "caseId": "AZ-210-37-009",
@@ -7836,22 +7892,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-009/."
   },
   "AZ-210-37-010": {
    "caseId": "AZ-210-37-010",
@@ -7859,22 +7915,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-010/."
   },
   "AZ-210-37-011": {
    "caseId": "AZ-210-37-011",
@@ -7882,22 +7938,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-011/."
   },
   "AZ-210-37-012": {
    "caseId": "AZ-210-37-012",
@@ -7905,22 +7961,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-012/."
   },
   "AZ-210-37-013": {
    "caseId": "AZ-210-37-013",
@@ -7928,22 +7984,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-013/."
   },
   "AZ-210-37-014": {
    "caseId": "AZ-210-37-014",
@@ -7951,22 +8007,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-014/."
   },
   "AZ-210-37-015": {
    "caseId": "AZ-210-37-015",
@@ -7974,22 +8030,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-015/."
   },
   "AZ-210-37-016": {
    "caseId": "AZ-210-37-016",
@@ -7997,22 +8053,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-016/."
   },
   "AZ-210-37-017": {
    "caseId": "AZ-210-37-017",
@@ -8020,22 +8076,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 5,
-    "coded": 12,
+    "planned": 0,
+    "coded": 17,
     "verified": 0,
     "uncovered": 0,
     "total": 17
    },
    "blocks": 6,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 2,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 6,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 2 block(s) in logs/AZ-210-37-017/."
   },
   "AZ-210-46-003": {
    "caseId": "AZ-210-46-003",
@@ -8225,24 +8281,24 @@
    "caseId": "AZ-210-50-001",
    "book": "TPL-AZ-210-50-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 8,
-    "coded": 0,
+    "planned": 4,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 8
    },
    "blocks": 2,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 2,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-50-001/. Remaining (run-plan): BLK-SGL-E008F918."
   },
   "AZ-210-51-001": {
    "caseId": "AZ-210-51-001",
@@ -8434,22 +8490,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 14,
-    "coded": 12,
+    "planned": 10,
+    "coded": 16,
     "verified": 0,
     "uncovered": 0,
     "total": 26
    },
    "blocks": 7,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 7,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-67-001/. Remaining (run-plan): BLK-SGL-CEAA65E9, BLK-SHR-D606FB03."
   },
   "AZ-210-68-001": {
    "caseId": "AZ-210-68-001",
@@ -8457,22 +8513,22 @@
    "static": "full",
    "status3": "coded",
    "coverage3": {
-    "planned": 9,
-    "coded": 12,
+    "planned": 5,
+    "coded": 16,
     "verified": 0,
     "uncovered": 0,
     "total": 21
    },
    "blocks": 7,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 5,
+   "notRun": 4,
    "uncovered": 0,
    "remaining": 7,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-210-68-001/. Remaining (run-plan): BLK-SGL-13EBF209, BLK-SHR-D606FB03."
   },
   "AZ-220-01-003": {
    "caseId": "AZ-220-01-003",
@@ -9835,93 +9891,93 @@
    "caseId": "AZ-240-03-002",
    "book": "TPL-AZ-240-03-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 6,
-    "coded": 0,
+    "planned": 2,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 6
    },
    "blocks": 2,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 2,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-240-03-002/. Remaining (run-plan): BLK-SHR-D0DDEEE4."
   },
   "AZ-240-03-003": {
    "caseId": "AZ-240-03-003",
    "book": "TPL-AZ-240-03-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 6,
-    "coded": 0,
+    "planned": 2,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 6
    },
    "blocks": 2,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 2,
    "next": "BLK-AUTO-DDA3A833",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AZ-240-03-003/. Remaining (run-plan): BLK-SHR-D0DDEEE4."
   },
   "AY-100-04-001": {
    "caseId": "AY-100-04-001",
    "book": "TPL-AY-100-04-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SYSERR-LOGIN",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AY-100-04-001/."
   },
   "AY-100-04-002": {
    "caseId": "AY-100-04-002",
    "book": "TPL-AY-100-04-001",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-SYSERR-LOGIN",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AY-100-04-002/."
   },
   "AY-100-05-001": {
    "caseId": "AY-100-05-001",
@@ -9950,24 +10006,24 @@
    "caseId": "AY-100-06-003",
    "book": "TPL-AY-100-06-003",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AZ-AUTH-ERROR",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AY-100-06-003/."
   },
   "AY-100-07-001": {
    "caseId": "AY-100-07-001",
@@ -10042,24 +10098,24 @@
    "caseId": "AY-100-08-002",
    "book": "TPL-AY-100-08-002",
    "static": "full",
-   "status3": "planned",
+   "status3": "coded",
    "coverage3": {
-    "planned": 4,
-    "coded": 0,
+    "planned": 0,
+    "coded": 4,
     "verified": 0,
     "uncovered": 0,
     "total": 4
    },
    "blocks": 1,
    "actualDone": 0,
-   "mockDone": 0,
+   "mockDone": 1,
    "blocked": 0,
    "notImplemented": 0,
-   "notRun": 1,
+   "notRun": 0,
    "uncovered": 0,
    "remaining": 1,
    "next": "BLK-AY-MENU-SESSION-TIMEOUT",
-   "note": ""
+   "note": "node mock pass: 1 block(s) in logs/AY-100-08-002/."
   },
   "AY-100-08-003": {
    "caseId": "AY-100-08-003",
@@ -10151,7 +10207,7 @@
    "uncovered": 0,
    "remaining": 5,
    "next": "BLK-AY-TORIKESHI-REGISTER",
-   "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
+   "note": "node mock pass: 3 block(s) in logs/AY-110-01-011/. Remaining (run-plan): BLK-AUTO-CE34C5B8, BLK-AUTO-2B9786A5, BLK-AUTO-D2C3A480, BLK-AUTO-DF07A781."
   },
   "AY-110-01-012": {
    "caseId": "AY-110-01-012",
@@ -10174,7 +10230,7 @@
    "uncovered": 0,
    "remaining": 5,
    "next": "BLK-AY-TORIKESHI-REGISTER",
-   "note": "2026-10-24 source-sim pass: menu -> kensaku -> No. -> update-screen (runner blocks BLK-AY-MENU-SEARCH/SEARCH-OPEN/UPDATE). Composition block TORIKESHI-REGISTER covers the same menu->update-screen segment; deeper segments (担当者検索/送信先) not yet run."
+   "note": "node mock pass: 3 block(s) in logs/AY-110-01-012/. Remaining (run-plan): BLK-AUTO-CE34C5B8, BLK-AUTO-2B9786A5, BLK-AUTO-D2C3A480, BLK-AUTO-DF07A781."
   },
   "AY-110-01-013": {
    "caseId": "AY-110-01-013",

@@ -53,10 +53,17 @@ createServer(async (req, res) => {
       void appPrefix;
     }
     if (p.endsWith('/')) p += 'index.html';
-    let file = join(root, p);
-    if (!existsSync(file) && url.pathname.startsWith('/static/')) {
-      file = join(root, 'AMB', url.pathname);
+    const candidates = [join(root, p)];
+    if (url.pathname.startsWith('/static/')) {
+      // Static assets are per-app (tks_common.js only exists under ANB00, etc.).
+      // Prefer the referring app, then try every app before giving up.
+      let refApp = null;
+      try { refApp = (new URL(req.headers.referer || '')).pathname.match(/^\/(AMB|AMC00|ANB00)\//)?.[1] || null; } catch { /* no referer */ }
+      for (const app of [refApp, 'AMB', 'AMC00', 'ANB00']) {
+        if (app) candidates.push(join(root, app, url.pathname));
+      }
     }
+    const file = candidates.find((f) => existsSync(f));
     if (existsSync(file)) {
       const body = readFileSync(file);
       res.writeHead(200, { 'content-type': p.endsWith('.js') ? 'text/javascript' : p.endsWith('.css') ? 'text/css' : 'text/html; charset=utf-8' });
@@ -102,7 +109,12 @@ createServer(async (req, res) => {
       const tb = html.search(/<tbody[^>]*id="gyoumu_list"/);
       if (tb >= 0) {
         const close = html.indexOf('</tbody>', tb);
-        const row = `<tr><td><input type="radio" name="selectFieldAgent" value="3028004586"></td><td>${section}</td><td>${agent}</td><td>3028004586</td><td>TEST</td></tr>`;
+        // Shape follows AMA18.html: radio named selectNo indexes list[i].field_agent_id.
+        const row = `<tr><td class="sticky_table_value"><input type="radio" name="selectNo" value="0"></td>` +
+          `<td class="sticky_table_value">${section}</td><td class="sticky_table_value">${agent}</td>` +
+          `<td class="sticky_table_value">3028004586</td><td class="sticky_table_value" title="TEST">TEST</td></tr>` +
+          `<input type="hidden" name="list[0].field_agent_id" value="3028004586">` +
+          `<input type="hidden" name="list[0].field_agent_name" value="TEST">`;
         html = html.slice(0, close + 8) + row + html.slice(close + 8);
       }
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });

@@ -1,0 +1,16 @@
+{
+  "caseId": "AY-100-06-003",
+  "runner": "node",
+  "ts": "2026-10-24T12:43:36.487Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-AUTH-ERROR",
+      "status": "pass"
+    }
+  ],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-AUTH-ERROR.png"
+  ]
+}

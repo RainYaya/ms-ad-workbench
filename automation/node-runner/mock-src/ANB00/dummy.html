@@ -564,7 +564,18 @@
 
 		</form>
 
-
+<script>
+/* mock shim: navigate straight to the simulated menu views instead of the
+   legacy window.open/document.all path (ports and hosts are not simulated). */
+if (window.set_EventForCM) {
+  var __orig = window.set_EventForCM;
+  window.set_EventForCM = function (t) {
+    if (t === 'TKS001') { location.href = '/ANB00/ANA01.html'; return; }
+    if (t === 'MHK001') { location.href = '/ANB00/ANA01.html'; return; }
+    __orig(t);
+  };
+}
+</script>
 
 	</body>
 </html>

@@ -1,0 +1,16 @@
+{
+  "caseId": "AZ-150-12-001",
+  "runner": "node",
+  "ts": "2026-10-24T12:43:06.676Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-BATCH-CONVERT-MAIL",
+      "status": "pass"
+    }
+  ],
+  "shots": [
+    "01_menu.png",
+    "02_BLK-AZ-BATCH-CONVERT-MAI.png"
+  ]
+}

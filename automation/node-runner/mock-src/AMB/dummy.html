@@ -591,5 +591,20 @@
 
 
 
-	</body>
+	
+<script>
+/* mock shim: the real set_Event uses legacy document.all and targets the real
+   SUT ports; in the simulation we simply navigate to the right menu view. */
+if (window.set_EventForCM) {
+  var __orig = window.set_EventForCM;
+  window.set_EventForCM = function (t) {
+    if (t === 'MHK001') { location.href = '/AMB/AMA01.html'; return; }
+    if (t === 'TKS001') { location.href = '/ANB00/ANA01.html'; return; }
+    if (t === 'MHK004') { location.href = '/AMB/AMA07.html'; return; }
+    __orig(t);
+  };
+}
+</script>
+
+</body>
 </html>

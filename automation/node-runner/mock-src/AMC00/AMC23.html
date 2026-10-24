@@ -24,17 +24,18 @@ function setScrollEvent() {
 
     // 回答入力欄のスクロールに対するイベント登録
     for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
-        form['tableRecordList[' + indexNo + '].answer_message'].onscroll = tooltip.Scroll;
+        var am = form['tableRecordList[' + indexNo + '].answer_message'];
+        if (am) { am.onscroll = tooltip.Scroll; }
     }
 
     // 備考通信欄のスクロールに対するイベント登録
-    form['forms_message'].onscroll = tooltip.Scroll;
+    if (form['forms_message']) { form['forms_message'].onscroll = tooltip.Scroll; }
 
     // 外側のdivタグに対するスクロールに対するイベント登録
-    document.getElementById('div1').onscroll = tooltip.Scroll;
+    var d1 = document.getElementById('div1'); if (d1) { d1.onscroll = tooltip.Scroll; }
 
     // 内側のdivタグのスクロールに対するイベント登録
-    document.getElementById('div2').onscroll = tooltip.Scroll;
+    var d2 = document.getElementById('div2'); if (d2) { d2.onscroll = tooltip.Scroll; }
 
     return true;
 }
@@ -47,7 +48,8 @@ function bodyOnload() {
     var downloadErrMsg = '1';
 
     // データ削除 or 表示対象外の場合、業務エリア非表示
-    if ('1' == '1') {
+    // mock: 元 th:if は生成時に '1' へ潰れていた。通常表示ケースとして false 固定。
+    if (false) {
         document.getElementById('div_gyoumu_area').style.visibility = "hidden";
         return;
     }
