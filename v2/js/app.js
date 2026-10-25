@@ -2003,7 +2003,7 @@ AY-120-01-001"></textarea>
       </tr>`;
     }).join('');
     const b = (k, label) => `<button class="btn ${filter === k ? 'primary' : ''}" data-feas-filter="${k}">${label} ${k === 'all' ? ids.length : (counts[k] || 0)}</button>`;
-    $('#main').innerHTML = `${pageHead('実効性（A/B/C/D）', 'どの本が純自動で、どこに人工・代理・参数問題があるか', '<button class="btn" data-action="go-manual">証跡・人工へ</button>')}
+    $('#main').innerHTML = `${pageHead('実効性（A/B/C/D）', 'どの本が純自動で、どこに人工・代理・参数問題があるか', '<a class="btn" href="ops/index.html" target="_blank">作業シート一覧</a> <button class="btn" data-action="go-manual">証跡・人工へ</button>')}
       <div class="kpis">
         ${kpi('A 全自動', counts.A || 0, '人工・代理・参数問題なし', 'green')}
         ${kpi('B 自動+人工', counts.B || 0, '有手顺人工或代理 block', 'blue')}
@@ -2079,7 +2079,7 @@ AY-120-01-001"></textarea>
         <td class="small">${esc(autoNext(f))}</td>
       </tr>`;
     }).join('');
-    $('#main').innerHTML = `${pageHead('自動化診断', '1本ごとに「どこまで自動で、どこから人工か」を開いて確認できます', '<button class="btn" data-action="go-manual">証跡・人工へ</button>')}
+    $('#main').innerHTML = `${pageHead('自動化診断', '1本ごとに「どこまで自動で、どこから人工か」を開いて確認できます', '<a class="btn" href="ops/index.html" target="_blank">作業シート一覧</a> <button class="btn" data-action="go-manual">証跡・人工へ</button>')}
       <div class="kpis">
         ${kpi('A 全自動', counts.A, '真機にそのまま', 'green')}
         ${kpi('B 自動+人工', counts.B, '人工/代理を含む', 'blue')}
@@ -2156,6 +2156,7 @@ AY-120-01-001"></textarea>
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
         <button class="btn" data-action="go-automation">← 一覧</button>
         <button class="btn primary" data-action="review-mode" data-case="${esc(id)}">検査モード</button>
+        <a class="btn" href="ops/${encodeURIComponent(id)}.html" target="_blank">作業シート</a>
         <button class="btn" data-action="copy-command" data-case="${esc(id)}">実行コマンド</button>
         <span class="small muted">trace: <code>node runner.mjs --case ${esc(id)} --trace</code></span>
       </div>

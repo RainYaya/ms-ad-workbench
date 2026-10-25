@@ -215,7 +215,18 @@ STRICT PARAMS: customerName<-auto.json, sectionCode<-auto.json
 
 这样就不会再把占位值当成已落实别纸。
 
-### 4) 自动化诊断页面
+### 4) 現場用 作業シート（公司 PC 用）
+
+```text
+http://127.0.0.1:10092/v2/ops/index.html
+```
+
+- 450 本各自一页 A4，无 block/selector/params 术语。
+- 第一眼：A/B/C/D 大判定 + “最初にやること”。
+- 下面：実行コマンド（A/B のみ）、手作業チェック、入力値、画面HC、OK/NG 判定栏。
+- 浏览器直接打印即可；C/D 不显示执行命令，只显示“不要执行”。
+
+### 5) 自动化诊断页面
 
 ```text
 http://127.0.0.1:10092/v2/index.html#/automation
@@ -234,7 +245,7 @@ http://127.0.0.1:10092/v2/index.html#/automation
 
 这样不用再靠“看一堆 block 表猜这本书是什么情况”。
 
-### 5) 结果文件
+### 6) 结果文件
 
 ```text
 logs/<case>/<case>-node-result.json   flow 结果
@@ -242,7 +253,7 @@ logs/<case>/<case>-evidence.json      画面HC 截图与 URL
 logs/<case>/<case>-trace.html         单步 trace
 ```
 
-### 6) 全局审计
+### 7) 全局审计
 
 ```text
 logs/PARAM-AUDIT.md                别纸 vs params
