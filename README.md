@@ -11,6 +11,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 
 | Document | Purpose |
 |---|---|
+| [`docs/USER-GUIDE.md`](docs/USER-GUIDE.md) | **日常使用说明：只看哪些页面、名词、徽章、数据流** |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Components, boundaries, data flow, deployment |
 | [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) | Scenario/route/case/workflow/appendix schemas |
 | [`docs/AUTOMATION.md`](docs/AUTOMATION.md) | CDP runner, screens, blocks, params, evidence |
