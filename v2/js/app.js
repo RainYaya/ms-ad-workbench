@@ -609,7 +609,7 @@
   }
 
   function appendixFacts(c) {
-    const keys = ['証券番号', '明細番号', '種目', '保険種類', '点検区分', '申請・確認基準'];
+    const keys = ['証券番号', '明細番号', '入力区分', '種目', '保険種類', '点検区分', '申請・確認基準'];
     const out = {};
     for (const sh of c.appendix?.sheets || []) {
       for (const row of sh.rows || []) {
@@ -1660,12 +1660,17 @@ AY-120-01-001"></textarea>
       <h4>別紙との照合</h4>
       ${paramChecks.length ? paramChecks.map((x) => `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel)}</b><span class="badge ${x.ok ? 'green' : 'red'}">${x.ok ? '一致' : '不一致'}</span></div>`).join('') : '<div class="muted small">別紙に対応する項目が見つかりません</div>'}
       ${paramChecks.some((x) => !x.ok) ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しません。params を更新してください。</div>' : ''}
+      <div class="small muted" style="margin-top:6px">別紙の値を params に写し、runner がフォームへ入力します。</div>
     </div>
     <div class="rev-side-block">
       <h4>パラメータ <span class="badge ${pm.level === 'auto' ? 'amber' : 'green'}">${pm.level === 'auto' ? '既定値' : '固有'}</span></h4>
       <div class="rev-fact"><span>source</span><b><a href="../automation/cdp/params/${esc(pm.source)}" target="_blank" rel="noopener">${esc(pm.source)}</a></b></div>
       ${pm.level === 'auto' ? '<div class="small" style="color:#b45309;margin:4px 0">流程用の既定値。真機前に別紙で置換してください。</div>' : ''}
-      ${paramRows.length ? paramRows.map((k) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(pv[k])}</b></div>`).join('') : '<div class="muted small">主要パラメータなし</div>'}
+      ${paramRows.length ? paramRows.map((k) => {
+        const map = k === 'inputType' ? { '2': '現地', '5': '機械', '7': '機械(他)', '9': 'その他' } : k === 'largeItemValue' ? { B: '自賠責', Y: '貨物', Z: '種目共通', '0': 'その他', '5': '自動車' } : null;
+        const shown = map && map[pv[k]] ? `${pv[k]}（${map[pv[k]]}）` : pv[k];
+        return `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(shown)}</b></div>`;
+      }).join('') : '<div class="muted small">主要パラメータなし</div>'}
       <details class="rev-params-all"><summary>全パラメータ（${Object.keys(pv).length}）</summary><pre>${esc(Object.entries(pv).map(([k, v]) => `${k}: ${v}`).join('\n'))}</pre></details>
     </div>
     <div class="rev-side-block">
