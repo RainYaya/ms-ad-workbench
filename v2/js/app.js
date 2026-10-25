@@ -1593,6 +1593,25 @@ AY-120-01-001"></textarea>
     const pv = pm.values || {};
     const importantParams = ['policyNo', 'detailNo', 'largeItemValue', 'insuranceLabel', 'inputType', 'sectionCode', 'agentCode', 'subAgentCode', 'fieldAgentId', 'inquiryId', 'itemCode'];
     const paramRows = importantParams.filter((k) => pv[k] !== undefined && pv[k] !== '');
+    const normVal = (v) => String(v ?? '').replace(/\s+/g, '').replace(/：/g, ':').replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+    const codeLabel = {
+      largeItemValue: { B: '自賠責', Y: '貨物', Z: '種目共通', '0': 'その他', '5': '自動車' },
+      inputType: { '2': '現地', '5': '機械', '7': '機械(他)', '9': 'その他' },
+    };
+    const paramChecks = [
+      ['証券番号', 'policyNo'],
+      ['明細番号', 'detailNo'],
+      ['種目', 'largeItemValue'],
+      ['保険種類', 'insuranceLabel'],
+      ['入力区分', 'inputType'],
+    ].map(([label, key]) => {
+      if (facts[label] === undefined || pv[key] === undefined) return null;
+      const expected = facts[label];
+      const actual = pv[key];
+      const actualLabel = codeLabel[key]?.[actual] || actual;
+      const ok = normVal(expected) === normVal(actualLabel) || normVal(expected) === normVal(actual);
+      return { label, key, expected, actual, actualLabel, ok };
+    }).filter(Boolean);
     const result = cur ? (p.review?.[cur.sourceRow]?.result || '') : '';
     const memo = cur ? (p.review?.[cur.sourceRow]?.memo || '') : '';
     const imgSrc = ev?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(ev.file)}` : '';
@@ -1636,6 +1655,11 @@ AY-120-01-001"></textarea>
     <div class="rev-side-block">
       <h4>別紙・期待値</h4>
       ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
+    </div>
+    <div class="rev-side-block">
+      <h4>別紙との照合</h4>
+      ${paramChecks.length ? paramChecks.map((x) => `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel)}</b><span class="badge ${x.ok ? 'green' : 'red'}">${x.ok ? '一致' : '不一致'}</span></div>`).join('') : '<div class="muted small">別紙に対応する項目が見つかりません</div>'}
+      ${paramChecks.some((x) => !x.ok) ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しません。params を更新してください。</div>' : ''}
     </div>
     <div class="rev-side-block">
       <h4>パラメータ <span class="badge ${pm.level === 'auto' ? 'amber' : 'green'}">${pm.level === 'auto' ? '既定値' : '固有'}</span></h4>
