@@ -115,7 +115,7 @@ createServer(async (req, res) => {
           `<td class="sticky_table_value">3028004586</td><td class="sticky_table_value" title="TEST">TEST</td></tr>` +
           `<input type="hidden" name="list[0].field_agent_id" value="3028004586">` +
           `<input type="hidden" name="list[0].field_agent_name" value="TEST">`;
-        html = html.slice(0, close + 8) + row + html.slice(close + 8);
+        html = html.slice(0, close) + row + html.slice(close);
       }
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
       res.end(html);
