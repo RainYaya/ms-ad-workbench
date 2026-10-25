@@ -51,7 +51,7 @@
     manualQuery: '',
     reviewRow: null,
     reviewFilter: 'all',
-    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false, manual: false, manualOp: false, autoOnly: false, evMissing: false },
+    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false, manual: false, manualOp: false, autoOnly: false, evMissing: false, paramsAuto: false },
     progress: load(LS.progress, {}),
     tasks: load(LS.tasks, { ids: [], importedAt: '' }),
     automation: load(LS.automation, {}),
@@ -105,6 +105,14 @@
   };
 
   const EVIDENCE = window.MSAD_EVIDENCE || {};
+  const PARAMS_META = window.MSAD_PARAMS || {};
+  function paramsMeta(id) { return PARAMS_META[id] || { source: '不明', level: 'auto', keys: [], note: '既定値（要別紙確認）' }; }
+  function paramsBadge(id) {
+    const m = paramsMeta(id);
+    return m.level === 'auto'
+      ? `<span class="badge amber" title="パラメータ元: auto.json">既定値</span>`
+      : `<span class="badge green" title="パラメータ元: ${esc(m.source)}">固有 params</span>`;
+  }
   function evcase(id) { return EVIDENCE[id] || { summary: {}, rows: {}, manualSteps: [] }; }
   function evsum(id) { return evcase(id).summary || {}; }
   function manualCount(id) { return (evcase(id).manualSteps || []).length; }
@@ -461,6 +469,7 @@
       if (state.filters.manualOp && !ids.some((id) => manualOpCount(id) > 0)) return false;
       if (state.filters.autoOnly && !ids.every((id) => manualCount(id) === 0 && (evsum(id).manual || 0) === 0)) return false;
       if (state.filters.evMissing && !ids.some((id) => (evsum(id).missing || 0) > 0)) return false;
+      if (state.filters.paramsAuto && !ids.some((id) => paramsMeta(id).level === 'auto')) return false;
       return true;
     });
   }
@@ -474,7 +483,7 @@
     }
     const body = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([cid, ss]) => {
       const cat = categoryById.get(cid) || { id: cid };
-      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company || state.filters.manual || state.filters.manualOp || state.filters.autoOnly || state.filters.evMissing ? 'open' : ''}>
+      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company || state.filters.manual || state.filters.manualOp || state.filters.autoOnly || state.filters.evMissing || state.filters.paramsAuto ? 'open' : ''}>
         <summary><span class="mono">${esc(cid)}</span> <span>${esc(cat.functionArea || '')}</span> <span class="badge outline">${ss.length} シナリオ</span></summary>
         <div class="tree-body">
           ${ss.map((s) => {
@@ -484,7 +493,8 @@
             const mo = ids.reduce((n, id) => n + manualOpCount(id), 0);
             const hm = ids.reduce((n, id) => n + (evsum(id).manual || 0), 0);
             const em = ids.reduce((n, id) => n + (evsum(id).missing || 0), 0);
-            const chips = [mc ? `<span class="badge amber" title="人工確認/操作の手顺行">人工 ${mc}</span>` : '', mo ? `<span class="badge blue">人工操作 ${mo}</span>` : '', hm ? `<span class="badge violet">HC人工 ${hm}</span>` : '', em ? `<span class="badge red">未取得 ${em}</span>` : ''].filter(Boolean).join(' ');
+            const pa = ids.reduce((n, id) => n + (paramsMeta(id).level === 'auto' ? 1 : 0), 0);
+            const chips = [mc ? `<span class="badge amber" title="人工確認/操作の手顺行">人工 ${mc}</span>` : '', mo ? `<span class="badge blue">人工操作 ${mo}</span>` : '', hm ? `<span class="badge violet">HC人工 ${hm}</span>` : '', em ? `<span class="badge red">未取得 ${em}</span>` : '', pa ? `<span class="badge amber">既定値 ${pa}</span>` : ''].filter(Boolean).join(' ');
             return `<div class="row-card" data-scenario="${esc(s.id)}">
               <div class="id">${esc(s.id)}</div>
               <div style="min-width:0;flex:1"><p class="title">${esc(s.title)}</p><div class="meta">${esc(s.userType || '')} / ${esc(s.executionType || '')} / ${esc(s.functionArea || '')}　X=${s.x}　MS ${s.msCount || 0} / AD ${s.adCount || 0}${s.hasRoute ? '　<span class="badge green">実施順序あり</span>' : ''}</div>${chips ? `<div class="chips" style="margin-top:4px">${chips}</div>` : ''}</div>
@@ -973,6 +983,7 @@ AY-120-01-001"></textarea>
           ${scheduleOf(meta.id) ? `<span class="badge amber">予定 ${esc(scheduleOf(meta.id).startLabel)}〜${esc(scheduleOf(meta.id).endLabel)}</span>` : ''}
           ${caseUserMap.get(meta.id) ? `<span class="badge blue">利用者 ${esc(caseUserMap.get(meta.id).id || '')}${caseUserMap.get(meta.id).point ? ` / ${esc(caseUserMap.get(meta.id).point)}` : ''}</span>` : ''}
           ${meta.item ? `<span class="badge gray">${esc(meta.item)}</span>` : ''}
+          ${paramsBadge(meta.id)}
           ${meta.comparisonMark === '〇' ? '<span class="badge violet">現新比較</span>' : ''}
           ${meta.hasWorkflow === false ? '<span class="badge red">手順書なし</span>' : ''}
           ${meta.hasAppendix === false ? '<span class="badge amber">別紙なし</span>' : ''}
@@ -1623,6 +1634,12 @@ AY-120-01-001"></textarea>
       ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
     </div>
     <div class="rev-side-block">
+      <h4>パラメータ</h4>
+      <div class="rev-fact"><span>source</span><b>${esc(paramsMeta(c.id).source)}</b></div>
+      <div class="rev-fact"><span>状態</span><b>${paramsMeta(c.id).level === 'auto' ? '既定値（要別紙確認）' : 'ケース固有'}</b></div>
+      <div class="small muted" style="margin-top:5px">${esc((paramsMeta(c.id).keys || []).join(', '))}</div>
+    </div>
+    <div class="rev-side-block">
       <h4>判定</h4>
       <div class="rev-actions">
         <button class="btn ${result === 'OK' ? 'primary' : ''}" data-review-result="OK" data-review-row="${cur.sourceRow}">OK</button>
@@ -1842,13 +1859,14 @@ AY-120-01-001"></textarea>
       const ms = evcase(id).manualSteps || [];
       const op = ms.filter((m) => m.phase === '操作').length;
       const chk = ms.filter((m) => m.phase === '確認').length;
-      return { id, s, ms, op, chk, status: evcase(id).status };
+      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id) };
     }).filter((r) => {
       if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
       if (filter === 'manual') return (r.s.manual || 0) > 0;
       if (filter === 'manualOp') return r.op > 0;
       if (filter === 'missing') return (r.s.missing || 0) > 0;
       if (filter === 'auto') return r.ms.length === 0 && (r.s.manual || 0) === 0;
+      if (filter === 'paramsAuto') return r.pm.level === 'auto';
       return true;
     });
     const totalManual = all.reduce((n, id) => n + (evsum(id).manual || 0), 0);
@@ -1862,6 +1880,7 @@ AY-120-01-001"></textarea>
       return `<tr class="case-row-click" data-case="${esc(r.id)}">
         <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div><button class="btn" data-action="review-mode" data-case="${esc(r.id)}">検査</button></td>
         <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
+        <td>${paramsBadge(r.id)}</td>
         <td class="num">${s.hc || 0}</td>
         <td class="num">${s.exact || 0}</td>
         <td class="num">${s.blockEnd || 0}</td>
@@ -1879,14 +1898,15 @@ AY-120-01-001"></textarea>
         ${kpi('人工操作', totalOp, 'F12・JP1・待機など', 'blue')}
         ${kpi('人工確認', totalChk, 'AP/DBログ・表など', 'amber')}
         ${kpi('証跡未取得', totalMissing, '要修正', 'red')}
+        ${kpi('既定値 params', all.filter((id) => paramsMeta(id).level === 'auto').length, '要別紙確認', 'amber')}
       </div>
       <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}
+        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}${fbtn('paramsAuto', '既定値 params')}
         <span class="hint" style="margin-left:auto">${rows.length} 件</span>
       </div></div>
       <section class="panel mt"><div class="table-wrap"><table class="data">
-        <thead><tr><th>ケース</th><th>実行</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
-        <tbody>${body || '<tr><td colspan="10" class="muted">該当なし</td></tr>'}</tbody>
+        <thead><tr><th>ケース</th><th>実行</th><th>パラメータ</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
+        <tbody>${body || '<tr><td colspan="11" class="muted">該当なし</td></tr>'}</tbody>
       </table></div></section>`;
   }
 
@@ -2160,6 +2180,7 @@ AY-120-01-001"></textarea>
     $('#filterManualOp').addEventListener('change', (e) => { state.filters.manualOp = e.target.checked; render(); });
     $('#filterAutoOnly').addEventListener('change', (e) => { state.filters.autoOnly = e.target.checked; render(); });
     $('#filterEvMissing').addEventListener('change', (e) => { state.filters.evMissing = e.target.checked; render(); });
+    $('#filterParamsAuto').addEventListener('change', (e) => { state.filters.paramsAuto = e.target.checked; render(); });
     $('#main').addEventListener('click', (e) => {
       const b = e.target.closest('[data-manual-filter]');
       if (b) { state.manualFilter = b.dataset.manualFilter; renderManual(); }
