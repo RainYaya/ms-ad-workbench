@@ -1,28 +1,20 @@
 {
   "caseId": "AZ-200-03-002",
   "runner": "node",
-  "ts": "2026-10-24T23:19:49.289Z",
+  "ts": "2026-10-25T01:22:32.969Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        15,
-        17
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-EEFF5DB3",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        22,
-        23
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
@@ -30,10 +22,9 @@
     "01_menu.png",
     "02_r015_回答入力画面.png",
     "03_r017_代理店_訂正内容確認画面.png",
-    "04_BLK-AZ-AGT-SESSION-TIMEO.png",
-    "05_r022_セッションタイムアウト画面_(子画面).png",
-    "06_r023_エラーメッセージ.png",
-    "07_BLK-SHR-EEFF5DB3.png"
+    "04_r023_エラーメッセージ.png",
+    "05_BLK-AZ-AGT-SESSION-TIMEO.png",
+    "06_BLK-SHR-EEFF5DB3.png"
   ],
   "evidence": [
     {
@@ -43,9 +34,10 @@
       "file": "02_r015_回答入力画面.png",
       "exact": true,
       "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
-      "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10091/AMC00/AMC22.html",
       "title": "",
-      "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
+      "text": " 1 1/1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 年 月 計上状態 1 募集人ID 登録日 年 月 日 1 年 月 日 回答締切日 年 月 日 1 年 月 日 対応状況 1：未対応1 2：対応中1 3"
     },
     {
       "row": 17,
@@ -54,6 +46,7 @@
       "file": "03_r017_代理店_訂正内容確認画面.png",
       "exact": true,
       "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMC00/AMC24.html",
       "title": "",
       "text": "代理店・扱者/仲立人 コード 名称 1 確認者（募集人または社員） 確認実施内容 1 対象契約 証券番号 明細番号 1 2 確認日・確認時刻 年 月 日 午前 午後 時 分 3 確認相手（氏名）（注1） 4 確認相手の電話番号 電話を受けた場合は、証券番号・保険契約者の住所・氏名の3項目確認または、保険契約者の住所・氏"
@@ -62,23 +55,23 @@
       "row": 22,
       "type": "遷移",
       "item": "セッションタイムアウト画面 (子画面)",
-      "file": "05_r022_セッションタイムアウト画面_(子画面).png",
-      "exact": true,
-      "block": "BLK-SHR-EEFF5DB3",
-      "url": "http://127.0.0.1:10091/AMC00/AMC24.html",
-      "title": "",
-      "text": "代理店・扱者/仲立人 コード 名称 1 確認者（募集人または社員） 確認実施内容 1 対象契約 証券番号 明細番号 1 2 確認日・確認時刻 年 月 日 午前 午後 時 分 3 確認相手（氏名）（注1） 4 確認相手の電話番号 電話を受けた場合は、証券番号・保険契約者の住所・氏名の3項目確認または、保険契約者の住所・氏"
+      "file": null,
+      "exact": false,
+      "manual": true,
+      "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
+      "note": "非浏览器=真機人工"
     },
     {
       "row": 23,
       "type": "出力(Msg)",
       "item": "エラーメッセージ",
-      "file": "06_r023_エラーメッセージ.png",
+      "file": "04_r023_エラーメッセージ.png",
       "exact": true,
-      "block": "BLK-SHR-EEFF5DB3",
-      "url": "http://127.0.0.1:10091/AMC00/AMC24.html",
+      "block": "BLK-AZ-AGT-SESSION-TIMEOUT",
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
       "title": "",
-      "text": "代理店・扱者/仲立人 コード 名称 1 確認者（募集人または社員） 確認実施内容 1 対象契約 証券番号 明細番号 1 2 確認日・確認時刻 年 月 日 午前 午後 時 分 3 確認相手（氏名）（注1） 4 確認相手の電話番号 電話を受けた場合は、証券番号・保険契約者の住所・氏名の3項目確認または、保険契約者の住所・氏"
+      "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
     }
   ]
 }

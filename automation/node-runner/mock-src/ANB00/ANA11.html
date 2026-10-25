@@ -413,6 +413,19 @@ function custom_Submit(form) {
 
   <!--/* 動的作成の送信先（写）を受け取る枠 */-->
 </form>
+<script>
+/* dynamic buttonName: the popup query carries the opener action (requestApplication/disapprove/approve). */
+(function(){
+  try {
+    var vals = new URLSearchParams(location.search).getAll('1');
+    var known = ['requestApplication','disapprove','approve','cancel'];
+    var act = vals.find(function(v){ return known.indexOf(v) >= 0; });
+    if (!act) act = sessionStorage.getItem('ana11_action');
+    var el = document.getElementById('buttonName');
+    if (act && el) { el.value = act; sessionStorage.setItem('ana11_action', act); }
+  } catch (e) {}
+})();
+</script>
 </body>
 
 </html>

@@ -1,131 +1,92 @@
 {
   "caseId": "AZ-210-63-001",
   "runner": "node",
-  "ts": "2026-10-24T23:20:52.101Z",
+  "ts": "2026-10-25T01:24:15.876Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-MENU-CREATE-INPUT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        15
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AZ-INPUT-FILL",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-AZ-INSURANCE-SELECT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        18,
-        21
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AZ-AGENT-SELECT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        23,
-        26,
-        29
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AZ-REGISTER-UPDATE",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        31
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-04A78248",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        33
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AZ-ITEM-SEARCH-SELECT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        36,
-        39
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SGL-CB6C5414",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-AZ-INQUIRY-EDIT",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        43,
-        46
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SGL-CCA9B958",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-4C432C14",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        50
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SGL-8986EB9F",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-4C432C14",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        54
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-B8DF200B",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        56
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
@@ -144,21 +105,21 @@
     "12_r031_不備内容入力画面-更新.png",
     "13_BLK-AZ-REGISTER-UPDATE.png",
     "14_r033_項目名検索画面.png",
-    "15_BLK-AUTO-04A78248.png",
-    "16_r036_項目名検索画面.png",
-    "17_r039_不備内容入力画面-更新.png",
+    "15_r036_項目名検索画面.png",
+    "16_r039_不備内容入力画面-更新.png",
+    "17_BLK-AUTO-04A78248.png",
     "18_BLK-AZ-ITEM-SEARCH-SELEC.png",
     "19_BLK-SGL-CB6C5414.png",
     "20_r043_照会内容編集画面.png",
     "21_r046_不備内容入力画面-更新.png",
-    "22_BLK-AZ-INQUIRY-EDIT.png",
-    "23_BLK-SGL-CCA9B958.png",
-    "24_r050_不備内容入力画面-更新.png",
-    "25_BLK-AUTO-4C432C14.png",
-    "26_BLK-SGL-8986EB9F.png",
-    "27_r054_不備内容入力画面-更新.png",
-    "28_BLK-AUTO-4C432C14.png",
-    "29_r056_不備内容入力画面-更新.png",
+    "22_r050_不備内容入力画面-更新.png",
+    "23_r054_不備内容入力画面-更新.png",
+    "24_r056_不備内容入力画面-更新.png",
+    "25_BLK-AZ-INQUIRY-EDIT.png",
+    "26_BLK-SGL-CCA9B958.png",
+    "27_BLK-AUTO-4C432C14.png",
+    "28_BLK-SGL-8986EB9F.png",
+    "29_BLK-AUTO-4C432C14.png",
     "30_BLK-AUTO-B8DF200B.png"
   ],
   "evidence": [
@@ -169,6 +130,7 @@
       "file": "02_r015_不備内容入力画面-新規.png",
       "exact": true,
       "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺ"
@@ -180,6 +142,7 @@
       "file": "05_r018_保険種類選択画面.png",
       "exact": true,
       "block": "BLK-AZ-INSURANCE-SELECT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/insurance_item_select.html",
       "title": "保険種類選択画面",
       "text": "種目 自賠責 保険種類 00 ： 自賠責"
@@ -191,6 +154,7 @@
       "file": "06_r021_不備内容入力画面-新規.png",
       "exact": true,
       "block": "BLK-AZ-INSURANCE-SELECT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 00 ： 自賠責 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞ"
@@ -202,6 +166,7 @@
       "file": "08_r023_募集人検索画面.png",
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "title": "",
       "text": "1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ1※ 募集人ID 募集人名 ※子代理店の場合は親代理店ｺｰﾄﾞを入力してください / ページ 検索結果 件 選択 部店課支社 ｺｰﾄﾞ 代理店 ｺｰﾄﾞ 募集人ID 募集人名 1 1 1 1"
@@ -213,9 +178,10 @@
       "file": "09_r026_募集人検索画面.png",
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
-      "url": "http://127.0.0.1:10091/AMA18/aZG905Search",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "title": "",
-      "text": "1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ1※ 募集人ID 募集人名 ※子代理店の場合は親代理店ｺｰﾄﾞを入力してください / ページ 検索結果 件 選択 部店課支社 ｺｰﾄﾞ 代理店 ｺｰﾄﾞ 募集人ID 募集人名 1 1 1 1 AHE61 252H 3028004586 TEST"
+      "text": "1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ1※ 募集人ID 募集人名 ※子代理店の場合は親代理店ｺｰﾄﾞを入力してください / ページ 検索結果 件 選択 部店課支社 ｺｰﾄﾞ 代理店 ｺｰﾄﾞ 募集人ID 募集人名 1 1 1 1"
     },
     {
       "row": 29,
@@ -224,6 +190,7 @@
       "file": "10_r029_不備内容入力画面-新規.png",
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 00 ： 自賠責 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞ"
@@ -235,6 +202,7 @@
       "file": "12_r031_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AZ-REGISTER-UPDATE",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -246,6 +214,7 @@
       "file": "14_r033_項目名検索画面.png",
       "exact": true,
       "block": "BLK-AUTO-04A78248",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA13.html",
       "title": "",
       "text": "1 種目 保険種類 1 項目ｺｰﾄﾞ 項目名 照会ｺｰﾄﾞ 照会内容 T0：損保取引確認書 T007：「損保取引確認書」の添付がもれています。 注意：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。 不備内容 1"
@@ -254,10 +223,11 @@
       "row": 36,
       "type": "表示",
       "item": "項目名検索画面",
-      "file": "16_r036_項目名検索画面.png",
+      "file": "15_r036_項目名検索画面.png",
       "exact": true,
-      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
-      "url": "http://127.0.0.1:10091/AMA13/aZG900Search",
+      "block": "BLK-AUTO-04A78248",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA13.html",
       "title": "",
       "text": "1 種目 保険種類 1 項目ｺｰﾄﾞ 項目名 照会ｺｰﾄﾞ 照会内容 T0：損保取引確認書 T007：「損保取引確認書」の添付がもれています。 注意：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。 不備内容 1"
     },
@@ -265,9 +235,10 @@
       "row": 39,
       "type": "遷移",
       "item": "不備内容入力画面-更新",
-      "file": "17_r039_不備内容入力画面-更新.png",
+      "file": "16_r039_不備内容入力画面-更新.png",
       "exact": true,
-      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
+      "block": "BLK-AUTO-04A78248",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -279,6 +250,7 @@
       "file": "20_r043_照会内容編集画面.png",
       "exact": true,
       "block": "BLK-AZ-INQUIRY-EDIT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA15.html",
       "title": "",
       "text": "1 照会ｺｰﾄﾞ 照会内容 編集照会内容 (171文字以内)"
@@ -290,6 +262,7 @@
       "file": "21_r046_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AZ-INQUIRY-EDIT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -298,9 +271,10 @@
       "row": 50,
       "type": "表示",
       "item": "不備内容入力画面-更新",
-      "file": "24_r050_不備内容入力画面-更新.png",
+      "file": "22_r050_不備内容入力画面-更新.png",
       "exact": true,
-      "block": "BLK-AUTO-4C432C14",
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -309,9 +283,10 @@
       "row": 54,
       "type": "表示",
       "item": "不備内容入力画面-更新",
-      "file": "27_r054_不備内容入力画面-更新.png",
+      "file": "23_r054_不備内容入力画面-更新.png",
       "exact": true,
-      "block": "BLK-AUTO-4C432C14",
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -320,9 +295,10 @@
       "row": 56,
       "type": "表示",
       "item": "不備内容入力画面-更新",
-      "file": "29_r056_不備内容入力画面-更新.png",
+      "file": "24_r056_不備内容入力画面-更新.png",
       "exact": true,
-      "block": "BLK-AUTO-B8DF200B",
+      "block": "BLK-AZ-INQUIRY-EDIT",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"

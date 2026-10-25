@@ -1,18 +1,14 @@
 {
   "caseId": "AY-100-04-001",
   "runner": "node",
-  "ts": "2026-10-24T23:15:26.920Z",
+  "ts": "2026-10-25T01:14:58.461Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-SYSERR-LOGIN",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        16,
-        17
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
@@ -30,6 +26,7 @@
       "file": "02_r016_システムエラー画面.png",
       "exact": true,
       "block": "BLK-AZ-SYSERR-LOGIN",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/system_error.html",
       "title": "システムエラー",
       "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"
@@ -41,6 +38,7 @@
       "file": "03_r017_エラーメッセージ.png",
       "exact": true,
       "block": "BLK-AZ-SYSERR-LOGIN",
+      "matchedBy": "current",
       "url": "http://127.0.0.1:10091/ANB00/system_error.html",
       "title": "システムエラー",
       "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"

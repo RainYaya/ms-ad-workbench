@@ -1,98 +1,76 @@
 {
   "caseId": "AZ-160-01-006",
   "runner": "node",
-  "ts": "2026-10-24T23:19:36.346Z",
+  "ts": "2026-10-25T01:22:22.677Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-MENU-SEARCH-LIST",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        15
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-E593E2FC",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-9EB5A282",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        18,
-        20
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-C8BDC3F2",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        22
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SGL-A5BF2BD4",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        27
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-9EB5A282",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        30,
-        32
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-C8BDC3F2",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        34
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SGL-1E78A599",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
     "02_r015_不備一覧画面.png",
-    "03_BLK-AZ-MENU-SEARCH-LIST.png",
-    "04_BLK-SHR-E593E2FC.png",
-    "05_r018_不備一覧画面.png",
+    "03_r018_不備一覧画面.png",
+    "04_BLK-AZ-MENU-SEARCH-LIST.png",
+    "05_BLK-SHR-E593E2FC.png",
     "06_r020_不備内容入力画面-更新.png",
     "07_BLK-AUTO-9EB5A282.png",
-    "08_r022_帳票印刷画面.png",
-    "09_BLK-AUTO-C8BDC3F2.png",
+    "08_BLK-AUTO-C8BDC3F2.png",
+    "09_r022_帳票印刷画面.png",
     "10_r027_不備一覧画面.png",
-    "11_BLK-SGL-A5BF2BD4.png",
-    "12_r030_不備一覧画面.png",
+    "11_r030_不備一覧画面.png",
+    "12_BLK-SGL-A5BF2BD4.png",
     "13_r032_不備内容入力画面-更新.png",
     "14_BLK-AUTO-9EB5A282.png",
-    "15_r034_帳票印刷画面.png",
-    "16_BLK-AUTO-C8BDC3F2.png",
+    "15_BLK-AUTO-C8BDC3F2.png",
+    "16_r034_帳票印刷画面.png",
     "17_BLK-SGL-1E78A599.png"
   ],
   "evidence": [
@@ -103,6 +81,7 @@
       "file": "02_r015_不備一覧画面.png",
       "exact": true,
       "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA07.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
@@ -111,12 +90,13 @@
       "row": 18,
       "type": "表示",
       "item": "不備一覧画面",
-      "file": "05_r018_不備一覧画面.png",
+      "file": "03_r018_不備一覧画面.png",
       "exact": true,
-      "block": "BLK-AUTO-9EB5A282",
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA07.html",
       "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分 現"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
     },
     {
       "row": 20,
@@ -125,6 +105,7 @@
       "file": "06_r020_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AUTO-9EB5A282",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -133,12 +114,13 @@
       "row": 22,
       "type": "遷移",
       "item": "帳票印刷画面",
-      "file": "08_r022_帳票印刷画面.png",
+      "file": "09_r022_帳票印刷画面.png",
       "exact": true,
-      "block": "BLK-AUTO-C8BDC3F2",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "block": "BLK-SGL-A5BF2BD4",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA14.html",
       "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
+      "text": "1 帳票種類 正しい申込書類の作成についてのお願い（3項目表示） 正しい申込書類の作成についてのお願い（2項目表示） 申込書類訂正済連絡票 正しい申込書類の作成についてのお願い（督促）（3項目表示） 正しい申込書類の作成についてのお願い（督促）（2項目表示） 出力項目選択 TEL & FAX 1 契約者名1 回答締切日"
     },
     {
       "row": 27,
@@ -147,20 +129,22 @@
       "file": "10_r027_不備一覧画面.png",
       "exact": true,
       "block": "BLK-SGL-A5BF2BD4",
-      "url": "http://127.0.0.1:10091/AMB/AMA14.html",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA07.html",
       "title": "",
-      "text": "1 帳票種類 正しい申込書類の作成についてのお願い（3項目表示） 正しい申込書類の作成についてのお願い（2項目表示） 申込書類訂正済連絡票 正しい申込書類の作成についてのお願い（督促）（3項目表示） 正しい申込書類の作成についてのお願い（督促）（2項目表示） 出力項目選択 TEL & FAX 1 契約者名1 回答締切日"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
     },
     {
       "row": 30,
       "type": "表示",
       "item": "不備一覧画面",
-      "file": "12_r030_不備一覧画面.png",
+      "file": "11_r030_不備一覧画面.png",
       "exact": true,
-      "block": "BLK-AUTO-9EB5A282",
+      "block": "BLK-SGL-A5BF2BD4",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA07.html",
       "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分 現"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 登録部課ｺｰﾄﾞ 日報部課代ｺｰﾄﾞ ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 登録者(社員番号) 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 1年11月1 計上状態 未計上 入力区分"
     },
     {
       "row": 32,
@@ -169,6 +153,7 @@
       "file": "13_r032_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AUTO-9EB5A282",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
@@ -177,12 +162,13 @@
       "row": 34,
       "type": "遷移",
       "item": "帳票印刷画面",
-      "file": "15_r034_帳票印刷画面.png",
+      "file": "16_r034_帳票印刷画面.png",
       "exact": true,
-      "block": "BLK-AUTO-C8BDC3F2",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "block": "BLK-SGL-1E78A599",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA14.html",
       "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
+      "text": "1 帳票種類 正しい申込書類の作成についてのお願い（3項目表示） 正しい申込書類の作成についてのお願い（2項目表示） 申込書類訂正済連絡票 正しい申込書類の作成についてのお願い（督促）（3項目表示） 正しい申込書類の作成についてのお願い（督促）（2項目表示） 出力項目選択 TEL & FAX 1 契約者名1 回答締切日"
     }
   ]
 }

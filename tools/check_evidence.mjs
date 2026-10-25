@@ -25,7 +25,10 @@ for (const cid of cases) {
     totalRows++;
     const e = got.get(row);
     if (!e) { missingRows++; ok = false; continue; }
-    if (e.exact) exact++; else if (e.manual) manual++; else blockend++;
+    if (e.manual) manual++;
+    else if (e.missing || !e.file) { missingRows++; ok = false; }
+    else if (e.exact) exact++;
+    else blockend++;
   }
   if (ok) casesOk++; else { casesBad++; bad.push(`${cid}: ${r.status}, expected ${expected.size}, got ${got.size}`); }
 }

@@ -47,6 +47,10 @@ const EVIDENCE = (() => {
   try { return JSON.parse(readFileSync(join(root, '../../automation/blocks/case-evidence.json'), 'utf8')); }
   catch { return {}; }
 })();
+const SCREEN_RULES = (() => {
+  try { return JSON.parse(readFileSync(join(root, '../../automation/blocks/screen-rules.json'), 'utf8')); }
+  catch { return []; }
+})();
 let SEL_SEQ = null;
 const skipped = [];
 try {
@@ -80,7 +84,10 @@ const context = await browser.newContext({ viewport: { width: 1360, height: 900 
 const page = await context.newPage();
 const acceptDialog = (d) => d.accept().catch(() => {});
 page.on('dialog', acceptDialog);
-context.on('page', (p) => p.on('dialog', acceptDialog));
+context.on('page', (p) => {
+  p.on('dialog', acceptDialog);
+  if (process.env.STEP_DEBUG) p.on('console', (m) => console.log('POPUP', m.text()));
+});
 const shots = [];
 const blockStatus = [];
 let shotIdx = 0;
@@ -114,10 +121,79 @@ try {
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next
+  let currentBlock = '';
+  const hcQueue = [];
+  {
+    const seen = new Set();
+    for (const b of EVIDENCE[caseId]?.blocks || []) {
+      for (const a of b.asserts || []) {
+        if (a.hc && !seen.has(a.row)) { hcQueue.push({ ...a }); seen.add(a.row); }
+      }
+      if (b.toHc && !seen.has(b.toRow)) { hcQueue.push({ row: b.toRow, type: '遷移', item: '', hc: true }); seen.add(b.toRow); }
+    }
+  }
+  const MANUAL_RE = /開発者ツール|権限エラー|セッションタイムアウト|閉局|ヘルプ|ダウンロードメッセージ/;
+  const ruleFor = (item) => SCREEN_RULES.find((r) => new RegExp(r.match).test(item || ''));
+  const urlMatch = (rule, u) => !!rule && rule.urls.some((x) => u.includes(x));
+  const isOpen = (p) => !!p && !p.isClosed();
+  async function captureRow(row, target, matchedBy) {
+    const file = await shot(`r${String(row.row).padStart(3, '0')}_${safeName(row.item || row.type || 'hc')}`, target);
+    evidence.push({ row: row.row, type: row.type, item: row.item, file, exact: true, block: currentBlock, matchedBy, ...(await pageMeta(target)) });
+  }
+  async function maybeCapture(active, phase) {
+    if (!hcQueue.length) return;
+    if (process.env.STEP_DEBUG) console.log('Q', hcQueue[0].row, hcQueue[0].item, '| phase', phase, '| active', active && active.url());
+    const waitMs = phase === 'popup' ? 800 : (phase === 'click' || phase === 'goto' || phase === 'blockEnd') ? 350 : 0;
+    const deadline = Date.now() + waitMs;
+    while (hcQueue.length) {
+      const row = hcQueue[0];
+      if (MANUAL_RE.test(row.item || '')) {
+        evidence.push({ row: row.row, type: row.type, item: row.item, file: null, exact: false, manual: true, block: currentBlock, note: '非浏览器=真機人工' });
+        hcQueue.shift();
+        continue;
+      }
+      const rule = ruleFor(row.item);
+      if (rule) {
+        let target = null;
+        for (;;) {
+          const pages = [active, popup, page].filter(isOpen);
+          target = pages.find((p) => urlMatch(rule, p.url()));
+          if (target || Date.now() >= deadline) break;
+          await page.waitForTimeout(100);
+        }
+        if (!target) return;
+        await captureRow(row, target, 'url');
+        hcQueue.shift();
+        continue;
+      }
+      if (phase === 'blockStart') return;
+      await captureRow(row, active && isOpen(active) ? active : page, 'current');
+      hcQueue.shift();
+    }
+  }
+  async function resolveOlderThan(minRow) {
+    if (!Number.isFinite(minRow)) return;
+    while (hcQueue.length) {
+      const row = hcQueue[0];
+      if (!(row.row < minRow)) break;
+      if (MANUAL_RE.test(row.item || '')) {
+        evidence.push({ row: row.row, type: row.type, item: row.item, file: null, exact: false, manual: true, block: currentBlock, note: '非浏览器=真機人工' });
+      } else {
+        evidence.push({ row: row.row, type: row.type, item: row.item, file: null, exact: false, missing: true, block: currentBlock, note: '画面HC未取得（前段で未到達）' });
+      }
+      hcQueue.shift();
+    }
+  }
+  let blockIndex = 0;
   for (const [blockId, blk, evBlock] of plan) {
     console.log(`-- ${blockId}`);
-    let assertSeq = 0;
-    const capturedRows = new Set();
+    currentBlock = blockId;
+    const ownedRows = [...(evBlock?.asserts || []).filter((a) => a.hc).map((a) => a.row), ...(evBlock?.toHc ? [evBlock.toRow] : [])].filter((x) => x != null);
+    const minOwned = ownedRows.length ? Math.min(...ownedRows) : Infinity;
+    const firstUrl = String(blk.steps?.[0]?.url || '');
+    const isRestart = /\/AMB\/AMA01|\/ANB00\/ANA01/.test(firstUrl);
+    if (blockIndex > 0 && isRestart) await resolveOlderThan(minOwned);
+    blockIndex++;
     for (const step of blk.steps) {
       if (step.in === 'popup' && !popup) throw new Error('popup step before popup open');
       const where = step.in === 'popup' ? popup : page;
@@ -255,43 +331,18 @@ try {
           break;
         }
       }
-      if (step.action === 'assert' || step.action === 'popup' || step.action === 'manual') {
-        let ev = null;
-        if (step.noEvidence) {
-          // Transition already captured by the owning block; do not consume a row.
-        } else if (step.shotRow !== undefined) {
-          ev = (evBlock?.asserts || []).find((a) => a.row === Number(step.shotRow)) || { row: Number(step.shotRow), type: step.assert || '表示', item: step.event || '' };
-        } else {
-          ev = evBlock?.asserts?.[assertSeq];
-          assertSeq++;
-        }
-        if (ev?.hc && !capturedRows.has(ev.row)) {
-          if (step.action === 'manual') {
-            evidence.push({ row: ev.row, type: ev.type, item: ev.item, file: null, exact: false, manual: true, block: blockId, note: step.note || '非浏览器=真機人工' });
-            capturedRows.add(ev.row);
-          } else {
-            const targetPage = step.action === 'popup' ? (popup || where) : where;
-            const file = await shot(`r${String(ev.row).padStart(3, '0')}_${safeName(ev.item || ev.type || 'hc')}`, targetPage);
-            evidence.push({ row: ev.row, type: ev.type, item: ev.item, file, exact: true, block: blockId, ...(await pageMeta(targetPage)) });
-            capturedRows.add(ev.row);
-          }
-        }
-      }
+      const activePage = step.in === 'popup' ? (popup && !popup.isClosed() ? popup : where) : where;
+      if (process.env.STEP_DEBUG) console.log('STEP', step.action, step.event || '', '| page', page.url(), '| popup', popup && !popup.isClosed() ? popup.url() : '-');
+      await maybeCapture(activePage, step.action);
       if (step.shot) await shot(step.shot);
     }
     await shot(blockId.slice(0, 24));
-    // Any remaining 画面HC row in this block is captured once at block end.
-    const hcRows = new Set();
-    for (const a of evBlock?.asserts || []) if (a.hc) hcRows.add(a.row);
-    if (evBlock?.toHc) hcRows.add(evBlock.toRow);
-    for (const row of hcRows) {
-      if (capturedRows.has(row)) continue;
-      const meta = (evBlock.asserts || []).find((a) => a.row === row) || {};
-      const file = await shot(`r${String(row).padStart(3, '0')}_${safeName(meta.item || meta.type || 'hc')}_blockend`);
-      evidence.push({ row, type: meta.type, item: meta.item, file, exact: false, block: blockId, note: 'block end capture', ...(await pageMeta(page)) });
-      capturedRows.add(row);
-    }
-    blockStatus.push({ block: blockId, status: 'pass', fromRow: evBlock?.fromRow, toRow: evBlock?.toRow, hcRows: [...capturedRows] });
+    await maybeCapture(popup && !popup.isClosed() ? popup : page, 'blockEnd');
+    blockStatus.push({ block: blockId, status: 'pass', fromRow: evBlock?.fromRow, toRow: evBlock?.toRow });
+  }
+  for (const row of hcQueue) {
+    const manual = MANUAL_RE.test(row.item || '');
+    evidence.push({ row: row.row, type: row.type, item: row.item, file: null, exact: false, manual, missing: !manual, note: manual ? '非浏览器=真機人工' : '画面HC未取得' });
   }
 
   const status = skipped.length ? 'partial' : 'pass';

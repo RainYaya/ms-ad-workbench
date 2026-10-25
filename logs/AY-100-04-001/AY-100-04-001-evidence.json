@@ -8,6 +8,7 @@
    "file": "02_r016_システムエラー画面.png",
    "exact": true,
    "block": "BLK-AZ-SYSERR-LOGIN",
+   "matchedBy": "url",
    "url": "http://127.0.0.1:10091/ANB00/system_error.html",
    "title": "システムエラー",
    "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"
@@ -19,6 +20,7 @@
    "file": "03_r017_エラーメッセージ.png",
    "exact": true,
    "block": "BLK-AZ-SYSERR-LOGIN",
+   "matchedBy": "current",
    "url": "http://127.0.0.1:10091/ANB00/system_error.html",
    "title": "システムエラー",
    "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"

@@ -1,17 +1,14 @@
 {
   "caseId": "AZ-220-01-003",
   "runner": "node",
-  "ts": "2026-10-24T23:20:48.918Z",
+  "ts": "2026-10-25T01:24:06.102Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-AGT-LIST-INITIAL",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        18
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
@@ -28,6 +25,7 @@
       "file": "02_r018_代理店_不備一覧画面.png",
       "exact": true,
       "block": "BLK-AZ-AGT-LIST-INITIAL",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMC00/AMC22.html",
       "title": "",
       "text": " 1 1/1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 年 月 計上状態 1 募集人ID 登録日 年 月 日 1 年 月 日 回答締切日 年 月 日 1 年 月 日 対応状況 1：未対応1 2：対応中1 3"

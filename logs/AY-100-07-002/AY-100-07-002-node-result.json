@@ -1,212 +1,152 @@
 {
   "caseId": "AY-100-07-002",
   "runner": "node",
-  "ts": "2026-10-24T23:15:42.005Z",
+  "ts": "2026-10-25T01:15:44.245Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AUTO-E2D0C359",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-SHR-C69800AD",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        20,
-        25,
-        27
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-2B9786A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        30,
-        32
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-77BF51A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        34,
-        38,
-        44
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-E2D0C359",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-SHR-C69800AD",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        55,
-        60,
-        62
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-2B9786A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        65,
-        67
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-77BF51A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        69,
-        73,
-        79
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-E2D0C359",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-SHR-C69800AD",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        90,
-        95,
-        97
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-2B9786A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        100,
-        102
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-77BF51A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        104,
-        108,
-        114
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-E2D0C359",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": []
+      "toRow": null
     },
     {
       "block": "BLK-SHR-C69800AD",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        125,
-        130,
-        132
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-AUTO-2B9786A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        135,
-        137
-      ]
+      "toRow": null
     },
     {
       "block": "BLK-SHR-77BF51A5",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        139,
-        143,
-        149
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_BLK-AUTO-E2D0C359.png",
-    "03_r020_照会・検索画面.png",
+    "02_r020_照会・検索画面.png",
+    "03_BLK-AUTO-E2D0C359.png",
     "04_r025_申請・確認更新画面.png",
     "05_r027_担当者検索画面.png",
-    "06_BLK-SHR-C69800AD.png",
-    "07_r030_担当者検索画面.png",
-    "08_r032_申請・確認更新画面.png",
+    "06_r030_担当者検索画面.png",
+    "07_r032_申請・確認更新画面.png",
+    "08_BLK-SHR-C69800AD.png",
     "09_BLK-AUTO-2B9786A5.png",
     "10_r034_送信先(写)選択画面.png",
     "11_r038_送信先(写)選択画面.png",
     "12_r044_申請・確認更新画面.png",
     "13_BLK-SHR-77BF51A5.png",
-    "14_BLK-AUTO-E2D0C359.png",
-    "15_r055_照会・検索画面.png",
+    "14_r055_照会・検索画面.png",
+    "15_BLK-AUTO-E2D0C359.png",
     "16_r060_申請・確認更新画面.png",
     "17_r062_担当者検索画面.png",
-    "18_BLK-SHR-C69800AD.png",
-    "19_r065_担当者検索画面.png",
-    "20_r067_申請・確認更新画面.png",
+    "18_r065_担当者検索画面.png",
+    "19_r067_申請・確認更新画面.png",
+    "20_BLK-SHR-C69800AD.png",
     "21_BLK-AUTO-2B9786A5.png",
     "22_r069_送信先(写)選択画面.png",
     "23_r073_送信先(写)選択画面.png",
     "24_r079_申請・確認更新画面.png",
     "25_BLK-SHR-77BF51A5.png",
-    "26_BLK-AUTO-E2D0C359.png",
-    "27_r090_照会・検索画面.png",
+    "26_r090_照会・検索画面.png",
+    "27_BLK-AUTO-E2D0C359.png",
     "28_r095_申請・確認更新画面.png",
     "29_r097_担当者検索画面.png",
-    "30_BLK-SHR-C69800AD.png",
-    "31_r100_担当者検索画面.png",
-    "32_r102_申請・確認更新画面.png",
+    "30_r100_担当者検索画面.png",
+    "31_r102_申請・確認更新画面.png",
+    "32_BLK-SHR-C69800AD.png",
     "33_BLK-AUTO-2B9786A5.png",
     "34_r104_送信先(写)選択画面.png",
     "35_r108_送信先(写)選択画面.png",
     "36_r114_申請・確認更新画面.png",
     "37_BLK-SHR-77BF51A5.png",
-    "38_BLK-AUTO-E2D0C359.png",
-    "39_r125_照会・検索画面.png",
+    "38_r125_照会・検索画面.png",
+    "39_BLK-AUTO-E2D0C359.png",
     "40_r130_申請・確認更新画面.png",
     "41_r132_担当者検索画面.png",
-    "42_BLK-SHR-C69800AD.png",
-    "43_r135_担当者検索画面.png",
-    "44_r137_申請・確認更新画面.png",
+    "42_r135_担当者検索画面.png",
+    "43_r137_申請・確認更新画面.png",
+    "44_BLK-SHR-C69800AD.png",
     "45_BLK-AUTO-2B9786A5.png",
     "46_r139_送信先(写)選択画面.png",
     "47_r143_送信先(写)選択画面.png",
@@ -218,9 +158,10 @@
       "row": 20,
       "type": "表示",
       "item": "照会・検索画面",
-      "file": "03_r020_照会・検索画面.png",
+      "file": "02_r020_照会・検索画面.png",
       "exact": true,
-      "block": "BLK-SHR-C69800AD",
+      "block": "BLK-AUTO-E2D0C359",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
@@ -232,6 +173,7 @@
       "file": "04_r025_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -243,6 +185,7 @@
       "file": "05_r027_担当者検索画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -251,9 +194,10 @@
       "row": 30,
       "type": "表示",
       "item": "担当者検索画面",
-      "file": "07_r030_担当者検索画面.png",
+      "file": "06_r030_担当者検索画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -262,12 +206,13 @@
       "row": 32,
       "type": "遷移",
       "item": "申請・確認更新画面",
-      "file": "08_r032_申請・確認更新画面.png",
+      "file": "07_r032_申請・確認更新画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA10.html",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
-      "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
     },
     {
       "row": 34,
@@ -276,6 +221,7 @@
       "file": "10_r034_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
@@ -287,7 +233,8 @@
       "file": "11_r038_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA11.html",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
     },
@@ -298,6 +245,7 @@
       "file": "12_r044_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -306,9 +254,10 @@
       "row": 55,
       "type": "表示",
       "item": "照会・検索画面",
-      "file": "15_r055_照会・検索画面.png",
+      "file": "14_r055_照会・検索画面.png",
       "exact": true,
-      "block": "BLK-SHR-C69800AD",
+      "block": "BLK-AUTO-E2D0C359",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
@@ -320,6 +269,7 @@
       "file": "16_r060_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -331,6 +281,7 @@
       "file": "17_r062_担当者検索画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -339,9 +290,10 @@
       "row": 65,
       "type": "表示",
       "item": "担当者検索画面",
-      "file": "19_r065_担当者検索画面.png",
+      "file": "18_r065_担当者検索画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -350,12 +302,13 @@
       "row": 67,
       "type": "遷移",
       "item": "申請・確認更新画面",
-      "file": "20_r067_申請・確認更新画面.png",
+      "file": "19_r067_申請・確認更新画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA10.html",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
-      "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
     },
     {
       "row": 69,
@@ -364,6 +317,7 @@
       "file": "22_r069_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
@@ -375,7 +329,8 @@
       "file": "23_r073_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA11.html",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
     },
@@ -386,6 +341,7 @@
       "file": "24_r079_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -394,9 +350,10 @@
       "row": 90,
       "type": "表示",
       "item": "照会・検索画面",
-      "file": "27_r090_照会・検索画面.png",
+      "file": "26_r090_照会・検索画面.png",
       "exact": true,
-      "block": "BLK-SHR-C69800AD",
+      "block": "BLK-AUTO-E2D0C359",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
@@ -408,6 +365,7 @@
       "file": "28_r095_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -419,6 +377,7 @@
       "file": "29_r097_担当者検索画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -427,9 +386,10 @@
       "row": 100,
       "type": "表示",
       "item": "担当者検索画面",
-      "file": "31_r100_担当者検索画面.png",
+      "file": "30_r100_担当者検索画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -438,12 +398,13 @@
       "row": 102,
       "type": "遷移",
       "item": "申請・確認更新画面",
-      "file": "32_r102_申請・確認更新画面.png",
+      "file": "31_r102_申請・確認更新画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA10.html",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
-      "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
     },
     {
       "row": 104,
@@ -452,6 +413,7 @@
       "file": "34_r104_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
@@ -463,7 +425,8 @@
       "file": "35_r108_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA11.html",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
     },
@@ -474,6 +437,7 @@
       "file": "36_r114_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -482,9 +446,10 @@
       "row": 125,
       "type": "表示",
       "item": "照会・検索画面",
-      "file": "39_r125_照会・検索画面.png",
+      "file": "38_r125_照会・検索画面.png",
       "exact": true,
-      "block": "BLK-SHR-C69800AD",
+      "block": "BLK-AUTO-E2D0C359",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 課支社CD 代理店CD 大種目 自賠責 貨物 種目共通 その他 証券番号 明細番号 再計上証券番号 再計上明細番号 登録日 年 月 日1 年 月 日 登録者(社員番号) 登録者課支社CD 申請入力日 年 月 日1 年 月 日 申請入力者(社員番号) 申請入力者課"
@@ -496,6 +461,7 @@
       "file": "40_r130_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
@@ -507,6 +473,7 @@
       "file": "41_r132_担当者検索画面.png",
       "exact": true,
       "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -515,9 +482,10 @@
       "row": 135,
       "type": "表示",
       "item": "担当者検索画面",
-      "file": "43_r135_担当者検索画面.png",
+      "file": "42_r135_担当者検索画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
@@ -526,12 +494,13 @@
       "row": 137,
       "type": "遷移",
       "item": "申請・確認更新画面",
-      "file": "44_r137_申請・確認更新画面.png",
+      "file": "43_r137_申請・確認更新画面.png",
       "exact": true,
-      "block": "BLK-AUTO-2B9786A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA10.html",
+      "block": "BLK-SHR-C69800AD",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
-      "text": "1 1 1 1/1ページ 検索結果1件 No. 課支社CD 課支社名 氏名 ライン長 1 1 1 1 1"
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
     },
     {
       "row": 139,
@@ -540,6 +509,7 @@
       "file": "46_r139_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
@@ -551,7 +521,8 @@
       "file": "47_r143_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
-      "url": "http://127.0.0.1:10091/ANB00/ANA11.html",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
       "title": "",
       "text": "1 1 1 「送信先（写）一覧」に追加したユーザを（写）として、送信先に追加します。 ユーザを追加するには、検索結果のNoをクリックします。 ユーザを削除するには、削除したいユーザを選択後「削除」を押下します。 送信先を追加しない場合は、「送信先（写）一覧」が空欄の状態で「ＯＫ」を押下します。 1/1ページ 検索結果1"
     },
@@ -562,6 +533,7 @@
       "file": "48_r149_申請・確認更新画面.png",
       "exact": true,
       "block": "BLK-SHR-77BF51A5",
+      "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "

@@ -73,6 +73,8 @@ for cid in CASES:
             status = "exact"
         elif e.get("manual"):
             status = "manual"
+        elif e.get("missing"):
+            status = "missing"
         else:
             status = "blockEnd"
         summary[{"blockEnd": "blockEnd"}.get(status, status)] += 1

@@ -8,6 +8,7 @@
    "file": "02_r015_画面HC.png",
    "exact": true,
    "block": "BLK-AZ-OPEN-CLOSE-SYS",
+   "matchedBy": "current",
    "url": "http://127.0.0.1:10091/AMB/dummy.html",
    "title": "試験用ログイン画面",
    "text": "申込書品質管理 / 異例取扱管理システム 試験用ログイン画面 ローカル環境 結合環境 疑似環境 本番環境 Mode = ClientMode Ⅰ. ■ 事業会社 ：● MSI 三井住友海上火災保険株式会社 ：● ADI あいおいニッセイ同和損害保険株式会社 Client Mode：何れかの事業会社を任意に選択できます。"
@@ -16,20 +17,20 @@
    "row": 18,
    "type": "遷移",
    "item": "閉局画面",
-   "file": "03_r018_閉局画面.png",
-   "exact": true,
+   "file": null,
+   "exact": false,
+   "manual": true,
    "block": "BLK-AZ-OPEN-CLOSE-SYS",
-   "url": "http://127.0.0.1:10091/AMB/AMA01.html",
-   "title": "",
-   "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+   "note": "非浏览器=真機人工"
   },
   {
    "row": 20,
    "type": "表示",
    "item": "画面HC",
-   "file": "05_r020_画面HC.png",
+   "file": "03_r020_画面HC.png",
    "exact": true,
-   "block": "BLK-SHR-01CAB10D",
+   "block": "BLK-AZ-OPEN-CLOSE-SYS",
+   "matchedBy": "current",
    "url": "http://127.0.0.1:10091/AMB/dummy.html",
    "title": "試験用ログイン画面",
    "text": "申込書品質管理 / 異例取扱管理システム 試験用ログイン画面 ローカル環境 結合環境 疑似環境 本番環境 Mode = ClientMode Ⅰ. ■ 事業会社 ：● MSI 三井住友海上火災保険株式会社 ：● ADI あいおいニッセイ同和損害保険株式会社 Client Mode：何れかの事業会社を任意に選択できます。"
@@ -38,45 +39,41 @@
    "row": 23,
    "type": "遷移",
    "item": "不備一覧画面",
-   "file": "06_r023_不備一覧画面.png",
-   "exact": true,
-   "block": "BLK-SHR-01CAB10D",
-   "url": "http://127.0.0.1:10091/AMB/AMA01.html",
-   "title": "",
-   "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+   "file": null,
+   "exact": false,
+   "manual": false,
+   "missing": true,
+   "note": "画面HC未取得"
   },
   {
    "row": 25,
    "type": "遷移",
    "item": "回答入力画面",
-   "file": "07_r025_回答入力画面.png",
-   "exact": true,
-   "block": "BLK-SHR-01CAB10D",
-   "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
-   "title": "",
-   "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
+   "file": null,
+   "exact": false,
+   "manual": false,
+   "missing": true,
+   "note": "画面HC未取得"
   },
   {
    "row": 27,
    "type": "表示",
    "item": "画面HC",
-   "file": "08_r027_画面HC.png",
-   "exact": true,
-   "block": "BLK-SHR-01CAB10D",
-   "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
-   "title": "",
-   "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
+   "file": null,
+   "exact": false,
+   "manual": false,
+   "missing": true,
+   "note": "画面HC未取得"
   },
   {
    "row": 29,
    "type": "遷移",
    "item": "閉局画面",
-   "file": "09_r029_閉局画面.png",
-   "exact": true,
-   "block": "BLK-SHR-01CAB10D",
-   "url": "http://127.0.0.1:10091/AMC00/AMC22.html",
-   "title": "",
-   "text": " 1 1/1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 年 月 計上状態 1 募集人ID 登録日 年 月 日 1 年 月 日 回答締切日 年 月 日 1 年 月 日 対応状況 1：未対応1 2：対応中1 3"
+   "file": null,
+   "exact": false,
+   "manual": true,
+   "missing": false,
+   "note": "非浏览器=真機人工"
   }
  ]
 }

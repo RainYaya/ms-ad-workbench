@@ -1,50 +1,44 @@
 {
   "caseId": "AY-100-06-003",
   "runner": "node",
-  "ts": "2026-10-24T23:15:26.903Z",
+  "ts": "2026-10-25T01:14:58.131Z",
   "status": "pass",
   "blocks": [
     {
       "block": "BLK-AZ-AUTH-ERROR",
       "status": "pass",
       "fromRow": null,
-      "toRow": null,
-      "hcRows": [
-        16,
-        17
-      ]
+      "toRow": null
     }
   ],
   "skipped": [],
   "shots": [
     "01_menu.png",
-    "02_r016_権限エラー画面.png",
-    "03_BLK-AZ-AUTH-ERROR.png",
-    "04_r017_エラーメッセージ_blockend.png"
+    "02_r017_エラーメッセージ.png",
+    "03_BLK-AZ-AUTH-ERROR.png"
   ],
   "evidence": [
     {
       "row": 16,
       "type": "遷移",
       "item": "権限エラー画面",
-      "file": "02_r016_権限エラー画面.png",
-      "exact": true,
+      "file": null,
+      "exact": false,
+      "manual": true,
       "block": "BLK-AZ-AUTH-ERROR",
-      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
-      "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：取消計上申請内容の新規登録 ：条件を指定して照会・検索 申請依頼・承認も可能 ：管下の申請・承認案件の一覧表示 ：条件を指定して集計 遡及取消再計上・遡及始期日変更で「異例取扱理由コード［T35］」が「６」に該当する場合、 異例取扱理由の「具体的説明」欄は入力"
+      "note": "非浏览器=真機人工"
     },
     {
       "row": 17,
       "type": "出力(Msg)",
       "item": "エラーメッセージ",
-      "file": "04_r017_エラーメッセージ_blockend.png",
-      "exact": false,
+      "file": "02_r017_エラーメッセージ.png",
+      "exact": true,
       "block": "BLK-AZ-AUTH-ERROR",
-      "note": "block end capture",
-      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
-      "title": "",
-      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：取消計上申請内容の新規登録 ：条件を指定して照会・検索 申請依頼・承認も可能 ：管下の申請・承認案件の一覧表示 ：条件を指定して集計 遡及取消再計上・遡及始期日変更で「異例取扱理由コード［T35］」が「６」に該当する場合、 異例取扱理由の「具体的説明」欄は入力"
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10091/ANB00/dummy.html",
+      "title": "試験用ログイン画面",
+      "text": "申込書品質管理 / 異例取扱管理システム 試験用ログイン画面 ローカル環境 結合環境 疑似環境 本番環境 Mode = ClientMode Ⅰ. ■ 事業会社 ：● MSI 三井住友海上火災保険株式会社 ：● ADI あいおいニッセイ同和損害保険株式会社 Client Mode：何れかの事業会社を任意に選択できます。"
     }
   ]
 }
