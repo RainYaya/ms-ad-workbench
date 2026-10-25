@@ -86,6 +86,7 @@ def _block_items(cid, kind):
                 "kind": "手順" if kind == "manual" else "mock代替",
                 "fromRow": bd.get("fromRow"),
                 "toRow": bd.get("toRow"),
+                "optional": bool(st.get("optional")),
                 "where": f"手順 {bd.get('fromRow', '?')}–{bd.get('toRow', '?')}",
                 "title": st.get("event", ""),
                 "body": short(note, 400),
@@ -234,7 +235,7 @@ def render_sheet(cid):
     mock_html = "".join(f"""
       <div class="item">
         <div class="w">mock代替<br>{e(m['where'])}</div>
-        <div><div class="t">{e(m['title'])}</div><div class="b">{e(m['body'])}</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
+        <div><div class="t">{e(m['title'])}</div><div class="b">{e(m['body'])}</div><div class="r">{'optional: 失敗しても止まりません。必要なら画面を目視してください。' if m.get('optional') else '真機では runner が自動で確認。失敗した時だけ画面を見る。'}</div></div>
       </div>""" for m in mk) or '<p class="empty">mock で代替している確認はありません。</p>'
     manual_html = "".join(f"""
       <div class="item">

@@ -52,6 +52,7 @@ for bid, b in sel.items():
                 "selector": s.get("selector") or "",
                 "value": s.get("value") or "",
                 "note": s.get("note") or "",
+                "optional": bool(s.get("optional")),
                 "kind": step_kind(s),
             }
             for s in steps

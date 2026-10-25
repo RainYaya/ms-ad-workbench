@@ -2138,7 +2138,7 @@ AY-120-01-001"></textarea>
       }
     }
     const paramLabel = (x) => x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'multiValue' ? ['複数値', 'amber'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
-    const mockHtml = blockMock.length ? blockMock.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / 真機では runner が自動で確認</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
+    const mockHtml = blockMock.length ? blockMock.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / ${m.optional ? 'optional: 失敗しても止まらないため目視' : '真機では runner が自動で確認'}</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
     const blockHtml = details.map((bd, i) => {
       const bq = BLOCK_QUALITY[bd.block] || {};
       const bmeta = (AUTO.blocks || []).find((x) => x.id === bd.block) || {};
