@@ -53,9 +53,26 @@ def load_cases():
 
 CASES_DATA = load_cases()
 
+# keys actually referenced by the blocks a case runs
+BLOCKS = {}
+for f in (ROOT / "automation" / "node-runner").glob("block-selectors*.json"):
+    BLOCKS.update(json.loads(f.read_text(encoding="utf-8")))
+WORKFLOWS = json.loads((ROOT / "automation" / "blocks" / "workflows.json").read_text(encoding="utf-8"))
+
+
+def used_keys(cid):
+    out = set()
+    for b in (WORKFLOWS.get(cid) or {}).get("blocks") or []:
+        blk = BLOCKS.get(b.get("block")) or {}
+        for step in blk.get("steps") or []:
+            for v in step.values():
+                for m in re.findall(r"params\.([A-Za-z0-9_]+)", str(v)):
+                    out.add(m)
+    return out
+
 
 def appendix_values(c):
-    """label -> (value, sheet, row) from 操作内容 sheets."""
+    """label -> list of distinct values from 操作内容 sheets, in row order."""
     out = {}
     for sh in (c.get("appendix") or {}).get("sheets", []):
         if "操作内容" not in (sh.get("name") or ""):
@@ -75,43 +92,53 @@ def appendix_values(c):
                         if x:
                             value = x
                             break
-                    if value and label not in out:
-                        out[label] = value
+                    if not value:
+                        continue
+                    for n in names:
+                        vals = out.setdefault(n, [])
+                        if value not in vals:
+                            vals.append(value)
     return out
 
 
 audit = {}
-counts = {"cases": 0, "items": 0, "match": 0, "mismatch": 0, "missingParam": 0, "rule": 0, "autoCases": 0, "appendixItems": 0}
+counts = {"cases": 0, "items": 0, "match": 0, "mismatch": 0, "missingParam": 0, "multiValue": 0, "rule": 0, "autoCases": 0, "appendixItems": 0}
 lines = ["# PARAM AUDIT", "", "> 別紙「操作内容」の入力値と、実際に runner が使う params の照合。", "", "| metric | count |", "|---|---:|"]
 for cid in CASES:
     c = CASES_DATA.get(cid) or {}
     source, pv = effective(cid)
     av = appendix_values(c)
+    used = used_keys(cid)
     items = []
     for spec in MAP_INPUTS:
         label = spec["label"]
-        expected = av.get(label)
-        if expected is None:
-            # aliases may have produced a different key; look up by aliases
-            for a in spec.get("aliases") or []:
-                if a in av:
-                    expected = av[a]
-                    break
-        if expected is None:
+        vals = []
+        for n in [label, *(spec.get("aliases") or [])]:
+            for v in av.get(n, []):
+                if v not in vals:
+                    vals.append(v)
+        if not vals:
             continue
+        if used and spec["key"] not in used:
+            continue
+        expected = vals[0]
         actual = pv.get(spec["key"])
         codes = spec.get("codes") or {}
         actual_label = codes.get(str(actual), actual)
         rule = any(x in str(expected) for x in ("システム日", "現在日", "初期設定", "任意", "参照", "設定しない", "変更となる可能性"))
         ok = actual is not None and (norm(expected) == norm(actual_label) or norm(expected) == norm(actual))
-        status = "rule" if rule else ("match" if ok else ("missingParam" if actual is None else "mismatch"))
+        if len(vals) > 1:
+            status = "multiValue"
+        else:
+            status = "rule" if rule else ("match" if ok else ("missingParam" if actual is None else "mismatch"))
         counts["appendixItems"] += 1
         counts["items"] += 1
         counts[status] += 1
         items.append({
             "label": label,
             "key": spec["key"],
-            "expected": expected,
+            "expected": " / ".join(vals),
+            "values": vals,
             "actual": actual,
             "actualLabel": actual_label,
             "status": status,
@@ -119,14 +146,19 @@ for cid in CASES:
     if source == "auto.json":
         counts["autoCases"] += 1
     counts["cases"] += 1
-    audit[cid] = {"source": source, "auto": source == "auto.json", "items": items}
+    audit[cid] = {"source": source, "auto": source == "auto.json", "usedKeys": sorted(used), "items": items}
 
-for k in ("cases", "appendixItems", "match", "mismatch", "missingParam", "rule", "autoCases"):
+for k in ("cases", "appendixItems", "match", "mismatch", "missingParam", "multiValue", "rule", "autoCases"):
     lines.append(f"| {k} | {counts[k]} |")
 lines += ["", "## 不一致", "", "| case | label | 別紙 | params | key |", "|---|---|---|---|---|"]
 for cid, a in audit.items():
     for it in a["items"]:
-        if it["status"] not in ("match", "rule"):
+        if it["status"] in ("mismatch", "missingParam"):
+            lines.append(f"| `{cid}` | {it['label']} | {it['expected']} | {it['actualLabel']} | {it['key']} |")
+lines += ["", "## 複数値（手順内で値が変わる）", "", "| case | label | 別紙の値 | params | key |", "|---|---|---|---|---|"]
+for cid, a in audit.items():
+    for it in a["items"]:
+        if it["status"] == "multiValue":
             lines.append(f"| `{cid}` | {it['label']} | {it['expected']} | {it['actualLabel']} | {it['key']} |")
 
 (ROOT / "logs" / "PARAM-AUDIT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

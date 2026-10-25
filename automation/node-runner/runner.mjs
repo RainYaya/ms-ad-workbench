@@ -14,9 +14,11 @@ const headed = process.argv.includes('--headed');
 const slow = Number(arg('slow', '0')) || 0;
 const keepOpen = Number(arg('keep-open', '0')) || 0;
 const traceOn = process.argv.includes('--trace');
+const strictParams = process.argv.includes('--strict-params');
 const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses bundled edge channel
 
 import { readdirSync } from 'node:fs';
+const PARAM_SOURCES = {};
 function loadParams(cid) {
   const dir = join(root, '../cdp/params');
   let out = null;
@@ -35,8 +37,12 @@ function loadParams(cid) {
       const cur = { ...d.common, ...d.cases[cid] };
       // First matching file owns the concrete values; later files only fill gaps
       // (startUrl/startSelector often live in a shared bulk file).
-      if (!out) out = cur;
-      else for (const [k, v] of Object.entries(cur)) if (out[k] === undefined || out[k] === '') out[k] = v;
+      if (!out) {
+        out = cur;
+        for (const k of Object.keys(cur)) PARAM_SOURCES[k] = f;
+      } else {
+        for (const [k, v] of Object.entries(cur)) if (out[k] === undefined || out[k] === '') { out[k] = v; PARAM_SOURCES[k] = f; }
+      }
     } catch {}
   }
   return out;
@@ -76,6 +82,18 @@ try {
   }
 } catch {}
 const plan = SEL_SEQ || Object.entries(SEL_ALL).filter(([, blk]) => !blk.cases || blk.cases.includes(caseId));
+if (strictParams) {
+  const used = new Set();
+  for (const [, blk] of plan) for (const step of blk.steps || []) for (const v of Object.values(step)) {
+    for (const m of String(v).matchAll(/params\.(\w+)/g)) used.add(m[1]);
+  }
+  const weak = [...used].filter((k) => P[k] === undefined || PARAM_SOURCES[k] === 'auto.json');
+  if (weak.length) {
+    console.error(`STRICT PARAMS: ${weak.map((k) => `${k}<-${PARAM_SOURCES[k] || 'missing'}`).join(', ')}`);
+    process.exit(3);
+  }
+  console.log(`STRICT PARAMS OK (${used.size} key(s))`);
+}
 console.log(`PLAN ${plan.length} block(s)${skipped.length ? `, skipped ${skipped.length}: ${skipped.join(',')}` : ''}`);
 const logDir = join(root, `../../logs/${caseId}`);
 mkdirSync(logDir, { recursive: true });
@@ -315,6 +333,12 @@ try {
           await where.waitForTimeout(Number(step.ms) || 0);
           break;
         case 'assert': {
+          // A proxy note means this screen is only a stand-in for a non-browser
+          // check (batch/AP log/DB table). Never execute it as a real assertion.
+          if (/非浏览器|真機|mock|簡易|代理|未再現|未収録|手動/.test(String(step.note || ''))) {
+            console.log('MANUAL(proxy assert)', step.event || '', step.note || '');
+            break;
+          }
           const timeout = Number(step.timeout) || 10000;
           try {
             switch (step.assert) {

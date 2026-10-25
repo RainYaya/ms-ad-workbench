@@ -1180,22 +1180,26 @@
   },
   "AZ-111-02-003": {
    "policyNo": "EJEJ96096",
+   "inputType": "1",
    "largeItemValue": "B",
    "sumupStatus": "1"
   },
   "AZ-111-02-004": {
    "policyNo": "F065454943",
+   "inputType": "1",
    "largeItemValue": "5",
    "sectionCode": "ABK61",
    "sumupStatus": "1"
   },
   "AZ-111-02-005": {
    "policyNo": "F065454943",
+   "inputType": "1",
    "largeItemValue": "5",
    "sumupStatus": "1"
   },
   "AZ-111-02-006": {
    "policyNo": "DCDX19275",
+   "inputType": "1",
    "largeItemValue": "B",
    "sumupStatus": "1"
   },

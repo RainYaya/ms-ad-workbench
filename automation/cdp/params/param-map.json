@@ -1,159 +1,160 @@
 {
-  "inputs": [
-    {
-      "label": "証券番号",
-      "key": "policyNo"
-    },
-    {
-      "label": "明細番号",
-      "key": "detailNo"
-    },
-    {
-      "label": "入力区分",
-      "key": "inputType",
-      "codes": {
-        "2": "現地",
-        "5": "機械",
-        "7": "機械(他)",
-        "9": "その他"
-      }
-    },
-    {
-      "label": "種目",
-      "aliases": [
-        "大種目"
-      ],
-      "key": "largeItemValue",
-      "codes": {
-        "0": "その他",
-        "5": "自動車",
-        "B": "自賠責",
-        "Y": "貨物",
-        "Z": "種目共通"
-      }
-    },
-    {
-      "label": "保険種類",
-      "key": "insuranceLabel"
-    },
-    {
-      "label": "代理店コード",
-      "aliases": [
-        "代理店CD"
-      ],
-      "key": "agentCode"
-    },
-    {
-      "label": "課支社コード",
-      "aliases": [
-        "課支社CD",
-        "部店課支社コード",
-        "部店課支社ｺｰﾄﾞ",
-        "部課コード",
-        "部店コード"
-      ],
-      "key": "sectionCode"
-    },
-    {
-      "label": "募集人ID",
-      "key": "fieldAgentId"
-    },
-    {
-      "label": "フリーコード",
-      "key": "freeCode"
-    },
-    {
-      "label": "サブコード",
-      "key": "subAgentCode"
-    },
-    {
-      "label": "契約者名",
-      "aliases": [
-        "保険契約者氏名"
-      ],
-      "key": "customerName"
-    },
-    {
-      "label": "保険始期日",
-      "aliases": [
-        "始期日"
-      ],
-      "key": "startDate"
-    },
-    {
-      "label": "計上年月",
-      "key": "sumupYearMonth"
-    },
-    {
-      "label": "日報／送付",
-      "key": "dailyReportSend"
-    },
-    {
-      "label": "日報部課代ｺｰﾄﾞ",
-      "key": "sumupSectionCode"
-    },
-    {
-      "label": "回答締切日",
-      "key": "reminderDate"
-    },
-    {
-      "label": "項目コード",
-      "key": "itemCode"
-    },
-    {
-      "label": "照会コード",
-      "key": "inquiryCode"
-    },
-    {
-      "label": "不備内容",
-      "key": "defectContent"
-    },
-    {
-      "label": "照会内容",
-      "key": "inquiryContent"
-    },
-    {
-      "label": "編集照会内容",
-      "key": "editedInquiryContent"
-    },
-    {
-      "label": "計上状態",
-      "key": "sumupStatus",
-      "codes": {
-        "1": "未計上",
-        "2": "計上済"
-      }
-    },
-    {
-      "label": "訂正項目",
-      "key": "correctionItem"
-    },
-    {
-      "label": "訂正内容",
-      "key": "correctionContent"
-    },
-    {
-      "label": "確認者",
-      "key": "confirmer"
-    },
-    {
-      "label": "確認相手",
-      "key": "counterparty"
-    }
-  ],
-  "configKeys": [
-    "user",
-    "pointCheck",
-    "startUrl",
-    "startSelector",
-    "loginUrl",
-    "menuSelector",
-    "routeId",
-    "completeErrorCode",
-    "requestType",
-    "afterCompleteSalesStatus",
-    "agencyStatus",
-    "itemName",
-    "item"
-  ]
+ "inputs": [
+  {
+   "label": "証券番号",
+   "key": "policyNo"
+  },
+  {
+   "label": "明細番号",
+   "key": "detailNo"
+  },
+  {
+   "label": "入力区分",
+   "key": "inputType",
+   "codes": {
+    "2": "現地",
+    "5": "機械",
+    "7": "機械(他)",
+    "9": "その他",
+    "1": "契約入力"
+   }
+  },
+  {
+   "label": "種目",
+   "aliases": [
+    "大種目"
+   ],
+   "key": "largeItemValue",
+   "codes": {
+    "0": "その他",
+    "5": "自動車",
+    "B": "自賠責",
+    "Y": "貨物",
+    "Z": "種目共通"
+   }
+  },
+  {
+   "label": "保険種類",
+   "key": "insuranceLabel"
+  },
+  {
+   "label": "代理店コード",
+   "aliases": [
+    "代理店CD"
+   ],
+   "key": "agentCode"
+  },
+  {
+   "label": "課支社コード",
+   "aliases": [
+    "課支社CD",
+    "部店課支社コード",
+    "部店課支社ｺｰﾄﾞ",
+    "部課コード",
+    "部店コード"
+   ],
+   "key": "sectionCode"
+  },
+  {
+   "label": "募集人ID",
+   "key": "fieldAgentId"
+  },
+  {
+   "label": "フリーコード",
+   "key": "freeCode"
+  },
+  {
+   "label": "サブコード",
+   "key": "subAgentCode"
+  },
+  {
+   "label": "契約者名",
+   "aliases": [
+    "保険契約者氏名"
+   ],
+   "key": "customerName"
+  },
+  {
+   "label": "保険始期日",
+   "aliases": [
+    "始期日"
+   ],
+   "key": "startDate"
+  },
+  {
+   "label": "計上年月",
+   "key": "sumupYearMonth"
+  },
+  {
+   "label": "日報／送付",
+   "key": "dailyReportSend"
+  },
+  {
+   "label": "日報部課代ｺｰﾄﾞ",
+   "key": "sumupSectionCode"
+  },
+  {
+   "label": "回答締切日",
+   "key": "reminderDate"
+  },
+  {
+   "label": "項目コード",
+   "key": "itemCode"
+  },
+  {
+   "label": "照会コード",
+   "key": "inquiryCode"
+  },
+  {
+   "label": "不備内容",
+   "key": "defectContent"
+  },
+  {
+   "label": "照会内容",
+   "key": "inquiryContent"
+  },
+  {
+   "label": "編集照会内容",
+   "key": "editedInquiryContent"
+  },
+  {
+   "label": "計上状態",
+   "key": "sumupStatus",
+   "codes": {
+    "1": "未計上",
+    "2": "計上済"
+   }
+  },
+  {
+   "label": "訂正項目",
+   "key": "correctionItem"
+  },
+  {
+   "label": "訂正内容",
+   "key": "correctionContent"
+  },
+  {
+   "label": "確認者",
+   "key": "confirmer"
+  },
+  {
+   "label": "確認相手",
+   "key": "counterparty"
+  }
+ ],
+ "configKeys": [
+  "user",
+  "pointCheck",
+  "startUrl",
+  "startSelector",
+  "loginUrl",
+  "menuSelector",
+  "routeId",
+  "completeErrorCode",
+  "requestType",
+  "afterCompleteSalesStatus",
+  "agencyStatus",
+  "itemName",
+  "item"
+ ]
 }

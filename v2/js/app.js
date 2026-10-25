@@ -48,6 +48,7 @@
     appendixView: 'compact',
     query: '',
     manualFilter: 'all',
+    feasFilter: 'all',
     manualQuery: '',
     reviewRow: null,
     reviewFilter: 'all',
@@ -105,7 +106,22 @@
   };
 
   const EVIDENCE = window.MSAD_EVIDENCE || {};
+  const FEASIBILITY = window.MSAD_FEASIBILITY || {};
+  const BLOCK_QUALITY = window.MSAD_BLOCK_QUALITY || {};
   const PARAMS_META = window.MSAD_PARAMS || {};
+  const FEAS_META = {
+    A: { label: 'A 全自動', cls: 'green', note: '人工・代理・参数問題なし' },
+    B: { label: 'B 自動+人工', cls: 'blue', note: '流程自動、人工/代理確認あり' },
+    C: { label: 'C 参数待修', cls: 'amber', note: '别纸参数未落实或规则冲突' },
+    D: { label: 'D 阻塞', cls: 'red', note: '流程失败/阻塞' },
+  };
+  function feasOf(id) { return FEASIBILITY[id] || null; }
+  function feasBadge(id) {
+    const f = feasOf(id); if (!f) return '';
+    const m = FEAS_META[f.class] || FEAS_META.D;
+    const title = `${m.note} / flow=${f.flow} / manual=${f.manualSteps} / proxyBlocks=${f.proxyBlocks} / paramIssues=${f.paramIssues}`;
+    return `<span class="badge ${m.cls}" title="${esc(title)}">${esc(m.label)}</span>`;
+  }
   function paramsMeta(id) { return PARAMS_META[id] || { source: '不明', level: 'auto', keys: [], note: '既定値（要別紙確認）' }; }
   function paramsBadge(id) {
     const m = paramsMeta(id);
@@ -281,7 +297,7 @@
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
     if (view === 'review' && id) { state.view = 'review'; state.selectedCase = id; renderReview(id); return; }
-    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation', 'manual'].includes(view) ? view : 'dashboard';
+    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation', 'manual', 'feasibility'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
     state.selectedRoute = null;
@@ -307,7 +323,7 @@
     const crumb = state.view === 'case' ? `ケース / ${state.selectedCase || ''}`
       : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
         : state.view === 'route' ? `実施順序 / ${state.selectedRoute || ''}`
-          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化', manual: '証跡・人工', review: '検査モード' }[state.view] || 'ダッシュボード');
+          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化', manual: '証跡・人工', feasibility: '実効性', review: '検査モード' }[state.view] || 'ダッシュボード');
     $('#breadcrumb').textContent = crumb;
     $$('#nav .nav-item').forEach((b) => b.classList.toggle('active', b.dataset.view === state.view));
     const meta = DATA.meta || {};
@@ -984,6 +1000,7 @@ AY-120-01-001"></textarea>
           ${caseUserMap.get(meta.id) ? `<span class="badge blue">利用者 ${esc(caseUserMap.get(meta.id).id || '')}${caseUserMap.get(meta.id).point ? ` / ${esc(caseUserMap.get(meta.id).point)}` : ''}</span>` : ''}
           ${meta.item ? `<span class="badge gray">${esc(meta.item)}</span>` : ''}
           ${paramsBadge(meta.id)}
+          ${feasBadge(meta.id)}
           ${meta.comparisonMark === '〇' ? '<span class="badge violet">現新比較</span>' : ''}
           ${meta.hasWorkflow === false ? '<span class="badge red">手順書なし</span>' : ''}
           ${meta.hasAppendix === false ? '<span class="badge amber">別紙なし</span>' : ''}
@@ -1660,10 +1677,11 @@ AY-120-01-001"></textarea>
     <div class="rev-side-block">
       <h4>別紙との照合 ${auditItems.length ? `<span class="hint">${auditItems.filter((x) => x.status === 'match' || x.status === 'rule').length}/${auditItems.length}</span>` : ''}</h4>
       ${auditItems.length ? auditItems.map((x) => {
-        const st = x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
+        const st = x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : x.status === 'multiValue' ? ['複数値', 'amber'] : ['不一致', 'red'];
         return `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel ?? '未設定')}</b><span class="badge ${st[1]}">${st[0]}</span></div>`;
       }).join('') : '<div class="muted small">この本の別紙入力項目は未抽出です</div>'}
       ${auditItems.some((x) => x.status === 'mismatch' || x.status === 'missingParam') ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しない項目があります。</div>' : ''}
+      ${auditItems.some((x) => x.status === 'multiValue') ? '<div class="small" style="color:#b45309;margin-top:6px">手順内で値が変わる項目があります。単一 params では全ステップを表現できません。</div>' : ''}
       <div class="small muted" style="margin-top:6px">別紙の値を params に写し、runner がフォームへ入力します。</div>
     </div>
     <div class="rev-side-block">
@@ -1899,7 +1917,8 @@ AY-120-01-001"></textarea>
       const chk = ms.filter((m) => m.phase === '確認').length;
       const audit = ((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || [];
       const bad = audit.filter((x) => x.status === 'mismatch' || x.status === 'missingParam').length;
-      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id), audit, bad };
+      const multi = audit.filter((x) => x.status === 'multiValue').length;
+      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id), audit, bad, multi };
     }).filter((r) => {
       if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
       if (filter === 'manual') return (r.s.manual || 0) > 0;
@@ -1922,7 +1941,7 @@ AY-120-01-001"></textarea>
         <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div><button class="btn" data-action="review-mode" data-case="${esc(r.id)}">検査</button></td>
         <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
         <td>${paramsBadge(r.id)}</td>
-        <td>${r.audit.length ? (r.bad ? `<span class="badge red">NG ${r.bad}</span>` : `<span class="badge green">OK ${r.audit.length}</span>`) : '<span class="badge gray">未抽出</span>'}</td>
+        <td>${r.audit.length ? (r.bad ? `<span class="badge red">NG ${r.bad}</span>` : r.multi ? `<span class="badge amber">複数 ${r.multi}</span>` : `<span class="badge green">OK ${r.audit.length}</span>`) : '<span class="badge gray">未抽出</span>'}</td>
         <td class="num">${s.hc || 0}</td>
         <td class="num">${s.exact || 0}</td>
         <td class="num">${s.blockEnd || 0}</td>
@@ -1942,6 +1961,7 @@ AY-120-01-001"></textarea>
         ${kpi('証跡未取得', totalMissing, '要修正', 'red')}
         ${kpi('既定値 params', all.filter((id) => paramsMeta(id).level === 'auto').length, '要別紙確認', 'amber')}
         ${kpi('別紙不一致', all.filter((id) => (((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || []).some((x) => x.status === 'mismatch' || x.status === 'missingParam')).length, '要 params 修正', 'red')}
+        ${kpi('手順内複数値', all.filter((id) => (((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || []).some((x) => x.status === 'multiValue')).length, '単一 params では不足', 'amber')}
       </div>
       <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}${fbtn('paramsAuto', '既定値 params')}${fbtn('paramNg', '別紙不一致')}
@@ -1950,6 +1970,47 @@ AY-120-01-001"></textarea>
       <section class="panel mt"><div class="table-wrap"><table class="data">
         <thead><tr><th>ケース</th><th>実行</th><th>パラメータ</th><th>別紙照合</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
         <tbody>${body || '<tr><td colspan="12" class="muted">該当なし</td></tr>'}</tbody>
+      </table></div></section>`;
+  }
+
+  function renderFeasibility() {
+    const ids = Object.keys(FEASIBILITY).sort();
+    const f = (id) => feasOf(id) || { class: 'D', flow: 'missing', manualSteps: 0, proxyBlocks: 0, paramIssues: 0, paramsAuto: false, source: '?' };
+    const counts = { A: 0, B: 0, C: 0, D: 0 };
+    for (const id of ids) counts[f(id).class] = (counts[f(id).class] || 0) + 1;
+    const filter = state.feasFilter || 'all';
+    const rows = ids.filter((id) => filter === 'all' || f(id).class === filter).map((id) => {
+      const x = f(id);
+      const m = FEAS_META[x.class] || FEAS_META.D;
+      return `<tr class="case-row-click" data-case="${esc(id)}">
+        <td><span class="mono">${esc(id)}</span><div class="small muted">${esc(caseById.get(id)?.functionName || '')}</div></td>
+        <td><span class="badge ${m.cls}">${esc(m.label)}</span></td>
+        <td class="small">${esc(x.reason || '')}</td>
+        <td>${x.flow === 'pass' ? '<span class="badge green">pass</span>' : '<span class="badge red">fail</span>'}</td>
+        <td class="num">${x.manualSteps || 0}</td>
+        <td class="num">${x.proxyBlocks || 0}</td>
+        <td class="num">${x.paramIssues || 0}</td>
+        <td>${x.paramsAuto ? '<span class="badge amber">auto</span>' : '<span class="badge green">固有</span>'}</td>
+        <td class="small">${esc(x.source || '')}</td>
+        <td><button class="btn" data-action="review-mode" data-case="${esc(id)}">検査</button></td>
+      </tr>`;
+    }).join('');
+    const b = (k, label) => `<button class="btn ${filter === k ? 'primary' : ''}" data-feas-filter="${k}">${label} ${k === 'all' ? ids.length : (counts[k] || 0)}</button>`;
+    $('#main').innerHTML = `${pageHead('実効性（A/B/C/D）', 'どの本が純自動で、どこに人工・代理・参数問題があるか', '<button class="btn" data-action="go-manual">証跡・人工へ</button>')}
+      <div class="kpis">
+        ${kpi('A 全自動', counts.A || 0, '人工・代理・参数問題なし', 'green')}
+        ${kpi('B 自動+人工', counts.B || 0, '有手顺人工或代理 block', 'blue')}
+        ${kpi('C 参数待修', counts.C || 0, '参数未落实/规则冲突', 'amber')}
+        ${kpi('D 阻塞', counts.D || 0, '流程失败', 'red')}
+        ${kpi('対象', ids.length, '全ケース', 'accent')}
+      </div>
+      <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        ${b('all', 'すべて')}${b('A', 'A')}${b('B', 'B')}${b('C', 'C')}${b('D', 'D')}
+        <span class="hint" style="margin-left:auto">A のみ真機先行。B は人工確認、C は参数修正、D 是规则/阻塞。</span>
+      </div></div>
+      <section class="panel mt"><div class="table-wrap"><table class="data">
+        <thead><tr><th>ケース</th><th>分類</th><th>理由</th><th>flow</th><th class="num">人工</th><th class="num">代理block</th><th class="num">参数問題</th><th>params</th><th>source</th><th></th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="10" class="muted">該当なし</td></tr>'}</tbody>
       </table></div></section>`;
   }
 
@@ -1975,8 +2036,13 @@ AY-120-01-001"></textarea>
       <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
       <td class="num">${a.eventCount}</td>
     </tr>`).join('');
+    const bq = (id) => {
+      const q = (BLOCK_QUALITY[id] || {}).quality;
+      return q === 'browser' ? '<span class="badge green">browser</span>' : q === 'manual' ? '<span class="badge violet">manual</span>' : q === 'proxy-only' ? '<span class="badge red">proxy-only</span>' : q === 'proxy' ? '<span class="badge amber">proxy</span>' : '<span class="badge gray">—</span>';
+    };
     const blockRows = blocks.map((b) => `<tr>
       <td><span class="mono">${esc(b.id)}</span></td>
+      <td>${bq(b.id)}</td>
       <td>${esc(b.fromScreen)} → ${esc(b.toScreen)}</td>
       <td class="num">${fmt(b.usedByCases)}</td>
       <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : b.status === 'draft-auto' ? '<span class="badge violet">auto</span>' : '<span class="badge gray">source</span>'}</td>
@@ -2046,7 +2112,7 @@ AY-120-01-001"></textarea>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>Block registry</h3><span class="hint">${blocks.length} blocks / 使用ケース数</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>種別</th><th>From → To</th><th class="num">Cases</th><th>Status3</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>品質</th><th>種別</th><th>From → To</th><th class="num">Cases</th><th>Status3</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
       </section>
       <section class="panel mt">
         <div class="panel-head"><h3>未カバー event</h3><span class="hint">次の block 候補</span></div>
@@ -2226,7 +2292,10 @@ AY-120-01-001"></textarea>
     $('#filterParamsAuto').addEventListener('change', (e) => { state.filters.paramsAuto = e.target.checked; render(); });
     $('#main').addEventListener('click', (e) => {
       const b = e.target.closest('[data-manual-filter]');
-      if (b) { state.manualFilter = b.dataset.manualFilter; renderManual(); }
+      if (b) { state.manualFilter = b.dataset.manualFilter; renderManual(); return; }
+      const f = e.target.closest('[data-feas-filter]');
+      if (f) { state.feasFilter = f.dataset.feasFilter; renderFeasibility(); return; }
+      if (e.target.closest('[data-action="go-manual"]')) { go('manual'); return; }
     });
     $('#main').addEventListener('input', (e) => {
       if (e.target.id === 'manualQuery') {
@@ -2528,6 +2597,7 @@ AY-120-01-001"></textarea>
     else if (state.view === 'schedule') renderSchedule();
     else if (state.view === 'automation') renderAutomation();
     else if (state.view === 'manual') renderManual();
+    else if (state.view === 'feasibility') renderFeasibility();
     else if (state.view === 'review' && state.selectedCase) renderReview(state.selectedCase);
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);

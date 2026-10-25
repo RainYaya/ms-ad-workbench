@@ -81,7 +81,7 @@ H --> I[写 result / trace]
 ### 关键点
 
 1. **block 顺序来自 `blocks.json workflows`**，按整本组合顺序执行。
-2. **params 优先级**：case 专属文件 > `auto.json` 兜底。
+2. **params 优先级**：`generated.json`（别纸生成） > case 专属文件 > `auto.json` 兜底。
 3. **截图时机**：不是“每块截一张”，而是按 `case-evidence.json` 的 `画面HC` 行，等目标画面 URL 匹配后再截。
 4. **DevTools / APログ等**：标 `manual`，不产假截图。
 
@@ -135,14 +135,16 @@ H --> I[写 result / trace]
 问题：
 
 - 它包含业务值（証券番号、種目、保険種類等）。
-- 201 本只有它，所以填的是占位值。
+- 现在仍有 56 本以它为主要来源；其中 40 本的 block 实际引用业务参数，别纸「操作内容」抽不到值。
 - mock 不校验主档，所以仍显示 pass。
+- `--strict-params` 已实现：block 引用的参数如果只来自 `auto.json`，runner 直接退出 3。
 
 **正确目标：**
 
 - 业务值全部来自该本别纸，写入该本 params。
 - `auto.json` 只保留技术默认值（startUrl、startSelector 等），或者完全移除。
 - 缺少业务参数时 runner 应失败，而不是默默用默认值。
+- 剩余 48 本 C 类清单见 `logs/PARAM-REVIEW.md`：8 本手顺内多值，40 本 auto-only 但引用业务参数。
 
 ---
 
@@ -199,7 +201,21 @@ logs/AY-120-09-007/AY-120-09-007-trace.html
 `trace.html` 每个步骤一行：block、event、action、selector、URL、截图。  
 可以直接在浏览器打开，逐步看“它到底做了什么、看到什么”。
 
-### 3) 结果文件
+### 3) 严格参数模式
+
+```bash
+node runner.mjs --case AY-120-02-015 --base-url http://127.0.0.1:10091/ --strict-params
+```
+
+如果 block 引用的业务参数只来自 `auto.json`，会直接退出：
+
+```text
+STRICT PARAMS: customerName<-auto.json, sectionCode<-auto.json
+```
+
+这样就不会再把占位值当成已落实别纸。
+
+### 4) 结果文件
 
 ```text
 logs/<case>/<case>-node-result.json   flow 结果
@@ -211,6 +227,10 @@ logs/<case>/<case>-trace.html         单步 trace
 
 ```text
 logs/PARAM-AUDIT.md                别纸 vs params
+logs/PARAM-REVIEW.md               C 类参数残作业
+logs/FEASIBILITY.md                A/B/C/D 分类
+logs/A-CASES.txt                   可直接真机的 A 类清单
+logs/BLOCK-QUALITY.md              block 代理/人工清单
 logs/AUTOMATION-ASSESSMENT.md      block/人工/参数质量
 logs/PARAMS-COVERAGE.md            auto-only 本清单
 ```
@@ -228,8 +248,8 @@ logs/PARAMS-COVERAGE.md            auto-only 本清单
 | 含代理/非浏览器 note 的步骤 | 275 |
 | 含代理步骤的 block | 149 |
 | 含人工步骤的本 | 224 |
-| 别纸参数有问题（不一致/缺失）的本 | 41 |
-| 无人工步骤且参数干净的本 | **203** |
+| 别纸参数要人工确认（不一致/缺失/複数値）的本 | 8 |
+| 无人工步骤、无代理、参数干净的本 | **28** |
 | 当前 mock flow 通过 | 446 / 450 |
 
 结论：
@@ -237,8 +257,8 @@ logs/PARAMS-COVERAGE.md            auto-only 本清单
 - 446/450 是 **mock flow pass**；4 本因别纸值与业务校验规则冲突，故意不强行跑绿。
 - 149 个 block 含代理步骤，不是纯浏览器验证。
 - 224 本至少有一个手顺步骤需要人。
-- 41 本参数还没按别纸落实。
-- 真正“流程 + 参数都干净”的是 203 本。
+- 8 本别纸同一项目有多个值，单一 params 不能表达整条手顺。
+- 真正“流程 + 参数 + 无代理”都干净的是 28 本。
 - 4 本规则冲突：`AZ-110-01-011` / `AZ-110-01-012` / `AZ-310-01-011` / `AZ-310-01-012`。别纸写「入力区分 現地 + 種目 種目共通」，但业务校验要求種目共通只能用「機械 / 機械(他)」；旧 params 用 5 强行跑绿，现在不这么做。
 
 ---
@@ -247,12 +267,12 @@ logs/PARAMS-COVERAGE.md            auto-only 本清单
 
 | 类型 | 定义 | 处理 |
 |---|---|---|
-| A 全自动 | 无人工步骤、参数一致、证据完整 | 可以真机直接跑 |
-| B 自动+人工确认 | 浏览器流程可跑，但有 AP/DB/表/DevTools 确认 | 自动跑流程，人工补证据 |
-| C 半自动 | 有 JP1/Shell/等待/外部认证 | 人工执行关键段，runner 跑浏览器段 |
-| D 不可自动 | 纯外部系统、无页面、无稳定输入 | 只做 checklist |
+| A 全自动 | 无人工步骤、无代理 block、参数一致 | 可以真机直接跑 |
+| B 自动+人工/代理 | 浏览器流程可跑，但有人工步骤或代理 block | 自动跑流程，人工补证据 |
+| C 参数待修 | 参数未落实、auto-only、或手顺内多值 | 先修参数，再跑 |
+| D 阻塞 | mock flow 失败（含业务规则冲突） | 人工定位后重跑 |
 
-当前只有 A 类 41 本；B/C 类需要显式标注，不能算“全自动”。
+当前：A 29 / B 369 / C 48 / D 4。只有 A 类可以直接进真机；A 类清单见 `logs/A-CASES.txt`。
 
 ---
 
@@ -263,11 +283,11 @@ logs/PARAMS-COVERAGE.md            auto-only 本清单
    - `auto.json` 只保留技术默认
    - 缺业务参数直接失败，不再兜底
 2. **Block 质量审查**
-   - 149 个含代理步骤的 block 逐个标注：真浏览器 / 代理 / 人工
-   - 删除“用别的画面冒充”的断言
+   - 149 个含代理步骤的 block 已在 `logs/BLOCK-QUALITY.md` 逐个列出
+   - 123 个“浏览器+代理”、23 个“纯代理”、3 个“人工”；下一步逐个删假断言
 3. **可行性分类**
-   - 给 450 本打 A/B/C/D 标签
-   - 前端按标签过滤
+   - 已给 450 本打 A/B/C/D 标签：`logs/FEASIBILITY.md`
+   - 前端 `#/feasibility` 已可按标签过滤
 4. **真机验证**
    - 只对 A 类先跑
    - B/C 类按人工 checklist 执行
