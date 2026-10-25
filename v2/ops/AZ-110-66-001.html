@@ -34,9 +34,9 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="top"><div class="cid">AZ-110-66-001</div><h1>シナリオ導線６６（現新あり）</h1>
 <div class="meta"><span>AZ-110-66</span><span>MS</span><span>不備登録</span><span>flow: pass</span></div></div>
 <div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工4/代理block3</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 5 件と、mockでは確認できない項目を上から確認する。</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 4 件と、mockでは確認できない項目を上から確認する。</div></div>
 <h2>実行コマンド</h2><pre>node runner.mjs --case AZ-110-66-001 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
-<h2>手作業で確認（5 件）</h2>
+<h2>手作業で確認（4 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 44 / 確認</div>
         <div><div class="t">APログ</div><div class="b">ログに出力されること</div><div class="r">非浏览器确认</div></div>
@@ -52,10 +52,6 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
       <div class="item">
         <div class="w">手順<br>手順 47 / 確認</div>
         <div><div class="t">申込不備テーブル</div><div class="b">-</div><div class="r">非浏览器确认</div></div>
-      </div>
-      <div class="item">
-        <div class="w">手順<br>手順 22–25</div>
-        <div><div class="t">ast 帳票出力後 名前を付けて保存</div><div class="b">帳票DL/名前を付けて保存=OSダイアログ=真機人工</div><div class="r">真機で確認</div></div>
       </div>
 <h2>mock では確認できない項目（2 件）</h2>
       <div class="item">

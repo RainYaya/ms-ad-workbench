@@ -2046,7 +2046,7 @@ AY-120-01-001"></textarea>
         } else if (st.kind === 'mock' || st.kind === 'proxy') blockMock++;
       }
     }
-    return { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal: manual + blockManual };
+    return { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal: manual };
   }
   function autoNext(f) {
     if (f.class === 'A') return '真機でそのまま実行';
@@ -2117,7 +2117,7 @@ AY-120-01-001"></textarea>
   function renderAutoDetail(id) {
     const meta = caseById.get(id);
     if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
-    const { f, ev, s, a, audit, items, multi, bad, manual, blockManual: blockManualCount, blockMock: blockMockCount, manualTotal } = autoCaseStats(id);
+    const { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal } = autoCaseStats(id);
     const details = a.blockDetails || [];
     const blockIds = a.blocks || [];
     const counts = { browser: 0, proxy: 0, 'proxy-only': 0, manual: 0 };
@@ -2125,20 +2125,20 @@ AY-120-01-001"></textarea>
     const evRows = Object.entries(ev.rows || {}).map(([row, x]) => ({ row, ...x }));
     const missingRows = evRows.filter((x) => x.status === 'missing');
     const manualRows = evRows.filter((x) => x.status === 'manual');
-    const blockManual = [];
-    const blockMock = [];
+    const blockManualSteps = [];
+    const blockMockSteps = [];
     const evRowsSet = new Set((ev.manualSteps || []).map((m) => m.row));
     for (const bd of details) {
       const bq = BLOCK_QUALITY[bd.block] || {};
       for (const st of (bq.detail || [])) {
         if (st.kind === 'manual') {
           if ([...evRowsSet].some((row) => bd.fromRow != null && bd.toRow != null && bd.fromRow <= row && row <= bd.toRow)) continue;
-          blockManual.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
-        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMock.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+          blockManualSteps.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMockSteps.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
       }
     }
     const paramLabel = (x) => x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'multiValue' ? ['複数値', 'amber'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
-    const mockHtml = blockMock.length ? blockMock.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / ${m.optional ? 'optional: 失敗しても止まらないため目視' : '真機では runner が自動で確認'}</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
+    const mockHtml = blockMockSteps.length ? blockMockSteps.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / ${m.optional ? 'optional: 失敗しても止まらないため目視' : '真機では runner が自動で確認'}</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
     const blockHtml = details.map((bd, i) => {
       const bq = BLOCK_QUALITY[bd.block] || {};
       const bmeta = (AUTO.blocks || []).find((x) => x.id === bd.block) || {};
@@ -2160,9 +2160,8 @@ AY-120-01-001"></textarea>
       </details>`;
     }).join('');
     const manualHtml = manualTotal ? `
-      ${(ev.manualSteps || []).map((m) => `<div class="auto-param"><div class="lbl">手順 ${esc(m.row || '')}</div><div class="val"><b>${esc(m.phase || '')}</b> ${esc(m.item || '')}<div class="small muted">${esc(m.note || '')}</div></div></div>`).join('')}
-      ${blockManual.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || '真機で確認')}</div></div></div>`).join('')}
-    ` : '<p class="small muted">この本に人工・代理 step はありません。</p>';
+      ${(ev.manualSteps || []).map((m) => `<div class="auto-param"><div class="lbl">手順 ${esc(m.row || '')}</div><div class="val"><b>${esc(m.phase || '')}</b> ${esc(m.item || '')}<div class="small muted">${esc(m.content || m.note || m.reason || '')}</div></div></div>`).join('')}
+    ` : '<p class="small muted">手順上の手作業はありません。</p>';
     const paramsHtml = items.length ? items.map((x) => {
       const st = paramLabel(x);
       return `<div class="auto-param"><div class="lbl">${esc(x.label || '')}</div><div class="val">別紙 <b>${esc(x.expected ?? '')}</b> → params <b>${esc(x.actualLabel ?? x.actual ?? '未設定')}</b> <span class="badge ${st[1]}">${st[0]}</span></div></div>`;
@@ -2185,13 +2184,13 @@ AY-120-01-001"></textarea>
       <div class="auto-summary">
         <div class="auto-card"><div class="k">Flow</div><div class="v">${f.flow === 'pass' ? 'pass' : 'fail'}</div><div class="s">${esc(a.status3 || '')} / ${blockIds.length} blocks</div></div>
         <div class="auto-card"><div class="k">証跡</div><div class="v">${s.exact || 0}/${s.hc || 0}</div><div class="s">manual ${s.manual || 0} / missing ${s.missing || 0}</div></div>
-        <div class="auto-card"><div class="k">人工 / mock代替</div><div class="v">${manualTotal} / ${blockMock.length}</div><div class="s">手順 ${manual} / block人工 ${blockManual.length} / mock ${blockMock.length}</div></div>
+        <div class="auto-card"><div class="k">人工（手順） / mock</div><div class="v">${manualTotal} / ${blockMock}</div><div class="s">手順 ${manual} / 手順外 block人工 ${blockManualSteps.length} / mock ${blockMockSteps.length}</div></div>
         <div class="auto-card"><div class="k">Params</div><div class="v">${bad ? 'NG' : multi ? '複数' : f.autoUsed ? 'auto' : 'OK'}</div><div class="s">${esc(f.source || '')}${f.usedKeys ? ` / ${f.usedKeys} keys` : ''}</div></div>
       </div>
       <div class="panel mt"><div class="panel-head"><h3>block 順（どこが自動で、どこが人工か）</h3><span class="hint">${counts.browser} browser / ${counts.proxy} proxy / ${counts['proxy-only']} proxy-only / ${counts.manual} manual</span></div><div class="panel-body">${blockHtml || '<p class="muted">block 情報がありません。</p>'}</div></div>
       <div class="grid-2 mt">
         <section class="panel"><div class="panel-head"><h3>人がやる項目（${manualTotal}）</h3></div><div class="panel-body">${manualHtml}</div></section>
-        <section class="panel"><div class="panel-head"><h3>mockでは確認できない項目（${blockMock.length}）</h3><span class="hint">真機では自動</span></div><div class="panel-body">${mockHtml}</div></section>
+        <section class="panel"><div class="panel-head"><h3>mockでは確認できない項目（${blockMockSteps.length}）</h3><span class="hint">真機では自動</span></div><div class="panel-body">${mockHtml}</div></section>
       </div>
       <section class="panel mt"><div class="panel-head"><h3>別紙パラメータ</h3><span class="hint">${esc(f.source || '')}</span></div><div class="panel-body">${paramsHtml}</div></section>
       <details class="panel mt"><summary style="cursor:pointer;padding:11px 14px;font-weight:700">画面HC 証跡（${s.hc || 0} 行 / missing ${s.missing || 0}）</summary><div class="panel-body">${evidenceHtml}</div></details>`;

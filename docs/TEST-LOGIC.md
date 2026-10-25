@@ -232,9 +232,11 @@ http://127.0.0.1:10092/v2/ops/index.html
 
 | 类型 | 来源 | 含义 |
 |---|---|---|
-| 手順人工 | `evidence.manualSteps` | 手顺书明确要求人做的操作/确认（F12、JP1、APログ、DB、テーブル等） |
-| block 人工 | block step 的 `action: manual` 或 note 明确“非浏览器/真機人工” | block 本身不能自动，必须人执行 |
+| 手順人工 | `evidence.manualSteps`（手顺行） | **唯一的人工判断源**：手顺书明确要求人做的操作/确认（F12、JP1、APログ、DB、テーブル等） |
+| 手順外 block 人工 | block step 的 `action: manual` 或 note 明确“非浏览器/真機人工” | 实现层不能自动，但手顺没有列；只作为 block 质量警告，**不计入作业单人工数** |
 | mock 代替 | block step 的 note 是 `mock回写/mock简化/mock无后端消息` 等 | mock 无法验证，但真机应由 runner 自动断言；不算手作業 |
+
+判断标准：**手顺书是唯一业务真值源。手顺说人做才算人工；block 不能自己增加人工项。**
 
 `node runner.mjs ... --live` 时，mock 代替的 assert 会真正执行；mock 运行时才跳过。
 

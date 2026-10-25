@@ -1,5 +1,7 @@
 # 450本 源码模拟 + 真机分级作战手册
 
+> 手作業/AI 実行の判定基準: `docs/MANUAL-DECISION.md`。
+
 > 目标不是“450 全绿”，而是：能自动的自动、不能自动的显式人工、别纸参数可审计。
 > 当前分级见 `logs/FEASIBILITY.md`，A 类清单见 `logs/A-CASES.txt`。
 

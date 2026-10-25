@@ -34,13 +34,9 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="top"><div class="cid">AZ-160-03-001</div><h1>送り状（機械）</h1>
 <div class="meta"><span>AZ-160-03</span><span>MS</span><span>帳票出力</span><span>flow: pass</span></div></div>
 <div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工0/代理block1</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 1 件と、mockでは確認できない項目を上から確認する。</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業はありません。mockでは確認できない項目を確認する。</div></div>
 <h2>実行コマンド</h2><pre>node runner.mjs --case AZ-160-03-001 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
-<h2>手作業で確認（1 件）</h2>
-      <div class="item">
-        <div class="w">手順<br>手順 16–22</div>
-        <div><div class="t">ast 帳票(送り状)出力</div><div class="b">帳票(送り状)DL=真機人工（mockは画面再表示のみ）</div><div class="r">真機で確認</div></div>
-      </div>
+<h2>手作業で確認（0 件）</h2><p class="empty">この本に手作業の確認はありません。</p>
 <h2>mock では確認できない項目（0 件）</h2><p class="empty">mock で代替している確認はありません。</p>
 <h2>入力値（3 件）</h2>
       <div class="item">

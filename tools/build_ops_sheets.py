@@ -111,17 +111,8 @@ def manual_items(cid):
             "body": short(m.get("content", ""), 400),
             "reason": m.get("reason", ""),
         })
-    ev_rows = [m.get("row") for m in (ev.get("manualSteps") or [])]
-    for x in _block_items(cid, "manual"):
-        # The procedure already has explicit manual rows for this block range.
-        # Do not repeat the same manual work as a block-level substitute.
-        if any(x.get("fromRow") is not None and x.get("toRow") is not None and x["fromRow"] <= r <= x["toRow"] for r in ev_rows):
-            continue
-        key = ("block", x["where"], x["title"])
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append(x)
+    # Procedure rows are the only source of truth for "hand work".
+    # Block-level manual / proxy steps are implementation notes, not operator tasks.
     return out
 
 
