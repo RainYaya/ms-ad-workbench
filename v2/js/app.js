@@ -1653,7 +1653,7 @@ AY-120-01-001"></textarea>
     const next = idx >= 0 && idx < units.length - 1 ? units[idx + 1].row.sourceRow : null;
     return `<div class="review-shell">
       <div class="review-top">
-        <div><span class="mono">${esc(c.id)}</span> <b>${esc(meta.functionName || '')}</b> <span class="hint">検査 ${confirmed} / ${hc.length}</span></div>
+        <div><span class="mono">${esc(c.id)}</span> <b>${esc(meta.functionName || '')}</b> ${paramsBadge(c.id)} <span class="hint">検査 ${confirmed} / ${hc.length}</span></div>
         <div class="chips">${fbtn('all', 'すべて')}${fbtn('hc', '画面HC')}${fbtn('manual', '人工')}${fbtn('missing', '未取得')}</div>
         <div class="chips"><button class="btn" data-action="review-prev" ${prev == null ? 'disabled' : ''}>← 前へ</button><button class="btn" data-action="review-next" ${next == null ? 'disabled' : ''}>次へ →</button><button class="btn" data-action="review-close">終了</button></div>
       </div>
