@@ -49,6 +49,8 @@
     query: '',
     manualFilter: 'all',
     manualQuery: '',
+    reviewRow: null,
+    reviewFilter: 'all',
     filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false, manual: false, manualOp: false, autoOnly: false, evMissing: false },
     progress: load(LS.progress, {}),
     tasks: load(LS.tasks, { ids: [], importedAt: '' }),
@@ -270,6 +272,7 @@
     if (view === 'case' && id) { state.view = 'case'; if (state.selectedCase !== id) state.tab = 'procedure'; state.selectedCase = id; renderCase(id); return; }
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
+    if (view === 'review' && id) { state.view = 'review'; state.selectedCase = id; renderReview(id); return; }
     state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'automation', 'manual'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
@@ -296,7 +299,7 @@
     const crumb = state.view === 'case' ? `ケース / ${state.selectedCase || ''}`
       : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
         : state.view === 'route' ? `実施順序 / ${state.selectedRoute || ''}`
-          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化', manual: '証跡・人工' }[state.view] || 'ダッシュボード');
+          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化', manual: '証跡・人工', review: '検査モード' }[state.view] || 'ダッシュボード');
     $('#breadcrumb').textContent = crumb;
     $$('#nav .nav-item').forEach((b) => b.classList.toggle('active', b.dataset.view === state.view));
     const meta = DATA.meta || {};
@@ -981,6 +984,7 @@ AY-120-01-001"></textarea>
       </div>
       <div class="right" style="display:flex;flex-direction:column;align-items:flex-end;gap:7px">
         ${statusBadge(caseStatus(meta.id))} ${resultBadge(p)}
+        <button class="btn primary" data-action="review-mode" data-case="${esc(meta.id)}">検査モード</button>
         <button class="btn" data-action="add-task" data-case="${esc(meta.id)}">タスクに追加</button>
       </div>
     </div>`;
@@ -1491,6 +1495,161 @@ AY-120-01-001"></textarea>
     return caseHeader(meta) + resultBar(meta.id) + summaryHtml(meta.id) + caseTabsHtml(c) + caseBodyHtml(c);
   }
 
+
+  /* ------------------------------------------------------------------ */
+  /* review mode: one procedure row, one screenshot, expected values     */
+  /* ------------------------------------------------------------------ */
+
+  function reviewEvidence(cid, row) {
+    const ev = (window.MSAD_EVIDENCE || {})[cid] || {};
+    return ev.rows?.[String(row.sourceRow)] || null;
+  }
+
+  function reviewStatus(cid, row) {
+    if ((row.evidenceType || '') === '画面HC') {
+      return reviewEvidence(cid, row)?.status || 'missing';
+    }
+    return 'visual';
+  }
+
+  function reviewRows(c, filter) {
+    const rows = (c.workflow?.rows || []).filter((r) => r.verificationItem || r.evidenceType);
+    return rows.filter((r) => {
+      const st = reviewStatus(c.id, r);
+      if (filter === 'hc') return (r.evidenceType || '') === '画面HC';
+      if (filter === 'manual') return st === 'manual';
+      if (filter === 'missing') return st === 'missing';
+      return true;
+    });
+  }
+
+  function reviewStatusLabel(st) {
+    return ({ exact: '自動', blockEnd: '近似', manual: '人工', missing: '未取得', visual: '目視' }[st] || '—');
+  }
+
+  function reviewStatusClass(st) {
+    return ({ exact: 'green', blockEnd: 'amber', manual: 'violet', missing: 'red', visual: 'gray' }[st] || 'gray');
+  }
+
+  async function renderReview(id) {
+    const meta = caseById.get(id);
+    if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
+    state.view = 'review';
+    state.selectedCase = id;
+    updateTopbar();
+    $('#main').innerHTML = caseHeader(meta) + '<div class="loading">検査データを読み込んでいます…</div>';
+    try {
+      const data = await ensureCaseData(meta.categoryId);
+      if (state.selectedCase !== id || state.view !== 'review') return;
+      const c = data[id];
+      if (!c) { $('#main').innerHTML = caseHeader(meta) + empty('手順書データが見つかりません。'); return; }
+      state.reviewData = c;
+      state.reviewMeta = meta;
+      const rows = reviewRows(c, state.reviewFilter || 'all');
+      state.reviewRows = rows.map((r) => r.sourceRow);
+      if (!rows.some((r) => Number(r.sourceRow) === Number(state.reviewRow))) {
+        const firstHc = rows.find((r) => (r.evidenceType || '') === '画面HC');
+        state.reviewRow = (firstHc || rows[0])?.sourceRow ?? null;
+      }
+      $('#main').innerHTML = reviewHtml(meta, c, rows);
+    } catch (err) {
+      console.error(err);
+      $('#main').innerHTML = caseHeader(meta) + empty(`読み込みに失敗しました: ${err.message}`);
+    }
+  }
+
+  function reviewHtml(meta, c, rows) {
+    const p = pget(c.id);
+    const allRows = (c.workflow?.rows || []).filter((r) => r.verificationItem || r.evidenceType);
+    const hc = allRows.filter((r) => (r.evidenceType || '') === '画面HC');
+    const confirmed = hc.filter((r) => p.review?.[r.sourceRow]?.result).length;
+    const cur = rows.find((r) => Number(r.sourceRow) === Number(state.reviewRow)) || rows[0];
+    const st = cur ? reviewStatus(c.id, cur) : 'missing';
+    const ev = cur ? reviewEvidence(c.id, cur) : null;
+    const facts = appendixFacts(c);
+    const result = cur ? (p.review?.[cur.sourceRow]?.result || '') : '';
+    const memo = cur ? (p.review?.[cur.sourceRow]?.memo || '') : '';
+    const imgSrc = ev?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(ev.file)}` : '';
+    const fbtn = (k, label) => `<button class="btn ${((state.reviewFilter || 'all') === k) ? 'primary' : ''}" data-review-filter="${k}">${label}</button>`;
+    const rowBtn = (r) => {
+      const s = reviewStatus(c.id, r);
+      const active = cur && Number(r.sourceRow) === Number(cur.sourceRow);
+      const op = r.operationItem ? `操作 ${r.operationItem}` : '';
+      const vf = r.verificationType ? `${r.verificationType} ${r.verificationItem || ''}` : '';
+      const res = p.review?.[r.sourceRow]?.result || '';
+      return `<button class="rev-row ${active ? 'active' : ''}" data-review-row="${r.sourceRow}">
+        <span class="rev-src">${r.sourceRow}</span>
+        <span class="rev-mid"><b>${esc(r.functionName || '')}</b><span>${esc(vf || op || '—')}</span></span>
+        ${res ? `<span class="rev-result ${res}">${res}</span>` : ''}
+        <span class="badge ${reviewStatusClass(s)}">${reviewStatusLabel(s)}</span>
+      </button>`;
+    };
+    const stage = !cur ? empty('対象行がありません') : (() => {
+      if (st === 'manual') {
+        return `<div class="rev-state manual"><b>人工確認</b><p>${esc(cur.verificationContent || cur.operationContent || '真機で確認してください。')}</p><span class="badge violet">manual</span></div>`;
+      }
+      if (st === 'missing') {
+        return `<div class="rev-state missing"><b>画面HC 未取得</b><p>この行のスクリーンショットがありません。</p><span class="badge red">missing</span></div>`;
+      }
+      if (!imgSrc) {
+        return `<div class="rev-state visual"><b>目視確認</b><p>この行は画面HC対象外です。</p><span class="badge gray">目視</span></div>`;
+      }
+      return `<div class="rev-image-wrap"><img class="rev-image" loading="lazy" src="${esc(imgSrc)}" data-lightbox="${esc(imgSrc)}" alt="Excel ${cur.sourceRow}"></div>`;
+    })();
+    const side = !cur ? '' : `<div class="rev-side-block">
+      <div class="rev-side-head"><span class="badge ${reviewStatusClass(st)}">${reviewStatusLabel(st)}</span><span class="mono">行${cur.sourceRow}</span></div>
+      <h4>${esc(cur.verificationItem || cur.functionName || '')}</h4>
+      ${cur.verificationType ? `<div class="small"><span class="badge outline">${esc(cur.verificationType)}</span> ${esc(cur.verificationContent || '')}</div>` : ''}
+      ${cur.operationItem ? `<div class="small muted" style="margin-top:6px">操作：${esc(cur.operationType || '')} ${esc(cur.operationItem)}</div>` : ''}
+      ${cur.operationContent ? `<div class="small muted">${nl2br(cur.operationContent)}</div>` : ''}
+    </div>
+    <div class="rev-side-block">
+      <h4>別紙・期待値</h4>
+      ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
+    </div>
+    <div class="rev-side-block">
+      <h4>判定</h4>
+      <div class="rev-actions">
+        <button class="btn ${result === 'OK' ? 'primary' : ''}" data-review-result="OK" data-review-row="${cur.sourceRow}">OK</button>
+        <button class="btn ${result === 'NG' ? 'danger' : ''}" data-review-result="NG" data-review-row="${cur.sourceRow}">NG</button>
+        <button class="btn ${result === 'HOLD' ? 'warn' : ''}" data-review-result="HOLD" data-review-row="${cur.sourceRow}">保留</button>
+      </div>
+      <textarea class="rev-memo" data-review-memo="${cur.sourceRow}" data-case-id="${esc(c.id)}" placeholder="メモ（任意）">${esc(memo)}</textarea>
+    </div>`;
+    const idx = rows.findIndex((r) => Number(r.sourceRow) === Number(cur?.sourceRow));
+    const prev = idx > 0 ? rows[idx - 1].sourceRow : null;
+    const next = idx >= 0 && idx < rows.length - 1 ? rows[idx + 1].sourceRow : null;
+    return `<div class="review-shell">
+      <div class="review-top">
+        <div><span class="mono">${esc(c.id)}</span> <b>${esc(meta.functionName || '')}</b> <span class="hint">検査 ${confirmed} / ${hc.length}</span></div>
+        <div class="chips">${fbtn('all', 'すべて')}${fbtn('hc', '画面HC')}${fbtn('manual', '人工')}${fbtn('missing', '未取得')}</div>
+        <div class="chips"><button class="btn" data-action="review-prev" ${prev == null ? 'disabled' : ''}>← 前へ</button><button class="btn" data-action="review-next" ${next == null ? 'disabled' : ''}>次へ →</button><button class="btn" data-action="review-close">終了</button></div>
+      </div>
+      <div class="review-body">
+        <aside class="review-list">${rows.map(rowBtn).join('') || '<div class="muted small">該当なし</div>'}</aside>
+        <main class="review-stage">${stage}<div class="rev-caption">行${cur ? cur.sourceRow : '—'} / ${esc(cur?.verificationItem || cur?.functionName || '')} ${imgSrc ? `<a href="${esc(imgSrc)}" target="_blank" rel="noopener">原図</a>` : ''}</div></main>
+        <aside class="review-side">${side}</aside>
+      </div>
+    </div>`;
+  }
+
+  function saveReviewResult(cid, row, result) {
+    const p = pget(cid);
+    const review = { ...(p.review || {}) };
+    review[row] = { ...(review[row] || {}), result, at: new Date().toISOString() };
+    saveProgress(cid, { review });
+  }
+
+  function reviewGo(delta) {
+    const rows = state.reviewRows || [];
+    if (!rows.length) return;
+    const idx = rows.findIndex((r) => Number(r) === Number(state.reviewRow));
+    const next = rows[Math.max(0, Math.min(rows.length - 1, idx + delta))];
+    if (next == null) return;
+    state.reviewRow = next;
+    renderReview(state.selectedCase);
+  }
+
   async function renderCase(id) {
     const meta = caseById.get(id);
     if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
@@ -1686,7 +1845,7 @@ AY-120-01-001"></textarea>
       const s = r.s || {};
       const short = r.ms.slice(0, 2).map((m) => `行${m.row} [${esc(m.phase)}] ${esc(m.item)}`).join(' / ');
       return `<tr class="case-row-click" data-case="${esc(r.id)}">
-        <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div></td>
+        <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div><button class="btn" data-action="review-mode" data-case="${esc(r.id)}">検査</button></td>
         <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
         <td class="num">${s.hc || 0}</td>
         <td class="num">${s.exact || 0}</td>
@@ -2039,6 +2198,16 @@ AY-120-01-001"></textarea>
       const appxView = e.target.closest('[data-appx-view]');
       const refTab = e.target.closest('[data-reftab]');
       const action = e.target.closest('[data-action]');
+      const reviewFilter = e.target.closest('[data-review-filter]');
+      if (reviewFilter) { state.reviewFilter = reviewFilter.dataset.reviewFilter; state.reviewRow = null; renderReview(state.selectedCase); return; }
+      const reviewResult = e.target.closest('[data-review-result]');
+      if (reviewResult) {
+        saveReviewResult(state.selectedCase, Number(reviewResult.dataset.reviewRow), reviewResult.dataset.reviewResult);
+        renderReview(state.selectedCase).then(() => reviewGo(1));
+        return;
+      }
+      const reviewRow = e.target.closest('[data-review-row]');
+      if (reviewRow) { state.reviewRow = Number(reviewRow.dataset.reviewRow); renderReview(state.selectedCase); return; }
       if (tab) { state.tab = tab.dataset.tab; if (state.selectedCase) renderCase(state.selectedCase); return; }
       if (appx) { state.appendixSheet[appx.dataset.case] = Number(appx.dataset.appx); renderCase(appx.dataset.case); return; }
       if (appxView) { state.appendixView = appxView.dataset.appxView; if (state.selectedCase) renderCase(state.selectedCase); return; }
@@ -2049,6 +2218,10 @@ AY-120-01-001"></textarea>
         if (act === 'import-tasks') { const t = $('#taskInput'); if (t) importTasks(t.value); else go('tasks'); return; }
         if (act === 'clear-tasks') { clearTasks(); return; }
         if (act === 'validation') { renderValidation(); return; }
+        if (act === 'review-mode') { go('review', action.dataset.case); return; }
+        if (act === 'review-prev') { reviewGo(-1); return; }
+        if (act === 'review-next') { reviewGo(1); return; }
+        if (act === 'review-close') { go('case', state.selectedCase); return; }
         if (act === 'add-task') { taskSet.add(action.dataset.case); state.tasks = { ids: [...taskSet], importedAt: new Date().toISOString() }; save(LS.tasks, state.tasks); toast('タスクに追加しました'); refreshCaseView(action.dataset.case); return; }
         if (act === 'save-auto') { saveAutomation(action.dataset.case); return; }
         if (act === 'gen-auto') { generateAutomation(action.dataset.case); return; }
@@ -2085,6 +2258,14 @@ AY-120-01-001"></textarea>
         saveProgress(id, { [field]: el.value });
         toast('保存しました');
         if (field === 'execution' || field === 'verify' || field === 'result') renderCase(id);
+      }
+      if (el.matches('[data-review-memo]')) {
+        const p = { ...(pget(el.dataset.caseId)) };
+        const review = { ...(p.review || {}) };
+        const row = Number(el.dataset.reviewMemo);
+        review[row] = { ...(review[row] || {}), memo: el.value };
+        saveProgress(el.dataset.caseId, { review });
+        return;
       }
       if (el.matches('[data-evidence]')) {
         const id = el.dataset.caseId;
@@ -2135,6 +2316,7 @@ AY-120-01-001"></textarea>
       if (appxView) { state.appendixView = appxView.dataset.appxView; if (state.drawerCase) renderDrawer(state.drawerCase); return; }
       if (action) {
         const act = action.dataset.action;
+        if (act === 'review-mode') { closeCaseDrawer(); go('review', action.dataset.case); return; }
         if (act === 'add-task') {
           taskSet.add(action.dataset.case);
           state.tasks = { ids: [...taskSet], importedAt: new Date().toISOString() };
@@ -2201,7 +2383,30 @@ AY-120-01-001"></textarea>
       }
       if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') $('#lightbox').hidden = true;
     });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#lightbox').hidden = true; });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') $('#lightbox').hidden = true;
+      if (state.view !== 'review') return;
+      const tag = e.target.tagName || '';
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
+      if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); reviewGo(1); }
+      else if (e.key === 'ArrowUp' || e.key === 'k') { e.preventDefault(); reviewGo(-1); }
+      else if (e.key === ' ') {
+        const row = reviewCurrentRow();
+        const ev = row ? reviewEvidence(state.selectedCase, row) : null;
+        if (ev?.file) {
+          e.preventDefault();
+          const src = `../logs/${encodeURIComponent(state.selectedCase)}/${encodeURIComponent(ev.file)}`;
+          $('#lightboxImg').src = src;
+          $('#lightbox').hidden = false;
+        }
+      } else if (e.key === 'o' || e.key === 'O' || e.key === 'n' || e.key === 'N') {
+        const row = reviewCurrentRow();
+        if (row) {
+          saveReviewResult(state.selectedCase, Number(row.sourceRow), e.key.toLowerCase() === 'o' ? 'OK' : 'NG');
+          renderReview(state.selectedCase).then(() => reviewGo(1));
+        }
+      }
+    });
     window.addEventListener('hashchange', applyRoute);
   }
 
@@ -2244,6 +2449,7 @@ AY-120-01-001"></textarea>
     else if (state.view === 'schedule') renderSchedule();
     else if (state.view === 'automation') renderAutomation();
     else if (state.view === 'manual') renderManual();
+    else if (state.view === 'review' && state.selectedCase) renderReview(state.selectedCase);
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);
     else if (state.view === 'route' && state.selectedRoute) renderRoute(state.selectedRoute);

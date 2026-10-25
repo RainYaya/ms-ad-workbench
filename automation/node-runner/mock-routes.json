@@ -662,9 +662,9 @@
       "why": "ボタン「取消」→ 自画面"
     },
     "ANA03/route16": {
-      "next": "/ANB00/ANA03.html",
+      "next": "/ANB00/ANA03.html?deleted=1",
       "guess": true,
-      "why": "ボタン「削除」→ 自画面（実機は一覧戻りの可能性あり）"
+      "why": "削除 → 自画面（削除メッセージ表示）"
     },
     "ANA03/route17": {
       "next": "/ANB00/ANA03.html",

@@ -11,6 +11,8 @@ const root = dirname(fileURLToPath(import.meta.url));
 const caseId = arg('case', 'AZ-110-01-009');
 const baseUrl = arg('base-url', 'http://127.0.0.1:10081/mhkcmwa11/dummy.html');
 const headed = process.argv.includes('--headed');
+const slow = Number(arg('slow', '0')) || 0;
+const keepOpen = Number(arg('keep-open', '0')) || 0;
 const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses bundled edge channel
 
 import { readdirSync } from 'node:fs';
@@ -352,6 +354,7 @@ try {
       if (process.env.STEP_DEBUG) console.log('STEP', step.action, step.event || '', '| page', page.url(), '| popup', popup && !popup.isClosed() ? popup.url() : '-');
       await maybeCapture(activePage, step.action);
       if (step.shot) await shot(step.shot);
+      if (slow) await page.waitForTimeout(slow);
     }
     await shot(blockId.slice(0, 24));
     await maybeCapture(popup && !popup.isClosed() ? popup : page, 'blockEnd');
@@ -368,6 +371,10 @@ try {
     caseId, runner: 'node', ts: new Date().toISOString(), status, blocks: blockStatus, skipped, shots, evidence
   }, null, 2));
   console.log(`${status === 'pass' ? 'DONE' : 'PARTIAL'} ${caseId} — ${blockStatus.length}/${blockStatus.length + skipped.length} blocks, ${shots.length} shots in logs/${caseId}/`);
+  if (keepOpen) {
+    console.log(`KEEP OPEN ${keepOpen / 1000}s — close the browser window or wait`);
+    await page.waitForTimeout(keepOpen);
+  }
 } catch (err) {
   await shot('failure').catch(() => {});
   writeFileSync(join(logDir, `${caseId}-evidence.json`), JSON.stringify({ caseId, evidence }, null, 1));

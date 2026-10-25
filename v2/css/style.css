@@ -501,3 +501,44 @@ details.panel>summary:hover{background:rgba(15,118,110,.04)}
 .lightbox img{width:min(96vw,1920px);height:auto;max-height:92vh;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
 .lightbox-close{position:absolute;top:14px;right:18px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.35);color:#fff;font-size:24px;line-height:1;cursor:pointer}
 .ev-item .ev-pick{display:flex;align-items:center;gap:9px;flex:1 1 260px;min-width:0;cursor:pointer}
+
+/* review mode */
+.review-shell{display:flex;flex-direction:column;gap:10px;height:calc(100vh - 150px);min-height:560px}
+.review-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.review-top .chips{display:flex;gap:6px;flex-wrap:wrap}
+.review-body{display:grid;grid-template-columns:290px minmax(420px,1fr) 310px;gap:12px;min-height:0;flex:1}
+.review-list{overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px}
+.rev-row{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;border:1px solid transparent;background:transparent;border-radius:8px;padding:7px 8px;cursor:pointer;color:inherit}
+.rev-row:hover{background:var(--surface)}
+.rev-row.active{background:var(--green-soft);border-color:#b7e2c8}
+.rev-src{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--faint);min-width:26px;padding-top:1px}
+.rev-mid{display:flex;flex-direction:column;min-width:0;flex:1;gap:2px}
+.rev-mid b{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rev-mid span{font-size:10px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.review-stage{display:flex;flex-direction:column;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.rev-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:#0f1512;min-height:0;padding:10px}
+.rev-image{max-width:100%;max-height:100%;border-radius:4px;cursor:zoom-in;background:#fff}
+.rev-caption{padding:8px 12px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.rev-caption a{color:var(--accent)}
+.rev-state{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:28px;background:var(--panel)}
+.rev-state b{font-size:18px}
+.rev-state p{color:var(--muted);max-width:520px}
+.rev-state.manual{border-left:5px solid #7c3aed}
+.rev-state.missing{border-left:5px solid var(--red)}
+.rev-state.visual{border-left:5px solid #9ca3af}
+.review-side{overflow:auto;display:flex;flex-direction:column;gap:10px}
+.rev-side-block{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.rev-side-block h4{margin:0 0 8px;font-size:12px}
+.rev-side-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.rev-fact{display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.rev-fact span{color:var(--muted)}
+.rev-actions{display:flex;gap:6px;margin-bottom:8px}
+.btn.danger{background:var(--red);border-color:var(--red);color:#fff}
+.btn.warn{background:#b45309;border-color:#b45309;color:#fff}
+.rev-memo{width:100%;min-height:64px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:inherit;padding:7px;font:inherit;font-size:11px;resize:vertical}
+@media (max-width:1200px){.review-body{grid-template-columns:240px minmax(320px,1fr) 270px}}
+@media (max-width:900px){.review-body{grid-template-columns:1fr;height:auto}.review-shell{height:auto}.review-list{max-height:260px}.review-side{max-height:none}}
+.rev-result{font-size:9px;font-weight:800;border-radius:4px;padding:1px 5px;letter-spacing:.02em}
+.rev-result.OK{color:#166534;background:#dcfce7}
+.rev-result.NG{color:#991b1b;background:#fee2e2}
+.rev-result.HOLD{color:#92400e;background:#fef3c7}
