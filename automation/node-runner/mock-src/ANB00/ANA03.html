@@ -2447,10 +2447,11 @@ function editExplainAndInsuranceConfirm(form) {
   <input type="submit" formaction="/ANA03/route18" id="route18" name="route18" style="display:none;">
 
   <input type="button" id="requestApplication" name="requestApplication" value="申請依頼" onclick="routeSubmit('requestApplication')" style="display:none;" />
+  <input type="hidden" id="mockReturnTo" value="" />
   <input type="button" id="approve" name="approve" value="承認" onclick="location.href='/ANB00/ANA04.html'" style="display:none;" />
   <input type="button" id="disapprove" name="disapprove" value="不承認" onclick="location.href='/ANB00/ANA04.html'" style="display:none;" />
   <input type="submit" formaction="/ANA03/route10" class="button_area_button" id="route10" name="route10" value="申請依頼" style="display:none;">
-  <input type="button" id="cancel" name="cancel" value="取消" onclick="routeSubmit('cancel')" style="display:none;" />
+  <input type="button" id="cancel" name="cancel" value="取消" onclick="routeSubmit('cancel'); if(document.getElementById('mockReturnTo').value){location.href=document.getElementById('mockReturnTo').value;}" style="display:none;" />
   <input type="submit" formaction="/ANA03/route15" id="route15" name="route15" value="取消" class="button_area_button" style="display:none;">
   <!--/* 動的作成のCC送信先アドレス(ccAddress)を受け取る枠 */-->
 </form>

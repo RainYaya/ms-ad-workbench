@@ -131,6 +131,7 @@ try {
       }
       if (b.toHc && !seen.has(b.toRow)) { hcQueue.push({ row: b.toRow, type: '遷移', item: '', hc: true }); seen.add(b.toRow); }
     }
+    hcQueue.sort((a, b) => a.row - b.row);
   }
   const MANUAL_RE = /開発者ツール|権限エラー|セッションタイムアウト|閉局|ヘルプ|ダウンロードメッセージ/;
   const ruleFor = (item) => SCREEN_RULES.find((r) => new RegExp(r.match).test(item || ''));
@@ -140,6 +141,8 @@ try {
     const file = await shot(`r${String(row.row).padStart(3, '0')}_${safeName(row.item || row.type || 'hc')}`, target);
     evidence.push({ row: row.row, type: row.type, item: row.item, file, exact: true, block: currentBlock, matchedBy, ...(await pageMeta(target)) });
   }
+  let stalledRow = null;
+  let stalledCount = 0;
   async function maybeCapture(active, phase) {
     if (!hcQueue.length) return;
     if (process.env.STEP_DEBUG) console.log('Q', hcQueue[0].row, hcQueue[0].item, '| phase', phase, '| active', active && active.url());
@@ -161,14 +164,28 @@ try {
           if (target || Date.now() >= deadline) break;
           await page.waitForTimeout(100);
         }
-        if (!target) return;
+        if (!target) {
+          if (stalledRow === row.row) stalledCount++;
+          else { stalledRow = row.row; stalledCount = 1; }
+          if (stalledCount > 100) {
+            evidence.push({ row: row.row, type: row.type, item: row.item, file: null, exact: false, missing: true, block: currentBlock, note: '画面HC未取得（長時間不一致）' });
+            hcQueue.shift();
+            stalledRow = null;
+            stalledCount = 0;
+            continue;
+          }
+          return;
+        }
         await captureRow(row, target, 'url');
         hcQueue.shift();
-        continue;
+        stalledRow = null;
+        stalledCount = 0;
+        return;
       }
       if (phase === 'blockStart') return;
       await captureRow(row, active && isOpen(active) ? active : page, 'current');
       hcQueue.shift();
+      return;
     }
   }
   async function resolveOlderThan(minRow) {

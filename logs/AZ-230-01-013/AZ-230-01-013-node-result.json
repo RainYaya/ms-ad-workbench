@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-230-01-013",
   "runner": "node",
-  "ts": "2026-10-25T01:24:26.352Z",
+  "ts": "2026-10-25T02:24:44.564Z",
   "status": "pass",
   "blocks": [
     {
@@ -85,8 +85,8 @@
     "04_BLK-AZ-INPUT-FILL.png",
     "05_r020_不備内容入力画面-更新.png",
     "06_r025_不備内容入力画面-更新.png",
-    "07_r029_不備内容入力画面-更新.png",
-    "08_BLK-AZ-REGISTER-UPDATE.png",
+    "07_BLK-AZ-REGISTER-UPDATE.png",
+    "08_r029_不備内容入力画面-更新.png",
     "09_BLK-AUTO-04A78248.png",
     "10_BLK-AUTO-5C1EFE0E.png",
     "11_BLK-AUTO-D844ADE8.png",
@@ -129,7 +129,7 @@
       "row": 29,
       "type": "表示",
       "item": "不備内容入力画面-更新",
-      "file": "07_r029_不備内容入力画面-更新.png",
+      "file": "08_r029_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AZ-REGISTER-UPDATE",
       "matchedBy": "url",

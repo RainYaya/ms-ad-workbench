@@ -935,6 +935,17 @@
     "note": "非浏览器=真機人工（メール内リンク押下）"
    },
    {
+    "event": "goto 異例メニュー",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast 異例取扱管理システム表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route3"
+   },
+   {
     "event": "goto 照会・検索画面",
     "action": "goto",
     "url": "/ANB00/ANA05.html"
@@ -1905,6 +1916,17 @@
     "note": "非浏览器=真機人工（メール内リンク押下）"
    },
    {
+    "event": "goto 異例メニュー",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast 異例取扱管理システム表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route3"
+   },
+   {
     "event": "goto 照会・検索画面",
     "action": "goto",
     "url": "/ANB00/ANA05.html"
@@ -2095,6 +2117,17 @@
     "assert": "visible",
     "selector": "#div_gyoumu_area_03",
     "note": "非浏览器=真機人工（メール内リンク押下）"
+   },
+   {
+    "event": "goto 異例メニュー",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast 異例取扱管理システム表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#route3"
    },
    {
     "event": "goto 照会・検索画面",

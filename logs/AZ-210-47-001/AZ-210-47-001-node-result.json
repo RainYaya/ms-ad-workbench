@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-210-47-001",
   "runner": "node",
-  "ts": "2026-10-25T01:23:59.362Z",
+  "ts": "2026-10-25T02:24:17.911Z",
   "status": "pass",
   "blocks": [
     {
@@ -56,9 +56,9 @@
     "05_BLK-AZ-LIST-FILTER-OPEN-.png",
     "06_BLK-SGL-9B567CC5.png",
     "07_r024_項目名検索画面.png",
-    "08_r027_項目名検索画面.png",
-    "09_r030_不備内容入力画面-更新.png",
-    "10_BLK-AUTO-04A78248.png",
+    "08_BLK-AUTO-04A78248.png",
+    "09_r027_項目名検索画面.png",
+    "10_r030_不備内容入力画面-更新.png",
     "11_BLK-AZ-ITEM-SEARCH-SELEC.png",
     "12_BLK-AUTO-C7A1F3E5.png",
     "13_BLK-AZ-COMMON-LOGS.png"
@@ -104,7 +104,7 @@
       "row": 27,
       "type": "表示",
       "item": "項目名検索画面",
-      "file": "08_r027_項目名検索画面.png",
+      "file": "09_r027_項目名検索画面.png",
       "exact": true,
       "block": "BLK-AUTO-04A78248",
       "matchedBy": "url",
@@ -116,9 +116,9 @@
       "row": 30,
       "type": "遷移",
       "item": "不備内容入力画面-更新",
-      "file": "09_r030_不備内容入力画面-更新.png",
+      "file": "10_r030_不備内容入力画面-更新.png",
       "exact": true,
-      "block": "BLK-AUTO-04A78248",
+      "block": "BLK-AZ-ITEM-SEARCH-SELECT",
       "matchedBy": "url",
       "url": "http://127.0.0.1:10091/AMB/AMA04.html",
       "title": "",

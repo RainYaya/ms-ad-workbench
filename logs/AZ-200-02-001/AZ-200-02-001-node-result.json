@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-200-02-001",
   "runner": "node",
-  "ts": "2026-10-25T01:22:32.539Z",
+  "ts": "2026-10-25T02:22:59.330Z",
   "status": "pass",
   "blocks": [
     {
@@ -23,7 +23,10 @@
     "02_r015_画面HC.png",
     "03_r020_画面HC.png",
     "04_BLK-AZ-OPEN-CLOSE-SYS.png",
-    "05_BLK-SHR-01CAB10D.png"
+    "05_r023_不備一覧画面.png",
+    "06_r025_回答入力画面.png",
+    "07_r027_画面HC.png",
+    "08_BLK-SHR-01CAB10D.png"
   ],
   "evidence": [
     {
@@ -64,31 +67,37 @@
       "row": 23,
       "type": "遷移",
       "item": "不備一覧画面",
-      "file": null,
-      "exact": false,
-      "manual": false,
-      "missing": true,
-      "note": "画面HC未取得"
+      "file": "05_r023_不備一覧画面.png",
+      "exact": true,
+      "block": "BLK-SHR-01CAB10D",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMC00/AMC22.html",
+      "title": "",
+      "text": " 1 1/1 1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 関連代理店 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 種目 自賠責 貨物 種目共通 その他 保険種類 1 明細番号 計上年月 年 月 計上状態 1 募集人ID 登録日 年 月 日 1 年 月 日 回答締切日 年 月 日 1 年 月 日 対応状況 1：未対応1 2：対応中1 3"
     },
     {
       "row": 25,
       "type": "遷移",
       "item": "回答入力画面",
-      "file": null,
-      "exact": false,
-      "manual": false,
-      "missing": true,
-      "note": "画面HC未取得"
+      "file": "06_r025_回答入力画面.png",
+      "exact": true,
+      "block": "BLK-SHR-01CAB10D",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
+      "title": "",
+      "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
     },
     {
       "row": 27,
       "type": "表示",
       "item": "画面HC",
-      "file": null,
-      "exact": false,
-      "manual": false,
-      "missing": true,
-      "note": "画面HC未取得"
+      "file": "07_r027_画面HC.png",
+      "exact": true,
+      "block": "BLK-SHR-01CAB10D",
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
+      "title": "",
+      "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
     },
     {
       "row": 29,
@@ -97,7 +106,7 @@
       "file": null,
       "exact": false,
       "manual": true,
-      "missing": false,
+      "block": "BLK-SHR-01CAB10D",
       "note": "非浏览器=真機人工"
     }
   ]

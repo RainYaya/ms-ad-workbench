@@ -135,6 +135,28 @@
     "assert": "visible",
     "selector": "#updateTempAnswer",
     "note": "帳票popup=真機人工"
+   },
+   {
+    "event": "goto 帳票印刷",
+    "action": "goto",
+    "url": "/AMB/AMA14.html"
+   },
+   {
+    "event": "ast 帳票印刷画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print"
+   },
+   {
+    "event": "goto 代理店更新画面へ戻る",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "ast 代理店更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
    }
   ]
  },

@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-150-06-001",
   "runner": "node",
-  "ts": "2026-10-25T01:21:52.788Z",
+  "ts": "2026-10-25T02:22:24.876Z",
   "status": "pass",
   "blocks": [
     {
@@ -22,7 +22,8 @@
     "01_menu.png",
     "02_r015_操作結果.png",
     "03_BLK-AZ-BATCH-RUN-VERIFY.png",
-    "04_BLK-SGL-F54CCD41.png"
+    "04_r027_親子集計状況確認画面.png",
+    "05_BLK-SGL-F54CCD41.png"
   ],
   "evidence": [
     {
@@ -41,11 +42,13 @@
       "row": 27,
       "type": "表示",
       "item": "親子集計状況確認画面",
-      "file": null,
-      "exact": false,
-      "manual": false,
-      "missing": true,
-      "note": "画面HC未取得"
+      "file": "04_r027_親子集計状況確認画面.png",
+      "exact": true,
+      "block": "BLK-SGL-F54CCD41",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA11.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 予約番号 ステータス 1 1 1 1 ※予約を行った情報のみ表示されます。 ダウンロード完了後は、すみやかに削除してください。（「削」ボタンを押下） 1/1ページ 検索結果1件 削 除 No. 予約番号 受付時間 完了時間 親代理店 ステータス 1 部店課 支社"
     }
   ]
 }

@@ -154,6 +154,10 @@ function popupClose(button) {
       if (returnButton) {
         returnButton.click();
       }
+      var returnTo = openerDoc.getElementById('mockReturnTo');
+      if (returnTo && returnTo.value) {
+        openerDoc.location.href = returnTo.value;
+      }
     }
 
     window.close();

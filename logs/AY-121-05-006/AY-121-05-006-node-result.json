@@ -1,7 +1,7 @@
 {
   "caseId": "AY-121-05-006",
   "runner": "node",
-  "ts": "2026-10-25T01:18:38.773Z",
+  "ts": "2026-10-25T02:19:38.628Z",
   "status": "pass",
   "blocks": [
     {
@@ -38,9 +38,10 @@
     "05_r022_申請・確認更新画面.png",
     "06_BLK-AUTO-4F9D57E1.png",
     "07_r024_送信先(写)選択画面.png",
-    "08_r027_送信先(写)選択画面.png",
-    "09_BLK-AUTO-F974E639.png",
-    "10_BLK-AUTO-27C68433.png"
+    "08_BLK-AUTO-F974E639.png",
+    "09_r027_送信先(写)選択画面.png",
+    "10_r032_取消計上申請承認画面.png",
+    "11_BLK-AUTO-27C68433.png"
   ],
   "evidence": [
     {
@@ -95,7 +96,7 @@
       "row": 27,
       "type": "表示",
       "item": "送信先(写)選択画面",
-      "file": "08_r027_送信先(写)選択画面.png",
+      "file": "09_r027_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-AUTO-F974E639",
       "matchedBy": "url",
@@ -107,11 +108,13 @@
       "row": 32,
       "type": "遷移",
       "item": "取消計上申請承認画面",
-      "file": null,
-      "exact": false,
-      "manual": false,
-      "missing": true,
-      "note": "画面HC未取得"
+      "file": "10_r032_取消計上申請承認画面.png",
+      "exact": true,
+      "block": "BLK-AUTO-27C68433",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/ANB00/ANA04.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
     }
   ]
 }

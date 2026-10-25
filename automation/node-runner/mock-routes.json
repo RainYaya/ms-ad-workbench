@@ -207,9 +207,9 @@
       "why": "id act200to101（No.リンク）→ 101=AMA04 更新画面"
     },
     "AMA07/aZG200UpdateCompleteDate": {
-      "next": "/AMB/AMA07.html",
+      "next": "/AMB/AMA04.html",
       "guess": false,
-      "why": "一覧から完了登録 → 自画面"
+      "why": "完了登録 → 不備内容入力画面-更新 (AZG101)"
     },
     "AMA07/close": {
       "next": "/AMB/AMA07.html",

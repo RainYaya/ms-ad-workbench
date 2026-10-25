@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-210-67-001",
   "runner": "node",
-  "ts": "2026-10-25T01:24:12.559Z",
+  "ts": "2026-10-25T02:24:29.887Z",
   "status": "pass",
   "blocks": [
     {
@@ -56,12 +56,14 @@
     "05_BLK-AZ-MENU-SEARCH-LIST.png",
     "06_r023_不備内容入力画面-更新.png",
     "07_BLK-AZ-LIST-FILTER-OPEN-.png",
-    "08_BLK-SGL-CEAA65E9.png",
-    "09_r031_不備一覧画面.png",
-    "10_BLK-AZ-MENU-SEARCH-LIST.png",
-    "11_r035_不備内容入力画面-更新.png",
-    "12_BLK-AZ-LIST-FILTER-OPEN-.png",
-    "13_BLK-SHR-D606FB03.png"
+    "08_r025_帳票印刷画面.png",
+    "09_r029_代理店_不備内容入力画面(更新).png",
+    "10_BLK-SGL-CEAA65E9.png",
+    "11_r031_不備一覧画面.png",
+    "12_BLK-AZ-MENU-SEARCH-LIST.png",
+    "13_r035_不備内容入力画面-更新.png",
+    "14_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "15_BLK-SHR-D606FB03.png"
   ],
   "evidence": [
     {
@@ -104,27 +106,31 @@
       "row": 25,
       "type": "遷移",
       "item": "帳票印刷画面",
-      "file": null,
-      "exact": false,
-      "missing": true,
-      "block": "BLK-AZ-MENU-SEARCH-LIST",
-      "note": "画面HC未取得（前段で未到達）"
+      "file": "08_r025_帳票印刷画面.png",
+      "exact": true,
+      "block": "BLK-SGL-CEAA65E9",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMB/AMA14.html",
+      "title": "",
+      "text": "1 帳票種類 正しい申込書類の作成についてのお願い（3項目表示） 正しい申込書類の作成についてのお願い（2項目表示） 申込書類訂正済連絡票 正しい申込書類の作成についてのお願い（督促）（3項目表示） 正しい申込書類の作成についてのお願い（督促）（2項目表示） 出力項目選択 TEL & FAX 1 契約者名1 回答締切日"
     },
     {
       "row": 29,
       "type": "遷移",
       "item": "代理店 不備内容入力画面(更新)",
-      "file": null,
-      "exact": false,
-      "missing": true,
-      "block": "BLK-AZ-MENU-SEARCH-LIST",
-      "note": "画面HC未取得（前段で未到達）"
+      "file": "09_r029_代理店_不備内容入力画面(更新).png",
+      "exact": true,
+      "block": "BLK-SGL-CEAA65E9",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10091/AMC00/AMC23.html",
+      "title": "",
+      "text": " 1 1/1 1 種目 保険種類 証券番号 明細番号 入力区分 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 ｻﾌﾞｺｰﾄﾞ ﾌﾘｰｺｰﾄﾞ 募集人ID 契約者名 保険始期日 変更日 新更変・他 計上年月 照会ＩＤ 登録日 更新者ID 依頼区分 回答締切日 計上状態 No 項目名 照会内容 1 1 1 回答内容 1 回"
     },
     {
       "row": 31,
       "type": "遷移",
       "item": "不備一覧画面",
-      "file": "09_r031_不備一覧画面.png",
+      "file": "11_r031_不備一覧画面.png",
       "exact": true,
       "block": "BLK-AZ-MENU-SEARCH-LIST",
       "matchedBy": "url",
@@ -136,7 +142,7 @@
       "row": 35,
       "type": "遷移",
       "item": "不備内容入力画面-更新",
-      "file": "11_r035_不備内容入力画面-更新.png",
+      "file": "13_r035_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
       "matchedBy": "url",

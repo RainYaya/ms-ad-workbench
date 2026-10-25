@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-210-46-003",
   "runner": "node",
-  "ts": "2026-10-25T01:23:49.474Z",
+  "ts": "2026-10-25T02:24:08.435Z",
   "status": "pass",
   "blocks": [
     {
@@ -30,8 +30,8 @@
     "03_BLK-AZ-MENU-SEARCH-LIST.png",
     "04_r019_不備内容入力画面-更新.png",
     "05_r022_不備内容入力画面-更新.png",
-    "06_r026_不備内容入力画面-更新.png",
-    "07_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "06_BLK-AZ-LIST-FILTER-OPEN-.png",
+    "07_r026_不備内容入力画面-更新.png",
     "08_BLK-AUTO-C2B6BA33.png"
   ],
   "evidence": [
@@ -75,7 +75,7 @@
       "row": 26,
       "type": "表示",
       "item": "不備内容入力画面-更新",
-      "file": "06_r026_不備内容入力画面-更新.png",
+      "file": "07_r026_不備内容入力画面-更新.png",
       "exact": true,
       "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
       "matchedBy": "url",

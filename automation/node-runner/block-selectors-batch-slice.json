@@ -512,6 +512,17 @@
     "assert": "visible",
     "selector": "#act103to204",
     "note": "状況確認押下後の親子集計状況確認(AMA11)は mock の locationReloadIntervals が空で自動再読込ループになり自動化不可＝非浏览器=真機人工；mock修正は他slice所有"
+   },
+   {
+    "event": "goto 親子集計状況確認",
+    "action": "goto",
+    "url": "/AMB/AMA11.html"
+   },
+   {
+    "event": "ast 親子集計状況確認画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#reserve_no"
    }
   ]
  },

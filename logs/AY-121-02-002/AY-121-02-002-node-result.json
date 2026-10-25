@@ -1,7 +1,7 @@
 {
   "caseId": "AY-121-02-002",
   "runner": "node",
-  "ts": "2026-10-25T01:18:01.046Z",
+  "ts": "2026-10-25T02:19:07.251Z",
   "status": "pass",
   "blocks": [
     {
@@ -38,9 +38,9 @@
     "05_r020_取消計上申請承認画面.png",
     "06_BLK-AUTO-1D62D29C.png",
     "07_r023_送信先(写)選択画面.png",
-    "08_r026_送信先(写)選択画面.png",
-    "09_r031_取消計上申請承認画面.png",
-    "10_BLK-SHR-805D28B8.png",
+    "08_BLK-SHR-805D28B8.png",
+    "09_r026_送信先(写)選択画面.png",
+    "10_r031_取消計上申請承認画面.png",
     "11_BLK-AUTO-27C68433.png"
   ],
   "evidence": [
@@ -96,7 +96,7 @@
       "row": 26,
       "type": "表示",
       "item": "送信先(写)選択画面",
-      "file": "08_r026_送信先(写)選択画面.png",
+      "file": "09_r026_送信先(写)選択画面.png",
       "exact": true,
       "block": "BLK-SHR-805D28B8",
       "matchedBy": "url",
@@ -108,9 +108,9 @@
       "row": 31,
       "type": "遷移",
       "item": "取消計上申請承認画面",
-      "file": "09_r031_取消計上申請承認画面.png",
+      "file": "10_r031_取消計上申請承認画面.png",
       "exact": true,
-      "block": "BLK-SHR-805D28B8",
+      "block": "BLK-AUTO-27C68433",
       "matchedBy": "url",
       "url": "http://127.0.0.1:10091/ANB00/ANA04.html",
       "title": "",

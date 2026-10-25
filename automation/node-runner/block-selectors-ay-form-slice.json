@@ -527,6 +527,12 @@
     "url": "/ANB00/ANA03.html"
    },
    {
+    "event": "mark return ANA04",
+    "action": "setValue",
+    "selector": "#mockReturnTo",
+    "value": "/ANB00/ANA04.html"
+   },
+   {
     "event": "click 要再申請",
     "action": "click",
     "selector": "#requestApplicationButton",
@@ -1263,6 +1269,12 @@
     "url": "/ANB00/ANA03.html"
    },
    {
+    "event": "mark return ANA04",
+    "action": "setValue",
+    "selector": "#mockReturnTo",
+    "value": "/ANB00/ANA04.html"
+   },
+   {
     "event": "click 不承認取消",
     "action": "click",
     "selector": "#cancelButton",
@@ -1287,6 +1299,12 @@
     "event": "goto start screen",
     "action": "goto",
     "url": "/ANB00/ANA03.html"
+   },
+   {
+    "event": "mark return ANA04",
+    "action": "setValue",
+    "selector": "#mockReturnTo",
+    "value": "/ANB00/ANA04.html"
    },
    {
     "event": "click 承認依頼取消",
