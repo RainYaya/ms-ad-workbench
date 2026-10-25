@@ -8,7 +8,7 @@
       "action": "goto",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA01.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA01.html",
       "popup": "",
       "screenshot": "02_trace_001_goto_start_screen.png",
       "pageSnapshot": {
@@ -31,7 +31,7 @@
       "action": "click",
       "selector": "#act001to100",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "04_trace_002_click_新規登録.png",
       "pageSnapshot": {
@@ -54,7 +54,7 @@
       "action": "assert",
       "selector": "#policy_number",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "05_trace_003_ast_transition_不備内容入力画面-新規.png",
       "pageSnapshot": {
@@ -78,7 +78,7 @@
       "selector": "select[name=\"input_type_list.selected\"]",
       "value": "params.inputType",
       "resolvedValue": "2",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "07_trace_004_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -102,7 +102,7 @@
       "selector": "select[name=\"large_item_list.selected\"]",
       "value": "params.largeItemValue",
       "resolvedValue": "B",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "08_trace_005_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -126,7 +126,7 @@
       "selector": "#policy_number",
       "value": "params.policyNo",
       "resolvedValue": "AZ11001",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "09_trace_006_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -150,7 +150,7 @@
       "selector": "#sub_policy_number",
       "value": "params.detailNo",
       "resolvedValue": "0000000009",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "10_trace_007_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -174,7 +174,7 @@
       "selector": "#section_code",
       "value": "params.sectionCode",
       "resolvedValue": "AHE61",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "11_trace_008_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -198,7 +198,7 @@
       "selector": "#agent_code",
       "value": "params.agentCode",
       "resolvedValue": "252H",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "12_trace_009_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -222,7 +222,7 @@
       "selector": "#sub_agent_code",
       "value": "params.subAgentCode",
       "resolvedValue": "123456",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "13_trace_010_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -246,7 +246,7 @@
       "selector": "#free_code_1",
       "value": "params.freeCode",
       "resolvedValue": "1234567890",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "14_trace_011_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -270,7 +270,7 @@
       "selector": "#insurant_name",
       "value": "params.customerName",
       "resolvedValue": "TEST",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "15_trace_012_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -294,7 +294,7 @@
       "selector": "#start_date",
       "value": "params.startDate",
       "resolvedValue": "2026/11/01",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "16_trace_013_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -318,7 +318,7 @@
       "selector": "select[name=\"application_form_type_list.selected\"]",
       "value": "params.applicationType",
       "resolvedValue": "1",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "17_trace_014_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -342,7 +342,7 @@
       "selector": "#sumup_year_month",
       "value": "params.sumupYearMonth",
       "resolvedValue": "2026/11",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "18_trace_015_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -366,7 +366,7 @@
       "selector": "#daily_report_send",
       "value": "params.dailyReportSend",
       "resolvedValue": "1234567890AB",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "19_trace_016_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -390,7 +390,7 @@
       "selector": "#sumup_section_code",
       "value": "params.sumupSectionCode",
       "resolvedValue": "ABC012",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "20_trace_017_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -414,7 +414,7 @@
       "selector": "select[name=\"sumup_status_list.selected\"]",
       "value": "params.sumupStatus",
       "resolvedValue": "1",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "21_trace_018_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -438,7 +438,7 @@
       "selector": "#reminder_date",
       "value": "params.reminderDate",
       "resolvedValue": "2026/10/30",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "22_trace_019_inputBundle_各項目.png",
       "pageSnapshot": {
@@ -461,7 +461,7 @@
       "action": "assert",
       "selector": "#selected_input_type_code",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "23_trace_020_ast_bundle_表示.png",
       "pageSnapshot": {
@@ -484,7 +484,7 @@
       "action": "click",
       "selector": "input[name=\"selectInsuransuItem\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "25_trace_021_click_(保険種類欄の横).png",
       "pageSnapshot": {
@@ -507,8 +507,8 @@
       "action": "popup",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
-      "popup": "http://127.0.0.1:10095/AMB/insurance_item_select.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
+      "popup": "http://127.0.0.1:10097/AMB/insurance_item_select.html",
       "screenshot": "27_trace_022_ast_遷移_保険種類選択.png",
       "pageSnapshot": {
         "title": "",
@@ -531,8 +531,8 @@
       "selector": "select[name=\"insurance_item_list.selected\"]",
       "value": "",
       "resolvedValue": "00：自賠責",
-      "url": "http://127.0.0.1:10095/AMB/insurance_item_select.html",
-      "popup": "http://127.0.0.1:10095/AMB/insurance_item_select.html",
+      "url": "http://127.0.0.1:10097/AMB/insurance_item_select.html",
+      "popup": "http://127.0.0.1:10097/AMB/insurance_item_select.html",
       "screenshot": "29_trace_023_click_保険種類.png",
       "pageSnapshot": {
         "title": "保険種類選択画面",
@@ -550,7 +550,7 @@
       "action": "click",
       "selector": "input[name=\"ok\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/insurance_item_select.html",
+      "url": "http://127.0.0.1:10097/AMB/insurance_item_select.html",
       "popup": "",
       "screenshot": null,
       "pageSnapshot": {
@@ -566,7 +566,7 @@
       "action": "assert",
       "selector": "#selected_insurance_item_code",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "31_trace_025_ast_反映確認.png",
       "pageSnapshot": {
@@ -589,7 +589,7 @@
       "action": "click",
       "selector": "input[name=\"selectFieldAgent\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "33_trace_026_click_(募集人ID欄の横).png",
       "pageSnapshot": {
@@ -612,8 +612,8 @@
       "action": "popup",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "screenshot": "35_trace_027_ast_遷移_募集人検索.png",
       "pageSnapshot": {
         "title": "",
@@ -636,8 +636,8 @@
       "selector": "#section_code_key",
       "value": "params.sectionCode",
       "resolvedValue": "AHE61",
-      "url": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
-      "popup": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "screenshot": "37_trace_028_input_部店課支社コード.png",
       "pageSnapshot": {
         "title": "",
@@ -659,8 +659,8 @@
       "selector": "#agent_code_key",
       "value": "params.agentCode",
       "resolvedValue": "252H",
-      "url": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
-      "popup": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "screenshot": "39_trace_029_input_代理店コード.png",
       "pageSnapshot": {
         "title": "",
@@ -682,8 +682,8 @@
       "selector": "#field_agent_id_key",
       "value": "params.fieldAgentId",
       "resolvedValue": "3028004586",
-      "url": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
-      "popup": "http://127.0.0.1:10095/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "screenshot": "40_trace_030_input_募集人ID.png",
       "pageSnapshot": {
         "title": "",
@@ -704,8 +704,8 @@
       "action": "click",
       "selector": "#search",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA18/aZG905Search",
-      "popup": "http://127.0.0.1:10095/AMA18/aZG905Search",
+      "url": "http://127.0.0.1:10097/AMA18/aZG905Search",
+      "popup": "http://127.0.0.1:10097/AMA18/aZG905Search",
       "screenshot": "41_trace_031_click_検索.png",
       "pageSnapshot": {
         "title": "",
@@ -726,8 +726,8 @@
       "action": "assert",
       "selector": "#gyoumu_list tr",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA18/aZG905Search",
-      "popup": "http://127.0.0.1:10095/AMA18/aZG905Search",
+      "url": "http://127.0.0.1:10097/AMA18/aZG905Search",
+      "popup": "http://127.0.0.1:10097/AMA18/aZG905Search",
       "screenshot": "42_trace_032_ast_結果行.png",
       "pageSnapshot": {
         "title": "",
@@ -748,8 +748,8 @@
       "action": "click",
       "selector": "tr:has-text(\"{params.fieldAgentId}\") input[type=radio]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA18/aZG905Search",
-      "popup": "http://127.0.0.1:10095/AMA18/aZG905Search",
+      "url": "http://127.0.0.1:10097/AMA18/aZG905Search",
+      "popup": "http://127.0.0.1:10097/AMA18/aZG905Search",
       "screenshot": "43_trace_033_click_選択欄ラジオ.png",
       "pageSnapshot": {
         "title": "",
@@ -770,7 +770,7 @@
       "action": "click",
       "selector": "input[name=\"closeSelect\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA18/aZG905Search",
+      "url": "http://127.0.0.1:10097/AMA18/aZG905Search",
       "popup": "",
       "screenshot": null,
       "pageSnapshot": {
@@ -786,7 +786,7 @@
       "action": "assert",
       "selector": "#field_agent_id",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "popup": "",
       "screenshot": "45_trace_035_ast_反映確認.png",
       "pageSnapshot": {
@@ -809,7 +809,7 @@
       "action": "click",
       "selector": "#regist",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "48_trace_036_click_登録.png",
       "pageSnapshot": {
@@ -836,7 +836,7 @@
       "action": "assert",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "50_trace_037_ast_遷移_不備内容入力画面-更新.png",
       "pageSnapshot": {
@@ -863,7 +863,7 @@
       "action": "click",
       "selector": "input[name=\"imperfectSearch[0]\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "52_trace_038_click_検索.png",
       "pageSnapshot": {
@@ -890,8 +890,8 @@
       "action": "popup",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "54_trace_039_ast_遷移_項目名検索.png",
       "pageSnapshot": {
         "title": "",
@@ -918,8 +918,8 @@
       "selector": "select[name=\"field_list.selected\"]",
       "value": "params.itemCode",
       "resolvedValue": "T0",
-      "url": "http://127.0.0.1:10095/AMB/AMA13.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA13.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "58_trace_040_inputBundle_項目コード.png",
       "pageSnapshot": {
         "title": "",
@@ -938,8 +938,8 @@
       "action": "click",
       "selector": "input[name=\"search\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA13/aZG900Search",
-      "popup": "http://127.0.0.1:10095/AMA13/aZG900Search",
+      "url": "http://127.0.0.1:10097/AMA13/aZG900Search",
+      "popup": "http://127.0.0.1:10097/AMA13/aZG900Search",
       "screenshot": "59_trace_041_click_検索.png",
       "pageSnapshot": {
         "title": "",
@@ -958,8 +958,8 @@
       "action": "assert",
       "selector": "select[name=\"field_list.selected\"] option",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMA13/aZG900Search",
-      "popup": "http://127.0.0.1:10095/AMA13/aZG900Search",
+      "url": "http://127.0.0.1:10097/AMA13/aZG900Search",
+      "popup": "http://127.0.0.1:10097/AMA13/aZG900Search",
       "screenshot": "60_trace_042_ast_検索結果.png",
       "pageSnapshot": {
         "title": "",
@@ -978,8 +978,8 @@
       "action": "click",
       "selector": "input[name=\"select\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA13.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA13.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "61_trace_043_click_選択.png",
       "pageSnapshot": {
         "title": "",
@@ -998,8 +998,8 @@
       "action": "assert",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "62_trace_044_ast_遷移_更新画面.png",
       "pageSnapshot": {
         "title": "",
@@ -1025,8 +1025,8 @@
       "action": "check",
       "selector": "input[name=\"list[0].inquiry_contents_edit_flag\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "64_trace_045_click_照会内容チェックボックス.png",
       "pageSnapshot": {
         "title": "",
@@ -1052,8 +1052,8 @@
       "action": "enable",
       "selector": "input[name=\"editInquiryContents[0]\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA13.html",
       "screenshot": "65_trace_046_enable_修.png",
       "pageSnapshot": {
         "title": "",
@@ -1079,7 +1079,7 @@
       "action": "click",
       "selector": "input[name=\"editInquiryContents[0]\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "66_trace_047_click_修.png",
       "pageSnapshot": {
@@ -1106,8 +1106,8 @@
       "action": "popup",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA15.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA15.html",
       "screenshot": "68_trace_048_ast_遷移_照会内容編集.png",
       "pageSnapshot": {
         "title": "",
@@ -1134,8 +1134,8 @@
       "selector": "textarea",
       "value": "params.editedInquiryContent",
       "resolvedValue": "編集済み。",
-      "url": "http://127.0.0.1:10095/AMB/AMA15.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA15.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA15.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA15.html",
       "screenshot": "70_trace_049_inputBundle_各項目.png",
       "pageSnapshot": {
         "title": "",
@@ -1153,8 +1153,8 @@
       "action": "click",
       "selector": "input[name=\"ok\"], input[value=\"　ＯＫ　\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA15.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA15.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA15.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA15.html",
       "screenshot": "71_trace_050_click_OK.png",
       "pageSnapshot": {
         "title": "",
@@ -1172,8 +1172,8 @@
       "action": "assert",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA15.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA15.html",
       "screenshot": "72_trace_051_ast_反映確認.png",
       "pageSnapshot": {
         "title": "",
@@ -1199,7 +1199,7 @@
       "action": "click",
       "selector": "input[name=\"act101to906\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "74_trace_052_click_訂正内容確認書.png",
       "pageSnapshot": {
@@ -1226,8 +1226,8 @@
       "action": "popup",
       "selector": "",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA19.html",
       "screenshot": "76_trace_053_ast_遷移_訂正内容確認.png",
       "pageSnapshot": {
         "title": "",
@@ -1254,8 +1254,8 @@
       "selector": "input[name=\"confirm_user_name\"]",
       "value": "params.confirmer",
       "resolvedValue": "TEST",
-      "url": "http://127.0.0.1:10095/AMB/AMA19.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA19.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA19.html",
       "screenshot": "78_trace_054_input_確認者.png",
       "pageSnapshot": {
         "title": "",
@@ -1275,8 +1275,8 @@
       "selector": "input[name=\"confirm_target_name\"]",
       "value": "params.counterparty",
       "resolvedValue": "確認相手TEST",
-      "url": "http://127.0.0.1:10095/AMB/AMA19.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA19.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA19.html",
       "screenshot": "80_trace_055_input_確認相手.png",
       "pageSnapshot": {
         "title": "",
@@ -1295,8 +1295,8 @@
       "action": "click",
       "selector": "input[name=\"regist\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA19.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA19.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA19.html",
       "screenshot": "82_trace_056_click_登録.png",
       "pageSnapshot": {
         "title": "",
@@ -1315,8 +1315,8 @@
       "action": "assert",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
-      "popup": "http://127.0.0.1:10095/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "http://127.0.0.1:10097/AMB/AMA19.html",
       "screenshot": "83_trace_057_ast_遷移_更新画面.png",
       "pageSnapshot": {
         "title": "",
@@ -1342,7 +1342,7 @@
       "action": "click",
       "selector": "input[name=\"updateCompleteDate\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "85_trace_058_click_完了登録.png",
       "pageSnapshot": {
@@ -1369,7 +1369,7 @@
       "action": "assert",
       "selector": "body",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "86_trace_059_ast_エラーメッセージ_MAZG101W047.png",
       "pageSnapshot": {
@@ -1396,7 +1396,7 @@
       "action": "click",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "87_trace_060_click_更新.png",
       "pageSnapshot": {
@@ -1423,7 +1423,7 @@
       "action": "assert",
       "selector": "input[name=\"update\"]",
       "value": "",
-      "url": "http://127.0.0.1:10095/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "popup": "",
       "screenshot": "88_trace_061_ast_営業対応状況_未対応.png",
       "pageSnapshot": {

@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-100-06-003",
   "runner": "node",
-  "ts": "2026-10-25T05:56:56.952Z",
+  "ts": "2026-10-25T09:13:04.907Z",
   "status": "pass",
   "blocks": [
     {
@@ -36,7 +36,7 @@
       "exact": true,
       "block": "BLK-AZ-AUTH-ERROR",
       "matchedBy": "current",
-      "url": "http://127.0.0.1:10091/AMB/dummy.html",
+      "url": "http://127.0.0.1:10097/AMB/dummy.html",
       "title": "試験用ログイン画面",
       "text": "申込書品質管理 / 異例取扱管理システム 試験用ログイン画面 ローカル環境 結合環境 疑似環境 本番環境 Mode = ClientMode Ⅰ. ■ 事業会社 ：● MSI 三井住友海上火災保険株式会社 ：● ADI あいおいニッセイ同和損害保険株式会社 Client Mode：何れかの事業会社を任意に選択できます。"
     }

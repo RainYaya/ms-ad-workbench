@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-200-04-001",
   "runner": "node",
-  "ts": "2026-10-25T05:59:47.819Z",
+  "ts": "2026-10-25T09:16:16.987Z",
   "status": "pass",
   "blocks": [
     {
@@ -27,7 +27,7 @@
       "exact": true,
       "block": "BLK-AZ-SYSERR-LOGIN",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/system_error.html",
+      "url": "http://127.0.0.1:10097/AMB/system_error.html",
       "title": "システムエラー",
       "text": "システムエラー MAZG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAZG000E001"
     },
@@ -39,7 +39,7 @@
       "exact": true,
       "block": "BLK-AZ-SYSERR-LOGIN",
       "matchedBy": "current",
-      "url": "http://127.0.0.1:10091/AMB/system_error.html",
+      "url": "http://127.0.0.1:10097/AMB/system_error.html",
       "title": "システムエラー",
       "text": "システムエラー MAZG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAZG000E001"
     }

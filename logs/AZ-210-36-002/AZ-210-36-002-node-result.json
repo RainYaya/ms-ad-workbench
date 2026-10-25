@@ -1,7 +1,7 @@
 {
   "caseId": "AZ-210-36-002",
   "runner": "node",
-  "ts": "2026-10-25T06:00:41.267Z",
+  "ts": "2026-10-25T09:17:12.759Z",
   "status": "pass",
   "blocks": [
     {
@@ -110,7 +110,7 @@
       "exact": true,
       "block": "BLK-AZ-MENU-CREATE-INPUT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 契約入力 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞｺｰﾄﾞ"
     },
@@ -122,7 +122,7 @@
       "exact": true,
       "block": "BLK-AZ-INSURANCE-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/insurance_item_select.html",
+      "url": "http://127.0.0.1:10097/AMB/insurance_item_select.html",
       "title": "保険種類選択画面",
       "text": "種目 自動車 保険種類 00 ： 自動車 11 ： クルマの保険／はじめての自動車保険 13 ： クルマの保険・一般用 03 ： 1DAY保険／GK クルマの保険・ドライバー保険"
     },
@@ -134,7 +134,7 @@
       "exact": true,
       "block": "BLK-AZ-INSURANCE-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 契約入力 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 00 ： 自動車 11 ： クルマの保険／はじめての自動車保険 13 ： クルマの保険・"
     },
@@ -146,7 +146,7 @@
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "title": "",
       "text": "1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ1※ 募集人ID 募集人名 ※子代理店の場合は親代理店ｺｰﾄﾞを入力してください / ページ 検索結果 件 選択 部店課支社 ｺｰﾄﾞ 代理店 ｺｰﾄﾞ 募集人ID 募集人名 1 1 1 1"
     },
@@ -158,7 +158,7 @@
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
+      "url": "http://127.0.0.1:10097/AMB/AMA18.html?1=AHE61&1=252H&1=&1=1&gamid=AMA18&gamcd=AMA00&hubsessid=1",
       "title": "",
       "text": "1 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ1※ 募集人ID 募集人名 ※子代理店の場合は親代理店ｺｰﾄﾞを入力してください / ページ 検索結果 件 選択 部店課支社 ｺｰﾄﾞ 代理店 ｺｰﾄﾞ 募集人ID 募集人名 1 1 1 1"
     },
@@ -170,7 +170,7 @@
       "exact": true,
       "block": "BLK-AZ-AGENT-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA03.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 契約入力 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 00 ： 自動車 11 ： クルマの保険／はじめての自動車保険 13 ： クルマの保険・"
     },
@@ -182,7 +182,7 @@
       "exact": true,
       "block": "BLK-AZ-REGISTER-UPDATE",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
     },
@@ -194,7 +194,7 @@
       "exact": true,
       "block": "BLK-AUTO-04A78248",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA13.html",
       "title": "",
       "text": "1 種目 保険種類 1 項目ｺｰﾄﾞ 項目名 照会ｺｰﾄﾞ 照会内容 T0：損保取引確認書 T007：「損保取引確認書」の添付がもれています。 注意：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。 不備内容 1"
     },
@@ -206,7 +206,7 @@
       "exact": true,
       "block": "BLK-AUTO-04A78248",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA13.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA13.html",
       "title": "",
       "text": "1 種目 保険種類 1 項目ｺｰﾄﾞ 項目名 照会ｺｰﾄﾞ 照会内容 T0：損保取引確認書 T007：「損保取引確認書」の添付がもれています。 注意：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。 不備内容 1"
     },
@@ -218,7 +218,7 @@
       "exact": true,
       "block": "BLK-AZ-ITEM-SEARCH-SELECT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
     },
@@ -230,7 +230,7 @@
       "exact": true,
       "block": "BLK-AZ-INQUIRY-EDIT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA15.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA15.html",
       "title": "",
       "text": "1 照会ｺｰﾄﾞ 照会内容 編集照会内容 (171文字以内)"
     },
@@ -242,7 +242,7 @@
       "exact": true,
       "block": "BLK-AZ-INQUIRY-EDIT",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
     },
@@ -254,7 +254,7 @@
       "exact": true,
       "block": "BLK-AUTO-7AAEDA04",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA19.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA19.html",
       "title": "",
       "text": "1 代理店・扱者/仲立人 コード 名称 確認者（募集人または社員） 確認実施内容 1 対象契約 証券番号 明細番号 1 2 確認日・確認時刻 年 月 日 午前 午後 時 分 3 確認相手（氏名）（注1） 4 確認相手の電話番号 チェック 電話を受けた場合は、証券番号・保険契約者の住所・氏名の3項目確認または、保険契約者"
     },
@@ -266,7 +266,7 @@
       "exact": true,
       "block": "BLK-AUTO-7AAEDA04",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
     },
@@ -278,7 +278,7 @@
       "exact": true,
       "block": "BLK-AUTO-7AAEDA04",
       "matchedBy": "url",
-      "url": "http://127.0.0.1:10091/AMB/AMA04.html",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
       "title": "",
       "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自賠責 貨物 種目共通 その他 自動車 自動車(7) その他(9) 保険種類 00 ： 自賠責 02 ： 国内貨物総合保険 00 ： 種目共通 00"
     }

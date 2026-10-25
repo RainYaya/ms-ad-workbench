@@ -9,7 +9,7 @@
    "exact": true,
    "block": "BLK-SGL-EA9C1EF3",
    "matchedBy": "url",
-   "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+   "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
    "title": "",
    "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ■ステータス 申請・確認状況 1 異例管理番号 1 消込状況 1 申請入力者 1 申請入力日 1 申請者 1 申請日 1 承認者 1 承認日 1 コンプラ情報システム連携日 1 要再申請依頼者 1 要再申請依頼日 1 登録者 1 登録日 1 更新者 1 更新日 "
   },
@@ -41,7 +41,7 @@
    "exact": true,
    "block": "BLK-SGL-EA9C1EF3",
    "matchedBy": "url",
-   "url": "http://127.0.0.1:10091/ANB00/system_error.html",
+   "url": "http://127.0.0.1:10097/ANB00/system_error.html",
    "title": "システムエラー",
    "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"
   },
@@ -53,7 +53,7 @@
    "exact": true,
    "block": "BLK-SGL-EA9C1EF3",
    "matchedBy": "current",
-   "url": "http://127.0.0.1:10091/ANB00/system_error.html",
+   "url": "http://127.0.0.1:10097/ANB00/system_error.html",
    "title": "システムエラー",
    "text": "システムエラー MAYG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAYG000E001"
   }
