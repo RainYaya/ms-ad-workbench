@@ -418,10 +418,21 @@ try {
       if (traceOn) {
         traceIdx++;
         const file = await traceShot(`trace_${String(traceIdx).padStart(3, '0')}_${safeName(step.event || step.action)}`, activePage);
+        // resolved value: what was ACTUALLY used (params substituted), not the template
+        const resolvedVal = step.value !== undefined ? resolveP(step.value)
+          : step.label !== undefined ? resolveP(step.label) : undefined;
+        // page snapshot: key state for the AI judge
+        const snap = await activePage.evaluate(() => ({
+          title: document.title.slice(0, 60),
+          gamid: document.querySelector('input[name="gamid"]')?.value || '',
+          visibleButtons: [...document.querySelectorAll('input[type="submit"], input[type="button"]')]
+            .filter(b => b.offsetParent !== null).map(b => b.value || b.name || b.id).slice(0, 10),
+        })).catch(() => ({ title: '?', gamid: '?', visibleButtons: [] }));
         traceEntries.push({
           n: traceIdx, block: currentBlock, event: step.event || '', action: step.action,
-          selector: step.selector || '', value: step.value || '', url: activePage.url(),
-          popup: popup && !popup.isClosed() ? popup.url() : '', screenshot: file,
+          selector: step.selector || '', value: step.value || '', resolvedValue: resolvedVal,
+          url: activePage.url(), popup: popup && !popup.isClosed() ? popup.url() : '',
+          screenshot: file, pageSnapshot: snap,
         });
       }
       if (step.shot) await shot(step.shot);

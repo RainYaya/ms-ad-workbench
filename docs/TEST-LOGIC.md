@@ -281,6 +281,7 @@ logs/PARAM-REVIEW.md               C 类参数残作业
 logs/FEASIBILITY.md                A/B/C/D 分类
 logs/A-CASES.txt                   可直接真机的 A 类清单
 logs/BLOCK-QUALITY.md              block 代理/人工清单
+logs/MOCK-CONFORMANCE.md           mock 环境符合性评估
 logs/AUTOMATION-ASSESSMENT.md      block/人工/参数质量
 logs/PARAMS-COVERAGE.md            auto-only 本清单
 ```
