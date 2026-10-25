@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><title>積木ワークベンチ</title>
+<style>
+:root{--line:#dfe5e1;--ink:#17211d;--muted:#65716b;--accent:#0f766e;--red:#b42318;--violet:#6941c6}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f4f2;color:var(--ink);font:13px/1.55 "Segoe UI","Yu Gothic UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;flex-wrap:wrap}
+header h1{font-size:15px;margin:0}
+header .sub{font-size:11px;color:var(--muted)}
+header .sp{flex:1}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer;font-size:12px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn:disabled{opacity:.5;cursor:default}
+#caseName{width:200px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-family:Consolas,monospace;font-size:12px}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr) 300px;min-height:calc(100vh - 50px)}
+.col{border-right:1px solid var(--line);overflow:auto;max-height:calc(100vh - 50px)}
+.col:last-child{border-right:0}
+.col h2{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0;padding:10px 14px;border-bottom:1px solid #edf1ee;position:sticky;top:0;background:#fff;z-index:2}
+#search{margin:10px 12px;width:calc(100% - 24px);padding:7px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:12px}
+.grp{margin:4px 8px 10px}
+.grp>summary{cursor:pointer;font-size:12px;font-weight:700;padding:5px 6px;border-radius:6px;list-style:none}
+.grp .cnt{color:var(--muted);font-weight:400;font-size:11px}
+.pal-block{padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin:5px 0;background:#fff;cursor:grab;font-size:11.5px}
+.pal-block:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(15,118,110,.12)}
+.pal-block .bid{font-family:Consolas,monospace;font-size:9.5px;color:var(--muted);word-break:break-all}
+.pal-block .scr{color:var(--accent);font-size:10px;margin-top:2px}
+.pal-block .ops{color:var(--muted);font-size:10px;margin-top:3px}
+#canvas{padding:14px}
+#canvasEmpty{text-align:center;color:var(--muted);padding:40px 20px;border:2px dashed var(--line);border-radius:12px;margin:10px}
+.cb-block{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:10px}
+.cb-head{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer}
+.cb-head .nm{font-weight:700;font-size:12.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cb-head .scr{font-size:10px;color:var(--accent);white-space:nowrap}
+.cb-head .del{border:0;background:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 8px;border-radius:5px}
+.cb-head .del:hover{background:#feeceb;color:var(--red)}
+.cb-steps{display:none;border-top:1px solid #edf1ee;padding:8px 14px 10px}
+.cb-block.open .cb-steps{display:block}
+.stp{display:grid;grid-template-columns:22px 92px minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center;padding:5px 0;font-size:11px;border-bottom:1px dashed #edf1ee}
+.stp .an{font-family:Consolas,monospace;color:var(--muted);text-align:center}
+.stp .act{font-family:Consolas,monospace;font-weight:700;color:var(--violet)}
+.stp code{background:#f1f3f2;padding:1px 5px;border-radius:4px;font-size:10px;word-break:break-all}
+.stp input{width:100%;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:Consolas,monospace;font-size:11px}
+.arr{text-align:center;color:#b8c2bd;font-size:16px;margin:-6px 0 -4px}
+#params .pf{margin:8px 12px}
+#params .pf label{font-size:11px;color:var(--muted);font-family:Consolas,monospace;display:block;margin-bottom:2px}
+#params .pf input{width:calc(100% - 24px);padding:6px 10px;border:1px solid var(--line);border-radius:8px;font-family:Consolas,monospace;font-size:12px}
+#params .none,#export .none{margin:14px 12px;color:var(--muted);font-size:11.5px}
+#exportPre{background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:10.5px;overflow:auto;margin:8px 12px;max-height:280px;white-space:pre}
+#export .hint{margin:8px 12px;font-size:11px;color:var(--muted)}
+#btnDownload{margin:0 12px 12px;width:calc(100% - 24px)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#17211d;color:#fff;padding:10px 18px;border-radius:9px;font-size:12px;display:none;z-index:99}
+.dropzone{border:2px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--muted);font-size:12px}
+.dropzone.hot{border-color:var(--accent);background:#e6f4f1}
+</style></head><body>
+<header><h1>🧩 積木ワークベンチ</h1><span class="sub">積木を組んで自動化フローを作る → 書き出しは runner.mjs がそのまま実行</span><span class="sp"></span>
+<input id="caseName" placeholder="Case ID (例: AZ-110-01-009)">
+<button class="btn" id="btnLoad">既存Case読込</button>
+<button class="btn" id="btnClear">クリア</button>
+<button class="btn primary" id="btnDownload" disabled>JSONダウンロード</button></header>
+<div class="layout">
+<div class="col"><h2>積木ライブラリ</h2><input id="search" placeholder="検索（画面・ID・操作）"><div id="palette"></div></div>
+<div class="col"><h2>組立キャンバス — 上から下へ実行</h2><div id="canvas"></div></div>
+<div class="col"><div id="params"></div><div id="export"><h2>書き出しプレビュー</h2><div class="hint">runner.mjs が読むのと同じ形式。書き出した JSON を runner フォルダに置けば実行できます。</div><pre id="exportPre">// ブロックを追加するとプレビューが出ます</pre></div></div>
+</div>
+<div id="toast"></div>
+<script src="data/lego-data.js"></script>
+<script>
+const D=window.LEGO_DATA;
+let canvas=[];
+let P={};
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function palRender(q){
+  q=(q||'').toLowerCase();
+  const host=document.getElementById('palette');host.innerHTML='';
+  for(const [g,items] of Object.entries(D.groups)){
+    const hit=items.filter(b=>!q||b.id.toLowerCase().includes(q)||b.screen.toLowerCase().includes(q)||b.steps.some(st=>(st.event||'').toLowerCase().includes(q)||(st.selector||'').toLowerCase().includes(q)));
+    if(!hit.length)continue;
+    const det=document.createElement('details');det.className='grp';det.open=!!q;
+    det.innerHTML='<summary>'+esc(g)+' <span class="cnt">('+hit.length+')</span></summary>';
+    for(const b of hit){
+      const el=document.createElement('div');el.className='pal-block';el.draggable=true;
+      const ops=b.steps.slice(0,4).map(st=>st.action+(st.event?'('+st.event.slice(0,12)+')':'')).join(' → ');
+      el.innerHTML='<div class="bid">'+esc(b.id)+'</div><div class="scr">'+esc(b.screen.slice(0,40))+'</div><div class="ops">'+esc(ops||'(手順なし)')+'</div>';
+      el.onclick=()=>addToCanvas(b.id);
+      el.ondragstart=e=>e.dataTransfer.setData('text/plain',b.id);
+      det.appendChild(el);
+    }
+    host.appendChild(det);
+  }
+}
+palRender('');
+document.getElementById('search').oninput=e=>palRender(e.target.value);
+function addToCanvas(id){
+  if(canvas.some(c=>c.id===id)){toast('その積木は既に追加済みです');return}
+  canvas.push({id,overrides:{}});
+  canvasRender();toast('追加: '+id);
+}
+function canvasRender(){
+  const host=document.getElementById('canvas');host.innerHTML='';
+  if(!canvas.length){
+    host.innerHTML='<div id="canvasEmpty">左の積木をクリック（またはドラッグ）してここに追加。<br>上から下の順に実行されます。</div>';
+    paramsRender();exportRender();return;
+  }
+  canvas.forEach((c,idx)=>{
+    const blk=D.blocks[c.id];
+    const el=document.createElement('div');el.className='cb-block';el.dataset.idx=idx;
+    el.innerHTML='<div class="cb-head"><span class="nm">'+esc(blk.screen||c.id)+'</span><span class="scr">'+esc(c.id.replace(/^BLK-/,''))+'</span><button class="del" title="削除">×</button></div><div class="cb-steps"></div>';
+    el.querySelector('.del').onclick=e=>{e.stopPropagation();canvas.splice(idx,1);canvasRender();};
+    el.querySelector('.cb-head').onclick=e=>{
+      if(e.target.classList.contains('del'))return;
+      el.classList.toggle('open');
+      if(el.classList.contains('open'))stepsRender(el.querySelector('.cb-steps'),c,blk);
+    };
+    el.ondragover=e=>e.preventDefault();
+    host.appendChild(el);
+    if(idx<canvas.length-1){const a=document.createElement('div');a.className='arr';a.textContent='↓';host.appendChild(a)}
+  });
+  const drop=document.createElement('div');
+  drop.textContent='ここにドロップで追加';
+  drop.style.cssText='border:2px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--muted);font-size:12px';
+  drop.ondragover=e=>{e.preventDefault();drop.classList.add('drop-hot')};
+  drop.ondragleave=()=>drop.classList.remove('drop-hot');
+  drop.ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');if(D.blocks[id])addToCanvas(id)};
+  host.appendChild(drop);
+  paramsRender();exportRender();
+}
+function stepsRender(host,c,blk){
+  host.innerHTML=blk.steps.map((st,i)=>{
+    const val=st.value!==undefined?st.value:(st.label!==undefined?st.label:'');
+    const hasRef=typeof val==='string'&&val.indexOf('params.')===0;
+    const cur=c.overrides[i]!==undefined?c.overrides[i]:(hasRef?'':val);
+    const inp=hasRef
+      ?'<input data-ov="'+i+'" value="'+esc(cur)+'" placeholder="'+esc(String(val).replace('params.',''))+'">'
+      :(val?'<input data-ov="'+i+'" value="'+esc(cur)+'">':'');
+    return '<div class="stp"><span class="an">'+(i+1)+'</span><span class="act">'+esc(st.action)+'</span><span><code>'+esc(String(st.selector||st.url||st.match||'—').slice(0,46))+'</code></span>'+inp+'</div>';
+  }).join('');
+  host.querySelectorAll('input[data-ov]').forEach(inp=>{
+    inp.oninput=()=>{const si=+inp.dataset.ov;const v=inp.value.trim();
+      const bi=+inp.closest('.cb-block').dataset.idx;
+      if(v)canvas[bi].overrides[si]=v;else delete canvas[bi].overrides[si];
+      exportRender();};
+  });
+}
+function usedParams(){
+  const used=new Set();
+  for(const c of canvas){
+    const blk=D.blocks[c.id];
+    blk.steps.forEach((st,i)=>{
+      if(c.overrides[i]!==undefined)return;
+      const sv=String((st.value!==undefined?st.value:(st.label!==undefined?st.label:''))||'');
+      const re=/params\.(\w+)/g;let m;
+      while((m=re.exec(sv))!==null)used.add(m[1]);
+    });
+  }
+  return [...used].sort();
+}
+function paramsRender(){
+  const host=document.getElementById('params');
+  const used=usedParams();
+  if(!canvas.length||!used.length){
+    host.innerHTML='<h2>パラメータ（自動検出）</h2><div class="none">積木を追加すると、必要なパラメータだけがここに出ます</div>';return;
+  }
+  host.innerHTML='<h2>パラメータ（自動検出 '+used.length+'）</h2>'+used.map(f=>'<div class="pf"><label>{params.'+f+'}</label><input data-pf="'+f+'" value="'+esc(P[f]||'')+'" placeholder="'+f+'"></div>').join('');
+  host.querySelectorAll('input[data-pf]').forEach(inp=>inp.oninput=()=>{P[inp.dataset.pf]=inp.value;exportRender()});
+}
+function exportRender(){
+  const btn=document.getElementById('btnDownload');
+  if(!canvas.length){document.getElementById('exportPre').textContent='// ブロックを追加するとプレビューが出ます';btn.disabled=true;return}
+  const cid=document.getElementById('caseName').value.trim()||'(caseId未入力)';
+  const blocks={};const cs={};
+  for(const c of canvas){
+    const blk=JSON.parse(JSON.stringify(D.blocks[c.id]));
+    blk.steps.forEach((st,i)=>{const ov=c.overrides[i];if(ov!==undefined&&ov!=='')st.value=ov;});
+    blocks[c.id]=blk;
+  }
+  usedParams().forEach(f=>cs[f]=P[f]||'');
+  const csObj={};csObj[cid]=cs;
+  const out={generatedAt:new Date().toISOString(),blocks,cases:csObj,compositionOrder:canvas.map(c=>c.id)};
+  document.getElementById('exportPre').textContent=JSON.stringify(out,null,1).slice(0,5000);
+  btn.disabled=false;
+  window.__lastExport=out;
+}
+document.getElementById('btnDownload').onclick=()=>{
+  const cid=document.getElementById('caseName').value.trim()||'custom-flow';
+  const blob=new Blob([JSON.stringify(window.__lastExport,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=cid+'-lego.json';a.click();toast('ダウンロードしました');
+};
+document.getElementById('btnClear').onclick=()=>{canvas=[];P={};canvasRender()};
+document.getElementById('btnLoad').onclick=()=>{
+  const cid=prompt('既存 Case ID を入力（例: AZ-110-01-009）');
+  if(!cid)return;
+  fetch('../automation/blocks/blocks.json').then(r=>r.json()).then(B=>{
+    const w=B.workflows[cid];
+    if(!w){toast('見つかりません: '+cid);return}
+    canvas=[];const seen=new Set();
+    for(const b of w.blockDetails){
+      if(seen.has(b.block))continue;seen.add(b.block);
+      if(D.blocks[b.block])canvas.push({id:b.block,overrides:{}});
+    }
+    document.getElementById('caseName').value=cid;
+    canvasRender();toast('読込: '+canvas.length+' 積木');
+  }).catch(e=>toast('読込エラー'));
+};
+document.getElementById('canvas').ondragover=e=>e.preventDefault();
+document.getElementById('canvas').ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');if(D.blocks[id])addToCanvas(id)};
+canvasRender();
+</script></body></html>
