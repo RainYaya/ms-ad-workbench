@@ -215,7 +215,26 @@ STRICT PARAMS: customerName<-auto.json, sectionCode<-auto.json
 
 这样就不会再把占位值当成已落实别纸。
 
-### 4) 结果文件
+### 4) 自动化诊断页面
+
+```text
+http://127.0.0.1:10092/v2/index.html#/automation
+```
+
+一页一本书：
+
+- 列表直接显示 A/B/C/D、flow、証跡 exact/HC、人工数、代理 block 数、参数状态。
+- 点一本书进入详情：
+  - 顶部四格：Flow / 証跡 / 人工·代理 step / Params
+  - block 顺序：每个 block 的品质（browser / proxy / proxy-only / manual）、行号、画面迁移
+  - 展开 block：每个 step 的 action / selector / note，人工和代理 step 高亮
+  - 人工看什么：手顺人工项 + block 内的代理/人工 step
+  - 别纸参数：别纸值 vs params，一致/複数値/auto 标记
+  - 画面HC：exact/manual/missing 与截图链接
+
+这样不用再靠“看一堆 block 表猜这本书是什么情况”。
+
+### 5) 结果文件
 
 ```text
 logs/<case>/<case>-node-result.json   flow 结果
@@ -223,7 +242,7 @@ logs/<case>/<case>-evidence.json      画面HC 截图与 URL
 logs/<case>/<case>-trace.html         单步 trace
 ```
 
-### 4) 全局审计
+### 6) 全局审计
 
 ```text
 logs/PARAM-AUDIT.md                别纸 vs params

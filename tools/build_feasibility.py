@@ -30,6 +30,17 @@ for bid, b in sel.items():
         "force": sum(1 for s in steps if s.get("force")),
         "quality": "manual" if manual else ("proxy-only" if proxy and not real else ("proxy" if proxy else "browser")),
         "notes": list(dict.fromkeys(str(s.get("note")) for s in proxy))[:4],
+        "detail": [
+            {
+                "event": s.get("event") or s.get("action") or "",
+                "action": s.get("action") or "",
+                "selector": s.get("selector") or "",
+                "value": s.get("value") or "",
+                "note": s.get("note") or "",
+                "kind": "manual" if s.get("action") == "manual" else ("proxy" if PROXY.search(str(s.get("note") or "")) else "browser"),
+            }
+            for s in steps
+        ],
     }
 
 workflows = json.loads((RUNNER / "../blocks/workflows.json").read_text(encoding="utf-8"))
