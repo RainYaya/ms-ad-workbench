@@ -36,18 +36,19 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="verdict red"><div class="big">D 業務確認待ち</div><div>別紙とシステムのルールが矛盾しています。人に確認してください。</div><div class="muted" style="margin-top:3px">業務規則衝突（別紙 vs 校验）</div></div>
 <div class="next"><b>最初にやること</b><div class="do">実行しない。上の判定理由を業務担当に確認する。</div></div>
 <div class="stop">この本は実行しないでください。先に下の入力値/判定理由を確認してください。</div>
-<h2>手作業で確認（3 件）</h2>
+<h2>手作業で確認（0 件）</h2><p class="empty">この本に手作業の確認はありません。</p>
+<h2>mock では確認できない項目（3 件）</h2>
       <div class="item">
         <div class="w">mock代替<br>手順 17–21</div>
-        <div><div class="t">ast 反映確認</div><div class="b">mock回写；实际SUT确认显示</div><div class="r">真機で確認</div></div>
+        <div><div class="t">ast 反映確認</div><div class="b">mock回写；实际SUT确认显示</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
       <div class="item">
         <div class="w">mock代替<br>手順 22–29</div>
-        <div><div class="t">ast 反映確認</div><div class="b">opener回写=真機验证; mock里popup关闭链路简化</div><div class="r">真機で確認</div></div>
+        <div><div class="t">ast 反映確認</div><div class="b">opener回写=真機验证; mock里popup关闭链路简化</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
       <div class="item">
         <div class="w">mock代替<br>手順 48–50</div>
-        <div><div class="t">inputBundle 各項目</div><div class="b">項目入力=画面在位（真值=真機）</div><div class="r">真機で確認</div></div>
+        <div><div class="t">inputBundle 各項目</div><div class="b">項目入力=画面在位（真值=真機）</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（19 件）</h2>
       <div class="item">

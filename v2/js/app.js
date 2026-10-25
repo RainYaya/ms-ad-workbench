@@ -2035,7 +2035,18 @@ AY-120-01-001"></textarea>
     const multi = items.filter((x) => x.status === 'multiValue').length;
     const bad = items.filter((x) => x.status === 'mismatch' || x.status === 'missingParam').length;
     const manual = (ev.manualSteps || []).length;
-    return { f, ev, s, a, audit, items, multi, bad, manual };
+    const evRows = new Set((ev.manualSteps || []).map((m) => m.row));
+    let blockManual = 0;
+    let blockMock = 0;
+    for (const bd of a.blockDetails || []) {
+      const bq = BLOCK_QUALITY[bd.block] || {};
+      for (const st of bq.detail || []) {
+        if (st.kind === 'manual') {
+          if (![...evRows].some((row) => bd.fromRow != null && bd.toRow != null && bd.fromRow <= row && row <= bd.toRow)) blockManual++;
+        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMock++;
+      }
+    }
+    return { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal: manual + blockManual };
   }
   function autoNext(f) {
     if (f.class === 'A') return '真機でそのまま実行';
@@ -2053,7 +2064,7 @@ AY-120-01-001"></textarea>
     const rows = ids.map((id) => ({ id, ...autoCaseStats(id) })).filter((r) => {
       if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
       if (cls !== 'all' && r.f.class !== cls) return false;
-      if (flag === 'manual' && !r.manual && !r.f.manualSteps) return false;
+      if (flag === 'manual' && !r.manualTotal) return false;
       if (flag === 'proxy' && !r.f.proxyBlocks) return false;
       if (flag === 'param' && !r.f.paramIssues && !r.f.autoUsed) return false;
       if (flag === 'fail' && r.f.flow === 'pass') return false;
@@ -2073,7 +2084,7 @@ AY-120-01-001"></textarea>
         <td>${feasBadge(r.id)}<div class="small muted">${esc(f.reason || '')}</div></td>
         <td>${f.flow === 'pass' ? '<span class="badge green">pass</span>' : '<span class="badge red">fail</span>'}<div class="small muted">${esc(r.a.status3 || '')}</div></td>
         <td class="num">${evText} ${evMissing}</td>
-        <td class="num">${r.manual || f.manualSteps || 0}</td>
+        <td class="num">${r.manualTotal || 0}</td>
         <td class="num">${f.proxyBlocks || 0}</td>
         <td>${param}<div class="small muted">${esc(f.source || '')}</div></td>
         <td class="small">${esc(autoNext(f))}</td>
@@ -2106,7 +2117,7 @@ AY-120-01-001"></textarea>
   function renderAutoDetail(id) {
     const meta = caseById.get(id);
     if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
-    const { f, ev, s, a, audit, items, multi, bad, manual } = autoCaseStats(id);
+    const { f, ev, s, a, audit, items, multi, bad, manual, blockManual: blockManualCount, blockMock: blockMockCount, manualTotal } = autoCaseStats(id);
     const details = a.blockDetails || [];
     const blockIds = a.blocks || [];
     const counts = { browser: 0, proxy: 0, 'proxy-only': 0, manual: 0 };
@@ -2115,20 +2126,25 @@ AY-120-01-001"></textarea>
     const missingRows = evRows.filter((x) => x.status === 'missing');
     const manualRows = evRows.filter((x) => x.status === 'manual');
     const blockManual = [];
+    const blockMock = [];
+    const evRowsSet = new Set((ev.manualSteps || []).map((m) => m.row));
     for (const bd of details) {
       const bq = BLOCK_QUALITY[bd.block] || {};
       for (const st of (bq.detail || [])) {
-        if (st.kind !== 'browser') blockManual.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+        if (st.kind === 'manual') {
+          if ([...evRowsSet].some((row) => bd.fromRow != null && bd.toRow != null && bd.fromRow <= row && row <= bd.toRow)) continue;
+          blockManual.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMock.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
       }
     }
-    const manualTotal = manual + blockManual.length;
     const paramLabel = (x) => x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'multiValue' ? ['複数値', 'amber'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
+    const mockHtml = blockMock.length ? blockMock.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / 真機では runner が自動で確認</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
     const blockHtml = details.map((bd, i) => {
       const bq = BLOCK_QUALITY[bd.block] || {};
       const bmeta = (AUTO.blocks || []).find((x) => x.id === bd.block) || {};
       const steps = bq.detail || [];
       const stepHtml = steps.map((st, j) => `<div class="auto-step ${st.kind}">
-        <div class="ev">${j + 1}. ${esc(st.event || st.action || '')} ${st.kind === 'manual' ? '<span class="badge violet">manual</span>' : st.kind === 'proxy' ? '<span class="badge amber">proxy</span>' : '<span class="badge green">browser</span>'}</div>
+        <div class="ev">${j + 1}. ${esc(st.event || st.action || '')} ${st.kind === 'manual' ? '<span class="badge violet">manual</span>' : st.kind === 'mock' ? '<span class="badge amber">mock代替</span>' : st.kind === 'proxy' ? '<span class="badge amber">proxy</span>' : '<span class="badge green">browser</span>'}</div>
         <div class="meta">${esc(st.action || '')}${st.selector ? ` / <code>${esc(st.selector)}</code>` : ''}${st.value ? ` / value=${esc(st.value)}` : ''}</div>
         ${st.note ? `<div class="meta" style="color:#b45309">${esc(st.note)}</div>` : ''}
       </div>`).join('');
@@ -2169,14 +2185,15 @@ AY-120-01-001"></textarea>
       <div class="auto-summary">
         <div class="auto-card"><div class="k">Flow</div><div class="v">${f.flow === 'pass' ? 'pass' : 'fail'}</div><div class="s">${esc(a.status3 || '')} / ${blockIds.length} blocks</div></div>
         <div class="auto-card"><div class="k">証跡</div><div class="v">${s.exact || 0}/${s.hc || 0}</div><div class="s">manual ${s.manual || 0} / missing ${s.missing || 0}</div></div>
-        <div class="auto-card"><div class="k">人工・代理 step</div><div class="v">${manualTotal}</div><div class="s">手順 ${manual} / block ${blockManual.length}</div></div>
+        <div class="auto-card"><div class="k">人工 / mock代替</div><div class="v">${manualTotal} / ${blockMock.length}</div><div class="s">手順 ${manual} / block人工 ${blockManual.length} / mock ${blockMock.length}</div></div>
         <div class="auto-card"><div class="k">Params</div><div class="v">${bad ? 'NG' : multi ? '複数' : f.autoUsed ? 'auto' : 'OK'}</div><div class="s">${esc(f.source || '')}${f.usedKeys ? ` / ${f.usedKeys} keys` : ''}</div></div>
       </div>
       <div class="panel mt"><div class="panel-head"><h3>block 順（どこが自動で、どこが人工か）</h3><span class="hint">${counts.browser} browser / ${counts.proxy} proxy / ${counts['proxy-only']} proxy-only / ${counts.manual} manual</span></div><div class="panel-body">${blockHtml || '<p class="muted">block 情報がありません。</p>'}</div></div>
       <div class="grid-2 mt">
-        <section class="panel"><div class="panel-head"><h3>人工で見る項目（${manualTotal}）</h3></div><div class="panel-body">${manualHtml}</div></section>
-        <section class="panel"><div class="panel-head"><h3>別紙パラメータ</h3><span class="hint">${esc(f.source || '')}</span></div><div class="panel-body">${paramsHtml}</div></section>
+        <section class="panel"><div class="panel-head"><h3>人がやる項目（${manualTotal}）</h3></div><div class="panel-body">${manualHtml}</div></section>
+        <section class="panel"><div class="panel-head"><h3>mockでは確認できない項目（${blockMock.length}）</h3><span class="hint">真機では自動</span></div><div class="panel-body">${mockHtml}</div></section>
       </div>
+      <section class="panel mt"><div class="panel-head"><h3>別紙パラメータ</h3><span class="hint">${esc(f.source || '')}</span></div><div class="panel-body">${paramsHtml}</div></section>
       <details class="panel mt"><summary style="cursor:pointer;padding:11px 14px;font-weight:700">画面HC 証跡（${s.hc || 0} 行 / missing ${s.missing || 0}）</summary><div class="panel-body">${evidenceHtml}</div></details>`;
   }
 

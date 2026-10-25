@@ -38,12 +38,21 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="stop">この本は実行しないでください。先に下の入力値/判定理由を確認してください。</div>
 <h2>手作業で確認（2 件）</h2>
       <div class="item">
-        <div class="w">mock代替<br>手順 27–34</div>
+        <div class="w">手順<br>手順 27–34</div>
         <div><div class="t">ast メッセージ(MAYG901I00x)</div><div class="b">mockはメッセージを画面内表示。真機はポップアップMsg=真機人工</div><div class="r">真機で確認</div></div>
       </div>
       <div class="item">
+        <div class="w">手順<br>手順 52–59</div>
+        <div><div class="t">ast メッセージ(MAYG901I00x)</div><div class="b">mockはメッセージを画面内表示。真機はポップアップMsg=真機人工</div><div class="r">真機で確認</div></div>
+      </div>
+<h2>mock では確認できない項目（2 件）</h2>
+      <div class="item">
         <div class="w">mock代替<br>手順 27–34</div>
-        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機で確認</div></div>
+        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
+      </div>
+      <div class="item">
+        <div class="w">mock代替<br>手順 52–59</div>
+        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（2 件）</h2>
       <div class="item">

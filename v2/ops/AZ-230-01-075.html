@@ -33,10 +33,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <a class="back" href="index.html">← 作業シート一覧</a>
 <div class="top"><div class="cid">AZ-230-01-075</div><h1>ToDoバッチ７５</h1>
 <div class="meta"><span>AZ-230-01</span><span>MS</span><span>集計（日次）</span><span>flow: pass</span></div></div>
-<div class="verdict blue"><div class="big">B 自動 + 手作業</div><div>自動で途中まで実行し、残りを人が確認します。</div><div class="muted" style="margin-top:3px">人工6/代理block7</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、そのあと「手作業で確認」を上から順に実施する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-230-01-075 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
-<h2>手作業で確認（14 件）</h2>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工6/代理block7</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 9 件と、mockでは確認できない項目を上から確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-230-01-075 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（9 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 28 / 確認</div>
         <div><div class="t">ToDo連携テーブル</div><div class="b">レコードが無いこと</div><div class="r">非浏览器确认</div></div>
@@ -62,36 +62,21 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div><div class="t">FAZZ000A011</div><div class="b">データが追記されないこと</div><div class="r">非浏览器确认</div></div>
       </div>
       <div class="item">
-        <div class="w">mock代替<br>手順 14–15</div>
+        <div class="w">手順<br>手順 14–15</div>
         <div><div class="t">ast 前提行(1回目/18:00-19:00送信前打鍵)確認</div><div class="b">手順前提行=非浏览器=真機人工（mockはメニュー画面在位で代理）</div><div class="r">真機で確認</div></div>
       </div>
       <div class="item">
-        <div class="w">mock代替<br>手順 23–25</div>
-        <div><div class="t">ast 遷移 不備内容入力画面-更新</div><div class="b">popup選択後の親画面（mockはpopup再表示）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 26–28</div>
-        <div><div class="t">ast ToDo連携テーブル</div><div class="b">ToDo連携テーブル=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 29–30</div>
+        <div class="w">手順<br>手順 29–30</div>
         <div><div class="t">ast 2回目・送信前打鍵</div><div class="b">2回目/送信時刻条件=真機人工（前提条件のみ）</div><div class="r">真機で確認</div></div>
       </div>
       <div class="item">
-        <div class="w">mock代替<br>手順 36–42</div>
+        <div class="w">手順<br>手順 36–42</div>
         <div><div class="t">ast メッセージ確認</div><div class="b">メッセージ内容=真機人工（mockはメッセージ枠のみ）</div><div class="r">真機で確認</div></div>
       </div>
+<h2>mock では確認できない項目（1 件）</h2>
       <div class="item">
-        <div class="w">mock代替<br>手順 43–47</div>
-        <div><div class="t">ast メッセージ確認</div><div class="b">メッセージ内容=真機人工（mockはメッセージ枠のみ）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 43–47</div>
-        <div><div class="t">ast ToDo連携テーブル</div><div class="b">ToDo連携テーブル=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 50–53</div>
-        <div><div class="t">ast JP1バッチ実行＋ToDo連携テーブル/APログ/FAZZ000A011確認</div><div class="b">バッチ実行＋ToDo連携テーブル(TODO連携区分1:送信済)/APログ(AP_AZB022.log)/FAZZ000A011追記=非浏览器=真機人工（mockは画面在位で代理）</div><div class="r">真機で確認</div></div>
+        <div class="w">mock代替<br>手順 23–25</div>
+        <div><div class="t">ast 遷移 不備内容入力画面-更新</div><div class="b">popup選択後の親画面（mockはpopup再表示）</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（6 件）</h2>
       <div class="item">

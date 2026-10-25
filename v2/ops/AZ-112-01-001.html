@@ -36,7 +36,7 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="verdict amber"><div class="big">C 実行前に確認</div><div>このまま実行せず、先に入力値を確認してください。</div><div class="muted" style="margin-top:3px">複数値: 課支社コード</div></div>
 <div class="next"><b>最初にやること</b><div class="do">実行しない。先に「入力値」の黄色い項目を確定する。</div></div>
 <div class="stop">この本は実行しないでください。先に下の入力値/判定理由を確認してください。</div>
-<h2>手作業で確認（10 件）</h2>
+<h2>手作業で確認（2 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 39 / 操作</div>
         <div><div class="t">部店課支社ｺｰﾄﾞ</div><div class="b">(削除)</div><div class="r">非浏览器操作</div></div>
@@ -45,37 +45,22 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div class="w">手順<br>手順 92 / 操作</div>
         <div><div class="t">部店課支社ｺｰﾄﾞ</div><div class="b">削除</div><div class="r">非浏览器操作</div></div>
       </div>
+<h2>mock では確認できない項目（4 件）</h2>
       <div class="item">
         <div class="w">mock代替<br>手順 14–76</div>
-        <div><div class="t">click 追加</div><div class="b">mockの追加popupはURL空串(/)を開くため次stepで検索画面へ直接遷移</div><div class="r">真機で確認</div></div>
+        <div><div class="t">click 追加</div><div class="b">mockの追加popupはURL空串(/)を開くため次stepで検索画面へ直接遷移</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
       <div class="item">
         <div class="w">mock代替<br>手順 14–76</div>
-        <div><div class="t">ast 個別メール通知先一覧(親画面)</div><div class="b">親画面の個別通知先一覧を確認（mockは親への行追加なし）</div><div class="r">真機で確認</div></div>
+        <div><div class="t">ast 個別メール通知先一覧(親画面)</div><div class="b">親画面の個別通知先一覧を確認（mockは親への行追加なし）</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
       <div class="item">
         <div class="w">mock代替<br>手順 14–76</div>
-        <div><div class="t">ast 表示 メッセージボックス</div><div class="b">メッセージ=alert自動承諾（mockにメッセージ本文なし）=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 14–76</div>
-        <div><div class="t">ast 表示 メッセージボックス(重複)</div><div class="b">重複選択メッセージ=alert自動承諾=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 14–76</div>
-        <div><div class="t">click 閉じる</div><div class="b">mockは単独タブのためwindow.close抑止→画面継続</div><div class="r">真機で確認</div></div>
+        <div><div class="t">click 閉じる</div><div class="b">mockは単独タブのためwindow.close抑止→画面継続</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
       <div class="item">
         <div class="w">mock代替<br>手順 85–108</div>
-        <div><div class="t">click 次頁</div><div class="b">mockはページ情報が無いため頁ボタン非表示→force</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 85–108</div>
-        <div><div class="t">ast 表示 メッセージボックス</div><div class="b">MAZG911W101=メッセージボックス。mockは文言未実装(枠のみ)=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 85–108</div>
-        <div><div class="t">ast 遷移 不備内容入力画面-更新</div><div class="b">通知先再セット+通知するの繰返し(MAZG911W106/W105)はmock未実装。初回で通知成立し画面が閉じる=真機人工</div><div class="r">真機で確認</div></div>
+        <div><div class="t">click 次頁</div><div class="b">mockはページ情報が無いため頁ボタン非表示→force</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（2 件）</h2>
       <div class="item">

@@ -226,7 +226,25 @@ http://127.0.0.1:10092/v2/ops/index.html
 - 下面：実行コマンド（A/B のみ）、手作業チェック、入力値、画面HC、OK/NG 判定栏。
 - 浏览器直接打印即可；C/D 不显示执行命令，只显示“不要执行”。
 
-### 5) 自动化诊断页面
+### 5) 「手作業」与「mock 代替」的判定
+
+作业单不再把所有带 `mock/真機` 的步骤都叫“手作業”。现在分三类：
+
+| 类型 | 来源 | 含义 |
+|---|---|---|
+| 手順人工 | `evidence.manualSteps` | 手顺书明确要求人做的操作/确认（F12、JP1、APログ、DB、テーブル等） |
+| block 人工 | block step 的 `action: manual` 或 note 明确“非浏览器/真機人工” | block 本身不能自动，必须人执行 |
+| mock 代替 | block step 的 note 是 `mock回写/mock简化/mock无后端消息` 等 | mock 无法验证，但真机应由 runner 自动断言；不算手作業 |
+
+`node runner.mjs ... --live` 时，mock 代替的 assert 会真正执行；mock 运行时才跳过。
+
+例：`AZ-110-01-009`
+
+- 手順人工：**0 件**
+- mock 代替：**3 件**（保険種類反映、募集人 opener 回写、`MAZG101W047` 消息）
+- 以前把后 3 件算成“手作業 3 件”是错的；现在作业单显示“手作業 0 / mock 3”。
+
+### 6) 自动化诊断页面
 
 ```text
 http://127.0.0.1:10092/v2/index.html#/automation
@@ -245,7 +263,7 @@ http://127.0.0.1:10092/v2/index.html#/automation
 
 这样不用再靠“看一堆 block 表猜这本书是什么情况”。
 
-### 6) 结果文件
+### 7) 结果文件
 
 ```text
 logs/<case>/<case>-node-result.json   flow 结果
@@ -253,7 +271,7 @@ logs/<case>/<case>-evidence.json      画面HC 截图与 URL
 logs/<case>/<case>-trace.html         单步 trace
 ```
 
-### 7) 全局审计
+### 8) 全局审计
 
 ```text
 logs/PARAM-AUDIT.md                别纸 vs params

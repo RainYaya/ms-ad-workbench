@@ -15,6 +15,7 @@ const slow = Number(arg('slow', '0')) || 0;
 const keepOpen = Number(arg('keep-open', '0')) || 0;
 const traceOn = process.argv.includes('--trace');
 const strictParams = process.argv.includes('--strict-params');
+const live = process.argv.includes('--live') || !/^https?:\/\/(127\.0\.0\.1|localhost|0\.0\.0\.0)([:\/]|$)/.test(baseUrl);
 const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses bundled edge channel
 
 import { readdirSync } from 'node:fs';
@@ -333,10 +334,15 @@ try {
           await where.waitForTimeout(Number(step.ms) || 0);
           break;
         case 'assert': {
-          // A proxy note means this screen is only a stand-in for a non-browser
-          // check (batch/AP log/DB table). Never execute it as a real assertion.
-          if (/非浏览器|真機|mock|簡易|代理|未再現|未収録|手動/.test(String(step.note || ''))) {
-            console.log('MANUAL(proxy assert)', step.event || '', step.note || '');
+          const note = String(step.note || '');
+          const manualNote = /非浏览器|真機人工|JP1|APログ|DBログ|DBダンプ|テーブル|バッチ|F12|DevTools|手順|目視|人が|実機で確認/.test(note);
+          const mockOnly = /mock|Mock|未収録|未再現|簡易|代理|回写/.test(note) && !manualNote;
+          if (manualNote) {
+            console.log('MANUAL(manual step)', step.event || '', note);
+            break;
+          }
+          if (mockOnly && !live) {
+            console.log('MOCK-ONLY(assert skipped)', step.event || '', note);
             break;
           }
           const timeout = Number(step.timeout) || 10000;

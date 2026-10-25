@@ -33,17 +33,34 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <a class="back" href="index.html">← 作業シート一覧</a>
 <div class="top"><div class="cid">AY-120-06-004</div><h1>シナリオ導線４</h1>
 <div class="meta"><span>AY-120-06</span><span>MS</span><span>2種</span><span>flow: pass</span></div></div>
-<div class="verdict blue"><div class="big">B 自動 + 手作業</div><div>自動で途中まで実行し、残りを人が確認します。</div><div class="muted" style="margin-top:3px">人工0/代理block2</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、そのあと「手作業で確認」を上から順に実施する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AY-120-06-004 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
-<h2>手作業で確認（2 件）</h2>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工0/代理block2</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 4 件と、mockでは確認できない項目を上から確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AY-120-06-004 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（4 件）</h2>
       <div class="item">
-        <div class="w">mock代替<br>手順 25–32</div>
+        <div class="w">手順<br>手順 23–24</div>
+        <div><div class="t">click 要再申請</div><div class="b">手順書の「要再申請」=申請依頼ボタン(ソースに要再申請ラベル無し: ANA03 2267)</div><div class="r">真機で確認</div></div>
+      </div>
+      <div class="item">
+        <div class="w">手順<br>手順 25–32</div>
         <div><div class="t">ast メッセージ(MAYG901I00x)</div><div class="b">mockはメッセージを画面内表示。真機はポップアップMsg=真機人工</div><div class="r">真機で確認</div></div>
       </div>
       <div class="item">
+        <div class="w">手順<br>手順 43–44</div>
+        <div><div class="t">click 要再申請</div><div class="b">手順書の「要再申請」=申請依頼ボタン(ソースに要再申請ラベル無し: ANA03 2267)</div><div class="r">真機で確認</div></div>
+      </div>
+      <div class="item">
+        <div class="w">手順<br>手順 45–52</div>
+        <div><div class="t">ast メッセージ(MAYG901I00x)</div><div class="b">mockはメッセージを画面内表示。真機はポップアップMsg=真機人工</div><div class="r">真機で確認</div></div>
+      </div>
+<h2>mock では確認できない項目（2 件）</h2>
+      <div class="item">
         <div class="w">mock代替<br>手順 25–32</div>
-        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機で確認</div></div>
+        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
+      </div>
+      <div class="item">
+        <div class="w">mock代替<br>手順 45–52</div>
+        <div><div class="t">ast 遷移 取消計上申請承認画面</div><div class="b">popup OK後、呼出元へ戻る。取消/申請依頼からの場合はmockルーティングの都合で申請・確認更新(ANA03)に留まる=mock-routes ANA03/route15・route10 が ANA04 を指していないため=要mock-routes修正</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（1 件）</h2>
       <div class="item">

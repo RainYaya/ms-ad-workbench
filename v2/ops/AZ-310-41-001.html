@@ -33,10 +33,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <a class="back" href="index.html">← 作業シート一覧</a>
 <div class="top"><div class="cid">AZ-310-41-001</div><h1>シナリオ導線４１（現新あり）</h1>
 <div class="meta"><span>AZ-310-41</span><span>MS</span><span>不備登録</span><span>flow: pass</span></div></div>
-<div class="verdict blue"><div class="big">B 自動 + 手作業</div><div>自動で途中まで実行し、残りを人が確認します。</div><div class="muted" style="margin-top:3px">人工4/代理block2</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、そのあと「手作業で確認」を上から順に実施する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-310-41-001 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
-<h2>手作業で確認（6 件）</h2>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工4/代理block2</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 4 件と、mockでは確認できない項目を上から確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-310-41-001 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（4 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 57 / 確認</div>
         <div><div class="t">APログ</div><div class="b">ログに出力されること</div><div class="r">非浏览器确认</div></div>
@@ -53,13 +53,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div class="w">手順<br>手順 60 / 確認</div>
         <div><div class="t">申込不備テーブル</div><div class="b">-</div><div class="r">非浏览器确认</div></div>
       </div>
+<h2>mock では確認できない項目（1 件）</h2>
       <div class="item">
         <div class="w">mock代替<br>手順 54–54</div>
-        <div><div class="t">click 代理店照会</div><div class="b">select操作; 真按钮语义待真機确认</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 55–60</div>
-        <div><div class="t">ast 画面確認</div><div class="b">ログ=真機人工</div><div class="r">真機で確認</div></div>
+        <div><div class="t">click 代理店照会</div><div class="b">select操作; 真按钮语义待真機确认</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（2 件）</h2>
       <div class="item">

@@ -35,8 +35,9 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="meta"><span>AZ-111-05</span><span>MS</span><span>不備登録</span><span>flow: pass</span></div></div>
 <div class="verdict green"><div class="big">A 全自動</div><div>この本は自動で最後まで実行できます。</div></div>
 <div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、最後に「画面HC」がすべて取得済みか確認する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-111-05-006 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-111-05-006 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
 <h2>手作業で確認（0 件）</h2><p class="empty">この本に手作業の確認はありません。</p>
+<h2>mock では確認できない項目（0 件）</h2><p class="empty">mock で代替している確認はありません。</p>
 <h2>入力値（1 件）</h2>
       <div class="item">
         <div class="w">証券番号</div>

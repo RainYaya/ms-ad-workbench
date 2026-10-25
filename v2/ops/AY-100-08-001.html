@@ -33,10 +33,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <a class="back" href="index.html">← 作業シート一覧</a>
 <div class="top"><div class="cid">AY-100-08-001</div><h1>タイムゾーン：データ登録・更新</h1>
 <div class="meta"><span>AY-100-08</span><span>MS</span><span>共通</span><span>flow: pass</span></div></div>
-<div class="verdict blue"><div class="big">B 自動 + 手作業</div><div>自動で途中まで実行し、残りを人が確認します。</div><div class="muted" style="margin-top:3px">人工5/代理block1</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、そのあと「手作業で確認」を上から順に実施する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AY-100-08-001 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
-<h2>手作業で確認（10 件）</h2>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工5/代理block1</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 5 件と、mockでは確認できない項目を上から確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AY-100-08-001 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（5 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 19 / 確認</div>
         <div><div class="t">取消計上申請テーブル</div><div class="b">「登録日」の時刻が、操作内容2-2の時刻とずれがないこと</div><div class="r">非浏览器确认</div></div>
@@ -57,26 +57,7 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div class="w">手順<br>手順 26 / 確認</div>
         <div><div class="t">TRログ</div><div class="b">操作内容1-1～3-2の時刻とずれがないこと</div><div class="r">非浏览器确认</div></div>
       </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 19–26</div>
-        <div><div class="t">ast 取消計上申請テーブル</div><div class="b">登録データ=非浏览器=真機人工（mockは更新画面在位で代理）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 19–26</div>
-        <div><div class="t">ast 取消計上申請テーブル</div><div class="b">更新日=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 19–26</div>
-        <div><div class="t">ast APログ</div><div class="b">APログ時刻=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 19–26</div>
-        <div><div class="t">ast DBログ</div><div class="b">DBログ時刻=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 19–26</div>
-        <div><div class="t">ast TRログ</div><div class="b">TRログ時刻=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
+<h2>mock では確認できない項目（0 件）</h2><p class="empty">mock で代替している確認はありません。</p>
 <h2>入力値（1 件）</h2>
       <div class="item">
         <div class="w">契約者名</div>

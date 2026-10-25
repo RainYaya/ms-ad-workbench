@@ -36,7 +36,7 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <div class="verdict amber"><div class="big">C 実行前に確認</div><div>このまま実行せず、先に入力値を確認してください。</div><div class="muted" style="margin-top:3px">auto params: confirmer</div></div>
 <div class="next"><b>最初にやること</b><div class="do">実行しない。先に「入力値」の黄色い項目を確定する。</div></div>
 <div class="stop">この本は実行しないでください。先に下の入力値/判定理由を確認してください。</div>
-<h2>手作業で確認（5 件）</h2>
+<h2>手作業で確認（2 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 18 / 操作</div>
         <div><div class="t">画面を操作せず、一時間待機</div><div class="b"></div><div class="r">非浏览器操作</div></div>
@@ -46,17 +46,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div><div class="t">セッションタイムアウト画面
 （子画面）</div><div class="b">遷移すること</div><div class="r">非浏览器（開発者ツール等）</div></div>
       </div>
+<h2>mock では確認できない項目（1 件）</h2>
       <div class="item">
         <div class="w">mock代替<br>手順 14–21</div>
-        <div><div class="t">画面を操作せず、一時間待機</div><div class="b">1時間待機はmockでは短期待機で代替（タイムアウト子画面は真機で発生）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 22–23</div>
-        <div><div class="t">ast 遷移 セッションタイムアウト画面 (子画面)</div><div class="b">非浏览器=真機人工（タイムアウト子画面はmock未収録のため訂正内容確認の子画面在位で代替）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 22–23</div>
-        <div><div class="t">ast エラーメッセージ</div><div class="b">非浏览器=真機人工（mockにタイムアウト文言が無いため子画面の閉じるボタン在位で代替）</div><div class="r">真機で確認</div></div>
+        <div><div class="t">画面を操作せず、一時間待機</div><div class="b">1時間待機はmockでは短期待機で代替（タイムアウト子画面は真機で発生）</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（1 件）</h2>
       <div class="item">

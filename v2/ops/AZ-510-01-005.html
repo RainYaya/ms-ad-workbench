@@ -33,10 +33,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
 <a class="back" href="index.html">← 作業シート一覧</a>
 <div class="top"><div class="cid">AZ-510-01-005</div><h1>営業連携通知メール（事務(貨物)以外）定義(AD)</h1>
 <div class="meta"><span>AZ-510-01</span><span>AD</span><span>メール機能</span><span>flow: pass</span></div></div>
-<div class="verdict blue"><div class="big">B 自動 + 手作業</div><div>自動で途中まで実行し、残りを人が確認します。</div><div class="muted" style="margin-top:3px">人工2/代理block1</div></div>
-<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行し、そのあと「手作業で確認」を上から順に実施する。</div></div>
-<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-510-01-005 --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html/</pre>
-<h2>手作業で確認（6 件）</h2>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">人工2/代理block1</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業 2 件と、mockでは確認できない項目を上から確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-510-01-005 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（2 件）</h2>
       <div class="item">
         <div class="w">手順<br>手順 31 / 確認</div>
         <div><div class="t">メール送信ログ</div><div class="b">機能呼出前のログ(MAZG101I524)が出力されること</div><div class="r">非浏览器确认</div></div>
@@ -45,21 +45,10 @@ td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);fo
         <div class="w">手順<br>手順 32 / 確認</div>
         <div><div class="t">メール送信ログ</div><div class="b">機能呼出後のログ(MAZG101I525)が出力されること</div><div class="r">非浏览器确认</div></div>
       </div>
+<h2>mock では確認できない項目（1 件）</h2>
       <div class="item">
         <div class="w">mock代替<br>手順 22–36</div>
-        <div><div class="t">click No</div><div class="b">AMA28のNoリンクはmock未配線（selectNoのlist項目hidden未整備）</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 22–36</div>
-        <div><div class="t">ast 表示 営業連携</div><div class="b">営業連携結果=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 22–36</div>
-        <div><div class="t">ast メール送信ログ</div><div class="b">MAZG101I524/I525=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
-      </div>
-      <div class="item">
-        <div class="w">mock代替<br>手順 22–36</div>
-        <div><div class="t">ast 営業連携通知メール/リンク</div><div class="b">メール受信・リンク遷移=非浏览器=真機人工</div><div class="r">真機で確認</div></div>
+        <div><div class="t">click No</div><div class="b">AMA28のNoリンクはmock未配線（selectNoのlist項目hidden未整備）</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
       </div>
 <h2>入力値（1 件）</h2>
       <div class="item">

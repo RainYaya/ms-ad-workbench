@@ -12,6 +12,8 @@ RUNNER = ROOT / "automation" / "node-runner"
 PLAN = json.loads((RUNNER / "run-plan.json").read_text(encoding="utf-8"))
 CASES = sorted(set(PLAN.get("A", [])) | set(PLAN.get("C", {})))
 PROXY = re.compile(r"非浏览器|真機|mock|簡易|代理|未再現|未収録|手動")
+MANUAL_RE = re.compile(r"非浏览器|真機人工|JP1|APログ|DBログ|DBダンプ|テーブル|バッチ|F12|DevTools|手順|目視|人が|実機で確認")
+MOCK_RE = re.compile(r"mock|Mock|未収録|未再現|簡易|代理|回写")
 
 sel = {}
 for f in RUNNER.glob("block-selectors*.json"):
@@ -23,10 +25,23 @@ for bid, b in sel.items():
     proxy = [s for s in steps if PROXY.search(str(s.get("note") or ""))]
     manual = [s for s in steps if s.get("action") == "manual"]
     real = [s for s in steps if s.get("action") not in ("manual",) and not PROXY.search(str(s.get("note") or ""))]
+    def step_kind(s):
+        if s.get("action") == "manual":
+            return "manual"
+        note = str(s.get("note") or "")
+        if MANUAL_RE.search(note):
+            return "manual"
+        if MOCK_RE.search(note):
+            return "mock"
+        if PROXY.search(note):
+            return "proxy"
+        return "browser"
+    kinds = [step_kind(s) for s in steps]
     blocks[bid] = {
         "steps": len(steps),
         "proxy": len(proxy),
         "manual": len(manual),
+        "mock": kinds.count("mock"),
         "force": sum(1 for s in steps if s.get("force")),
         "quality": "manual" if manual else ("proxy-only" if proxy and not real else ("proxy" if proxy else "browser")),
         "notes": list(dict.fromkeys(str(s.get("note")) for s in proxy))[:4],
@@ -37,7 +52,7 @@ for bid, b in sel.items():
                 "selector": s.get("selector") or "",
                 "value": s.get("value") or "",
                 "note": s.get("note") or "",
-                "kind": "manual" if s.get("action") == "manual" else ("proxy" if PROXY.search(str(s.get("note") or "")) else "browser"),
+                "kind": step_kind(s),
             }
             for s in steps
         ],
