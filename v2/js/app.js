@@ -1512,11 +1512,20 @@ AY-120-01-001"></textarea>
     return 'visual';
   }
 
-  function reviewRows(c, filter) {
-    const rows = (c.workflow?.rows || []).filter((r) => r.verificationItem || r.evidenceType);
-    return rows.filter((r) => {
-      const st = reviewStatus(c.id, r);
-      if (filter === 'hc') return (r.evidenceType || '') === '画面HC';
+  function reviewUnits(c, filter) {
+    const rows = (c.workflow?.rows || []).filter((r) => r.operationItem || r.verificationItem || r.evidenceType);
+    const units = [];
+    let ops = [];
+    for (const r of rows) {
+      if (r.operationItem) ops.push(r);
+      if (r.verificationItem || r.evidenceType) {
+        units.push({ row: r, ops: ops.slice() });
+        ops = [];
+      }
+    }
+    return units.filter((u) => {
+      const st = reviewStatus(c.id, u.row);
+      if (filter === 'hc') return (u.row.evidenceType || '') === '画面HC';
       if (filter === 'manual') return st === 'manual';
       if (filter === 'missing') return st === 'missing';
       return true;
@@ -1545,25 +1554,27 @@ AY-120-01-001"></textarea>
       if (!c) { $('#main').innerHTML = caseHeader(meta) + empty('手順書データが見つかりません。'); return; }
       state.reviewData = c;
       state.reviewMeta = meta;
-      const rows = reviewRows(c, state.reviewFilter || 'all');
-      state.reviewRows = rows.map((r) => r.sourceRow);
-      if (!rows.some((r) => Number(r.sourceRow) === Number(state.reviewRow))) {
-        const firstHc = rows.find((r) => (r.evidenceType || '') === '画面HC');
-        state.reviewRow = (firstHc || rows[0])?.sourceRow ?? null;
+      const units = reviewUnits(c, state.reviewFilter || 'all');
+      state.reviewRows = units.map((u) => u.row.sourceRow);
+      if (!units.some((u) => Number(u.row.sourceRow) === Number(state.reviewRow))) {
+        const firstHc = units.find((u) => (u.row.evidenceType || '') === '画面HC');
+        state.reviewRow = (firstHc || units[0])?.row.sourceRow ?? null;
       }
-      $('#main').innerHTML = reviewHtml(meta, c, rows);
+      $('#main').innerHTML = reviewHtml(meta, c, units);
     } catch (err) {
       console.error(err);
       $('#main').innerHTML = caseHeader(meta) + empty(`読み込みに失敗しました: ${err.message}`);
     }
   }
 
-  function reviewHtml(meta, c, rows) {
+  function reviewHtml(meta, c, units) {
     const p = pget(c.id);
-    const allRows = (c.workflow?.rows || []).filter((r) => r.verificationItem || r.evidenceType);
-    const hc = allRows.filter((r) => (r.evidenceType || '') === '画面HC');
+    const allUnits = reviewUnits(c, 'all');
+    const hc = allUnits.map((u) => u.row).filter((r) => (r.evidenceType || '') === '画面HC');
     const confirmed = hc.filter((r) => p.review?.[r.sourceRow]?.result).length;
-    const cur = rows.find((r) => Number(r.sourceRow) === Number(state.reviewRow)) || rows[0];
+    const curUnit = units.find((u) => Number(u.row.sourceRow) === Number(state.reviewRow)) || units[0];
+    const cur = curUnit?.row || null;
+    const ops = curUnit?.ops || [];
     const st = cur ? reviewStatus(c.id, cur) : 'missing';
     const ev = cur ? reviewEvidence(c.id, cur) : null;
     const facts = appendixFacts(c);
@@ -1571,18 +1582,21 @@ AY-120-01-001"></textarea>
     const memo = cur ? (p.review?.[cur.sourceRow]?.memo || '') : '';
     const imgSrc = ev?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(ev.file)}` : '';
     const fbtn = (k, label) => `<button class="btn ${((state.reviewFilter || 'all') === k) ? 'primary' : ''}" data-review-filter="${k}">${label}</button>`;
-    const rowBtn = (r) => {
+    const rowBtn = (u) => {
+      const r = u.row;
       const s = reviewStatus(c.id, r);
       const active = cur && Number(r.sourceRow) === Number(cur.sourceRow);
-      const op = r.operationItem ? `操作 ${r.operationItem}` : '';
       const vf = r.verificationType ? `${r.verificationType} ${r.verificationItem || ''}` : '';
       const res = p.review?.[r.sourceRow]?.result || '';
-      return `<button class="rev-row ${active ? 'active' : ''}" data-review-row="${r.sourceRow}">
-        <span class="rev-src">${r.sourceRow}</span>
-        <span class="rev-mid"><b>${esc(r.functionName || '')}</b><span>${esc(vf || op || '—')}</span></span>
-        ${res ? `<span class="rev-result ${res}">${res}</span>` : ''}
-        <span class="badge ${reviewStatusClass(s)}">${reviewStatusLabel(s)}</span>
-      </button>`;
+      return `<div class="rev-unit">
+        <button class="rev-row ${active ? 'active' : ''}" data-review-row="${r.sourceRow}">
+          <span class="rev-src">${r.sourceRow}</span>
+          <span class="rev-mid"><b>${esc(r.functionName || '')}</b><span>${esc(vf || '—')}</span></span>
+          ${res ? `<span class="rev-result ${res}">${res}</span>` : ''}
+          <span class="badge ${reviewStatusClass(s)}">${reviewStatusLabel(s)}</span>
+        </button>
+        ${u.ops.length ? `<div class="rev-ops-list">${u.ops.map((o) => `<div class="rev-op"><span>${o.sourceRow}</span>${esc(o.operationType || '')} ${esc(o.operationItem || '')}</div>`).join('')}</div>` : ''}
+      </div>`;
     };
     const stage = !cur ? empty('対象行がありません') : (() => {
       if (st === 'manual') {
@@ -1596,6 +1610,7 @@ AY-120-01-001"></textarea>
       }
       return `<div class="rev-image-wrap"><img class="rev-image" loading="lazy" src="${esc(imgSrc)}" data-lightbox="${esc(imgSrc)}" alt="Excel ${cur.sourceRow}"></div>`;
     })();
+    const flow = ops.length ? `<div class="rev-flow"><div class="rev-flow-title">この画面に至る操作</div>${ops.map((o) => `<div class="rev-flow-row"><span class="mono">行${o.sourceRow}</span><span class="badge outline">${esc(o.operationType || '操作')}</span><span>${esc(o.operationItem || '')}</span></div>`).join('')}</div>` : '';
     const side = !cur ? '' : `<div class="rev-side-block">
       <div class="rev-side-head"><span class="badge ${reviewStatusClass(st)}">${reviewStatusLabel(st)}</span><span class="mono">行${cur.sourceRow}</span></div>
       <h4>${esc(cur.verificationItem || cur.functionName || '')}</h4>
@@ -1616,9 +1631,9 @@ AY-120-01-001"></textarea>
       </div>
       <textarea class="rev-memo" data-review-memo="${cur.sourceRow}" data-case-id="${esc(c.id)}" placeholder="メモ（任意）">${esc(memo)}</textarea>
     </div>`;
-    const idx = rows.findIndex((r) => Number(r.sourceRow) === Number(cur?.sourceRow));
-    const prev = idx > 0 ? rows[idx - 1].sourceRow : null;
-    const next = idx >= 0 && idx < rows.length - 1 ? rows[idx + 1].sourceRow : null;
+    const idx = units.findIndex((u) => Number(u.row.sourceRow) === Number(cur?.sourceRow));
+    const prev = idx > 0 ? units[idx - 1].row.sourceRow : null;
+    const next = idx >= 0 && idx < units.length - 1 ? units[idx + 1].row.sourceRow : null;
     return `<div class="review-shell">
       <div class="review-top">
         <div><span class="mono">${esc(c.id)}</span> <b>${esc(meta.functionName || '')}</b> <span class="hint">検査 ${confirmed} / ${hc.length}</span></div>
@@ -1626,8 +1641,8 @@ AY-120-01-001"></textarea>
         <div class="chips"><button class="btn" data-action="review-prev" ${prev == null ? 'disabled' : ''}>← 前へ</button><button class="btn" data-action="review-next" ${next == null ? 'disabled' : ''}>次へ →</button><button class="btn" data-action="review-close">終了</button></div>
       </div>
       <div class="review-body">
-        <aside class="review-list">${rows.map(rowBtn).join('') || '<div class="muted small">該当なし</div>'}</aside>
-        <main class="review-stage">${stage}<div class="rev-caption">行${cur ? cur.sourceRow : '—'} / ${esc(cur?.verificationItem || cur?.functionName || '')} ${imgSrc ? `<a href="${esc(imgSrc)}" target="_blank" rel="noopener">原図</a>` : ''}</div></main>
+        <aside class="review-list">${units.map(rowBtn).join('') || '<div class="muted small">該当なし</div>'}</aside>
+        <main class="review-stage">${flow}${stage}<div class="rev-caption">行${cur ? cur.sourceRow : '—'} / ${esc(cur?.verificationItem || cur?.functionName || '')} ${imgSrc ? `<a href="${esc(imgSrc)}" target="_blank" rel="noopener">原図</a>` : ''}</div></main>
         <aside class="review-side">${side}</aside>
       </div>
     </div>`;
