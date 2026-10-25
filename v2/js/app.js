@@ -1591,6 +1591,7 @@ AY-120-01-001"></textarea>
     const facts = appendixFacts(c);
     const pm = paramsMeta(c.id);
     const pv = pm.values || {};
+    const auditItems = ((window.MSAD_PARAM_AUDIT || {})[c.id] || {}).items || [];
     const importantParams = ['policyNo', 'detailNo', 'largeItemValue', 'insuranceLabel', 'inputType', 'sectionCode', 'agentCode', 'subAgentCode', 'fieldAgentId', 'inquiryId', 'itemCode'];
     const paramRows = importantParams.filter((k) => pv[k] !== undefined && pv[k] !== '');
     const normVal = (v) => String(v ?? '').replace(/\s+/g, '').replace(/：/g, ':').replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
@@ -1657,9 +1658,12 @@ AY-120-01-001"></textarea>
       ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
     </div>
     <div class="rev-side-block">
-      <h4>別紙との照合</h4>
-      ${paramChecks.length ? paramChecks.map((x) => `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel)}</b><span class="badge ${x.ok ? 'green' : 'red'}">${x.ok ? '一致' : '不一致'}</span></div>`).join('') : '<div class="muted small">別紙に対応する項目が見つかりません</div>'}
-      ${paramChecks.some((x) => !x.ok) ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しません。params を更新してください。</div>' : ''}
+      <h4>別紙との照合 ${auditItems.length ? `<span class="hint">${auditItems.filter((x) => x.status === 'match' || x.status === 'rule').length}/${auditItems.length}</span>` : ''}</h4>
+      ${auditItems.length ? auditItems.map((x) => {
+        const st = x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
+        return `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel ?? '未設定')}</b><span class="badge ${st[1]}">${st[0]}</span></div>`;
+      }).join('') : '<div class="muted small">この本の別紙入力項目は未抽出です</div>'}
+      ${auditItems.some((x) => x.status === 'mismatch' || x.status === 'missingParam') ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しない項目があります。</div>' : ''}
       <div class="small muted" style="margin-top:6px">別紙の値を params に写し、runner がフォームへ入力します。</div>
     </div>
     <div class="rev-side-block">
@@ -1893,7 +1897,9 @@ AY-120-01-001"></textarea>
       const ms = evcase(id).manualSteps || [];
       const op = ms.filter((m) => m.phase === '操作').length;
       const chk = ms.filter((m) => m.phase === '確認').length;
-      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id) };
+      const audit = ((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || [];
+      const bad = audit.filter((x) => x.status === 'mismatch' || x.status === 'missingParam').length;
+      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id), audit, bad };
     }).filter((r) => {
       if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
       if (filter === 'manual') return (r.s.manual || 0) > 0;
@@ -1901,6 +1907,7 @@ AY-120-01-001"></textarea>
       if (filter === 'missing') return (r.s.missing || 0) > 0;
       if (filter === 'auto') return r.ms.length === 0 && (r.s.manual || 0) === 0;
       if (filter === 'paramsAuto') return r.pm.level === 'auto';
+      if (filter === 'paramNg') return r.bad > 0;
       return true;
     });
     const totalManual = all.reduce((n, id) => n + (evsum(id).manual || 0), 0);
@@ -1915,6 +1922,7 @@ AY-120-01-001"></textarea>
         <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div><button class="btn" data-action="review-mode" data-case="${esc(r.id)}">検査</button></td>
         <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
         <td>${paramsBadge(r.id)}</td>
+        <td>${r.audit.length ? (r.bad ? `<span class="badge red">NG ${r.bad}</span>` : `<span class="badge green">OK ${r.audit.length}</span>`) : '<span class="badge gray">未抽出</span>'}</td>
         <td class="num">${s.hc || 0}</td>
         <td class="num">${s.exact || 0}</td>
         <td class="num">${s.blockEnd || 0}</td>
@@ -1933,14 +1941,15 @@ AY-120-01-001"></textarea>
         ${kpi('人工確認', totalChk, 'AP/DBログ・表など', 'amber')}
         ${kpi('証跡未取得', totalMissing, '要修正', 'red')}
         ${kpi('既定値 params', all.filter((id) => paramsMeta(id).level === 'auto').length, '要別紙確認', 'amber')}
+        ${kpi('別紙不一致', all.filter((id) => (((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || []).some((x) => x.status === 'mismatch' || x.status === 'missingParam')).length, '要 params 修正', 'red')}
       </div>
       <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}${fbtn('paramsAuto', '既定値 params')}
+        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}${fbtn('paramsAuto', '既定値 params')}${fbtn('paramNg', '別紙不一致')}
         <span class="hint" style="margin-left:auto">${rows.length} 件</span>
       </div></div>
       <section class="panel mt"><div class="table-wrap"><table class="data">
-        <thead><tr><th>ケース</th><th>実行</th><th>パラメータ</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
-        <tbody>${body || '<tr><td colspan="11" class="muted">該当なし</td></tr>'}</tbody>
+        <thead><tr><th>ケース</th><th>実行</th><th>パラメータ</th><th>別紙照合</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
+        <tbody>${body || '<tr><td colspan="12" class="muted">該当なし</td></tr>'}</tbody>
       </table></div></section>`;
   }
 
