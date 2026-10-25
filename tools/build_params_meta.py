@@ -28,10 +28,12 @@ for cid in CASES:
     d = json.loads((PDIR / source).read_text(encoding="utf-8"))
     keys = sorted({**d.get("common", {}), **(d.get("cases", {}).get(cid) or {})}.keys())
     level = "auto" if source == "auto.json" else "case"
+    values = {**d.get("common", {}), **(d.get("cases", {}).get(cid) or {})}
     meta[cid] = {
         "source": source,
         "level": level,
         "keys": keys,
+        "values": values,
         "note": "既定値（要別紙確認）" if level == "auto" else "ケース固有 params",
     }
     counts[source] += 1

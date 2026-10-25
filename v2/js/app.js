@@ -1589,6 +1589,10 @@ AY-120-01-001"></textarea>
     const st = cur ? reviewStatus(c.id, cur) : 'missing';
     const ev = cur ? reviewEvidence(c.id, cur) : null;
     const facts = appendixFacts(c);
+    const pm = paramsMeta(c.id);
+    const pv = pm.values || {};
+    const importantParams = ['policyNo', 'detailNo', 'largeItemValue', 'insuranceLabel', 'inputType', 'sectionCode', 'agentCode', 'subAgentCode', 'fieldAgentId', 'inquiryId', 'itemCode'];
+    const paramRows = importantParams.filter((k) => pv[k] !== undefined && pv[k] !== '');
     const result = cur ? (p.review?.[cur.sourceRow]?.result || '') : '';
     const memo = cur ? (p.review?.[cur.sourceRow]?.memo || '') : '';
     const imgSrc = ev?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(ev.file)}` : '';
@@ -1634,10 +1638,11 @@ AY-120-01-001"></textarea>
       ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
     </div>
     <div class="rev-side-block">
-      <h4>パラメータ</h4>
-      <div class="rev-fact"><span>source</span><b>${esc(paramsMeta(c.id).source)}</b></div>
-      <div class="rev-fact"><span>状態</span><b>${paramsMeta(c.id).level === 'auto' ? '既定値（要別紙確認）' : 'ケース固有'}</b></div>
-      <div class="small muted" style="margin-top:5px">${esc((paramsMeta(c.id).keys || []).join(', '))}</div>
+      <h4>パラメータ <span class="badge ${pm.level === 'auto' ? 'amber' : 'green'}">${pm.level === 'auto' ? '既定値' : '固有'}</span></h4>
+      <div class="rev-fact"><span>source</span><b><a href="../automation/cdp/params/${esc(pm.source)}" target="_blank" rel="noopener">${esc(pm.source)}</a></b></div>
+      ${pm.level === 'auto' ? '<div class="small" style="color:#b45309;margin:4px 0">流程用の既定値。真機前に別紙で置換してください。</div>' : ''}
+      ${paramRows.length ? paramRows.map((k) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(pv[k])}</b></div>`).join('') : '<div class="muted small">主要パラメータなし</div>'}
+      <details class="rev-params-all"><summary>全パラメータ（${Object.keys(pv).length}）</summary><pre>${esc(Object.entries(pv).map(([k, v]) => `${k}: ${v}`).join('\n'))}</pre></details>
     </div>
     <div class="rev-side-block">
       <h4>判定</h4>

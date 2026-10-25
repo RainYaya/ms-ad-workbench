@@ -551,3 +551,6 @@ details.panel>summary:hover{background:rgba(15,118,110,.04)}
 .rev-flow-title{font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px;letter-spacing:.04em}
 .rev-flow-row{display:flex;align-items:baseline;gap:7px;font-size:11px;padding:1px 0}
 .rev-flow-row .mono{color:var(--faint);font-size:10px;min-width:34px}
+.rev-params-all{margin-top:8px}
+.rev-params-all summary{cursor:pointer;font-size:10px;color:var(--muted)}
+.rev-params-all pre{white-space:pre-wrap;font-size:9.5px;line-height:1.35;max-height:180px;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:6px;margin:5px 0 0}
