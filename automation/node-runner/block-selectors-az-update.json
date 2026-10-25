@@ -245,16 +245,62 @@
   ],
   "steps": [
    {
-    "event": "click 完了登録",
+    "event": "input 回答内容(空欄)",
+    "action": "fill",
+    "selector": "select[name=\"list[0].answer_contents.selected\"]",
+    "value": "params.answerSelection",
+    "how": "select"
+   },
+   {
+    "event": "input 回答入力欄(空欄)",
+    "action": "fill",
+    "selector": "textarea[name=\"forms_message\"]",
+    "value": "params.answerTextFirst"
+   },
+   {
+    "event": "click 完了登録(1回目)",
     "action": "click",
-    "selector": "input[name='updateCompleteDate']",
+    "selector": "input[name=\"updateCompleteDate\"]",
     "force": true
    },
    {
-    "event": "ast 画面確認",
+    "event": "ast 更新画面残留(W051后画面仍在)",
     "action": "assert",
     "assert": "visible",
-    "selector": "input[name='update']"
+    "selector": "input[name=\"update\"]"
+   },
+   {
+    "event": "ast エラーメッセージ MAZG101W051",
+    "action": "assert",
+    "assert": "text",
+    "selector": "body",
+    "contains": "MAZG101W051",
+    "note": "mock无后端消息，真SUT断言",
+    "optional": true
+   },
+   {
+    "event": "click OK(完了確認)",
+    "action": "click",
+    "selector": "input[name=\"update\"]",
+    "force": true
+   },
+   {
+    "event": "input 回答入力欄(任意文字)",
+    "action": "fill",
+    "selector": "textarea[name=\"forms_message\"]",
+    "value": "params.answerTextSecond"
+   },
+   {
+    "event": "click 完了登録(2回目)",
+    "action": "click",
+    "selector": "input[name=\"updateCompleteDate\"]",
+    "force": true
+   },
+   {
+    "event": "ast 更新画面残留(2回目)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name=\"update\"]"
    }
   ]
  },

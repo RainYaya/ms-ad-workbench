@@ -514,7 +514,7 @@
   "AZ-110-01-011": {
    "policyNo": "AZ11001",
    "detailNo": "0000000011",
-   "inputType": "2",
+   "inputType": "5",
    "largeItemValue": "Z",
    "insuranceLabel": "00：種目共通",
    "agentCode": "252H",
@@ -536,12 +536,13 @@
    "correctionItem": "訂正項目１",
    "correctionContent": "訂正内容１",
    "confirmer": "TEST",
-   "counterparty": "確認相手TEST"
+   "counterparty": "確認相手TEST",
+   "_deviationNote": "種目Z要求5/7；別紙写現地(2)疑似有误，模拟层跑通用5，真机前需业务确认"
   },
   "AZ-110-01-012": {
    "policyNo": "AZ11001",
    "detailNo": "0000000012",
-   "inputType": "2",
+   "inputType": "9",
    "largeItemValue": "0",
    "insuranceLabel": "00：その他",
    "agentCode": "252H",
@@ -563,7 +564,8 @@
    "correctionItem": "訂正項目１",
    "correctionContent": "訂正内容１",
    "confirmer": "TEST",
-   "counterparty": "確認相手TEST"
+   "counterparty": "確認相手TEST",
+   "_deviationNote": "種目0要求9；別紙写現地(2)疑似有误，同上"
   },
   "AZ-110-02-001": {
    "policyNo": "AZ11002",
@@ -1641,23 +1643,38 @@
   },
   "AZ-210-46-003": {
    "policyNo": "AZ21036",
-   "detailNo": "0000000038"
+   "detailNo": "0000000038",
+   "answerSelection": "0",
+   "answerTextFirst": "",
+   "answerTextSecond": "任意回答A"
   },
   "AZ-210-46-004": {
    "policyNo": "AZ21036",
-   "detailNo": "0000000039"
+   "detailNo": "0000000039",
+   "answerSelection": "0",
+   "answerTextFirst": "",
+   "answerTextSecond": "任意回答B"
   },
   "AZ-210-46-005": {
    "policyNo": "AZ21036",
-   "detailNo": "0000000040"
+   "detailNo": "0000000040",
+   "answerSelection": "0",
+   "answerTextFirst": "",
+   "answerTextSecond": "任意回答C"
   },
   "AZ-210-46-006": {
    "policyNo": "AZ21036",
-   "detailNo": "0000000041"
+   "detailNo": "0000000041",
+   "answerSelection": "0",
+   "answerTextFirst": "",
+   "answerTextSecond": "任意回答D"
   },
   "AZ-210-46-007": {
    "policyNo": "AZ21036",
-   "detailNo": "0000000042"
+   "detailNo": "0000000042",
+   "answerSelection": "0",
+   "answerTextFirst": "",
+   "answerTextSecond": "任意回答E"
   },
   "AZ-210-47-001": {
    "policyNo": "AZ21036",
@@ -2148,7 +2165,7 @@
   "AZ-310-01-011": {
    "policyNo": "AZ31001",
    "detailNo": "0000000011",
-   "inputType": "2",
+   "inputType": "5",
    "largeItemValue": "Z",
    "insuranceLabel": "00：種目共通",
    "agentCode": "252H",
@@ -2170,12 +2187,13 @@
    "correctionItem": "訂正項目１",
    "correctionContent": "訂正内容１",
    "confirmer": "TEST",
-   "counterparty": "確認相手TEST"
+   "counterparty": "確認相手TEST",
+   "_deviationNote": "同AZ-110-01-011"
   },
   "AZ-310-01-012": {
    "policyNo": "AZ31001",
    "detailNo": "0000000012",
-   "inputType": "2",
+   "inputType": "9",
    "largeItemValue": "0",
    "insuranceLabel": "00：その他",
    "agentCode": "252H",
@@ -2197,7 +2215,8 @@
    "correctionItem": "訂正項目１",
    "correctionContent": "訂正内容１",
    "confirmer": "TEST",
-   "counterparty": "確認相手TEST"
+   "counterparty": "確認相手TEST",
+   "_deviationNote": "同AZ-110-01-012"
   },
   "AZ-310-01-013": {
    "policyNo": "AZ31001",
