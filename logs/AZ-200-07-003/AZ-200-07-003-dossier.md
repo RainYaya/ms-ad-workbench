@@ -151,10 +151,10 @@ params total=38, auto-fallback=32: sectionCode,agentCode,policyNo,detailNo,inqui
 - BLK-AZ-AGT-LIST-SEARCH  pass  rows None..None
 
 ## 6. 証跡索引（画面HC 取得状况）
-- [OK ] r16 表示|不備一覧画面 file=02_r016_不備一覧画面.png url=...http://127.0.0.1:10091/AMC00/AMC22.html
-- [OK ] r19 表示|不備一覧画面 file=03_r019_不備一覧画面.png url=...http://127.0.0.1:10091/AMC00/AMC22.html
-- [OK ] r22 表示|不備一覧画面 file=04_r022_不備一覧画面.png url=...http://127.0.0.1:10091/AMC00/AMC22.html
-- [OK ] r25 表示|不備一覧画面 file=05_r025_不備一覧画面.png url=...http://127.0.0.1:10091/AMC00/AMC22.html
+- [OK ] r16 表示|不備一覧画面 file=02_r016_不備一覧画面.png url=...http://127.0.0.1:10097/AMC00/AMC22.html
+- [OK ] r19 表示|不備一覧画面 file=03_r019_不備一覧画面.png url=...http://127.0.0.1:10097/AMC00/AMC22.html
+- [OK ] r22 表示|不備一覧画面 file=04_r022_不備一覧画面.png url=...http://127.0.0.1:10097/AMC00/AMC22.html
+- [OK ] r25 表示|不備一覧画面 file=05_r025_不備一覧画面.png url=...http://127.0.0.1:10097/AMC00/AMC22.html
 
 ## 7. KEY 截图（AI 审计员必须亲眼看的）
 - logs/AZ-200-07-003/01_menu.png

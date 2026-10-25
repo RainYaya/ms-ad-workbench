@@ -153,10 +153,10 @@ params total=34, auto-fallback=21: inquiryId,applicationType,sumupStatus,freeCod
 - BLK-AUTO-C2B6BA33  pass  rows None..None
 
 ## 6. 証跡索引（画面HC 取得状况）
-- [OK ] r15 遷移|不備一覧画面 file=02_r015_不備一覧画面.png url=...http://127.0.0.1:10091/AMB/AMA07.html
-- [OK ] r19 遷移|不備内容入力画面-更新 file=04_r019_不備内容入力画面-更新.png url=...http://127.0.0.1:10091/AMB/AMA04.html
-- [OK ] r22 表示|不備内容入力画面-更新 file=05_r022_不備内容入力画面-更新.png url=...http://127.0.0.1:10091/AMB/AMA04.html
-- [OK ] r26 表示|不備内容入力画面-更新 file=07_r026_不備内容入力画面-更新.png url=...http://127.0.0.1:10091/AMB/AMA04.html
+- [OK ] r15 遷移|不備一覧画面 file=02_r015_不備一覧画面.png url=...http://127.0.0.1:10097/AMB/AMA07.html
+- [OK ] r19 遷移|不備内容入力画面-更新 file=04_r019_不備内容入力画面-更新.png url=...http://127.0.0.1:10097/AMB/AMA04.html
+- [OK ] r22 表示|不備内容入力画面-更新 file=05_r022_不備内容入力画面-更新.png url=...http://127.0.0.1:10097/AMB/AMA04.html
+- [OK ] r26 表示|不備内容入力画面-更新 file=07_r026_不備内容入力画面-更新.png url=...http://127.0.0.1:10097/AMB/AMA04.html
 
 ## 7. KEY 截图（AI 审计员必须亲眼看的）
 - logs/AZ-210-46-007/01_menu.png
