@@ -13,6 +13,7 @@ const baseUrl = arg('base-url', 'http://127.0.0.1:10081/mhkcmwa11/dummy.html');
 const headed = process.argv.includes('--headed');
 const slow = Number(arg('slow', '0')) || 0;
 const keepOpen = Number(arg('keep-open', '0')) || 0;
+const traceOn = process.argv.includes('--trace');
 const useEdge = process.argv.includes('--edge') || !headed; // headless dev uses bundled edge channel
 
 import { readdirSync } from 'node:fs';
@@ -20,9 +21,11 @@ function loadParams(cid) {
   const dir = join(root, '../cdp/params');
   let out = null;
   const files = readdirSync(dir).filter((f) => f.endsWith('.json')).sort((a, b) => {
-    // auto.json is the fallback (covers all cases); case-specific files must win.
+    // auto.json is the fallback; appendix-generated business values win over curated placeholders.
     if (a === 'auto.json') return 1;
     if (b === 'auto.json') return -1;
+    if (a === 'generated.json') return -1;
+    if (b === 'generated.json') return 1;
     return a.localeCompare(b);
   });
   for (const f of files) {
@@ -105,7 +108,19 @@ async function shot(name, where = page) {
   console.log('SHOT', file);
   return file;
 }
+async function traceShot(name, where = page) {
+  try {
+    const file = `${String(++shotIdx).padStart(2, '0')}_${name}.png`;
+    await where.screenshot({ path: join(logDir, file), fullPage: false, timeout: 5000, animations: 'disabled' });
+    shots.push(file);
+    return file;
+  } catch {
+    return null;
+  }
+}
 const evidence = [];
+const traceEntries = [];
+let traceIdx = 0;
 const safeName = (s) => String(s ?? 'hc').replace(/[\\/:*?"<>|\s]/g, '_').slice(0, 32);
 async function pageMeta(p) {
   return {
@@ -117,6 +132,14 @@ async function pageMeta(p) {
 
 // value interpolation for selectors containing {params.x}
 const sel = (s) => String(s ?? '').replace(/\{params\.(\w+)\}/g, (_, k) => P[k] ?? '');
+const escHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function writeTrace(cid, entries) {
+  const dir = join(root, '../../logs', cid);
+  writeFileSync(join(dir, `${cid}-trace.json`), JSON.stringify({ caseId: cid, entries }, null, 2));
+  const rows = entries.map((e) => `<tr><td>${e.n}</td><td><code>${escHtml(e.block)}</code></td><td>${escHtml(e.event)}</td><td>${escHtml(e.action)}</td><td><code>${escHtml(e.selector)}</code></td><td class="small">${escHtml(e.url)}</td><td>${e.screenshot ? `<a href="${escHtml(e.screenshot)}"><img src="${escHtml(e.screenshot)}" loading="lazy"></a>` : '—'}</td></tr>`).join('');
+  const html = `<!doctype html><meta charset="utf-8"><title>${escHtml(cid)} trace</title><style>body{font:13px system-ui,sans-serif;margin:20px;color:#17211d}table{border-collapse:collapse;width:100%}th,td{border:1px solid #d5ddd8;padding:6px;vertical-align:top}th{background:#1f4e5a;color:#fff;position:sticky;top:0}img{width:220px;border:1px solid #d5ddd8;border-radius:4px}.small{font-size:11px;color:#66756e;word-break:break-all}</style><h1>${escHtml(cid)} — step trace</h1><p>各ステップ後の画面。クリックで原図。</p><table><thead><tr><th>#</th><th>block</th><th>event</th><th>action</th><th>selector</th><th>URL</th><th>screenshot</th></tr></thead><tbody>${rows}</tbody></table>`;
+  writeFileSync(join(dir, `${cid}-trace.html`), html);
+}
 
 try {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
@@ -362,6 +385,15 @@ try {
       const activePage = step.in === 'popup' ? (popup && !popup.isClosed() ? popup : where) : where;
       if (process.env.STEP_DEBUG) console.log('STEP', step.action, step.event || '', '| page', page.url(), '| popup', popup && !popup.isClosed() ? popup.url() : '-');
       await maybeCapture(activePage, step.action);
+      if (traceOn) {
+        traceIdx++;
+        const file = await traceShot(`trace_${String(traceIdx).padStart(3, '0')}_${safeName(step.event || step.action)}`, activePage);
+        traceEntries.push({
+          n: traceIdx, block: currentBlock, event: step.event || '', action: step.action,
+          selector: step.selector || '', value: step.value || '', url: activePage.url(),
+          popup: popup && !popup.isClosed() ? popup.url() : '', screenshot: file,
+        });
+      }
       if (step.shot) await shot(step.shot);
       if (slow) await page.waitForTimeout(slow);
     }
@@ -375,6 +407,7 @@ try {
   }
 
   const status = skipped.length ? 'partial' : 'pass';
+  if (traceOn) writeTrace(caseId, traceEntries);
   writeFileSync(join(logDir, `${caseId}-evidence.json`), JSON.stringify({ caseId, evidence }, null, 1));
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
     caseId, runner: 'node', ts: new Date().toISOString(), status, blocks: blockStatus, skipped, shots, evidence
@@ -386,6 +419,7 @@ try {
   }
 } catch (err) {
   await shot('failure').catch(() => {});
+  if (traceOn) writeTrace(caseId, traceEntries);
   writeFileSync(join(logDir, `${caseId}-evidence.json`), JSON.stringify({ caseId, evidence }, null, 1));
   writeFileSync(join(logDir, `${caseId}-node-result.json`), JSON.stringify({
     caseId, runner: 'node', ts: new Date().toISOString(), status: 'fail', error: String(err), blocks: blockStatus, shots, evidence

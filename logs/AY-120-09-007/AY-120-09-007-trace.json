@@ -1,0 +1,203 @@
+{
+  "caseId": "AY-120-09-007",
+  "entries": [
+    {
+      "n": 1,
+      "block": "BLK-AUTO-E2D0C359",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
+      "popup": "",
+      "screenshot": "02_trace_001_goto_start_screen.png"
+    },
+    {
+      "n": 2,
+      "block": "BLK-AUTO-E2D0C359",
+      "event": "ast AYメニュー表示",
+      "action": "assert",
+      "selector": "#route3",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA01.html",
+      "popup": "",
+      "screenshot": "03_trace_002_ast_AYメニュー表示.png"
+    },
+    {
+      "n": 3,
+      "block": "BLK-AUTO-E2D0C359",
+      "event": "click 照会・検索",
+      "action": "click",
+      "selector": "#route3",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "05_trace_003_click_照会・検索.png"
+    },
+    {
+      "n": 4,
+      "block": "BLK-AUTO-E2D0C359",
+      "event": "ast transition 照会・検索画面",
+      "action": "assert",
+      "selector": "#select",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "07_trace_004_ast_transition_照会・検索画面.png"
+    },
+    {
+      "n": 5,
+      "block": "BLK-AUTO-E2D0C359",
+      "event": "ast 検索結果エリア",
+      "action": "assert",
+      "selector": "#gyoumu_list",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "08_trace_005_ast_検索結果エリア.png"
+    },
+    {
+      "n": 6,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "10_trace_006_goto_start_screen.png"
+    },
+    {
+      "n": 7,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "fill 課支社CD",
+      "action": "fill",
+      "selector": "#section_code",
+      "value": "AHE61",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "11_trace_007_fill_課支社CD.png"
+    },
+    {
+      "n": 8,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "fill 代理店CD",
+      "action": "fill",
+      "selector": "#agent_code",
+      "value": "252H",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "12_trace_008_fill_代理店CD.png"
+    },
+    {
+      "n": 9,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "fill 証券番号",
+      "action": "fill",
+      "selector": "#policy_number",
+      "value": "AY11001",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "13_trace_009_fill_証券番号.png"
+    },
+    {
+      "n": 10,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "click 検索",
+      "action": "click",
+      "selector": "#select",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "14_trace_010_click_検索.png"
+    },
+    {
+      "n": 11,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "ast display 照会・検索画面",
+      "action": "assert",
+      "selector": "#gyoumu_list a",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA05.html",
+      "popup": "",
+      "screenshot": "15_trace_011_ast_display_照会・検索画面.png"
+    },
+    {
+      "n": 12,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "click No リンク",
+      "action": "click",
+      "selector": "#gyoumu_list a[name='link101']",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "17_trace_012_click_No_リンク.png"
+    },
+    {
+      "n": 13,
+      "block": "BLK-AUTO-4F9D57E1",
+      "event": "ast transition 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#div_gyoumu_area_03",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "19_trace_013_ast_transition_申請・確認更新画面.png"
+    },
+    {
+      "n": 14,
+      "block": "BLK-AUTO-FECF904C",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "21_trace_014_goto_start_screen.png"
+    },
+    {
+      "n": 15,
+      "block": "BLK-AUTO-FECF904C",
+      "event": "click 削除",
+      "action": "click",
+      "selector": "#deleteApplication",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html?deleted=1",
+      "popup": "",
+      "screenshot": "22_trace_015_click_削除.png"
+    },
+    {
+      "n": 16,
+      "block": "BLK-AUTO-FECF904C",
+      "event": "ast メッセージ(MAYG101I001)",
+      "action": "assert",
+      "selector": "#act101to001",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html?deleted=1",
+      "popup": "",
+      "screenshot": "23_trace_016_ast_メッセージ(MAYG101I001).png"
+    },
+    {
+      "n": 17,
+      "block": "BLK-AUTO-FECF904C",
+      "event": "click OK(確認Msg)",
+      "action": "wait",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html?deleted=1",
+      "popup": "",
+      "screenshot": "24_trace_017_click_OK(確認Msg).png"
+    },
+    {
+      "n": 18,
+      "block": "BLK-AUTO-FECF904C",
+      "event": "ast 表示 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#act101to001",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/ANA03.html?deleted=1",
+      "popup": "",
+      "screenshot": "25_trace_018_ast_表示_申請・確認更新画面.png"
+    }
+  ]
+}

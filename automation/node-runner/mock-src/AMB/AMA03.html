@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/static/css/mhk.css"/>
 <script src="/static/js/mhk_common.js"></script>
 <script>
-var	insuranceItems = ['','B','00','A0','自賠責','5','00','A1','自動車','Y','02','A0','国内貨物総合保険','Z','00','Z0','種目共通','0','00','00','その他'];
+var	insuranceItems = ['','B','00','A0','自賠責','5','00','A1','自動車','5','11','A0','クルマの保険／はじめての自動車保険','5','13','A0','クルマの保険・一般用','5','03','A0','1DAY保険／GK　クルマの保険・ドライバー保険','Y','02','A0','国内貨物総合保険','Z','00','Z0','種目共通','0','00','00','その他'];
 </script>
 <script>
 function onCloseClick() {
@@ -418,7 +418,7 @@ function setSumupStatusSelect(obj) {
       <div class="gyoumu_field_title">保険種類</div>
       <div id="insurance_item_title" class="gyoumu_field_value_left">
         <input type="hidden" id="selected_insurance_item_code" name="insurance_item_code" />
-        <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="setInsuranceItemSelect(this);onChangeInsuranceItem(this);" tabindex="4"><option value=""></option><option value="00A1">00 ： 自動車</option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+        <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="setInsuranceItemSelect(this);onChangeInsuranceItem(this);" tabindex="4"><option value=""></option><option value="11A0">11：クルマの保険／はじめての自動車保険</option><option value="13A0">13：クルマの保険・一般用</option><option value="03A0">03：1DAY保険／GK　クルマの保険・ドライバー保険</option><option value="00A1">00 ： 自動車</option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
       </div>
 
       <div class="gyoumu_field_title">証券番号</div>

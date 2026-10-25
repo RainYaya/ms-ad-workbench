@@ -1,0 +1,2669 @@
+{
+ "common": {},
+ "cases": {
+  "AY-100-07-001": {
+   "policyNo": "AY10007",
+   "detailNo": "0000000004",
+   "sectionCode": "ABK61"
+  },
+  "AY-100-07-002": {
+   "policyNo": "AY10007",
+   "detailNo": "0000000004",
+   "sectionCode": "RND61"
+  },
+  "AY-100-08-001": {
+   "policyNo": "AY10008",
+   "detailNo": "0000000001"
+  },
+  "AY-110-01-011": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000011",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-012": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000012",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-013": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000013",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-014": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000014",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-015": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000015",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-016": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000016",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-017": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000017",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-01-018": {
+   "policyNo": "AY1101",
+   "detailNo": "0000000018",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-02-001": {
+   "policyNo": "AY11002",
+   "detailNo": "0000000019",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-110-02-002": {
+   "policyNo": "AY11002",
+   "detailNo": "0000000020",
+   "agentCode": "2031",
+   "sectionCode": "ABM62",
+   "customerName": "テスト",
+   "startDate": "20260404"
+  },
+  "AY-120-01-003": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000033",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-004": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000034",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-005": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000035",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-006": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000036",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-007": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000037",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-008": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000038",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-009": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000039",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-010": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000040",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-011": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000041",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-01-012": {
+   "policyNo": "AY12001",
+   "detailNo": "0000000042",
+   "sectionCode": "ABM62"
+  },
+  "AY-120-06-003": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000051"
+  },
+  "AY-120-06-004": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000052"
+  },
+  "AY-120-06-005": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000053"
+  },
+  "AY-120-06-006": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000054"
+  },
+  "AY-120-06-007": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000055"
+  },
+  "AY-120-06-008": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000056"
+  },
+  "AY-120-06-009": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000057"
+  },
+  "AY-120-06-010": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000058"
+  },
+  "AY-120-06-011": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000059"
+  },
+  "AY-120-06-012": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000060"
+  },
+  "AY-120-07-015": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000063"
+  },
+  "AY-120-07-016": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000064"
+  },
+  "AY-120-07-017": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000065"
+  },
+  "AY-120-07-018": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000066"
+  },
+  "AY-120-08-001": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000049"
+  },
+  "AY-120-08-002": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000050"
+  },
+  "AY-120-08-003": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000051"
+  },
+  "AY-120-08-004": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000052"
+  },
+  "AY-120-08-005": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000053"
+  },
+  "AY-120-08-006": {
+   "policyNo": "AY12003",
+   "detailNo": "0000000054"
+  },
+  "AY-120-09-004": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000052"
+  },
+  "AY-120-09-005": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000053"
+  },
+  "AY-120-09-006": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000054"
+  },
+  "AY-120-09-007": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000055"
+  },
+  "AY-120-09-008": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000056"
+  },
+  "AY-120-09-009": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000057"
+  },
+  "AY-120-09-010": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000058"
+  },
+  "AY-120-09-011": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000059"
+  },
+  "AY-120-09-012": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000060"
+  },
+  "AY-120-09-013": {
+   "policyNo": "AY12009",
+   "detailNo": "0000000061"
+  },
+  "AY-121-01-011": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000077",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-012": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000078",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-013": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000079",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-014": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000080",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-015": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000081",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-016": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000082",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-017": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000083",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-01-018": {
+   "policyNo": "AY12101",
+   "detailNo": "0000000084",
+   "sectionCode": "ABM62"
+  },
+  "AY-121-04-017": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000101"
+  },
+  "AY-121-04-018": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000102"
+  },
+  "AY-121-05-001": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000085"
+  },
+  "AY-121-05-002": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000086"
+  },
+  "AY-121-05-003": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000087"
+  },
+  "AY-121-05-004": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000088"
+  },
+  "AY-121-05-005": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000089"
+  },
+  "AY-121-05-006": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000090"
+  },
+  "AY-121-05-007": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000091"
+  },
+  "AY-121-05-008": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000092"
+  },
+  "AY-121-06-011": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000095"
+  },
+  "AY-121-06-012": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000096"
+  },
+  "AY-121-06-013": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000097"
+  },
+  "AY-121-06-014": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000098"
+  },
+  "AY-121-06-015": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000099"
+  },
+  "AY-121-06-016": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000100"
+  },
+  "AY-121-06-017": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000101"
+  },
+  "AY-121-06-018": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000102"
+  },
+  "AY-121-07-001": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000085"
+  },
+  "AY-121-07-002": {
+   "policyNo": "AY12102",
+   "detailNo": "0000000086"
+  },
+  "AY-121-08-003": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000087"
+  },
+  "AY-121-08-004": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000088"
+  },
+  "AY-121-08-005": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000089"
+  },
+  "AY-121-08-006": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000090"
+  },
+  "AY-121-08-007": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000091"
+  },
+  "AY-121-08-008": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000092"
+  },
+  "AY-121-08-009": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000093"
+  },
+  "AY-121-08-010": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000094"
+  },
+  "AY-121-08-011": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000095"
+  },
+  "AY-121-08-012": {
+   "policyNo": "AY12108",
+   "detailNo": "0000000096"
+  },
+  "AY-122-01-006": {
+   "policyNo": "AY11002",
+   "detailNo": "0000000024"
+  },
+  "AY-122-01-007": {
+   "policyNo": "AY11002",
+   "detailNo": "0000000025"
+  },
+  "AY-122-01-008": {
+   "policyNo": "AY11002",
+   "detailNo": "0000000026"
+  },
+  "AY-130-02-001": {
+   "agentCode": "2031",
+   "sectionCode": "ABM62"
+  },
+  "AY-410-01-008": {
+   "policyNo": "AY41001",
+   "detailNo": "0000000008"
+  },
+  "AY-410-01-009": {
+   "policyNo": "AY41001",
+   "detailNo": "0000000009"
+  },
+  "AY-410-01-010": {
+   "policyNo": "AY41001",
+   "detailNo": "0000000010"
+  },
+  "AY-410-01-011": {
+   "policyNo": "AY41001",
+   "detailNo": "0000000011"
+  },
+  "AZ-110-01-009": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000009",
+   "inputType": "2",
+   "largeItemValue": "B",
+   "insuranceLabel": "00：自賠責",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-01-010": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000010",
+   "inputType": "2",
+   "largeItemValue": "Y",
+   "insuranceLabel": "02：国内貨物総合保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-01-011": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000011",
+   "inputType": "2",
+   "largeItemValue": "Z",
+   "insuranceLabel": "00：種目共通",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-01-012": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000012",
+   "inputType": "2",
+   "largeItemValue": "0",
+   "insuranceLabel": "00：その他",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-02-001": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000013",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-110-02-002": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000014",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-110-02-003": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000017",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-110-02-004": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000018",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-110-05-008": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000037",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-009": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000038",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-010": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000039",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-011": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000040",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-012": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000041",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-013": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000042",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-014": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000043",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-015": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000044",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-016": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000045",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-05-017": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000046",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "11：クルマの保険／はじめての自動車保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-110-13-005": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000006",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-14-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000011"
+  },
+  "AZ-110-15-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000012"
+  },
+  "AZ-110-16-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000007",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-17-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000008",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-17-002": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000009",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-17-003": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000010",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-18-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000008"
+  },
+  "AZ-110-19-001": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000018",
+   "itemCode": "T0",
+   "inquiryCode": "T004",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T004：本人確認書類が添付もれです。ご提出をお願いします。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-19-002": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000019",
+   "itemCode": "T0",
+   "inquiryCode": "T004",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T004：本人確認書類が添付もれです。ご提出をお願いします。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-24-009": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000041"
+  },
+  "AZ-110-24-010": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000042"
+  },
+  "AZ-110-24-011": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000043"
+  },
+  "AZ-110-24-012": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000044"
+  },
+  "AZ-110-24-013": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000045"
+  },
+  "AZ-110-24-014": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000046"
+  },
+  "AZ-110-25-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000033"
+  },
+  "AZ-110-25-002": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000034"
+  },
+  "AZ-110-25-003": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000035"
+  },
+  "AZ-110-25-004": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000036"
+  },
+  "AZ-110-33-004": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000043"
+  },
+  "AZ-110-34-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000044"
+  },
+  "AZ-110-35-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000045",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-36-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000046"
+  },
+  "AZ-110-37-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000002"
+  },
+  "AZ-110-38-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000003"
+  },
+  "AZ-110-39-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000004"
+  },
+  "AZ-110-40-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000005",
+   "itemCode": "T0",
+   "inquiryCode": "T004",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T004：本人確認書類が添付もれです。ご提出をお願いします。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-41-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000006"
+  },
+  "AZ-110-42-001": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000018"
+  },
+  "AZ-110-62-001": {
+   "policyNo": "AZ11073",
+   "detailNo": "0000000015"
+  },
+  "AZ-110-63-001": {
+   "policyNo": "AZ11073",
+   "detailNo": "0000000016",
+   "itemCode": "T0",
+   "inquiryCode": "T004",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T004：本人確認書類が添付もれです。ご提出をお願いします。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-64-001": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000017"
+  },
+  "AZ-110-65-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000035"
+  },
+  "AZ-110-66-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000036",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-67-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000001"
+  },
+  "AZ-110-68-001": {
+   "policyNo": "AZ11002",
+   "detailNo": "0000000025"
+  },
+  "AZ-110-69-001": {
+   "policyNo": "AZ11003",
+   "detailNo": "0000000027"
+  },
+  "AZ-110-70-001": {
+   "policyNo": "AZ11001",
+   "detailNo": "0000000003"
+  },
+  "AZ-110-71-001": {
+   "policyNo": "AZ11005",
+   "detailNo": "0000000036"
+  },
+  "AZ-110-79-001": {
+   "policyNo": "AZ11079",
+   "detailNo": "0000000050",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-80-001": {
+   "policyNo": "AZ11080",
+   "detailNo": "0000000051",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-81-001": {
+   "policyNo": "AZ11081",
+   "detailNo": "0000000052",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-110-82-001": {
+   "policyNo": "AZ11082",
+   "detailNo": "0000000053",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-111-02-003": {
+   "policyNo": "EJEJ96096",
+   "largeItemValue": "B",
+   "sumupStatus": "1"
+  },
+  "AZ-111-02-004": {
+   "policyNo": "F065454943",
+   "largeItemValue": "5",
+   "sectionCode": "ABK61",
+   "sumupStatus": "1"
+  },
+  "AZ-111-02-005": {
+   "policyNo": "F065454943",
+   "largeItemValue": "5",
+   "sumupStatus": "1"
+  },
+  "AZ-111-02-006": {
+   "policyNo": "DCDX19275",
+   "largeItemValue": "B",
+   "sumupStatus": "1"
+  },
+  "AZ-111-03-001": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000001"
+  },
+  "AZ-111-03-002": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000002"
+  },
+  "AZ-111-03-003": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000003"
+  },
+  "AZ-111-03-004": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000004"
+  },
+  "AZ-111-03-005": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000005"
+  },
+  "AZ-111-03-006": {
+   "policyNo": "AZ11103",
+   "detailNo": "0000000006"
+  },
+  "AZ-111-05-005": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000005"
+  },
+  "AZ-111-05-006": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000006"
+  },
+  "AZ-111-05-007": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000007"
+  },
+  "AZ-111-05-008": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000008"
+  },
+  "AZ-111-05-009": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000009"
+  },
+  "AZ-111-05-010": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000010"
+  },
+  "AZ-111-05-011": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000011"
+  },
+  "AZ-111-05-012": {
+   "policyNo": "AZ11105",
+   "detailNo": "0000000012"
+  },
+  "AZ-112-01-001": {
+   "policyNo": "AZ11201",
+   "detailNo": "0000000001",
+   "sectionCode": "A3M02"
+  },
+  "AZ-120-03-001": {
+   "policyNo": "AZ12003",
+   "detailNo": "0000000002"
+  },
+  "AZ-120-03-002": {
+   "policyNo": "AZ12003",
+   "detailNo": "0000000002"
+  },
+  "AZ-160-01-004": {
+   "policyNo": "AZ160001",
+   "detailNo": "0000000008"
+  },
+  "AZ-160-01-005": {
+   "policyNo": "AZ160001",
+   "detailNo": "0000000010"
+  },
+  "AZ-160-01-006": {
+   "policyNo": "AZ160001",
+   "detailNo": "0000000002"
+  },
+  "AZ-160-01-007": {
+   "policyNo": "AZ160001",
+   "detailNo": "0000000004"
+  },
+  "AZ-160-03-001": {
+   "policyNo": "AZ16003001",
+   "detailNo": "0000000001",
+   "agentCode": "1003",
+   "sectionCode": "AED61"
+  },
+  "AZ-160-03-002": {
+   "policyNo": "AZ16003002",
+   "detailNo": "0000000002",
+   "agentCode": "1003",
+   "sectionCode": "AED61"
+  },
+  "AZ-160-03-003": {
+   "policyNo": "AZ16003003",
+   "detailNo": "0000000003",
+   "agentCode": "1003",
+   "sectionCode": "AED61"
+  },
+  "AZ-200-07-001": {
+   "policyNo": "AZ20007",
+   "detailNo": "0000000001"
+  },
+  "AZ-210-05-013": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000025",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-210-05-014": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000026",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-210-05-015": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000027",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-210-05-016": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000028",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-210-08-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000027",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-210-09-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000028",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-210-10-001": {
+   "policyNo": "AZ21001",
+   "detailNo": "0000000002"
+  },
+  "AZ-210-11-001": {
+   "policyNo": "AZ21001",
+   "detailNo": "0000000003"
+  },
+  "AZ-210-12-001": {
+   "policyNo": "AZ21001",
+   "detailNo": "0000000004"
+  },
+  "AZ-210-13-001": {
+   "policyNo": "AZ21001",
+   "detailNo": "0000000005",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-210-14-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000013"
+  },
+  "AZ-210-15-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000014"
+  },
+  "AZ-210-16-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000015"
+  },
+  "AZ-210-17-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000016",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-210-30-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000016"
+  },
+  "AZ-210-31-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000017"
+  },
+  "AZ-210-32-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000023"
+  },
+  "AZ-210-33-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000024"
+  },
+  "AZ-210-34-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000025"
+  },
+  "AZ-210-35-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000026",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-210-36-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000029",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-210-36-002": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000030",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-210-36-003": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000031",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-210-36-004": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000032",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-210-37-008": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000036"
+  },
+  "AZ-210-37-009": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000037"
+  },
+  "AZ-210-37-010": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000038"
+  },
+  "AZ-210-37-011": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000039"
+  },
+  "AZ-210-37-012": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000040"
+  },
+  "AZ-210-37-013": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000041"
+  },
+  "AZ-210-37-014": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000042"
+  },
+  "AZ-210-37-015": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000043"
+  },
+  "AZ-210-37-016": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000044"
+  },
+  "AZ-210-37-017": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000045"
+  },
+  "AZ-210-46-003": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000038"
+  },
+  "AZ-210-46-004": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000039"
+  },
+  "AZ-210-46-005": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000040"
+  },
+  "AZ-210-46-006": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000041"
+  },
+  "AZ-210-46-007": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000042"
+  },
+  "AZ-210-47-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000043",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。"
+  },
+  "AZ-210-48-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000044"
+  },
+  "AZ-210-49-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000045"
+  },
+  "AZ-210-50-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000045"
+  },
+  "AZ-210-51-001": {
+   "policyNo": "AZ21036",
+   "detailNo": "0000000036"
+  },
+  "AZ-210-60-001": {
+   "policyNo": "AZ21001",
+   "detailNo": "0000000001"
+  },
+  "AZ-210-61-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000024"
+  },
+  "AZ-210-62-001": {
+   "policyNo": "AZ21005",
+   "detailNo": "0000000027"
+  },
+  "AZ-210-63-001": {
+   "policyNo": "AZ31063",
+   "detailNo": "0000000046",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "13：クルマの保険・一般用",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1"
+  },
+  "AZ-210-64-001": {
+   "policyNo": "AZ21064",
+   "detailNo": "0000000047"
+  },
+  "AZ-210-65-001": {
+   "policyNo": "AZ21065",
+   "detailNo": "0000000048"
+  },
+  "AZ-210-66-001": {
+   "policyNo": "AZ21065",
+   "detailNo": "0000000049"
+  },
+  "AZ-210-67-001": {
+   "policyNo": "AZ21067",
+   "detailNo": "0000000050"
+  },
+  "AZ-210-68-001": {
+   "policyNo": "AZ21068",
+   "detailNo": "0000000051"
+  },
+  "AZ-230-01-011": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000011",
+   "agentCode": "H020",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-012": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000012",
+   "agentCode": "2778",
+   "sectionCode": "AMD71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-013": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000013",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-014": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000014",
+   "agentCode": "H020",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-015": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000015",
+   "agentCode": "2778",
+   "sectionCode": "AMD71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-016": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000016",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-017": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000017",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-018": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000018",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-019": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000019",
+   "agentCode": "0939",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-020": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000020",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-041": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000041",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-042": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000042",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-043": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000043",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-044": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000044",
+   "agentCode": "2778",
+   "sectionCode": "AMD71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-045": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000045",
+   "agentCode": "MM77",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-046": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000046",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-047": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000047",
+   "agentCode": "MM77",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-048": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000048",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-049": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000049",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-050": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000050",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-071": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000071",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-072": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000072",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-073": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000073",
+   "agentCode": "0939",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-074": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000074",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-075": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000075",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-076": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000076",
+   "agentCode": "2778",
+   "sectionCode": "AED71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-077": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000077",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-078": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000078",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-079": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000079",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-080": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000080",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-101": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000020",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-102": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000021",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-103": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000022",
+   "agentCode": "2778",
+   "sectionCode": "AED71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-104": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000023",
+   "agentCode": "KSD1",
+   "sectionCode": "AED62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-105": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000024",
+   "agentCode": "TSK1",
+   "sectionCode": "AED62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-106": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000025",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-107": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000026",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-108": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000027",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-109": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000028",
+   "agentCode": "2778",
+   "sectionCode": "AMD71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-110": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000029",
+   "agentCode": "2778",
+   "sectionCode": "AMD71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-131": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000050",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-132": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000051",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-133": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000052",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-134": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000053",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-135": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000054",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-136": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000055",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-137": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000056",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-138": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000057",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-139": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000058",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-140": {
+   "policyNo": "AZ23001",
+   "detailNo": "00000000059",
+   "agentCode": "1003",
+   "sectionCode": "AED61",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-151": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000070",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-152": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000071",
+   "agentCode": "S030",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-153": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000072",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-154": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000073",
+   "agentCode": "0939",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-155": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000074",
+   "agentCode": "1266",
+   "sectionCode": "AED73",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-156": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000075",
+   "agentCode": "S020",
+   "sectionCode": "AKH62",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-230-01-157": {
+   "policyNo": "AZ23001",
+   "detailNo": "0000000076",
+   "agentCode": "2778",
+   "sectionCode": "AED71",
+   "defectContent": "添付書類もれ"
+  },
+  "AZ-240-03-002": {
+   "policyNo": "AZ24003002",
+   "detailNo": "0000000002"
+  },
+  "AZ-240-03-003": {
+   "policyNo": "AZ24003003",
+   "detailNo": "0000000003"
+  },
+  "AZ-310-01-011": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000011",
+   "inputType": "2",
+   "largeItemValue": "Z",
+   "insuranceLabel": "00：種目共通",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-012": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000012",
+   "inputType": "2",
+   "largeItemValue": "0",
+   "insuranceLabel": "00：その他",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-013": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000013",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-014": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000014",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-015": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000015",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-016": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000016",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-017": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000017",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-018": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000018",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-019": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000019",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-01-020": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000020",
+   "inputType": "2",
+   "largeItemValue": "5",
+   "insuranceLabel": "03：1DAY保険／GK　クルマの保険・ドライバー保険",
+   "agentCode": "252H",
+   "sectionCode": "AHE61",
+   "fieldAgentId": "3028004586",
+   "freeCode": "1234567890",
+   "subAgentCode": "123456",
+   "customerName": "TEST",
+   "startDate": "2026/11/01",
+   "sumupYearMonth": "2026/11",
+   "dailyReportSend": "1234567890AB",
+   "sumupSectionCode": "ABC012",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。",
+   "editedInquiryContent": "編集済み。",
+   "sumupStatus": "1",
+   "correctionItem": "訂正項目１",
+   "correctionContent": "訂正内容１",
+   "confirmer": "TEST",
+   "counterparty": "確認相手TEST"
+  },
+  "AZ-310-02-012": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000012"
+  },
+  "AZ-310-02-013": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000013"
+  },
+  "AZ-310-02-014": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000014"
+  },
+  "AZ-310-02-015": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000015"
+  },
+  "AZ-310-02-016": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000016"
+  },
+  "AZ-310-02-017": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000017"
+  },
+  "AZ-310-02-018": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000018"
+  },
+  "AZ-310-02-019": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000019"
+  },
+  "AZ-310-02-020": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000020"
+  },
+  "AZ-310-02-021": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000021"
+  },
+  "AZ-310-04-020": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000024",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-04-021": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000025",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-04-022": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000026",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-04-023": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000027",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-04-024": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000028",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-05-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000029",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。",
+   "editedInquiryContent": "編集済み。"
+  },
+  "AZ-310-06-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000001"
+  },
+  "AZ-310-07-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000001"
+  },
+  "AZ-310-08-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000001"
+  },
+  "AZ-310-09-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000002",
+   "itemCode": "T0",
+   "inquiryCode": "T001",
+   "defectContent": "添付書類もれ",
+   "inquiryContent": "T001：支払請求書：〔請求日・代理店・扱者/仲立人・課支社受付日〕記入もれです。"
+  },
+  "AZ-310-16-008": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000023"
+  },
+  "AZ-310-16-009": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000024"
+  },
+  "AZ-310-17-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000025"
+  },
+  "AZ-310-18-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000026"
+  },
+  "AZ-310-19-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000027"
+  },
+  "AZ-310-20-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000028"
+  },
+  "AZ-310-21-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000006"
+  },
+  "AZ-310-22-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000007"
+  },
+  "AZ-310-23-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000008"
+  },
+  "AZ-310-24-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000009"
+  },
+  "AZ-310-34-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000023"
+  },
+  "AZ-310-35-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000024"
+  },
+  "AZ-310-36-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000001"
+  },
+  "AZ-310-37-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000017"
+  },
+  "AZ-310-38-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000018"
+  },
+  "AZ-310-39-001": {
+   "policyNo": "AZ31001",
+   "detailNo": "0000000019"
+  },
+  "AZ-310-40-001": {
+   "policyNo": "AZ31040",
+   "detailNo": "0000000030",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "訂正印誤り",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。"
+  },
+  "AZ-310-41-001": {
+   "policyNo": "AZ31041",
+   "detailNo": "0000000031",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "訂正印誤り",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。"
+  },
+  "AZ-310-42-001": {
+   "policyNo": "AZ31042",
+   "detailNo": "0000000032",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "訂正印誤り",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。"
+  },
+  "AZ-310-43-001": {
+   "policyNo": "AZ31043",
+   "detailNo": "0000000033",
+   "itemCode": "T0",
+   "inquiryCode": "T007",
+   "defectContent": "訂正印誤り",
+   "inquiryContent": "T007：「損保取引確認書」の添付がもれています。"
+  },
+  "AZ-410-05-002": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000002"
+  },
+  "AZ-410-05-003": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000003"
+  },
+  "AZ-410-06-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000001"
+  },
+  "AZ-410-06-002": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000002"
+  },
+  "AZ-410-06-003": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000003"
+  },
+  "AZ-410-07-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000004"
+  },
+  "AZ-410-08-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000005"
+  },
+  "AZ-410-09-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000006"
+  },
+  "AZ-410-10-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000007"
+  },
+  "AZ-410-11-001": {
+   "policyNo": "AZ41001",
+   "detailNo": "0000000008"
+  },
+  "AZ-510-01-005": {
+   "policyNo": "AZ51001",
+   "detailNo": "0000000005"
+  }
+ }
+}

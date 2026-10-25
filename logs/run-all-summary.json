@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-10-25T03:46:32.127Z",
+ "generatedAt": "2026-10-25T05:16:22.914Z",
  "base": "http://127.0.0.1:10091/",
  "total": 450,
- "pass": 450,
+ "pass": 415,
  "partial": 0,
- "fail": 0,
+ "fail": 35,
  "unknown": 0,
  "results": [
   {
@@ -15,14 +15,14 @@
    "skipped": []
   },
   {
-   "caseId": "AY-100-04-002",
+   "caseId": "AY-100-04-001",
    "status": "pass",
    "code": 0,
    "blocks": 1,
    "skipped": []
   },
   {
-   "caseId": "AY-100-04-001",
+   "caseId": "AY-100-04-002",
    "status": "pass",
    "code": 0,
    "blocks": 1,
@@ -120,17 +120,17 @@
    "skipped": []
   },
   {
-   "caseId": "AY-110-02-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AY-110-01-018",
    "status": "pass",
    "code": 0,
    "blocks": 5,
+   "skipped": []
+  },
+  {
+   "caseId": "AY-110-02-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -183,14 +183,14 @@
    "skipped": []
   },
   {
-   "caseId": "AY-120-01-008",
+   "caseId": "AY-120-01-007",
    "status": "pass",
    "code": 0,
    "blocks": 9,
    "skipped": []
   },
   {
-   "caseId": "AY-120-01-007",
+   "caseId": "AY-120-01-008",
    "status": "pass",
    "code": 0,
    "blocks": 9,
@@ -281,6 +281,13 @@
    "skipped": []
   },
   {
+   "caseId": "AY-120-03-005",
+   "status": "pass",
+   "code": 0,
+   "blocks": 8,
+   "skipped": []
+  },
+  {
    "caseId": "AY-120-04-009",
    "status": "pass",
    "code": 0,
@@ -292,13 +299,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AY-120-03-005",
-   "status": "pass",
-   "code": 0,
-   "blocks": 8,
    "skipped": []
   },
   {
@@ -456,13 +456,6 @@
    "skipped": []
   },
   {
-   "caseId": "AY-120-08-003",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AY-120-08-002",
    "status": "pass",
    "code": 0,
@@ -470,7 +463,7 @@
    "skipped": []
   },
   {
-   "caseId": "AY-120-08-004",
+   "caseId": "AY-120-08-003",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -488,6 +481,13 @@
    "status": "pass",
    "code": 0,
    "blocks": 6,
+   "skipped": []
+  },
+  {
+   "caseId": "AY-120-08-004",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -659,6 +659,13 @@
    "skipped": []
   },
   {
+   "caseId": "AY-121-01-018",
+   "status": "pass",
+   "code": 0,
+   "blocks": 10,
+   "skipped": []
+  },
+  {
    "caseId": "AY-121-03-008",
    "status": "pass",
    "code": 0,
@@ -677,13 +684,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AY-121-01-018",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
    "skipped": []
   },
   {
@@ -841,17 +841,17 @@
    "skipped": []
   },
   {
-   "caseId": "AY-121-07-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AY-121-07-001",
    "status": "pass",
    "code": 0,
    "blocks": 5,
+   "skipped": []
+  },
+  {
+   "caseId": "AY-121-07-002",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -869,14 +869,14 @@
    "skipped": []
   },
   {
-   "caseId": "AY-121-08-006",
+   "caseId": "AY-121-08-005",
    "status": "pass",
    "code": 0,
    "blocks": 3,
    "skipped": []
   },
   {
-   "caseId": "AY-121-08-005",
+   "caseId": "AY-121-08-006",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -918,14 +918,14 @@
    "skipped": []
   },
   {
-   "caseId": "AY-121-08-012",
+   "caseId": "AY-122-01-006",
    "status": "pass",
    "code": 0,
    "blocks": 3,
    "skipped": []
   },
   {
-   "caseId": "AY-122-01-006",
+   "caseId": "AY-121-08-012",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -946,17 +946,17 @@
    "skipped": []
   },
   {
-   "caseId": "AY-122-01-008",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AY-130-01-002",
    "status": "pass",
    "code": 0,
    "blocks": 2,
+   "skipped": []
+  },
+  {
+   "caseId": "AY-122-01-008",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -1023,11 +1023,44 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-01-009",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "caseId": "AZ-110-02-001",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-02-002",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-02-003",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-02-004",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-05-008",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-01-010",
@@ -1037,123 +1070,99 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-01-012",
+   "caseId": "AZ-110-01-009",
    "status": "pass",
    "code": 0,
    "blocks": 10,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-01-011",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-02-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 12,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-02-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 12,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-02-004",
-   "status": "pass",
-   "code": 0,
-   "blocks": 12,
    "skipped": []
   },
   {
    "caseId": "AZ-110-05-009",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
-   "caseId": "AZ-110-05-008",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "caseId": "AZ-110-01-011",
+   "status": "fail",
+   "code": 1,
+   "blocks": 4,
+   "skipped": [],
+   "error": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"update\"]').first() to be visible\u001b[22m\n"
   },
   {
-   "caseId": "AZ-110-02-003",
-   "status": "pass",
-   "code": 0,
-   "blocks": 12,
-   "skipped": []
+   "caseId": "AZ-110-01-012",
+   "status": "fail",
+   "code": 1,
+   "blocks": 4,
+   "skipped": [],
+   "error": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"update\"]').first() to be visible\u001b[22m\n"
   },
   {
    "caseId": "AZ-110-05-010",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-05-011",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-05-012",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
-   "caseId": "AZ-110-05-014",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-05-016",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "caseId": "AZ-110-05-011",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-05-013",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-05-014",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-110-05-016",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-05-015",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-05-017",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-15-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 11:クルマの保険／はじめての自動車保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-110-14-001",
@@ -1170,24 +1179,17 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-110-15-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-110-17-001",
    "status": "pass",
    "code": 0,
    "blocks": 9,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-17-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 8,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-16-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
    "skipped": []
   },
   {
@@ -1198,21 +1200,21 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-110-16-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-17-002",
+   "status": "pass",
+   "code": 0,
+   "blocks": 8,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-110-24-009",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-24-010",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-24-011",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1233,7 +1235,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-24-012",
+   "caseId": "AZ-110-24-010",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-24-011",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1247,7 +1256,7 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-24-014",
+   "caseId": "AZ-110-24-012",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1255,6 +1264,13 @@
   },
   {
    "caseId": "AZ-110-24-013",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-24-014",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1275,10 +1291,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-25-004",
+   "caseId": "AZ-110-33-004",
    "status": "pass",
    "code": 0,
-   "blocks": 6,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -1289,7 +1305,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-33-004",
+   "caseId": "AZ-110-25-004",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-36-001",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1303,24 +1326,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-36-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-110-37-001",
    "status": "pass",
    "code": 0,
    "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-110-35-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
    "skipped": []
   },
   {
@@ -1331,6 +1340,13 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-110-35-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-110-39-001",
    "status": "pass",
    "code": 0,
@@ -1338,17 +1354,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-42-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-110-38-001",
    "status": "pass",
    "code": 0,
    "blocks": 6,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-42-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
    "skipped": []
   },
   {
@@ -1366,17 +1382,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-65-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-110-40-001",
    "status": "pass",
    "code": 0,
    "blocks": 7,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-65-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -1408,17 +1424,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-110-71-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-110-63-001",
    "status": "pass",
    "code": 0,
    "blocks": 9,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-110-71-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
    "skipped": []
   },
   {
@@ -1450,17 +1466,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-111-02-006",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-110-81-001",
    "status": "pass",
    "code": 0,
    "blocks": 9,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-111-02-006",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
    "skipped": []
   },
   {
@@ -1548,14 +1564,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-111-05-009",
+   "caseId": "AZ-111-05-008",
    "status": "pass",
    "code": 0,
    "blocks": 3,
    "skipped": []
   },
   {
-   "caseId": "AZ-111-05-008",
+   "caseId": "AZ-111-05-009",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -1569,17 +1585,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-111-05-012",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-120-03-001",
    "status": "pass",
    "code": 0,
    "blocks": 2,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-111-05-012",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -1604,13 +1620,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-150-06-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 2,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-150-07-001",
    "status": "pass",
    "code": 0,
@@ -1618,10 +1627,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-150-08-001",
+   "caseId": "AZ-150-06-001",
    "status": "pass",
    "code": 0,
-   "blocks": 12,
+   "blocks": 2,
    "skipped": []
   },
   {
@@ -1629,6 +1638,13 @@
    "status": "pass",
    "code": 0,
    "blocks": 2,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-150-08-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 12,
    "skipped": []
   },
   {
@@ -1688,14 +1704,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-150-13-002",
+   "caseId": "AZ-150-13-001",
    "status": "pass",
    "code": 0,
    "blocks": 4,
    "skipped": []
   },
   {
-   "caseId": "AZ-150-13-001",
+   "caseId": "AZ-150-13-002",
    "status": "pass",
    "code": 0,
    "blocks": 4,
@@ -1716,17 +1732,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-150-04-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 22,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-160-01-005",
    "status": "pass",
    "code": 0,
    "blocks": 8,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-150-04-002",
+   "status": "pass",
+   "code": 0,
+   "blocks": 22,
    "skipped": []
   },
   {
@@ -1758,17 +1774,24 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-200-01-003",
-   "status": "pass",
-   "code": 0,
-   "blocks": 1,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-160-01-006",
    "status": "pass",
    "code": 0,
    "blocks": 8,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-160-01-007",
+   "status": "pass",
+   "code": 0,
+   "blocks": 8,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-200-01-003",
+   "status": "pass",
+   "code": 0,
+   "blocks": 1,
    "skipped": []
   },
   {
@@ -1783,13 +1806,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 1,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-160-01-007",
-   "status": "pass",
-   "code": 0,
-   "blocks": 8,
    "skipped": []
   },
   {
@@ -1870,13 +1886,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-200-03-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 2,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-200-04-001",
    "status": "pass",
    "code": 0,
@@ -1884,14 +1893,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-200-03-004",
+   "caseId": "AZ-200-03-002",
    "status": "pass",
    "code": 0,
    "blocks": 2,
    "skipped": []
   },
   {
-   "caseId": "AZ-200-07-005",
+   "caseId": "AZ-200-03-004",
    "status": "pass",
    "code": 0,
    "blocks": 2,
@@ -1919,13 +1928,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-200-07-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-200-07-006",
    "status": "pass",
    "code": 0,
@@ -1933,31 +1935,77 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-05-013",
+   "caseId": "AZ-200-07-005",
    "status": "pass",
    "code": 0,
-   "blocks": 11,
+   "blocks": 2,
    "skipped": []
+  },
+  {
+   "caseId": "AZ-200-07-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-05-013",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-210-05-014",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-210-05-015",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-210-05-016",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-210-10-001",
    "status": "pass",
    "code": 0,
-   "blocks": 11,
+   "blocks": 4,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-14-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-11-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 5,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-12-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
    "skipped": []
   },
   {
@@ -1975,31 +2023,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-10-001",
+   "caseId": "AZ-210-13-001",
    "status": "pass",
    "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-11-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 5,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-14-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-12-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 6,
+   "blocks": 9,
    "skipped": []
   },
   {
@@ -2014,13 +2041,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 6,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-13-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 9,
    "skipped": []
   },
   {
@@ -2045,13 +2065,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-33-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 5,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-210-17-001",
    "status": "pass",
    "code": 0,
@@ -2059,11 +2072,50 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-210-33-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 5,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-36-001",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-210-36-002",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
    "caseId": "AZ-210-34-001",
    "status": "pass",
    "code": 0,
    "blocks": 6,
    "skipped": []
+  },
+  {
+   "caseId": "AZ-210-36-003",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-210-36-004",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-210-35-001",
@@ -2080,27 +2132,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-36-002",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-36-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-36-003",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-210-37-009",
    "status": "pass",
    "code": 0,
@@ -2108,21 +2139,7 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-36-004",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-210-37-010",
-   "status": "pass",
-   "code": 0,
-   "blocks": 6,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-37-012",
    "status": "pass",
    "code": 0,
    "blocks": 6,
@@ -2136,21 +2153,14 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-210-37-012",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-210-37-013",
-   "status": "pass",
-   "code": 0,
-   "blocks": 6,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-37-015",
-   "status": "pass",
-   "code": 0,
-   "blocks": 6,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-37-014",
    "status": "pass",
    "code": 0,
    "blocks": 6,
@@ -2171,6 +2181,20 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-210-37-014",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-37-015",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-210-37-016",
    "status": "pass",
    "code": 0,
@@ -2178,14 +2202,21 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-46-006",
+   "caseId": "AZ-210-37-017",
+   "status": "pass",
+   "code": 0,
+   "blocks": 6,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-46-005",
    "status": "pass",
    "code": 0,
    "blocks": 3,
    "skipped": []
   },
   {
-   "caseId": "AZ-210-46-005",
+   "caseId": "AZ-210-46-006",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -2199,10 +2230,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-37-017",
+   "caseId": "AZ-210-50-001",
    "status": "pass",
    "code": 0,
-   "blocks": 6,
+   "blocks": 2,
    "skipped": []
   },
   {
@@ -2213,14 +2244,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-50-001",
+   "caseId": "AZ-210-49-001",
    "status": "pass",
    "code": 0,
-   "blocks": 2,
+   "blocks": 4,
    "skipped": []
   },
   {
-   "caseId": "AZ-210-49-001",
+   "caseId": "AZ-210-60-001",
    "status": "pass",
    "code": 0,
    "blocks": 4,
@@ -2234,14 +2265,7 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-60-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-210-61-001",
+   "caseId": "AZ-210-51-001",
    "status": "pass",
    "code": 0,
    "blocks": 4,
@@ -2255,11 +2279,12 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-51-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
+   "caseId": "AZ-210-63-001",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 13:クルマの保険・一般用 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-210-65-001",
@@ -2276,17 +2301,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-64-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 4,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-220-01-003",
    "status": "pass",
    "code": 0,
    "blocks": 1,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-64-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
    "skipped": []
   },
   {
@@ -2297,13 +2322,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-67-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-210-68-001",
    "status": "pass",
    "code": 0,
@@ -2311,10 +2329,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-210-63-001",
+   "caseId": "AZ-210-67-001",
    "status": "pass",
    "code": 0,
-   "blocks": 14,
+   "blocks": 7,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-210-61-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 4,
    "skipped": []
   },
   {
@@ -2416,17 +2441,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-046",
-   "status": "pass",
-   "code": 0,
-   "blocks": 18,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-045",
    "status": "pass",
    "code": 0,
    "blocks": 21,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-046",
+   "status": "pass",
+   "code": 0,
+   "blocks": 18,
    "skipped": []
   },
   {
@@ -2444,17 +2469,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-071",
-   "status": "pass",
-   "code": 0,
-   "blocks": 13,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-047",
    "status": "pass",
    "code": 0,
    "blocks": 21,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-071",
+   "status": "pass",
+   "code": 0,
+   "blocks": 13,
    "skipped": []
   },
   {
@@ -2472,17 +2497,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-074",
-   "status": "pass",
-   "code": 0,
-   "blocks": 16,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-075",
    "status": "pass",
    "code": 0,
    "blocks": 12,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-074",
+   "status": "pass",
+   "code": 0,
+   "blocks": 16,
    "skipped": []
   },
   {
@@ -2493,17 +2518,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-078",
-   "status": "pass",
-   "code": 0,
-   "blocks": 10,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-073",
    "status": "pass",
    "code": 0,
    "blocks": 13,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-078",
+   "status": "pass",
+   "code": 0,
+   "blocks": 10,
    "skipped": []
   },
   {
@@ -2563,17 +2588,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-109",
-   "status": "pass",
-   "code": 0,
-   "blocks": 14,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-108",
    "status": "pass",
    "code": 0,
    "blocks": 15,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-109",
+   "status": "pass",
+   "code": 0,
+   "blocks": 14,
    "skipped": []
   },
   {
@@ -2654,17 +2679,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-139",
-   "status": "pass",
-   "code": 0,
-   "blocks": 18,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-138",
    "status": "pass",
    "code": 0,
    "blocks": 21,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-139",
+   "status": "pass",
+   "code": 0,
+   "blocks": 18,
    "skipped": []
   },
   {
@@ -2703,17 +2728,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-230-01-155",
-   "status": "pass",
-   "code": 0,
-   "blocks": 16,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-230-01-156",
    "status": "pass",
    "code": 0,
    "blocks": 12,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-230-01-155",
+   "status": "pass",
+   "code": 0,
+   "blocks": 16,
    "skipped": []
   },
   {
@@ -2724,18 +2749,84 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-310-01-013",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-014",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-015",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-016",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-017",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-018",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
    "caseId": "AZ-310-01-011",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 4,
+   "skipped": [],
+   "error": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"update\"]').first() to be visible\u001b[22m\n"
+  },
+  {
+   "caseId": "AZ-310-01-019",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
+  },
+  {
+   "caseId": "AZ-310-01-020",
+   "status": "fail",
+   "code": 1,
+   "blocks": 2,
+   "skipped": [],
+   "error": "Error: option not found: 03:1DAY保険／GKクルマの保険・ドライバー保険 | options: [\"\",\"00 ： 自動車\"]"
   },
   {
    "caseId": "AZ-310-01-012",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
+   "status": "fail",
+   "code": 1,
+   "blocks": 4,
+   "skipped": [],
+   "error": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"update\"]').first() to be visible\u001b[22m\n"
   },
   {
    "caseId": "AZ-230-01-157",
@@ -2745,66 +2836,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-01-013",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-014",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-015",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-016",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-017",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-310-02-012",
    "status": "pass",
    "code": 0,
    "blocks": 6,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-018",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-019",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-01-020",
-   "status": "pass",
-   "code": 0,
-   "blocks": 11,
    "skipped": []
   },
   {
@@ -2878,13 +2913,6 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-04-022",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-310-04-020",
    "status": "pass",
    "code": 0,
@@ -2899,7 +2927,21 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-310-04-022",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-310-04-023",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-310-04-024",
    "status": "pass",
    "code": 0,
    "blocks": 7,
@@ -2913,17 +2955,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-04-024",
-   "status": "pass",
-   "code": 0,
-   "blocks": 7,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-310-16-008",
    "status": "pass",
    "code": 0,
    "blocks": 3,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-310-07-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 7,
    "skipped": []
   },
   {
@@ -2948,10 +2990,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-07-001",
+   "caseId": "AZ-310-05-001",
    "status": "pass",
    "code": 0,
-   "blocks": 7,
+   "blocks": 9,
    "skipped": []
   },
   {
@@ -2983,17 +3025,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-05-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 9,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-310-24-001",
    "status": "pass",
    "code": 0,
    "blocks": 4,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-310-35-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
    "skipped": []
   },
   {
@@ -3008,13 +3050,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 5,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-35-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 3,
    "skipped": []
   },
   {
@@ -3060,17 +3095,17 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-310-43-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 12,
-   "skipped": []
-  },
-  {
    "caseId": "AZ-410-05-002",
    "status": "pass",
    "code": 0,
    "blocks": 5,
+   "skipped": []
+  },
+  {
+   "caseId": "AZ-310-43-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 12,
    "skipped": []
   },
   {
@@ -3088,14 +3123,14 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-410-06-003",
+   "caseId": "AZ-410-06-002",
    "status": "pass",
    "code": 0,
    "blocks": 3,
    "skipped": []
   },
   {
-   "caseId": "AZ-410-06-002",
+   "caseId": "AZ-410-06-003",
    "status": "pass",
    "code": 0,
    "blocks": 3,
@@ -3116,6 +3151,13 @@
    "skipped": []
   },
   {
+   "caseId": "AZ-410-09-001",
+   "status": "pass",
+   "code": 0,
+   "blocks": 3,
+   "skipped": []
+  },
+  {
    "caseId": "AZ-310-41-001",
    "status": "pass",
    "code": 0,
@@ -3123,10 +3165,10 @@
    "skipped": []
   },
   {
-   "caseId": "AZ-410-09-001",
+   "caseId": "AZ-310-42-001",
    "status": "pass",
    "code": 0,
-   "blocks": 3,
+   "blocks": 16,
    "skipped": []
   },
   {
@@ -3141,13 +3183,6 @@
    "status": "pass",
    "code": 0,
    "blocks": 3,
-   "skipped": []
-  },
-  {
-   "caseId": "AZ-310-42-001",
-   "status": "pass",
-   "code": 0,
-   "blocks": 16,
    "skipped": []
   },
   {

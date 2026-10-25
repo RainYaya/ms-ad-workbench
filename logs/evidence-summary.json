@@ -1,10 +1,10 @@
 {
  "generatedAt": "2026-10-24",
  "counts": {
-  "exact": 3012,
+  "exact": 2972,
   "blockEnd": 0,
   "manual": 22,
-  "missing": 0,
+  "missing": 40,
   "hc": 3034
  },
  "cases": {
@@ -9695,10 +9695,10 @@
   "AZ-110-01-011": {
    "summary": {
     "hc": 17,
-    "exact": 17,
+    "exact": 6,
     "blockEnd": 0,
     "manual": 0,
-    "missing": 0
+    "missing": 11
    },
    "rows": {
     "15": {
@@ -9738,82 +9738,82 @@
      "type": "遷移"
     },
     "31": {
-     "status": "exact",
-     "file": "12_r031_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "33": {
-     "status": "exact",
-     "file": "13_r033_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "35": {
-     "status": "exact",
-     "file": "15_r035_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "38": {
-     "status": "exact",
-     "file": "17_r038_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "41": {
-     "status": "exact",
-     "file": "18_r041_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "44": {
-     "status": "exact",
-     "file": "20_r044_照会内容編集画面.png",
-     "item": "照会内容編集画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "47": {
-     "status": "exact",
-     "file": "21_r047_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "50": {
-     "status": "exact",
-     "file": "23_r050_訂正内容確認画面.png",
-     "item": "訂正内容確認画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "53": {
-     "status": "exact",
-     "file": "24_r053_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "55": {
-     "status": "exact",
-     "file": "25_r055_エラーメッセージ.png",
-     "item": "エラーメッセージ",
-     "type": "出力(Msg)"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "57": {
-     "status": "exact",
-     "file": "26_r057_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     }
    },
    "manualSteps": [],
-   "status": "pass"
+   "status": "fail"
   },
   "AZ-110-01-012": {
    "summary": {
     "hc": 17,
-    "exact": 17,
+    "exact": 6,
     "blockEnd": 0,
     "manual": 0,
-    "missing": 0
+    "missing": 11
    },
    "rows": {
     "15": {
@@ -9853,74 +9853,74 @@
      "type": "遷移"
     },
     "31": {
-     "status": "exact",
-     "file": "12_r031_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "33": {
-     "status": "exact",
-     "file": "13_r033_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "35": {
-     "status": "exact",
-     "file": "15_r035_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "38": {
-     "status": "exact",
-     "file": "17_r038_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "41": {
-     "status": "exact",
-     "file": "18_r041_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "44": {
-     "status": "exact",
-     "file": "20_r044_照会内容編集画面.png",
-     "item": "照会内容編集画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "47": {
-     "status": "exact",
-     "file": "21_r047_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "50": {
-     "status": "exact",
-     "file": "23_r050_訂正内容確認画面.png",
-     "item": "訂正内容確認画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "53": {
-     "status": "exact",
-     "file": "24_r053_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "55": {
-     "status": "exact",
-     "file": "25_r055_エラーメッセージ.png",
-     "item": "エラーメッセージ",
-     "type": "出力(Msg)"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "57": {
-     "status": "exact",
-     "file": "26_r057_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     }
    },
    "manualSteps": [],
-   "status": "pass"
+   "status": "fail"
   },
   "AZ-110-02-001": {
    "summary": {
@@ -29428,10 +29428,10 @@
   "AZ-310-01-011": {
    "summary": {
     "hc": 15,
-    "exact": 15,
+    "exact": 6,
     "blockEnd": 0,
     "manual": 0,
-    "missing": 0
+    "missing": 9
    },
    "rows": {
     "15": {
@@ -29471,70 +29471,70 @@
      "type": "遷移"
     },
     "31": {
-     "status": "exact",
-     "file": "12_r031_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "33": {
-     "status": "exact",
-     "file": "14_r033_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "36": {
-     "status": "exact",
-     "file": "16_r036_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "39": {
-     "status": "exact",
-     "file": "17_r039_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "42": {
-     "status": "exact",
-     "file": "19_r042_照会内容編集画面.png",
-     "item": "照会内容編集画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "45": {
-     "status": "exact",
-     "file": "20_r045_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "47": {
-     "status": "exact",
-     "file": "22_r047_訂正内容確認画面.png",
-     "item": "訂正内容確認画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "50": {
-     "status": "exact",
-     "file": "23_r050_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "53": {
-     "status": "exact",
-     "file": "25_r053_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     }
    },
    "manualSteps": [],
-   "status": "pass"
+   "status": "fail"
   },
   "AZ-310-01-012": {
    "summary": {
     "hc": 15,
-    "exact": 15,
+    "exact": 6,
     "blockEnd": 0,
     "manual": 0,
-    "missing": 0
+    "missing": 9
    },
    "rows": {
     "15": {
@@ -29574,62 +29574,62 @@
      "type": "遷移"
     },
     "31": {
-     "status": "exact",
-     "file": "12_r031_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "33": {
-     "status": "exact",
-     "file": "14_r033_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "36": {
-     "status": "exact",
-     "file": "16_r036_項目名検索画面.png",
-     "item": "項目名検索画面",
-     "type": "表示"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "39": {
-     "status": "exact",
-     "file": "17_r039_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "42": {
-     "status": "exact",
-     "file": "19_r042_照会内容編集画面.png",
-     "item": "照会内容編集画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "45": {
-     "status": "exact",
-     "file": "20_r045_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "47": {
-     "status": "exact",
-     "file": "22_r047_訂正内容確認画面.png",
-     "item": "訂正内容確認画面",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "50": {
-     "status": "exact",
-     "file": "23_r050_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     },
     "53": {
-     "status": "exact",
-     "file": "25_r053_不備内容入力画面-更新.png",
-     "item": "不備内容入力画面-更新",
-     "type": "遷移"
+     "status": "missing",
+     "file": null,
+     "item": null,
+     "type": null
     }
    },
    "manualSteps": [],
-   "status": "pass"
+   "status": "fail"
   },
   "AZ-310-01-013": {
    "summary": {

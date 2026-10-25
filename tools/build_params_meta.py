@@ -19,7 +19,7 @@ for f in files:
         by_case.setdefault(cid, []).append(f.name)
 
 # Runner precedence: case-specific files first, auto.json is the fallback.
-order = {f.name: i for i, f in enumerate(sorted(files, key=lambda x: (x.name == "auto.json", x.name)))}
+order = {f.name: i for i, f in enumerate(sorted(files, key=lambda x: (x.name == "auto.json", x.name != "generated.json", x.name)))}
 meta = {}
 counts = Counter()
 for cid in CASES:

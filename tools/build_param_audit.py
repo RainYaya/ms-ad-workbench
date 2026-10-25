@@ -16,7 +16,7 @@ MAP_INPUTS = MAP.get("inputs", [])
 CONFIG_KEYS = set(MAP.get("configKeys", []))
 
 files = list(PDIR.glob("*.json"))
-order = {f.name: i for i, f in enumerate(sorted(files, key=lambda x: (x.name == "auto.json", x.name)))}
+order = {f.name: i for i, f in enumerate(sorted(files, key=lambda x: (x.name == "auto.json", x.name != "generated.json", x.name)))}
 by_case = {}
 for f in files:
     if f.name in ("param-map.json",):
