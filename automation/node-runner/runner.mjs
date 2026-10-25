@@ -19,8 +19,13 @@ import { readdirSync } from 'node:fs';
 function loadParams(cid) {
   const dir = join(root, '../cdp/params');
   let out = null;
-  for (const f of readdirSync(dir)) {
-    if (!f.endsWith('.json')) continue;
+  const files = readdirSync(dir).filter((f) => f.endsWith('.json')).sort((a, b) => {
+    // auto.json is the fallback (covers all cases); case-specific files must win.
+    if (a === 'auto.json') return 1;
+    if (b === 'auto.json') return -1;
+    return a.localeCompare(b);
+  });
+  for (const f of files) {
     try {
       const d = JSON.parse(readFileSync(join(dir, f), 'utf8'));
       if (!d.cases || !d.cases[cid]) continue;
@@ -269,7 +274,11 @@ try {
           const want = norm(String(resolveP(step.label)));
           let hit = null;
           for (const o of opts) { const t = norm(await o.textContent()); if (t && t.startsWith(want)) { hit = await o.getAttribute('value'); break; } }
-          if (hit == null) throw new Error(`option not found: ${want}`);
+          if (hit == null) {
+            const texts = [];
+            for (const o of opts) texts.push(await o.textContent());
+            throw new Error(`option not found: ${want} | options: ${JSON.stringify(texts.slice(0, 12))}`);
+          }
           await target.selectOption(hit);
           break;
         }
