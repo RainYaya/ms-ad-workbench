@@ -210,6 +210,10 @@ def render_sheet(cid):
     ps = param_rows(cid)
     es = evidence_rows(cid)
     reason = f.get("reason", "")
+    if cls == "B":
+        reason = f"実機確認 {len(mk)} 件（mock代替）"
+    elif cls == "C":
+        reason = f"入力値 {len(ps)} 件を確認"
     if cls == "A":
         next_do = "下のコマンドを実行し、最後に「画面HC」がすべて取得済みか確認する。"
     elif cls == "B":
@@ -271,7 +275,9 @@ def render_index():
         label, _, color = CLASS[cls]
         s = (EVID.get(cid) or {}).get("summary", {})
         ms = len(manual_items(cid))
-        rows.append((cls, cid, CASES[cid].get("functionName", ""), f.get("reason", ""), s, ms, label, color))
+        mk = len(mock_items(cid))
+        human = {"A": "このまま実行", "B": f"実機確認 {mk} 件", "C": "入力値を確認", "D": "業務ルール確認"}[cls]
+        rows.append((cls, cid, CASES[cid].get("functionName", ""), human, s, ms, label, color))
     cards = "".join(f'<div class="card {c}"><div class="k">{e(CLASS[c][0])}</div><div class="v">{sum(1 for r in rows if r[0]==c)}</div><div class="s">{e(CLASS[c][1])}</div></div>' for c in "ABCD")
     body = "".join(f"""<tr data-cls="{e(cls)}" data-q="{e(cid + ' ' + name).lower()}">
       <td><a href="{e(cid)}.html"><b>{e(cid)}</b><br><span class="muted">{e(name)}</span></a></td>
