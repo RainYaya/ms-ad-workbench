@@ -1,0 +1,149 @@
+{
+ "BLK-AUTO-6F1B4715": {
+  "screen": "AZG101",
+  "cases": [
+   "AZ-310-01-011",
+   "AZ-310-01-012",
+   "AZ-310-01-013",
+   "AZ-310-01-014",
+   "AZ-310-01-015",
+   "AZ-310-01-016",
+   "AZ-310-01-017",
+   "AZ-310-01-018",
+   "AZ-310-01-019",
+   "AZ-310-01-020",
+   "AZ-210-36-001",
+   "AZ-210-36-002",
+   "AZ-210-36-003",
+   "AZ-210-36-004"
+  ],
+  "steps": [
+   {
+    "event": "inputBundle 各項目",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "項目入力=画面在位（真值=真機）"
+   },
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "input[name='update']",
+    "force": true
+   },
+   {
+    "event": "ast 更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-AUTO-7AAEDA04": {
+  "screen": "AZG101->AZG906",
+  "cases": [
+   "AZ-100-05-004",
+   "AZ-310-01-011",
+   "AZ-310-01-012",
+   "AZ-310-01-013",
+   "AZ-310-01-014",
+   "AZ-310-01-015",
+   "AZ-310-01-016",
+   "AZ-310-01-017",
+   "AZ-310-01-018",
+   "AZ-310-01-019",
+   "AZ-310-01-020",
+   "AZ-210-36-001",
+   "AZ-210-36-002",
+   "AZ-210-36-003",
+   "AZ-210-36-004"
+  ],
+  "steps": [
+   {
+    "event": "click 訂正内容確認書",
+    "action": "click",
+    "selector": "input[name='act101to906']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 訂正内容確認",
+    "action": "popup",
+    "match": "AMA19|aZG906"
+   },
+   {
+    "event": "ast 開発者ツール表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#confirm_user_name",
+    "in": "popup",
+    "shotRow": 21
+   }
+  ]
+ },
+ "BLK-SHR-669A1809": {
+  "screen": "AZG101",
+  "cases": [
+   "AZ-110-13-005",
+   "AZ-110-17-001",
+   "AZ-110-17-002",
+   "AZ-110-17-003",
+   "AZ-110-18-001",
+   "AZ-110-19-001",
+   "AZ-110-19-002",
+   "AZ-110-63-001",
+   "AZ-110-66-001",
+   "AZ-310-04-020",
+   "AZ-310-04-021",
+   "AZ-310-04-022",
+   "AZ-310-04-023",
+   "AZ-310-04-024",
+   "AZ-310-05-001",
+   "AZ-310-40-001",
+   "AZ-310-41-001",
+   "AZ-310-42-001"
+  ],
+  "steps": [
+   {
+    "event": "click 代理店照会",
+    "action": "selectOptionByLabel",
+    "selector": "select[name='list[0].agent_inquiry_flag.selected']",
+    "note": "select操作; 真按钮语义待真機确认",
+    "label": "否"
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-AUTO-FED6C2EF": {
+  "screen": "AZG101",
+  "cases": [
+   "AZ-110-14-001",
+   "AZ-110-16-001",
+   "AZ-110-25-001",
+   "AZ-110-35-001",
+   "AZ-110-39-001",
+   "AZ-110-40-001",
+   "AZ-310-17-001",
+   "AZ-310-19-001",
+   "AZ-310-23-001"
+  ],
+  "steps": [
+   {
+    "event": "click CL",
+    "action": "click",
+    "selector": "input[name='imperfectClear[0]']",
+    "force": true
+   },
+   {
+    "event": "ast 表示確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ }
+}

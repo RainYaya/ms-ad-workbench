@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script>
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+function inputItemDisabled(id, flag) {
+	var inputItem = document.getElementById(id).getElementsByTagName("input");
+	for(var i = 0; i < inputItem.length; i++) {
+		inputItem[i].disabled = flag;
+	}
+}
+
+function custom_bodyLoad(){
+	commonBodyOnload();
+	var form = document.mhk_MHKPRForm;
+	document.images['title_logo'].src = form.logo_pass.value;
+	var	mode = form.operation_mode.value;
+
+	//削除済みの場合
+	if(mode == '9'){
+		document.getElementById('div_gyoumu_area').style.visibility = "hidden";
+		document.mhk_MHKPRForm.regist.style.visibility = 'hidden';
+		document.mhk_MHKPRForm['delete'].style.visibility = 'hidden';
+	//削除済み以外かつ予約番号未設定の場合
+	}else if (form.reserve_no.value == ''){
+		// 抽出条件
+		inputItemDisabled("extract", false);
+		form.elements['large_item_list.selected'].disabled = false;
+		form.elements['candidate_regist_agent_list.selected'].disabled = false;
+		form.elements['regist_agent_list.selected'].disabled = false;
+		// 出力対象
+		inputItemDisabled("subject", false);
+
+		// 予約実行ボタン表示
+		document.mhk_MHKPRForm.regist.style.visibility = '';
+		// 削除ボタン非表示
+		document.mhk_MHKPRForm['delete'].style.visibility = 'hidden';
+	//削除済み以外かつ予約番号設定済みの場合
+	}else{
+		// 抽出条件
+		inputItemDisabled("extract", true);
+		form.elements['large_item_list.selected'].disabled = true;
+		form.elements['candidate_regist_agent_list.selected'].disabled = true;
+		// 出力対象
+		inputItemDisabled("subject", true);
+
+		// 予約実行ボタン非表示
+		document.mhk_MHKPRForm.regist.style.visibility = 'hidden';
+		// 削除ボタン表示制御
+		if(form.status_code.value == '10'){
+			document.mhk_MHKPRForm['delete'].style.visibility = 'hidden';
+		}else{
+			document.mhk_MHKPRForm['delete'].style.visibility = '';
+		}
+		// 種目欄制御
+		if(form.selectded_large_item_code.value != ''){
+			var option = form.elements['large_item_list.selected'].options;
+			for(var i=0; i<option.length; i++){
+				if(option[i].value == form.selectded_large_item_code.value){
+					option[i].value = form.selectded_large_item_code.value;
+					option[i].text = form.selectded_large_item_name.value;
+					option[i].selected = true;
+					break;
+				}
+			}
+		}
+	}
+}
+function custom_Submit(form) {
+	var form = document.mhk_MHKPRForm;
+	// 終了ボタン押下
+	if ( clickButtonName == '103toClose' ) {
+		if ( window.confirm('') ) {
+			return true;
+		} else {
+			return false;
+		}
+	// 実行ボタン押下
+	} else if( clickButtonName == 'feasibleHidden' ){
+		if (getRadioSelectedValue(form.extract_type) == '1'){
+			// 部店課支社ｺｰﾄﾞ
+			if (form.regist_section_code.value == '') {
+				alert('');
+				form.regist_section_code.focus();
+				return false;
+			}
+			// 部店課支社ｺｰﾄﾞ
+			else if ( !isMinLenB(form, form.regist_section_code, 3, '') ||
+					!isAlphaNumeric(form, form.regist_section_code, '') ) {
+				form.regist_section_code.focus();
+				return false;
+			}
+			// 代理店ｺｰﾄﾞ
+			else if ( form.regist_agent_code.value == '') {
+				alert('');
+				form.regist_agent_code.focus();
+				return false;
+			}
+			// 代理店ｺｰﾄﾞ
+			else if ( !isAlphaNumeric(form, form.regist_agent_code, '') ) {
+				form.regist_agent_code.focus();
+				return false;
+			}
+			// ニッセイチェック
+			else if ( isNisseiParentAgent(form.regist_section_code, form.regist_agent_code) ) {
+				alert('');
+				form.regist_section_code.focus();
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	}else if (clickButtonName == 'delete') {// 削除ボタン押下時
+		// 確認ダイアログ
+		if (window.confirm('')) {
+			return true;
+		} else {
+			// キャンセル選択
+			return false;
+		}
+	}else if (clickButtonName == 'regist') {// 予約実行ボタン押下時
+		// 登録年(FROM)
+		if ( !isRequired(form, form.from_registration_year, '') ||
+			 !isNumeric(form, form.from_registration_year, '') ||
+			 !isLenB(form, form.from_registration_year, 4, '') ) {
+			return false;
+		}
+
+		// 登録月(FROM)
+		if ( !isRequired(form, form.from_registration_month, '') ||
+			 !isNumeric(form, form.from_registration_month, '') ||
+			 !isIntRange(form, form.from_registration_month, 1, 12, '') ) {
+			return false;
+		}
+
+		// 登録年(TO)
+		if ( !isRequired(form, form.to_registration_year, '') ||
+			 !isNumeric(form, form.to_registration_year, '') ||
+			 !isLenB(form, form.to_registration_year, 4, '') ) {
+			return false;
+		}
+		// 登録月(TO)
+		if ( !isRequired(form, form.to_registration_month, '') ||
+			 !isNumeric(form, form.to_registration_month, '') ||
+			 !isIntRange(form, form.to_registration_month, 1, 12, '') ) {
+			return false;
+		}
+		var	from = 	('000' + form.from_registration_year.value).slice(-4) +
+					('0'   + form.from_registration_month.value).slice(-2);
+
+		var	to = 	('000' + form.to_registration_year.value).slice(-4) +
+					('0'   + form.to_registration_month.value).slice(-2);
+
+		// 登録年月(FROM) > 登録年月(TO) の場合はエラー
+		if ( from > to ) {
+			alert('');
+			form.from_registration_year.focus();
+			return false;
+		}else{
+			form.from_registration_month.value = ('0'   + form.from_registration_month.value).slice(-2);
+			form.to_registration_month.value = ('0'   + form.to_registration_month.value).slice(-2);
+		}
+		//入力区分
+		if(form.input_type_1.checked == false && form.input_type_2.checked == false
+		   && form.input_type_3.checked == false && form.input_type_4.checked == false && form.input_type_9.checked == false){
+		   	alert('');
+			form.input_type_1.focus();
+			return false;
+		}
+		//新更変・他
+		if(form.application_form_type_1.checked == false && form.application_form_type_2.checked == false
+		   && form.application_form_type_3.checked == false){
+		   	alert('');
+			form.application_form_type_1.focus();
+			return false;
+		}
+		//抽出対象代理店
+		var registAgentList = form.elements['regist_agent_list.selected'];
+		var toOption = registAgentList.options;
+		if(toOption == null || toOption.length == 0){
+			alert('');
+			return false;
+		}
+		//集計単位
+		if(form.total_unit_1.checked == false && form.total_unit_2.checked == false){
+		   	alert('');
+			form.total_unit_1.focus();
+			return false;
+		}
+		//集計情報
+		if(form.total_target_1.checked == false && form.total_target_2.checked == false
+		   && form.total_target_3.checked == false && form.total_target_4.checked == false && form.total_target_5.checked == false){
+		   	alert('');
+			form.total_target_1.focus();
+			return false;
+		}
+
+		// 抽出対象代理店の内容をhidden項目に格納
+		var	registAgents = "";
+		for(var i=0; i<toOption.length; i++){
+			registAgents = registAgents + toOption[i].value + ',' + toOption[0].text.slice(14) + '/' ;
+		}
+		form.parent_agent.value = toOption[0].value + ',' + toOption[0].text.slice(14);
+		form.regist_agents.value = registAgents;
+
+		// 候補代理店の内容をhidden項目に格納
+		var candidateRegistAgentList = form.elements['candidate_regist_agent_list.selected'];
+		var fromOption = candidateRegistAgentList.options;
+		var candidateRegistAgents = "";
+		for(var i=0; i<fromOption.length; i++){
+			candidateRegistAgents = candidateRegistAgents + fromOption[i].value + ',' + toOption[0].text.slice(14) +  '/' ;
+		}
+		form.candidate_regist_agents.value = candidateRegistAgents;
+
+		return true;
+	} else {
+		return true;
+	}
+}
+
+// 親子代理店定義ファイルチェック
+async function checkFile() {
+	const form = document.mhk_MHKPRForm;
+	var len = 0;
+
+	// 親子代理店定義ファイルの読込選択時
+	if(getRadioSelectedValue(form.extract_type) == '2'){
+		// 登録チェック
+		if(form.oyako_teigi_file.value == ''){
+			// 添付ファイル欄にファイルが選択されていない場合
+			alert('');
+			form.oyako_teigi_file.focus();
+			return;
+		}
+
+		// 存在チェック
+		try {
+			var selectedFile = form.oyako_teigi_file.files[0];
+			len = await readFile(selectedFile);
+
+		} catch (e) {
+			// 参照ファイルが存在しない場合
+			alert('');
+			// 添付ファイル欄の内容を削除
+			form.oyako_teigi_file.value = '';
+			form.oyako_teigi_file.focus();
+			return;
+		}
+
+		// 行数チェック
+		if ( len > form.agent_limit_count.value ) {
+			// 行数が指定の値より多い場合
+			alert('');
+			form.oyako_teigi_file.focus();
+			return;
+		}
+	}
+	// submit実行
+	document.getElementById('feasibleHidden').click();
+}
+
+async function checkUploadFiles(input) {
+	const form = document.mhk_MHKPRForm;
+	var len = 0;
+	
+	// 存在チェック
+	try {
+		var selectedFile = form.oyako_teigi_file.files[0];
+		len = await readFile(selectedFile);
+	
+	} catch (e) {
+		// 参照ファイルが存在しない場合
+		alert('');
+		// 添付ファイル欄の内容を削除
+		form.oyako_teigi_file.value = '';
+		form.oyako_teigi_file.focus();
+		return;
+	}
+	
+	// 行数チェック
+	if ( len > form.agent_limit_count.value ) {
+		// 行数が指定の値より多い場合
+		alert('');
+		form.oyako_teigi_file.value = '';
+		form.oyako_teigi_file.focus();
+	}
+}
+
+// ファイル読込
+async function readFile(file) {
+
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+
+		reader.onload = function(event) {
+			var lineCount = reader.result.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split('\n').length;
+			resolve(lineCount);
+		};
+
+		reader.onerror = function(error) {
+			reject(error);
+		};
+
+		reader.readAsText(file);
+	});
+}
+
+// 大種目変更
+function changeLargeItem() {
+	var	form = document.mhk_MHKPRForm;
+
+	if (form.elements['large_item_list.selected'].value == '') {
+		form.large_item_remove.disabled = false;
+		form.large_item_remove.checked = true;
+	} else {
+		form.large_item_remove.disabled = true;
+		form.large_item_remove.checked = false;
+	}
+}
+//候補代理店と抽出対象代理店の移動
+function onSelectListClick(syoRiK){
+	var	form = document.mhk_MHKPRForm;
+	var candidateRegistAgentList = form.elements['candidate_regist_agent_list.selected'];
+	var fromOption = candidateRegistAgentList.options;
+	var registAgentList = form.elements['regist_agent_list.selected'];
+	var toOption = registAgentList.options;
+	if (syoRiK == 'addAll'){
+		var	fragment = document.createDocumentFragment();
+		for(var i=0, len=toOption.length; i<len; i++){
+			fragment.appendChild(toOption[i].cloneNode(true));
+		}
+		for(var i=0, len=fromOption.length; i<len; i++){
+			fragment.appendChild(fromOption[i].cloneNode(true));
+		}
+		registAgentList.innerHTML = "";
+		registAgentList.appendChild(fragment);
+		candidateRegistAgentList.innerHTML = "";
+	}else if(syoRiK == 'addOne'){
+		if(candidateRegistAgentList.selectedIndex >= 0){
+			var	fragmentSelect		= document.createDocumentFragment();
+			var	fragmentNoSelect	= document.createDocumentFragment();
+
+			for(var i=0, len=toOption.length; i<len; i++){
+				fragmentSelect.appendChild(toOption[i].cloneNode(true));
+			}
+			for(var i=0, len=fromOption.length; i<len; i++){
+				if(fromOption[i].selected){
+					fragmentSelect.appendChild(fromOption[i].cloneNode(true));
+				}
+				else {
+					fragmentNoSelect.appendChild(fromOption[i].cloneNode(true));
+				}
+			}
+			registAgentList.innerHTML = "";
+			registAgentList.appendChild(fragmentSelect);
+			candidateRegistAgentList.innerHTML = "";
+			candidateRegistAgentList.appendChild(fragmentNoSelect);
+		}
+	}else if(syoRiK == 'delAll'){
+		var	fragment = document.createDocumentFragment();
+		for(var i=0, len=fromOption.length; i<len; i++){
+			fragment.appendChild(fromOption[i].cloneNode(true));
+		}
+		for(var i=0, len=toOption.length; i<len; i++){
+			fragment.appendChild(toOption[i].cloneNode(true));
+		}
+		candidateRegistAgentList.innerHTML = "";
+		candidateRegistAgentList.appendChild(fragment);
+		registAgentList.innerHTML = "";
+	}else if(syoRiK == 'delOne'){
+		if(registAgentList.selectedIndex >= 0){
+			var	fragmentSelect		= document.createDocumentFragment();
+			var	fragmentNoSelect	= document.createDocumentFragment();
+
+			for(var i=0, len=fromOption.length; i<len; i++){
+				fragmentSelect.appendChild(fromOption[i].cloneNode(true));
+			}
+			for(var i=0, len=toOption.length; i<len; i++){
+				if(toOption[i].selected){
+					fragmentSelect.appendChild(toOption[i].cloneNode(true));
+				}
+				else {
+					fragmentNoSelect.appendChild(toOption[i].cloneNode(true));
+				}
+			}
+			candidateRegistAgentList.innerHTML = "";
+			candidateRegistAgentList.appendChild(fragmentSelect);
+			registAgentList.innerHTML = "";
+			registAgentList.appendChild(fragmentNoSelect);
+		}
+	}else if(syoRiK == 'up'){
+		if(form.elements['regist_agent_list.selected'].selectedIndex > 0){
+			for(var i=1; i<toOption.length; i++){
+				if(toOption[i].selected){
+					var value1 = toOption[i-1].value;
+					var text1 = toOption[i-1].text;
+					var selected1 = toOption[i-1].selected;
+					toOption[i-1].value = toOption[i].value;
+					toOption[i-1].text = toOption[i].text;
+					toOption[i-1].selected = toOption[i].selected;
+					toOption[i].value = value1;
+					toOption[i].text = text1;
+					toOption[i].selected = selected1;
+					break;
+				}
+			}
+		}
+	}else if(syoRiK == 'down'){
+		if(form.elements['regist_agent_list.selected'].selectedIndex >= 0){
+			for(var i=0; i<toOption.length; i++){
+				if(toOption[i].selected){
+					var value1 = toOption[i+1].value;
+					var text1 = toOption[i+1].text;
+					var selected1 = toOption[i+1].selected;
+					toOption[i+1].value = toOption[i].value;
+					toOption[i+1].text = toOption[i].text;
+					toOption[i+1].selected = toOption[i].selected;
+					toOption[i].value = value1;
+					toOption[i].text = text1;
+					toOption[i].selected = selected1;
+					break;
+				}
+			}
+		}
+	}
+}
+function onCopyClipboard(){
+	var	form = document.mhk_MHKPRForm;
+	var userAgent = window.navigator.userAgent.toLowerCase();
+	var registAgentList = form.elements['regist_agent_list.selected'];
+	var toOption = registAgentList.options;
+	if(toOption == null || toOption.length == 0){
+		alert('');
+	}else{
+		// クリップボード表示用のデータ取得
+		var	clipboardCopyData = '';
+		for(var i=0; i<toOption.length; i++){
+			clipboardCopyData = clipboardCopyData
+					+ toOption[i].value + ',' + toOption[i].text.slice(14) + '\r\n' ;
+		}
+		// クリップボード表示用のデータあり？
+		if ( clipboardCopyData != '' ) {
+			// クリップボードにデータコピー
+			// IE
+			if (userAgent.indexOf("msie") != -1 || userAgent.indexOf("trident") != -1) {
+				window.clipboardData.setData('text', clipboardCopyData);
+			// Edge
+			} else if (userAgent.indexOf("edg") != -1 || userAgent.indexOf("edge") != -1) {
+				// HTTP・HTTPS確認
+				if (window.isSecureContext && navigator.clipboard.writeText) {
+					navigator.clipboard.writeText(clipboardCopyData);
+				} else {
+					const textarea = document.createElement('textarea');
+					textarea.value = clipboardCopyData;
+					textarea.style.opacity = 0;
+					document.body.appendChild(textarea);
+					textarea.focus();
+					textarea.select();
+					document.execCommand('copy');
+					document.body.removeChild(textarea);
+				}
+			}
+			// クリップボードコピーメッセージ表示
+			alert('');
+		}
+	}
+}
+
+// 大種目の選択値を設定
+function setLargeItem(obj) {
+    document.mhk_MHKPRForm.selectded_large_item.value = obj.value;
+}
+
+</script>
+</head>
+<body class="body_common" onload="custom_bodyLoad()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" enctype="multipart/form-data" onsubmit="return submitAZG103(this,null);" >
+	<input type="hidden" />
+	<!--/* タイトルエリア */-->
+	<div class="title_area">
+		<div class="title_area_logo">
+			<img name="title_logo" class="title_logo" src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+		</div>
+		<div class="title_area_title"></div>
+		<div class="title_area_sysinfo">
+			<span>日時：
+				1
+				1画面ID：
+				1
+				1
+				v<br/>
+				利用者識別：1
+			</span>
+		</div>
+	</div>
+
+	<!--/* メッセージエリア */-->
+	<div class="div_message_area">
+		<div id="message_area" class="message_area">
+			
+			    <ul class="message_area">
+			        <li class="message_area"></li>
+			    </ul>
+			1
+		</div>
+	</div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA06" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA06" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <input type="hidden" id="logo_pass" name="logo_pass" />
+
+  <input type="hidden" id="selectded_large_item_code" name="selectded_large_item_code" />
+  <input type="hidden" id="selectded_large_item_name" name="selectded_large_item_name" />
+  <input type="hidden" id="input_type_flag" name="input_type_flag" />
+  <input type="hidden" id="application_form_type_flag" name="application_form_type_flag" />
+  <input type="hidden" id="total_unit_flag" name="total_unit_flag" />
+  <input type="hidden" id="total_target_flag" name="total_target_flag" />
+  <input type="hidden" id="operation_mode" name="operation_mode" />
+  <input type="hidden" id="delete_file_name" name="delete_file_name" />
+  <input type="hidden" id="regist_agents" name="regist_agents" />
+  <input type="hidden" id="candidate_regist_agents" name="candidate_regist_agents" />
+  <input type="hidden" id="parent_agent" name="parent_agent" />
+  <input type="hidden" id="agent_limit_count" name="agent_limit_count" />
+
+	<!--/* 業務固有領域 */-->
+	<div id="div_gyoumu_area" class="wrapper06 gyoumu_area">
+
+	<!--/* ステータス */-->
+	<div id="status">
+		<div class="subject">
+			<span class="box_color_gray">■</span>ステータス
+		</div>
+		<div class="status">
+			<div class="item">
+				<div class="gyoumu_field_title">予約番号</div>
+				<div class="gyoumu_field_value">
+					1
+					<input type="hidden" id="reserve_no" name="reserve_no">
+				</div>
+				<div class="gyoumu_field_title">ステータス</div>
+				<div class="gyoumu_field_value">
+					1
+					<input type="hidden" id="status" name="status">
+				</div>
+				<input type="hidden" id="status_code" name="status_code">
+			</div>
+			<div class="item">
+				<div class="gyoumu_field_title">受付時間</div>
+				<div class="gyoumu_field_value">
+					11
+					<input type="hidden" id="registration_date" name="registration_date">
+				</div>
+				<div class="gyoumu_field_title">開始時間</div>
+				<div class="gyoumu_field_value">
+					<input type="hidden" id="start_date" name="start_date">
+					11
+				</div>
+				<div class="gyoumu_field_title">完了時間</div>
+				<div class="gyoumu_field_value">
+					11
+					<input type="hidden" id="end_date" name="end_date">
+				</div>
+			</div>
+		</div>
+	</div><!--/* ステータス末尾 */-->
+
+	<!--/* 抽出条件 */-->
+	<div id="extract">
+		<div class="subject">
+			<span class="box_color_blue">■</span>抽出条件
+		</div>
+
+		<!--/* 条件欄 */-->
+		<div class="extract">
+			<div class="gyoumu_field_title">登録年月</div>
+			<div class="gyoumu_field_value_left">
+				<input type="text" class="input_size6" id="from_registration_year" name="from_registration_year" maxlength="4" tabindex="1">
+				<label>年</label>
+				1
+				<input type="text" class="input_size4" id="from_registration_month" name="from_registration_month" maxlength="2" tabindex="2">
+				<label>月</label>
+				1
+				1
+				<input type="text" class="input_size6" id="to_registration_year" name="to_registration_year" maxlength="4" tabindex="3">
+				<label>年</label>
+				1
+				<input type="text" class="input_size4" id="to_registration_month" name="to_registration_month" maxlength="2" tabindex="4">
+				<label>月</label>
+				1
+			</div>
+			<div class="gyoumu_field_title">種目</div>
+			<div class="gyoumu_field_value_left">
+				<input type="hidden" id="selectded_large_item" name="selectded_large_item" />
+				<select size="1" name="large_item_list.selected" onchange="setLargeItem(this);changeLargeItem(this);" tabindex="5"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+				1<!--
+			--><input type="checkbox" id="large_item_remove" name="large_item_remove" value="Y" tabindex="6" />貨物は除く1
+			</div>
+			<div class="gyoumu_field_title">入力区分</div>
+			<div class="gyoumu_field_value_left"><!--
+			--><input type="checkbox" id="input_type_1" name="input_type_1" value="1" tabindex="7" />契約入力1<!--
+			--><input type="checkbox" id="input_type_2" name="input_type_2" value="2" tabindex="8" />現地1<!--
+			--><input type="checkbox" id="input_type_3" name="input_type_3" value="3" tabindex="9" />センター1<!--
+			--><input type="checkbox" id="input_type_4" name="input_type_4" value="4" tabindex="10" />口座振替1<!--
+			--><input type="checkbox" id="input_type_9" name="input_type_9" value="9" tabindex="11" />その他
+				<span class="color_red">　※｢その他｣には、｢クレカ｣など左記以外の入力区分を含みます。</span>
+			</div>
+			<div class="gyoumu_field_title">新更変・他</div>
+			<div class="gyoumu_field_value_left"><!--
+			--><input type="checkbox" id="application_form_type_1" name="application_form_type_1" value="1" tabindex="12" />新規1<!--
+			--><input type="checkbox" id="application_form_type_2" name="application_form_type_2" value="2" tabindex="13" />更改1<!--
+			--><input type="checkbox" id="application_form_type_3" name="application_form_type_3" value="3" tabindex="14" />変更・他
+				<span class="color_red">　※｢変更・他｣には、｢自動継続｣｢DN１明細｣を含みます。</span>
+			</div>
+		</div><!--/* 条件欄末尾 */-->
+
+		<!--/* 抽出対象代理店の選択 */-->
+		<div id="agency">
+			<div class="gyoumu_field_title">抽出対象代理店の選択</div>
+			<div class="subag">
+				<div><!--
+				--><input type="radio" id="extract_type_1" name="extract_type" value="1" tabindex="15" />親代理店指定による検索
+				</div>
+				<div>
+					<input type="radio" id="extract_type_2" name="extract_type" value="2" tabindex="15" />親子代理店定義ファイルの読込
+				</div>
+				<div>
+					<div class="gyoumu_field_title">部店課支社ｺｰﾄﾞ</div>
+					<div class="gyoumu_field_value_left">
+						<input type="text" id="regist_section_code" name="regist_section_code" class="gyoumu_field_control" tabindex="16" maxlength="6" onblur="toUpper(this);">
+					</div>
+					<div class="gyoumu_field_title">代理店ｺｰﾄﾞ</div>
+					<div class="gyoumu_field_value_left">
+						<input type="text" id="regist_agent_code" name="regist_agent_code" class="gyoumu_field_control" tabindex="17" maxlength="6" onblur="toUpper(this);">
+					</div>
+				</div>
+				<div>
+					<div class="gyoumu_field_title">親子代理店定義ファイル</div>
+					<div class="gyoumu_field_value_left">
+						<input type="file" id="oyako_teigi_file" name="oyako_teigi_file" class="gyoumu_field_control" tabindex="18" />
+					</div>
+				</div>
+			</div><!--/* subag閉じタグ */-->
+
+			<div class="subag2">
+				<div>
+					<input id="feasible" name="feasible" class="small_button" value="実行↓" tabindex="19" type="button" onclick="checkFile();" />
+				</div>
+
+				<div>
+					<div class="gyoumu_field_title">候補代理店</div>
+					<select name="candidate_regist_agent_list.selected" multiple="multiple" class="gyoumu_field_control regist_agent_list" tabindex="20">
+						
+							<option>1</option>
+						
+					</select>
+				</div>
+
+				<div class="button1">
+					<div class="add_button_group">
+						<div>
+							<div>登録</div>
+							<div>
+								<input class="small_button" name="addAll" type="button" value="全部 &#062;&#062;" onclick="onSelectListClick('addAll')" tabindex="21"/>
+							</div>
+							<div>
+								<input class="small_button" name="addOne" type="button" value="個別 &#062;" onclick="onSelectListClick('addOne')" tabindex="22"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="add_button_group">
+						<div>
+							<div>削除</div>
+							<div>
+								<input class="small_button" name="delAll" type="button" value="&#060;&#060; 全部" onclick="onSelectListClick('delAll')" tabindex="24"/>
+							</div>
+							<div>
+								<input class="small_button" name="delOne" type="button" value="&#060; 個別" onclick="onSelectListClick('delOne')" tabindex="25"/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="gyoumu_field_title">抽出対象代理店(※)</div>
+					<select name="regist_agent_list.selected" multiple="multiple" class="gyoumu_field_control regist_agent_list" tabindex="23">
+						
+							<option>1</option>
+						
+					</select>
+				</div>
+
+				<div class="button2">
+					<div>
+						<input class="small_button" type="button" name="upOne" value="↑" onclick="onSelectListClick('up')" tabindex="26"/>
+						<input class="small_button" type="button" name="downOne" value="↓" onclick="onSelectListClick('down')" tabindex="26"/>
+					</div>
+					<div>
+						1
+					</div>
+					<input class="copy_button" type="button" name="copyClipboard" onclick="onCopyClipboard(this)" value="クリップボードコピー" tabindex="27"/>
+				</div>
+
+				<div>
+					<div class="color_red">※先頭行に指定された代理店を親代理店として扱います。</div>
+				</div>
+
+			</div><!--/* subag2閉じタグ */-->
+		</div><!--/* 抽出対象代理店の選択末尾 */-->
+	</div><!--/* 抽出条件欄末尾 */-->
+
+	<!--/* 出力対象 */-->
+	<div id="subject">
+		<div class="subject">
+			<span class="box_color_red">■</span>出力対象
+		</div>
+		<div class="target">
+			<div class="gyoumu_field_title">集計単位</div>
+			<div class="gyoumu_field_value_left"><!--
+             --><input type="checkbox" id="total_unit_1" name="total_unit_1" value="1" tabindex="28" />合算1<!--
+             --><input type="checkbox" id="total_unit_2" name="total_unit_2" value="2" tabindex="29" />明細1
+			</div>
+			<div class="gyoumu_field_title">集計情報</div>
+			<div class="gyoumu_field_value_left"><!--
+             --><input type="checkbox" id="total_target_1" name="total_target_1" value="1" tabindex="30" />不備項目1<!--
+             --><input type="checkbox" id="total_target_2" name="total_target_2" value="2" tabindex="31" />不備内容1<!--
+             --><input type="checkbox" id="total_target_3" name="total_target_3" value="3" tabindex="32" />登録件数1<!--
+             --><input type="checkbox" id="total_target_4" name="total_target_4" value="4" tabindex="33" />ﾌﾘｰｺｰﾄﾞ1<!--
+             --><input type="checkbox" id="total_target_5" name="total_target_5" value="5" tabindex="34" />募集人1
+			</div>
+		</div>
+	</div><!--/* 出力対象末尾 */-->
+
+	</div>
+
+	<!--/* ボタンエリア */-->
+	<div class="button_area size_button_area06">
+		<div class="button_width_75">
+			<input type="submit" class="button_area_button" id="act103to001" name="act103to001" onclick="clickButton(this)"
+				value="メニュー" formaction="/AMA06/aZG103To01">
+		</div>
+		<div class="button_width_75">
+			<input type="submit" class="button_area_button" id="act103to204" name="act103to204" onclick="clickButton(this)"
+				value="状況確認" formaction="/AMA06/aZG103To11">
+		</div>
+		<div class="button_width_75">
+			<input type="submit" class="button_area_button" id="regist" name="regist" onclick="clickButton(this)"
+				value="予約実行" formaction="/AMA06/aZG103Regist">
+		</div>
+		<div class="button_width_60">
+			<input type="submit" class="button_area_button" id="delete" name="delete" onclick="clickButton(this)"
+				value="削　除" formaction="/AMA06/aZG103Delete">
+		</div>
+		<div class="button_width_60">
+			<input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+		</div>
+	</div>
+
+	<input type="submit" id="close" name="close" formaction="/AMA06/close" class="display_none" >
+	<input type="submit" id="feasibleHidden" name="feasibleHidden" formaction="/AMA06/aZG103Feasible" onclick="clickButton(this)" class="display_none" >
+</form>
+</body>
+
+</html>

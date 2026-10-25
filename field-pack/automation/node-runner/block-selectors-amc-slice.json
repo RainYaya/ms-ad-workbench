@@ -1,0 +1,800 @@
+{
+ "BLK-AUTO-DEBE0BEE": {
+  "screen": "代理店不備一覧(AMC22)→代理店 不備内容入力画面(更新)(AMC23)",
+  "cases": [
+   "AZ-230-01-011",
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-076",
+   "AZ-230-01-079",
+   "AZ-230-01-080",
+   "AZ-230-01-106",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-138",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "inputBundle 各項目(部店コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 各項目(代理店コード)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 各項目(証券番号)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 各項目(募集人ID)",
+    "action": "fill",
+    "selector": "#field_agent_id",
+    "value": "params.fieldAgentId"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 代理店 不備一覧画面 表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 代理店 不備内容入力画面(更新)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   }
+  ]
+ },
+ "BLK-AUTO-0AD75340": {
+  "screen": "代理店 不備内容入力画面(更新)(AMC23)→代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-019",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-073",
+   "AZ-230-01-076",
+   "AZ-230-01-080",
+   "AZ-230-01-107",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-138",
+   "AZ-230-01-154",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "inputBundle 各項目(回答内容)",
+    "action": "fill",
+    "how": "select",
+    "selector": "select.cell_input_value",
+    "value": "1"
+   },
+   {
+    "event": "inputBundle 各項目(回答入力欄)",
+    "action": "fill",
+    "selector": "textarea.cell_input_value",
+    "value": "params.editedInquiryContent"
+   },
+   {
+    "event": "click 回答",
+    "action": "click",
+    "selector": "#updateAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 回答後再表示(入力欄クリア)",
+    "action": "assert",
+    "assert": "value",
+    "selector": "textarea.cell_input_value",
+    "equals": "",
+    "note": "回答送信で AMC23 が再表示されたことを入力欄クリアで確認"
+   },
+   {
+    "event": "ast 代理店 不備内容入力画面(更新) 表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer",
+    "note": "OK=JS confirm auto-accept; mockは回答後 AMC23 再表示"
+   },
+   {
+    "event": "click 不備一覧",
+    "action": "click",
+    "selector": "#act104to22"
+   },
+   {
+    "event": "goto 代理店不備一覧へ戻る",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "ast 遷移 代理店 不備一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#select"
+   }
+  ]
+ },
+ "BLK-SHR-73BCFD18": {
+  "screen": "代理店 不備内容入力画面(更新)(AMC23)",
+  "cases": [
+   "AZ-230-01-011",
+   "AZ-230-01-044",
+   "AZ-230-01-047",
+   "AZ-230-01-049",
+   "AZ-230-01-079",
+   "AZ-230-01-106",
+   "AZ-230-01-133"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "inputBundle 各項目(回答入力欄)",
+    "action": "fill",
+    "selector": "textarea.cell_input_value",
+    "value": "params.editedInquiryContent"
+   },
+   {
+    "event": "click 一時中断",
+    "action": "click",
+    "selector": "#updateTempAnswer",
+    "force": true,
+    "note": "visibility 制御下のため force 押下"
+   },
+   {
+    "event": "ast メッセージ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "mockはメッセージ未注入のためメッセージエリア在位で代替"
+   },
+   {
+    "event": "click 不備一覧",
+    "action": "click",
+    "selector": "#act104to22"
+   },
+   {
+    "event": "ast 遷移 代理店 不備一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#select"
+   }
+  ]
+ },
+ "BLK-SHR-F056442C": {
+  "screen": "代理店 不備一覧(AMC22)→代理店 不備内容入力画面-更新(AMC23)",
+  "cases": [
+   "AZ-410-05-002",
+   "AZ-410-05-003"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "inputBundle 各項目(部店コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 各項目(代理店コード)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 各項目(証券番号)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 代理店 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   },
+   {
+    "event": "inputBundle 各項目(回答入力欄)",
+    "action": "fill",
+    "selector": "textarea.cell_input_value",
+    "value": "params.editedInquiryContent"
+   },
+   {
+    "event": "click 回答",
+    "action": "click",
+    "selector": "#updateAnswer",
+    "force": true
+   },
+   {
+    "event": "click OK",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer",
+    "note": "OK=JS confirm auto-accept"
+   },
+   {
+    "event": "ast 代理店 不備内容入力画面(更新) 表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   },
+   {
+    "event": "restore 手順28行目の前提画面へ復帰",
+    "action": "goto",
+    "url": "/AMB/AMA07.html",
+    "note": "後続 BLK-AZ-LIST-FILTER-OPEN-UPDATE は goto を持たず AZG200 一覧前提のため、本ブロック終了時に一覧へ戻す"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-SESSION-TIMEOUT": {
+  "screen": "代理店 不備一覧(AMC22)→代理店 訂正内容確認(AMC24 子画面)",
+  "cases": [
+   "AZ-200-03-002",
+   "AZ-200-03-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 回答入力",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   },
+   {
+    "event": "click 訂正内容確認書",
+    "action": "click",
+    "selector": "input[name='act104to908']"
+   },
+   {
+    "event": "popup 訂正内容確認",
+    "action": "popup",
+    "match": "AMC24"
+   },
+   {
+    "event": "ast 遷移 代理店 訂正内容確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#confirm_user_name",
+    "in": "popup"
+   },
+   {
+    "event": "画面を操作せず、一時間待機",
+    "action": "wait",
+    "ms": 1500,
+    "in": "popup",
+    "note": "1時間待機はmockでは短期待機で代替（タイムアウト子画面は真機で発生）"
+   },
+   {
+    "event": "input 確認者(募集人または社員)",
+    "action": "fill",
+    "selector": "#confirm_user_name",
+    "value": "params.confirmer",
+    "in": "popup"
+   },
+   {
+    "event": "check eメールによる確認の場合",
+    "action": "check",
+    "selector": "#email_confirm_check",
+    "in": "popup"
+   },
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "#regist",
+    "force": true,
+    "in": "popup",
+    "note": "visibility 制御下のため force 押下"
+   }
+  ]
+ },
+ "BLK-SHR-EEFF5DB3": {
+  "screen": "代理店 訂正内容確認(AMC24 子画面)→セッションタイムアウト画面 (子画面)",
+  "cases": [
+   "AZ-200-03-002",
+   "AZ-200-03-004"
+  ],
+  "steps": [
+   {
+    "event": "ast 遷移 セッションタイムアウト画面 (子画面)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#regist",
+    "in": "popup",
+    "note": "非浏览器=真機人工（タイムアウト子画面はmock未収録のため訂正内容確認の子画面在位で代替）"
+   },
+   {
+    "event": "ast エラーメッセージ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#close",
+    "in": "popup",
+    "note": "非浏览器=真機人工（mockにタイムアウト文言が無いため子画面の閉じるボタン在位で代替）"
+   }
+  ]
+ },
+ "BLK-SHR-7EB4CA64": {
+  "screen": "代理店 不備一覧(AMC22)→不備内容入力画面-更新(AMC23)",
+  "cases": [
+   "AZ-230-01-073",
+   "AZ-230-01-154"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "input 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 不備一覧画面 表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-LIST-OPEN-UPDATE": {
+  "screen": "代理店 不備一覧(AMC22)→代理店 不備内容入力画面(更新)(AMC23)",
+  "cases": [
+   "AZ-200-07-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "#link_tag"
+   },
+   {
+    "event": "ast 遷移 代理店 不備内容入力画面(更新)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-UPDATE-SUSPEND": {
+  "screen": "代理店 不備内容入力画面(更新)(AMC23)",
+  "cases": [
+   "AZ-200-07-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "input 任意の項目の値を変更",
+    "action": "fill",
+    "selector": "textarea.cell_input_value",
+    "value": "params.editedInquiryContent",
+    "note": "回答入力欄を任意項目の変更として使用"
+   },
+   {
+    "event": "click 一時中断",
+    "action": "click",
+    "selector": "#updateTempAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 代理店 不備内容入力画面(更新) 表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer"
+   },
+   {
+    "event": "ast 申込書テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#div_gyoumu_area",
+    "note": "申込書テーブル=非浏览器=真機人工（mockは業務領域在位で代替）"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-CORRECTION-REGISTER": {
+  "screen": "代理店 不備内容入力画面(更新)(AMC23)→代理店 訂正内容確認(AMC24 子画面)",
+  "cases": [
+   "AZ-200-07-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 訂正内容確認書",
+    "action": "click",
+    "selector": "input[name='act104to908']"
+   },
+   {
+    "event": "popup 遷移 代理店 訂正内容確認",
+    "action": "popup",
+    "match": "AMC24"
+   },
+   {
+    "event": "ast 代理店 訂正内容確認 表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#confirm_user_name",
+    "in": "popup"
+   },
+   {
+    "event": "input 確認者(募集人または社員)",
+    "action": "fill",
+    "selector": "#confirm_user_name",
+    "value": "params.confirmer",
+    "in": "popup"
+   },
+   {
+    "event": "check eメールによる確認の場合",
+    "action": "check",
+    "selector": "#email_confirm_check",
+    "in": "popup"
+   },
+   {
+    "event": "click 登録",
+    "action": "click",
+    "selector": "#regist",
+    "force": true,
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 代理店 不備内容入力画面(更新)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateAnswer",
+    "note": "mockは子画面を閉じないため親画面在位で代替"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast TRログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#div_gyoumu_area",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-LIST-SEARCH": {
+  "screen": "代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-200-07-003"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "inputBundle 各項目(部店コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 各項目(代理店コード)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 各項目(証券番号)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 不備一覧画面 表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   }
+  ]
+ },
+ "BLK-AZ-AGT-CSV-DOWNLOAD": {
+  "screen": "代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-200-07-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 代理店 不備一覧画面 表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   }
+  ]
+ },
+ "BLK-SGL-1913A9CC": {
+  "screen": "代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-200-07-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "input 検索条件(部店コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode",
+    "note": "CSV出力の相関チェック用前提条件"
+   },
+   {
+    "event": "input 検索条件(代理店コード)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input ダウンロード申請番号",
+    "action": "fill",
+    "selector": "#password",
+    "value": "ABCDEFG1",
+    "note": "AMC22に「ダウンロード申請番号」欄は無く、CSV出力の任意パスワード欄で代替"
+   },
+   {
+    "event": "click CSV出力",
+    "action": "click",
+    "selector": "#outputCSV"
+   },
+   {
+    "event": "ast メッセージボックス",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "注意喚起confirm=自動OK; mockはメッセージエリア在位で代替"
+   },
+   {
+    "event": "click OK",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#outputCSV",
+    "note": "OK=JS confirm auto-accept"
+   },
+   {
+    "event": "ast ダウンロードメッセージ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "mockはダウンロード文言未注入のためメッセージエリア在位で代替"
+   },
+   {
+    "event": "ast 申込書情報ファイル",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1,
+    "note": "出力対象=検索結果一覧の在位で代替"
+   },
+   {
+    "event": "ast DLログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#gyoumu_list",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-AZ-AGT-LIST-INITIAL": {
+  "screen": "代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-220-01-003"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "ast 参照可能代理店テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#agent_code",
+    "note": "参照可能代理店テーブルはmockに無いため代理店コード入力欄の在位で代替"
+   },
+   {
+    "event": "inputBundle 各項目(部店コード)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 各項目(代理店コード)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 各項目(証券番号)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 代理店 不備一覧画面 表示",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list a",
+    "min": 1
+   }
+  ]
+ },
+ "BLK-AZ-AGT-LIST-INITIAL-EMPTY": {
+  "screen": "代理店 不備一覧(AMC22)",
+  "cases": [
+   "AZ-220-01-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "ast 参照可能代理店テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#agent_code",
+    "note": "参照可能代理店テーブルはmockに無いため代理店コード入力欄の在位で代替"
+   },
+   {
+    "event": "ast メッセージエリア",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#message_area",
+    "note": "データなしメッセージはmock未注入のためメッセージエリア在位で代替"
+   }
+  ]
+ }
+}

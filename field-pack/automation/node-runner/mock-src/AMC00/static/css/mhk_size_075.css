@@ -1,0 +1,169 @@
+body, th, td, input, select, textarea, div	{ font-size:7.5pt; }
+select.cell_label_title_pulldown { font-size:7.1pt; }
+input, select { height:15px; line-height:15px; }
+#main	{ width:685px; height:516px; left:0; right:0; margin:auto; }
+div.space	{ margin-top:1.5px; }
+div.space_higher { margin-top:8px; }
+/* ヘッダー */
+div.area_head	{ width:100%; height:46.5px;  }
+table.tbl_head_size	{ width:100%; height:100%;  }
+td.size_head_logo	{ width:108px;  }
+td.cell_head_title_font_size	{ font-size:11.5pt;  }
+td.size_head_sysinfo	{ font-size:6pt;width:165px;  }
+/* エラーメッセージ */
+div.block_msg_size	{ line-height:12px; height:12px;  }
+/* 一覧画面-業務エリア */
+div.area_gyoumu	{ width:685px; height:420px; }
+div.size_block_search	{ width:685px; height:90px;  }
+table.tbl_search_size	{ width:685px; height:100%;  }
+td.size_search_col01	{ width:74.5px; }
+td.size_search_col02	{ width:94.5px; }
+input.size_agent_code	{ width:37.5px;  }
+input.size_input_col02	{ width:91.5px; }
+select.size_select_col02	{ width:93.5px; }
+td.size_search_col03	{ width:60.5px; }
+td.size_search_col04	{ width:117px; }
+select.size_select_col04	{ width:115.5px; }
+td.size_search_col05	{ width:62px; }
+td.size_search_col06	{ width:93px; }
+input.size_input_col06	{ width:90.5px; }
+td.size_search_col07	{ width:73.5px; }
+td.size_search_col08	{ width:93px; }
+input.size_input_col08	{ width:89px; }
+input.size_year	{ width:30px;  }
+input.size_month_day	{ width:15px;  }
+input.size_password	{ width:90.9px; }
+.size_width_100per  { width:100%; }
+.btn_type_normal	{ width:60px; height:21px;margin:0px;padding:0px; }
+.btn_type_large	    { width:67.5px; height:21px;margin:0px;padding:0px; }
+div.block_execute	{ width:685px; height:40.5px;  }
+td.size_csv_col01	{ width:11%;  }
+td.size_csv_col02	{ width:41%;  }
+td.size_csv_col03	{ width:24%;  }
+td.size_csv_col04	{ width:14%;  }
+td.size_csv_col05	{ width:10%;  }
+div.block_result_title	{ width:652.5px; height:27px;  }
+tr.size_title_row	{ height:27px;  }
+tr.size_result_height	{ line-height:18px;height:18px;  }
+td.size_result_col01	{ width:19px; }
+td.size_result_col02	{ width:34px; }
+td.size_result_col03	{ width:34px; }
+td.size_result_col04	{ width:43px; }
+td.size_result_col05	{ width:41.5px; }
+td.size_result_col06	{ width:50.5px; }
+td.size_result_col07	{ width:31.5px; }
+td.size_result_col08	{ width:58px; }
+td.size_result_col09	{ width:30px; }
+td.size_result_col10	{ width:159px; }
+td.size_result_col11	{ width:31.5px; }
+td.size_result_col12	{ width:46.5px; }
+td.size_result_col13	{ width:46.5px; }
+td.size_result_col14	{ width:26.5px; }
+div.block_result_scroll_size	{ width:685px; height:254px;  }
+table.size_result_list { width:652.5px; }
+div.area_btn	{ width:100%; height:24px; bottom:0px;left:0px;position:fixed; }
+table.size_tbl_btn	{ width:100%; height:100%;  }
+td.size_btn_left	{ width:40%;  }
+td.size_btn_center	{ width:50%;  }
+td.size_btn_right	{ width:10%;  }
+span.cell_span_width { width:11px; }
+.size_height_default	{ height:18px; }
+td.size_code { width:42px; }
+td.size_checkbox { width:15px; }
+td.size_title { width:55px; }
+input.size_checkbox { height:13.5px;width:9px; }
+td.size_status01{ width:52.5px; }
+td.size_status02{ width:52.5px; }
+td.size_status03{ width:97.5px; }
+/* 回答画面 */
+td.size_btn_openclose { height:25px; }
+.btn_type_openclose	{ width:90px; height:21px; margin:0px; padding:0px; }
+.btn_type_othersys	{ width:151.5px; height:22.5px; margin:0px; padding:0px; }
+.btn_type_gyoumu	{ width:105px; height:19.5px; margin:0px; padding:0px; }
+.btn_upload_del { width:33px; margin:0px; padding:0px;}
+div.block_open_btn { width:100%; height:21px; }
+div.block_open_info { width:100%; height:137px; }
+div.block_gyoumu_scroll_size { height:232px;  }
+div.block_gyoumu_scroll_size_close { height:369px;  }
+div.block_answer_scroll_size	{ height:214px;  }
+div.block_answer_scroll_size_close	{ height:280px;  }
+.size_width_scroll_gyoumu { width:668px; }
+.size_width_scroll_answer { width:650px; }
+.size_width_twoTable01	{ width:357px; }
+.size_width_twoTable02	{ width:322.5px; }
+.size_width_infoTable01	{ width:151.5px; }
+.size_width_infoTable02	{ width:189px; }
+.size_width_space	{ width:7.5px; }
+.size_width_title01	{ width:60px;  }
+.size_width_title02	{ width:82.5px;  }
+.size_width_value01	{ width:92.5px;  }
+.size_width_value02	{ width:107.5px;  }
+.size_width_fieldId	{ width:198px;  }
+.size_height_btn	{ height:56px;  }
+/* 照会内容 */
+.size_tableRecord_no	{ width:18.5px;  }
+.size_field_name	{ width:165px;  }
+.size_contents_name	{ width:465px;  }
+.size_scroll_contents_name	{ width:455px;  }
+.size_tableRecord_row { height: 33px; }
+.size_answer_msg_row { height:19.5px;  }
+.size_answer_title { width :75px; }
+.size_width_half	{ width:50%;  }
+.size_answer_select { width:546px; }
+.size_memo_title { width:90px; height:63px; }
+.size_memo_value { width:570px; height:63px; }
+.size_teisei_btn_row { height:22.5px; }
+.size_width_25per	{ width:25%;  }
+.size_wh_100per	{ width:100%; height:100%;  }
+td.size_upload_col01	{ width:165.5px; }
+td.size_upload_col02	{ width:47px;  }
+td.size_upload_col03	{ width:91.5px; }
+td.size_upload_col04	{ width:78.5px; }
+td.size_upload_col05	{ width:240px; }
+td.size_upload_col06	{ width:33px;  }
+.size_file_text	{ width:188px; height:14px; }
+.size_file_button	{ width:48px; }
+/* 訂正画面 */
+#main_teisei	{ width:685px; height:499.5px; left:0; right:0; margin:auto; }
+div.block_popup_gyoumu_scrcoll_size   { width:685px; height:475px; }
+div.block_teisei_scroll_size   { width:100%; height:72px; }
+div.block_comment_height { height:22.5px;line-height:22.5px; }
+.size_scroll_contents_teisei { width:666.5px; }
+.size_width_10per { width:10% }
+.size_col01	{ width:25%;  }
+.size_col02	{ width:15%;  }
+.size_col03	{ width:60%;  }
+.size_input_text_long	{ width:492px;  }
+.size_width_5per	{ width:5%;  }
+.size_width_20per	{ width:20%;  }
+.size_width_40per	{ width:40%;  }
+.size_width_35per	{ width:35%;  }
+.size_height_48px	{ height:36px;  }
+.size_teisei_col01 { width:150px; }
+.size_teisei_col02 { width:320px; }
+.size_input_year { width: 37.5px; }
+.size_input_datetime { width: 22.5px; }
+.size_radio_onetext { width: 15px; }
+.size_twotext { width: 30px; }
+input.size_radiobox { height:13.5px;width:9px; }
+img.title_logo{height:45px;width:106.5px;}
+
+/***********************************/
+/* カスタムツールチップ            */
+/***********************************/
+
+.tooltip-content {
+    position: absolute;
+    line-height: 1.3;
+    letter-spacing: normal;
+    font-size: 6.7pt;
+    font-family: 'Yu Gothic UI';
+    color: #707070;
+    background-color: #FFFFFF;
+    border: 2px gray solid;
+    padding-top: 6px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+    word-break: break-all;
+}

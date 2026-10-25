@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>システムエラー（子画面）</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css">
+</head>
+<body class="body_common" onload="document.getElementById('error_title').focus()">
+  <div class="title_area">
+    <div class="title_area_title">システムエラー</div>
+  </div>
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      <ul class="message_area">
+        <li class="message_area" id="error_message">MAZG000E001</li>
+      </ul>
+    </div>
+  </div>
+  <div class="area_gyoumu">
+    <h2 id="error_title" tabindex="-1">システムエラーが発生しました。</h2>
+    <p class="error_description">処理を継続できません。画面を閉じて、再度操作を行ってください。</p>
+    <p class="error_code">エラーコード：<span id="error_code">MAZG000E001</span></p>
+  </div>
+</body>
+</html>

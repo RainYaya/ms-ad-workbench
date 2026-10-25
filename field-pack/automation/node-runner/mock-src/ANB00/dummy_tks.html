@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=5" />
+  <title>MOKA - 検証用メニュー</title>
+	<script type="text/javascript">
+		<!--
+		var		developMode = false;
+		var		dakenMode = false;
+		var		EXPIRES_DAY = 3;
+
+		function onbodyLoad() {
+			var	form = document.mainForm;
+
+			form.userID.value = getCookie('usr');
+			form.bukaCode.value = getCookie('buk');
+			form.postCode.value = getCookie('pst');
+
+		}
+
+		function getCookie(cookieName) {
+			var	i;
+			var	cookies	= document.cookie.split(';');
+			var	result	= '';
+
+			for (i = 0 ; i < cookies.length ; i++ ) {
+				var	cookie	= cookies[i];
+				var	index	= cookie.indexOf('=');
+
+				var	searchCookieName = cookie.substring(0, index);
+
+				if ( searchCookieName == cookieName ||
+					 searchCookieName == ' ' + cookieName ) {
+					result = cookie.substring(index + 1);
+					break;
+				}
+			}
+			return result;
+		}
+
+		function normalWindow(daihituFlag) {
+			var		form = document.mainForm;
+
+			setCookie('usr', form.userID.value, EXPIRES_DAY);
+			setCookie('buk', form.bukaCode.value, EXPIRES_DAY);
+			setCookie('pst', form.postCode.value, EXPIRES_DAY);
+
+			if (form.accessMS.checked) {
+				setCookie('access-ms', form.accessMS.value, EXPIRES_DAY);
+			} else {
+				setCookie('access-ms', '', EXPIRES_DAY);
+			}
+
+			if (form.accessAD.checked) {
+				setCookie('access-ad', form.accessAD.value, EXPIRES_DAY);
+			} else {
+				setCookie('access-ad', '', EXPIRES_DAY);
+			}
+
+			// 環境を判定し遷移先を振り分け（Local/Server）
+			var host    = location.hostname;
+			// ローカルを表すhost文字列
+			var patternLocal = /local/;
+			// MSを表すhost文字列
+			var patternMS = /ms\./;
+			var url = '';
+
+			if (host.match(patternLocal)) {
+				// ローカル環境の場合
+				if (daihituFlag == '1') {
+					// 代筆・代印の場合
+					url = './ANA05?gamid=ANA05&gamcd=ANA00';
+				} else {
+					url = './ANA01?gamid=ANA01&gamcd=ANA00';
+				}
+			} else {
+				// サーバ環境の場合
+				if (host.match(patternMS)) {
+					// MSの場合
+					url = '/tksroot/index.html';
+				} else {
+					// ADの場合
+					url = '/tksroot/index_AD.html';
+				}
+
+				if (daihituFlag == '1') {
+					// 代筆・代印の場合
+					url = url + '?mode=1';
+				}
+			}
+
+			window.open(url, 'TOP', 'width=900,height=640,status=yes');
+		}
+
+		function setCookie(cookieName, value, expiresDay) {
+			var		expiresDate = new Date();
+			expiresDate.setDate(expiresDate.getDate() + expiresDay);
+			document.cookie = cookieName + '=' + value + '; path=/; expires=' + expiresDate.toGMTString();
+		}
+
+//		// モーダルダイアログモードで画面を起動する
+//		function showPopup(url, width, height) {
+//
+//			var result = window.showModalDialog(
+//							url,
+//							"Modal",
+//							"dialogWidth=" + width		+ "px;" +
+//							"dialogHeight=" + height	+ "px;" +
+//							"status=no;" +
+//							"resizable=no;" +
+//							"help=no;" +
+//							"scroll=no");
+//
+//			return result;
+//		}
+//
+//		function redirectWindow(url) {
+//			var		form = document.mainForm;
+//			if ( developMode == true ) {
+//				setCookie('usr', form.userID.value, EXPIRES_DAY);
+//				setCookie('buk', form.bukaCode.value, EXPIRES_DAY);
+//				setCookie('pst', form.postCode.value, EXPIRES_DAY);
+//			}
+//			window.location.href = url;
+//		}
+
+	-->
+	</script>
+  </head>
+  <body bgcolor="#FFFFFF" onload="onbodyLoad()">
+    	<form name="mainForm">
+    		<table>
+    		<tr>
+    			<td>ユーザID</td>
+	    		<td><input type="text" name="userID" value=""/></td>
+    		</tr>
+    		<tr>
+    			<td>部課コード</td>
+	    		<td><input type="text" name="bukaCode" value=""/></td>
+    		</tr>
+    		<tr>
+    			<td>役職段階コード</td>
+	    		<td><input type="text" name="postCode" value=""/></td>
+    		</tr>
+    		<tr>
+    			<td>アクセス権</td>
+	    		<td>
+	    		    <input type="checkbox" name="accessMS" value="1" checked/>MS　
+	    		    <input type="checkbox" name="accessAD" value="1"/>AD
+	    		</td>
+    		</tr>
+    		</table>
+    	</form>
+    	<b>MS社用</b>
+    	<br>
+    	<A href="javascript: normalWindow('0')">メニュー画面</A><br>
+    	<A href="javascript: normalWindow('1')">取消計上申請一覧画面</A><br>
+  </body>
+</html>

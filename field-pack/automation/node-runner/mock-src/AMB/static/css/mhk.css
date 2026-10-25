@@ -1,0 +1,2213 @@
+/****************/
+/* 共通設定項目 */
+/****************/
+/* CSS変数 */
+:root {
+	--color_pale_yellow   : #FFFFDC; /* 薄い黄色 */
+	--color_dark_blue     : #2529BA; /* 暗い青色 */
+	--color_pale_green    : #E6FFE6; /* 薄い緑色 */
+	--color_yellow        : #FFFF00; /* 黄色 */
+	--color_light_blue    : #00FFFF; /* 水色 */
+	--width_window_size   : 880px; /* 業務画面 ウインドウ幅 */
+	--border_color_gray_br: white gray gray white; /* 枠線：右・下側に灰色 */
+	--border_color_gray_tl: gray white white gray; /* 枠線：左・上側に灰色 */
+}
+
+/* paddingとborderを幅と高さに含める */
+*, *:before, *:after { box-sizing: border-box; }
+
+/* フォント */
+body, th, td, input, select, textarea {
+	font-family: 'ＭＳ Ｐゴシック', sans-serif;
+	font-size  : 10pt;
+}
+
+/* テキストエリア */
+textarea {
+	display   : block; /* テキストエリアが上へずれる事象の対処 */
+	overflow-y: scroll; /* 縦スクロール デフォルト表示 */
+}
+
+/* フィールドセット */
+fieldset {
+	margin : 0;
+	padding: 0;
+	border : none;
+}
+
+fieldset label { vertical-align: middle; }
+
+/* 背景色・文字色 */
+.body_common, .popup_body_common {
+	background-color: var(--color_pale_yellow); /* 薄い黄色 */
+	color           : #000; /* 黒色 */
+}
+
+/* 業務画面用 左右余白 */
+.body_common { margin: 0px 10px; }
+
+/* ポップアップ画面用 左右余白 */
+.popup_body_common { margin: 0px 5px; }
+
+/* 赤字 */
+.color_red { color: #F00; }
+
+/* 太字 */
+.text_bold { font-weight: bold; }
+
+.text_indent1 {
+	margin      : 0;
+	text-indent : -1em;
+	padding-left: 1em;
+}
+
+.text_indent2 {
+	margin      : 0;
+	text-indent : -2em;
+	padding-left: 2em;
+}
+
+.bgcolor_yellow { background-color: var(--color_yellow); }
+.bgcolor_lightblue { background-color: var(--color_light_blue); }
+
+/* 非表示 */
+.display_none { display: none; }
+.visibility_hidden { visibility: hidden; }
+
+/* 水平線 */
+.separator {
+	height          : 3px;
+	background-color: #006;
+}
+
+/* コロン */
+.colon {
+	display   : inline-block;
+	text-align: center;
+	width     : 20px;
+}
+
+/* テキストボックス */
+input[class^="input_size"] { height: 100%; }
+.input_size2  { width: 26px; }
+.input_size3  { width: 32px; }
+.input_size4  { width: 38px; }
+.input_size5  { width: 43px; }
+.input_size6  { width: 49px; }
+.input_size7  { width: 54px; }
+.input_size8  { width: 60px; }
+.input_size22 { width: 140px; }
+.input_size30 { width: 180px; }
+.input_size37 { width: 220px; }
+
+[class^="gyoumu_field_value"] input[type="checkbox"] {
+	position: relative;
+	top     : 2px;
+	margin  : 2px 3px 2px 4px;
+}
+
+[class^="gyoumu_field_value"] input[type="radio"] {
+	position: relative;
+	top     : 3px;
+	padding : 0;
+	margin  : 0px 3px 0 5px;
+}
+
+/**************/
+/* エリア全般 */
+/**************/
+.title_area,
+.div_message_area,
+.gyoumu_area,
+.button_area {
+	width: var(--width_window_size);
+}
+
+/******************/
+/* タイトルエリア */
+/******************/
+.title_area {
+	display     : flex;
+	height      : 36px;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.title_area > div {
+	display        : flex;
+	justify-content: center;
+	align-items    : center;
+	border         : 1px solid;
+	border-color   : var(--border_color_gray_tl);
+}
+
+div.title_area_logo {
+	background-color: #FFF;
+	width           : 220px;
+}
+
+div.title_area_title {
+	color           : #FFF;
+	background-color: #006;
+	width           : 334px;
+}
+
+div.title_area_sysinfo {
+	justify-content : right;
+	background-color: #FFF;
+	width           : 324px;
+}
+
+div.title_area_sysinfo > span {
+	transform : scale(0.7) translate(20%);
+	text-align: right;
+}
+
+/********************/
+/* メッセージエリア */
+/********************/
+/* 業務画面用 */
+div.div_message_area {
+	height      : 22px;
+	margin      : 0px;
+	padding     : 0px;
+	border      : 1px solid;
+    border-color: var(--border_color_gray_br);
+}
+
+div.message_area {
+	width       : inherit;
+	height      : inherit;
+	line-height : 1.5;
+	color       : #f00; /* 赤色 */
+	text-align  : left;
+	border      : 1px solid;
+    border-color: var(--border_color_gray_tl);
+}
+
+ul.message_area,
+li.message_area {
+	width     : 100%;
+	height    : 20px;
+	border    : none;
+	margin    : 0px;
+	padding   : 0px;
+	list-style: none;
+}
+
+/* 不備内容入力・回答画面 固有 */
+ul.bgcolor_red_message {
+	background-color: red;
+	color           : white;
+}
+
+/* ポップアップ画面用 */
+div.popup_message_area {
+  width     : 100%;
+  margin    : 0px;
+  padding   : 0px;
+  text-align: left;
+  font-size : 9pt;
+  color     : #F00; /* 赤色 */
+}
+
+ul.popup_message_area {
+  margin    : 0px;
+  padding   : 0px;
+  list-style: none;
+  text-align: left;
+}
+
+li.popup_message_area {
+  margin : 1px;
+  padding: 1px;
+  display: inline-block;
+}
+
+/**************/
+/* 業務エリア */
+/**************/
+.gyoumu_field_title,
+.gyoumu_field_value,
+.gyoumu_field_value_left,
+.gyoumu_field_value_nobgc {
+	align-content: center;
+	border       : 1px solid;
+	border-color : var(--border_color_gray_tl);
+	line-height  : 20px;
+}
+
+.gyoumu_field_value[title],
+.gyoumu_field_value_left[title] {
+	max-height   : 22px;
+	align-content: normal;
+	overflow     : hidden;
+}
+
+.gyoumu_field_title {
+    background-color: var(--color_dark_blue);
+    color           : #FFF;
+	text-align      : center;
+}
+
+.gyoumu_field_value {
+    background-color: var(--color_pale_green);
+	text-align      : center;
+}
+
+.gyoumu_field_value_left {
+    background-color: var(--color_pale_green);
+    text-align      : left;
+}
+
+/* 業務エリア内のボタン等 */
+.gyoumu_field_control {
+	width  : 100%;
+	height : 100%;
+	padding: 0;
+}
+
+/* テキストエリア用余白 */
+textarea.gyoumu_field_control {
+	padding: 3px;
+}
+
+/* 入力フォーム用余白 */
+input[type="text"].gyoumu_field_control {
+	padding: 1px 2px;
+}
+
+.gyoumu_field_control_nowidth {
+	height : 100%;
+	padding: 0;
+}
+
+/* 検索ボタン */
+.search_button {
+	height: 25px;
+	width : 60px;
+}
+
+/* 検索結果出力ボタン */
+.output_csv_button {
+	height: 25px;
+	width : 95px;
+}
+
+/* 小型ボタン */
+input.small_square_button {
+	width  : 20px;
+	height : 20px;
+	padding: 0px;
+}
+
+/* 各画面の件数用CSS */
+.gyoumu_search_count {
+	align-self: center;
+	text-align: right;
+}
+
+/****************/
+/* ボタンエリア */
+/****************/
+.button_area {
+	display        : flex;
+	height         : 25px;
+	position       : absolute;
+	bottom         : 5px;
+	justify-content: flex-end;
+}
+
+.popup_button_area {
+	display        : flex;
+	height         : 25px;
+	position       : fixed;
+	inset          : auto 0 5px;
+	margin         : auto;
+	justify-content: flex-end;
+}
+
+/* ボタン */
+.button_area_button,
+.popup_button_area_button {
+	width  : 100%;
+	height : 100%;
+	padding: 0px;
+}
+
+div[class^="button_width_"] {
+	height: 25px;
+	margin: 0px 2px;
+}
+
+.button_width_45  { width: 45px; }
+.button_width_60  { width: 60px; }
+.button_width_75  { width: 75px; }
+.button_width_95  { width: 95px; }
+.button_width_125 { width: 125px; }
+.button_width_130 { width: 130px; }
+.button_width_140 { width: 140px; }
+
+/***********************/
+/* AMA01: メニュー画面 */
+/***********************/
+.wrapper01 {
+	display    : grid;
+	grid       : repeat(6, 22px) 30px / 110px 250px;
+	gap        : 40px 0;
+	width      : 360px;
+	margin     : 0 auto;
+	padding-top: 80px;
+}
+
+/* 画面左側：ボタン */
+.wrapper01 > .item:nth-child(odd) { margin-left: 10px; }
+
+/* 画面右側：文言 */
+.wrapper01 > .item:nth-child(even) { align-content: center; }
+
+/* 申込書品質管理システムのページリンク */
+.menu_tool_link_font { font-size: 11pt; }
+
+/***************************/
+/* AMA03: 不備内容入力画面 */
+/***************************/
+.wrapper03 {
+	display   : grid;
+	grid      : 24px 22px 110px 44px / repeat(3, 202px 1fr) 202px;
+	margin-top: 20px;
+}
+
+/* 注意文言以外の欄に外枠 */
+.wrapper03 > .item:not(:nth-child(2)) {
+	align-self  : start;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+/* 入力区分から契約マスタ欄 */
+.wrapper03 > .item:nth-child(1) {
+	display    : grid;
+	grid       : subgrid / 100px 124px 100px 1fr;
+	grid-column: 1 / span 3;
+}
+
+/* 画面右上の注意文言 */
+.wrapper03 > .item:nth-child(2) {
+	grid-column : 5 / span 3;
+	align-self  : center;
+	justify-self: left;
+}
+
+.wrapper03 > .item:nth-child(n+3):nth-child(-n+4),
+.wrapper03 > .item:nth-child(n+6):nth-child(-n+7) {
+	display: grid;
+	grid   : repeat(auto-fit, 22px) / repeat(2, 100px);
+}
+
+/* 種目から明細番号欄 */
+.wrapper03 > .item:nth-child(3) {
+	grid-row: 3;
+	position: relative;
+}
+
+/* 部店課支社コードからフリーコード欄 */
+.wrapper03 > .item:nth-child(4) {
+	grid-row   : 3;
+	grid-column: 3;
+}
+
+/* 募集人IDから契約者名欄 */
+.wrapper03 > .item:nth-child(5) {
+	grid-row   : 4;
+	grid-column: 1 / span 3;
+
+	display: grid;
+	grid   : repeat(2, 22px) / 100px 100px 1fr 22px;
+
+	> div:nth-child(6) {
+		grid-column: 2 / span 3;
+	}
+}
+
+/* 保険始期日から計上状態欄 */
+.wrapper03 > .item:nth-child(6) {
+	grid-row   : 3;
+	grid-column: 5;
+}
+
+/* 登録者から完了日欄 */
+.wrapper03 > .item:nth-child(7) {
+	grid-row   : 3;
+	grid-column: 7;
+}
+
+/* 保険種類選択画面ボタン */
+.button_select_insurance_item {
+	position: absolute;
+	top     : 23px;
+	left    : 200px;
+}
+
+/* 不備内容入力画面 ボタンエリア */
+.size_button_area03 > div:nth-child(3) { margin-left: 296px; }
+.size_button_area03 > div:nth-child(4) { margin-left: 300px; }
+
+/***************************/
+/* AMA04: 不備内容回答画面 */
+/***************************/
+.wrapper04 {
+	display: grid;
+	grid   : 24px 22px 110px 46px 5px 50px / repeat(3, 202px 1fr) 202px;
+	margin : 8px 0px;
+}
+
+.wrapper04 .gyoumu_field_value,
+.wrapper04 .gyoumu_field_value_left {
+	max-height   : 22px;
+	align-content: normal;
+	overflow     : hidden;
+}
+
+/* 注意文言以外の欄にgridを適用 */
+.wrapper04 > .item:not(:nth-child(2)) {
+	display: grid;
+}
+
+/* 注意文言・各種ボタン以外の欄に外枠 */
+.wrapper04 > .item:not(:nth-child(2)):not(:nth-child(9)) {
+	align-self  : start;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+/* 入力区分から契約マスタ欄 */
+.wrapper04 > .item:nth-child(1) {
+	grid-column: 1 / 4;
+	grid       : subgrid / 100px 1fr 100px 100px;
+}
+
+/* 注意文言欄 */
+.wrapper04 > .item:nth-child(2) {
+	display        : flex;
+	justify-content: space-between;
+	grid-column    : 5 / 8;
+	align-items    : center;
+}
+
+.wrapper04 > .item:nth-child(n+3):nth-child(-n+4),
+.wrapper04 > .item:nth-child(n+6):nth-child(-n+11) {
+	display: grid;
+	grid   : repeat(auto-fit, 22px) / repeat(2, 100px);
+}
+
+/* 種目から明細番号欄 */
+.wrapper04 > .item:nth-child(3) {
+	grid-row: 3;
+	position: relative;
+}
+
+/* 部店課支社ｺｰﾄﾞからフリーコード欄 */
+.wrapper04 > .item:nth-child(4) {
+	grid-column: 3;
+	grid-row   : 3;
+}
+
+/* 募集人IDから契約者名欄 */
+.wrapper04 > .item:nth-child(5) {
+	grid-row   : 4;
+	grid-column: 1 / span 3;
+
+	display : grid;
+	grid    : repeat(2, 22px) / 100px 100px 1fr 22px;
+
+	> div:nth-child(6) {
+		grid-column: 2 / span 3;
+	}
+}
+
+/* 保険始期日から点検区分欄 */
+.wrapper04 > .item:nth-child(6) {
+	grid-column: 5;
+	grid-row   : 3;
+}
+
+/* 照会IDから連携欄 */
+.wrapper04 > .item:nth-child(7) {
+	grid-column: 7;
+	grid-row   : 2 / 5;
+	position   : relative;
+}
+
+/* 履歴ボタン */
+.button_operation_history {
+	position: absolute;
+	top     : 88px;
+	left    : 62px;
+}
+
+.button_operation_history input {
+	height : 21px;
+	width  : 37px;
+	padding: 0px;
+}
+
+/* 計上状態から照会方法欄 */
+.wrapper04 > .item:nth-child(8) {
+	grid-row   : 6;
+	grid-column: 1;
+
+	> div:nth-child(4) {
+		word-break: break-all;
+	}
+}
+
+/* 各種ボタン欄 */
+.wrapper04 > .item:nth-child(9) {
+	grid-column          : 2 / 4;
+	grid-row             : 6 / 7;
+	grid-template-columns: 120px 90px;
+	gap                  : 2px;
+	padding              : 0 7px;
+
+	> div:nth-child(1) { grid-row: 1; }
+	> div:nth-child(n+2) { grid-row: 2; }
+	input { visibility: hidden; }
+}
+
+/* 依頼区分から点検区分欄 */
+.wrapper04 > .item:nth-child(10) {
+	grid-row   : 6;
+	grid-column: 5;
+}
+
+/* 営業対応状況から代理店対応状況欄 */
+.wrapper04 > .item:nth-child(11) {
+	grid-row   : 6;
+	grid-column: 7;
+}
+
+div.gyoumu_screen_field_scroll {
+	width       : 890px;
+	height      : 245px;
+	overflow-y  : scroll;
+	overflow-x  : hidden;
+	border-width: 0px;
+}
+
+div.gyoumu_list_data_scroll {
+	height      : 180px;
+	overflow-y  : scroll;
+	overflow-x  : hidden;
+	border-width: 2px;
+	border-style: ridge;
+	border-color: white;
+}
+
+.gyoumu_screen_field_header {
+	display: flex;
+	width  : 100%;
+	height : 22px;
+
+	> div:nth-child(1) { width: 76px; }
+	> div:nth-child(2) { width: 201px; }
+	> div:nth-child(3) { width: 78px; }
+	> div:nth-child(4) { width: 366px; }
+	> div:nth-child(5) { width: 73px; }
+	> div:nth-child(6) { width: 27px; }
+	> div:nth-child(7) { width: 54px; }
+}
+
+.col_width_04:nth-child(1)  { width: 39px; }
+.col_width_04:nth-child(2)  { width: 35px; }
+.col_width_04:nth-child(3)  { width: 20px; }
+.col_width_04:nth-child(4)  { width: 181px; }
+.col_width_04:nth-child(5)  { width: 78px; }
+.col_width_04:nth-child(6)  { width: 20px; }
+.col_width_04:nth-child(7)  { width: 26px; }
+.col_width_04:nth-child(8)  { width: 320px; }
+.col_width_04:nth-child(9)  { width: 73px; }
+.col_width_04:nth-child(10) { width: 27px; }
+.col_width_04:nth-child(11) { width: 37px; }
+
+.div2_table_row1 {
+	height: 38px;
+}
+
+td[name="agent_inquiry_flag"] {
+	vertical-align: top;
+}
+
+.div2_table_row2 {
+	height: 22px;
+}
+
+.div2_table_row3 {
+	height: 38px;
+}
+
+/* 不備内容 */
+td.imperfect_name {
+	white-space: normal;
+}
+
+/* 照会内容 */
+td.inquiry_contents_name {
+	display    : block;
+	height     : inherit;
+	line-height: 150%;
+	white-space: normal;
+	padding    : 0;
+}
+
+/* 代理店照会 */
+.select_agent_inquiry_flag {
+	vertical-align: top;
+
+	> select {
+		width  : 100%;
+		height : inherit;
+		padding: 0;
+	}
+}
+
+/* 備考通信欄・社内メモ欄 */
+.gyoumu_message_area {
+	display   : grid;
+	grid      : 87px 25px / 100px 1fr;
+	margin-top: 5px;
+
+	> div:nth-child(1) {
+		place-content: center;
+	}
+
+	/* テキストエリアが上へずれる事象の対処 */
+	> div#div_forms_message { align-content: baseline; }
+}
+
+/* 訂正内容確認書ボタン・送り状印刷 */
+.confirm_area {
+	display   : grid;
+	grid      : 22px 60px / 1fr 1fr;
+	margin-top: 10px;
+}
+
+.confirm_area_button {
+	height: 24px;
+	width : 120px;
+}
+
+/* 添付ファイル*/
+.table_attached_file tr.sticky_table_thead_tr { height: 20px; }
+.table_attached_file th { font-weight: normal; }
+.table_attached_file tr > :nth-child(1) { width: 200px; }
+.table_attached_file tr > :nth-child(2) { width: 60px; }
+.table_attached_file tr > :nth-child(3) { width: 130px; }
+.table_attached_file tr > :nth-child(4) { width: 100px; }
+.table_attached_file tr > :nth-child(5) { width: 345px; }
+.table_attached_file tr > :nth-child(6) { width: 38px; }
+
+input.attached_file {
+	height: 22px;
+	width : 100%;
+}
+
+.gyoumu_message_area,
+.confirm_area {
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+/* 添付ファイルサイズ 注意書き */
+.file_size_attention {
+	text-align: right;
+	margin-top: 8px;
+}
+
+/* 画面下部 注意書き */
+.gyoumu_area_footer {
+	margin: 5px 0 0 5px;
+}
+
+#check_status_title,
+#check_status_value {
+	display: none;
+}
+
+.div_disabled {
+	pointer-events: none;
+	user-select   : none;
+}
+
+.body04 { overflow-x: hidden; }
+.size_button_area04 { justify-content: center; }
+
+/***************************/
+/* AMA06: 親子集計予約画面 */
+/***************************/
+/* ステータス・抽出条件・出力対象の幅・枠線 */
+.wrapper06 > div {
+	border    : 1px solid gray;
+	margin-top: 8px;
+}
+
+.status {
+	display: grid;
+	grid   : repeat(2, 24px) / 100px 130px 100px 130px 100px 130px 1fr;
+	margin : 0px 8px 5px 8px;
+
+	> div {
+		display     : grid;
+		grid        : 22px / subgrid;
+		border      : 1px solid;
+		border-color: var(--border_color_gray_br);
+	}
+	> div:nth-child(1) {
+		grid-column: 1 / span 4;
+		grid-row   : 1;
+	}
+	> div:nth-child(2) {
+		grid-column: 1 / span 6;
+		grid-row   : 2;
+	}
+}
+
+.extract {
+	display     : grid;
+	grid        : repeat(3, 22px) / 100px 300px 100px 1fr;
+	margin      : 0px 8px 5px 8px;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+
+	> div:nth-child(n+1):nth-child(-n+4) {
+		grid-row: 1;
+
+		select {
+			height:20px;
+			vertical-align:top;
+		}
+	}
+	> div:nth-child(n+5):nth-child(-n+6) {
+		grid-row: 2;
+	}
+	> div:nth-child(n+7):nth-child(-n+8) {
+		grid-row: 3;
+	}
+	> div:nth-child(6),
+	> div:nth-child(8) {
+		grid-column: 2 / span 3;
+	}
+}
+
+#agency {
+	margin: 0px 8px 8px;
+	border: 1px solid gray;
+}
+
+.subag {
+	display: grid;
+	grid   : 18px 24px / 21px 100px 50px 80px 50px 1fr 20px 160px 312px;
+	border : 1px solid gray;
+	padding: 0px 20px 10px 5px;
+	margin : 5px 10px 0 10px;
+
+	> div:nth-child(n+1):nth-child(-n+2) {
+		grid-row: 1;
+	}
+	> div:nth-child(n+3):nth-child(-n+4) {
+		display     : grid;
+		grid-row    : 2;
+		grid        : subgrid / subgrid;
+		border      : 1px solid;
+		border-color: var(--border_color_gray_br);
+	}
+	> div:nth-child(1) {
+		grid-column  : 1 / span 6;
+		align-content: end;
+	}
+	> div:nth-child(2) {
+		grid-column  : 7 / span 3;
+		align-content: end;
+	}
+	> div:nth-child(3) {
+		grid-column: 2 / span 4;
+	}
+	> div:nth-child(4) {
+		grid-column: 8 / span 2;
+	}
+	input[type="radio"] {
+		position: relative;
+		top     : 2px;
+		padding : 0;
+		margin  : 0 3px 0 5px;
+	}
+}
+
+.subag2 {
+	display: grid;
+	grid   : 40px 155px 25px / 310px 105px 290px 1fr;
+
+	> div:nth-child(1) {
+		grid-column  : 1 / 2;
+		grid-row     : 1;
+		margin-block : 8px;
+		align-content: center;
+		place-self   : center;
+	}
+	> div:nth-child(2) {
+		margin-left: 20px;
+	}
+	> div:nth-child(2),
+	> div:nth-child(4) {
+		border    : 1px solid gray;
+		align-self: start;
+
+		> div {
+			height     : auto;
+			line-height: normal;
+		}
+	}
+	> div:nth-child(n+2):nth-child(-n+5) {
+		grid-row: 2;
+	}
+	> div:nth-child(3) {
+		padding:2px;
+	}
+	> div:nth-child(5) {
+		margin-left: 15px;
+	}
+	> div:nth-child(6) {
+		grid-column  : 3 / span 2;
+		grid-row     : 3;
+		align-content: center;
+
+		div { margin-left:10px; }
+	}
+}
+
+.button1 {
+	width     : 70px;
+	place-self: center;
+
+	> div:nth-child(1) {
+		margin-bottom: 7px;
+	}
+	> div {
+		input {
+			margin-top: 2px;
+		}
+	}
+}
+
+.button2 {
+	align-content: center;
+
+	> div input {
+		display: block;
+		margin : 5px 0;
+	}
+}
+
+.target {
+	display     : grid;
+	grid        : 22px / 100px 120px 100px 1fr;
+	margin      : 0px 8px 8px 8px;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.subject {
+	height: 15px;
+
+	.box_color_gray { color: gray; }
+	.box_color_blue { color: #5088CC; }
+	.box_color_red  { color: #CC5050; }
+}
+
+.regist_agent_list {
+	font-family: 'ＭＳ ゴシック';
+	width      : 288px;
+	height     : 138px;
+	overflow-y : auto;
+}
+
+.add_button_group {
+	> div {
+		border          : 1px solid #ccc;
+		background-color: #ccc;
+		padding         :2px;
+
+		div { text-align: center; }
+		div:not(:first-child) { background-color: #ccc; }
+		div:first-child { background-color: #aaa; }
+	}
+}
+
+input.small_button {
+	width : 60px;
+	height: 24px;
+}
+
+input.copy_button {
+	width : 120px;
+	height: 24px;
+}
+
+.size_button_area06 > div:nth-child(3) { margin-left: auto; }
+.size_button_area06 > div:last-child { margin-left: 192px; }
+
+/***********************/
+/* AMA07: 不備一覧画面 */
+/***********************/
+.wrapper07 {
+	display      : grid;
+	grid         : repeat(5, 24px) repeat(2, 23px) repeat(2, 24px)
+					 / 100px 110px 90px 55px 65px 25px 45px 55px 35px 60px 15px 25px 100px 1fr;
+	margin-bottom: 1px;
+}
+
+/* 各行 */
+.wrapper07 .item {
+	display     : grid;
+	grid-column : 1 / 15;
+	grid        : subgrid / subgrid;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper07 > .item:nth-child(6) {
+	grid-row: span 2;
+}
+
+.wrapper07 > .item:nth-child(6) {
+	> div:nth-child(-n+7) {
+		grid-row: 1;
+	}
+	> div:nth-child(n+8) {
+		grid-row: 2;
+	}
+	> div:nth-child(n+3):nth-child(-n+5) {
+		grid-row-end : span 2;
+		align-content: center;
+	}
+	input#complete_status {
+		margin: 0;
+	}
+}
+
+input[name^="answer_date"] {
+	vertical-align: top;
+}
+
+.wrapper07 > .item:nth-child(7) {
+	> div:nth-child(2) {
+		grid-column: 2 / span 14;
+	}
+}
+
+.wrapper07 > .item:nth-child(8) {
+	> div:nth-child(2) {
+		grid-column: 2 / span 8;
+	}
+}
+
+/* チェックボックスの幅・位置調整 */
+.wrapper07 > .item:nth-child(n+6):nth-child(-n+8) span {
+	height : 20px;
+}
+
+.input_group_status_code {
+	display: flex;
+
+	> span:nth-child(1) { width: 65px; }
+	> span:nth-child(n+2):nth-child(-n+4) { width: 84px; }
+}
+
+.input_group_notify_status {
+	display: flex;
+
+	> span:nth-child(1) { width: 60px; }
+	> span:nth-child(2) { width: 85px; }
+	> span:nth-child(3) { width: 70px; }
+}
+
+.input_group_method_content,
+.input_group_ck_type {
+	display: flex;
+
+	> span:nth-child(1) { width: 70px; }
+	> span:nth-child(2) { width: 95px; }
+	> span:nth-child(3) { width: 110px; }
+	> span:nth-child(4) { width: 115px; }
+	> span:nth-child(5) { width: 85px; }
+}
+
+.input_group_method_content {
+	> span:nth-child(n+6):nth-child(-n+7) { width: 85px; }
+}
+
+.input_group_agent_deal_flag {
+	display: flex;
+
+	> span:nth-child(1) { width: 70px; }
+	> span:nth-child(2) { width: 95px; }
+}
+
+#span_inquiry_method_code_7,
+#span_ck_type_5 {
+	display: none;
+}
+
+/* 検索ボタンから検索結果件数 */
+.wrapper07_2 {
+	display: grid;
+	grid   : 25px 36px / 100px 340px 30px 100px 110px 100px 1fr;
+
+	> div:nth-child(1) {
+		grid-row: 1 / span 2;
+	}
+	> div:nth-child(n+2):nth-child(-n+6) {
+		grid-row: 1;
+	}
+	> div:nth-child(n+7):nth-child(-n+9) {
+		grid-row: 2;
+	}
+	> div:nth-child(n+2):nth-child(-n+9) {
+		align-self: center;
+	}
+	> div:nth-child(n+3):nth-child(-n+6) {
+		justify-self: center;
+	}
+	> div:nth-child(9) {
+		justify-self: right;
+	}
+	> div:nth-child(5) {
+		> input {
+			vertical-align: middle;
+		}
+	}
+}
+
+input#content_check {
+	position: relative;
+	top     : -2px;
+	margin  : 0 3px 0 0;
+}
+
+.clear_button {
+	width  : 28px;
+	padding: 1px 0px;
+}
+
+.help_link {
+	width : 65px;
+	height: 41px;
+}
+
+.download_number {
+	width : 100%;
+	height: 20px;
+}
+
+.button_agent_mode_display {
+	width  : 120px;
+	height : 24px;
+	padding: 0;
+}
+
+/* 検索結果一覧 */
+.size_table07 {
+	width : 890px;
+	height: 270px;
+}
+
+.colgroup07 col:nth-child(1)  { width: 27px; }
+.colgroup07 col:nth-child(2)  { width: 38px; }
+.colgroup07 col:nth-child(3)  { width: 50px; }
+.colgroup07 col:nth-child(4)  { width: 46px; }
+.colgroup07 col:nth-child(5)  { width: 100px; }
+.colgroup07 col:nth-child(6)  { width: 60px; }
+.colgroup07 col:nth-child(7)  { width: 70px; }
+.colgroup07 col:nth-child(8)  { width: 45px; }
+.colgroup07 col:nth-child(9)  { width: 80px; }
+.colgroup07 col:nth-child(10) { width: 40px; }
+.colgroup07 col:nth-child(11) { width: 165px; }
+.colgroup07 col:nth-child(12) { width: 65px; }
+.colgroup07 col:nth-child(13) { width: 65px; }
+.colgroup07 col:nth-child(14) { width: 40px; }
+.colgroup07 col:nth-child(15) { width: 64px; }
+.colgroup07 col:nth-child(16) { width: 40px; }
+.colgroup07 col:nth-child(17) { width: 64px; }
+.colgroup07 col:nth-child(18) { width: 40px; }
+.colgroup07 col:nth-child(19) { width: 40px; }
+.colgroup07 col:nth-child(20) { width: 40px; }
+.colgroup07 col:nth-child(21) { width: 40px; }
+.colgroup07 col:nth-child(22) { width: 40px; }
+
+#table07 thead tr:first-of-type { height: 16px; }
+#table07 thead tr:last-of-type  { top: 17px; }
+
+#table07 tbody tr td:nth-child(1) {
+	position: -webkit-sticky;
+	position: sticky;
+	left    : 0;
+}
+
+#table07 tbody tr td:nth-child(2) {
+	position: -webkit-sticky;
+	position: sticky;
+	left    : 27px;
+}
+
+/* 背景色：連絡 */
+td.agent_deal_flag_contact { background-color: var(--color_light_blue); }
+
+/* 背景色：未完了照会 */
+td.over_answer_limit { background-color: var(--color_yellow); }
+
+#table07 input[type="checkbox"] {
+	position: relative;
+	top     : 3px;
+	margin  : 0px;
+}
+
+select.gyoumu_field_title_pulldown {
+	background-color: #2529ba;  /* 青色 */
+	color           : #FFFFFF;  /* 白 */
+	width           : 100%;
+}
+
+.size_button_area07 > div:nth-child(3) { margin-left: 130px; }
+.size_button_area07 > div:nth-child(5) { margin-left: auto; }
+.size_button_area07 > div:nth-child(6) { margin-left: 70px; }
+
+/***********************/
+/* AMA08: 不備集計画面 */
+/***********************/
+.wrapper08 {
+	display   : grid;
+	grid      : 90px 80px 55px 55px 220px 22px / 200px 140px 502px 1fr;
+	margin-top: 20px;
+}
+
+.wrapper08 > .item {
+	display: grid;
+}
+
+/* 部店課支社ｺｰﾄﾞ・代理店ｺｰﾄﾞ欄 */
+.wrapper08 > .item:nth-child(1) {
+	grid         : repeat(3, 22px) / 100px 100px;
+	border-bottom: 1px solid gray;
+	align-self   : baseline;
+
+	> div:nth-child(even) {
+		border-right: 1px solid gray;
+	}
+}
+
+/* 本部ｺｰﾄﾞ(非表示) */
+#head_office_code_title,
+#head_office_code_value {
+	visibility: hidden;
+}
+
+/* 登録年月から新更変・他欄 */
+.wrapper08 > .item:nth-child(2) {
+	grid             : repeat(4, 22px) / 100px 400px;
+	grid-column-start: 3;
+	border           : 1px solid;
+	border-color     : var(--border_color_gray_br);
+}
+
+.wrapper08 select[name="large_item_list.selected"] {
+	vertical-align: top;
+}
+
+/* 注意書き */
+.wrapper08 > .item:nth-child(3) {
+	grid-template-rows: repeat(2, 40px);
+	grid-column-start : 3;
+	grid-row-start    : 2;
+	align-items       : center;
+}
+
+/* 不備集計ツール・親子集計ツールDLリンク */
+.wrapper08 > .item:nth-child(4),
+.wrapper08 > .item:nth-child(5) {
+	grid-column  : 1 / span 3;
+	align-content: center;
+	gap          : 2px;
+
+	> p {
+		margin: 0;
+	}
+	span {
+		margin-left: 15px;
+	}
+}
+
+.wrapper08 > .item:nth-child(4) {
+	grid-row: 3;
+}
+
+.wrapper08 > .item:nth-child(5) {
+	display : none;
+	grid-row: 4;
+}
+
+/* 画面下部の文言 */
+.wrapper08 > .item:nth-child(6) {
+	grid-column  : 1 / span 4;
+	grid-row     : 6;
+	place-content: center;
+}
+
+.size_button_area08 > div:first-child { margin-right: auto; }
+.size_button_area08 > div:last-child { margin-left: auto; }
+
+/*******************************/
+/* AMA11: 親子集計状況確認画面 */
+/*******************************/
+.wrapper11 {
+	display   : grid;
+	grid      : 24px 26px 30px / 100px 100px 100px 1fr 200px;
+	margin-top: 10px;
+}
+
+.wrapper11 > .item {
+	display    : grid;
+	grid-column: 1 / span 5;
+}
+
+.wrapper11 > .item:nth-child(1) {
+	grid        : subgrid / subgrid;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+
+	> div:nth-child(4) {
+		grid-column    : 4 / span 2;
+		justify-content: flex-start;
+	}
+}
+
+.wrapper11 > .item:nth-child(3) {
+	grid-template-columns: subgrid;
+
+	> div:nth-child(1) {
+		grid-column : 1 / span 4;
+		margin-right: auto;
+	}
+	> div:nth-child(2) {
+		text-align: right;
+	}
+}
+
+.size_table11 {
+	width     : 890px;
+	height    : 435px;
+	margin-top: 10px;
+}
+
+.colgroup11 col:nth-child(1)  { width: 28px; }
+.colgroup11 col:nth-child(2)  { width: 28px; }
+.colgroup11 col:nth-child(3)  { width: 98px; }
+.colgroup11 col:nth-child(4)  { width: 130px; }
+.colgroup11 col:nth-child(5)  { width: 130px; }
+.colgroup11 col:nth-child(6)  { width: 70px; }
+.colgroup11 col:nth-child(7)  { width: 70px; }
+.colgroup11 col:nth-child(8)  { width: 180px; }
+.colgroup11 col:nth-child(9)  { width: 82px; }
+.colgroup11 col:nth-child(10) { width: 60px; }
+
+#table11 thead tr:first-of-type {
+	height        : 25px;
+	vertical-align: bottom;
+}
+
+#table11 thead tr:last-of-type {
+	height        : 35px;
+	vertical-align: bottom;
+	top           : 25px;
+}
+
+#table11 thead tr:nth-child(2) { vertical-align: bottom; }
+
+.size_button_area11 > div:nth-child(3) { margin-left: 130px; }
+.size_button_area11 > div:last-child { margin-left: 420px; }
+
+/*******************************/
+/* AMA12: 親子集計受付完了画面 */
+/*******************************/
+.box_12 {
+	border    : 1px solid gray;
+	width     : 400px;
+	margin    : 40px auto 0;
+	padding   : 30px 100px;
+	text-align: left;
+}
+
+.box_12 > .message { text-align: center; }
+
+.box_12 > ul { margin-block: 15px; }
+.box_12 ul { padding-left: 10px; }
+.box_12 li { list-style: none; }
+
+.size_button_area12 > div:last-child { margin-left: auto; }
+
+/*************************/
+/* AMA13: 項目名検索画面 */
+/*************************/
+.wrapper13 {
+	display: grid;
+	grid   : 42px 42px 5px 200px 1fr 24px / 275px 415px;
+	width  : 698px;
+	gap    : 8px;
+	margin : 0 auto;
+}
+
+.wrapper13 > .item {
+	display: grid;
+}
+
+.wrapper13 > .item:nth-child(1),
+.wrapper13 > .item:nth-child(3),
+.wrapper13 > .item:nth-child(4) {
+	grid        : 18px 22px / 80px 1fr;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper13 > .item:nth-child(2) {
+	width        : 80px;
+	place-content: center;
+}
+
+/* 検索ボタン */
+.b3 {
+	height : 25px;
+	width  : 40px;
+	padding: 0px;
+}
+
+/* 水平線 */
+.wrapper13 > .item:nth-child(5) {
+	grid-column: 1 / span 2;
+	grid-row   : 3;
+}
+
+.wrapper13 > .item:nth-child(9) {
+	border       : 1px solid #333;
+	height       : max-content;
+	padding      : 5px;
+	min-height   : 65px;
+	margin-bottom: 15px;
+}
+
+.wrapper13 > .item:nth-child(10) {
+	grid        : subgrid / 100px 1fr;
+	grid-column : 1 / span 2;
+	grid-row    : 6;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+
+	select {
+		width: 100px;
+	}
+}
+
+.size_button_area13 { width: 690px; }
+.size_button_area13 > div:last-child { margin-left: auto; }
+
+/***********************/
+/* AMA14: 帳票印刷画面 */
+/***********************/
+.wrapper14_ms,
+.wrapper14_ad {
+	display: grid;
+	width  : 790px;
+	gap    : 10px 0px;
+	margin : 0 auto;
+}
+
+.wrapper14_ms { grid: 112px 24px 68px 110px / 100px 1fr; }
+.wrapper14_ad { grid: 112px 24px 24px 68px 110px / 100px 1fr; }
+
+[class^="wrapper14"] > .item {
+	display        : grid;
+	grid           : subgrid / subgrid;
+	grid-column-end: span 2;
+	border         : 1px solid;
+	border-color   : var(--border_color_gray_br);
+}
+
+[class^="wrapper14"] input[type="checkbox"] {
+	padding-inline: 3px 5px;
+	vertical-align: baseline;
+}
+
+#report_type { grid: repeat(5, 22px) / subgrid; }
+#report_type > div.gyoumu_field_title { grid-row-end: span 5; }
+
+#titleTypeArea { display: none; }
+
+#shokai_saki div.gyoumu_fild_value_left { line-height: 20px; }
+#shokai_saki input[type="text"] { height: 18px; }
+
+#print_message { grid: 17px 1fr / 1fr; }
+#print_message div.gyoumu_field_title { line-height: normal; }
+
+.size_button_area14 { width: 790px; }
+.size_button_area14 > div:last-child { margin-left: auto; }
+
+/* クリップボードへコピー用ダイアログ */
+dialog {
+	width            : 500px;
+	padding          : 10px;
+	border           : 1px solid black;
+	border-radius    : 5px;
+	background-color : white;
+	font-family      : system-ui;
+	text-spacing-trim: space-all;
+}
+
+.dialog_button_area { text-align: right; }
+
+.dialog_button:hover { background-color: #006ABC; }
+
+.dialog_button:focus {
+	background-color: #006ABC;
+	border          : 2px solid #80868B;
+	outline         : 2px solid #79B0DC;
+	outline-offset  : -4px;
+}
+
+.dialog_msg {
+	margin-block: 0 10px;
+	white-space : pre-wrap;
+	word-wrap   : break-word;
+}
+
+.dialog_button {
+	background-color: #0078D4;
+	border          : 1px solid #0078D4;
+	border-radius   : 0.25rem;
+	color           : white;
+	width           : 64px;
+	height          : 33px;
+	letter-spacing  : -3px;
+}
+
+/***************************/
+/* AMA15: 照会内容編集画面 */
+/***************************/
+.wrapper15 {
+	display: grid;
+	grid   : 200px 3px 175px / 100px 315px;
+	gap    : 5px 0px;
+	width  : 415px;
+	margin : 0 auto;
+}
+
+.wrapper15 > .item:nth-child(1) {
+	display     : grid;
+	grid        : 24px 1fr / subgrid;
+	grid-column : 1 / span 2;
+	grid-row    : 1;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+
+	#inquiry_content_name {
+		line-height  : 120%;
+		padding      : 2px;
+		align-content: start;
+	}
+}
+
+.wrapper15 > .item:nth-child(2) {
+	display    : grid;
+	grid-column: 1 / span 2;
+	grid-row   : 2;
+}
+
+.wrapper15 > .item:nth-child(3) {
+	display     : grid;
+	grid        : subgrid / subgrid;
+	grid-column : 1 / span 2;
+	grid-row    : 3;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+
+	> div:first-child {
+		line-height: normal;
+	}
+
+	textarea {
+		line-height: 120%;
+		padding    : 3px;
+	}
+}
+
+.size_button_area15 { width: 415px; }
+.size_button_area15 > div:last-child { margin-left: auto; }
+
+/*************************/
+/* AMA18: 募集人検索画面 */
+/*************************/
+.wrapper18 {
+	width : 475px;
+	margin: 0 auto;
+}
+
+.wrapper18 > div:first-child {
+	display     : grid;
+	grid        :repeat(2, 22px) / 100px 135px 100px 1fr;
+	padding     : 0;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper18 > div:nth-child(2) { height: 25px; }
+.field_agent_message { line-height: 2; }
+.wrapper18 > div:nth-child(3) { margin-block: 5px 10px; }
+
+#table18 tr > :nth-child(1) { width: 40px; }
+#table18 tr > :nth-child(2) { width: 85px; }
+#table18 tr > :nth-child(3) { width: 75px; }
+#table18 tr > :nth-child(4) { width: 100px; }
+#table18 tr > :nth-child(5) { width: 170px; }
+
+#table18 th {
+	font-weight   : normal;
+	vertical-align: bottom;
+}
+
+#table18 td:not(:last-child) { text-align: center; }
+
+.size_button_area18 { width: 475px; }
+.size_button_area18 > div:nth-child(1) { margin-left: auto; }
+.size_button_area18 > div:nth-child(3) { margin-left: 80px; }
+.size_button_area18 > div:nth-child(4) { margin-left: 10px; }
+
+/***************************/
+/* AMA19: 訂正内容確認画面 */
+/***************************/
+.wrapper19 {
+	overflow-y: scroll;
+	width     : 890px;
+	height    : 585px;
+	margin    : 0 auto;
+}
+
+.wrapper19 > div { width: calc(890px - calc(890px - 100%)); }
+
+.wrapper19 > .item { display: grid; }
+
+.item.border_item {
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+/* 訂正内容確認画面 上部 */
+#teisei_upper {
+	grid         : 24px 22px 24px / 25% 20% 55%;
+	margin-bottom: 10px;
+}
+
+/* 代理店・扱者・仲立人欄 */
+#teisei_upper > div:nth-child(1) { grid-row-end: span 2; }
+
+/* 確認者 募集人または社員 入力欄の幅 */
+#teisei_upper > div:nth-child(7) { grid-column: 2 / 4; }
+
+/* 訂正内容確認画面 中部 */
+#teisei_middle {
+	grid         : repeat(7, 22px) 38px 95px 40px / 5% 20% 40% 35%;
+	margin-bottom: 10px;
+}
+
+/* 確認実施内容欄 */
+#teisei_middle > div:nth-child(1) { grid-column-end: span 4; }
+
+/* 1 対象契約欄 */
+#teisei_middle > div:nth-child(n+2):nth-child(-n+3) { grid-row: 2 / span 3; }
+
+/* 4 確認相手の電話番号欄 */
+#teisei_middle > div:nth-child(n+15):nth-child(-n+16) { grid-row: 7 / span 2; }
+
+/* 確認実施欄 右側 */
+#teisei_middle > div:nth-child(8),
+#teisei_middle > div:nth-child(11),
+#teisei_middle > div:nth-child(14),
+#teisei_middle > div:nth-child(17),
+#teisei_middle > div:nth-child(18),
+#teisei_middle > div:nth-child(21),
+#teisei_middle > div:nth-child(24) {
+	grid-column: 3 / span 2;
+}
+
+/* 訂正内容確認画面 中部 チェックボックス欄 */
+.teisei_middle_check { display: flex; }
+
+.teisei_middle_check > div:first-child {
+	width        : 10%;
+	text-align   : center;
+	line-height  : normal;
+	align-content: center;
+}
+
+.teisei_middle_check > div:last-child {
+	width        : 90%;
+	line-height  : normal;
+	align-content: center;
+
+	> span {
+		vertical-align: top;
+	}
+}
+
+/* 訂正内容確認画面 下部 */
+.wrapper19 > .item:nth-child(4) {
+	grid        : repeat(7, 24px) / 5% 95%;
+	margin-block: 10px;
+
+	> div:nth-child(1) {
+		grid-column: 1 / span 2;
+	}
+}
+
+/* 5 訂正項目・訂正内容テーブル */
+#table19 tr > :nth-child(1) { width: 25%; }
+#table19 tr > :nth-child(2) { width: 50%; }
+
+#table19 th { font-weight: normal; }
+
+/* 訂正内容確認画面 注意事項 注 */
+.item.attention_chu { grid-template-columns: 5% 95%; }
+.item.attention_chu div:nth-child(odd) { text-align: center; }
+
+.item.attention_chu p {
+	margin      : 0;
+	padding-left: 0.5em;
+}
+
+.item.attention_chu p.text_indent { text-indent: -0.5em; }
+
+/* 訂正内容確認画面 注意事項 ※ */
+.item.attention_kome {
+	grid-template-columns: 5% 1fr;
+	gap                  : 5px 15px;
+	margin-block         : 5px;
+}
+
+.item.attention_kome div:nth-child(odd) { text-align: right; }
+
+.size_table19 {
+	height: 100%;
+	border: 2px ridge white;
+}
+
+.size_button_area19 { width: 875px; }
+.size_button_area19 > div:first-child { margin-left: 40%; }
+.size_button_area19 > div:last-child  { margin-left: auto; }
+
+/***************************/
+/* AMA20: 照会方法一覧画面 */
+/***************************/
+.wrapper20 {
+	display: grid;
+	grid   : 24px 24px 24px 20px / 150px 100px 100px 1fr 100px;
+}
+
+.wrapper20 > .item {
+	display    : grid;
+	grid-column: 1 / span 5;
+}
+
+.wrapper20 > .item:nth-child(-n+3) {
+	grid: subgrid / subgrid;
+}
+
+.wrapper20 > .item:nth-child(-n+2) {
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper20 > .item:nth-child(3) {
+	align-items: center;
+
+	div:nth-child(3) { justify-self: right; }
+}
+
+.size_table20 {
+	width     : 890px;
+	height    : 425px;
+	margin-top: 10px;
+}
+
+#table20 tr.sticky_table_thead_tr {
+	height        : 35px;
+	vertical-align: middle;
+}
+
+#table20 tr > :nth-child(1) { width: 25px; }
+#table20 tr > :nth-child(2) { width: 75px; }
+#table20 tr > :nth-child(3) { width: 60px; }
+#table20 tr > :nth-child(4) { width: 150px; }
+#table20 tr > :nth-child(5) { width: 80px; }
+#table20 tr > :nth-child(6) { width: 80px; }
+#table20 tr > :nth-child(7) { width: 325px; }
+#table20 tr > :nth-child(8) { width: 80px; }
+
+#table20 tbody td:nth-child(6) {
+	word-break: break-all;
+}
+
+.size_button_area20 { justify-content: space-between; }
+.size_button_area20 > div:nth-child(2) { display: flex; }
+
+/***************************/
+/* AMA21: 照会方法更新画面 */
+/***************************/
+.wrapper21 {
+	display: grid;
+	grid   : 46px 38px repeat(2, 23px) 160px / 100px 100px 1fr;
+	width  : 390px;
+	margin : 0 auto;
+}
+
+.wrapper21 > .item {
+	display     : grid;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper21 > .item:nth-child(1) {
+	grid           : repeat(2, 22px) / subgrid;
+	grid-column-end: span 2;
+}
+
+.wrapper21 > .item:nth-child(2) { margin-bottom: 15px; }
+
+.wrapper21 > .item:nth-child(n+2):nth-child(-n+4) {
+	grid           : subgrid / subgrid;
+	grid-column-end: span 3;
+}
+
+.wrapper21 > .item:nth-child(5) { grid-template-rows: 22px 1fr; }
+
+.size_button_area21 { width: 390px; }
+.size_button_area21 > div:last-child { margin-left: auto; }
+
+/***************************************/
+/* AMA26: 営業連携メール通知先登録画面 */
+/***************************************/
+.wrapper26 {
+	display: grid;
+	grid   : 29px 13px 24px 24px 452px / repeat(2, 1fr);
+}
+
+.wrapper26 > .item:nth-child(1) {
+	display        : grid;
+	grid           : subgrid / 100px 110px 62px 400px 1fr;
+	grid-column-end: span 2;
+	border         : 1px solid;
+	border-color   : var(--border_color_gray_br);
+	justify-self   : left;
+}
+
+.wrapper26 > .item.separator {
+	grid-column-end: span 2;
+	margin-block   : 5px;
+}
+
+.wrapper26 > .item:nth-child(3) {
+	display     : grid;
+	grid        : subgrid / repeat(2, 100px 120px);
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.wrapper26 > .item:nth-child(4) {
+	grid-column-end: span 2;
+	margin-block   : 2px 5px;
+}
+
+.wrapper26 > .item:nth-child(5) {
+	border     : 1px solid gray;
+	padding    : 8px 2px;
+}
+
+.wrapper26 > .item:nth-child(6) {
+	border      : 1px solid;
+	border-color: gray gray gray white;
+	padding     : 8px 5px;
+}
+
+.user_list_area_top {
+	display    : flex;
+	margin-top : 4px;
+	height     : 25px;
+	align-items: flex-start;
+}
+
+.size_table26 {
+	width     : 300px;
+	height    : 355px;
+	margin-top: 5px;
+}
+
+.size_table26 tr.sticky_table_thead_tr { height: 33px; }
+.size_table26 tr > :nth-child(1) { width: 38px; }
+.size_table26 tr > :nth-child(2) { width: 80px; }
+.size_table26 tr > :nth-child(3) { width: 167px; }
+
+.user_list_area_bottom {
+	margin-top     : 8px;
+	display        : flex;
+	width          : 300px;
+	height         : 25px;
+	justify-content: center;
+}
+
+.size_button_area26 > div:nth-child(2) { margin-left: auto; }
+.size_button_area26 > div:last-child { margin-left: 320px; }
+
+/***********************************/
+/* AMA27: 個別メール通知先検索画面 */
+/***********************************/
+.wrapper27 {
+	width  : 435px;
+	margin : 0 auto;
+}
+
+.wrapper27 > div:nth-child(2) { min-height: 25px; }
+
+#search_mail_send_user {
+	display     : grid;
+	grid        : repeat(2, 22px) / 130px 130px;
+	width       : 262px;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+#table27 tr > :nth-child(1) { width: 40px; }
+#table27 tr > :nth-child(2) { width: 90px; }
+#table27 tr > :nth-child(3) { width: 160px; }
+#table27 tr > :nth-child(4) { width: 145px; }
+#table27 th { font-weight: normal; }
+
+#table27 td:nth-child(1),
+#table27 td:nth-child(2) {
+	text-align: center;
+}
+
+.size_button_area27 { width: 435px; }
+
+/*******************************/
+/* AMA28: メール通知先選択画面 */
+/*******************************/
+.wrapper28 {
+	display       : grid;
+	grid          : 75px 270px 50px 25px / 310px 435px;
+	width         : 745px;
+	margin        : 0 auto;
+	grid-auto-flow: column;
+}
+
+.wrapper28 > .item:nth-child(n+1):nth-child(-n+4) {
+	padding-right: 10px;
+	border-right : 1px solid black;
+}
+
+.wrapper28 > .item:nth-child(n+5):nth-child(-n+7) {
+	padding-left: 10px;
+}
+
+.wrapper28 > .item:nth-child(1) {
+	display: grid;
+	grid   : 15px 24px 35px / 186px 1fr;
+}
+
+#mail_send_list_search {
+	display     : grid;
+	grid        : subgrid / 110px 75px;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+#warning_message { align-content: center; }
+
+/* 通知先追加欄 */
+.wrapper28 > .item:nth-child(5) {
+	display: grid;
+	grid   : 15px 24px 24px / 262px 1fr;
+}
+
+#mail_set_user_list_search {
+	display     : grid;
+	grid        : subgrid / 130px 130px;
+	grid-row-end: span 2;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+#delete_button { margin-right: auto; }
+
+.wrapper28 > .item:nth-child(n+3):nth-child(-n+4),
+.wrapper28 > .item:nth-child(7) {
+	display        : flex;
+	justify-content: center;
+}
+
+.wrapper28 > .item:nth-child(n+2):nth-child(-n+3),
+.wrapper28 > .item:nth-child(n+6):nth-child(-n+7) { padding-bottom: 25px; }
+
+#table28 tr > :nth-child(1) { width: 40px; }
+#table28 tr > :nth-child(2) { width: 90px; }
+#table28 tr > :nth-child(3) { width: 160px; }
+#table28 tr > :nth-child(4) { width: 130px; }
+#table28 th {
+	height     : 22px;
+	font-weight: normal;
+}
+
+/***********************/
+/* AMA29: 更新履歴画面 */
+/***********************/
+.size_table29 {
+	width        : 890px;
+	height       : 580px;
+	line-height  : 150%;
+	margin-top   : 15px;
+	margin-inline: auto;
+}
+
+#table29 tr > :nth-child(1) { width: 95px; }
+#table29 tr > :nth-child(2) { width: 130px; }
+#table29 tr > :nth-child(3) { width: 90px; }
+#table29 tr > :nth-child(4) { width: 200px; }
+#table29 tr > :nth-child(5) { width: 360px; }
+#table29 tbody tr { height: 82px; }
+#table29 tbody td:nth-child(1) { white-space: normal; }
+#table29 tbody td:nth-child(2) { word-break: break-all; }
+#table29 tbody td:nth-child(4) { white-space: pre-line; }
+
+.update_item_name {
+	height       : 100%;
+	overflow-wrap: break-word;
+	overflow-y   : auto;
+	white-space  : pre-wrap;
+	word-break   : break-all;
+}
+
+.size_button_area29 { width: 890px; }
+
+/********************/
+/* 保険種類選択画面 */
+/********************/
+.wrapperHoshu {
+	display     : grid;
+	width       : 465px;
+	grid        : repeat(2, 24px) / 100px 1fr;
+	margin      : 15px auto 0;
+	border      : 1px solid;
+	border-color: var(--border_color_gray_br);
+}
+
+.size_button_areaHoshu { width : 465px; }
+.size_button_areaHoshu > div:last-child { margin-left: auto; }
+
+/************/
+/* 閉局画面 */
+/************/
+.body_heikyoku {
+	background-color: #ffffff;
+	font-size       : 10pt;
+	font-family     : "ＭＳ Ｐ明朝", serif;
+	color           : #343434;
+	margin          : 0px;
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
+	width           : 100vw;
+	height          : 100vh;
+}
+
+.wrapperHeikyoku {
+	width  : 640px;
+	height : 150px;
+	display: flex;
+}
+
+.wrapperHeikyoku > .item:nth-child(1) {
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
+	padding         : 10px;
+	background-color: #746c65;
+	width           : 220px;
+
+	> span {
+		font-size: 40pt;
+		color    : #f0f0f0;
+	}
+}
+
+.wrapperHeikyoku > .item:nth-child(2) {
+	display        : flex;
+	flex-direction : column;
+	justify-content: space-evenly;
+	padding        : 10px;
+	border         : 1px solid #746c65;
+	width          : 420px;
+	text-align     : center;
+
+	> div:nth-child(1) {
+		font-size     : 20pt;
+		letter-spacing: 0.5rem;
+		font-weight   : bold;
+	}
+
+	> div:nth-child(2) {
+		font-family: "ＭＳ 明朝";
+	}
+
+	> div:nth-child(3) {
+		font-family: "ＭＳ 明朝";
+		text-align : right;
+	}
+}
+
+a.heikyoku_close:link,
+a.heikyoku_close:visited {
+	text-decoration-line: none;
+	color               : #343434;
+}
+
+a.heikyoku_close:hover {
+	text-decoration-line: underline;
+	color               : #ff0080;
+}
+
+/**********/
+/* Grid用 */
+/**********/
+.grid_column_span2 { grid-column: span 2; }
+.grid_column_span3 { grid-column: span 3; }
+.grid_column_span4 { grid-column: span 4; }
+.grid_column_span5 { grid-column: span 5; }
+.grid_column_span6 { grid-column: span 6; }
+
+/******************/
+/* テーブル(表)用 */
+/******************/
+/* Y軸のスクロールバー表示 */
+.sticky_table_wrapper {
+	overflow-y: scroll;
+}
+
+/* X軸のスクロールバー非表示 */
+.sticky_table_wrapper:not(#deficiency_list) {
+	overflow-x: hidden;
+}
+
+/* 表全体 */
+.sticky_table {
+	width          : 100%;
+	border-spacing : 0;
+	border-collapse: separate;
+	table-layout   : fixed;
+}
+
+/* タイトル */
+.sticky_table_thead_tr {
+	position   : -webkit-sticky;
+	position   : sticky;
+	z-index    : 1;
+	white-space: nowrap;
+	text-align : center;
+}
+
+/* 固定ヘッダ1行目 */
+.sticky_table_thead_tr:nth-child(1) th {
+	top: 0;
+}
+
+/* 固定ヘッダ1列目セル */
+.zindex_2:nth-child(1) {
+	z-index: 2;
+	left   : 0;
+}
+
+/* 固定ヘッダ2列目セル */
+.zindex_2:nth-child(2) {
+	z-index: 2;
+	left   : 27px;
+}
+
+/* 行 */
+.sticky_table tbody tr {
+	background-color: #e6ffe6;  /* 薄緑色 */
+}
+
+.sticky_table_title {
+	position        : -webkit-sticky;
+	position        : sticky;
+	background-color: #2529ba;  /* 青色 */
+	color           : #FFF;
+	width           : inherit;
+	white-space     : nowrap;
+}
+
+.sticky_table_value {
+	height     : 22px;
+	padding    : 0px;
+	white-space: nowrap;
+	overflow   : hidden;
+}
+
+.txt_aln_l {
+	text-align: left;
+}
+
+.txt_aln_c {
+	text-align: center;
+}
+
+.sticky_table input[type="checkbox"] {
+	margin: 0;
+}
+
+/* 罫線 */
+.sticky_table_title,
+.sticky_table_value {
+	border      : 1px solid;
+	border-color: #999 #FFF #FFF #999;
+}
+
+.sticky_table_thead_tr:first-child .sticky_table_title:last-of-type,
+.sticky_table_value:last-of-type {
+	border-right: 1px solid #999;
+}
+
+.sticky_table tbody tr:last-of-type td {
+	border-bottom: 1px solid #999;
+}
+
+/***********************************/
+/* カスタムツールチップ            */
+/***********************************/
+.tooltip-content {
+	position        : absolute;
+	line-height     : 1.3;
+	letter-spacing  : normal;
+	font-size       : 9pt;
+	font-family     : 'Yu Gothic UI';
+	color           : #707070;
+	background-color: #FFF;
+	border          : 2px gray solid;
+	padding         : 6px 10px;
+	overflow-wrap   : anywhere;
+	word-break      : normal;
+	line-break      : strict;
+}

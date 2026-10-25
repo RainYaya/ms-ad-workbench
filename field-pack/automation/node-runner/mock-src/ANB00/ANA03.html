@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/tks.css"/>
+<script type="text/javascript" src="/static/js/tks_common.js"></script>
+<script>
+
+	// 大種目リスト
+	var largeItems = [
+	  ''
+	  
+	  ,'1','1'
+	  
+	  ];
+
+	// 保種リスト
+	var insuranceItems = [
+	  ''
+	  
+	  ,'1','1','1','1'
+	  
+	  ];
+
+	// 申請基準項目説明リスト
+	var applicationBaseItems = [
+	  ''
+	  
+	  ,'1','1','1'
+	  
+	  ];
+
+	// 取消理由説明、区分リスト
+	var cancelReasons = [
+	  ''
+	  
+	  ,'1','1','1','1','1','1'
+	  
+	  ];
+
+	// 具体的内容リスト
+	var concreteContents = [
+	  ''
+	  
+	  ,'1','1','1','1','1'
+	  
+	  ];
+
+</script>
+<script>
+
+// 終了ボタン処理
+function onCloseClick() {
+	// 子画面チェック
+	subWinOpenCheck();
+	clickButtonName = 'close';
+	return closeSubmit(document.tks_TKSPRForm.close, '');
+}
+
+// 担当者検索
+function popupAYG900(name) {
+
+	// 子画面チェック
+	subWinOpenCheck();
+
+	var userId = document.tks_TKSPRForm[name + '_id'];
+	var sectionCode = document.tks_TKSPRForm[name + '_sec_code'];
+	var userNameHdn = document.tks_TKSPRForm[name + '_name'];
+	var userName = document.getElementById(name + '_name');
+
+	var searchMode;
+	var req_approver_check_sec_code1_5 = document.tks_TKSPRForm.req_approver_check_sec_code1_5;
+	//「承認依頼先選択」から遷移される場合
+	if(name == 'req_approver'){
+		//会社区分が「AD」、承認パターンが「部支店長」の場合
+		if(document.tks_TKSPRForm.company_kbn.value == 'AD' && document.tks_TKSPRForm.approve_pattern.value == '1'){
+			//承認依頼先課支社CDの末尾が「01」の場合
+			if(sectionCode.value.slice(-2) != '01'){
+				var checkSections = req_approver_check_sec_code1_5.value.split(",");
+			for(var i = 0; i < checkSections.length; i++){
+				var checkSection = checkSections[i];
+					//承認依頼先の所属課支社第1~5の中で末尾が「01」の所属課支社CDを承認依頼先課支社CDに設定
+					if(checkSection.slice(-2)  == '01'){
+						sectionCode.value = checkSection;
+						break;
+					}
+				}
+			}
+			//検索モードに「部支店長モード」を設定
+			searchMode = '2';
+		}
+		else{
+			//検索モードに「通常モード」を設定
+			searchMode = '1';
+		}
+	}
+	else{
+		//検索モードに「通常モード」を設定
+		searchMode = '1';
+	}
+
+	var param = '1' + '=' + userId.value
+		+ '&' + '1' + '=' + sectionCode.value
+		+ '&' + '1' + '=' + searchMode
+		+ '&' + '1' + '=' + name
+		+ '&gamid=ANA10&gamcd=ANA00&hubsessid=1';
+	//var url = '<orteus:rewrite action="/tks/TKSPR/AYG900.do" method="controlStart" useLocalEncoding="true"/>';
+	var url = new URL('/ANB00/ANA10.html', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+	// 担当者検索画面呼び出し
+	showPopup(url.href, 510, 430);
+
+}
+
+//送信先（写）選択画面を呼び出す処理の場合
+function popupAYG901(name){
+	clickButtonName = name;
+	// 子画面チェック
+	subWinOpenCheck();
+	var form =  document.tks_TKSPRForm;
+	// メッセージID
+	var messageId = null;
+	// 申請ステータス
+	var appStatus = form.application_status.value;
+	// バリデート実行フラグ
+	var validate = false;
+
+	if (name == 'requestApplication') {
+		// 重要事項説明と契約内容の確認を編集
+		editExplainAndInsuranceConfirm(form);
+		validate = true;
+		if (form.approve_pattern.value == '0') {
+			// 承認依頼ボタン押下
+			messageId = 'MAYG901I008'
+		} else {
+			// 申請依頼ボタン押下
+			messageId = 'MAYG901I001'
+		}
+	} else if (name == 'cancel') {
+		// 取消ボタン押下
+
+		if (appStatus == '10') {
+			// 申請依頼取消ボタン押下
+
+			if (form.rejection_date_view.value == '') {
+				// 要再申請依頼なし
+				messageId = 'MAYG901I002';
+			} else {
+				// 要再申請依頼あり
+				messageId = 'MAYG901I003';
+			}
+
+		} else if (appStatus == '11') {
+			if (form.approve_pattern.value == '0') {
+				// 承認依頼取消ボタン押下(課支社長承認)
+				if (form.rejection_date_view.value == '') {
+					// 未申請
+					messageId = 'MAYG901I013';
+				}else{
+					// 要再申請
+					messageId = 'MAYG901I014';
+				}
+			} else {
+				// 承認依頼取消ボタン押下
+				messageId = 'MAYG901I004';
+			}
+
+		} else {
+			// 不承認取消ボタン押下
+
+			if (form.applicant_id.value == '') {
+				// 申請者による不承認取消
+				messageId = 'MAYG901I005';
+
+			} else {
+				// 承認者による不承認取消
+				messageId = 'MAYG901I006';
+			}
+		}
+	}
+
+	// バリデートエラーの場合、処理終了
+	if (validate && formValidate(form) == false) {
+		return false;
+	}
+
+	// パラメタに確認メッセージIDを設定
+	var param =  '1' + '=' + messageId
+		+ '&' + '1' + '=' + name
+		+ '&gamid=ANA11&gamcd=ANA00&hubsessid=1';
+
+	// 送信先（写）選択画面のURLを設定
+	//var url = '<orteus:rewrite action="/tks/TKSPR/AYG901.do" method="controlStart" useLocalEncoding="true"/>';
+	var	url = new URL('/ANB00/ANA11.html', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+	// 送信先（写）選択画面呼び出し
+	showPopup(url.href, 820, 455);
+}
+
+// submit処理
+function custom_Submit(form) {
+
+  // 子画面チェック
+  subWinOpenCheck();
+  // 確認メッセージ
+  var confMessage = null;
+  // メッセージID
+  var messageId = null;
+  // 申請ステータス
+  var appStatus = form.application_status.value;
+  // バリデート実行フラグ
+  var validate = false;
+
+  if (clickButtonName == 'update') {
+    // 重要事項説明と契約内容の確認を編集
+    editExplainAndInsuranceConfirm(form);
+    // 更新ボタン押下
+    validate = true;
+  } else if (clickButtonName == 'deleteApplication') {
+    confMessage = '';
+  } else if (clickButtonName == 'actionRegist') {
+    // 対応登録ボタン押下は更新・申請依頼と別バリデートを行う
+    if (actionRegistValidate(form) == false) {
+      // エラー時は処理終了
+      return false;
+    }
+  }
+
+  // バリデートエラーの場合、処理終了
+  if (validate && formValidate(form) == false) {
+    return false;
+  }
+
+  // 確認メッセージでキャンセルが押下された場合、処理終了
+  if (confMessage != null && !window.confirm(confMessage)) {
+    return false;
+  }
+
+  disabledArea(document.getElementById('div_gyoumu_area_03'), false);
+
+  return true;
+}
+
+// 大種目変更
+function onChangeLargeItem(initFlag) {
+  var largeItemObj = document.tks_TKSPRForm.elements['large_item_list.selected'];
+  var insuranceItemObj = document.tks_TKSPRForm.elements['insurance_item_list.selected'];
+  var concreteContentObj = document.tks_TKSPRForm.elements['concrete_content_list.selected'];
+  var concreteContentExp = document.getElementById('concrete_content_explanation');
+
+  // 保種プルダウン構築
+  var i = 0;
+  var j = 0;
+  insuranceItemObj.options.length = 1;
+  insuranceItemObj.options[j].value = '';
+  insuranceItemObj.options[j++].text = '';
+
+  for (i = 0 ; i < insuranceItems.length / 4; i++) {
+    if (insuranceItems[i*4+1] == largeItemObj.value) {
+      insuranceItemObj.options.length++;
+      insuranceItemObj.options[j].value = insuranceItems[i*4+2] + insuranceItems[i*4+3];
+      insuranceItemObj.options[j].title = insuranceItems[i*4+2] + ' ： ' + insuranceItems[i*4+4];
+      insuranceItemObj.options[j++].text = insuranceItems[i*4+2] + ' ： ' + insuranceItems[i*4+4];
+    }
+  }
+
+  // その他のプルダウン項目の構築
+  onChangeAppBaseItem(initFlag);
+}
+
+// 保種変更時のタイトル設定
+function onChangeInsuranceItem(flag) {
+  var insuranceItemObj = document.tks_TKSPRForm.elements['insurance_item_list.selected'];
+
+  var insuranceItemOld = '1';
+
+  // 初期表示時
+  if (flag) {
+    for (var i = 0 ; i < insuranceItemObj.options.length; i++ ) {
+      if (insuranceItemObj.options[i].value == insuranceItemOld) {
+        insuranceItemObj.selectedIndex = i;
+      }
+    }
+  }
+
+  var selectedIndex = insuranceItemObj.selectedIndex;
+
+  if (selectedIndex >= 0) {
+    document.getElementById('insurance_item_title').title = insuranceItemObj.options[selectedIndex].text;
+  }
+}
+
+// 申請基準項目プルダウンをを初期化
+function initAppBaseItem() {
+  var appBaseItemObj = document.tks_TKSPRForm.elements['application_base_item_list.selected'];
+  var appStatus = document.tks_TKSPRForm.application_status.value;
+
+  // 申請基準項目が未申請、要再申請依頼の場合は、画面用の申請基準項目に絞り込む
+  if (appStatus == '00' || appStatus == '01') {
+    appBaseItemObj.options.length -= 2;
+  }
+}
+
+// 申請基準項目を変更
+function onChangeAppBaseItem(initFlag) {
+  var appBaseItemObj = document.tks_TKSPRForm.elements['application_base_item_list.selected'];
+  var appBaseItemExp = document.getElementById('application_base_explanation');
+  var cancelReasonID;
+
+  for (var i = 0 ; i < applicationBaseItems.length / 3; i++) {
+    if (applicationBaseItems[i*3+1] == appBaseItemObj.value) {
+      appBaseItemExp.innerText = applicationBaseItems[i*3+2];
+      break;
+    }
+  }
+
+  if (!appBaseItemObj.value) {
+    appBaseItemExp.innerText = '';
+  }
+
+  // 契約計上日の活性／非活性制御
+  // if (appBaseItemObj.value == '3') {
+  //  document.tks_TKSPRForm.sumup_date.disabled = true;
+  //  document.tks_TKSPRForm.sumup_date.style.backgroundColor = 'silver';
+  // } else {
+  //  document.tks_TKSPRForm.sumup_date.disabled = false;
+  //  document.tks_TKSPRForm.sumup_date.style.backgroundColor = 'white';
+  // }
+
+  // 再計上証券番号、再計上明細番号の活性／非活性制御
+  if (appBaseItemObj.value == '4' || appBaseItemObj.value == '5') {
+    document.tks_TKSPRForm.re_policy_number.disabled = false;
+    document.tks_TKSPRForm.re_policy_number.style.backgroundColor = 'white';
+    document.tks_TKSPRForm.re_sub_policy_number.disabled = false;
+    document.tks_TKSPRForm.re_sub_policy_number.style.backgroundColor = 'white';
+  } else {
+    document.tks_TKSPRForm.re_policy_number.disabled = true;
+    document.tks_TKSPRForm.re_policy_number.style.backgroundColor = 'silver';
+    document.tks_TKSPRForm.re_sub_policy_number.disabled = true;
+    document.tks_TKSPRForm.re_sub_policy_number.style.backgroundColor = 'silver';
+  }
+
+  initCancelReason(initFlag);
+}
+
+// 取消理由を初期化
+function initCancelReason(initFlag) {
+  var appBaseItemObj = document.tks_TKSPRForm.elements['application_base_item_list.selected'];
+  var largeItemType = '';
+  var largeItemObj = document.tks_TKSPRForm.elements['large_item_list.selected'];
+  var cancelReasonID;
+  var cancelReasonObj = document.tks_TKSPRForm.elements['cancel_reason_list.selected'];
+  var tmpSelectedValue = initFlag ? document.tks_TKSPRForm.cancel_reason_key.value : cancelReasonObj.value;
+  var cancelReasonExp = document.getElementById('cancel_reason_explanation');
+  var concreteContentObj = document.tks_TKSPRForm.elements['concrete_content_list.selected'];
+
+  var j = 0;
+  cancelReasonObj.options.length = 1;
+  cancelReasonObj.options[j].value = "";
+  cancelReasonObj.options[j].title = "";
+  cancelReasonObj.options[j++].text = "";
+  cancelReasonExp.innerText = "";
+
+  // 申請基準項目が未選択ならば空欄行のみ
+  if (appBaseItemObj.value == '') {
+    // 具体的内容、具体的内容（説明）を初期化
+    onChangeCancelReason(false);
+    onChangeConcreteContent(false);
+    //var concreteContentExp = document.getElementById('concrete_content_explanation');
+    //concreteContentExp.innerText = "";
+    return;
+  }
+
+  // 申請基準項目から取消理由区分を取得
+  for (var i = 0; i < applicationBaseItems.length / 3; i++) {
+    if (appBaseItemObj.value == applicationBaseItems[i*3+1]) {
+      cancelReasonID = applicationBaseItems[i*3+3];
+      break;
+    }
+  }
+
+  // 大種目からマリン、ノンマリン区分を取得
+  if (largeItemObj.value != '') {
+    for (i = 0; i < largeItems.length / 2; i++) {
+      if (largeItemObj.value == largeItems[i*2+1]) {
+        largeItemType = largeItems[i*2+2];
+        break;
+      }
+    }
+  }
+
+  // 申請基準項目で4を選択した場合は取消理由にその他を選択し、非活性
+  if (appBaseItemObj.value == '4') {
+
+    cancelReasonObj.options[0].value = "h";
+    cancelReasonObj.options[0].selected = true;
+    // FW更改で追加
+    document.tks_TKSPRForm.cancel_reason_key.value = "h";
+    cancelReasonObj.disabled = true;
+
+    var cancelReasonExp = document.getElementById('cancel_reason_explanation');
+
+    for (i = 0 ; i < cancelReasons.length / 6; i++ ) {
+      if (cancelReasons[i*6+1] == "h") {
+        cancelReasonObj.options[0].title = cancelReasons[i*6+2];
+        cancelReasonObj.options[0].text = cancelReasons[i*6+2];
+        cancelReasonExp.innerText = cancelReasons[i*6+3];
+        break;
+      }
+    }
+
+    concreteContentObj.options.length = 1;
+    concreteContentObj.options[0].value = "h002";
+    // FW更改で追加
+    document.tks_TKSPRForm.concrete_content_key.value = "h002";
+    concreteContentObj.options[0].selected = true;
+
+    var concreteContentExp = document.getElementById('concrete_content_explanation');
+
+    for (var i = 0 ; i < concreteContents.length / 5; i++) {
+      if (concreteContents[i*5+2] == "h002") {
+        concreteContentExp.innerText = concreteContents[i*5+4];
+        break;
+      }
+    }
+
+    return;
+  }
+
+  // 異例取扱理由プルダウン生成
+  cancelReasonObj.disabled = false;
+
+  for (var i = 0 ; i < cancelReasons.length / 6; i++ ) {
+    // 申請基準項目から取得した取消理由区分と一致し
+    // 大種目が未選択、またはマリン区分が一致する場合はプルダウンに追加
+    if (cancelReasons[i*6+4] == cancelReasonID &&
+        (largeItemObj.value == '' ||
+         cancelReasons[i*6+5] == 'C' ||
+         largeItemType == cancelReasons[i*6+5])
+        ) {
+
+      // 表示対象の異例取扱理由のみプルダウンを生成
+      if (cancelReasons[i*6+6] == '0') {
+        cancelReasonObj.options.length++;
+        cancelReasonObj.options[j].value = cancelReasons[i*6+1];
+        cancelReasonObj.options[j].title = cancelReasons[i*6+2];
+        cancelReasonObj.options[j].text = cancelReasons[i*6+2];
+
+        if (cancelReasons[i*6+1] == tmpSelectedValue) {
+          cancelReasonObj.options[j].selected = true;
+        }
+
+        j++;
+      }
+
+      // 異例取扱理由説明欄を設定
+      if (cancelReasons[i*6+1] == tmpSelectedValue) {
+        cancelReasonExp.innerText = cancelReasons[i*6+3];
+      }
+    }
+  }
+
+  onChangeCancelReason(initFlag);
+}
+
+// 取消理由を変更
+function onChangeCancelReason(initFlag) {
+  var appBaseItemObj = document.tks_TKSPRForm.elements['application_base_item_list.selected'];
+  var largeItemObj = document.tks_TKSPRForm.elements['large_item_list.selected'];
+  var cancelReasonObj = document.tks_TKSPRForm.elements['cancel_reason_list.selected'];
+  var cancelReasonExp = document.getElementById('cancel_reason_explanation');
+
+  var i = 0;
+  var j = 0;
+
+  for (i = 0 ; i < cancelReasons.length / 6; i++ ) {
+    if (cancelReasons[i*6+1] == cancelReasonObj.value) {
+      cancelReasonExp.innerText = cancelReasons[i*6+3];
+      break;
+    }
+  }
+
+  // 空欄が選択されている場合は、説明欄に空白を設定
+  if (!initFlag && !cancelReasonObj.value) {
+    cancelReasonExp.innerText = '';
+  }
+
+  // 選択している大種目の区分を取得
+  var largeItemType;
+  for (i = 0; i < largeItems.length / 2; i++) {
+    if (largeItemObj.value == largeItems[i*2+1]) {
+      largeItemType = largeItems[i*2+2];
+      break;
+    }
+  }
+
+  var concreteContentObj = document.tks_TKSPRForm.elements['concrete_content_list.selected'];
+  var concreteContentExp = document.getElementById('concrete_content_explanation');
+  concreteContentExp.innerText = "";
+
+  // 取消理由がその他以外の場合は、具体的内容プルダウンの先頭空欄
+  if (cancelReasonObj.value != 'h') {
+    concreteContentObj.options.length = 1;
+    concreteContentObj.options[j].value = '';
+    concreteContentObj.options[j++].text = '';
+  } else {
+    concreteContentObj.options.length = 0;
+  }
+
+  for (i = 0 ; i < concreteContents.length / 5; i++) {
+    if (concreteContents[i*5+1] == cancelReasonObj.value &&
+        (largeItemObj.value == '' || concreteContents[i*5+5] == 'C' || largeItemType == concreteContents[i*5+5])) {
+
+      if (concreteContents[i*5+2] == 'h001' && appBaseItemObj.value == '4') {
+        continue;
+      } else if (concreteContents[i*5+2] == 'h002' && appBaseItemObj.value != '4') {
+        break;
+      }
+
+      concreteContentObj.options.length++;
+      concreteContentObj.options[j].value = concreteContents[i*5+2];
+      concreteContentObj.options[j].title = concreteContents[i*5+3];
+      concreteContentObj.options[j++].text = concreteContents[i*5+3];
+    }
+  }
+
+  // 具体的内容説明を設定
+  onChangeConcreteContent(initFlag);
+
+  // 承認パターン呼出し処理
+  focusOutApprove();
+}
+
+function alertCancelReason() {
+	var cancelReasonObj = document.tks_TKSPRForm.elements['cancel_reason_list.selected'];
+	if (	document.tks_TKSPRForm.company_kbn.value == 'MS' && cancelReasonObj.value ) {
+		alert('');
+	}
+}
+
+// 具体的内容を変更 引数：初期表示フラグ
+function onChangeConcreteContent(flag) {
+  var cancelReasonObj = document.tks_TKSPRForm.elements['cancel_reason_list.selected'];
+  var cancelReasonKey = document.tks_TKSPRForm.cancel_reason_key.value;
+  var concreteContentObj = document.tks_TKSPRForm.elements['concrete_content_list.selected'];
+  var concreteContentKey = document.tks_TKSPRForm.concrete_content_key.value;
+  var concreteContentExp = document.getElementById('concrete_content_explanation');
+
+  // 具体的内容説明を設定
+  for (var i = 0 ; i < concreteContents.length / 5; i++ ) {
+    if (concreteContents[i*5+1] == cancelReasonObj.value && concreteContents[i*5+2] == concreteContentKey ||
+        flag && concreteContents[i*5+1] == document.tks_TKSPRForm.cancel_reason_key.value && concreteContents[i*5+2] == concreteContentKey) {
+
+      concreteContentExp.innerText = concreteContents[i*5+4];
+      break;
+    }
+  }
+
+  // 初期表示時／異例取扱理由以外を変更時
+  if (flag || cancelReasonObj.value == cancelReasonKey) {
+    for (var i = 0 ; i < concreteContentObj.options.length; i++ ) {
+      if (concreteContentObj.options[i].value == concreteContentKey) {
+        concreteContentObj.selectedIndex = i;
+      }
+    }
+  }
+
+  if (!flag && !concreteContentObj.value) {
+    concreteContentExp.innerText = '';
+  }
+
+  // 初期表示以外は異例取扱理由、具体的内容の値を保存
+  if (!flag) {
+    document.tks_TKSPRForm.cancel_reason_key.value = cancelReasonObj.value;
+    document.tks_TKSPRForm.concrete_content_key.value = concreteContentObj.value;
+  }
+}
+
+// 契約情報入力エリア活性／非活性制御
+function controlContractInfoArea() {
+  var form = document.tks_TKSPRForm;
+
+  // 全ての項目を非活性
+  disabledArea(document.getElementById('contractInfoArea'), true, false);
+  // 入力不要項目で値が登録されない項目は背景をシルバーに変更
+  form['policy_send_type_list.selected'].style.backgroundColor = 'silver';
+  form['change_confirm_send_type_list.selected'].style.backgroundColor = 'silver';
+  form.change_confirm_send_reason.style.backgroundColor = 'silver';
+}
+
+// 申請事由入力エリア活性／非活性制御
+function controlAppReasonArea() {
+  // 全ての項目を非活性
+  disabledArea(document.getElementById('application_reason'), true, false);
+
+  // 取消理由を活性
+  document.tks_TKSPRForm.elements['cancel_reason_list.selected'].disabled = false;
+  // 具体的説明を活性
+  document.tks_TKSPRForm.elements['concrete_explanation'].readOnly = false;
+  document.tks_TKSPRForm.elements['concrete_explanation'].style.backgroundColor = 'white';
+  document.tks_TKSPRForm.elements['concrete_explanation'].style.color = 'black';
+}
+
+// 代理店へのヒアリング入力エリア活性／非活性制御
+function controlAgentArea() {
+
+  var agentAreaDisabled = !document.tks_TKSPRForm.agent_invitation_status[0].checked;
+
+  // 代理店への募集状況の確認要否が必要の場合、活性
+  disabledArea(document.getElementById('agentArea'), agentAreaDisabled, true);
+
+  if (!agentAreaDisabled) {
+
+    // 代理店ヒアリング 契約意思の確認 「代理人による・・・」の活性／非活性
+    controlAgentProcedure();
+
+    // 今後の活動に対する指導の活性／非活性制御
+    controlAgentLead();
+  }
+}
+
+// 保険契約者へのヒアリング入力エリア活性／非活性制御
+function controlContractArea() {
+
+  var contractRelationObj = document.tks_TKSPRForm.elements['contract_relation_list.selected'];
+  var contractAreaDisabled = true;
+
+  if (contractRelationObj.value == '2') {
+    contractAreaDisabled = false;
+  }
+
+  // 保険始期日と取消届出日の関係が必要の場合、活性
+  disabledArea(document.getElementById('contractArea'), contractAreaDisabled, true);
+}
+
+// 今後の活動に対する指導の活性／非活性制御
+function controlAgentLead() {
+  var cancelReasonObj = document.tks_TKSPRForm.elements['cancel_reason_list.selected'];
+
+  if ((cancelReasonObj.value == 'a' || cancelReasonObj.value == 'h') &&
+      document.tks_TKSPRForm.agent_invitation_status[0].checked == true) {
+
+    document.tks_TKSPRForm.agent_lead.readOnly = false;
+    document.tks_TKSPRForm.agent_lead.style.color = 'black';
+    document.tks_TKSPRForm.agent_lead.style.backgroundColor = 'white';
+  } else {
+    document.tks_TKSPRForm.agent_lead.readOnly = true;
+    document.tks_TKSPRForm.agent_lead.style.color = 'gray';
+    document.tks_TKSPRForm.agent_lead.style.backgroundColor = 'silver';
+  }
+}
+
+// 代理店ヒアリング 契約意思の確認 「代理人による・・・」の活性／非活性
+function controlAgentProcedure() {
+  var agentProcedureDisabled = document.tks_TKSPRForm.agent_proceed_user[0].checked;
+
+  document.tks_TKSPRForm.agent_procedure.disabled = agentProcedureDisabled;
+}
+
+// CS苦情システム管理Noの活性／非活性制御
+function controlComplaintNumber() {
+  var complaintNumberDisabled = !document.tks_TKSPRForm.no_satisfaction.checked;
+
+  if (complaintNumberDisabled) {
+    document.tks_TKSPRForm.complaint_number.disabled = true;
+    document.tks_TKSPRForm.complaint_number.style.backgroundColor = 'silver';
+  } else {
+    document.tks_TKSPRForm.complaint_number.disabled = false;
+    document.tks_TKSPRForm.complaint_number.style.backgroundColor = 'white';
+  }
+}
+
+// コンプラ情報システム管理Noの活性／非活性制御
+function controlComplianceNumber() {
+  var complianceNumberDisabled = !document.tks_TKSPRForm.invitation_problem.checked;
+
+  if (complianceNumberDisabled) {
+    document.tks_TKSPRForm.compliance_number.disabled = true;
+    document.tks_TKSPRForm.compliance_number.style.backgroundColor = 'silver';
+  } else {
+    document.tks_TKSPRForm.compliance_number.disabled = false;
+    document.tks_TKSPRForm.compliance_number.style.backgroundColor = 'white';
+  }
+}
+
+// 承認後・不承認後の対応エリアの活性／非活性制御
+function controlActionRegistArea(flag) {
+  // mock: 申請ステータスを持たないため、対応登録内容は常に入力可とする
+  document.tks_TKSPRForm.disapprove_correspond.readOnly = false;
+  document.tks_TKSPRForm.actionRegist.disabled = !flag;
+  if (flag) {
+    document.tks_TKSPRForm.disapprove_correspond.style.color = '#000000';
+	document.tks_TKSPRForm.disapprove_correspond.style.backgroundColor = 'white';
+  } else {
+    document.tks_TKSPRForm.disapprove_correspond.style.color = 'gray';
+    document.tks_TKSPRForm.disapprove_correspond.style.backgroundColor = 'white';
+  }
+}
+
+// 変更事由、取消理由(計上時)、理由変更者、理由変更日を非表示
+function hydeChangeSign() {
+  document.getElementById("change_reason").style.display = 'none';
+  document.getElementById("change_reason_pre_space").style.gridArea='4/4/5/9';
+  document.getElementById("change_sign").style.display = 'none';
+
+  // 取消保険料、入力補助メッセージ表示
+  document.getElementById("exp_cancel_premium").style.display = 'inline';
+}
+
+// AD固有エリアの表示制御
+function controlADArea(appStatus) {
+
+  var form = document.tks_TKSPRForm;
+
+  // ７．苦情および不祥事件のおそれ有無エリアの活性／非活性制御
+  disabledArea(document.getElementById('noSatisfactionCheckArea'), false);
+  controlComplaintNumber();
+  controlComplianceNumber();
+
+  //if (appStatus != '31') {
+    // 確認済み以外の場合、業務グループによる確認エリア表示
+  //   document.getElementById("businessGroupCheckArea").style.display = 'block';
+  //
+  //}
+
+  // コンプラ確認ボタン名を設定
+  if (form.compliance_check_date_flag.value == '1') {
+    form.complianceCheck.value = 'コンプラ確認取消';
+  } else {
+    form.complianceCheck.value = 'コンプラ確認';
+  }
+
+  // 担当確認ボタン名を設定
+  if (form.business_group_check_date_flag.value == '1') {
+    form.businessGroupCheck.value = '担当確認取消';
+  } else {
+    form.businessGroupCheck.value = '担当確認';
+  }
+
+  if (form.businessGroupCheckAuth.value) {
+    // 業務Ｇ確認権限あり
+    form.businessGroupCheck.disabled = false;
+  }
+
+  if (form.complianceCheckAuth.value) {
+    // コンプラ権限あり
+    form.complianceCheck.disabled = false;
+  }
+}
+
+// 始期日/届出日入力
+function focusOutApprove() {
+
+  var form = document.tks_TKSPRForm;
+  var cancelReasonObj = document.tks_TKSPRForm.cancel_reason_key;
+  var start_date = form.elements.start_date.value;
+  var notification_date = form.elements.notification_date.value;
+
+  // 異例取扱理由・始期日・届出日が空以外の時
+  if ((cancelReasonObj.value != "") && (notification_date != "") && (start_date != "")) {
+    //異例取扱理由がA以外 かつ 届出日<始期日チェック
+    if ((cancelReasonObj.value != 'a') && (notification_date <  start_date)) {
+       // 申請依頼情報エリア申請依頼先に関する項目の非表示
+       document.getElementById("requestAppInfoAreaApplicant").style.display = 'none';
+       // ラベル切替え
+       form.requestApplicationButton.value = '承認依頼';
+       // 承認パターンの設定
+       form.approve_pattern.value = '0';
+       //申請依頼先説明
+       document.getElementById('applicant_wording').innerText = "※申請依頼先は課支社長";
+       //承認依頼先説明
+       document.getElementById('approver_wording').innerText = "※承認依頼先は課支社長";
+    } else {
+      // 申請依頼情報エリア申請依頼先に関する項目の表示
+      document.getElementById("requestAppInfoAreaApplicant").style.display = 'block';
+      // ラベル切替え
+      form.requestApplicationButton.value = '申請依頼';
+      // 承認パターンの設定
+      form.approve_pattern.value = '1';
+      //申請依頼先説明
+      document.getElementById('applicant_wording').innerText = "※申請依頼先は課支社長";
+      //承認依頼先説明
+      document.getElementById('approver_wording').innerText = "※承認依頼先は部支店長";
+    }
+  } else {
+    document.getElementById("requestAppInfoAreaApplicant").style.display = 'block';
+    form.requestApplicationButton.value = '申請依頼';
+    // 承認パターンの設定
+    form.approve_pattern.value = '1';
+    //申請依頼先説明
+    document.getElementById('applicant_wording').innerText = "※申請依頼先は課支社長";
+    //承認依頼先説明
+    document.getElementById('approver_wording').innerText = "※承認依頼先は部支店長";
+  }
+}
+
+// 画面ロード時の初期処理
+function custom_bodyLoad() {
+  commonBodyOnload();
+
+  // 各プルダウンの初期設定
+  initAppBaseItem();
+
+  onChangeLargeItem(true);
+  onChangeInsuranceItem(true);
+  focusOutApprove();
+
+  var form = document.tks_TKSPRForm;
+  var appStatus = form.application_status.value;
+
+  // 入力エリア初期表示制御
+  initInputArea(appStatus);
+
+  form.section_approve_reject.readOnly = true;
+  form.section_approve_reject.style.backgroundColor = '#e6ffe6';
+  form.department_approve_reject.readOnly = true;
+  form.department_approve_reject.style.backgroundColor = '#e6ffe6';
+
+  // ボタンエリア初期表示制御
+  initButtonArea(form, appStatus);
+
+  // AD社固有エリア表示制御
+  if (form.company_kbn.value == 'AD') {
+    controlADArea(appStatus);
+
+    // 更新ボタン表示
+    form['update'].style.visibility = 'visible';
+  }
+
+  // メール送信結果メッセージ表示
+  var mailsendResultMessage = '1';
+  if (mailsendResultMessage != '') {
+    alert(mailsendResultMessage);
+  }
+
+  // mock: サーバが描画する申請情報の代わりに検証用の初期値を設定する
+  mockPrefill(form);
+}
+
+// mock: 実機ではサーバ側で設定される項目値を画面ロード時に補完する
+// （フラット化したmockでは空のため、申請依頼/承認依頼の入力チェックが通らない）
+function mockPrefill(form) {
+  var setVal = function (name, value) {
+    var elm = form.elements[name];
+    if (elm) { elm.value = value; }
+  };
+
+  setVal('section_code', 'ABM62');
+  setVal('agent_code', '252H');
+  setVal('policy_number', 'AZ11001');
+  setVal('insurant_name', '黒川　京子');
+  setVal('cancel_application_date', '2026/10/30');
+  setVal('start_date', '2026/11/01');
+  setVal('notification_date', '2026/10/30');
+  setVal('concrete_explanation', 'モック初期値');
+
+  var largeItem = form.elements['large_item_list.selected'];
+  if (largeItem) { largeItem.value = 'B'; }
+
+  // 異例取扱理由・具体的内容はJSで選択肢を組み立てるためロード後に設定する
+  var fillSelectFromArray = function (name, values) {
+    var sel = form.elements[name];
+    if (!sel || sel.options.length > 1) { return; }
+    for (var i = 1; i < values.length; i++) {
+      var opt = document.createElement('option');
+      opt.value = values[i];
+      opt.text = values[i];
+      sel.appendChild(opt);
+    }
+    if (sel.options.length > 1) { sel.value = values[1]; }
+  };
+  fillSelectFromArray('cancel_reason_list.selected', cancelReasons);
+  fillSelectFromArray('concrete_content_list.selected', concreteContents);
+
+  var needlessRadio = document.getElementById('agent_invitation_status_2');
+  if (needlessRadio) { needlessRadio.checked = true; }
+
+  // 承認パターン(課支社長/部支店長)で必須となる依頼先・代行者
+  setVal('req_applicant_id', '3028004586');
+  setVal('req_applicant_sec_code', 'ABM62');
+  setVal('req_approver_id', '3028004586');
+  setVal('req_approver_sec_code', 'ABM62');
+  setVal('act_applicant_id', '3028004585');
+  setVal('act_applicant_sec_code', 'ABM62');
+  setVal('act_approver_id', '3028004585');
+  setVal('act_approver_sec_code', 'ABM62');
+}
+
+// 入力エリア初期表示制御
+function initInputArea(appStatus) {
+  if (appStatus == '00' || appStatus == '01') {
+    // 未申請、要再申請
+
+    // 代理店へのヒアリングエリアの活性／非活性
+    controlAgentArea();
+
+    // 保険契約者へのヒアリングエリアの活性／非活性
+    controlContractArea();
+
+    // CS苦情システム管理Noの活性／非活性制御
+    controlComplaintNumber();
+
+    // コンプラ情報システム管理Noの活性／非活性制御
+    controlComplianceNumber();
+
+    // 承認後・不承認後の対応エリアの活性／非活性
+    controlActionRegistArea(false);
+
+    // 変更事由、取消理由(計上時)、理由変更者、理由変更日を非表示
+    hydeChangeSign();
+
+  } else if (appStatus == '10' || appStatus == '11' || appStatus == '20' || appStatus == '21') {
+    // 申請依頼、承認待ち、承認済、不承認
+
+    // 条件付非活性項目は背景色を変更
+    controlAgentArea();
+    controlContractArea();
+    controlComplaintNumber();
+    controlComplianceNumber();
+
+    // 変更事由、取消理由(計上時)、理由変更者、理由変更日を非表示
+    hydeChangeSign();
+
+    // すべての入力エリアを非活性
+    disabledArea(document.getElementById('div_gyoumu_area_03'), true, false);
+
+    if (appStatus == '20' || appStatus == '21') {
+      // 承認、不承認時は承認後・不承認後の対応エリアを活性
+      controlActionRegistArea(true);
+    }
+
+  } else if (appStatus == '31') {
+    // 確認済
+
+    // 契約情報エリアの活性／非活性
+    controlContractInfoArea();
+    // 申請事由エリアの活性／非活性
+    controlAppReasonArea();
+	// 代理店へのヒアリングエリアを非表示
+	document.getElementById('agentHearingArea').style.display = "none";
+	// 保険契約者へのヒアリングエリアを非表示
+	document.getElementById('contractHearingArea').style.display = "none";
+	// 申請依頼情報エリアを非表示
+	document.getElementById('requestAppInfoArea').style.display = "none";
+	// CS苦情システム管理Noの活性／非活性制御
+    controlComplaintNumber();
+    // コンプラ情報システム管理Noの活性／非活性制御
+    controlComplianceNumber();
+	// 不承認後の対応エリアを非表示
+	document.getElementById('actionRegistArea').style.display = "none";
+  } else {
+    // 削除
+
+    // 業務エリア非表示
+    document.getElementById('div_gyoumu_area_03').style.visibility = "hidden";
+  }
+}
+
+// ボタンエリア初期表示制御
+function initButtonArea(form, appStatus) {
+
+  // システム管理者権限フラグ
+  var sysAdminFlag = form.system_admin_flag.value
+
+  if (appStatus == '00' || appStatus == '01') {
+    // 未申請、要再申請
+    form['cancelButton'].style.visibility = 'hidden';
+
+    if (sysAdminFlag != '1') {
+      form['deleteApplication'].style.visibility = 'hidden';
+    }
+
+  } else if (appStatus == '10') {
+    // 申請依頼
+    form['update'].style.visibility = 'hidden';
+    form['deleteApplication'].style.visibility = 'hidden';
+
+    // 申請依頼取消ボタン表示判定
+    if (form.login_user_id.value == form.app_input_user_id.value ||
+        sysAdminFlag == '1') {
+      form['cancelButton'].value = '申請依頼取消';
+    } else {
+      form['cancelButton'].style.visibility = 'hidden';
+    }
+
+  } else if (appStatus == '11') {
+    // 承認待ち
+    form['update'].style.visibility = 'hidden';
+    form['deleteApplication'].style.visibility = 'hidden';
+
+    // 承認依頼取消ボタン表示判定
+    if (form.login_user_id.value == form.applicant_id.value ||
+        sysAdminFlag == '1') {
+      form['cancelButton'].value = '承認依頼取消';
+    } else {
+      form['cancelButton'].style.visibility = 'hidden';
+    }
+
+  } else if (appStatus == '21') {
+    // 不承認
+    form['update'].style.visibility = 'hidden';
+    form['deleteApplication'].style.visibility = 'hidden';
+
+    // 不承認取消ボタン表示判定
+    if (form.login_user_id.value == form.approver_id.value ||
+        sysAdminFlag == '1') {
+      form['cancelButton'].value = '不承認取消';
+    } else {
+      form['cancelButton'].style.visibility = 'hidden';
+    }
+
+  } else if (appStatus == '31') {
+    // 確認済
+    // 承認済、削除
+    form['cancelButton'].style.visibility = 'hidden';
+    form['deleteApplication'].style.visibility = 'hidden';
+
+  } else  {
+    // 承認済、削除
+    form['update'].style.visibility = 'hidden';
+    form['cancelButton'].style.visibility = 'hidden';
+    form['deleteApplication'].style.visibility = 'hidden';
+  }
+}
+
+
+// 引数formを活性／非活性にする
+function disabledArea(form, flag, bgClolorFlag) {
+
+  // input要素を活性／非活性とする
+  var inputElements = form.getElementsByTagName('input');
+  for (i = 0; i < inputElements.length; i++) {
+
+    inputElements[i].disabled = flag;
+
+    if (inputElements[i].type == 'text') {
+      if (flag) {
+        inputElements[i].title = inputElements[i].value;
+
+        // 背景色
+        if (bgClolorFlag) {
+          inputElements[i].style.backgroundColor = 'silver';
+        }
+      } else {
+        inputElements[i].title = '';
+        inputElements[i].style.backgroundColor = 'white'
+      }
+    }
+  }
+
+  // textarea要素を活性／非活性とする
+  var textareaElements = form.getElementsByTagName('textarea');
+  for (i = 0; i < textareaElements.length; i++) {
+
+    if (i == 4 || i == 5) {
+      continue;
+    }
+
+    if (flag) {
+      textareaElements[i].readOnly = true;
+      textareaElements[i].style.color = 'gray';
+
+      // 背景色
+      if (bgClolorFlag) {
+        textareaElements[i].style.backgroundColor = 'silver';
+      }
+    } else {
+      textareaElements[i].readOnly = false;
+      textareaElements[i].style.color = 'black';
+      textareaElements[i].style.backgroundColor = 'white';
+    }
+  }
+
+  // select要素を活性／非活性とする
+  var selectElements = form.getElementsByTagName('select');
+  for (i = 0; i < selectElements.length; i++) {
+    if (flag) {
+      selectElements[i].disabled = true;
+
+      // 背景色
+      if (bgClolorFlag) {
+        selectElements[i].style.backgroundColor = 'silver';
+      }
+    } else {
+      selectElements[i].disabled = false;
+      selectElements[i].style.backgroundColor = 'white';
+    }
+  }
+}
+
+function formValidate(form) {
+  var appBaseItemObj = form['application_base_item_list.selected'];
+  var largeItemObj = form.elements['large_item_list.selected'];
+  var insuranceItemObj = form.elements['insurance_item_list.selected'];
+  var policySendTypeObj = form.elements['policy_send_type_list.selected'];
+  var changeConfirmSendTypeObj = form.elements['change_confirm_send_type_list.selected'];
+  var cancelReasonObj = form.elements['cancel_reason_list.selected'];
+  var concreteContentObj = form.elements['concrete_content_list.selected'];
+  var agentInvitationMethodObj = form.elements['agent_invitation_method_list.selected'];
+  var contractRelationObj = form.elements['contract_relation_list.selected'];
+  var contractInvitationMethodObj = form.elements['contract_invitation_method_list.selected'];
+  var contractCancelReasonObj = form.elements['contract_cancel_reason_list.selected'];
+
+  // 必須チェックフラグ
+  var required = true;
+
+  if (clickButtonName == 'update') {
+    required = false;
+  }
+
+  // 単項目チェック
+
+  // 申請基準項目 必須チェック
+  if (required && !isRequired(form, appBaseItemObj, '')) {
+    return false;
+  }
+
+  // 課支社CD 必須チェック＆最小文字数＆半角英数チェック
+  if ((required && !isRequired(form, form.section_code, '')) ||
+      !isMinLenB(form, form.section_code, 3, '') ||
+      !isAlphaNumeric(form, form.section_code, '')) {
+    return false;
+  }
+
+  // 代理店CD 必須チェック＆半角英数チェック
+  if ((required && !isRequired(form, form.agent_code, '')) ||
+      !isAlphaNumeric(form, form.agent_code, '')) {
+    return false;
+  }
+
+  // 証券番号 必須チェック&半角英数(英大文字)チェック
+  if ((required && !isRequired(form, form.policy_number, '')) ||
+      !isUpperAlphaNumeric(form, form.policy_number, '')) {
+    return false;
+  }
+
+  // 明細番号 半角英数(英大文字)チェック
+  if (!isUpperAlphaNumeric(form, form.sub_policy_number, '')) {
+    return false;
+  }
+
+  // 契約者名 必須チェック&最大バイト数＆禁止文字チェック
+  if ((required && !isRequired(form, form.insurant_name, '')) ||
+      !isMaxLenB(form, form.insurant_name, 120, '') ||
+      !isProhibitionChar(form, form.insurant_name, '')) {
+    return false;
+  }
+
+  // 大種目 必須チェック
+  if (required && !isRequired(form, largeItemObj, '')) {
+    return false;
+  }
+
+  // 取消保険料 金額範囲チェック
+  //if ((required && !isRequired(form, form.cancel_premium, '')) ||
+  if (!isValidFloatNumber(form, form.cancel_premium, -9999999999999.99, 9999999999999.99, '')) {
+    return false;
+  }
+
+  // 再計上証券番号 半角英数(英大文字)チェック
+  if (appBaseItemObj.value == '4' && !isUpperAlphaNumeric(form, form.re_policy_number, '')) {
+    return false;
+  }
+
+  // 再計上明細番号 半角英数(英大文字)チェック
+  if (appBaseItemObj.value == '4' && !isUpperAlphaNumeric(form, form.re_sub_policy_number, '')) {
+    return false;
+  }
+
+  // 変更確認書課支社送付の理由 最大バイト数＆禁止文字チェック
+  if (!isMaxLenB(form, form.change_confirm_send_reason, 400, '') ||
+      !isProhibitionChar(form, form.change_confirm_send_reason, '')) {
+    return false;
+  }
+
+  // 申込日 必須チェック＆暦日チェック
+  if ((required && !isRequired(form, form.cancel_application_date, '')) ||
+      !isValidDateYMD(form, form.cancel_application_date, '')) {
+    return false;
+  }
+
+  // 始期日 必須チェック＆暦日チェック
+  if ((required && !isRequired(form, form.start_date, '')) ||
+      !isValidDateYMD(form, form.start_date, '')) {
+    return false;
+  }
+
+  // 届出日 必須チェック＆暦日チェック
+  if ((required && !isRequired(form, form.notification_date, '')) ||
+      !isValidDateYMD(form, form.notification_date, '')) {
+    return false;
+  }
+
+  // 取消理由 必須チェック
+  if ((required || form.application_status.value == '31') &&
+      !isRequired(form, cancelReasonObj, '')) {
+    return false;
+  }
+
+  // 具体的内容 必須チェック
+  if (required && !isRequired(form, concreteContentObj, '')) {
+    return false;
+  }
+
+  // 具体的説明 必須チェック&最大バイト数＆禁止文字チェック
+  if ((required && !isRequired(form, form.concrete_explanation, '')) ||
+      !isMaxLenB(form, form.concrete_explanation, 800, '') ||
+      !isProhibitionChar(form, form.concrete_explanation, '')) {
+    return false;
+  }
+
+  // 代理店への募集状況の確認 必須チェック
+  if (required && !isRequiredRadio(form, form.agent_invitation_status, '')) {
+    return false;
+  }
+
+  // 保険始期日と取消届出日の関係 必須チェック
+  if (required && !isRequired(form, contractRelationObj, '')) {
+    return false;
+  }
+
+  // 申請依頼先 必須チェック(部支店長承認時)
+  if (required && form.approve_pattern.value == '1' && isEmptyField(form.req_applicant_id)) {
+    showValidateMessage(form, form.selectReqApplicantUser, '');
+    return false;
+  }
+
+  // 承認依頼先 必須チェック(課支社長承認時)
+  if (required && form.approve_pattern.value == '0' && isEmptyField(form.req_approver_id)) {
+    showValidateMessage(form, form.selectReqApproverUser, '');
+    return false;
+  }
+
+  // 相関チェック
+
+  // 保種 必須チェック(大種目が5、7の時のみ)
+  if (required && (largeItemObj.value == '5' || largeItemObj.value == '7')) {
+    if (!isRequired(form, insuranceItemObj, '')) {
+      return false;
+    }
+  }
+
+  // 申請基準項目と大種目チェック
+  if (appBaseItemObj.value == '4') {
+    if (!(largeItemObj.value == '4' || largeItemObj.value == '6'
+        || largeItemObj.value == '8' || largeItemObj.value == 'X'
+        || (!required && largeItemObj.value == ''))) {
+      showValidateMessage(form, largeItemObj, '');
+      return false;
+    }
+  }
+
+  // 申請基準項目=3、大種目=マリン以外の場合、以下必須
+  if (appBaseItemObj.value != '3' && largeItemObj.value != 'M') {
+
+    // 証券送付区分 必須チェック
+    if (required && !isRequired(form, policySendTypeObj, '')) {
+      return false;
+    }
+
+    // 変更確認書送付区分 必須チェック
+    if (required && !isRequired(form, changeConfirmSendTypeObj, '')) {
+      return false;
+    }
+
+    // 変更確認書課支社送付の理由 必須チェック
+    if (required && changeConfirmSendTypeObj.value == '2' && !isRequired(form, form.change_confirm_send_reason, '')) {
+      return false;
+    }
+  }
+
+  // 申請基準項目が6の場合
+  // if (appBaseItemObj.value == '6') {
+    // 始期日≦届出日チェック
+  //  if (form.start_date.value > form.notification_date.value) {
+  //    showValidateMessage(form, form.start_date, '');
+  //    return false;
+  //  }
+  // }
+
+  // 申請基準項目が4の場合
+  if (appBaseItemObj.value == '4') {
+    // 始期日≦届出日チェック
+    if (form.start_date.value > form.notification_date.value) {
+      showValidateMessage(form, form.start_date, '');
+      return false;
+    }
+  }
+
+  // 申請基準項目が3以外の場合
+  // if (appBaseItemObj.value != '3') {
+    // 契約計上日 必須チェック＆暦日チェック
+  //  if ((required && !isRequired(form, form.sumup_date, '')) ||
+  //      !isValidDateYMD(form, form.sumup_date, '')) {
+  //    return false;
+  //  }
+  // }
+
+  // 代理店への募集状況の確認が必要の場合
+  if (form.agent_invitation_status[0].checked) {
+    // 代理店ヒアリング実施日 必須チェック＆暦日チェック
+    if ((required && !isRequired(form, form.agent_date, '')) ||
+        !isValidDateYMD(form, form.agent_date, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリング実施方法必須チェック
+    if (required &&
+        !form.agent_interview.checked &&
+        !form.agent_tel.checked &&
+        !form.agent_other.checked) {
+      showValidateMessage(form, form.agent_interview, '');
+      return false;
+	}
+
+	// 代理店ヒアリング実施者 必須チェック&最大バイト数＆禁止文字チェック
+    if ((required && !isRequired(form, form.agent_user, '')) ||
+        !isMaxLenB(form, form.agent_user, 22, '') ||
+        !isProhibitionChar(form, form.agent_user, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリング対象者 必須チェック&最大バイト数＆禁止文字チェック
+    if ((required && !isRequired(form, form.agent_target, '')) ||
+        !isMaxLenB(form, form.agent_target, 40, '') ||
+        !isProhibitionChar(form, form.agent_target, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリング募集方法 必須チェック
+    if (required && !isRequired(form, agentInvitationMethodObj, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリング募集実施日 必須チェック＆暦日チェック
+    if ((required && !isRequired(form, form.agent_invitation_date, '')) ||
+        !isValidDateYMD(form, form.agent_invitation_date, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリング募集方法がその他の場合、代理店ヒアリングその他の募集方法 必須チェック
+    if (required && agentInvitationMethodObj.value == '5' &&
+        !isRequired(form, form.agent_other_invitation, '')) {
+      return false;
+    }
+
+    // 代理店ヒアリングその他の募集方法 最大バイト数＆禁止文字チェック
+    if (!isMaxLenB(form, form.agent_other_invitation, 60, '') ||
+        !isProhibitionChar(form, form.agent_other_invitation, '')) {
+      return false;
+    }
+
+/*
+    // 代理店ヒアリング重要事項説明 必須チェック
+    var agentExplainCols = form.agent_explain_cols.value;
+    if (required && agentExplainCols != '') {
+      for (var i = 0; i < agentExplainCols; i++) {
+        var agentExplain = form['agentExplain[' + i + '].agent_explain']
+        if (!agentExplain.checked) {
+          showValidateMessage(form, agentExplain, '');
+          return false;
+        }
+      }
+    }
+*/
+
+    // 代理店ヒアリング契約手続実施者 必須チェック
+    if (required && !isRequiredRadio(form, form.agent_proceed_user, '')) {
+      return false;
+    }
+
+/*
+    // 代理店ヒアリング契約手続実施者が代理人の場合、代理店ヒアリング契約意思確認 必須チェック
+    if (required && form.agent_proceed_user[1].checked) {
+      if (!form.agent_sign.checked) {
+        showValidateMessage(form, form.agent_sign, '');
+        return false;
+      } else if (!form.agent_procedure.checked) {
+        showValidateMessage(form, form.agent_procedure, '');
+        return false;
+      }
+    }
+*/
+
+    // 取消理由が「a」、「h」の場合、今後の活動に対する指導 必須チェック&最大バイト数＆禁止文字チェック
+    if (cancelReasonObj.value == 'a' || cancelReasonObj.value == 'h') {
+      if ((required && !isRequired(form, form.agent_lead, '')) ||
+          !isMaxLenB(form, form.agent_lead, 800, '') ||
+          !isProhibitionChar(form, form.agent_lead, '')) {
+        return false;
+      }
+    }
+  }
+
+  // 始期日、届出日、保険始期日と取消届出日の関係の相関チェック
+  if (required && form.start_date.value && form.notification_date.value && contractRelationObj.value) {
+    if ((form.notification_date.value < form.start_date.value && contractRelationObj.value != '1') ||
+        (form.notification_date.value >= form.start_date.value && contractRelationObj.value == '1')) {
+      showValidateMessage(form, contractRelationObj, '');
+      return false;
+    }
+  }
+
+  // 保険始期日と取消届出日の関係が必要の場合
+  if (contractRelationObj.value == '2') {
+    // 契約者ヒアリング実施日 必須チェック＆暦日チェック
+    if ((required && !isRequired(form, form.contract_date, '')) ||
+        !isValidDateYMD(form, form.contract_date, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング実施方法必須チェック
+    if (required &&
+        !form.contract_interview.checked &&
+        !form.contract_tel.checked &&
+        !form.contract_other.checked) {
+      showValidateMessage(form, form.contract_interview, '');
+      return false;
+	}
+
+	// 契約者ヒアリング実施者 必須チェック&最大バイト数＆禁止文字チェック
+    if ((required && !isRequired(form, form.contract_user, '')) ||
+        !isMaxLenB(form, form.contract_user, 22, '') ||
+        !isProhibitionChar(form, form.contract_user, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング対象者 必須チェック&最大バイト数＆禁止文字チェック
+    if ((required && !isRequired(form, form.contract_target, '')) ||
+        !isMaxLenB(form, form.contract_target, 120, '') ||
+        !isProhibitionChar(form, form.contract_target, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング募集方法 必須チェック
+    if (required && !isRequired(form, contractInvitationMethodObj, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング募集実施日 必須チェック＆暦日チェック
+    if ((required && !isRequired(form, form.contract_invitation_date, '')) ||
+        !isValidDateYMD(form, form.contract_invitation_date, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング募集方法がその他の場合、契約者ヒアリングその他の募集方法 必須チェック
+    if (required && contractInvitationMethodObj.value == '5' &&
+        !isRequired(form, form.contract_other_invitation, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリングその他の募集方法 最大バイト数＆禁止文字チェック
+    if (!isMaxLenB(form, form.contract_other_invitation, 60, '') ||
+        !isProhibitionChar(form, form.contract_other_invitation, '')) {
+      return false;
+    }
+/*
+    // 契約者ヒアリング重要事項説明 必須チェック
+    var contractExplainCols = form.contract_explain_cols.value;
+    if (required && contractExplainCols != '') {
+      for (var i = 0; i < contractExplainCols; i++) {
+        var contractExplain = form['contractExplain[' + i + '].contract_explain']
+        if (!contractExplain.checked) {
+          showValidateMessage(form, contractExplain, '');
+          return false;
+        }
+      }
+    }
+*/
+
+    // 契約者ヒアリング取消理由 必須チェック
+    if (required && !isRequired(form, contractCancelReasonObj, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング取消理由がそれ以外の場合、契約者ヒアリング取消理由備考 必須チェック
+    if (required && contractCancelReasonObj.value == '2' &&
+        !isRequired(form, form.contract_cancel_reason_note, '')) {
+      return false;
+    }
+
+    // 契約者ヒアリング取消理由備考 最大バイト数＆禁止文字チェック
+    if (!isMaxLenB(form, form.contract_cancel_reason_note, 500, '') ||
+        !isProhibitionChar(form, form.contract_cancel_reason_note, '')) {
+      return false;
+    }
+  }
+
+  // 契約者からの不満足の表明のチェックがONの場合、CS苦情システム苦情No 必須チェック
+  if (required && form.no_satisfaction.checked &&
+      !isRequired(form, form.complaint_number, '')) {
+    return false;
+  }
+
+  // 契約者からの不満足の表明のチェックがONの場合、CS苦情システム苦情No 半角英数チェック
+  if (form.no_satisfaction.checked && !isAlphaNumeric(form, form.complaint_number, '')) {
+    return false;
+  }
+
+  // AD社固有
+  // 募集行為に問題の可能性のチェックがONの場合、コンプラ情報システム管理No 必須チェック
+  if (form.company_kbn.value == 'AD') {
+    if (required && form.invitation_problem.checked &&
+        !isRequired(form, form.compliance_number, '')) {
+      return false;
+    }
+  }
+
+  // 募集行為に問題の可能性のチェックがONの場合、コンプラ情報システム管理No 半角英数チェック
+  if (form.invitation_problem.checked && !isAlphaNumeric(form, form.compliance_number, '')) {
+    return false;
+  }
+
+  return true;
+}
+
+// 対応登録ボタン押下時の入力チェックを行う
+function actionRegistValidate(form) {
+  if (!isMaxLenB(form, form.disapprove_correspond, 800, '') ||
+      !isProhibitionChar(form, form.disapprove_correspond, '')) {
+      return false;
+  }
+
+  return true;
+}
+
+// 該当項目を設定
+function setApplicationBaseItemSelect(obj) {
+  document.tks_TKSPRForm.application_base_item_key.value = obj.value;
+}
+
+// 大種目を設定
+function setLargeItemSelect(obj) {
+  document.tks_TKSPRForm.large_item_key.value = obj.value;
+}
+
+// 保種を設定
+function setInsuranceItemSelect(obj) {
+  document.tks_TKSPRForm.insurance_item_key.value = obj.value;
+}
+
+// 保種をリセット
+function resetInsuranceItemSelect() {
+  document.tks_TKSPRForm.insurance_item_key.value = '';
+}
+
+// 証券送付区分を設定
+function setPolicySendTypeSelect(obj) {
+  document.tks_TKSPRForm.policy_send_type_key.value = obj.value;
+}
+
+// 変更確認書送付を設定
+function setChangeConfirmSendTypeSelect(obj) {
+  document.tks_TKSPRForm.change_confirm_send_type_key.value = obj.value;
+}
+
+// 具体的内容を設定
+function setConcreteContentSelect(obj) {
+  document.tks_TKSPRForm.concrete_content_key.value = obj.value;
+}
+
+// 募集方法を設定
+function setAgentInvitationMethodSelect(obj) {
+  document.tks_TKSPRForm.agent_invitation_method_key.value = obj.value;
+}
+
+// 保険始期日と届出日の関係を設定
+function setContractRelationSelect(obj) {
+  document.tks_TKSPRForm.contract_relation_key.value = obj.value;
+}
+
+// 募集方法（保険契約者ヒアリング）を設定
+function setContractInvitationMethodSelect(obj) {
+  document.tks_TKSPRForm.contract_invitation_method_key.value = obj.value;
+}
+
+// 募集方法（保険契約者ヒアリング）を設定
+function setContractCancelReasonSelect(obj) {
+  document.tks_TKSPRForm.contract_cancel_reason_key.value = obj.value;
+}
+
+// 検索一覧
+function route12Submit() {
+  var partten = document.tks_TKSPRForm.previous_path.value;
+  var hiddenButton = null;
+  if (partten == 'AYG202') {
+    // 申請承認一覧画面
+    hiddenButton = document.tks_TKSPRForm.route12B;
+  } else if (partten == 'AYG203') {
+    // 申請・確認一覧画面
+    hiddenButton = document.tks_TKSPRForm.route12C;
+  } else {
+    // 照会・検索画面
+    hiddenButton = document.tks_TKSPRForm.route12A;
+  }
+  if(hiddenButton != null) {
+    hiddenButton.click();
+  }
+  return false;
+}
+
+// コンプラ確認／確認取消
+function route18Submit() {
+  var hiddenButton = document.tks_TKSPRForm.route18;
+  if(hiddenButton != null) {
+    hiddenButton.click();
+  }
+  return false;
+}
+
+function routeSubmit(name){
+	// バリデート実行フラグ
+	var validate = false;
+	var form =  document.tks_TKSPRForm;
+	var hiddenButton = null;
+	clickButtonName = name;
+
+	if (clickButtonName == 'requestApplication') {
+		validate = true;
+		editExplainAndInsuranceConfirm(form)
+		hiddenButton = document.tks_TKSPRForm.route10;
+	}else if (clickButtonName == 'cancel') {
+		hiddenButton = document.tks_TKSPRForm.route15;
+	}
+
+	// バリデートエラーの場合、処理終了
+	if (validate && formValidate(form) == false) {
+		return false;
+	}
+
+	if(hiddenButton != null) {
+		hiddenButton.click();
+	}
+
+	return false;
+
+}
+
+// 重要事項説明と契約内容の確認を編集
+function editExplainAndInsuranceConfirm(form) {
+
+  // 代理店ヒアリング重要事項説明 選択内容編集
+  var agentExplainCols = form.agent_explain_cols.value;
+  var agentExplainItems = '';
+  if (agentExplainCols != '') {
+    for (var i = 0; i < agentExplainCols; i++) {
+      if (agentExplainItems != '') {
+        agentExplainItems += ',';
+      }
+      var agentExplain = form['agentExplain[' + i + '].agent_explain']
+      if (agentExplain.checked) {
+        agentExplainItems += agentExplain.value;
+      } else {
+        agentExplainItems += '0';
+      }
+    }
+    form.selectedAgentExplain.value = agentExplainItems;
+  }
+
+  // 代理店ヒアリング契約内容の確認 選択内容編集
+  var agentInsuranceConfirmCols = form.agent_insurance_confirm_cols.value;
+  var agentInsuranceConfirmItems = '';
+  if (agentInsuranceConfirmCols != '') {
+    for (var i = 0; i < agentInsuranceConfirmCols; i++) {
+      if (agentInsuranceConfirmItems != '') {
+        agentInsuranceConfirmItems += ',';
+      }
+      var agentInsuranceConfirm = form['agentInsuranceConfirm[' + i + '].agent_insurance_confirm']
+      if (agentInsuranceConfirm.checked) {
+        agentInsuranceConfirmItems += agentInsuranceConfirm.value;
+      } else {
+        agentInsuranceConfirmItems += '0';
+      }
+    }
+    form.selectedAgentInsuranceConfirm.value = agentInsuranceConfirmItems;
+  }
+
+  // 保険契約者ヒアリング重要事項説明 選択内容編集
+  var contractExplainCols = form.contract_explain_cols.value;
+  var contractExplainItems = '';
+  if (contractExplainCols != '') {
+    for (var i = 0; i < contractExplainCols; i++) {
+      if (contractExplainItems != '') {
+        contractExplainItems += ',';
+      }
+      var contractExplain = form['contractExplain[' + i + '].contract_explain']
+      if (contractExplain.checked) {
+        contractExplainItems += contractExplain.value;
+      } else {
+        contractExplainItems += '0';
+      }
+    }
+    form.selectedContractExplain.value = contractExplainItems;
+  }
+
+  // 保険契約者ヒアリング契約内容の確認 選択内容編集
+  var contractInsuranceConfirmCols = form.contract_insurance_confirm_cols.value;
+  var contractInsuranceConfirmItems = '';
+  if (contractInsuranceConfirmCols != '') {
+    for (var i = 0; i < contractInsuranceConfirmCols; i++) {
+      if (contractInsuranceConfirmItems != '') {
+        contractInsuranceConfirmItems += ',';
+      }
+      var contractInsuranceConfirm = form['contractInsuranceConfirm[' + i + '].contract_insurance_confirm']
+      if (contractInsuranceConfirm.checked) {
+        contractInsuranceConfirmItems += contractInsuranceConfirm.value;
+      } else {
+        contractInsuranceConfirmItems += '0';
+      }
+    }
+    form.selectedContractInsuranceConfirm.value = contractInsuranceConfirmItems;
+  }
+
+}
+
+</script>
+
+</head>
+<body leftmargin="5" topmargin="0" class="body_common" onload="custom_bodyLoad();">
+<form id="tks_TKSPRForm" name="tks_TKSPRForm" method="post" onsubmit="return submitAYG101(this,null);" >
+  <input type="hidden" />
+  <!--/* タイトル表示領域 */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" src="/ANB00${commonForm.logoPath}" width="auto" height="32" alt="タイトルロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br />
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+  <!--/* メッセージエリア */-->
+  <div class="message_area" id="message_area">
+    <div class="message_text">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="ANA03" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="ANA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="ANA03" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <!--/* 業務固有領域 */-->
+  <div id="div_gyoumu_area_03">
+    <div class="gyoumu_area_outer_scroll">
+      <div class="margin_bottom_5px"><span class="title_mark_gray">■</span><span class="title_char_black">ステータス</span></div>
+      <div class="grid_area_03_01">
+        <div class="gyoumu_field_title">申請・確認状況</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">異例管理番号</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">消込状況</div>
+        <div class="gyoumu_field_value">1</div>
+        <span class="empty"></span>
+        <div class="gyoumu_field_title">申請入力者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">申請入力日</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">申請者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">申請日</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">承認者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">承認日</div>
+        <div class="gyoumu_field_value">1</div>
+        
+          <div class="gyoumu_field_title">コンプラ情報システム連携日</div>
+          <div class="gyoumu_field_value">1</div>
+        
+        
+          <div class="empty"></div>
+          <div class="empty"></div>
+        
+        <span class="empty"></span>
+        <div class="gyoumu_field_title">要再申請依頼者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">要再申請依頼日</div>
+        <div class="gyoumu_field_value">1</div>
+        <span class="empty"></span>
+        <span class="empty"></span>
+        <div class="gyoumu_field_title">登録者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">登録日</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">更新者</div>
+        <div class="gyoumu_field_value">1</div>
+        <div class="gyoumu_field_title">更新日</div>
+        <div class="gyoumu_field_value">1</div>
+      </div>
+    </div>
+    <div class="gyoumu_input_field_scroll">
+      <div id="contractInfoArea" class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_blue">■</span><span class="title_char_black">契約情報</span></div>
+        <div class="indent_title">１．申請・確認基準項目</div>
+        <div class="grid_area_03_02">
+          <div class="gyoumu_field_title">該当項目を<br/>選択</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="application_base_item_key" name="application_base_item_key" />
+            <select name="application_base_item_list.selected" onchange="onChangeAppBaseItem(false);controlAgentLead();setApplicationBaseItemSelect(this);">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+          <div class="gyoumu_field">
+            <div id="application_base_explanation"></div>
+          </div>
+        </div>
+        <div class="indent_title">２．該当契約内容</div>
+        <div class="grid_area_03_03">
+          <div class="gyoumu_field_title">課支社CD</div>
+          <div class="gyoumu_field_input"><input type="text" id="section_code" name="section_code" maxlength="6" /></div>
+          <div class="gyoumu_field_title">課支社名称</div>
+          <div class="gyoumu_field_value">1</div>
+          <div class="gyoumu_field_title">代理店CD</div>
+          <div class="gyoumu_field_input"><input type="text" id="agent_code" name="agent_code" maxlength="6" /></div>
+          <div class="gyoumu_field_title">代理店名称</div>
+          <div class="gyoumu_field_value">1</div>
+          <div class="gyoumu_field_title">証券番号</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="policy_number" name="policy_number" maxlength="12" />
+          </div>
+          <div class="gyoumu_field_title">明細番号</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="sub_policy_number" name="sub_policy_number" maxlength="10" onblur="subPolicyNumberOutput(this)" />
+          </div>
+          <div class="gyoumu_field_title">保険契約者名</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="insurant_name" name="insurant_name" maxlength="120" />
+          </div>
+          <div class="gyoumu_field_title">大種目</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="large_item_key" name="large_item_key" />
+            <select name="large_item_list.selected" onchange="onChangeLargeItem(false);onChangeInsuranceItem(false);setLargeItemSelect(this);resetInsuranceItemSelect();"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+          </div>
+          <div class="gyoumu_field_title">保種</div>
+          <div id="insurance_item_title" class="gyoumu_field_input">
+            <input type="hidden" id="insurance_item_key" name="insurance_item_key" />
+            <select name="insurance_item_list.selected" onchange="onChangeInsuranceItem(false);setInsuranceItemSelect(this);"><option value=""></option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+          </div>
+          <div class="gyoumu_field">1</div>
+          <div class="gyoumu_field_title">取消保険料</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="cancel_premium" name="cancel_premium" maxlength="21" onfocus="floatNumberFiledInput(this)" onblur="floatNumberFiledOutput(this)" />
+          </div>
+          <div class="gyoumu_field" id="change_reason_pre_space">円<span id="exp_cancel_premium" style="display: none;"><font class="explanation2">1</font></span></div>
+          <div id="change_reason">
+            <div class="gyoumu_field_title">変更事由</div>
+            <div class="gyoumu_field_value">1</div>
+          </div>
+          <span class="empty"></span>
+          <div class="gyoumu_field_title">再計上証券番号</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="re_policy_number" name="re_policy_number" maxlength="12" />
+          </div>
+          <div class="gyoumu_field_title">再計上明細番号</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="re_sub_policy_number" name="re_sub_policy_number" maxlength="10" onblur="subPolicyNumberOutput(this)" />
+          </div>
+          <div class="gyoumu_field_title">証券送付区分</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="policy_send_type_key" name="policy_send_type_key" />
+            <select name="policy_send_type_list.selected" onchange="setPolicySendTypeSelect(this);">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+          <div class="gyoumu_field_title">変更確認書送付</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="change_confirm_send_type_key" name="change_confirm_send_type_key" />
+            <select name="change_confirm_send_type_list.selected" onchange="setChangeConfirmSendTypeSelect(this);">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+          <span class="empty"></span>
+          <div class="gyoumu_field_title">変更確認書<br/>課支社送付の<br/>理由</div>
+          <div class="gyoumu_field_input">
+            <textarea id="change_confirm_send_reason" name="change_confirm_send_reason"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="application_reason" class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_red">■</span><span class="title_char_black">申請事由</span></div>
+        <span class="title_03_01">３．手続の時期</span>
+        <span class="explanation">
+          ※「本システムは日付は西暦(8桁)を入力　例　平成23年12月10日　→“20111210”と入力」
+        </span>
+        <div class="grid_area_03_04">
+          <div class="gyoumu_field_title">申込日(原契約の申込日)</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="cancel_application_date" name="cancel_application_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" />
+          </div>
+          <div class="gyoumu_field_title">始期日</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="start_date" name="start_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8);focusOutApprove()" />
+          </div>
+          <div class="gyoumu_field_title">届出日(変更届出書の届出日)</div>
+          <div class="gyoumu_field_input">
+            <input type="text" id="notification_date" name="notification_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8);focusOutApprove()" />
+          </div>
+          <div class="gyoumu_field_title">取消・変更の計上日</div>
+          <div class="gyoumu_field_value">1</div>
+        </div>
+        <div class="indent_title">４．異例取扱理由</div>
+        <div id="change_sign">
+          <div class="grid_area_03_05">
+            <div class="gyoumu_field_title">異例理由(計上時)</div>
+            <div class="gyoumu_field_value">1</div>
+            <div class="gyoumu_field_title">理由変更者</div>
+            <div class="gyoumu_field_value">1</div>
+            <div class="gyoumu_field_title">理由変更日</div>
+            <div class="gyoumu_field_value">1</div>
+            <div class="gyoumu_field">1</div>
+          </div>
+        </div>
+        <div class="grid_area_03_06">
+          <div class="gyoumu_field_title">異例取扱理由</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="cancel_reason_key" name="cancel_reason_key" />
+            <select name="cancel_reason_list.selected" onchange="onChangeCancelReason(false);controlAgentLead();alertCancelReason();">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+          <div class="gyoumu_field">
+            <div id="cancel_reason_explanation"></div>
+          </div>
+          <div class="gyoumu_field_title">具体的内容</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="concrete_content_key" name="concrete_content_key" />
+            <select name="concrete_content_list.selected" onchange="setConcreteContentSelect(this);onChangeConcreteContent(false);">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+          <div class="gyoumu_field">
+            <div id="concrete_content_explanation"></div>
+          </div>
+          <div class="gyoumu_field_title">具体的説明</div>
+          <div class="gyoumu_field_input">
+            <textarea id="concrete_explanation" name="concrete_explanation"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="agentHearingArea" class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_green">■</span><span class="title_char_black">代理店へのヒアリング</span></div>
+        <div class="indent_title">５．代理店への募集状況の確認</div>
+        <div class="grid_area_03_07_01">
+          <div class="gyoumu_field_title">代理店への募集状況の確認要否</div>
+          <div class="gyoumu_field">
+            <input type="radio" id="agent_invitation_status_1" name="agent_invitation_status" value="1" onclick="controlAgentArea();" />
+            <span>必要</span>
+            <input type="radio" id="agent_invitation_status_2" name="agent_invitation_status" value="2" onclick="controlAgentArea();" />
+            <span>不要</span>
+            <span>　　※マニュアル記載のルールで「代理店ヒアリング不要」としている場合は記載不要</span>
+          </div>
+        </div>
+        <div id="agentArea">
+          <div class="grid_area_03_07_02">
+            <div class="gyoumu_field_title">実施日</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="agent_date" name="agent_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" />
+            </div>
+            <div class="gyoumu_field_title">実施方法</div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="agent_interview" name="agent_interview" value="1" />面談
+              <input type="checkbox" id="agent_tel" name="agent_tel" value="1" />電話
+              <input type="checkbox" id="agent_other" name="agent_other" value="1" />その他
+            </div>
+            <div class="gyoumu_field_title">実施者(社員)</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="agent_user" name="agent_user" maxlength="22" />
+            </div>
+            <div class="gyoumu_field_title">対象者(募集人名)</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="agent_target" name="agent_target" maxlength="40" />
+            </div>
+          </div>
+          <div class="grid_area_03_07_03">
+            <div class="gyoumu_field_title">契約締結時の募集行為についての確認</div>
+            <span class="empty"></span>
+            <div class="gyoumu_field_title">募集方法</div>
+            <div class="gyoumu_field_input">
+              <input type="hidden" id="agent_invitation_method_key" name="agent_invitation_method_key" />
+              <select name="agent_invitation_method_list.selected" onchange="setAgentInvitationMethodSelect(this);">
+                
+                  <option>1</option>
+                
+              </select>
+            </div>
+            <div class="gyoumu_field_title">募集実施日</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="agent_invitation_date" name="agent_invitation_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" />
+            </div>
+            <div class="gyoumu_field_title">その他の募集方法</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="agent_other_invitation" name="agent_other_invitation" maxlength="60" />
+            </div>
+          </div>
+          <div class="grid_area_03_07_04">
+            
+              
+                <div class="gyoumu_field_title">重要事項説明</div>
+              
+              <div class="gyoumu_field">
+                <input type="checkbox" value="1" />1
+              </div>
+            
+          </div>
+          <div class="grid_area_03_07_04">
+            
+              
+                <div class="gyoumu_field_title">契約内容の確認</div>
+              
+              <div class="gyoumu_field">
+                <input type="checkbox" value="1" />1
+              </div>
+            
+          </div>
+          <div class="grid_area_03_07_05">
+            <div class="gyoumu_field_title">契約意思の確認</div>
+            <div class="gyoumu_field_title">契約手続実施者</div>
+            <div class="gyoumu_field">
+              <input type="radio"  id="agent_proceed_user_1" name="agent_proceed_user" value="1" onclick="controlAgentProcedure();" />
+              <span>契約者本人</span>
+              <input type="radio"  id="agent_proceed_user_2" name="agent_proceed_user" value="2" onclick="controlAgentProcedure();" />
+              <span>代理人</span>
+              <input type="radio" id="agent_proceed_user_3" name="agent_proceed_user" value="3" onclick="controlAgentProcedure();" />
+              <span>その他</span>
+            </div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="agent_sign" name="agent_sign" value="1" />申込書の署名または記名・押印はルールどおり取り付けた
+            </div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="agent_procedure" name="agent_procedure" value="1" />代理人による手続の場合、保険契約者への事前の意思確認などルールに則った手続を行った
+            </div>
+            <div class="gyoumu_field_title">今後の活動に<br/>対する指導</div>
+            <div class="gyoumu_field_input">
+              <textarea id="agent_lead" name="agent_lead"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="contractHearingArea" class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_orange">■</span><span class="title_char_black">保険契約者へのヒアリング</span></div>
+        <div class="indent_title">６．保険契約者への募集状況の確認</div>
+        <div class="grid_area_03_08_01">
+          <div class="gyoumu_field_title">保険始期日と届出日の関係</div>
+          <div class="gyoumu_field_input">
+            <input type="hidden" id="contract_relation_key" name="contract_relation_key" />
+            <select name="contract_relation_list.selected" onchange="controlContractArea();setContractRelationSelect(this);">
+              
+                <option>1</option>
+              
+            </select>
+          </div>
+        </div>
+        <div id="contractArea">
+          <div class="grid_area_03_08_02">
+            <div class="gyoumu_field_title">実施日</div>
+            <div class="gyoumu_field">
+              <input type="text" id="contract_date" name="contract_date" class="gyoumu_field" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" />
+            </div>
+            <div class="gyoumu_field_title">実施方法</div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="contract_interview" name="contract_interview" value="1" />面談
+              <input type="checkbox" id="contract_tel" name="contract_tel" value="1" />電話
+              <input type="checkbox" id="contract_other" name="contract_other" value="1" />その他
+            </div>
+            <div class="gyoumu_field_title">実施者(社員)</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="contract_user" name="contract_user" maxlength="22" />
+            </div>
+            <div class="gyoumu_field_title">対象者(契約者名)</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="contract_target" name="contract_target" maxlength="120" />
+            </div>
+          </div>
+          <div class="grid_area_03_08_03">
+            <div class="gyoumu_field_title">契約締結時の募集行為についての確認</div>
+            <span class="empty"></span>
+            <div class="gyoumu_field_title">募集方法</div>
+            <div class="gyoumu_field_input">
+              <input type="hidden" id="contract_invitation_method_key" name="contract_invitation_method_key" />
+                <select name="contract_invitation_method_list.selected" onchange="setContractInvitationMethodSelect(this);">
+                  
+                    <option>1</option>
+                  
+              </select>
+            </div>
+            <div class="gyoumu_field_title">募集実施日</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="contract_invitation_date" name="contract_invitation_date" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" />
+            </div>
+            <div class="gyoumu_field_title">その他の募集方法</div>
+            <div class="gyoumu_field_input">
+              <input type="text" id="contract_other_invitation" name="contract_other_invitation" maxlength="60" />
+            </div>
+          </div>
+          <div class="grid_area_03_08_04">
+            
+              
+              <div class="gyoumu_field_title">重要事項説明</div>
+              
+              <div class="gyoumu_field">
+                <input type="checkbox" value="1" />1
+              </div>
+            
+          </div>
+          <div class="grid_area_03_08_04">
+            
+              
+              <div class="gyoumu_field_title">契約内容の確認</div>
+              
+              <div class="gyoumu_field">
+                <input type="checkbox" value="1" />1
+              </div>
+            
+          </div>
+          <div class="grid_area_03_08_05">
+            <div class="gyoumu_field_title">契約意思の確認</div>
+            <div class="gyoumu_field_title">契約手続実施者</div>
+            <div class="gyoumu_field">
+              <input type="radio" id="contract_proceed_user_1" name="contract_proceed_user" value="1" />
+              <span>契約者本人</span>
+              <input type="radio" id="contract_proceed_user_2" name="contract_proceed_user" value="2" />
+              <span>代理人</span>
+              <input type="radio" id="contract_proceed_user_3" name="contract_proceed_user" value="3" />
+             <span>その他</span>
+            </div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="contract_sign" name="contract_sign" value="1" />自ら申込書の署名または記名・押印を行った
+            </div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="contract_procedure" name="contract_procedure" value="1" />代理人による手続の場合、代理店から保険契約者への事前の意思の確認があった
+            </div>
+            <div class="gyoumu_field_title">異例取扱理由</div>
+            <div class="gyoumu_field_input">
+              <input type="hidden" id="contract_cancel_reason_key" name="contract_cancel_reason_key" />
+              <select name="contract_cancel_reason_list.selected" onchange="setContractCancelReasonSelect(this);">
+                
+                  <option>1</option>
+                
+              </select>
+            </div>
+            <div class="gyoumu_field"></div>
+            <div class="gyoumu_field_title">異例取扱理由<br/>備考</div>
+            <div class="gyoumu_field_input">
+              <textarea id="contract_cancel_reason_note" name="contract_cancel_reason_note"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_purple">■</span><span class="title_char_black">苦情／不祥事件情報</span></div>
+        <div id="noSatisfactionCheckArea">
+          <div class="indent_title">７．苦情および不祥事件のおそれ有無</div>
+          <div class="grid_area_03_09">
+            <div class="gyoumu_field_title">契約者からの不満足の表明　　（有の場合、CS・苦情システムに登録）</div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="no_satisfaction" name="no_satisfaction" value="1" onclick="controlComplaintNumber();" />有
+            </div>
+            <div class="gyoumu_field_title">CS・苦情システム　苦情No</div>
+            <div class="gyoumu_field">
+              <input type="text" id="complaint_number" name="complaint_number" class="gyoumu_field" maxlength="12" />
+            </div>
+            <div class="gyoumu_field_title">募集行為に問題の可能性　（有の場合、コンプラ情報システムに登録）</div>
+            <div class="gyoumu_field">
+              <input type="checkbox" id="invitation_problem" name="invitation_problem" value="1" onclick="controlComplianceNumber();" />有
+            </div>
+            <div class="gyoumu_field_title">コンプラ情報システム　管理No</div>
+            <div class="gyoumu_field">
+              <input type="text" id="compliance_number" name="compliance_number" class="gyoumu_field" maxlength="12" />
+            </div>
+          </div>
+        </div>
+        
+          <div id="complianceNotice" class="complianceNotice_area_03">
+            <div class="explanation">
+              ※既にコンプラ情報システムに登録済の場合は、「募集行為に問題の可能性」欄にはチェック不要です。
+            </div>
+          </div>
+        
+        
+          <input type="hidden" id="compliance_check_date_flag" name="compliance_check_date_flag" />
+          <div class="gyoumu_line_03">
+            <hr />
+          </div>
+          <div class="grid_area_03_10">
+            <div class="gyoumu_field_title">コンプラ担当者</div>
+            <div class="gyoumu_field_value">
+              1
+            </div>
+            <div class="gyoumu_field_title">コンプラ確認日</div>
+            <div class="gyoumu_field_value">
+              1
+            </div>
+            <div>
+              <input type="submit" formaction="/ANA03/" id="complianceCheck" name="complianceCheck" value="コンプラ確認" onclick="clickButton(this);route18Submit();return false;" disabled="true">
+            </div>
+          </div>
+        
+      </div>
+      <div id="requestAppInfoArea" class="gyoumu_area">
+        <div><span class="title_mark_pink">■</span><span class="title_char_black">申請依頼情報</span></div>
+        <div id="requestAppInfoAreaApplicant">
+          <div class="grid_area_03_11">
+            <div class="gyoumu_field_title">申請依頼先</div>
+            <div class="gyoumu_field_value" id="req_applicant_name">
+              1
+            </div>
+            <div>
+              <input type="button" name="selectReqApplicantUser" value="申請依頼先選択" onclick="popupAYG900('req_applicant')" />
+            </div>
+            <span class="empty"></span>
+            <div>
+              <input type="button" name="clearReqAppApplicantUser" value="クリア" onclick="clearUser('req_applicant');"/>
+            </div>
+            <span class="empty"></span>
+            <div>
+              <span id="applicant_wording" class="explanation"></span>
+            </div>
+            <div class="gyoumu_field_title">申請代行者</div>
+            <div class="gyoumu_field_value" id="act_applicant_name">
+              1
+            </div>
+            <div>
+              <input type="button" name="selectActApplicantUser" value="申請代行者選択" onclick="popupAYG900('act_applicant')" />
+            </div>
+            <span class="empty"></span>
+            <div>
+              <input type="button" name="clearActApplicantUser" value="クリア" onclick="clearUser('act_applicant');"/>
+            </div>
+            <span class="empty"></span>
+            <span class="empty"></span>
+            <div class="gyoumu_field_title">承認依頼／<br/>要再申請依頼<br/>理由</div>
+            <div class="gyoumu_field_input">
+              <textarea id="section_approve_reject" name="section_approve_reject" class="gyoumu_field"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="grid_area_03_11">
+          <div class="gyoumu_field_title">承認依頼先</div>
+          <div class="gyoumu_field_value" id="req_approver_name">
+            1
+          </div>
+          <div>
+            <input type="button" name="selectReqApproverUser" value="承認依頼先選択" onclick="popupAYG900('req_approver')" />
+          </div>
+          <span class="empty"></span>
+          <div>
+            <input type="button" name="clearReqApproverUser" value="クリア" onclick="clearUser('req_approver');"/>
+          </div>
+          <span class="empty"></span>
+          <div>
+            <span id="approver_wording" class="explanation"></span>
+          </div>
+          <div class="gyoumu_field_title">承認代行者</div>
+          <div class="gyoumu_field_value" id="act_approver_name">
+            1
+          </div>
+          <div>
+            <input type="button" name="selectActApproverUser" value="承認代行者選択" onclick="popupAYG900('act_approver')" />
+          </div>
+          <span class="empty"></span>
+          <div>
+            <input type="button" name="clearActApproverUser" value="クリア" onclick="clearUser('act_approver');"/>
+          </div>
+          <span class="empty"></span>
+          <span class="empty"></span>
+          <div class="gyoumu_field_title">承認／<br/>要再申請依頼<br/>理由</div>
+          <div class="gyoumu_field_input">
+            <textarea id="department_approve_reject" name="department_approve_reject"></textarea>
+          </div>
+        </div>
+        <div class="app_req_button_03">
+          <input type="button" class="button_area_button" id="requestApplicationButton" name="requestApplicationButton" value="申請依頼" onclick="popupAYG901('requestApplication')" />
+        </div>
+      </div>
+      <div id="businessGroupCheckArea" style="display: none;">
+        <input type="hidden" id="business_group_check_date_flag" name="business_group_check_date_flag" />
+        <div>
+          <span>■</span>
+          <span>業務グループによる確認</span>
+          <span class="explanation2">　　　　※マリンの場合は、地域海上Ｔ長および海上保険室長</span>
+        </div>
+        <div class="gyoumu_field_title">業務Ｇ担当者</div>
+        <div class="gyoumu_field_value">
+          1
+        </div>
+        <div class="gyoumu_field_title">確認日</div>
+        <div class="gyoumu_field_value">
+          1
+        </div>
+        <div>
+          <!--/* 廃止済み */-->
+          <input type="submit" formaction="/ANA03/" class="button_area_button" id="businessGroupCheck" name="businessGroupCheck" value="担当確認" onclick="clickButton(this)" disabled="true">
+        </div>
+        <div class="gyoumu_field_title">業務Ｇ長</div>
+        <div class="gyoumu_field_value">
+          1
+        </div>
+        <div class="gyoumu_field_title">確認日</div>
+        <div class="gyoumu_field_value">
+          1
+        </div>
+      </div>
+      <div id="actionRegistArea" class="gyoumu_area">
+        <div class="margin_bottom_5px"><span class="title_mark_purple2">■</span><span class="title_char_black">承認後・不承認後の対応</span></div>
+        <div class="grid_area_03_12">
+          <div class="gyoumu_field_title">承認後・<br/>不承認後<br/>の対応</div>
+          <div class="gyoumu_field_input">
+            <textarea id="disapprove_correspond" name="disapprove_correspond"></textarea>
+          </div>
+          <div>
+            <input type="submit" formaction="/ANA03/route17" id="actionRegist" name="actionRegist" value="対応登録" onclick="clickButton(this)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/* ボタン部 */-->
+  <div class="button_area">
+    <!--/* 共通ボタン */-->
+    <div class="button_area_navigate">
+      <div class="button_area_button_length4">
+        <input type="submit" formaction="/ANA03/route11" id="act101to001" name="act101to001" value="メニュー" class="button_area_button" onclick="clickButton(this)">
+      </div>
+      <div class="button_area_space"></div>
+      <div class="button_area_button_length4">
+        <input type="submit" formaction="/ANA03/" id="act101to200" name="act101to200" value="申請一覧" class="button_area_button" onclick="clickButton(this);route12Submit();return false;">
+      </div>
+      <div class="button_area_space"></div>
+      <div class="button_area_button_length4">
+        <input type="submit" formaction="/ANA03/route13" id="act101to100" name="act101to100" value="新規入力" class="button_area_button" onclick="clickButton(this)">
+      </div>
+    </div>
+    <!--/* 処理実行ボタン */-->
+    <div class="button_area_normal_operation">
+      <div class="button_area_button_length3">
+        <input type="submit" formaction="/ANA03/route14" id="update" name="update" value="更新" class="button_area_button" onclick="if(!document.tks_TKSPRForm.application_id.value){location.href='/ANB00/system_error.html';return false;}clickButton(this)">
+      </div>
+      <div class="button_area_space"></div>
+      <div class="button_area_button_length6">
+        <input type="button" class="button_area_button" id="cancelButton" name="cancelButton" value="取消" onclick="popupAYG901('cancel')" />
+      </div>
+    </div>
+    <!--/* 削除ボタン */-->
+    <div class="button_area_delete_operation">
+      <div class="button_area_button_length3">
+        <input type="submit" formaction="/ANA03/route16" id="deleteApplication" name="deleteApplication" value="削除" class="button_area_button" onclick="clickButton(this)">
+      </div>
+    </div>
+    <!--/* 終了ボタン */-->
+    <div class="button_area_end">
+      <div class="button_area_button_length3">
+        <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="application_id" name="application_id" value="AY00000001" />
+  <input type="hidden" id="application_status" name="application_status" value="00" />
+  <input type="hidden" id="app_input_user_id" name="app_input_user_id" />
+  <input type="hidden" id="applicant_id" name="applicant_id" />
+  <input type="hidden" id="approver_id" name="approver_id" />
+  <input type="hidden" id="login_user_id" name="login_user_id" />
+  <input type="hidden" id="last_update_user" name="last_update_user" />
+  <input type="hidden" id="last_update_date" name="last_update_date" />
+  <input type="hidden" id="req_applicant_id" name="req_applicant_id" />
+  <input type="hidden" id="req_applicant_sec_code" name="req_applicant_sec_code" />
+  <input type="hidden" id="req_applicant_name" name="req_applicant_name" />
+  <input type="hidden" id="act_applicant_id" name="act_applicant_id" />
+  <input type="hidden" id="act_applicant_sec_code" name="act_applicant_sec_code" />
+  <input type="hidden" id="act_applicant_name" name="act_applicant_name" />
+  <input type="hidden" id="req_approver_id" name="req_approver_id" />
+  <input type="hidden" id="req_approver_sec_code" name="req_approver_sec_code" />
+  <input type="hidden" id="req_approver_name" name="req_approver_name" />
+  <input type="hidden" id="act_approver_id" name="act_approver_id" />
+  <input type="hidden" id="act_approver_sec_code" name="act_approver_sec_code" />
+  <input type="hidden" id="act_approver_name" name="act_approver_name" />
+  <input type="hidden" id="system_admin_flag" name="system_admin_flag" />
+  <input type="hidden" id="rejection_date_view" name="rejection_date_view" />
+  <input type="hidden" id="agent_explain_cols" name="agent_explain_cols" />
+  <input type="hidden" id="contract_explain_cols" name="contract_explain_cols" />
+  <input type="hidden" id="agent_insurance_confirm_cols" name="agent_insurance_confirm_cols" />
+  <input type="hidden" id="contract_insurance_confirm_cols" name="contract_insurance_confirm_cols" />
+  <input type="hidden" id="section_name" name="section_name" />
+  <input type="hidden" id="agent_name" name="agent_name" />
+  <input type="hidden" id="cancel_reason_id" name="cancel_reason_id" />
+  <input type="hidden" id="previous_path" name="previous_path" />
+  <input type="hidden" id="logo_pass" name="logo_pass" />
+  <input type="hidden" id="company_kbn" name="company_kbn" />
+  <input type="hidden" id="complianceCheckAuth" name="complianceCheckAuth" />
+  <input type="hidden" id="businessGroupCheckAuth" name="businessGroupCheckAuth" />
+  <input type="hidden" id="approve_pattern" name="approve_pattern" />
+  <input type="hidden" id="req_approver_check_sec_code1_5" name="req_approver_check_sec_code1_5" />
+
+  <input type="hidden" id="selectedAgentExplain" name="selectedAgentExplain" />
+  <input type="hidden" id="selectedAgentInsuranceConfirm" name="selectedAgentInsuranceConfirm" />
+  <input type="hidden" id="selectedContractExplain" name="selectedContractExplain" />
+  <input type="hidden" id="selectedContractInsuranceConfirm" name="selectedContractInsuranceConfirm" />
+
+  <input type="submit" id="close" name="close" formaction="/ANA03/close" style="display:none;">
+
+  <!--/* 照会・検索画面 */-->
+  <input type="submit" formaction="/ANA03/route12A" id="route12A" name="route12A" style="display:none;">
+  <!--/* 申請承認一覧画面 */-->
+  <input type="submit" formaction="/ANA03/route12B" id="route12B" name="route12B" style="display:none;">
+  <!--/* 申請・確認一覧画面 */-->
+  <input type="submit" formaction="/ANA03/route12C" id="route12C" name="route12C" style="display:none;">
+  <!--/* コンプラ確認（submit用） */-->
+  <input type="submit" formaction="/ANA03/route18" id="route18" name="route18" style="display:none;">
+
+  <input type="button" id="requestApplication" name="requestApplication" value="申請依頼" onclick="routeSubmit('requestApplication')" style="display:none;" />
+  <input type="hidden" id="mockReturnTo" value="" />
+  <input type="button" id="approve" name="approve" value="承認" onclick="location.href='/ANB00/ANA04.html'" style="display:none;" />
+  <input type="button" id="disapprove" name="disapprove" value="不承認" onclick="location.href='/ANB00/ANA04.html'" style="display:none;" />
+  <input type="submit" formaction="/ANA03/route10" class="button_area_button" id="route10" name="route10" value="申請依頼" style="display:none;">
+  <input type="button" id="cancel" name="cancel" value="取消" onclick="routeSubmit('cancel'); if(document.getElementById('mockReturnTo').value){location.href=document.getElementById('mockReturnTo').value;}" style="display:none;" />
+  <input type="submit" formaction="/ANA03/route15" id="route15" name="route15" value="取消" class="button_area_button" style="display:none;">
+  <!--/* 動的作成のCC送信先アドレス(ccAddress)を受け取る枠 */-->
+</form>
+<script>
+window.addEventListener('load', function(){
+  try {
+    if (location.search.indexOf('deleted=1') >= 0) {
+      var ma = document.getElementById('message_area');
+      if (ma) ma.innerText = 'MAYG101I100：削除しました。';
+    }
+  } catch (e) {}
+});
+</script>
+</body>
+
+</html>

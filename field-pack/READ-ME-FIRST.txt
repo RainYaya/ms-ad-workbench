@@ -1,0 +1,12 @@
+ms-ad 真机携带包（2026-10-26 打包）
+=====================================
+
+第一步：把 node.exe（v20+ 绿色版）放到本文件夹根目录
+第二步：读 docs/FIELD-MANUAL.md（怎么跑、怎么改积木/参数）
+第三步：卡住了就把 docs/AI-HANDOFF.md 整份贴给网页 AI，按它的回复改 JSON
+
+快速跑一本（cd automation\node-runner 之后）：
+  run.cmd AZ-110-01-009
+  真机: node runner.mjs --case <ID> --base-url http://127.0.0.1:10081/mhkcmwa11/dummy.html --live --headed --edge
+
+目录结构不能动（runner 靠相对路径找数据文件）。

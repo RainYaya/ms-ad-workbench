@@ -1,0 +1,263 @@
+{
+ "BLK-SGL-CCA9B958": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-110-02-001",
+   "AZ-110-02-002",
+   "AZ-110-02-003",
+   "AZ-110-02-004",
+   "AZ-110-17-001",
+   "AZ-110-17-002",
+   "AZ-110-17-003",
+   "AZ-110-79-001",
+   "AZ-110-80-001",
+   "AZ-110-81-001",
+   "AZ-110-82-001",
+   "AZ-310-43-001",
+   "AZ-210-05-013",
+   "AZ-210-05-014",
+   "AZ-210-05-015",
+   "AZ-210-05-016",
+   "AZ-210-63-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 営業連携",
+    "action": "click",
+    "selector": "input[name='updateBusinessNotify']",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "通知dialog=真機人工"
+   }
+  ]
+ },
+ "BLK-SGL-639A108B": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-110-82-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 確認済",
+    "action": "click",
+    "selector": "#updateConfirmed",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-41743CCA": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-210-31-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 回答",
+    "action": "click",
+    "selector": "#updateAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer",
+    "note": "OK dialog auto-accept; 明細入力=真機"
+   }
+  ]
+ },
+ "BLK-SGL-E008F918": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-210-50-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC22.html"
+   },
+   {
+    "event": "ast 非浏览器确认",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#select",
+    "note": "AP/DB/テーブル=真機人工"
+   }
+  ]
+ },
+ "BLK-SGL-CEAA65E9": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-210-67-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "#print",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer",
+    "note": "帳票popup=真機人工"
+   },
+   {
+    "event": "goto 帳票印刷",
+    "action": "goto",
+    "url": "/AMB/AMA14.html"
+   },
+   {
+    "event": "ast 帳票印刷画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print"
+   },
+   {
+    "event": "goto 代理店更新画面へ戻る",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "ast 代理店更新画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-13EBF209": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-210-68-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click メール用コピー",
+    "action": "click",
+    "selector": "#copyClipboard",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-263830F1": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-310-07-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 回答",
+    "action": "click",
+    "selector": "#updateAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-F9980EBC": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-310-41-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 一時中断",
+    "action": "click",
+    "selector": "#updateTempAnswer",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ },
+ "BLK-SGL-637D567D": {
+  "screen": "AZG101/AMC23",
+  "cases": [
+   "AZ-310-42-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMC00/AMC23.html"
+   },
+   {
+    "event": "click 確認済",
+    "action": "click",
+    "selector": "#updateConfirmed",
+    "force": true
+   },
+   {
+    "event": "ast 画面確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#updateTempAnswer"
+   }
+  ]
+ }
+}

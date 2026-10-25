@@ -1,0 +1,190 @@
+{
+ "BLK-AZ-EXTERNAL-AUTH": {
+  "screen": "dummy-login->menu",
+  "cases": [
+   "AZ-200-01-001",
+   "AZ-200-01-002",
+   "AZ-200-01-003",
+   "AZ-200-01-004",
+   "AZ-200-01-005",
+   "AZ-200-01-006",
+   "AZ-200-01-007",
+   "AZ-200-01-008",
+   "AZ-200-01-009",
+   "AZ-200-01-030",
+   "AZ-200-01-031",
+   "AZ-200-01-032"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
+   {
+    "event": "input UserID",
+    "action": "fill",
+    "selector": "input[name=UserID]",
+    "value": "params.userId"
+   },
+   {
+    "event": "click メニュー画面",
+    "action": "click",
+    "selector": "input[name=menu_cm]"
+   },
+   {
+    "event": "ast メニュー遷移",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, #route2",
+    "note": "browser段通过；認証後URL/系统画面确认=非浏览器人工"
+   }
+  ]
+ },
+ "BLK-AZ-SESSION-TIMEOUT": {
+  "screen": "menu-session",
+  "cases": [
+   "AZ-200-03-001",
+   "AZ-200-03-003",
+   "AZ-200-07-002",
+   "AZ-200-07-003",
+   "AZ-200-07-004",
+   "AZ-200-07-005",
+   "AZ-200-07-006"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "ast 1時間待機",
+    "action": "wait",
+    "ms": 300,
+    "note": "mock里1小时缩为300ms"
+   },
+   {
+    "event": "ast セッション切れ確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, #route2",
+    "note": "タイムアウト画面/エラー=真機人工确认"
+   }
+  ]
+ },
+ "BLK-AZ-AUTH-ERROR": {
+  "screen": "dummy-login",
+  "cases": [
+   "AZ-100-06-001",
+   "AZ-100-06-003",
+   "AY-100-06-003"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
+   {
+    "event": "input ダミーログイン",
+    "action": "fill",
+    "selector": "input[name=UserID]",
+    "value": "params.userId"
+   },
+   {
+    "event": "click メニュー",
+    "action": "click",
+    "selector": "{params.menuSelector}"
+   },
+   {
+    "event": "ast 権限エラー",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to100, #route2, #route3",
+    "note": "権限エラー画面=真機人工"
+   }
+  ]
+ },
+ "BLK-AZ-SYSERR-LOGIN": {
+  "screen": "dummy-login",
+  "cases": [
+   "AZ-200-04-001",
+   "AY-100-04-001",
+   "AY-100-04-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "{params.loginUrl}"
+   },
+   {
+    "event": "input ログイン",
+    "action": "fill",
+    "selector": "input[name=UserID]",
+    "value": "params.userId"
+   },
+   {
+    "event": "click ログイン",
+    "action": "click",
+    "selector": "{params.menuSelector}"
+   },
+   {
+    "event": "ast 遷移 システムエラー画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#error_message"
+   },
+   {
+    "event": "ast エラーメッセージ MAZG000E001",
+    "action": "assert",
+    "assert": "text",
+    "selector": "#error_message",
+    "contains": "params.errorCode"
+   }
+  ]
+ },
+ "BLK-AY-MENU-SESSION-TIMEOUT": {
+  "screen": "ay-menu",
+  "cases": [
+   "AY-100-08-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/ANB00/ANA01.html"
+   },
+   {
+    "event": "ast AYメニュー可視",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='route3']"
+   }
+  ]
+ },
+ "BLK-AZ-BATCH-CONVERT-MAIL": {
+  "screen": "menu",
+  "cases": [
+   "AZ-150-11-001",
+   "AZ-150-11-002",
+   "AZ-150-12-001",
+   "AZ-150-12-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "ast バッチ入口確認",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#act001to201",
+    "note": "JP1バッチ実行+テーブル/ログ確認=非浏览器人工"
+   }
+  ]
+ }
+}
