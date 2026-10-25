@@ -1130,7 +1130,10 @@ AY-120-01-001"></textarea>
       const [label, color] = st ? badge(st) : (x.type === '画面HC' ? ['未取得', 'red'] : ['目視', '']);
       const src = e?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(e.file)}` : '';
       const thumb = src ? `<img class="ev-thumb" loading="lazy" src="${esc(src)}" data-lightbox="${esc(src)}" alt="Excel ${x.row}">` : (st === 'manual' ? '<span class="ev-manual">人工確認</span>' : '');
-      return `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span class="ev-main">${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : color === 'violet' ? '#6d28d9' : '#15803d'}">${label}</b>` : ''}</span>${thumb}</label>`;
+      const pick = `<input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span class="ev-main">${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : color === 'violet' ? '#6d28d9' : '#15803d'}">${label}</b>` : ''}</span>`;
+      return src
+        ? `<div class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><label class="ev-pick">${pick}</label>${thumb}</div>`
+        : `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}">${pick}${thumb}</label>`;
     }).join('')}</div></div></div>${manualPanel}`;
   }
 
@@ -2084,7 +2087,13 @@ AY-120-01-001"></textarea>
         if (field === 'execution' || field === 'verify' || field === 'result') renderCase(id);
       }
       const lb = el.closest('[data-lightbox]');
-      if (lb) { $('#lightboxImg').src = lb.dataset.lightbox; $('#lightbox').hidden = false; return; }
+      if (lb) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#lightboxImg').src = lb.dataset.lightbox;
+        $('#lightbox').hidden = false;
+        return;
+      }
       if (el.id === 'lightbox' || el.id === 'lightboxClose') { $('#lightbox').hidden = true; return; }
       if (el.matches('[data-evidence]')) {
         const id = el.dataset.caseId;
