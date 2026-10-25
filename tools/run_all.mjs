@@ -19,7 +19,7 @@ console.log(`running ${cases.length} cases, jobs=${jobs}, base=${base}`);
 
 function runCase(cid) {
   return new Promise((resolve) => {
-    const child = spawn(process.execPath, [runner, '--case', cid, '--base-url', base], { cwd: dirname(runner) });
+    const child = spawn(process.execPath, [runner, '--case', cid, '--base-url', base, '--trace'], { cwd: dirname(runner) });
     let out = '';
     child.stdout.on('data', (d) => { out += d; });
     child.stderr.on('data', (d) => { out += d; });
