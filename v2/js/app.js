@@ -2030,15 +2030,6 @@ AY-120-01-001"></textarea>
     $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
 
     $('#main').addEventListener('click', async (e) => {
-      const lb = e.target.closest('[data-lightbox]');
-      if (lb) {
-        e.preventDefault();
-        e.stopPropagation();
-        $('#lightboxImg').src = lb.dataset.lightbox;
-        $('#lightbox').hidden = false;
-        return;
-      }
-      if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') { $('#lightbox').hidden = true; return; }
       const caseEl = e.target.closest('[data-case]');
       const scEl = e.target.closest('[data-scenario]');
       const rtEl = e.target.closest('[data-route]');
@@ -2200,6 +2191,14 @@ AY-120-01-001"></textarea>
     });
 
     document.addEventListener('click', (e) => {
+      const lb = e.target.closest('[data-lightbox]');
+      if (lb) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#lightboxImg').src = lb.dataset.lightbox;
+        $('#lightbox').hidden = false;
+        return;
+      }
       if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') $('#lightbox').hidden = true;
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#lightbox').hidden = true; });
