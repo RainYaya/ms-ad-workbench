@@ -200,12 +200,26 @@ def main() -> int:
             data["screens"][key] = page
 
     from datetime import datetime
-    data["generatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    target.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    # Keep the previous timestamp when nothing but the clock changed, so a
+    # no-op regeneration does not dirty the working tree.
+    body = {k: v for k, v in data.items() if k != "generatedAt"}
+    old_body = None
+    if target.exists():
+        try:
+            old_body = {k: v for k, v in json.loads(target.read_text(encoding="utf-8")).items()
+                        if k != "generatedAt"}
+        except Exception:
+            old_body = None
+    if old_body is not None and old_body == body:
+        data["generatedAt"] = json.loads(target.read_text(encoding="utf-8")).get("generatedAt", "")
+        print(f"unchanged: {target}")
+    else:
+        data["generatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        target.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"wrote {target}")
 
     nf = sum(len(p["fields"]) for p in data["screens"].values())
     nb = sum(len(p["buttons"]) for p in data["screens"].values())
-    print(f"wrote {target}")
     print(f"  screens {len(data['screens'])}  fields {nf}  buttons {nb}")
     return 0
 
