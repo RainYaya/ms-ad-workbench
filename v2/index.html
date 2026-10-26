@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>結合試験ワークベンチ</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20261027.11">
 </head>
 <body>
 <header class="topbar">
@@ -37,9 +37,13 @@
       <button data-view="routes" class="nav-item"><span class="nav-ico">⇢</span>実施順序</button>
       <button data-view="files" class="nav-item"><span class="nav-ico">▦</span>ファイル</button>
       <button data-view="tasks" class="nav-item"><span class="nav-ico">✓</span>自分のタスク</button>
+      <button data-view="schedule" class="nav-item"><span class="nav-ico">⏱</span>日程</button>
       <button data-view="refs" class="nav-item"><span class="nav-ico">◇</span>参考資料</button>
       <button data-view="automation" class="nav-item"><span class="nav-ico">▶</span>自動化</button>
       <a href="lego.html" class="nav-item" style="text-decoration:none;color:inherit"><span class="nav-ico">🧩</span>積木ワークベンチ</a>
+      <a class="nav-item" href="ops/index.html" target="_blank"><span class="nav-ico">▤</span>作業シート</a>
+      <button data-view="manual" class="nav-item"><span class="nav-ico">◉</span>証跡・人工</button>
+      <button data-view="feasibility" class="nav-item"><span class="nav-ico">◇</span>実効性</button>
     </nav>
     <div class="side-block">
       <h3>絞り込み</h3>
@@ -73,6 +77,11 @@
       </label>
       <label class="check"><input id="filterAssigned" type="checkbox"> 自分のタスクのみ</label>
       <label class="check"><input id="filterMissing" type="checkbox"> データ欠損のみ</label>
+      <label class="check"><input id="filterManual" type="checkbox"> 人工確認あり</label>
+      <label class="check"><input id="filterManualOp" type="checkbox"> 人工操作あり</label>
+      <label class="check"><input id="filterAutoOnly" type="checkbox"> 自動のみ</label>
+      <label class="check"><input id="filterEvMissing" type="checkbox"> 証跡未取得</label>
+      <label class="check"><input id="filterParamsAuto" type="checkbox"> 既定値 params のみ</label>
       <label class="check"><input id="filterRoute" type="checkbox"> 実施順序ありのみ</label>
       <label class="check"><input id="filterOld" type="checkbox"> 旧版を含む</label>
     </div>
@@ -118,6 +127,15 @@
 <script src="data/refs.js?v=20261023.3"></script>
 <script src="data/validation.js?v=20261023.3"></script>
 <script src="data/automation.js?v=20261023.3"></script>
-<script src="js/app.js?v=20261023.3"></script>
+    <script src="data/summaries.js?v=20261024.1"></script>
+    <script src="data/runner-defs.js?v=20261025.1"></script>
+    <script src="data/schedule.js?v=20261024.1"></script>
+    <script src="data/evidence.js?v=20261026.2"></script>
+    <script src="data/params.js?v=20261026.3"></script>
+    <script src="data/param-audit.js?v=20261027.4"></script>
+<script src="data/feasibility.js?v=20261027.5"></script>
+<script src="data/block-quality.js?v=20261027.5"></script>
+<div id="lightbox" class="lightbox" hidden><button class="lightbox-close" id="lightboxClose" aria-label="閉じる">×</button><img id="lightboxImg" alt=""></div>
+<script src="js/app.js?v=20261027.14"></script>
 </body>
 </html>

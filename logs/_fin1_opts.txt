@@ -1,0 +1,23 @@
+=== large_item_list (AMA03.html) ===
+   = 
+  5 = 自動車
+  B = 自賠責
+  Y = 貨物
+  Z = 種目共通
+  0 = その他
+=== insurance_item_list (AMA03.html) ===
+   = 
+  11A0 = 11：クルマの保険／はじめての自動車保険
+  13A0 = 13：クルマの保険・一般用
+  03A0 = 03：1DAY保険／GK　クルマの保険・ドライバー保険
+  00A1 = 00 ： 自動車
+  00A0 = 00 ： 自賠責
+  02A0 = 02 ： 国内貨物総合保険
+  00Z0 = 00 ： 種目共通
+  0000 = 00 ： その他
+=== application_form_type_list (AMA03.html) ===
+   = 
+  1 = 新規
+=== sumup_status_list (AMA03.html) ===
+   = 
+  1 = 未計上

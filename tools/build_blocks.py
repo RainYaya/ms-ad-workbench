@@ -45,6 +45,26 @@ SPECS = [
     ("BLK-AZ-INQUIRY-EDIT", "AZ-110-01-009", (28, 34), [], [], "source-only", "inquiry check -> 修 -> edit -> OK"),
     ("BLK-AZ-CORRECTION-CONFIRM", "AZ-110-01-009", (34, 40), [], [], "source-only", "agent inquiry 否 -> correction confirm -> register"),
     ("BLK-AZ-COMPLETE-REGISTER", "AZ-110-01-009", (40, 44), [], [], "source-only", "完了登録 -> MAZG101W047 -> update"),
+    # --- 2026-10-24 second read-through: agent-portal & non-browser families ---
+    ("BLK-AZ-AGT-LIST-OPEN-UPDATE", "AZ-200-07-001", (0, 2), [], [], "source-only", "代理店不備一覧 No -> 代理店更新画面 (agent portal open-record flow)"),
+    ("BLK-AZ-AGT-UPDATE-SUSPEND", "AZ-200-07-001", (2, 6), [], ["agent record open"], "source-only", "代理店更新 任意変更 -> 一時中断 -> 表示+テーブル確認"),
+    ("BLK-AZ-AGT-CORRECTION-REGISTER", "AZ-200-07-001", (6, 15), [], ["agent update open"], "source-only", "代理店訂正内容確認 入力 -> 登録 -> 更新戻り + AP/DB/TRログ"),
+    ("BLK-AZ-BATCH-RUN-VERIFY", "AZ-150-05-001", (0, 2), ["batchJob"], [], "source-only", "バッチ実行 -> 操作結果 (minimal non-browser batch skeleton)"),
+    ("BLK-AZ-BATCH-VERIFY", "AZ-150-07-001", (2, 4), ["verifyTargets"], [], "source-only", "集計テーブル + APログ 確認 (batch verification tail)"),
+    ("BLK-AZ-AUTH-ERROR", "AZ-100-06-001", (0, 4), [], [], "source-only", "ダミーログイン -> 権限/システムエラー確認 (auth boundary)"),
+    ("BLK-AZ-SESSION-TIMEOUT", "AZ-200-03-001", (0, 4), [], ["1h idle"], "source-only", "1時間待機 -> No押下 -> セッションタイムアウト確認 (parent)"),
+    ("BLK-AZ-EXTERNAL-AUTH", "AZ-200-01-001", (0, 3), ["authPath"], [], "source-only", "外部認証(IceWall/NTTDGW/大樹)ログイン -> 遷移+URL確認 (non-browser boundary)"),
+    ("BLK-AZ-OPEN-CLOSE-SYS", "AZ-200-02-001", (0, 6), [], ["ops shell access"], "source-only", "閉局シェル -> ログイン -> 閉局確認 (ops/non-browser)"),
+    ("BLK-AZ-AGT-SESSION-TIMEOUT", "AZ-200-03-002", (0, 8), [], ["agent record open"], "source-only", "代理店 子画面で1時間待機 -> 登録 -> タイムアウト確認"),
+    ("BLK-AZ-BATCH-CONVERT-MAIL", "AZ-150-11-001", (0, 4), ["batchJob"], [], "source-only", "メール変換先取込バッチ -> 結果/APログ/変換テーブル確認 (non-browser)"),
+    ("BLK-AZ-AGT-LIST-INITIAL", "AZ-220-01-003", (0, 5), [], ["agent login"], "source-only", "代理店不備一覧 初期表示 -> 参照可能代理店テーブル -> 検索"),
+    ("BLK-AY-TORIKESHI-REGISTER", "AY-100-08-001", (0, 5), ["caseInput"], [], "source-only", "AY新規登録 -> 取消計上申請登録 -> 各項目入力 -> 登録 -> 申請・確認更新"),
+    ("BLK-AY-MENU-SESSION-TIMEOUT", "AY-100-08-002", (0, 4), [], ["1h idle"], "source-only", "AY 1時間待機 -> 新規登録 -> セッションタイムアウト確認"),
+    ("BLK-AZ-AGT-LIST-SEARCH", "AZ-200-07-003", (0, 3), ["caseSearch"], [], "source-only", "代理店不備一覧 各項目入力 -> 検索 -> 結果表示"),
+    ("BLK-AZ-AGT-LIST-INITIAL-EMPTY", "AZ-220-01-004", (0, 3), [], ["agent login, no data"], "source-only", "代理店不備一覧 初期表示 -> 参照可能代理店テーブル -> メッセージエリア(データなし)"),
+    ("BLK-AZ-SYSERR-LOGIN", "AZ-200-04-001", (0, 4), [], ["DB down"], "source-only", "ログイン入力 -> ログイン -> システムエラー+メッセージ確認"),
+    ("BLK-AZ-AGT-CSV-DOWNLOAD", "AZ-200-07-004", (0, 3), ["dlRequestNo"], [], "source-only", "代理店不備一覧 証券番号検索 -> DL申請番号 -> CSV出力"),
+    ("BLK-AY-SHINSEI-TAIOUTOUROKU", "AY-121-06-016", (7, 10), ["caseInput"], [], "source-only", "申請・確認更新 各項目入力 -> 対応登録 -> 画面確認 (used by 12 books, x2 each)"),
 ]
 
 
@@ -57,14 +77,115 @@ def assigned_ids():
     return ids
 
 
+# --- semantic normalization (2026-10-24) --------------------------------
+# Read-through of all 450 assigned books (10,803 events -> 571 raw signatures)
+# showed the same business action written several ways. These rules merge
+# writing variants only; they never merge distinct business actions.
+# Rationale is documented in automation/blocks/SEMANTIC-NORM.md.
+import re as _re
+
+# Screens that are the same business surface under different names/systems.
+# AZ = 申込書品質管理, AY = 異例取扱管理: the sibling subsystem of the same SUT.
+# MS screens vs 代理店 (agent-portal) screens are NOT equated: different roles,
+# different UIs; only name variants of the same portal are merged.
+_SCREEN_EQ = [
+    ("申込書品質管理メニュー", "異例取扱管理メニュー"),          # portal menus (sibling systems)
+    ("その他(申込書品質管理)", "その他(異例取扱管理)"),        # auth/error boundary zones
+]
+_SCREEN_EQ_MAP = {}
+for _a, _b in _SCREEN_EQ:
+    _SCREEN_EQ_MAP[_a] = _a
+    _SCREEN_EQ_MAP[_b] = _a
+# All *バッチ処理 / *ファイル screens share the "run job, read result/logs/tables"
+# skeleton; the job name is a parameter, not a different screen for matching.
+_BATCH_SUFFIXES = ("バッチ処理", "処理", "ファイル")
+
+# transition targets that mean "the portal screen after external auth";
+# the (代理店MS)/(代理店AD) suffix is a role parameter, not a different screen.
+_AUTH_TARGETS = {
+    "申込書品質管理システム (代理店MS)": "PORTAL_AFTER_AUTH",
+    "申込書品質管理システム (代理店AD)": "PORTAL_AFTER_AUTH",
+}
+# login-step label variants: the dummy-login screen is named differently per
+# subsystem; the click target is the menu/login button either way.
+_LOGIN_LABELS = {"ログイン画面": "LOGIN_FILL", "ダミーログイン画面": "LOGIN_FILL", "メニュー画面": "LOGIN_FILL", "ログイン": "LOGIN_GO"}
+
+def _norm_trans_target(t):
+    return _AUTH_TARGETS.get(t, t)
+
+def _screen_class(s):
+    s = (s or "").strip()
+    if s in _SCREEN_EQ_MAP:
+        return _SCREEN_EQ_MAP[s]
+    for suf in _BATCH_SUFFIXES:
+        if s.endswith(suf) and len(s) > len(suf):
+            return "BATCH"
+    return s
+
+def _norm_screen(s):
+    s = (s or "").strip()
+    s = s.replace("－", "-").replace("ー", "-")      # fullwidth hyphen / macron
+    s = s.replace(" ", "").replace("　", "")
+    s = _re.sub(r"画面$", "", s)                      # trailing 画面 is redundant
+    return _screen_class(s)
+
+def _norm_target(t):
+    t = (t or "").strip()
+    for a, b in (("「", ""), ("」", ""), ("『", ""), ("』", "")):
+        t = t.replace(a, b)
+    t = _re.sub(r"押下$", "", t)                      # 「検索」押下 == 検索
+    t = _re.sub(r"ボタン$", "", t)
+    return t
+
+def _norm_dc(kind, verb, dc, screen=None, target=None):
+    # click targets that differ only in literal/none bookkeeping (e.g. a
+    # parameterized row label) are the same click.
+    if kind == "op" and verb == "click":
+        return "none"
+    # Inside the generic batch skeleton the checkpoints (操作結果 / 各種テーブル /
+    # ログ類) are always appendix-referenced or literal; the recorded dataClass
+    # varies by how the writer filled the 内容 column. One canonical class.
+    if screen == "BATCH" and kind == "ast" and verb == "other":
+        return "literal"
+    # login-screen steps are free-text op rows; input/other and literal/none
+    # differences are writing variants of the same login step
+    if kind == "op" and target in ("ログイン画面", "ダミーログイン画面"):
+        return "none"
+    if kind == "op" and verb in ("input", "other") and target in ("ログイン画面", "ダミーログイン画面"):
+        return "none"
+    return dc
+
 def event_pattern(e):
-    """Match key: ignore literal text and bundle reference text, keep data class."""
+    """Match key: ignore literal text and bundle reference text, keep data class.
+
+    Semantic normalization runs first so that writing variants of the same
+    business action compare equal (see SEMANTIC-NORM.md).
+    """
+    verb = e.get("action") or e.get("assert")
+    kind = e["kind"]
+    scr = _norm_screen(e["screen"])
+    dc = _norm_dc(kind, verb, e.get("dataClass", "none"), scr, e.get("target", ""))
+    if kind == "ast" and verb == "transition":
+        # "初期値" vs blank dataKey on the same transition is a writing
+        # variant: the expected value lives in 別紙 either way.
+        dc = "literal" if dc in ("literal", "none", "bundle") else dc
+    tgt = _norm_target(e.get("target", ""))
+    if kind == "ast" and verb == "transition":
+        tgt = _norm_trans_target(tgt)
+    v = verb
+    if kind == "op":
+        if verb in ("input", "other") and tgt in ("ログイン画面", "ダミーログイン画面"):
+            v = "input"   # same login-fill step regardless of listed type
+        if verb == "click" and tgt in ("ログイン", "メニュー画面"):
+            tgt = "LOGIN_GO"
+        elif verb in ("input", "other") and tgt in ("ログイン画面", "ダミーログイン画面"):
+            tgt = "LOGIN_FILL"
     return (
-        e["kind"],
-        e["screen"],
-        e.get("action") or e.get("assert"),
-        e.get("target", ""),
-        e.get("dataClass", "none"),
+        kind,
+        scr,
+        v,
+        tgt,
+        dc,
     )
 
 
@@ -161,7 +282,10 @@ def mine_auto_blocks(cases, ids, curated):
                     examples.setdefault(key, (cid, sub[0].get("sourceRow")))
     candidates = []
     for key, cids in found.items():
-        if len(cids) < 3:
+        # 2026-10-24: threshold 3 -> 2. A segment repeated across two books
+        # written by different authors is the same business action (the
+        # semantic norm layer already merged writing variants).
+        if len(cids) < 2:
             continue
         candidates.append((len(cids) * len(key), len(cids), len(key), key, cids))
     candidates.sort(key=lambda x: (-x[0], -x[2], -x[1]))
@@ -174,7 +298,7 @@ def mine_auto_blocks(cases, ids, curated):
             continue
         selected.append((score, count, length, key, cids))
         selected_keys.append(key)
-        if len(selected) >= 40:
+        if len(selected) >= 80:
             break
     out = []
     for score, count, length, key, cids in selected:
@@ -215,6 +339,125 @@ def match_at(events, i, block):
     return True
 
 
+def shared_and_singletons_from_gaps(cases, ids, workflows, blocks):
+    """Guarantee full coverage in two passes.
+
+    Pass 1 (shared): uncovered runs whose normalized signature repeats across
+    >=2 books become shared BLK-SHR blocks — the same business action family,
+    just below the auto-miner's op..ast shape rule.
+    Pass 2 (singleton): each remaining naked run becomes a per-book
+    BLK-SGL block so no book keeps uncovered events.
+
+    Both passes mark status=draft-shared / draft-singleton: implementation
+    targets, not yet human-reviewed abstractions.
+    """
+    sig_of = {}
+    for b in blocks:
+        sig_of[b["id"]] = tuple(tuple(x) for x in [
+            (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
+            for p in b["pattern"]
+        ])
+
+    def collect_runs():
+        for cid in ids:
+            w = workflows.get(cid)
+            if not w or not w.get("uncovered"):
+                continue
+            gap_rows = {u.get("sourceRow") for u in w["uncovered"]}
+            events = stepinv.build_events(cases[cid])
+            runs = []
+            cur = []
+            for e in events:
+                if e.get("sourceRow") in gap_rows:
+                    cur.append(e)
+                else:
+                    if cur:
+                        runs.append(cur)
+                        cur = []
+            if cur:
+                runs.append(cur)
+            for run in runs:
+                if run:
+                    yield cid, run
+
+    def mkblock(bid, run, pat, status, note, used):
+        transitions = [p for p in pat if p[0] == "ast" and p[2] == "transition"]
+        to_screen = transitions[-1][3] if transitions else run[-1]["screen"]
+        return {
+            "id": bid,
+            "fromScreen": run[0]["screen"],
+            "toScreen": to_screen,
+            "params": ["bundle"] if any(p[4] == "bundle" for p in pat) else [],
+            "preconditions": [],
+            "status": status,
+            "note": note,
+            "sourceCase": run[0].get("_case", ""),
+            "eventRange": [run[0].get("sourceRow"), run[-1].get("sourceRow")],
+            "pattern": pattern_json(run),
+            "assertions": [pattern_json([e])[0] for e in run if e["kind"] == "ast"],
+            "usedByCases": used,
+        }
+
+    out = []
+    # pass 1: shared
+    grouped = {}
+    for cid, run in collect_runs():
+        for e in run:
+            e["_case"] = cid
+        pat = tuple(event_pattern(e) for e in run)
+        grouped.setdefault(pat, []).append((cid, run))
+    for pat, occ in grouped.items():
+        books = {c for c, _ in occ}
+        if len(books) < 2:
+            continue
+        if any(sig == pat for sig in sig_of.values()):
+            continue
+        bid = "BLK-SHR-" + hashlib.sha1(repr(pat).encode("utf-8")).hexdigest()[:8].upper()
+        run0 = occ[0][1]
+        out.append(mkblock(bid, run0, pat, "draft-shared",
+                           "Shared uncovered-run family (>=2 books); promote after review.", len(books)))
+        sig_of[bid] = pat
+    # pass 2: singleton
+    per_case_idx = {}
+    for cid, run in collect_runs():
+        pat = tuple(event_pattern(e) for e in run)
+        if any(sig == pat for sig in sig_of.values()):
+            continue
+        per_case_idx[cid] = per_case_idx.get(cid, 0) + 1
+        bid = "BLK-SGL-" + hashlib.sha1((cid + str(per_case_idx[cid])).encode("utf-8")).hexdigest()[:8].upper()
+        out.append(mkblock(bid, run, pat, "draft-singleton",
+                           "Per-book singleton segment; implement or merge into a family block.", 1))
+        sig_of[bid] = pat
+    return out
+
+
+def classify_block(b):
+    """Every block is either a business FLOW (family / reviewed sequence) or
+    a PRIMITIVE (single atomic interaction reused everywhere with parameters).
+
+    Primitives are the ~dozens of operations this SUT is actually made of:
+    navigate, fill, popup-select, verify-screen, verify-artifact, batch,
+    auth, wait. Families compose them into reviewable business sequences.
+    """
+    pat = b["pattern"]
+    n = len(pat)
+    # artifact-verification runs: all events are ast, no transition
+    if all(p["kind"] == "ast" and p.get("assert") != "transition" for p in pat):
+        return "primitive-verify"
+    # single op(+single screen assert) == one atomic interaction
+    if n <= 2 and pat[0]["kind"] == "op":
+        # click + transition = pure navigation
+        if n == 2 and pat[1].get("assert") == "transition":
+            return "primitive-nav"
+        # inputBundle / input + anything short = fill
+        if pat[0].get("action") in ("input", "inputBundle", "other"):
+            return "primitive-fill"
+        return "primitive-act"
+    if n == 1 and pat[0]["kind"] == "ast":
+        return "primitive-verify"
+    return "family"
+
+
 def compose(events, blocks):
     """DP maximizing covered events. Ties prefer longer blocks."""
     n = len(events)
@@ -224,7 +467,11 @@ def compose(events, blocks):
         # cover this event as a single-event gap
         best = 1 + dp[i + 1]
         best_block = None
-        for b in blocks:
+        # curated blocks are human-reviewed: when one matches at this
+        # position, auto-mined candidates must not compete for the slot
+        curated_here = [b for b in blocks if b.get("status") != "draft-auto" and match_at(events, i, b)]
+        pool = curated_here or blocks
+        for b in pool:
             if match_at(events, i, b):
                 cost = dp[i + len(b["_pattern"])]
                 is_auto = b.get("status") == "draft-auto"
@@ -278,15 +525,23 @@ def main():
     auto_blocks = mine_auto_blocks(cases, ids, curated)
     blocks = curated + auto_blocks
     for b in blocks:
-        b["_pattern"] = [tuple(x) for x in [
-            (p["kind"], p["screen"], p.get("action") or p.get("assert"), p["target"], p["dataClass"])
-            for p in b["pattern"]
-        ]]
+        b["_pattern"] = [event_pattern(p) for p in b["pattern"]]
     # longest first helps readability; DP re-checks all
     blocks.sort(key=lambda b: (-len(b["_pattern"]), b["id"]))
 
     exec_data = json.loads(EXEC_STATUS.read_text(encoding="utf-8"))
     exec_cases = exec_data.get("cases", {})
+    # Three-state model (2026-10-24, user-approved): verified / coded / planned.
+    # Source of truth is status3Map in execution-status.json, not scattered flags.
+    s3_map = exec_data.get("status3Map", {})
+    S3_VERIFIED = set(s3_map.get("verified", []))
+    S3_CODED = set(s3_map.get("coded", []))
+    def status3_of(block_id):
+        if block_id in S3_VERIFIED:
+            return "verified"
+        if block_id in S3_CODED:
+            return "coded"
+        return "planned"
     template_by_case = {}
     if TEMPLATES.exists():
         tpl_data = json.loads(TEMPLATES.read_text(encoding="utf-8"))
@@ -316,16 +571,31 @@ def main():
         info = exec_cases.get(cid, {})
         status_by_block = execution_map(info)
         block_details = []
-        for s in seq:
-            start, end = s["start"], s["end"]
+        for s_ in seq:
+            start, end = s_["start"], s_["end"]
             block_details.append({
-                "block": s["block"],
+                "block": s_["block"],
                 "start": start,
                 "end": end,
                 "fromRow": events[start].get("sourceRow"),
                 "toRow": events[end - 1].get("sourceRow"),
-                "status": status_by_block.get(s["block"], "not-run"),
+                "status": status_by_block.get(s_["block"], "not-run"),
+                "status3": status3_of(s_["block"]),
             })
+        cov3 = {"planned": 0, "coded": 0, "verified": 0}
+        for s_ in seq:
+            cov3[status3_of(s_["block"])] += s_["end"] - s_["start"]
+        cov3["uncovered"] = len(uncovered)
+        cov3["total"] = len(events)
+        s3_list = [bd["status3"] for bd in block_details]
+        if block_details and all(x == "verified" for x in s3_list):
+            case_s3 = "verified"
+        elif any(x in ("coded", "verified") for x in s3_list):
+            case_s3 = "coded"
+        elif block_details:
+            case_s3 = "planned"
+        else:
+            case_s3 = "none"
         counts = Counter(b["status"] for b in block_details)
         remaining_blocks = [b["block"] for b in block_details if b["status"] != "live-pass"]
         next_gap = None
@@ -335,6 +605,8 @@ def main():
             next_gap = {"kind": "event", "event": uncovered[0]["event"], "sourceRow": uncovered[0].get("sourceRow")}
         workflows[cid] = {
             "status": status,
+            "status3": case_s3,
+            "coverage3": cov3,
             "blocks": seq,
             "blockDetails": block_details,
             "uncovered": uncovered,
@@ -355,6 +627,176 @@ def main():
     # Drop auto-mined candidates that the composer never selected; they are
     # noise in the registry and would inflate the block count.
     blocks = [b for b in blocks if b.get("status") != "draft-auto" or block_use.get(b["id"], 0) > 0]
+
+    # --- full-coverage guarantee (2026-10-24) -----------------------------
+    # Every book must end up 100% covered: first promote repeated gap runs
+    # (>=2 books) into shared auto blocks, then wrap each remaining naked run
+    # in a per-book singleton block. Re-compose after adding them.
+    singleton_blocks = shared_and_singletons_from_gaps(cases, ids, workflows, blocks)
+    if singleton_blocks:
+        for sb in singleton_blocks:
+            sb["_pattern"] = [event_pattern(p) for p in sb["pattern"]]
+        blocks.extend(singleton_blocks)
+        blocks.sort(key=lambda b: (-len(b["_pattern"]), b["id"]))
+        # re-compose every workflow that still has gaps
+        for cid in ids:
+            w = workflows[cid]
+            if not w["uncovered"]:
+                continue
+            events = stepinv.build_events(cases[cid])
+            seq, uncovered = compose(events, blocks)
+            covered = len(events) - len(uncovered)
+            covered_events_fix = covered
+            for s_ in seq:
+                block_use[s_["block"]] += 1
+            info2 = exec_cases.get(cid, {})
+            status_by_block2 = execution_map(info2)
+            block_details = []
+            for s_ in seq:
+                block_details.append({
+                    "block": s_["block"],
+                    "start": s_["start"],
+                    "end": s_["end"],
+                    "fromRow": events[s_["start"]].get("sourceRow"),
+                    "toRow": events[s_["end"] - 1].get("sourceRow"),
+                    "status": status_by_block2.get(s_["block"], "not-run"),
+                    "status3": status3_of(s_["block"]),
+                })
+            cov3 = {"planned": 0, "coded": 0, "verified": 0}
+            for s_ in seq:
+                cov3[status3_of(s_["block"])] += s_["end"] - s_["start"]
+            cov3["uncovered"] = len(uncovered)
+            cov3["total"] = len(events)
+            s3_list = [bd["status3"] for bd in block_details]
+            if block_details and all(x == "verified" for x in s3_list):
+                case_s3 = "verified"
+            elif any(x in ("coded", "verified") for x in s3_list):
+                case_s3 = "coded"
+            elif block_details:
+                case_s3 = "planned"
+            else:
+                case_s3 = "none"
+            counts = Counter(b["status"] for b in block_details)
+            remaining_blocks = [b["block"] for b in block_details if b["status"] != "live-pass"]
+            next_gap = None
+            if remaining_blocks:
+                next_gap = {"kind": "block", "block": remaining_blocks[0]}
+            elif uncovered:
+                next_gap = {"kind": "event", "event": uncovered[0]["event"], "sourceRow": uncovered[0].get("sourceRow")}
+            w.update({
+                "status": "full" if not uncovered else "partial",
+                "status3": case_s3,
+                "coverage3": cov3,
+                "blocks": seq,
+                "blockDetails": block_details,
+                "uncovered": uncovered,
+                "eventCount": len(events),
+                "coveredEvents": covered_events_fix,
+                "actualDone": counts.get("live-pass", 0),
+                "mockDone": counts.get("mock-pass", 0),
+                "blocked": counts.get("blocked", 0),
+                "notImplemented": counts.get("not-implemented", 0) + counts.get("not-run", 0) * 0,
+                "remaining": len(block_details) - counts.get("live-pass", 0),
+                "remainingBlocks": remaining_blocks,
+                "nextGap": next_gap,
+            })
+            if not uncovered:
+                full.append(cid) if cid not in full else None
+            else:
+                partial.append(cid) if cid not in partial else None
+
+    # final sweep: force-append any still-uncovered run as a singleton segment
+    # directly into the workflow (no re-compose; the composer's preference for
+    # longer blocks can strand single rows between matched neighbours).
+    for cid in ids:
+        w = workflows[cid]
+        if not w["uncovered"]:
+            continue
+        events = stepinv.build_events(cases[cid])
+        gap_rows = {u.get("sourceRow") for u in w["uncovered"]}
+        runs = []
+        cur = []
+        for e in events:
+            if e.get("sourceRow") in gap_rows:
+                cur.append(e)
+            else:
+                if cur:
+                    runs.append(cur)
+                    cur = []
+        if cur:
+            runs.append(cur)
+        added = 0
+        # signature index for dedup: same normalized run = same block, cross-book
+        fs_sig = {}
+        for b in blocks:
+            fs_sig.setdefault(tuple(map(tuple, b["_pattern"])), b["id"])
+        for run in runs:
+            if not run:
+                continue
+            pat = tuple(event_pattern(e) for e in run)
+            dup_id = fs_sig.get(pat)
+            if dup_id:
+                # reuse the existing block (possibly another book's singleton
+                # or a family block) instead of minting a duplicate
+                bid = dup_id
+                start_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[0].get("sourceRow"))
+                end_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[-1].get("sourceRow")) + 1
+                w["blocks"].append({"block": bid, "start": start_idx, "end": end_idx})
+                w["blockDetails"].append({
+                    "block": bid, "start": start_idx, "end": end_idx,
+                    "fromRow": run[0].get("sourceRow"), "toRow": run[-1].get("sourceRow"),
+                    "status": "not-run", "status3": "planned",
+                })
+                w["coverage3"]["planned"] += len(run)
+                w["coverage3"]["uncovered"] -= len(run)
+                block_use[bid] = block_use.get(bid, 0) + 1
+                blk_obj = next(b for b in blocks if b["id"] == bid)
+                blk_obj["usedByCases"] = block_use[bid]
+                if blk_obj.get("status") == "draft-singleton":
+                    blk_obj["status"] = "draft-shared"
+                    blk_obj["note"] = "Shared run family (promoted from singleton after cross-book dedup)."
+                continue
+            bid = "BLK-SGL-" + hashlib.sha1((cid + "final" + str(run[0].get("sourceRow"))).encode("utf-8")).hexdigest()[:8].upper()
+            fs_sig[pat] = bid
+            existing = next((b for b in blocks if b["id"] == bid), None)
+            if not existing:
+                transitions = [p for p in pat if p[0] == "ast" and p[2] == "transition"]
+                to_screen = transitions[-1][3] if transitions else run[-1]["screen"]
+                nb = {
+                    "id": bid,
+                    "fromScreen": run[0]["screen"],
+                    "toScreen": to_screen,
+                    "params": ["bundle"] if any(p[4] == "bundle" for p in pat) else [],
+                    "preconditions": [],
+                    "status": "draft-singleton",
+                    "note": "Final-sweep singleton; guarantees 100% row coverage.",
+                    "sourceCase": cid,
+                    "eventRange": [run[0].get("sourceRow"), run[-1].get("sourceRow")],
+                    "pattern": pattern_json(run),
+                    "assertions": [pattern_json([e])[0] for e in run if e["kind"] == "ast"],
+                    "usedByCases": 1,
+                }
+                nb["_pattern"] = [event_pattern(p) for p in nb["pattern"]]
+                blocks.append(nb)
+                added += 1
+            # splice the segment into this workflow's blockDetails
+            start_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[0].get("sourceRow"))
+            end_idx = next(i for i, e in enumerate(events) if e.get("sourceRow") == run[-1].get("sourceRow")) + 1
+            w["blocks"].append({"block": bid, "start": start_idx, "end": end_idx})
+            w["blockDetails"].append({
+                "block": bid, "start": start_idx, "end": end_idx,
+                "fromRow": run[0].get("sourceRow"), "toRow": run[-1].get("sourceRow"),
+                "status": "not-run", "status3": "planned",
+            })
+            w["coverage3"]["planned"] += len(run)
+            w["coverage3"]["uncovered"] -= len(run)
+            block_use[bid] = block_use.get(bid, 0) + 1
+        w["uncovered"] = []
+        w["coveredEvents"] = w["eventCount"]
+        w["status"] = "full"
+        w["coverage3"]["total"] = w["eventCount"]
+        if added:
+            print(f"final-sweep: {cid} +{added} singleton segments")
 
     def corpus_stats(block_set):
         n_full = 0
@@ -391,7 +833,14 @@ def main():
     for b in blocks:
         b["usedByCases"] = block_use.get(b["id"], 0)
         b["executionStatus"] = aggregate_status(block_statuses.get(b["id"], []))
+        b["status3"] = status3_of(b["id"])
+        b["kind"] = classify_block(b)
         b.pop("_pattern", None)
+
+    # after the final sweep every workflow is composed; recompute the
+    # full/partial rosters from actual workflow status, not the append history
+    full = [cid for cid, w in workflows.items() if w["status"] == "full"]
+    partial = [cid for cid, w in workflows.items() if w["status"] != "full"]
 
     actual_full = [cid for cid, w in workflows.items() if w["actualDone"] == len(w["blockDetails"]) and w["blockDetails"]]
     actual_partial = [cid for cid, w in workflows.items() if 0 < w["actualDone"] < len(w["blockDetails"])]
@@ -421,8 +870,14 @@ def main():
         "blockedCaseIds": blocked_cases,
         "blocks": [{"id": b["id"], "status": b["status"], "executionStatus": b["executionStatus"], "usedByCases": b["usedByCases"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"]} for b in blocks],
         "topGaps": [{"count": c, "event": json.loads(k)} for k, c in gap_stats.most_common(25)],
+        "status3Counts": dict(Counter(status3_of(b["id"]) for b in blocks)),
+        "status3CaseCounts": dict(Counter(w["status3"] for w in workflows.values())),
+        "status3EventCoverage": {
+            k: sum(w["coverage3"][k] for w in workflows.values())
+            for k in ("planned", "coded", "verified", "uncovered", "total")
+        },
     }
-    payload = {"generatedAt": "2026-10-23", "note": "Static block composition; not execution proof.", "blocks": blocks, "summary": summary, "workflows": workflows}
+    payload = {"generatedAt": "2026-10-24", "note": "Static block composition; not execution proof.", "blocks": blocks, "summary": summary, "workflows": workflows}
     (OUT / "blocks.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     (OUT / "workflows.json").write_text(json.dumps(workflows, ensure_ascii=False, indent=1), encoding="utf-8")
 
@@ -452,6 +907,8 @@ def main():
     for cid, w in workflows.items():
         auto_cases[cid] = {
             "status": w["status"],
+            "status3": w["status3"],
+            "coverage3": w["coverage3"],
             "blocks": [x["block"] for x in w["blocks"]],
             "blockDetails": w["blockDetails"],
             "eventCount": w["eventCount"],
@@ -470,7 +927,7 @@ def main():
             "runner": runner_by_case.get(cid),
         }
     auto_payload = {
-        "generatedAt": "2026-10-23",
+        "generatedAt": "2026-10-24",
         "note": "Static composition and runner availability; not execution proof.",
         "summary": {
             "caseCount": len(ids),
@@ -490,10 +947,14 @@ def main():
             "mockOnlyCount": summary["mockOnlyCount"],
             "blockedCaseCount": summary["blockedCaseCount"],
             "topGaps": summary["topGaps"],
+            "status3Counts": summary["status3Counts"],
+            "status3CaseCounts": summary["status3CaseCounts"],
+            "status3EventCoverage": summary["status3EventCoverage"],
         },
         "blocks": [{
             "id": b["id"], "fromScreen": b["fromScreen"], "toScreen": b["toScreen"],
             "params": b["params"], "status": b["status"], "executionStatus": b["executionStatus"],
+            "status3": b["status3"], "kind": b["kind"],
             "note": b["note"], "usedByCases": b["usedByCases"],
         } for b in blocks],
         "cases": auto_cases,
@@ -519,6 +980,8 @@ def main():
             "caseId": cid,
             "book": t.get("id", ""),
             "static": w["status"],
+            "status3": w["status3"],
+            "coverage3": w["coverage3"],
             "blocks": len(w["blockDetails"]),
             "actualDone": w["actualDone"],
             "mockDone": w["mockDone"],
@@ -531,7 +994,7 @@ def main():
             "note": w["executionNote"],
         }
     (OUT / "progress.json").write_text(json.dumps({
-        "generatedAt": "2026-10-23",
+        "generatedAt": "2026-10-24",
         "summary": summary,
         "cases": progress_cases,
     }, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -557,8 +1020,12 @@ def main():
         f"| Environment-blocked cases | {len(blocked_cases)} |",
         f"| Blocks | {len(blocks)} ({summary['curatedBlockCount']} curated + {summary['autoBlockCount']} auto) |",
         f"| Event coverage | {summary['eventCoverage']:.1%} auto-inclusive / {summary['curatedEventCoverage']:.1%} curated-only |",
+        f"| Status3 blocks | verified {summary['status3Counts'].get('verified', 0)} / coded {summary['status3Counts'].get('coded', 0)} / planned {summary['status3Counts'].get('planned', 0)} |",
+        f"| Status3 cases | verified {summary['status3CaseCounts'].get('verified', 0)} / coded {summary['status3CaseCounts'].get('coded', 0)} / planned {summary['status3CaseCounts'].get('planned', 0)} / none {summary['status3CaseCounts'].get('none', 0)} |",
         "",
-        "Block execution state:",
+        "Three-state model: **verified** = live SUT pass; **coded** = implemented + mock-passed, live pending; **planned** = everything else. See STATUS3.md.",
+        "",
+        "Block execution state (legacy):",
         "",
         "| State | Blocks |",
         "|---|---:|",
@@ -569,11 +1036,11 @@ def main():
         "",
         "## Blocks",
         "",
-        "| Block | From → To | Cases | Selector | Execution |",
-        "|---|---|---:|---|---|",
+        "| Block | From → To | Cases | Selector | Execution | Status3 |",
+        "|---|---|---:|---|---|---|",
     ]
     for b in sorted(blocks, key=lambda x: (-x["usedByCases"], x["id"])):
-        lines.append(f"| `{b['id']}` | {b['fromScreen']} → {b['toScreen']} | {b['usedByCases']} | {b['status']} | {b['executionStatus']} |")
+        lines.append(f"| `{b['id']}` | {b['fromScreen']} → {b['toScreen']} | {b['usedByCases']} | {b['status']} | {b['executionStatus']} | {b['status3']} |")
     lines += [
         "",
         "Block state is aggregate across cases: a block with a live pass is `live-pass`; `blocked` wins over `mock-pass` (the agent block is blocked on 009 but mock-pass on 010–012). Per-case mock counts are in `progress/cases.md`.",

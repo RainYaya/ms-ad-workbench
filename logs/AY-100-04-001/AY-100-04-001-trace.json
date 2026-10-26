@@ -1,0 +1,104 @@
+{
+  "caseId": "AY-100-04-001",
+  "entries": [
+    {
+      "n": 1,
+      "block": "BLK-AZ-SYSERR-LOGIN",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/dummy.html",
+      "popup": "",
+      "screenshot": "02_trace_001_goto_start_screen.png",
+      "pageSnapshot": {
+        "title": "試験用ログイン画面",
+        "gamid": "",
+        "visibleButtons": [
+          "メニュー画面",
+          "不備一覧画面",
+          "調査一覧画面",
+          "調査一覧画面",
+          "異例メニュー画面",
+          "取消計上申請一覧画面",
+          "不備一覧画面",
+          "不備内容回答画面"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "block": "BLK-AZ-SYSERR-LOGIN",
+      "event": "input ログイン",
+      "action": "fill",
+      "selector": "input[name=UserID]",
+      "value": "params.userId",
+      "resolvedValue": "SYSERR",
+      "url": "http://127.0.0.1:10091/ANB00/dummy.html",
+      "popup": "",
+      "screenshot": "03_trace_002_input_ログイン.png",
+      "pageSnapshot": {
+        "title": "試験用ログイン画面",
+        "gamid": "",
+        "visibleButtons": [
+          "メニュー画面",
+          "不備一覧画面",
+          "調査一覧画面",
+          "調査一覧画面",
+          "異例メニュー画面",
+          "取消計上申請一覧画面",
+          "不備一覧画面",
+          "不備内容回答画面"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "block": "BLK-AZ-SYSERR-LOGIN",
+      "event": "click ログイン",
+      "action": "click",
+      "selector": "{params.menuSelector}",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/system_error.html",
+      "popup": "",
+      "screenshot": "05_trace_003_click_ログイン.png",
+      "pageSnapshot": {
+        "title": "システムエラー",
+        "gamid": "",
+        "visibleButtons": []
+      }
+    },
+    {
+      "n": 4,
+      "block": "BLK-AZ-SYSERR-LOGIN",
+      "event": "ast 遷移 システムエラー画面",
+      "action": "assert",
+      "selector": "#error_message",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/system_error.html",
+      "popup": "",
+      "screenshot": "07_trace_004_ast_遷移_システムエラー画面.png",
+      "pageSnapshot": {
+        "title": "システムエラー",
+        "gamid": "",
+        "visibleButtons": []
+      }
+    },
+    {
+      "n": 5,
+      "block": "BLK-AZ-SYSERR-LOGIN",
+      "event": "ast エラーメッセージ MAZG000E001",
+      "action": "assert",
+      "selector": "#error_message",
+      "value": "",
+      "url": "http://127.0.0.1:10091/ANB00/system_error.html",
+      "popup": "",
+      "screenshot": "08_trace_005_ast_エラーメッセージ_MAZG000E001.png",
+      "pageSnapshot": {
+        "title": "システムエラー",
+        "gamid": "",
+        "visibleButtons": []
+      }
+    }
+  ]
+}

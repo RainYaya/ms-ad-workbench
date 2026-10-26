@@ -4,8 +4,10 @@
 
 | Document | Read it when |
 |---|---|
+| [`USER-GUIDE.md`](USER-GUIDE.md) | **You need the day-to-day usage, page map, terms, badges, or data flow** |
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | You need the system map, component boundaries, deployment, or current status |
 | [`DATA-MODEL.md`](DATA-MODEL.md) | You need field names, IDs, route/workflow/appendix schemas, or progress storage |
+| [`TEST-LOGIC.md`](TEST-LOGIC.md) | You need to know what a test actually proves, how a run flows, or how to inspect a trace |
 | [`AUTOMATION.md`](AUTOMATION.md) | You need to run the SUT, understand the CDP runner, params, blocks, or evidence |
 | [`DECISIONS.md`](DECISIONS.md) | You are about to change a structural assumption |
 | [`REFERENCE-WEBAPPS.md`](REFERENCE-WEBAPPS.md) | You need the uploaded webapp snapshots or their visibility policy |

@@ -1,0 +1,174 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><title>AZ-210-05-013 作業シート</title><style>
+:root{--ink:#17211d;--muted:#64736c;--line:#d5ddd8;--bg:#f6f8f7;--panel:#fff;--green:#0f766e;--blue:#1d4ed8;--amber:#b45309;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.55 "Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif}
+.sheet{max-width:920px;margin:0 auto;background:var(--panel);padding:26px 30px 34px}
+.top{border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+.cid{font:600 12px ui-monospace,Consolas,monospace;color:var(--muted);letter-spacing:.04em}
+h1{font-size:22px;line-height:1.25;margin:3px 0 6px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.verdict{border-left:8px solid var(--line);padding:12px 14px;margin:14px 0;background:#fafbfa}
+.verdict .big{font-size:20px;font-weight:800;margin-bottom:2px}
+.verdict.green{border-color:var(--green)}.verdict.blue{border-color:var(--blue)}.verdict.amber{border-color:var(--amber)}.verdict.red{border-color:var(--red)}
+.next{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:12px 0;background:#fffdf5}
+ .next b{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}
+.stop{border:2px solid var(--red);background:#fef2f2;color:#991b1b;padding:12px 14px;border-radius:8px;font-weight:800;margin:12px 0}
+.next .do{font-size:15px;font-weight:700}
+h2{font-size:15px;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+pre,.cmd{font:12px/1.5 ui-monospace,Consolas,monospace;background:#101a16;color:#e7f1ec;padding:10px 12px;border-radius:8px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.item{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}.item .w{font-size:11px;color:var(--muted)}.item .t{font-weight:700;font-size:12.5px}
+.item .b{font-size:12px;margin-top:2px}.item .r{font-size:11px;color:var(--muted);margin-top:2px}
+.tag{display:inline-block;border-radius:999px;padding:1px 7px;font-size:10.5px;font-weight:700;border:1px solid}
+.tag.ok{color:#065f46;background:#ecfdf5;border-color:#a7f3d0}.tag.warn{color:#92400e;background:#fffbeb;border-color:#fde68a}.tag.bad{color:#991b1b;background:#fef2f2;border-color:#fecaca}.tag.gray{color:#4b5563;background:#f3f4f6;border-color:#e5e7eb}
+table{border-collapse:collapse;width:100%;font-size:11.5px}th,td{border:1px solid var(--line);padding:5px 6px;vertical-align:top;text-align:left}th{background:#f2f5f3;font-size:11px}
+td.num{white-space:nowrap}.muted{color:var(--muted)}.empty{color:var(--muted);font-size:12px}
+.judge{border:2px solid var(--ink);padding:12px 14px;margin-top:22px}
+.judge .opts{display:flex;gap:26px;font-size:18px;font-weight:800;margin:6px 0 14px}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px}
+.sign div{border-bottom:1px solid var(--ink);padding:14px 0 2px}
+.back{display:inline-block;margin-bottom:10px;color:var(--muted);font-size:12px;text-decoration:none}
+@media print{body{background:#fff}.sheet{max-width:none;padding:0;margin:0}.back{display:none}.sheet{page-break-after:always}h2{page-break-after:avoid}.item,tr{page-break-inside:avoid}@page{size:A4;margin:14mm}}
+</style>
+<body><div class="sheet">
+<a class="back" href="index.html">← 作業シート一覧</a>
+<div class="top"><div class="cid">AZ-210-05-013</div><h1>シナリオ導線５</h1>
+<div class="meta"><span>AZ-210-05</span><span>MS</span><span>不備登録</span><span>flow: pass</span></div></div>
+<div class="verdict blue"><div class="big">B 自動 + 実機確認</div><div>自動で実行し、mockで確認できない項目だけ実機で確認します。</div><div class="muted" style="margin-top:3px">実機確認 2 件（mock代替）</div></div>
+<div class="next"><b>最初にやること</b><div class="do">下のコマンドを実行する。手作業はありません。mockでは確認できない項目を確認する。</div></div>
+<h2>実行コマンド</h2><pre>node runner.mjs --case AZ-210-05-013 --base-url &lt;会社SUTのURL&gt; --live</pre><p class="small muted">&lt;会社SUTのURL&gt; を実際のURLに置き換えてください。mockで試すときは --live を外します。</p>
+<h2>手作業で確認（0 件）</h2><p class="empty">この本に手作業の確認はありません。</p>
+<h2>mock では確認できない項目（2 件）</h2>
+      <div class="item">
+        <div class="w">mock代替<br>手順 17–21</div>
+        <div><div class="t">ast 反映確認</div><div class="b">mock回写；实际SUT确认显示</div><div class="r">真機では runner が自動で確認。失敗した時だけ画面を見る。</div></div>
+      </div>
+      <div class="item">
+        <div class="w">mock代替<br>手順 22–29</div>
+        <div><div class="t">ast 反映確認</div><div class="b">opener回写=真機验证; mock里popup关闭链路简化</div><div class="r">optional: 失敗しても止まりません。必要なら画面を目視してください。</div></div>
+      </div>
+<h2>入力値（19 件）</h2>
+      <div class="item">
+        <div class="w">証券番号</div>
+        <div><div class="b">別紙: <b>AZ21005</b> → 実行値: <b>AZ21005</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">明細番号</div>
+        <div><div class="b">別紙: <b>0000000025</b> → 実行値: <b>0000000025</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">入力区分</div>
+        <div><div class="b">別紙: <b>現地</b> → 実行値: <b>現地</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">種目</div>
+        <div><div class="b">別紙: <b>自動車</b> → 実行値: <b>自動車</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">保険種類</div>
+        <div><div class="b">別紙: <b>13：クルマの保険・一般用</b> → 実行値: <b>13：クルマの保険・一般用</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">代理店コード</div>
+        <div><div class="b">別紙: <b>252H</b> → 実行値: <b>252H</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">課支社コード</div>
+        <div><div class="b">別紙: <b>AHE61</b> → 実行値: <b>AHE61</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">募集人ID</div>
+        <div><div class="b">別紙: <b>3028004586</b> → 実行値: <b>3028004586</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">フリーコード</div>
+        <div><div class="b">別紙: <b>1234567890</b> → 実行値: <b>1234567890</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">サブコード</div>
+        <div><div class="b">別紙: <b>123456</b> → 実行値: <b>123456</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">契約者名</div>
+        <div><div class="b">別紙: <b>TEST</b> → 実行値: <b>TEST</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">保険始期日</div>
+        <div><div class="b">別紙: <b>2026/11/01</b> → 実行値: <b>2026/11/01</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">計上年月</div>
+        <div><div class="b">別紙: <b>2026/11</b> → 実行値: <b>2026/11</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">日報／送付</div>
+        <div><div class="b">別紙: <b>1234567890AB</b> → 実行値: <b>1234567890AB</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">日報部課代ｺｰﾄﾞ</div>
+        <div><div class="b">別紙: <b>ABC012</b> → 実行値: <b>ABC012</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">回答締切日</div>
+        <div><div class="b">別紙: <b>システム日＋7日（初期設定）</b> → 実行値: <b>未設定</b> <span class="tag gray">規則/自動</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">項目コード</div>
+        <div><div class="b">別紙: <b>T0</b> → 実行値: <b>T0</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">編集照会内容</div>
+        <div><div class="b">別紙: <b>編集済み。</b> → 実行値: <b>編集済み。</b> <span class="tag ok">一致</span></div></div>
+      </div>
+      <div class="item">
+        <div class="w">計上状態</div>
+        <div><div class="b">別紙: <b>未計上</b> → 実行値: <b>未計上</b> <span class="tag ok">一致</span></div></div>
+      </div>
+<h2>画面HC（13/13 取得 / missing 0）</h2>
+<table><thead><tr><th>行</th><th>画面/項目</th><th>確認内容</th><th>状態</th><th>画像</th></tr></thead><tbody>
+      <tr><td class="num">15</td><td>不備内容入力画面-新規</td><td>初期値</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/02_r015_不備内容入力画面-新規.png">画像</a></td></tr>
+      <tr><td class="num">18</td><td>保険種類選択画面</td><td>初期値</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/05_r018_保険種類選択画面.png">画像</a></td></tr>
+      <tr><td class="num">21</td><td>不備内容入力画面-新規</td><td>保険種類の選択内容が反映されること</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/06_r021_不備内容入力画面-新規.png">画像</a></td></tr>
+      <tr><td class="num">23</td><td>募集人検索画面</td><td>初期値</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/08_r023_募集人検索画面.png">画像</a></td></tr>
+      <tr><td class="num">26</td><td>募集人検索画面</td><td>部店課支社コードAHE61の検索結果を確認</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/09_r026_募集人検索画面.png">画像</a></td></tr>
+      <tr><td class="num">29</td><td>不備内容入力画面-新規</td><td>募集人の選択内容が反映されること</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/10_r029_不備内容入力画面-新規.png">画像</a></td></tr>
+      <tr><td class="num">31</td><td>不備内容入力画面-更新</td><td>【別紙】表示内容
+表示内容：１参照</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/12_r031_不備内容入力画面-更新.png">画像</a></td></tr>
+      <tr><td class="num">33</td><td>項目名検索画面</td><td>初期値</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/14_r033_項目名検索画面.png">画像</a></td></tr>
+      <tr><td class="num">36</td><td>項目名検索画面</td><td>【別紙】表示内容
+表示内容：２参照</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/16_r036_項目名検索画面.png">画像</a></td></tr>
+      <tr><td class="num">39</td><td>不備内容入力画面-更新</td><td>【別紙】表示内容
+表示内容：３参照</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/17_r039_不備内容入力画面-更新.png">画像</a></td></tr>
+      <tr><td class="num">42</td><td>照会内容編集画面</td><td>初期値</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/19_r042_照会内容編集画面.png">画像</a></td></tr>
+      <tr><td class="num">45</td><td>不備内容入力画面-更新</td><td>【別紙】表示内容
+表示内容：４参照</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/20_r045_不備内容入力画面-更新.png">画像</a></td></tr>
+      <tr><td class="num">50</td><td>不備内容入力画面-更新</td><td>【別紙】表示内容
+表示内容：５参照</td>
+      <td><span class="tag ok">取得済</span></td>
+      <td><a href="../../logs/AZ-210-05-013/21_r050_不備内容入力画面-更新.png">画像</a></td></tr></tbody></table>
+<div class="judge"><div class="opts"><span>□ OK</span><span>□ NG</span></div>
+<div class="sign"><div>実施者</div><div>実施日</div><div>NG 内容 / 気づいた点</div><div>確認者</div></div></div>
+</div></body></html>

@@ -1,0 +1,758 @@
+{
+ "slice": "amc",
+ "generatedAt": "2026-10-24",
+ "blocks": [
+  {
+   "id": "BLK-AUTO-DEBE0BEE",
+   "count": 20,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-076",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-106",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-138",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "代理店不備一覧",
+   "toScreen": "代理店 不備内容入力画面(更新)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店不備一覧",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店不備一覧",
+     "assert": "display",
+     "target": "代理店 不備一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店不備一覧",
+     "assert": "transition",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-0AD75340",
+   "count": 18,
+   "cases": [
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-019",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-073",
+    "AZ-230-01-076",
+    "AZ-230-01-080",
+    "AZ-230-01-107",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-138",
+    "AZ-230-01-154",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-012",
+   "fromScreen": "代理店不備内容入力画面(更新)",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店不備内容入力画面(更新)",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店不備内容入力画面(更新)",
+     "action": "click",
+     "target": "回答",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店不備内容入力画面(更新)",
+     "assert": "display",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店不備内容入力画面(更新)",
+     "action": "click",
+     "target": "不備一覧",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店不備内容入力画面(更新)",
+     "assert": "transition",
+     "target": "代理店 不備一覧",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-73BCFD18",
+   "count": 7,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-044",
+    "AZ-230-01-047",
+    "AZ-230-01-049",
+    "AZ-230-01-079",
+    "AZ-230-01-106",
+    "AZ-230-01-133"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "代理店 不備内容入力画面(更新)",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "一時中断",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "不備一覧",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "代理店 不備一覧",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-F056442C",
+   "count": 2,
+   "cases": [
+    "AZ-410-05-002",
+    "AZ-410-05-003"
+   ],
+   "sourceCase": "AZ-410-05-002",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "代理店 不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-SESSION-TIMEOUT",
+   "count": 2,
+   "cases": [
+    "AZ-200-03-002",
+    "AZ-200-03-004"
+   ],
+   "sourceCase": "AZ-200-03-002",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 訂正内容確認",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "回答入力",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "訂正内容確認書",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "代理店 訂正内容確認",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "画面を操作せず、一時間待機",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "確認者(募集人または社員)",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "eメールによる確認の場合",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "登録",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-EEFF5DB3",
+   "count": 2,
+   "cases": [
+    "AZ-200-03-002",
+    "AZ-200-03-004"
+   ],
+   "sourceCase": "AZ-200-03-002",
+   "fromScreen": "代理店 訂正内容確認",
+   "toScreen": "セッションタイムアウト画面 (子画面)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "セッションタイムアウト画面 (子画面)",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-7EB4CA64",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-073",
+    "AZ-230-01-154"
+   ],
+   "sourceCase": "AZ-230-01-073",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-LIST-OPEN-UPDATE",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-001"
+   ],
+   "sourceCase": "AZ-200-07-001",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備内容入力画面(更新)",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "bundle",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-UPDATE-SUSPEND",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-001"
+   ],
+   "sourceCase": "AZ-200-07-001",
+   "fromScreen": "代理店 不備内容入力画面(更新)",
+   "toScreen": "代理店 不備内容入力画面(更新)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "任意の項目の値を変更",
+     "dataClass": "none",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "一時中断",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "申込書テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-CORRECTION-REGISTER",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-001"
+   ],
+   "sourceCase": "AZ-200-07-001",
+   "fromScreen": "代理店 不備内容入力画面(更新)",
+   "toScreen": "代理店 不備内容入力画面(更新)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "訂正内容確認書",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "代理店 訂正内容確認",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "確認者(募集人または社員)",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "eメールによる確認の場合",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 訂正内容確認",
+     "target": "登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "代理店 不備内容入力画面(更新)",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 訂正内容確認",
+     "target": "TRログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-LIST-SEARCH",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-003"
+   ],
+   "sourceCase": "AZ-200-07-003",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-CSV-DOWNLOAD",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-004"
+   ],
+   "sourceCase": "AZ-200-07-004",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "代理店 不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-1913A9CC",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "ダウンロード申請番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "CSV出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "ダウンロードメッセージ",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "申込書情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "DLログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-LIST-INITIAL",
+   "count": 1,
+   "cases": [
+    "AZ-220-01-003"
+   ],
+   "sourceCase": "AZ-220-01-003",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "(初期表示)",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "参照可能代理店テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "代理店 不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-AGT-LIST-INITIAL-EMPTY",
+   "count": 1,
+   "cases": [
+    "AZ-220-01-004"
+   ],
+   "sourceCase": "AZ-220-01-004",
+   "fromScreen": "代理店 不備一覧",
+   "toScreen": "代理店 不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "(初期表示)",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "参照可能代理店テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "メッセージエリア",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  }
+ ]
+}

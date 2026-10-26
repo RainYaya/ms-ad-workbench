@@ -1,0 +1,1015 @@
+{
+ "slice": "batch",
+ "generatedAt": "2026-10-24",
+ "blocks": [
+  {
+   "id": "BLK-SHR-5F5035B5",
+   "count": 57,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-019",
+    "AZ-230-01-020",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-050",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-073",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-077",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-152",
+    "AZ-230-01-153",
+    "AZ-230-01-154",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "(blank)",
+   "toScreen": "(blank)",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "(blank)",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "(blank)",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-3477BB6F",
+   "count": 30,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-019",
+    "AZ-230-01-020",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-050",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-073",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-077",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "BATCH",
+   "toScreen": "BATCH",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "バッチ実行(JP1)",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "FAZZ000A011",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-C8903BF5",
+   "count": 27,
+   "cases": [
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-152",
+    "AZ-230-01-153",
+    "AZ-230-01-154",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-101",
+   "fromScreen": "BATCH",
+   "toScreen": "BATCH",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "バッチ実行(JP1)",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "FAZZ000A011A",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-D6459D48",
+   "count": 23,
+   "cases": [
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-020",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-050",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-151"
+   ],
+   "sourceCase": "AZ-230-01-015",
+   "fromScreen": "ToDo連携データ作成バッチ処理",
+   "toScreen": "ToDo連携データ作成バッチ処理",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-BATCH-RUN-VERIFY",
+   "count": 9,
+   "cases": [
+    "AY-100-08-005",
+    "AZ-150-04-002",
+    "AZ-150-05-001",
+    "AZ-150-06-001",
+    "AZ-150-07-001",
+    "AZ-150-08-001",
+    "AZ-150-10-004",
+    "AZ-200-07-005",
+    "AZ-200-07-006"
+   ],
+   "sourceCase": "AZ-150-05-001",
+   "fromScreen": "親子集計バッチ処理",
+   "toScreen": "親子集計バッチ処理",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "親子集計バッチ処理",
+     "target": "バッチ実行",
+     "dataClass": "bundle",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "親子集計バッチ処理",
+     "target": "操作結果",
+     "dataClass": "none",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-8C0E3438",
+   "count": 9,
+   "cases": [
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139"
+   ],
+   "sourceCase": "AZ-230-01-131",
+   "fromScreen": "BATCH",
+   "toScreen": "BATCH",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "バッチ実行(JP1)",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "FAZZ000A011A",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "BATCH",
+     "action": "other",
+     "target": "",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "BATCH",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-F1E0B9E5",
+   "count": 4,
+   "cases": [
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-050"
+   ],
+   "sourceCase": "AZ-230-01-047",
+   "fromScreen": "ToDo連携データ作成バッチ処理",
+   "toScreen": "ToDo連携データ作成バッチ処理",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-BATCH-VERIFY",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "不備項目集計バッチ処理",
+   "toScreen": "不備項目集計バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備項目集計バッチ処理",
+     "target": "不備項目集計テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備項目集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-C649ACE4",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "不備内容集計バッチ処理",
+   "toScreen": "不備内容集計バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容集計バッチ処理",
+     "target": "不備内容集計テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-5CEC3483",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "登録件数集計情報ファイル",
+   "toScreen": "登録件数集計情報ファイル",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "登録件数集計情報ファイル",
+     "target": "登録件数集計テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "登録件数集計情報ファイル",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-2EEC5A3D",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "フリーコード集計バッチ処理",
+   "toScreen": "フリーコード集計バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "フリーコード集計バッチ処理",
+     "target": "フリーコード集計テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "フリーコード集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-121DF781",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "募集人情報引込バッチ処理",
+   "toScreen": "募集人情報引込バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "募集人情報引込バッチ処理",
+     "target": "申込書テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人情報引込バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-305661D1",
+   "count": 2,
+   "cases": [
+    "AZ-150-07-001",
+    "AZ-150-08-001"
+   ],
+   "sourceCase": "AZ-150-07-001",
+   "fromScreen": "募集人集計バッチ処理",
+   "toScreen": "募集人集計バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "募集人集計バッチ処理",
+     "target": "募集人集計テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-4EB596EB",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "ユーザIDマスタ取込処理",
+   "toScreen": "ユーザIDマスタ取込処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "ユーザIDマスタ取込処理",
+     "target": "ユーザIDマスタテーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ユーザIDマスタ取込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-ECBA7661",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "照会内容マスタ取込処理",
+   "toScreen": "照会内容マスタ取込処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "照会内容マスタ取込処理",
+     "target": "照会内容マスタテーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会内容マスタ取込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-E3AD1DD9",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "項目テーブル取込処理",
+   "toScreen": "項目テーブル取込処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "項目テーブル取込処理",
+     "target": "項目マスタテーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "項目テーブル取込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-6BEAE496",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "回答内容マスタ取込処理",
+   "toScreen": "回答内容マスタ取込処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "回答内容マスタ取込処理",
+     "target": "回答内容マスタテーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "回答内容マスタ取込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-75D5F75B",
+   "count": 1,
+   "cases": [
+    "AZ-150-05-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "親子集計バッチ処理",
+   "toScreen": "親子集計バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "親子集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-F54CCD41",
+   "count": 1,
+   "cases": [
+    "AZ-150-06-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "親子集計バッチ処理",
+   "toScreen": "親子集計予約",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "親子集計バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "target": "親子集計",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "target": "親子集計予約",
+     "dataClass": "none",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "親子集計予約",
+     "target": "状況確認",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "親子集計予約",
+     "target": "親子集計状況確認画面",
+     "dataClass": "none",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "親子集計状況確認",
+     "target": "予約番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "親子集計状況確認",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "親子集計状況確認",
+     "target": "親子集計状況確認画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-B84FFF40",
+   "count": 1,
+   "cases": [
+    "AZ-150-10-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "閲覧システム連携ファイル作成バッチ処理",
+   "toScreen": "閲覧システム連携ファイル作成バッチ処理",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "閲覧システム連携ファイル作成バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "閲覧システム連携ファイル作成バッチ処理",
+     "target": "閲覧システム連携ファイル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "閲覧システム連携ファイル作成バッチ処理",
+     "target": "事後作業",
+     "dataClass": "bundle",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "閲覧システム連携ファイル作成バッチ処理",
+     "target": "操作結果",
+     "dataClass": "none",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-0EF7DA98",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "ToDo連携データ作成バッチ処理",
+   "toScreen": "ToDo連携データ作成バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "FAZZ000A011",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-B69EF548",
+   "count": 1,
+   "cases": [
+    "AZ-200-07-006"
+   ],
+   "sourceCase": "",
+   "fromScreen": "大樹生命連携データ作成バッチ処理",
+   "toScreen": "大樹生命連携データ作成バッチ処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "大樹生命連携データ作成バッチ処理",
+     "target": "大樹生命連携データファイル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "大樹生命連携データ作成バッチ処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "大樹生命連携データ作成バッチ処理",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C651052A",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-019"
+   ],
+   "sourceCase": "",
+   "fromScreen": "ToDo連携データ作成バッチ処理",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-9EBB1470",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-045"
+   ],
+   "sourceCase": "",
+   "fromScreen": "ToDo連携データ作成バッチ処理",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "ToDo連携データ作成バッチ処理",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "部店課支社",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  }
+ ]
+}

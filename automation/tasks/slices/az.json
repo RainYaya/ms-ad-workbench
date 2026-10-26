@@ -1,0 +1,5147 @@
+{
+ "slice": "az",
+ "generatedAt": "2026-10-24",
+ "blocks": [
+  {
+   "id": "BLK-AUTO-5C1EFE0E",
+   "count": 59,
+   "cases": [
+    "AZ-210-08-001",
+    "AZ-210-09-001",
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-019",
+    "AZ-230-01-020",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-050",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-073",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-077",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-152",
+    "AZ-230-01-153",
+    "AZ-230-01-154",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-210-08-001",
+   "fromScreen": "項目名検索",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "action": "click",
+     "target": "選択",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-E1BDF237",
+   "count": 30,
+   "cases": [
+    "AZ-230-01-014",
+    "AZ-230-01-015",
+    "AZ-230-01-016",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-020",
+    "AZ-230-01-042",
+    "AZ-230-01-050",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-014",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "input",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "display",
+     "target": "不備一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-2739DA75",
+   "count": 29,
+   "cases": [
+    "AZ-112-01-001",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-020",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-050",
+    "AZ-230-01-074",
+    "AZ-230-01-077",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-155",
+    "AZ-510-01-005"
+   ],
+   "sourceCase": "AZ-112-01-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "メール通知先選択",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "営業連携",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "transition",
+     "target": "メール通知先選択",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-D844ADE8",
+   "count": 28,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-017",
+    "AZ-230-01-018",
+    "AZ-230-01-019",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-047",
+    "AZ-230-01-049",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-073",
+    "AZ-230-01-076",
+    "AZ-230-01-077",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-138",
+    "AZ-230-01-152",
+    "AZ-230-01-153",
+    "AZ-230-01-154",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "代理店連携",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-9750F4CE",
+   "count": 21,
+   "cases": [
+    "AZ-230-01-011",
+    "AZ-230-01-012",
+    "AZ-230-01-013",
+    "AZ-230-01-019",
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-046",
+    "AZ-230-01-048",
+    "AZ-230-01-049",
+    "AZ-230-01-073",
+    "AZ-230-01-076",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135",
+    "AZ-230-01-138",
+    "AZ-230-01-154",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-011",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "input",
+     "target": "部店課支社",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "display",
+     "target": "不備一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-B1D2CD03",
+   "count": 20,
+   "cases": [
+    "AZ-230-01-014",
+    "AZ-230-01-017",
+    "AZ-230-01-020",
+    "AZ-230-01-042",
+    "AZ-230-01-050",
+    "AZ-230-01-071",
+    "AZ-230-01-074",
+    "AZ-230-01-077",
+    "AZ-230-01-101",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-131",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-152",
+    "AZ-230-01-155"
+   ],
+   "sourceCase": "AZ-230-01-014",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店照会",
+     "dataClass": "literal",
+     "action": "input"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-B8DF200B",
+   "count": 19,
+   "cases": [
+    "AZ-111-03-004",
+    "AZ-210-08-001",
+    "AZ-210-63-001",
+    "AZ-230-01-013",
+    "AZ-230-01-016",
+    "AZ-230-01-019",
+    "AZ-230-01-042",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-049",
+    "AZ-230-01-073",
+    "AZ-230-01-076",
+    "AZ-230-01-103",
+    "AZ-230-01-108",
+    "AZ-230-01-135",
+    "AZ-230-01-138",
+    "AZ-230-01-154",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-111-03-004",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "完了登録",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-B0028D4D",
+   "count": 18,
+   "cases": [
+    "AZ-230-01-014",
+    "AZ-230-01-046",
+    "AZ-230-01-048",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-108",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-139",
+    "AZ-230-01-140",
+    "AZ-230-01-155",
+    "AZ-230-01-156"
+   ],
+   "sourceCase": "AZ-230-01-014",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-559E7D1D",
+   "count": 17,
+   "cases": [
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-103",
+    "AZ-230-01-109",
+    "AZ-230-01-110",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-043",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "更新",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-10E5C587",
+   "count": 14,
+   "cases": [
+    "AZ-230-01-043",
+    "AZ-230-01-046",
+    "AZ-230-01-048",
+    "AZ-230-01-050",
+    "AZ-230-01-104",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-108",
+    "AZ-230-01-131",
+    "AZ-230-01-132",
+    "AZ-230-01-137",
+    "AZ-230-01-139",
+    "AZ-230-01-151"
+   ],
+   "sourceCase": "AZ-230-01-043",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "代理店連携",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-BF46F797",
+   "count": 13,
+   "cases": [
+    "AZ-230-01-042",
+    "AZ-230-01-046",
+    "AZ-230-01-049",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-108",
+    "AZ-230-01-135",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-152",
+    "AZ-230-01-153"
+   ],
+   "sourceCase": "AZ-230-01-042",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-FB883F72",
+   "count": 11,
+   "cases": [
+    "AZ-110-25-002",
+    "AZ-110-25-003",
+    "AZ-110-25-004",
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-152",
+    "AZ-230-01-153"
+   ],
+   "sourceCase": "AZ-110-25-002",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-63C4E6D6",
+   "count": 9,
+   "cases": [
+    "AZ-110-02-001",
+    "AZ-110-02-002",
+    "AZ-110-02-003",
+    "AZ-110-02-004",
+    "AZ-110-38-001",
+    "AZ-110-63-001",
+    "AZ-110-66-001",
+    "AZ-310-05-001",
+    "AZ-310-37-001"
+   ],
+   "sourceCase": "AZ-110-02-001",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "名前を付けて保存",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-288BB000",
+   "count": 9,
+   "cases": [
+    "AZ-110-25-002",
+    "AZ-110-25-003",
+    "AZ-110-25-004",
+    "AZ-210-12-001",
+    "AZ-210-13-001",
+    "AZ-210-16-001",
+    "AZ-210-17-001",
+    "AZ-210-32-001",
+    "AZ-210-34-001"
+   ],
+   "sourceCase": "AZ-310-34-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "CL",
+     "dataClass": "literal",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-18958C37",
+   "count": 9,
+   "cases": [
+    "AZ-230-01-043",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-046",
+    "AZ-230-01-047",
+    "AZ-230-01-049",
+    "AZ-230-01-106",
+    "AZ-230-01-133",
+    "AZ-230-01-151"
+   ],
+   "sourceCase": "AZ-230-01-043",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備内容入力画面(更新)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "input",
+     "target": "部店課支社",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "display",
+     "target": "不備一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面(更新)",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-23229D4F",
+   "count": 8,
+   "cases": [
+    "AZ-110-14-001",
+    "AZ-110-15-001",
+    "AZ-110-34-001",
+    "AZ-110-39-001",
+    "AZ-210-51-001",
+    "AZ-210-64-001",
+    "AZ-310-22-001",
+    "AZ-310-23-001"
+   ],
+   "sourceCase": "AZ-110-14-001",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "action": "click",
+     "target": "帳票出力",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "action": "click",
+     "target": "名前を付けて保存",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "action": "click",
+     "target": "閉じる",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "assert": "other",
+     "target": "DBログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "assert": "other",
+     "target": "申込書テーブル",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "assert": "other",
+     "target": "申込不備テーブル",
+     "dataClass": "none"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7A863F7A",
+   "count": 8,
+   "cases": [
+    "AZ-110-25-002",
+    "AZ-110-25-003",
+    "AZ-110-25-004",
+    "AZ-210-12-001",
+    "AZ-210-13-001",
+    "AZ-210-16-001",
+    "AZ-210-17-001",
+    "AZ-210-34-001"
+   ],
+   "sourceCase": "AZ-110-25-002",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-60F6A775",
+   "count": 8,
+   "cases": [
+    "AZ-230-01-071",
+    "AZ-230-01-072",
+    "AZ-230-01-136",
+    "AZ-230-01-137",
+    "AZ-230-01-138",
+    "AZ-230-01-139",
+    "AZ-230-01-152",
+    "AZ-230-01-153"
+   ],
+   "sourceCase": "AZ-230-01-071",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-7364B069",
+   "count": 8,
+   "cases": [
+    "AZ-230-01-074",
+    "AZ-230-01-075",
+    "AZ-230-01-076",
+    "AZ-230-01-140",
+    "AZ-230-01-151",
+    "AZ-230-01-155",
+    "AZ-230-01-156",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-074",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "削除",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-9EB5A282",
+   "count": 7,
+   "cases": [
+    "AZ-100-05-003",
+    "AZ-100-05-004",
+    "AZ-150-04-002",
+    "AZ-160-01-004",
+    "AZ-160-01-005",
+    "AZ-160-01-006",
+    "AZ-160-01-007"
+   ],
+   "sourceCase": "AZ-100-05-003",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "検索",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "display",
+     "target": "不備一覧画面",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "action": "click",
+     "target": "No",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-072E06D9",
+   "count": 7,
+   "cases": [
+    "AZ-230-01-041",
+    "AZ-230-01-044",
+    "AZ-230-01-045",
+    "AZ-230-01-047",
+    "AZ-230-01-048",
+    "AZ-230-01-133",
+    "AZ-230-01-134"
+   ],
+   "sourceCase": "AZ-230-01-041",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-6AD0E114",
+   "count": 5,
+   "cases": [
+    "AZ-110-18-001",
+    "AZ-110-19-001",
+    "AZ-210-15-001",
+    "AZ-210-32-001",
+    "AZ-210-33-001"
+   ],
+   "sourceCase": "AZ-110-18-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "更新",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "DBログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込書テーブル",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込不備テーブル",
+     "dataClass": "none"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-ECE76B71",
+   "count": 5,
+   "cases": [
+    "AZ-210-09-001",
+    "AZ-210-13-001",
+    "AZ-210-17-001",
+    "AZ-210-35-001",
+    "AZ-210-36-001"
+   ],
+   "sourceCase": "AZ-210-09-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "代理店連携",
+     "dataClass": "none"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "DBログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込書テーブル",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込不備テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-6F09B48C",
+   "count": 4,
+   "cases": [
+    "AZ-150-13-001",
+    "AZ-150-13-002",
+    "AZ-150-13-003",
+    "AZ-150-13-004"
+   ],
+   "sourceCase": "AZ-150-13-001",
+   "fromScreen": "不備一覧",
+   "toScreen": "ToDo再送設定バッチ処理",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "関連代理店",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "営業対応状況",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "「【別紙】操作内容」1",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "申込書テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "TODO連携テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "移管情報テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "統合代理店情報ファイル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "移管エラー情報ファイル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "課支社代理店情報移管バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "ToDo再送設定バッチ処理",
+     "target": "「【別紙】操作内容」2",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo再送設定バッチ処理",
+     "target": "TODO連携テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo再送設定バッチ処理",
+     "target": "移管情報テーブル",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "ToDo再送設定バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-E593E2FC",
+   "count": 4,
+   "cases": [
+    "AZ-160-01-004",
+    "AZ-160-01-005",
+    "AZ-160-01-006",
+    "AZ-160-01-007"
+   ],
+   "sourceCase": "AZ-160-01-004",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-CD031FED",
+   "count": 4,
+   "cases": [
+    "AZ-210-05-013",
+    "AZ-210-05-014",
+    "AZ-210-05-015",
+    "AZ-210-05-016"
+   ],
+   "sourceCase": "AZ-210-05-013",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "「代理店照会」プルダウン",
+     "dataClass": "literal",
+     "action": "input"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-1D4C0178",
+   "count": 4,
+   "cases": [
+    "AZ-210-11-001",
+    "AZ-210-12-001",
+    "AZ-210-16-001",
+    "AZ-210-34-001"
+   ],
+   "sourceCase": "AZ-210-11-001",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "名前を付けて保存",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込不備テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-CC41ACD0",
+   "count": 4,
+   "cases": [
+    "AZ-230-01-017",
+    "AZ-230-01-020",
+    "AZ-230-01-074",
+    "AZ-230-01-155"
+   ],
+   "sourceCase": "AZ-230-01-017",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-CD763243",
+   "count": 3,
+   "cases": [
+    "AZ-111-02-003",
+    "AZ-111-02-005",
+    "AZ-111-02-006"
+   ],
+   "sourceCase": "AZ-111-02-003",
+   "fromScreen": "不備内容入力画面-新規",
+   "toScreen": "不備内容入力画面-新規",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-新規",
+     "target": "登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "申込書テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-340D4343",
+   "count": 3,
+   "cases": [
+    "AZ-111-02-003",
+    "AZ-111-02-005",
+    "AZ-111-02-006"
+   ],
+   "sourceCase": "AZ-111-02-003",
+   "fromScreen": "不備内容入力画面-新規",
+   "toScreen": "不備内容入力画面-新規",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "申込書テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-B42FB7FD",
+   "count": 3,
+   "cases": [
+    "AZ-160-03-001",
+    "AZ-160-03-002",
+    "AZ-160-03-003"
+   ],
+   "sourceCase": "AZ-160-03-001",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No.1",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "送り状印刷",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "帳票",
+     "dataClass": "bundle",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-D9AE66FC",
+   "count": 3,
+   "cases": [
+    "AZ-310-16-008",
+    "AZ-310-16-009",
+    "AZ-310-24-001"
+   ],
+   "sourceCase": "AZ-310-16-008",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-311D55A3",
+   "count": 3,
+   "cases": [
+    "AZ-210-09-001",
+    "AZ-210-13-001",
+    "AZ-210-17-001"
+   ],
+   "sourceCase": "AZ-210-09-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "エラーメッセージ",
+     "dataClass": "bundle",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-B3B9104B",
+   "count": 3,
+   "cases": [
+    "AZ-230-01-044",
+    "AZ-230-01-076",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-044",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-F09E159A",
+   "count": 3,
+   "cases": [
+    "AZ-230-01-073",
+    "AZ-230-01-103",
+    "AZ-230-01-154"
+   ],
+   "sourceCase": "AZ-230-01-073",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面 ー更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-6163165A",
+   "count": 2,
+   "cases": [
+    "AZ-110-38-001",
+    "AZ-310-05-001"
+   ],
+   "sourceCase": "AZ-110-38-001",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込不備テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-72F034C6",
+   "count": 2,
+   "cases": [
+    "AZ-111-03-005",
+    "AZ-210-65-001"
+   ],
+   "sourceCase": "AZ-111-03-005",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-269893EF",
+   "count": 2,
+   "cases": [
+    "AZ-150-13-001",
+    "AZ-150-13-002"
+   ],
+   "sourceCase": "AZ-150-13-001",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備集計",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "関連代理店",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "営業対応状況",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備項目集計バッチ処理",
+     "target": "「【別紙】操作内容」3",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備項目集計バッチ処理",
+     "target": "不備項目集計テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備項目集計バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容集計バッチ処理",
+     "target": "「【別紙】操作内容」4",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容集計バッチ処理",
+     "target": "不備内容集計テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容集計バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "登録件数集計バッチ処理",
+     "target": "「【別紙】操作内容」5",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "登録件数集計バッチ処理",
+     "target": "登録件数集計テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "登録件数集計バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "フリーコード集計バッチ処理",
+     "target": "「【別紙】操作内容」6",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "フリーコード集計バッチ処理",
+     "target": "フリーコード集計テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "フリーコード集計バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "募集人集計バッチ処理",
+     "target": "「【別紙】操作内容」7",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人集計バッチ処理",
+     "target": "募集人集計テーブル",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "募集人集計バッチ処理",
+     "target": "バッチログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "target": "集計",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "target": "不備集計",
+     "dataClass": "none",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "部店課支社コード",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "登録年月",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "不備集計画面",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "不備項目集計出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "不備項目集計情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "不備内容集計出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "不備内容集計情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "登録件数集計出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "登録件数集計情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "フリーコード集計出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "フリーコード集計情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備集計",
+     "target": "募集人集計出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備集計",
+     "target": "募集人集計情報ファイル",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-4E8C4FC2",
+   "count": 2,
+   "cases": [
+    "AZ-150-13-003",
+    "AZ-150-13-004"
+   ],
+   "sourceCase": "AZ-150-13-003",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "関連代理店",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "営業対応状況",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-8986EB9F",
+   "count": 2,
+   "cases": [
+    "AZ-210-63-001",
+    "AZ-310-34-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "CL",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-F0C72208",
+   "count": 2,
+   "cases": [
+    "AZ-210-08-001",
+    "AZ-210-09-001"
+   ],
+   "sourceCase": "AZ-210-08-001",
+   "fromScreen": "項目名検索",
+   "toScreen": "項目名検索",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "項目名検索",
+     "target": "項目名検索画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-106D33F6",
+   "count": 2,
+   "cases": [
+    "AZ-210-15-001",
+    "AZ-210-33-001"
+   ],
+   "sourceCase": "AZ-210-15-001",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "名前を付けて保存",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-3F6DEDE2",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-045",
+    "AZ-230-01-047"
+   ],
+   "sourceCase": "AZ-230-01-045",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "「連絡」チェックボックスを選択",
+     "dataClass": "none",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-EBEB83B0",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-045",
+    "AZ-230-01-047"
+   ],
+   "sourceCase": "AZ-230-01-045",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-7A684D49",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-045",
+    "AZ-230-01-047"
+   ],
+   "sourceCase": "AZ-230-01-045",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "「照会」チェックボックスを選択",
+     "dataClass": "none",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-950C5CC5",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-075",
+    "AZ-230-01-156"
+   ],
+   "sourceCase": "AZ-230-01-075",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "メール通知先選択",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "メール通知先選択",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-5BDEF314",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-076",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-076",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面 ー更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-ED876A58",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-076",
+    "AZ-230-01-157"
+   ],
+   "sourceCase": "AZ-230-01-076",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-D155DA21",
+   "count": 2,
+   "cases": [
+    "AZ-230-01-101",
+    "AZ-230-01-102"
+   ],
+   "sourceCase": "AZ-230-01-101",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-0B2CB156",
+   "count": 1,
+   "cases": [
+    "AZ-100-05-003"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "システムエラー画面(親画面)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "「F12」より開発者ツールを開く",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "開発者ツールでctrl+fを使用し application_form_idを検索",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "application_form_idのvalueの値を削除",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "システムエラー画面(親画面)",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-01795032",
+   "count": 1,
+   "cases": [
+    "AZ-110-02-001"
+   ],
+   "sourceCase": "AZ-110-02-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "APログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "DBログ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込書テーブル",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "assert": "other",
+     "target": "申込不備テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-20C0D517",
+   "count": 1,
+   "cases": [
+    "AZ-110-38-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-824C0B37",
+   "count": 1,
+   "cases": [
+    "AZ-111-02-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-新規",
+   "toScreen": "不備内容入力画面-新規",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-新規",
+     "target": "登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "message"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "申込書テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-新規",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-1E856949",
+   "count": 1,
+   "cases": [
+    "AZ-111-03-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "印刷",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-90299E43",
+   "count": 1,
+   "cases": [
+    "AZ-111-03-003"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "送り状印刷",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-224C9DEF",
+   "count": 1,
+   "cases": [
+    "AZ-111-03-006"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-86B0B8B9",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "依頼区分",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-70B071E3",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-006"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-3017A3AA",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-007"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備情報",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "営業連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "通知しない",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C9C58BF8",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-008"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備情報",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "依頼区分",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "営業連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "通知しない",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "確認済",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7A4080AD",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-009"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備情報",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "営業連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-213E7E7D",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-010"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備情報",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "更新",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-DE4B3B14",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-011"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備情報",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-0D2D641B",
+   "count": 1,
+   "cases": [
+    "AZ-111-05-012"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "削除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "訂正内容確認書",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7EE83E5A",
+   "count": 1,
+   "cases": [
+    "AZ-112-01-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "申込書品質管理メニュー",
+   "toScreen": "申込書品質管理メニュー",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "target": "メール登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "target": "営業連携メール通知先登録",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "次頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "前頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "追加",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "個別メール通知先検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先一覧(親画面)",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "氏名",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "部店課支社コード",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先一覧(親画面)",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "閉じる",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全選択",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "次頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全選択",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メニュー",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "申込書品質管理メニュー",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-4CB0EA5C",
+   "count": 1,
+   "cases": [
+    "AZ-120-03-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "選択チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "完了登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "選択チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "完了登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-BDA7A359",
+   "count": 1,
+   "cases": [
+    "AZ-120-03-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "選択チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "完了登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "選択チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "完了登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "4:完了チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-022A6268",
+   "count": 1,
+   "cases": [
+    "AZ-120-04-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備一覧",
+   "toScreen": "ヘルプ",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "ヘルプ",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "ヘルプ",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "URL",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-FE33E38E",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号",
+     "dataClass": "literal",
+     "action": "input"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-1ECE1684",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類不備照会・返送票",
+     "dataClass": "bundle",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "none",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "一覧画面",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備一覧",
+     "dataClass": "none",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-2995218F",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類不備照会・返送票",
+     "dataClass": "bundle",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "none",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "終了",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-1CC6C3EC",
+   "count": 1,
+   "cases": [
+    "AZ-150-04-002"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類不備照会・返送票",
+     "dataClass": "bundle",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-FCF80BAC",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備照会・返送票(FAX用)",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "一覧画面",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-2DDFC25D",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備照会・返送票(FAX用)",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-DB2830E2",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備督促票(FAX用)",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "一覧画面",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-134186E1",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "不備督促票(FAX用)",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-A5BF2BD4",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-006"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類不備照会・返送票",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "一覧画面",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-1E78A599",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-006"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類不備照会・返送票",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-F1F96812",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-007"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類訂正済連絡票",
+     "dataClass": "bundle",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "閉じる",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "一覧画面",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-86665200",
+   "count": 1,
+   "cases": [
+    "AZ-160-01-007"
+   ],
+   "sourceCase": "",
+   "fromScreen": "帳票印刷",
+   "toScreen": "帳票印刷",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "帳票印刷",
+     "target": "帳票出力",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "帳票印刷",
+     "target": "申込書類訂正済連絡票",
+     "dataClass": "bundle",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-FBFD5CAD",
+   "count": 1,
+   "cases": [
+    "AZ-310-09-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店照会",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "エラーメッセージ",
+     "dataClass": "bundle",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-98A9A5DE",
+   "count": 1,
+   "cases": [
+    "AZ-310-43-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "確認済",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-148C85C9",
+   "count": 1,
+   "cases": [
+    "AZ-310-43-001"
+   ],
+   "sourceCase": "AZ-310-43-001",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-nav",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "OK",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C14B22C2",
+   "count": 1,
+   "cases": [
+    "AZ-410-07-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "依頼区分",
+     "dataClass": "literal",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-D0508D0D",
+   "count": 1,
+   "cases": [
+    "AZ-210-08-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "照会内容編集",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "照会内容チェックボックス",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店照会プルダウン",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "修",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "照会内容編集",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7EBD5C1C",
+   "count": 1,
+   "cases": [
+    "AZ-210-08-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "完了登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "エラーメッセージ",
+     "dataClass": "bundle",
+     "assert": "message"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-AB15C319",
+   "count": 1,
+   "cases": [
+    "AZ-210-08-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "申込書テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "申込不備テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-2FF1643E",
+   "count": 1,
+   "cases": [
+    "AZ-210-35-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "CL",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-9B567CC5",
+   "count": 1,
+   "cases": [
+    "AZ-210-47-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "CL",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店連携",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-03D12845",
+   "count": 1,
+   "cases": [
+    "AZ-210-48-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "CL",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-BA4B4F43",
+   "count": 1,
+   "cases": [
+    "AZ-210-49-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-0DF6BF48",
+   "count": 1,
+   "cases": [
+    "AZ-210-62-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "回答",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-CB6C5414",
+   "count": 1,
+   "cases": [
+    "AZ-210-63-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "項目名検索",
+   "toScreen": "項目名検索",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "項目名検索",
+     "target": "代理店照会",
+     "dataClass": "literal",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-CFBFBCCB",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-016"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連絡チックボックス",
+     "dataClass": "none",
+     "action": "click"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-BBEBCD49",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-019"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-act",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "連携取消",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "不備内容入力画面 ー更新",
+     "dataClass": "bundle",
+     "assert": "display"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-C16D256A",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-049"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備一覧",
+   "toScreen": "不備一覧",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-3EFB9C18",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-107"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "各項目",
+     "dataClass": "literal",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "検索",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-42508787",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-136"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "primitive-fill",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "「代理店連携」押下",
+     "dataClass": "none",
+     "action": "input"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備内容入力画面-更新",
+     "target": "メッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-952A7140",
+   "count": 1,
+   "cases": [
+    "AZ-230-01-139"
+   ],
+   "sourceCase": "",
+   "fromScreen": "不備内容入力画面-更新",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "証券番号・明細番号",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備一覧画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "不備一覧",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "不備内容入力画面-更新",
+     "target": "代理店照会",
+     "dataClass": "literal",
+     "action": "input"
+    }
+   ]
+  }
+ ]
+}

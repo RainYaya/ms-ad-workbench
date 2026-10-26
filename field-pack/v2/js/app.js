@@ -6,6 +6,9 @@
   const REFS = window.MSAD_REFS || {};
   const VALID = window.MSAD_VALIDATION || { counts: {}, warnings: {} };
   const AUTO = window.MSAD_AUTOMATION || { summary: {}, blocks: [], cases: {}, runners: { runners: [] } };
+  const SUMMARY = window.MSAD_SUMMARIES || { tpl: {}, caseToTpl: {} };
+  const RDEFS = window.MSAD_RUNNER_DEFS || { blocks: {}, params: {}, compositions: {} };
+  const SCHEDULE = window.MSAD_SCHEDULE || { cases: {} };
   const LS = {
     progress: 'msad.progress.v1',
     tasks: 'msad.tasks.v1',
@@ -44,7 +47,16 @@
     appendixSheet: {},
     appendixView: 'compact',
     query: '',
-    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false },
+    manualFilter: 'all',
+    feasFilter: 'all',
+    autoQuery: '',
+    autoClass: 'all',
+    autoFlag: 'all',
+    autoCase: null,
+    manualQuery: '',
+    reviewRow: null,
+    reviewFilter: 'all',
+    filters: { domain: '', category: '', company: '', status: '', assigned: false, missing: false, old: false, route: false, manual: false, manualOp: false, autoOnly: false, evMissing: false, paramsAuto: false },
     progress: load(LS.progress, {}),
     tasks: load(LS.tasks, { ids: [], importedAt: '' }),
     automation: load(LS.automation, {}),
@@ -97,6 +109,34 @@
     BLOCKED: { label: '不可', cls: 'red', dot: 'blocked' },
   };
 
+  const EVIDENCE = window.MSAD_EVIDENCE || {};
+  const FEASIBILITY = window.MSAD_FEASIBILITY || {};
+  const BLOCK_QUALITY = window.MSAD_BLOCK_QUALITY || {};
+  const PARAMS_META = window.MSAD_PARAMS || {};
+  const FEAS_META = {
+    A: { label: 'A 全自動', cls: 'green', note: '人工・代理・参数問題なし' },
+    B: { label: 'B 自動+人工', cls: 'blue', note: '流程自動、人工/代理確認あり' },
+    C: { label: 'C 参数待修', cls: 'amber', note: '别纸参数未落实或规则冲突' },
+    D: { label: 'D 阻塞', cls: 'red', note: '流程失败/阻塞' },
+  };
+  function feasOf(id) { return FEASIBILITY[id] || null; }
+  function feasBadge(id) {
+    const f = feasOf(id); if (!f) return '';
+    const m = FEAS_META[f.class] || FEAS_META.D;
+    const title = `${m.note} / flow=${f.flow} / manual=${f.manualSteps} / proxyBlocks=${f.proxyBlocks} / paramIssues=${f.paramIssues}`;
+    return `<span class="badge ${m.cls}" title="${esc(title)}">${esc(m.label)}</span>`;
+  }
+  function paramsMeta(id) { return PARAMS_META[id] || { source: '不明', level: 'auto', keys: [], note: '既定値（要別紙確認）' }; }
+  function paramsBadge(id) {
+    const m = paramsMeta(id);
+    return m.level === 'auto'
+      ? `<span class="badge amber" title="パラメータ元: auto.json">既定値</span>`
+      : `<span class="badge green" title="パラメータ元: ${esc(m.source)}">固有 params</span>`;
+  }
+  function evcase(id) { return EVIDENCE[id] || { summary: {}, rows: {}, manualSteps: [] }; }
+  function evsum(id) { return evcase(id).summary || {}; }
+  function manualCount(id) { return (evcase(id).manualSteps || []).length; }
+  function manualOpCount(id) { return (evcase(id).manualSteps || []).filter((m) => m.phase === '操作').length; }
   function pget(id) { return state.progress[id] || {}; }
   function caseStatus(id) {
     const p = pget(id);
@@ -260,10 +300,13 @@
     if (view === 'case' && id) { state.view = 'case'; if (state.selectedCase !== id) state.tab = 'procedure'; state.selectedCase = id; renderCase(id); return; }
     if (view === 'scenario' && id) { state.view = 'scenario'; state.selectedScenario = id; renderScenario(id); return; }
     if (view === 'route' && id) { state.view = 'route'; state.selectedRoute = id; renderRoute(id); return; }
-    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'refs', 'automation'].includes(view) ? view : 'dashboard';
+    if (view === 'review' && id) { state.view = 'review'; state.selectedCase = id; renderReview(id); return; }
+    if (view === 'automation') { state.view = 'automation'; state.autoCase = id || null; render(); return; }
+    state.view = ['dashboard', 'scenarios', 'routes', 'files', 'tasks', 'schedule', 'refs', 'manual', 'feasibility'].includes(view) ? view : 'dashboard';
     state.selectedCase = null;
     state.selectedScenario = null;
     state.selectedRoute = null;
+    state.autoCase = null;
     render();
   }
 
@@ -284,9 +327,10 @@
       ['データ欠損', r.missing, 'amber'],
     ].map(([label, value, cls]) => `<span class="stat-chip"><i class="status-dot ${cls || 'not'}"></i>${label} <b>${fmt(value)}</b></span>`).join('');
     const crumb = state.view === 'case' ? `ケース / ${state.selectedCase || ''}`
-      : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
+      : state.view === 'automation' && state.autoCase ? `自動化診断 / ${state.autoCase}`
+        : state.view === 'scenario' ? `シナリオ / ${state.selectedScenario || ''}`
         : state.view === 'route' ? `実施順序 / ${state.selectedRoute || ''}`
-          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化' }[state.view] || 'ダッシュボード');
+          : ({ dashboard: 'ダッシュボード', scenarios: 'シナリオ一覧', routes: '実施順序', files: 'ファイル', tasks: '自分のタスク', refs: '参考資料', automation: '自動化診断', manual: '証跡・人工', feasibility: '実効性', review: '検査モード' }[state.view] || 'ダッシュボード');
     $('#breadcrumb').textContent = crumb;
     $$('#nav .nav-item').forEach((b) => b.classList.toggle('active', b.dataset.view === state.view));
     const meta = DATA.meta || {};
@@ -444,6 +488,11 @@
         const ids = casesByScenario.get(s.id) || [];
         if (!ids.some((c) => c.hasAppendix === false || c.hasWorkflow === false)) return false;
       }
+      if (state.filters.manual && !ids.some((id) => manualCount(id) > 0 || evsum(id).manual > 0)) return false;
+      if (state.filters.manualOp && !ids.some((id) => manualOpCount(id) > 0)) return false;
+      if (state.filters.autoOnly && !ids.every((id) => manualCount(id) === 0 && (evsum(id).manual || 0) === 0)) return false;
+      if (state.filters.evMissing && !ids.some((id) => (evsum(id).missing || 0) > 0)) return false;
+      if (state.filters.paramsAuto && !ids.some((id) => paramsMeta(id).level === 'auto')) return false;
       return true;
     });
   }
@@ -457,15 +506,21 @@
     }
     const body = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([cid, ss]) => {
       const cat = categoryById.get(cid) || { id: cid };
-      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company ? 'open' : ''}>
+      return `<details class="tree-group" ${state.query || state.filters.assigned || state.filters.missing || state.filters.route || state.filters.status || state.filters.company || state.filters.manual || state.filters.manualOp || state.filters.autoOnly || state.filters.evMissing || state.filters.paramsAuto ? 'open' : ''}>
         <summary><span class="mono">${esc(cid)}</span> <span>${esc(cat.functionArea || '')}</span> <span class="badge outline">${ss.length} シナリオ</span></summary>
         <div class="tree-body">
           ${ss.map((s) => {
             const ids = (casesByScenario.get(s.id) || []).map((c) => c.id);
             const r = rollup(ids);
+            const mc = ids.reduce((n, id) => n + manualCount(id), 0);
+            const mo = ids.reduce((n, id) => n + manualOpCount(id), 0);
+            const hm = ids.reduce((n, id) => n + (evsum(id).manual || 0), 0);
+            const em = ids.reduce((n, id) => n + (evsum(id).missing || 0), 0);
+            const pa = ids.reduce((n, id) => n + (paramsMeta(id).level === 'auto' ? 1 : 0), 0);
+            const chips = [mc ? `<span class="badge amber" title="人工確認/操作の手顺行">人工 ${mc}</span>` : '', mo ? `<span class="badge blue">人工操作 ${mo}</span>` : '', hm ? `<span class="badge violet">HC人工 ${hm}</span>` : '', em ? `<span class="badge red">未取得 ${em}</span>` : '', pa ? `<span class="badge amber">既定値 ${pa}</span>` : ''].filter(Boolean).join(' ');
             return `<div class="row-card" data-scenario="${esc(s.id)}">
               <div class="id">${esc(s.id)}</div>
-              <div style="min-width:0;flex:1"><p class="title">${esc(s.title)}</p><div class="meta">${esc(s.userType || '')} / ${esc(s.executionType || '')} / ${esc(s.functionArea || '')}　X=${s.x}　MS ${s.msCount || 0} / AD ${s.adCount || 0}${s.hasRoute ? '　<span class="badge green">実施順序あり</span>' : ''}</div></div>
+              <div style="min-width:0;flex:1"><p class="title">${esc(s.title)}</p><div class="meta">${esc(s.userType || '')} / ${esc(s.executionType || '')} / ${esc(s.functionArea || '')}　X=${s.x}　MS ${s.msCount || 0} / AD ${s.adCount || 0}${s.hasRoute ? '　<span class="badge green">実施順序あり</span>' : ''}</div>${chips ? `<div class="chips" style="margin-top:4px">${chips}</div>` : ''}</div>
               <div class="right">${statusBadge(caseStatus(ids.find((id) => pget(id).execution) || ids[0] || ''))}<span class="small muted">${r.executed}/${r.total}</span></div>
             </div>`;
           }).join('')}
@@ -577,7 +632,7 @@
   }
 
   function appendixFacts(c) {
-    const keys = ['証券番号', '明細番号', '種目', '保険種類', '点検区分', '申請・確認基準'];
+    const keys = ['証券番号', '明細番号', '入力区分', '種目', '保険種類', '点検区分', '申請・確認基準'];
     const out = {};
     for (const sh of c.appendix?.sheets || []) {
       for (const row of sh.rows || []) {
@@ -948,8 +1003,11 @@ AY-120-01-001"></textarea>
         <div class="case-meta">
           <span class="badge outline">${esc(meta.scenarioId)}${sc?.title ? ` ${esc(sc.title)}` : ''}</span>
           ${companyBadge(meta.company)}
+          ${scheduleOf(meta.id) ? `<span class="badge amber">予定 ${esc(scheduleOf(meta.id).startLabel)}〜${esc(scheduleOf(meta.id).endLabel)}</span>` : ''}
           ${caseUserMap.get(meta.id) ? `<span class="badge blue">利用者 ${esc(caseUserMap.get(meta.id).id || '')}${caseUserMap.get(meta.id).point ? ` / ${esc(caseUserMap.get(meta.id).point)}` : ''}</span>` : ''}
           ${meta.item ? `<span class="badge gray">${esc(meta.item)}</span>` : ''}
+          ${paramsBadge(meta.id)}
+          ${feasBadge(meta.id)}
           ${meta.comparisonMark === '〇' ? '<span class="badge violet">現新比較</span>' : ''}
           ${meta.hasWorkflow === false ? '<span class="badge red">手順書なし</span>' : ''}
           ${meta.hasAppendix === false ? '<span class="badge amber">別紙なし</span>' : ''}
@@ -961,6 +1019,7 @@ AY-120-01-001"></textarea>
       </div>
       <div class="right" style="display:flex;flex-direction:column;align-items:flex-end;gap:7px">
         ${statusBadge(caseStatus(meta.id))} ${resultBadge(p)}
+        <button class="btn primary" data-action="review-mode" data-case="${esc(meta.id)}">検査モード</button>
         <button class="btn" data-action="add-task" data-case="${esc(meta.id)}">タスクに追加</button>
       </div>
     </div>`;
@@ -1093,8 +1152,28 @@ AY-120-01-001"></textarea>
     const items = evidenceItems(c);
     if (!items.length) return empty('証跡項目がありません。');
     const p = pget(c.id);
+    const auto = (window.MSAD_EVIDENCE || {})[c.id] || {};
+    const statuses = auto.rows || {};
+    const s = auto.summary || {};
+    const badge = (st) => ({ exact: ['自動', 'green'], blockEnd: ['近似', 'amber'], manual: ['人工確認', 'violet'], missing: ['未取得', 'red'] }[st] || ['未実行', '']);
     const done = items.filter((x) => p.evidence?.[x.key]).length;
-    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length}</span></div><div class="panel-body"><div class="evidence-list">${items.map((x) => `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span>${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row}</span></label>`).join('')}</div></div></div>`;
+    const sum = s.hc ? `画面HC ${s.hc} ／ 自動 ${s.exact || 0} ／ 近似 ${s.blockEnd || 0} ／ 人工 ${s.manual || 0} ／ 未取得 ${s.missing || 0}` : '実行結果なし';
+    const manual = auto.manualSteps || [];
+    const manualPanel = manual.length ? `<div class="panel mt"><div class="panel-head"><h3>人工確認項目</h3><span class="hint">${manual.length} 件（真機で確認）</span></div><div class="panel-body"><div class="evidence-list">${manual.map((m) => {
+      const key = `manual:${m.row}:${m.phase}`;
+      return `<label class="ev-item ${p.evidence?.[key] ? 'checked' : ''}"><input type="checkbox" data-evidence="${esc(key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[key] ? 'checked' : ''}><span><b>行${m.row}</b> [${esc(m.phase)}] ${esc(m.item)}</span><span class="ev-type">${esc(m.reason)}</span></label>`;
+    }).join('')}</div></div></div>` : '';
+    return `<div class="panel"><div class="panel-head"><h3>証跡チェック</h3><span class="hint">${done} / ${items.length} ・ ${sum}</span>${auto.xlsx ? `<a class="btn" href="${esc(auto.xlsx)}" download>Excel証跡</a>` : ''}</div><div class="panel-body"><div class="evidence-list">${items.map((x) => {
+      const e = statuses[String(x.row)];
+      const st = e?.status;
+      const [label, color] = st ? badge(st) : (x.type === '画面HC' ? ['未取得', 'red'] : ['目視', '']);
+      const src = e?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(e.file)}` : '';
+      const thumb = src ? `<img class="ev-thumb" loading="lazy" src="${esc(src)}" data-lightbox="${esc(src)}" alt="Excel ${x.row}">` : (st === 'manual' ? '<span class="ev-manual">人工確認</span>' : '');
+      const pick = `<input type="checkbox" data-evidence="${esc(x.key)}" data-case-id="${esc(c.id)}" ${p.evidence?.[x.key] ? 'checked' : ''}><span class="ev-main">${esc(x.label)}</span><span class="ev-type">${esc(x.type)} / Excel ${x.row} ${label ? `・<b style="color:${color === 'red' ? '#b91c1c' : color === 'amber' ? '#b45309' : color === 'violet' ? '#6d28d9' : '#15803d'}">${label}</b>` : ''}</span>`;
+      return src
+        ? `<div class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}"><label class="ev-pick">${pick}</label>${thumb}</div>`
+        : `<label class="ev-item ${p.evidence?.[x.key] ? 'checked' : ''}">${pick}${thumb}</label>`;
+    }).join('')}</div></div></div>${manualPanel}`;
   }
 
   function snippetFor(id) {
@@ -1179,9 +1258,9 @@ AY-120-01-001"></textarea>
   function autoBlock(id) { return (AUTO.blocks || []).find((b) => b.id === id) || null; }
 
   function runnerCommand(caseId, r) {
-    const port = r.port || 9223;
-    const base = r.baseUrl || 'http://127.0.0.1:10081/mhkcmwa11/dummy.html';
-    return `powershell -ExecutionPolicy Bypass -File .\\${r.script} -CaseId ${caseId} -Port ${port} -BaseUrl "${base}"`;
+    // Node runtime (portable node.exe + playwright-core); PowerShell era retired.
+    if (r.launch) return `${r.launch} ${caseId}`;
+    return `run.cmd ${caseId}`;
   }
 
   function copyText(text) {
@@ -1228,6 +1307,32 @@ AY-120-01-001"></textarea>
     return `<span class="badge ${cls}">${esc(label)}</span>`;
   }
 
+  // ---- three-state model (planned / coded / verified) ------------------
+  const S3_JP = { verified: '検証済', coded: '実装済', planned: '未着手', none: '無一致' };
+  function s3Badge(s3) {
+    const cls = s3 === 'verified' ? 'green' : s3 === 'coded' ? 'amber' : s3 === 'none' ? 'gray' : 'blue';
+    return `<span class="badge ${cls}">${S3_JP[s3] || s3}</span>`;
+  }
+  // horizontal progress strip: one segment per block, colored by status3,
+  // plus a hatched tail for uncovered events. Widths are proportional to events.
+  function s3Strip(a, opts = {}) {
+    const details = a.blockDetails || [];
+    if (!details.length && !a.coverage3) return '<span class="muted small">—</span>';
+    const segs = [];
+    for (const d of details) {
+      const n = (d.end ?? d.start ?? 0) - (d.start ?? 0) || 1;
+      segs.push({ cls: d.status3 || 'planned', n, block: d.block, fromRow: d.fromRow, toRow: d.toRow });
+    }
+    if (a.coverage3 && a.coverage3.uncovered > 0) segs.push({ cls: 'uncovered', n: a.coverage3.uncovered, block: '未カバー' });
+    const total = segs.reduce((t, x) => t + x.n, 0) || 1;
+    const bars = segs.map((x) => `<span class="s3-seg s3-${x.cls}" style="width:${(x.n / total) * 100}%" title="${esc(x.block)} (row ${x.fromRow ?? '?'}–${x.toRow ?? '?'}) : ${S3_JP[x.cls] || x.cls} / ${x.n} events"></span>`).join('');
+    const c3 = a.coverage3 || {};
+    const done = (c3.verified || 0) + (c3.coded || 0);
+    const pct = c3.total ? Math.round((done / c3.total) * 100) : 0;
+    return `<div class="s3-strip${opts.compact ? ' compact' : ''}" role="img" aria-label="automation progress">${bars}</div>` +
+      (opts.showPct === false ? '' : `<span class="s3-pct">${pct}%</span>`);
+  }
+
   function automationRunHtml(id) {
     const a = autoCase(id);
     if (!a) return '';
@@ -1236,7 +1341,8 @@ AY-120-01-001"></textarea>
     const blocks = details.map((d) => {
       const b = autoBlock(d.block);
       const range = d.fromRow != null ? ` row ${d.fromRow}–${d.toRow}` : '';
-      return `<span class="badge outline" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}${range}">${esc(d.block)} ${executionBadge(d.status)}</span>`;
+      const s3c = d.status3 === 'verified' ? 'green' : d.status3 === 'coded' ? 'amber' : 'gray';
+      return `<span class="badge outline" style="border-left:3px solid var(--${d.status3 === 'verified' ? 'green' : d.status3 === 'coded' ? 'amber' : 'line'})" title="${esc(b?.fromScreen || '')} → ${esc(b?.toScreen || '')}${range} : ${S3_JP[d.status3] || ''}">${esc(d.block)} <span class="badge ${s3c}">${S3_JP[d.status3] || d.status3}</span></span>`;
     }).join(' ');
     const total = details.length;
     const done = a.actualDone ?? 0;
@@ -1245,7 +1351,8 @@ AY-120-01-001"></textarea>
     const r = a.runner;
     const cmd = r ? runnerCommand(id, r) : '';
     return `<div class="panel" style="margin-bottom:12px">
-      <div class="panel-head"><h3>ブロック実行</h3><span>${autoStatusBadge(a.status)} ${done}/${total} blocks / ${cov}% events</span></div>
+      <div style="padding:10px 14px 0">${s3Strip(a)}</div>
+      <div class="panel-head"><h3>ブロック実行</h3><span>${s3Badge(a.status3)} ${autoStatusBadge(a.status)} ${done}/${total} blocks / ${cov}% events</span></div>
       <div class="panel-body small">
         <div class="chips">${blocks || '<span class="muted">block なし</span>'}</div>
         <p class="muted" style="margin-top:8px">Remaining: <b>${remaining}</b> blocks / ${a.uncoveredCount} uncovered events. Next: <code>${esc(next)}</code></p>
@@ -1258,35 +1365,123 @@ AY-120-01-001"></textarea>
       </div></div>`;
   }
 
+
+  function runnerDefHtml(c) {
+    const comp = RDEFS.compositions?.[c.id] || [];
+    const P = RDEFS.params?.[c.id] || {};
+    const rv = (v) => typeof v === 'string' && v.startsWith('params.') ? (P[v.slice(7)] ?? '⚠︎未設定') : (v ?? '');
+    if (!comp.length) return '';
+    const lines = [];
+    let n = 0;
+    for (const bid of comp) {
+      const blk = RDEFS.blocks?.[bid];
+      if (!blk) { lines.push(`// ${bid}: selector 未定義`); continue; }
+      lines.push(`// ── ${bid}${blk.screen ? ' (' + blk.screen + ')' : ''}`);
+      for (const st of (blk.steps || [])) {
+        n++;
+        const sel = st.selector ? String(st.selector).replace(/\{params\.(\w+)\}/g, (_, k) => P[k] ?? '⚠︎') : '';
+        const val = st.value !== undefined ? ` value=${JSON.stringify(rv(st.value))}` : st.label !== undefined ? ` label=${JSON.stringify(rv(st.label))}` : '';
+        const inP = st.in === 'popup' ? ' [popup]' : '';
+        const flags = [st.force && 'force', st.optional && 'optional', st.how && st.how].filter(Boolean).join(',');
+        lines.push(`${String(n).padStart(2, '0')} ${st.action.padEnd(9)} ${sel || (st.url || st.match || '')}${val}${inP}${flags ? '  ;' + flags : ''}`);
+      }
+    }
+    return `<details class="panel" style="margin-top:12px">
+      <summary style="cursor:pointer;padding:11px 14px;font-size:12.5px;font-weight:700">🔧 実行定義（エンジニア向け）— ${comp.length} ブロック / ${n} ステップ</summary>
+      <div class="panel-body" style="padding:0">
+        <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="small muted">
+          この1冊が実行するブロック列と各ステップの実セレクタ（パラメータ代入済み）。runner.mjs が実行時に読み込むのと同じデータ（block-selectors*.json + params/*.json + blocks.json の合成）。
+          テンプレート: <code>automation/node-runner/block-selectors*.json</code> / パラメータ: <code>automation/cdp/params/*.json</code>
+        </div>
+        <pre class="mono" style="margin:0;padding:12px 14px;font-size:11px;line-height:1.7;overflow:auto;max-height:60vh;white-space:pre">${esc(lines.join(String.fromCharCode(10)))}</pre>
+      </div></details>`;
+  }
+
   function automationHtml(c) {
+    const a = autoCase(c.id);
     const auto = state.automation[c.id] || { scriptType: 'console', locators: [] };
-    return automationRunHtml(c.id) + `<details class="panel" style="margin-bottom:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">自動化の使い方</summary><div class="panel-body small">
-      <p><b>1.</b> 被テストシステムで F12 を開き、対象の入力/ボタンを Elements で選択 → Copy outerHTML。</p>
-      <p><b>2.</b> 下の JSON に <code>sourceRow</code>（手順の Excel 行）、<code>action</code>（click / input / assert / wait）、<code>selector</code>、必要なら <code>value</code> / <code>expected</code> を追加。</p>
-      <p><b>3.</b> 「Console 片段を生成」を押し、被テストシステムの Console に貼り付けて実行。まずは 1 ステップずつ。</p>
-      <p class="faint">将来は PowerShell + CDP（--remote-debugging-port）で一括実行・スクリーンショット取得に拡張できます。CDP が使えない環境でも Console 片段は動作します。</p>
-      <details><summary class="small muted">PowerShell で画面スクリーンショットを撮る</summary><pre style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:8px;padding:9px;font-size:10.5px;margin-top:6px">Add-Type -AssemblyName System.Windows.Forms,System.Drawing
-$b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-$bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
-$g = [System.Drawing.Graphics]::FromImage($bmp)
-$g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
-$bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
-    </div></details><div class="grid-2">
-      <div class="panel"><div class="panel-head"><h3>ロケーター / 自動化</h3></div><div class="panel-body">
-        <p class="small muted">形式: <code>[{"sourceRow":14,"action":"input","selector":"input[name='policyNo']","value":"AZ11001"}]</code></p>
-        <textarea id="autoJson" style="width:100%;min-height:230px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px">${esc(JSON.stringify(auto, null, 2))}</textarea>
-        <div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap"><button class="btn primary" data-action="save-auto" data-case="${esc(c.id)}">保存</button><button class="btn" data-action="gen-auto" data-case="${esc(c.id)}">Console 片段を生成</button><button class="btn" data-action="seed-auto" data-case="${esc(c.id)}">操作行の雛形を生成</button><button class="btn" data-action="case-json" data-case="${esc(c.id)}">ケースJSON</button></div>
-        <pre id="autoOut" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;max-height:260px;overflow:auto;margin-top:9px">${esc(snippetFor(c.id))}</pre>
-      </div></div>
-      <div class="panel"><div class="panel-head"><h3>ステップ対応表</h3></div><div class="panel-body">
-        <div class="table-wrap"><table class="data"><thead><tr><th>行</th><th>操作</th><th>確認</th></tr></thead><tbody>${(c.workflow?.rows || []).filter((r) => r.operationType || r.verificationType).slice(0, 80).map((r) => `<tr><td class="mono">${r.sourceRow}</td><td>${esc(r.operationType || '')} ${esc(r.operationItem || '')}</td><td>${esc(r.verificationType || '')} ${esc(r.verificationItem || '')}</td></tr>`).join('')}</tbody></table></div>
-      </div></div>
+    const legacy = `<details class="panel" style="margin-top:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px" class="muted">開発者向けツール（ロケーター編集・旧）</summary><div class="panel-body">
+      <p class="small muted">形式: <code>[{"sourceRow":14,"action":"input","selector":"input[name='policyNo']","value":"AZ11001"}]</code></p>
+      <textarea id="autoJson" style="width:100%;min-height:170px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px">${esc(JSON.stringify(auto, null, 2))}</textarea>
+      <div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap"><button class="btn primary" data-action="save-auto" data-case="${esc(c.id)}">保存</button><button class="btn" data-action="gen-auto" data-case="${esc(c.id)}">Console 片段を生成</button><button class="btn" data-action="seed-auto" data-case="${esc(c.id)}">操作行の雛形を生成</button><button class="btn" data-action="case-json" data-case="${esc(c.id)}">ケースJSON</button></div>
+      <pre id="autoOut" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:9px;padding:10px;font-size:11px;max-height:240px;overflow:auto;margin-top:9px">${esc(snippetFor(c.id))}</pre>
+      <details style="margin-top:8px"><summary class="small muted" style="cursor:pointer">F12 の outerHTML から selector 候補を生成</summary>
+        <textarea id="outerHtmlInput" placeholder="F12 → Elements → Copy outerHTML を貼り付け" style="width:100%;min-height:90px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px"></textarea>
+        <div style="display:flex;gap:7px;margin-top:8px"><button class="btn" data-action="suggest-selectors" data-case="${esc(c.id)}">候補を生成</button></div>
+        <div id="selectorOut" class="small muted" style="margin-top:8px">まだ候補はありません。</div>
+      </details></div></details>`;
+
+    if (!a) {
+      return `<div class="panel"><div class="panel-body" style="text-align:center;padding:26px">
+        <p style="margin:0 0 4px;font-size:15px;font-weight:700">⬜ まだ自動実行できません</p>
+        <p class="muted small" style="margin:0">このケースの積木はまだ実装待ちです。</p></div></div>` + runnerDefHtml(c) + legacy;
+    }
+
+    const details = a.blockDetails || [];
+    const c3 = a.coverage3 || {};
+    const done = (c3.verified || 0) + (c3.coded || 0);
+    const total = c3.total || a.eventCount || 0;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const canRun = a.status3 === 'verified' || a.status3 === 'coded';
+
+    const heroTxt = a.status3 === 'verified' ? '✅ 自動で最後まで実行できます'
+      : a.status3 === 'coded' ? '🟧 自動実行できます（模擬環境で確認済み）'
+      : '⬜ まだ自動実行できません';
+    const heroSub = a.status3 === 'verified' ? '実機で全ブロック通過済み'
+      : a.status3 === 'coded' ? '会社の実機での確認はこれから'
+      : '積木の実装待ち';
+
+    const rowMap = new Map();
+    (c.workflow?.rows || []).forEach((r) => rowMap.set(r.sourceRow, r));
+    const blockRows = details.map((d, i) => {
+      const rows = [];
+      for (let rn = d.fromRow; rn <= d.toRow; rn++) { const r = rowMap.get(rn); if (r) rows.push(r); }
+      const ops = rows.filter((r) => r.operationItem).map((r) => String(r.operationItem).replace(/「|」/g, '').slice(0, 16));
+      const vfs = rows.filter((r) => r.verificationItem).map((r) => String(r.verificationItem).slice(0, 12));
+      const desc = ops.length ? ops.slice(0, 3).join(' → ') : (vfs.length ? '確認: ' + vfs.slice(0, 2).join('・') : '—');
+      const badge = d.status3 === 'verified' ? '<span class="badge green">検証済</span>' : d.status3 === 'coded' ? '<span class="badge amber">実装済</span>' : '<span class="badge gray">未着手</span>';
+      return `<div class="auto-step ${d.status3 || 'planned'}">
+        <div class="no">${i + 1}</div>
+        <div class="desc">${esc(desc)}<span class="rows">行${d.fromRow}–${d.toRow}　${esc(d.block.replace(/^BLK-/, ''))}</span></div>
+        <div>${badge}</div>
+      </div>`;
+    }).join('');
+
+    const r = a.runner;
+    const cmd = r ? runnerCommand(c.id, r) : `run.cmd ${c.id}`;
+    const ranInfo = [];
+    if (a.actualDone) ranInfo.push(`実機通過 ${a.actualDone} ブロック`);
+    if (a.mockDone) ranInfo.push(`模擬環境通過 ${a.mockDone} ブロック`);
+
+    return `
+    <div class="panel auto-hero">
+      <div class="auto-hero-main">
+        <div class="auto-hero-title">${heroTxt}</div>
+        <div class="small muted">${heroSub}${ranInfo.length ? ' ・ ' + ranInfo.join(' ・ ') : ''}</div>
+      </div>
+      <div class="auto-hero-meter">${s3Strip(a)}</div>
     </div>
-    <details class="panel" style="margin-top:12px"><summary style="cursor:pointer;padding:10px 13px;font-size:12px">F12 の outerHTML から selector 候補を生成</summary><div class="panel-body">
-      <textarea id="outerHtmlInput" placeholder="F12 → Elements → Copy outerHTML を貼り付け" style="width:100%;min-height:100px;border:1px solid var(--line);border-radius:9px;padding:9px;font-family:var(--mono);font-size:11px"></textarea>
-      <div style="display:flex;gap:7px;margin-top:8px"><button class="btn" data-action="suggest-selectors" data-case="${esc(c.id)}">候補を生成</button></div>
-      <div id="selectorOut" class="small muted" style="margin-top:8px">まだ候補はありません。</div>
-    </div></details>`;
+    ${canRun ? `
+    <div class="panel auto-runbox">
+      <div class="auto-runbox-head">🚀 3ステップで実行</div>
+      <div class="auto-run-steps">
+        <div class="auto-run-step"><span class="k">1</span><div>下の「コマンドをコピー」ボタンを押す</div></div>
+        <div class="auto-run-step"><span class="k">2</span><div>会社のPCの <code>ms-ad-runner</code> フォルダーで貼り付けて実行（ログイン画面が出たら手動でログイン）</div></div>
+        <div class="auto-run-step"><span class="k">3</span><div>終わると <code>logs${esc(c.id)}\</code> に証跡（スクリーンショット）が自動保存される</div></div>
+      </div>
+      <pre class="mono auto-cmd">${esc(cmd)}</pre>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
+        <button class="btn primary" data-action="copy-command" data-case="${esc(c.id)}">コマンドをコピー</button>
+        <span class="small muted">目で確かめたい時（自宅PC）: <code>node demo.mjs --case ${esc(c.id)}</code></span>
+      </div>
+    </div>` : `
+    <div class="panel" style="margin-top:12px"><div class="panel-body small muted" style="padding:12px 14px">このケースは積木の実装待ちです。実装されるとここに実行コマンドが表示されます。</div></div>`}
+    <div class="panel" style="margin-top:12px">
+      <div class="panel-head"><h3>🧩 この本の自動化の流れ（${details.length} ブロック）</h3>
+        <span class="hint">🟩 検証済＝実機通過 ・ 🟧 実装済＝模擬環境通過 ・ ⬜ 未着手</span></div>
+      <div class="auto-steps">${blockRows}</div>
+      ${ranInfo.length ? `<div class="panel-body small" style="border-top:1px solid var(--line-2)">📸 証跡: <a href="../../logs/${esc(c.id)}/" target="_blank">logs${esc(c.id)}\ を開く</a>（ローカル環境のみ）</div>` : ''}
+    </div>` + runnerDefHtml(c) + legacy;
   }
 
   function memoHtml(c) {
@@ -1308,8 +1503,246 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     return procedureHtml(c);
   }
 
+  function summaryHtml(id) {
+    const tid = SUMMARY.caseToTpl?.[id];
+    if (!tid) return '';
+    const t = SUMMARY.tpl?.[tid];
+    if (!t) return '';
+    const same = t.cases.length > 1 ? `${t.cases.length} 本同模板` : '単一';
+    return `<details class="panel" style="margin-bottom:10px;border-left:3px solid var(--accent,#0e7490)">
+      <summary style="cursor:pointer;padding:10px 13px;font-size:12.5px;font-weight:700">要約 — ${esc(t.biz.split('（')[0])} <span class="badge outline">${same}</span></summary>
+      <div class="panel-body small" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <p style="margin:0 0 4px"><b>業務</b></p><p class="small" style="margin:0">${esc(t.biz)}</p>
+          <p style="margin:8px 0 4px"><b>画面流</b></p><p class="small muted" style="margin:0">${esc(t.flow)}</p>
+          <p style="margin:8px 0 4px"><b>自動化</b></p><p class="small muted" style="margin:0">${esc(t.auto)}</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px"><b>操作</b></p>
+          <div class="small" style="white-space:pre-wrap;max-height:180px;overflow:auto">${esc(t.ops)}</div>
+        </div>
+      </div>
+      ${t.diff ? `<details style="margin-top:8px"><summary class="small muted" style="cursor:pointer">同模板差異（${t.cases.length} 本）</summary><div class="small" style="white-space:pre-wrap">${esc(t.diff)}</div></details>` : ''}
+    </details>`;
+  }
+
   function caseContentHtml(meta, c) {
-    return caseHeader(meta) + resultBar(meta.id) + caseTabsHtml(c) + caseBodyHtml(c);
+    return caseHeader(meta) + resultBar(meta.id) + summaryHtml(meta.id) + caseTabsHtml(c) + caseBodyHtml(c);
+  }
+
+
+  /* ------------------------------------------------------------------ */
+  /* review mode: one procedure row, one screenshot, expected values     */
+  /* ------------------------------------------------------------------ */
+
+  function reviewEvidence(cid, row) {
+    const ev = (window.MSAD_EVIDENCE || {})[cid] || {};
+    return ev.rows?.[String(row.sourceRow)] || null;
+  }
+
+  function reviewStatus(cid, row) {
+    if ((row.evidenceType || '') === '画面HC') {
+      return reviewEvidence(cid, row)?.status || 'missing';
+    }
+    return 'visual';
+  }
+
+  function reviewUnits(c, filter) {
+    const rows = (c.workflow?.rows || []).filter((r) => r.operationItem || r.verificationItem || r.evidenceType);
+    const units = [];
+    let ops = [];
+    for (const r of rows) {
+      if (r.operationItem) ops.push(r);
+      if (r.verificationItem || r.evidenceType) {
+        units.push({ row: r, ops: ops.slice() });
+        ops = [];
+      }
+    }
+    return units.filter((u) => {
+      const st = reviewStatus(c.id, u.row);
+      if (filter === 'hc') return (u.row.evidenceType || '') === '画面HC';
+      if (filter === 'manual') return st === 'manual';
+      if (filter === 'missing') return st === 'missing';
+      return true;
+    });
+  }
+
+  function reviewStatusLabel(st) {
+    return ({ exact: '自動', blockEnd: '近似', manual: '人工', missing: '未取得', visual: '目視' }[st] || '—');
+  }
+
+  function reviewStatusClass(st) {
+    return ({ exact: 'green', blockEnd: 'amber', manual: 'violet', missing: 'red', visual: 'gray' }[st] || 'gray');
+  }
+
+  async function renderReview(id) {
+    const meta = caseById.get(id);
+    if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
+    state.view = 'review';
+    state.selectedCase = id;
+    updateTopbar();
+    $('#main').innerHTML = caseHeader(meta) + '<div class="loading">検査データを読み込んでいます…</div>';
+    try {
+      const data = await ensureCaseData(meta.categoryId);
+      if (state.selectedCase !== id || state.view !== 'review') return;
+      const c = data[id];
+      if (!c) { $('#main').innerHTML = caseHeader(meta) + empty('手順書データが見つかりません。'); return; }
+      state.reviewData = c;
+      state.reviewMeta = meta;
+      const units = reviewUnits(c, state.reviewFilter || 'all');
+      state.reviewRows = units.map((u) => u.row.sourceRow);
+      if (!units.some((u) => Number(u.row.sourceRow) === Number(state.reviewRow))) {
+        const firstHc = units.find((u) => (u.row.evidenceType || '') === '画面HC');
+        state.reviewRow = (firstHc || units[0])?.row.sourceRow ?? null;
+      }
+      $('#main').innerHTML = reviewHtml(meta, c, units);
+    } catch (err) {
+      console.error(err);
+      $('#main').innerHTML = caseHeader(meta) + empty(`読み込みに失敗しました: ${err.message}`);
+    }
+  }
+
+  function reviewHtml(meta, c, units) {
+    const p = pget(c.id);
+    const allUnits = reviewUnits(c, 'all');
+    const hc = allUnits.map((u) => u.row).filter((r) => (r.evidenceType || '') === '画面HC');
+    const confirmed = hc.filter((r) => p.review?.[r.sourceRow]?.result).length;
+    const curUnit = units.find((u) => Number(u.row.sourceRow) === Number(state.reviewRow)) || units[0];
+    const cur = curUnit?.row || null;
+    const ops = curUnit?.ops || [];
+    const st = cur ? reviewStatus(c.id, cur) : 'missing';
+    const ev = cur ? reviewEvidence(c.id, cur) : null;
+    const facts = appendixFacts(c);
+    const pm = paramsMeta(c.id);
+    const pv = pm.values || {};
+    const auditItems = ((window.MSAD_PARAM_AUDIT || {})[c.id] || {}).items || [];
+    const importantParams = ['policyNo', 'detailNo', 'largeItemValue', 'insuranceLabel', 'inputType', 'sectionCode', 'agentCode', 'subAgentCode', 'fieldAgentId', 'inquiryId', 'itemCode'];
+    const paramRows = importantParams.filter((k) => pv[k] !== undefined && pv[k] !== '');
+    const normVal = (v) => String(v ?? '').replace(/\s+/g, '').replace(/：/g, ':').replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+    const codeLabel = {
+      largeItemValue: { B: '自賠責', Y: '貨物', Z: '種目共通', '0': 'その他', '5': '自動車' },
+      inputType: { '2': '現地', '5': '機械', '7': '機械(他)', '9': 'その他' },
+    };
+    const paramChecks = [
+      ['証券番号', 'policyNo'],
+      ['明細番号', 'detailNo'],
+      ['種目', 'largeItemValue'],
+      ['保険種類', 'insuranceLabel'],
+      ['入力区分', 'inputType'],
+    ].map(([label, key]) => {
+      if (facts[label] === undefined || pv[key] === undefined) return null;
+      const expected = facts[label];
+      const actual = pv[key];
+      const actualLabel = codeLabel[key]?.[actual] || actual;
+      const ok = normVal(expected) === normVal(actualLabel) || normVal(expected) === normVal(actual);
+      return { label, key, expected, actual, actualLabel, ok };
+    }).filter(Boolean);
+    const result = cur ? (p.review?.[cur.sourceRow]?.result || '') : '';
+    const memo = cur ? (p.review?.[cur.sourceRow]?.memo || '') : '';
+    const imgSrc = ev?.file ? `../logs/${encodeURIComponent(c.id)}/${encodeURIComponent(ev.file)}` : '';
+    const fbtn = (k, label) => `<button class="btn ${((state.reviewFilter || 'all') === k) ? 'primary' : ''}" data-review-filter="${k}">${label}</button>`;
+    const rowBtn = (u) => {
+      const r = u.row;
+      const s = reviewStatus(c.id, r);
+      const active = cur && Number(r.sourceRow) === Number(cur.sourceRow);
+      const vf = r.verificationType ? `${r.verificationType} ${r.verificationItem || ''}` : '';
+      const res = p.review?.[r.sourceRow]?.result || '';
+      return `<div class="rev-unit">
+        <button class="rev-row ${active ? 'active' : ''}" data-review-row="${r.sourceRow}">
+          <span class="rev-src">${r.sourceRow}</span>
+          <span class="rev-mid"><b>${esc(r.functionName || '')}</b><span>${esc(vf || '—')}</span></span>
+          ${res ? `<span class="rev-result ${res}">${res}</span>` : ''}
+          <span class="badge ${reviewStatusClass(s)}">${reviewStatusLabel(s)}</span>
+        </button>
+        ${u.ops.length ? `<div class="rev-ops-list">${u.ops.map((o) => `<div class="rev-op"><span>${o.sourceRow}</span>${esc(o.operationType || '')} ${esc(o.operationItem || '')}</div>`).join('')}</div>` : ''}
+      </div>`;
+    };
+    const stage = !cur ? empty('対象行がありません') : (() => {
+      if (st === 'manual') {
+        return `<div class="rev-state manual"><b>人工確認</b><p>${esc(cur.verificationContent || cur.operationContent || '真機で確認してください。')}</p><span class="badge violet">manual</span></div>`;
+      }
+      if (st === 'missing') {
+        return `<div class="rev-state missing"><b>画面HC 未取得</b><p>この行のスクリーンショットがありません。</p><span class="badge red">missing</span></div>`;
+      }
+      if (!imgSrc) {
+        return `<div class="rev-state visual"><b>目視確認</b><p>この行は画面HC対象外です。</p><span class="badge gray">目視</span></div>`;
+      }
+      return `<div class="rev-image-wrap"><img class="rev-image" loading="lazy" src="${esc(imgSrc)}" data-lightbox="${esc(imgSrc)}" alt="Excel ${cur.sourceRow}"></div>`;
+    })();
+    const flow = ops.length ? `<div class="rev-flow"><div class="rev-flow-title">この画面に至る操作</div>${ops.map((o) => `<div class="rev-flow-row"><span class="mono">行${o.sourceRow}</span><span class="badge outline">${esc(o.operationType || '操作')}</span><span>${esc(o.operationItem || '')}</span></div>`).join('')}</div>` : '';
+    const side = !cur ? '' : `<div class="rev-side-block">
+      <div class="rev-side-head"><span class="badge ${reviewStatusClass(st)}">${reviewStatusLabel(st)}</span><span class="mono">行${cur.sourceRow}</span></div>
+      <h4>${esc(cur.verificationItem || cur.functionName || '')}</h4>
+      ${cur.verificationType ? `<div class="small"><span class="badge outline">${esc(cur.verificationType)}</span> ${esc(cur.verificationContent || '')}</div>` : ''}
+      ${cur.operationItem ? `<div class="small muted" style="margin-top:6px">操作：${esc(cur.operationType || '')} ${esc(cur.operationItem)}</div>` : ''}
+      ${cur.operationContent ? `<div class="small muted">${nl2br(cur.operationContent)}</div>` : ''}
+    </div>
+    <div class="rev-side-block">
+      <h4>別紙・期待値</h4>
+      ${Object.keys(facts).length ? Object.entries(facts).map(([k, v]) => `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('') : '<div class="muted small">別紙データなし</div>'}
+    </div>
+    <div class="rev-side-block">
+      <h4>別紙との照合 ${auditItems.length ? `<span class="hint">${auditItems.filter((x) => x.status === 'match' || x.status === 'rule').length}/${auditItems.length}</span>` : ''}</h4>
+      ${auditItems.length ? auditItems.map((x) => {
+        const st = x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : x.status === 'multiValue' ? ['複数値', 'amber'] : ['不一致', 'red'];
+        return `<div class="rev-fact"><span>${esc(x.label)}</span><b>${esc(x.expected)} <span class="muted">→</span> ${esc(x.actualLabel ?? '未設定')}</b><span class="badge ${st[1]}">${st[0]}</span></div>`;
+      }).join('') : '<div class="muted small">この本の別紙入力項目は未抽出です</div>'}
+      ${auditItems.some((x) => x.status === 'mismatch' || x.status === 'missingParam') ? '<div class="small" style="color:#b91c1c;margin-top:6px">別紙値と実行 params が一致しない項目があります。</div>' : ''}
+      ${auditItems.some((x) => x.status === 'multiValue') ? '<div class="small" style="color:#b45309;margin-top:6px">手順内で値が変わる項目があります。単一 params では全ステップを表現できません。</div>' : ''}
+      <div class="small muted" style="margin-top:6px">別紙の値を params に写し、runner がフォームへ入力します。</div>
+    </div>
+    <div class="rev-side-block">
+      <h4>パラメータ <span class="badge ${pm.level === 'auto' ? 'amber' : 'green'}">${pm.level === 'auto' ? '既定値' : '固有'}</span></h4>
+      <div class="rev-fact"><span>source</span><b><a href="../automation/cdp/params/${esc(pm.source)}" target="_blank" rel="noopener">${esc(pm.source)}</a></b></div>
+      ${pm.level === 'auto' ? '<div class="small" style="color:#b45309;margin:4px 0">流程用の既定値。真機前に別紙で置換してください。</div>' : ''}
+      ${paramRows.length ? paramRows.map((k) => {
+        const map = k === 'inputType' ? { '2': '現地', '5': '機械', '7': '機械(他)', '9': 'その他' } : k === 'largeItemValue' ? { B: '自賠責', Y: '貨物', Z: '種目共通', '0': 'その他', '5': '自動車' } : null;
+        const shown = map && map[pv[k]] ? `${pv[k]}（${map[pv[k]]}）` : pv[k];
+        return `<div class="rev-fact"><span>${esc(k)}</span><b>${esc(shown)}</b></div>`;
+      }).join('') : '<div class="muted small">主要パラメータなし</div>'}
+      <details class="rev-params-all"><summary>全パラメータ（${Object.keys(pv).length}）</summary><pre>${esc(Object.entries(pv).map(([k, v]) => `${k}: ${v}`).join('\n'))}</pre></details>
+    </div>
+    <div class="rev-side-block">
+      <h4>判定</h4>
+      <div class="rev-actions">
+        <button class="btn ${result === 'OK' ? 'primary' : ''}" data-review-result="OK" data-review-row="${cur.sourceRow}">OK</button>
+        <button class="btn ${result === 'NG' ? 'danger' : ''}" data-review-result="NG" data-review-row="${cur.sourceRow}">NG</button>
+        <button class="btn ${result === 'HOLD' ? 'warn' : ''}" data-review-result="HOLD" data-review-row="${cur.sourceRow}">保留</button>
+      </div>
+      <textarea class="rev-memo" data-review-memo="${cur.sourceRow}" data-case-id="${esc(c.id)}" placeholder="メモ（任意）">${esc(memo)}</textarea>
+    </div>`;
+    const idx = units.findIndex((u) => Number(u.row.sourceRow) === Number(cur?.sourceRow));
+    const prev = idx > 0 ? units[idx - 1].row.sourceRow : null;
+    const next = idx >= 0 && idx < units.length - 1 ? units[idx + 1].row.sourceRow : null;
+    return `<div class="review-shell">
+      <div class="review-top">
+        <div><span class="mono">${esc(c.id)}</span> <b>${esc(meta.functionName || '')}</b> ${paramsBadge(c.id)} <span class="hint">検査 ${confirmed} / ${hc.length}</span></div>
+        <div class="chips">${fbtn('all', 'すべて')}${fbtn('hc', '画面HC')}${fbtn('manual', '人工')}${fbtn('missing', '未取得')}</div>
+        <div class="chips"><button class="btn" data-action="review-prev" ${prev == null ? 'disabled' : ''}>← 前へ</button><button class="btn" data-action="review-next" ${next == null ? 'disabled' : ''}>次へ →</button><button class="btn" data-action="review-close">終了</button></div>
+      </div>
+      <div class="review-body">
+        <aside class="review-list">${units.map(rowBtn).join('') || '<div class="muted small">該当なし</div>'}</aside>
+        <main class="review-stage">${flow}${stage}<div class="rev-caption">行${cur ? cur.sourceRow : '—'} / ${esc(cur?.verificationItem || cur?.functionName || '')} ${imgSrc ? `<a href="${esc(imgSrc)}" target="_blank" rel="noopener">原図</a>` : ''}</div></main>
+        <aside class="review-side">${side}</aside>
+      </div>
+    </div>`;
+  }
+
+  function saveReviewResult(cid, row, result) {
+    const p = pget(cid);
+    const review = { ...(p.review || {}) };
+    review[row] = { ...(review[row] || {}), result, at: new Date().toISOString() };
+    saveProgress(cid, { review });
+  }
+
+  function reviewGo(delta) {
+    const rows = state.reviewRows || [];
+    if (!rows.length) return;
+    const idx = rows.findIndex((r) => Number(r) === Number(state.reviewRow));
+    const next = rows[Math.max(0, Math.min(rows.length - 1, idx + delta))];
+    if (next == null) return;
+    state.reviewRow = next;
+    renderReview(state.selectedCase);
   }
 
   async function renderCase(id) {
@@ -1318,7 +1751,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     state.view = 'case';
     state.selectedCase = id;
     updateTopbar();
-    $('#main').innerHTML = caseHeader(meta) + resultBar(id) + '<div class="loading">手順書を読み込んでいます…</div>';
+    $('#main').innerHTML = caseHeader(meta) + resultBar(id) + summaryHtml(id) + '<div class="loading">手順書を読み込んでいます…</div>';
     try {
       const data = await ensureCaseData(meta.categoryId);
       if (state.selectedCase !== id) return;
@@ -1338,7 +1771,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     const meta = caseById.get(id);
     if (!meta) return;
     const dc = $('#drawerContent');
-    dc.innerHTML = caseHeader(meta) + resultBar(id) + '<div class="loading">手順書を読み込んでいます…</div>';
+    dc.innerHTML = caseHeader(meta) + resultBar(id) + summaryHtml(id) + '<div class="loading">手順書を読み込んでいます…</div>';
     try {
       const data = await ensureCaseData(meta.categoryId);
       if (state.drawerCase !== id) return;
@@ -1413,74 +1846,354 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
   /* automation coverage                                                 */
   /* ------------------------------------------------------------------ */
 
-  function renderAutomation() {
-    const sum = AUTO.summary || {};
-    const cases = Object.entries(AUTO.cases || {}).sort((a, b) => a[0].localeCompare(b[0]));
-    const runners = cases.filter(([, a]) => a.runner);
-    const full = (sum.fullCaseIds || []).map((id) => [id, AUTO.cases?.[id]]).filter(([, a]) => a);
-    const blocks = [...(AUTO.blocks || [])].sort((a, b) => (b.usedByCases || 0) - (a.usedByCases || 0));
-    const gaps = sum.topGaps || [];
-    const pct = (sum.eventCoverage || 0) * 100;
-    const runnerRows = runners.map(([id, a]) => `<tr>
-      <td><span class="mono">${esc(id)}</span><div class="small muted">${esc(caseById.get(id)?.functionName || '')}</div></td>
-      <td>${runnerStatusBadge(a.runner.status)}</td>
-      <td><span class="mono">${esc(a.runner.script)}</span></td>
-      <td class="small">${esc(a.runner.note || '')}</td>
-      <td><button class="btn" data-action="copy-command" data-case="${esc(id)}">コピー</button></td>
-    </tr>`).join('');
-    const nextText = (a) => a.nextGap ? (a.nextGap.kind === 'block' ? a.nextGap.block : gapLabel(a.nextGap.event)) : '—';
-    const fullRows = full.map(([id, a]) => `<tr>
-      <td><span class="mono">${esc(id)}</span></td>
-      <td>${(a.blocks || []).map((b) => `<span class="badge outline">${esc(b)}</span>`).join(' ')}</td>
-      <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
-      <td class="num">${a.eventCount}</td>
-    </tr>`).join('');
-    const blockRows = blocks.map((b) => `<tr>
-      <td><span class="mono">${esc(b.id)}</span></td>
-      <td>${esc(b.fromScreen)} → ${esc(b.toScreen)}</td>
-      <td class="num">${fmt(b.usedByCases)}</td>
-      <td>${b.status === 'live-verified' ? '<span class="badge green">live</span>' : b.status === 'mock-verified' ? '<span class="badge amber">mock</span>' : b.status === 'draft-auto' ? '<span class="badge violet">auto</span>' : '<span class="badge gray">source</span>'}</td>
-      <td>${executionBadge(b.executionStatus)}</td>
-      <td class="small">${esc((b.params || []).join(', '))}</td>
-    </tr>`).join('');
-    const gapRows = gaps.map((g) => `<tr><td class="num">${fmt(g.count)}</td><td><code>${esc(gapLabel(g.event))}</code></td></tr>`).join('');
-    const allRows = cases.map(([id, a]) => `<tr>
-      <td><span class="mono">${esc(id)}</span></td>
-      <td>${autoStatusBadge(a.status)}</td>
-      <td class="num">${a.actualDone || 0}/${a.blocks.length}</td>
-      <td><code>${esc(nextText(a))}</code></td>
-      <td>${a.runner ? runnerStatusBadge(a.runner.status) : '<span class="badge gray">—</span>'}</td>
-    </tr>`).join('');
+  function scheduleOf(id) { return SCHEDULE.cases?.[id] || null; }
+
+  function renderSchedule() {
+    const entries = Object.entries(SCHEDULE.cases || {}).map(([id, s]) => {
+      const meta = caseById.get(id);
+      const p = pget(id);
+      const a = autoCase(id);
+      const done = !!(p.execution && p.execution !== '未実施');
+      return { id, ...s, title: meta?.functionName || s.fn, done, s3: a?.status3 || 'planned', cov: a?.coverage3 || null };
+    }).sort((x, y) => (x.start < y.start ? -1 : x.start > y.start ? 1 : x.id < y.id ? -1 : 1));
+    // group by start date
+    const groups = [];
+    for (const e of entries) {
+      const last = groups[groups.length - 1];
+      if (last && last.start === e.start) last.items.push(e);
+      else groups.push({ start: e.start, end: e.end, items: [e] });
+    }
+    const total = entries.length;
+    const doneCount = entries.filter((e) => e.done).length;
+    const today = new Date().toISOString().slice(0, 10);
+    const weekMs = 7 * 86400000;
+    const rows = groups.map((g) => {
+      const gDone = g.items.filter((i) => i.done).length;
+      const isNow = today >= g.start && today <= new Date(new Date(g.end).getTime() + weekMs).toISOString().slice(0, 10);
+      const items = g.items.map((i) => {
+        const strip = i.cov ? s3Strip({ coverage3: i.cov, blockDetails: null }, { compact: true, showPct: false }) : '';
+        return `<tr class="case-row-click" data-case="${esc(i.id)}">
+          <td><span class="mono">${esc(i.id)}</span></td>
+          <td>${esc(i.title || '')}</td>
+          <td>${i.id.includes('AD') || i.company === 'AD' ? '<span class="badge gray">AD</span>' : '<span class="badge blue">MS</span>'}</td>
+          <td>${i.done ? '<span class="badge green">実施済</span>' : '<span class="badge outline">未実施</span>'}</td>
+          <td style="min-width:110px">${strip || '<span class="faint small">—</span>'}</td>
+          <td class="small muted">${esc(i.endLabel)}</td>
+        </tr>`;
+      }).join('');
+      return `<div class="panel sched-group ${isNow ? 'now' : ''}" style="margin-bottom:12px">
+        <div class="panel-head" style="cursor:pointer" data-schedgroup="${esc(g.start)}">
+          <h3><span class="mono">${esc(g.items[0].startLabel)}</span> 〜 <span class="mono">${esc(g.endLabel)}</span> <span class="badge outline">${g.items.length} 本</span>${isNow ? " <span class=\"badge green\">今周</span>" : ""}</h3>
+          <span class="hint">${gDone ? `${gDone}/${g.items.length} 実施済` : '未開始'}</span>
+        </div>
+        <div class="table-wrap" style="max-height:44vh"><table class="data"><thead><tr><th>ケース</th><th>機能</th><th>会社</th><th>実施</th><th>自動化進捗</th><th>終了予定</th></tr></thead><tbody>${items}</tbody></table></div>
+      </div>`;
+    }).join('');
     $('#main').innerHTML = `
-      ${pageHead('自動化', 'block composition / runner readiness（静的な一致結果。実行証明ではありません）')}
-      <div class="kpis">
-        ${kpi('対象ケース', sum.caseCount || 0, '自分のタスク', 'accent')}
-        ${kpi('Block 一致', sum.fullCount || 0, `静的照合 / curated ${sum.curatedFullCount || 0}（実行証明ではない）`, 'green')}
-        ${kpi('ギャップあり', sum.partialCount || 0, 'block 未一致', 'amber')}
-        ${kpi('Event カバー', `${pct.toFixed(1)}%`, `${fmt(sum.coveredEvents)} / ${fmt(sum.eventCount)}`, 'blue')}
-        ${kpi('Block', sum.blockCount || 0, `${sum.curatedBlockCount || 0} curated + ${sum.autoBlockCount || 0} auto`, 'violet')}
-        ${kpi('実績あり', (sum.actualFullCount || 0) + (sum.actualPartialCount || 0), 'live-pass を含むケース', 'green')}
+      ${pageHead('日程', '担当 450 本の実施予定（開始日順・同日グループ）。必ずしも日付順にやる必要はなく、前後の本とつながって進める想定')}
+      <div class="kpis" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+        ${kpi('総本数', total, '自分の担当', 'accent')}
+        ${kpi('実施済', doneCount, '記録より', 'green')}
+        ${kpi('未実施', total - doneCount, '', 'blue')}
+        ${kpi('予定枠', groups.length, '開始日グループ', 'violet')}
+        ${kpi('最初の開始', entries[0]?.startLabel || '—', entries[0]?.id || '', 'amber')}
       </div>
-      <section class="panel mt">
-        <div class="panel-head"><h3>Runner 可能なケース</h3><span class="hint">コマンドをコピーして SUT 端末で実行</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>状態</th><th>Script</th><th>Note</th><th></th></tr></thead><tbody>${runnerRows || '<tr><td colspan="5" class="muted">runner はまだありません</td></tr>'}</tbody></table></div>
-      </section>
-      <section class="panel mt">
-        <div class="panel-head"><h3>Block 完全一致（静的）</h3><span class="hint">${full.length} ケース / auto-inclusive</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>ケース</th><th>Block composition</th><th class="num">Live / blocks</th><th class="num">Events</th></tr></thead><tbody>${fullRows || '<tr><td colspan="4" class="muted">なし</td></tr>'}</tbody></table></div>
-      </section>
-      <section class="panel mt">
-        <div class="panel-head"><h3>Block registry</h3><span class="hint">${blocks.length} blocks / 使用ケース数</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th>Block</th><th>From → To</th><th class="num">Cases</th><th>Selector</th><th>Execution</th><th>Params</th></tr></thead><tbody>${blockRows}</tbody></table></div>
-      </section>
-      <section class="panel mt">
-        <div class="panel-head"><h3>未カバー event</h3><span class="hint">次の block 候補</span></div>
-        <div class="table-wrap"><table class="data"><thead><tr><th class="num">Cases</th><th>Event</th></tr></thead><tbody>${gapRows || '<tr><td colspan="2" class="muted">なし</td></tr>'}</tbody></table></div>
-      </section>
-      <details class="panel mt">
-        <summary style="cursor:pointer;padding:11px 14px;font-size:13px;font-weight:700">全ケースの composition（${cases.length}）</summary>
-        <div class="table-wrap" style="max-height:60vh"><table class="data"><thead><tr><th>ケース</th><th>Static</th><th class="num">Live / blocks</th><th>Next</th><th>Runner</th></tr></thead><tbody>${allRows}</tbody></table></div>
+      <div class="s3-legend" style="margin:2px 0 10px"><span class="small muted">グループヘッダをクリックで開閉。行クリックでケースを開く。</span></div>
+      ${rows}`;
+    // toggle groups
+    $$('#main [data-schedgroup]').forEach((h) => h.addEventListener('click', () => {
+      const wrap = h.closest('.sched-group');
+      const body = wrap.querySelector('.table-wrap');
+      body.style.display = body.style.display === 'none' ? '' : 'none';
+    }));
+  }
+
+
+  /* ------------------------------------------------------------------ */
+  /* evidence / manual inbox                                             */
+  /* ------------------------------------------------------------------ */
+
+  function renderManual() {
+    const all = Object.keys(EVIDENCE).sort();
+    const q = (state.manualQuery || '').toLowerCase();
+    const filter = state.manualFilter || 'all';
+    const rows = all.map((id) => {
+      const s = evsum(id) || {};
+      const ms = evcase(id).manualSteps || [];
+      const op = ms.filter((m) => m.phase === '操作').length;
+      const chk = ms.filter((m) => m.phase === '確認').length;
+      const audit = ((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || [];
+      const bad = audit.filter((x) => x.status === 'mismatch' || x.status === 'missingParam').length;
+      const multi = audit.filter((x) => x.status === 'multiValue').length;
+      return { id, s, ms, op, chk, status: evcase(id).status, pm: paramsMeta(id), audit, bad, multi };
+    }).filter((r) => {
+      if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
+      if (filter === 'manual') return (r.s.manual || 0) > 0;
+      if (filter === 'manualOp') return r.op > 0;
+      if (filter === 'missing') return (r.s.missing || 0) > 0;
+      if (filter === 'auto') return r.ms.length === 0 && (r.s.manual || 0) === 0;
+      if (filter === 'paramsAuto') return r.pm.level === 'auto';
+      if (filter === 'paramNg') return r.bad > 0;
+      return true;
+    });
+    const totalManual = all.reduce((n, id) => n + (evsum(id).manual || 0), 0);
+    const totalMissing = all.reduce((n, id) => n + (evsum(id).missing || 0), 0);
+    const totalOp = all.reduce((n, id) => n + (evcase(id).manualSteps || []).filter((m) => m.phase === '操作').length, 0);
+    const totalChk = all.reduce((n, id) => n + (evcase(id).manualSteps || []).filter((m) => m.phase === '確認').length, 0);
+    const fbtn = (k, label) => `<button class="btn ${filter === k ? 'primary' : ''}" data-manual-filter="${k}">${label}</button>`;
+    const body = rows.map((r) => {
+      const s = r.s || {};
+      const short = r.ms.slice(0, 2).map((m) => `行${m.row} [${esc(m.phase)}] ${esc(m.item)}`).join(' / ');
+      return `<tr class="case-row-click" data-case="${esc(r.id)}">
+        <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div><button class="btn" data-action="review-mode" data-case="${esc(r.id)}">検査</button></td>
+        <td>${r.status === 'pass' ? '<span class="badge green">mock pass</span>' : `<span class="badge amber">${esc(r.status || '—')}</span>`}</td>
+        <td>${paramsBadge(r.id)}</td>
+        <td>${r.audit.length ? (r.bad ? `<span class="badge red">NG ${r.bad}</span>` : r.multi ? `<span class="badge amber">複数 ${r.multi}</span>` : `<span class="badge green">OK ${r.audit.length}</span>`) : '<span class="badge gray">未抽出</span>'}</td>
+        <td class="num">${s.hc || 0}</td>
+        <td class="num">${s.exact || 0}</td>
+        <td class="num">${s.blockEnd || 0}</td>
+        <td class="num">${s.manual || 0}</td>
+        <td class="num">${s.missing ? `<span class="badge red">${s.missing}</span>` : 0}</td>
+        <td class="num">${r.op}</td>
+        <td class="num">${r.chk}</td>
+        <td class="small">${short || '<span class="muted">—</span>'}</td>
+      </tr>`;
+    }).join('');
+    $('#main').innerHTML = `${pageHead('証跡・人工', '画面HCの自動取得と、真機で人が確認する項目', `<input id="manualQuery" class="input" placeholder="ケースID / 機能名で検索" value="${esc(state.manualQuery || '')}"> <a class="btn" href="../evidence/index.xlsx" download>Excel索引</a>`)}
+      <div class="kpis">
+        ${kpi('対象ケース', all.length, '証跡データあり', 'accent')}
+        ${kpi('画面HC 人工', totalManual, '无截图 / 要人确认', 'violet')}
+        ${kpi('人工操作', totalOp, 'F12・JP1・待機など', 'blue')}
+        ${kpi('人工確認', totalChk, 'AP/DBログ・表など', 'amber')}
+        ${kpi('証跡未取得', totalMissing, '要修正', 'red')}
+        ${kpi('既定値 params', all.filter((id) => paramsMeta(id).level === 'auto').length, '要別紙確認', 'amber')}
+        ${kpi('別紙不一致', all.filter((id) => (((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || []).some((x) => x.status === 'mismatch' || x.status === 'missingParam')).length, '要 params 修正', 'red')}
+        ${kpi('手順内複数値', all.filter((id) => (((window.MSAD_PARAM_AUDIT || {})[id] || {}).items || []).some((x) => x.status === 'multiValue')).length, '単一 params では不足', 'amber')}
+      </div>
+      <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        ${fbtn('all', 'すべて')}${fbtn('manual', '画面HC人工あり')}${fbtn('manualOp', '人工操作あり')}${fbtn('missing', '証跡未取得')}${fbtn('auto', '自動のみ')}${fbtn('paramsAuto', '既定値 params')}${fbtn('paramNg', '別紙不一致')}
+        <span class="hint" style="margin-left:auto">${rows.length} 件</span>
+      </div></div>
+      <section class="panel mt"><div class="table-wrap"><table class="data">
+        <thead><tr><th>ケース</th><th>実行</th><th>パラメータ</th><th>別紙照合</th><th class="num">画面HC</th><th class="num">自動</th><th class="num">近似</th><th class="num">HC人工</th><th class="num">未取得</th><th class="num">人工操作</th><th class="num">人工確認</th><th>主な人工項目</th></tr></thead>
+        <tbody>${body || '<tr><td colspan="12" class="muted">該当なし</td></tr>'}</tbody>
+      </table></div></section>`;
+  }
+
+  function renderFeasibility() {
+    const ids = Object.keys(FEASIBILITY).sort();
+    const f = (id) => feasOf(id) || { class: 'D', flow: 'missing', manualSteps: 0, proxyBlocks: 0, paramIssues: 0, paramsAuto: false, source: '?' };
+    const counts = { A: 0, B: 0, C: 0, D: 0 };
+    for (const id of ids) counts[f(id).class] = (counts[f(id).class] || 0) + 1;
+    const filter = state.feasFilter || 'all';
+    const rows = ids.filter((id) => filter === 'all' || f(id).class === filter).map((id) => {
+      const x = f(id);
+      const m = FEAS_META[x.class] || FEAS_META.D;
+      return `<tr class="case-row-click" data-case="${esc(id)}">
+        <td><span class="mono">${esc(id)}</span><div class="small muted">${esc(caseById.get(id)?.functionName || '')}</div></td>
+        <td><span class="badge ${m.cls}">${esc(m.label)}</span></td>
+        <td class="small">${esc(x.reason || '')}</td>
+        <td>${x.flow === 'pass' ? '<span class="badge green">pass</span>' : '<span class="badge red">fail</span>'}</td>
+        <td class="num">${x.manualSteps || 0}</td>
+        <td class="num">${x.proxyBlocks || 0}</td>
+        <td class="num">${x.paramIssues || 0}</td>
+        <td>${x.paramsAuto ? '<span class="badge amber">auto</span>' : '<span class="badge green">固有</span>'}</td>
+        <td class="small">${esc(x.source || '')}</td>
+        <td><button class="btn" data-action="review-mode" data-case="${esc(id)}">検査</button></td>
+      </tr>`;
+    }).join('');
+    const b = (k, label) => `<button class="btn ${filter === k ? 'primary' : ''}" data-feas-filter="${k}">${label} ${k === 'all' ? ids.length : (counts[k] || 0)}</button>`;
+    $('#main').innerHTML = `${pageHead('実効性（A/B/C/D）', 'どの本が純自動で、どこに人工・代理・参数問題があるか', '<a class="btn" href="ops/index.html" target="_blank">作業シート一覧</a> <button class="btn" data-action="go-manual">証跡・人工へ</button>')}
+      <div class="kpis">
+        ${kpi('A 全自動', counts.A || 0, '人工・代理・参数問題なし', 'green')}
+        ${kpi('B 自動+人工', counts.B || 0, '有手顺人工或代理 block', 'blue')}
+        ${kpi('C 参数待修', counts.C || 0, '参数未落实/规则冲突', 'amber')}
+        ${kpi('D 阻塞', counts.D || 0, '流程失败', 'red')}
+        ${kpi('対象', ids.length, '全ケース', 'accent')}
+      </div>
+      <div class="panel"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        ${b('all', 'すべて')}${b('A', 'A')}${b('B', 'B')}${b('C', 'C')}${b('D', 'D')}
+        <span class="hint" style="margin-left:auto">A のみ真機先行。B は人工確認、C は参数修正、D 是规则/阻塞。</span>
+      </div></div>
+      <section class="panel mt"><div class="table-wrap"><table class="data">
+        <thead><tr><th>ケース</th><th>分類</th><th>理由</th><th>flow</th><th class="num">人工</th><th class="num">代理block</th><th class="num">参数問題</th><th>params</th><th>source</th><th></th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="10" class="muted">該当なし</td></tr>'}</tbody>
+      </table></div></section>`;
+  }
+
+  function autoQualityBadge(q) {
+    const m = { browser: ['browser', 'green'], proxy: ['proxy', 'amber'], 'proxy-only': ['proxy-only', 'red'], manual: ['manual', 'violet'] }[q] || ['—', 'gray'];
+    return `<span class="badge ${m[1]}">${m[0]}</span>`;
+  }
+  function autoCaseStats(id) {
+    const f = feasOf(id) || { class: 'D', reason: '', flow: 'missing', manualSteps: 0, proxyBlocks: 0, paramIssues: 0, paramsAuto: false, autoUsed: false, usedKeys: 0, source: '?' };
+    const ev = evcase(id);
+    const s = ev.summary || {};
+    const a = AUTO.cases?.[id] || {};
+    const audit = ((window.MSAD_PARAM_AUDIT || {})[id] || {});
+    const items = audit.items || [];
+    const multi = items.filter((x) => x.status === 'multiValue').length;
+    const bad = items.filter((x) => x.status === 'mismatch' || x.status === 'missingParam').length;
+    const manual = (ev.manualSteps || []).length;
+    const evRows = new Set((ev.manualSteps || []).map((m) => m.row));
+    let blockManual = 0;
+    let blockMock = 0;
+    for (const bd of a.blockDetails || []) {
+      const bq = BLOCK_QUALITY[bd.block] || {};
+      for (const st of bq.detail || []) {
+        if (st.kind === 'manual') {
+          if (![...evRows].some((row) => bd.fromRow != null && bd.toRow != null && bd.fromRow <= row && row <= bd.toRow)) blockManual++;
+        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMock++;
+      }
+    }
+    return { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal: manual };
+  }
+  function autoNext(f) {
+    if (f.class === 'A') return '真機でそのまま実行';
+    if (f.class === 'B') return '自動実行 + 人工確認';
+    if (f.class === 'C') return f.autoUsed ? '別紙から params を補完' : '手順内の複数値を解決';
+    return '業務ルールを人に確認';
+  }
+
+  function renderAutomation(selectedId) {
+    if (selectedId) return renderAutoDetail(selectedId);
+    const ids = Object.keys(FEASIBILITY).sort();
+    const q = (state.autoQuery || '').toLowerCase();
+    const cls = state.autoClass || 'all';
+    const flag = state.autoFlag || 'all';
+    const rows = ids.map((id) => ({ id, ...autoCaseStats(id) })).filter((r) => {
+      if (q && !`${r.id} ${caseById.get(r.id)?.functionName || ''}`.toLowerCase().includes(q)) return false;
+      if (cls !== 'all' && r.f.class !== cls) return false;
+      if (flag === 'manual' && !r.manualTotal) return false;
+      if (flag === 'proxy' && !r.f.proxyBlocks) return false;
+      if (flag === 'param' && !r.f.paramIssues && !r.f.autoUsed) return false;
+      if (flag === 'fail' && r.f.flow === 'pass') return false;
+      return true;
+    });
+    const counts = { A: 0, B: 0, C: 0, D: 0 };
+    for (const id of ids) counts[(feasOf(id) || {}).class || 'D']++;
+    const fb = (k, label, key) => `<button class="btn ${(key === 'class' ? cls : flag) === k ? 'primary' : ''}" data-auto-${key === 'class' ? 'class' : 'flag'}="${k}">${label}</button>`;
+    const body = rows.map((r) => {
+      const f = r.f;
+      const evs = r.s || {};
+      const evText = evs.hc ? `${evs.exact || 0}/${evs.hc}` : '—';
+      const evMissing = evs.missing ? `<span class="badge red">${evs.missing}</span>` : '';
+      const param = r.bad ? `<span class="badge red">NG ${r.bad}</span>` : r.multi ? `<span class="badge amber">複数 ${r.multi}</span>` : f.autoUsed ? `<span class="badge amber">auto ${f.usedKeys}</span>` : '<span class="badge green">OK</span>';
+      return `<tr class="case-row-click" data-auto-case="${esc(r.id)}">
+        <td><span class="mono">${esc(r.id)}</span><div class="small muted">${esc(caseById.get(r.id)?.functionName || '')}</div></td>
+        <td>${feasBadge(r.id)}<div class="small muted">${esc(f.reason || '')}</div></td>
+        <td>${f.flow === 'pass' ? '<span class="badge green">pass</span>' : '<span class="badge red">fail</span>'}<div class="small muted">${esc(r.a.status3 || '')}</div></td>
+        <td class="num">${evText} ${evMissing}</td>
+        <td class="num">${r.manualTotal || 0}</td>
+        <td class="num">${f.proxyBlocks || 0}</td>
+        <td>${param}<div class="small muted">${esc(f.source || '')}</div></td>
+        <td class="small">${esc(autoNext(f))}</td>
+      </tr>`;
+    }).join('');
+    $('#main').innerHTML = `${pageHead('自動化診断', '1本ごとに「どこまで自動で、どこから人工か」を開いて確認できます', '<a class="btn" href="ops/index.html" target="_blank">作業シート一覧</a> <button class="btn" data-action="go-manual">証跡・人工へ</button>')}
+      <div class="kpis">
+        ${kpi('A 全自動', counts.A, '真機にそのまま', 'green')}
+        ${kpi('B 自動+人工', counts.B, '人工/代理を含む', 'blue')}
+        ${kpi('C 参数待修', counts.C, 'params 未落实', 'amber')}
+        ${kpi('D 阻塞', counts.D, '规则冲突/失败', 'red')}
+        ${kpi('対象', ids.length, '全ケース', 'accent')}
+        ${kpi('人工あり', ids.filter((id) => (autoCaseStats(id).manual || (feasOf(id) || {}).manualSteps)).length, '手顺/block 人工', 'violet')}
+        ${kpi('代理 block あり', ids.filter((id) => (feasOf(id) || {}).proxyBlocks).length, '要真机确认', 'amber')}
+      </div>
+      <div class="panel" style="margin-bottom:12px"><div class="panel-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input id="autoQuery" class="input" placeholder="ケースID / 機能名で検索" value="${esc(state.autoQuery || '')}" style="max-width:260px">
+        ${fb('all', 'すべて', 'class')}${fb('A', 'A', 'class')}${fb('B', 'B', 'class')}${fb('C', 'C', 'class')}${fb('D', 'D', 'class')}
+        <span style="width:1px;height:22px;background:var(--line)"></span>
+        ${fb('all', '全表示', 'flag')}${fb('manual', '人工あり', 'flag')}${fb('proxy', '代理あり', 'flag')}${fb('param', '参数問題', 'flag')}${fb('fail', '失败', 'flag')}
+        <span class="hint" style="margin-left:auto">${rows.length} 件</span>
+      </div></div>
+      <section class="panel"><div class="table-wrap"><table class="data">
+        <thead><tr><th>ケース</th><th>判定</th><th>flow</th><th class="num">証跡 exact/HC</th><th class="num">人工</th><th class="num">代理block</th><th>参数</th><th>次の一手</th></tr></thead>
+        <tbody>${body || '<tr><td colspan="8" class="muted">該当なし</td></tr>'}</tbody>
+      </table></div></section>
+      <p class="small muted" style="margin-top:10px">判定をクリックすると、その本の block 順・各 step・人工項目・params・証跡まで開きます。A だけが真機直行。B は自動+人工、C は参数修正、D は業務確認。</p>`;
+  }
+
+  function renderAutoDetail(id) {
+    const meta = caseById.get(id);
+    if (!meta) { $('#main').innerHTML = empty('ケースが見つかりません'); return; }
+    const { f, ev, s, a, audit, items, multi, bad, manual, blockManual, blockMock, manualTotal } = autoCaseStats(id);
+    const details = a.blockDetails || [];
+    const blockIds = a.blocks || [];
+    const counts = { browser: 0, proxy: 0, 'proxy-only': 0, manual: 0 };
+    for (const b of blockIds) { const q = (BLOCK_QUALITY[b] || {}).quality; if (counts[q] !== undefined) counts[q]++; }
+    const evRows = Object.entries(ev.rows || {}).map(([row, x]) => ({ row, ...x }));
+    const missingRows = evRows.filter((x) => x.status === 'missing');
+    const manualRows = evRows.filter((x) => x.status === 'manual');
+    const blockManualSteps = [];
+    const blockMockSteps = [];
+    const evRowsSet = new Set((ev.manualSteps || []).map((m) => m.row));
+    for (const bd of details) {
+      const bq = BLOCK_QUALITY[bd.block] || {};
+      for (const st of (bq.detail || [])) {
+        if (st.kind === 'manual') {
+          if ([...evRowsSet].some((row) => bd.fromRow != null && bd.toRow != null && bd.fromRow <= row && row <= bd.toRow)) continue;
+          blockManualSteps.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+        } else if (st.kind === 'mock' || st.kind === 'proxy') blockMockSteps.push({ block: bd.block, fromRow: bd.fromRow, toRow: bd.toRow, ...st });
+      }
+    }
+    const paramLabel = (x) => x.status === 'match' ? ['一致', 'green'] : x.status === 'rule' ? ['規則/自動', 'gray'] : x.status === 'multiValue' ? ['複数値', 'amber'] : x.status === 'missingParam' ? ['params未設定', 'amber'] : ['不一致', 'red'];
+    const mockHtml = blockMockSteps.length ? blockMockSteps.map((m) => `<div class="auto-param"><div class="lbl">${esc(m.block)}</div><div class="val"><b>${esc(m.event || '')}</b><div class="small muted">行 ${m.fromRow ?? '?'}–${m.toRow ?? '?'} / ${esc(m.note || 'mockで未確認')} / ${m.optional ? 'optional: 失敗しても止まらないため目視' : '真機では runner が自動で確認'}</div></div></div>`).join('') : '<p class="small muted">mock で代替している確認はありません。</p>';
+    const blockHtml = details.map((bd, i) => {
+      const bq = BLOCK_QUALITY[bd.block] || {};
+      const bmeta = (AUTO.blocks || []).find((x) => x.id === bd.block) || {};
+      const steps = bq.detail || [];
+      const stepHtml = steps.map((st, j) => `<div class="auto-step ${st.kind}">
+        <div class="ev">${j + 1}. ${esc(st.event || st.action || '')} ${st.kind === 'manual' ? '<span class="badge violet">manual</span>' : st.kind === 'mock' ? '<span class="badge amber">mock代替</span>' : st.kind === 'proxy' ? '<span class="badge amber">proxy</span>' : '<span class="badge green">browser</span>'}</div>
+        <div class="meta">${esc(st.action || '')}${st.selector ? ` / <code>${esc(st.selector)}</code>` : ''}${st.value ? ` / value=${esc(st.value)}` : ''}</div>
+        ${st.note ? `<div class="meta" style="color:#b45309">${esc(st.note)}</div>` : ''}
+      </div>`).join('');
+      return `<details class="auto-block" ${i < 2 ? 'open' : ''}>
+        <summary>
+          ${autoQualityBadge(bq.quality)}
+          <span class="mono">${esc(bd.block)}</span>
+          <span class="small muted">行 ${bd.fromRow ?? '?'}–${bd.toRow ?? '?'}</span>
+          <span class="small">${esc(bmeta.fromScreen || '')} → ${esc(bmeta.toScreen || '')}</span>
+          <span class="small muted">${steps.length} steps / ${steps.filter((x) => x.kind !== 'browser').length} 人工・代理</span>
+        </summary>
+        ${stepHtml || '<div class="auto-step"><div class="meta">step 情報なし</div></div>'}
       </details>`;
+    }).join('');
+    const manualHtml = manualTotal ? `
+      ${(ev.manualSteps || []).map((m) => `<div class="auto-param"><div class="lbl">手順 ${esc(m.row || '')}</div><div class="val"><b>${esc(m.phase || '')}</b> ${esc(m.item || '')}<div class="small muted">${esc(m.content || m.note || m.reason || '')}</div></div></div>`).join('')}
+    ` : '<p class="small muted">手順上の手作業はありません。</p>';
+    const paramsHtml = items.length ? items.map((x) => {
+      const st = paramLabel(x);
+      return `<div class="auto-param"><div class="lbl">${esc(x.label || '')}</div><div class="val">別紙 <b>${esc(x.expected ?? '')}</b> → params <b>${esc(x.actualLabel ?? x.actual ?? '未設定')}</b> <span class="badge ${st[1]}">${st[0]}</span></div></div>`;
+    }).join('') : '<p class="small muted">block が参照する業務 params はありません（または別紙から未抽出）。</p>';
+    const evidenceHtml = evRows.length ? evRows.slice(0, 60).map((x) => `<div class="auto-param"><div class="lbl">行 ${esc(x.row)}</div><div class="val">${esc(x.item || '')} ${x.status === 'exact' ? '<span class="badge green">exact</span>' : x.status === 'manual' ? '<span class="badge violet">manual</span>' : x.status === 'missing' ? '<span class="badge red">missing</span>' : `<span class="badge amber">${esc(x.status)}</span>`}${x.file ? ` <a href="../logs/${encodeURIComponent(id)}/${encodeURIComponent(x.file)}" target="_blank">画像</a>` : ''}</div></div>`).join('') : '<p class="small muted">証跡行がありません。</p>';
+    $('#main').innerHTML = `
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+        <button class="btn" data-action="go-automation">← 一覧</button>
+        <button class="btn primary" data-action="review-mode" data-case="${esc(id)}">検査モード</button>
+        <a class="btn" href="ops/${encodeURIComponent(id)}.html" target="_blank">作業シート</a>
+        <button class="btn" data-action="copy-command" data-case="${esc(id)}">実行コマンド</button>
+        <span class="small muted">trace: <code>node runner.mjs --case ${esc(id)} --trace</code></span>
+      </div>
+      <div class="case-head" style="margin-bottom:12px">
+        <div><div class="id">${esc(id)}</div><h2>${esc(meta.functionName || '')}</h2>
+          <div class="case-meta">${feasBadge(id)}<span class="badge outline">${esc(meta.scenarioId || '')}</span>${companyBadge(meta.company)}${paramsBadge(id)}</div>
+        </div>
+        <div class="right" style="text-align:right"><div class="small muted">判定理由</div><div style="font-weight:600;max-width:360px">${esc(f.reason || '—')}</div></div>
+      </div>
+      <div class="auto-summary">
+        <div class="auto-card"><div class="k">Flow</div><div class="v">${f.flow === 'pass' ? 'pass' : 'fail'}</div><div class="s">${esc(a.status3 || '')} / ${blockIds.length} blocks</div></div>
+        <div class="auto-card"><div class="k">証跡</div><div class="v">${s.exact || 0}/${s.hc || 0}</div><div class="s">manual ${s.manual || 0} / missing ${s.missing || 0}</div></div>
+        <div class="auto-card"><div class="k">人工（手順） / mock</div><div class="v">${manualTotal} / ${blockMock}</div><div class="s">手順 ${manual} / 手順外 block人工 ${blockManualSteps.length} / mock ${blockMockSteps.length}</div></div>
+        <div class="auto-card"><div class="k">Params</div><div class="v">${bad ? 'NG' : multi ? '複数' : f.autoUsed ? 'auto' : 'OK'}</div><div class="s">${esc(f.source || '')}${f.usedKeys ? ` / ${f.usedKeys} keys` : ''}</div></div>
+      </div>
+      <div class="panel mt"><div class="panel-head"><h3>block 順（どこが自動で、どこが人工か）</h3><span class="hint">${counts.browser} browser / ${counts.proxy} proxy / ${counts['proxy-only']} proxy-only / ${counts.manual} manual</span></div><div class="panel-body">${blockHtml || '<p class="muted">block 情報がありません。</p>'}</div></div>
+      <div class="grid-2 mt">
+        <section class="panel"><div class="panel-head"><h3>人がやる項目（${manualTotal}）</h3></div><div class="panel-body">${manualHtml}</div></section>
+        <section class="panel"><div class="panel-head"><h3>mockでは確認できない項目（${blockMockSteps.length}）</h3><span class="hint">真機では自動</span></div><div class="panel-body">${mockHtml}</div></section>
+      </div>
+      <section class="panel mt"><div class="panel-head"><h3>別紙パラメータ</h3><span class="hint">${esc(f.source || '')}</span></div><div class="panel-body">${paramsHtml}</div></section>
+      <details class="panel mt"><summary style="cursor:pointer;padding:11px 14px;font-weight:700">画面HC 証跡（${s.hc || 0} 行 / missing ${s.missing || 0}）</summary><div class="panel-body">${evidenceHtml}</div></details>`;
   }
 
   /* ------------------------------------------------------------------ */
@@ -1644,6 +2357,41 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     $('#filterStatus').addEventListener('change', (e) => { state.filters.status = e.target.value; render(); });
     $('#filterAssigned').addEventListener('change', (e) => { state.filters.assigned = e.target.checked; render(); });
     $('#filterMissing').addEventListener('change', (e) => { state.filters.missing = e.target.checked; render(); });
+    $('#filterManual').addEventListener('change', (e) => { state.filters.manual = e.target.checked; render(); });
+    $('#filterManualOp').addEventListener('change', (e) => { state.filters.manualOp = e.target.checked; render(); });
+    $('#filterAutoOnly').addEventListener('change', (e) => { state.filters.autoOnly = e.target.checked; render(); });
+    $('#filterEvMissing').addEventListener('change', (e) => { state.filters.evMissing = e.target.checked; render(); });
+    $('#filterParamsAuto').addEventListener('change', (e) => { state.filters.paramsAuto = e.target.checked; render(); });
+    $('#main').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-manual-filter]');
+      if (b) { state.manualFilter = b.dataset.manualFilter; renderManual(); return; }
+      const f = e.target.closest('[data-feas-filter]');
+      if (f) { state.feasFilter = f.dataset.feasFilter; renderFeasibility(); return; }
+      const ac = e.target.closest('[data-auto-case]');
+      if (ac) { go('automation', ac.dataset.autoCase); return; }
+      const acls = e.target.closest('[data-auto-class]');
+      if (acls) { state.autoClass = acls.dataset.autoClass; state.autoCase = null; renderAutomation(); return; }
+      const afl = e.target.closest('[data-auto-flag]');
+      if (afl) { state.autoFlag = afl.dataset.autoFlag; state.autoCase = null; renderAutomation(); return; }
+      if (e.target.closest('[data-action="go-automation"]')) { go('automation'); return; }
+      if (e.target.closest('[data-action="go-manual"]')) { go('manual'); return; }
+    });
+    $('#main').addEventListener('input', (e) => {
+      if (e.target.id === 'manualQuery') {
+        const v = e.target.value;
+        state.manualQuery = v;
+        renderManual();
+        const el = document.getElementById('manualQuery');
+        if (el) { el.focus(); el.setSelectionRange(v.length, v.length); }
+      }
+      if (e.target.id === 'autoQuery') {
+        const v = e.target.value;
+        state.autoQuery = v;
+        renderAutomation();
+        const el = document.getElementById('autoQuery');
+        if (el) { el.focus(); el.setSelectionRange(v.length, v.length); }
+      }
+    });
     $('#filterOld').addEventListener('change', (e) => { state.filters.old = e.target.checked; render(); });
     $('#filterRoute').addEventListener('change', (e) => { state.filters.route = e.target.checked; render(); });
     $('#btnTasks').addEventListener('click', () => go('tasks'));
@@ -1684,6 +2432,16 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       const appxView = e.target.closest('[data-appx-view]');
       const refTab = e.target.closest('[data-reftab]');
       const action = e.target.closest('[data-action]');
+      const reviewFilter = e.target.closest('[data-review-filter]');
+      if (reviewFilter) { state.reviewFilter = reviewFilter.dataset.reviewFilter; state.reviewRow = null; renderReview(state.selectedCase); return; }
+      const reviewResult = e.target.closest('[data-review-result]');
+      if (reviewResult) {
+        saveReviewResult(state.selectedCase, Number(reviewResult.dataset.reviewRow), reviewResult.dataset.reviewResult);
+        renderReview(state.selectedCase).then(() => reviewGo(1));
+        return;
+      }
+      const reviewRow = e.target.closest('[data-review-row]');
+      if (reviewRow) { state.reviewRow = Number(reviewRow.dataset.reviewRow); renderReview(state.selectedCase); return; }
       if (tab) { state.tab = tab.dataset.tab; if (state.selectedCase) renderCase(state.selectedCase); return; }
       if (appx) { state.appendixSheet[appx.dataset.case] = Number(appx.dataset.appx); renderCase(appx.dataset.case); return; }
       if (appxView) { state.appendixView = appxView.dataset.appxView; if (state.selectedCase) renderCase(state.selectedCase); return; }
@@ -1694,6 +2452,10 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         if (act === 'import-tasks') { const t = $('#taskInput'); if (t) importTasks(t.value); else go('tasks'); return; }
         if (act === 'clear-tasks') { clearTasks(); return; }
         if (act === 'validation') { renderValidation(); return; }
+        if (act === 'review-mode') { go('review', action.dataset.case); return; }
+        if (act === 'review-prev') { reviewGo(-1); return; }
+        if (act === 'review-next') { reviewGo(1); return; }
+        if (act === 'review-close') { go('case', state.selectedCase); return; }
         if (act === 'add-task') { taskSet.add(action.dataset.case); state.tasks = { ids: [...taskSet], importedAt: new Date().toISOString() }; save(LS.tasks, state.tasks); toast('タスクに追加しました'); refreshCaseView(action.dataset.case); return; }
         if (act === 'save-auto') { saveAutomation(action.dataset.case); return; }
         if (act === 'gen-auto') { generateAutomation(action.dataset.case); return; }
@@ -1730,6 +2492,14 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
         saveProgress(id, { [field]: el.value });
         toast('保存しました');
         if (field === 'execution' || field === 'verify' || field === 'result') renderCase(id);
+      }
+      if (el.matches('[data-review-memo]')) {
+        const p = { ...(pget(el.dataset.caseId)) };
+        const review = { ...(p.review || {}) };
+        const row = Number(el.dataset.reviewMemo);
+        review[row] = { ...(review[row] || {}), memo: el.value };
+        saveProgress(el.dataset.caseId, { review });
+        return;
       }
       if (el.matches('[data-evidence]')) {
         const id = el.dataset.caseId;
@@ -1780,6 +2550,7 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       if (appxView) { state.appendixView = appxView.dataset.appxView; if (state.drawerCase) renderDrawer(state.drawerCase); return; }
       if (action) {
         const act = action.dataset.action;
+        if (act === 'review-mode') { closeCaseDrawer(); go('review', action.dataset.case); return; }
         if (act === 'add-task') {
           taskSet.add(action.dataset.case);
           state.tasks = { ids: [...taskSet], importedAt: new Date().toISOString() };
@@ -1835,6 +2606,41 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
       }
     });
 
+    document.addEventListener('click', (e) => {
+      const lb = e.target.closest('[data-lightbox]');
+      if (lb) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#lightboxImg').src = lb.dataset.lightbox;
+        $('#lightbox').hidden = false;
+        return;
+      }
+      if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') $('#lightbox').hidden = true;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') $('#lightbox').hidden = true;
+      if (state.view !== 'review') return;
+      const tag = e.target.tagName || '';
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
+      if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); reviewGo(1); }
+      else if (e.key === 'ArrowUp' || e.key === 'k') { e.preventDefault(); reviewGo(-1); }
+      else if (e.key === ' ') {
+        const row = reviewCurrentRow();
+        const ev = row ? reviewEvidence(state.selectedCase, row) : null;
+        if (ev?.file) {
+          e.preventDefault();
+          const src = `../logs/${encodeURIComponent(state.selectedCase)}/${encodeURIComponent(ev.file)}`;
+          $('#lightboxImg').src = src;
+          $('#lightbox').hidden = false;
+        }
+      } else if (e.key === 'o' || e.key === 'O' || e.key === 'n' || e.key === 'N') {
+        const row = reviewCurrentRow();
+        if (row) {
+          saveReviewResult(state.selectedCase, Number(row.sourceRow), e.key.toLowerCase() === 'o' ? 'OK' : 'NG');
+          renderReview(state.selectedCase).then(() => reviewGo(1));
+        }
+      }
+    });
     window.addEventListener('hashchange', applyRoute);
   }
 
@@ -1874,7 +2680,11 @@ $bmp.Save("$env:USERPROFILE\Desktop\sut.png")</pre></details>
     else if (state.view === 'files') renderFiles();
     else if (state.view === 'tasks') renderTasks();
     else if (state.view === 'refs') renderRefs();
-    else if (state.view === 'automation') renderAutomation();
+    else if (state.view === 'schedule') renderSchedule();
+    else if (state.view === 'automation') renderAutomation(state.autoCase);
+    else if (state.view === 'manual') renderManual();
+    else if (state.view === 'feasibility') renderFeasibility();
+    else if (state.view === 'review' && state.selectedCase) renderReview(state.selectedCase);
     else if (state.view === 'case' && state.selectedCase) renderCase(state.selectedCase);
     else if (state.view === 'scenario' && state.selectedScenario) renderScenario(state.selectedScenario);
     else if (state.view === 'route' && state.selectedRoute) renderRoute(state.selectedRoute);

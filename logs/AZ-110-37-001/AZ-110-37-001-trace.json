@@ -1,0 +1,326 @@
+{
+  "caseId": "AZ-110-37-001",
+  "entries": [
+    {
+      "n": 1,
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA01.html",
+      "popup": "",
+      "screenshot": "02_trace_001_goto_start_screen.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA01",
+        "visibleButtons": [
+          "新規登録",
+          "検索",
+          "集計",
+          "親子集計",
+          "メール登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "event": "click 検索",
+      "action": "click",
+      "selector": "#act001to200",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA07.html",
+      "popup": "",
+      "screenshot": "04_trace_002_click_検索.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA07",
+        "visibleButtons": [
+          "ｸﾘｱ",
+          "ヘルプ",
+          "検索",
+          "検索結果出力",
+          "代理店画面サンプル",
+          "メニュー",
+          "入力画面",
+          "前 頁",
+          "次 頁",
+          "完了登録"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "block": "BLK-AZ-MENU-SEARCH-LIST",
+      "event": "ast 遷移 不備一覧",
+      "action": "assert",
+      "selector": "#select",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA07.html",
+      "popup": "",
+      "screenshot": "05_trace_003_ast_遷移_不備一覧.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA07",
+        "visibleButtons": [
+          "ｸﾘｱ",
+          "ヘルプ",
+          "検索",
+          "検索結果出力",
+          "代理店画面サンプル",
+          "メニュー",
+          "入力画面",
+          "前 頁",
+          "次 頁",
+          "完了登録"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "event": "inputBundle 各項目",
+      "action": "fill",
+      "selector": "#policy_number",
+      "value": "params.policyNo",
+      "resolvedValue": "AZ11001",
+      "url": "http://127.0.0.1:10097/AMB/AMA07.html",
+      "popup": "",
+      "screenshot": "07_trace_004_inputBundle_各項目.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA07",
+        "visibleButtons": [
+          "ｸﾘｱ",
+          "ヘルプ",
+          "検索",
+          "検索結果出力",
+          "代理店画面サンプル",
+          "メニュー",
+          "入力画面",
+          "前 頁",
+          "次 頁",
+          "完了登録"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "event": "click 検索",
+      "action": "click",
+      "selector": "#select",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA07.html",
+      "popup": "",
+      "screenshot": "08_trace_005_click_検索.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA07",
+        "visibleButtons": [
+          "ｸﾘｱ",
+          "ヘルプ",
+          "検索",
+          "検索結果出力",
+          "代理店画面サンプル",
+          "メニュー",
+          "入力画面",
+          "前 頁",
+          "次 頁",
+          "完了登録"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "event": "ast 結果表示",
+      "action": "assert",
+      "selector": "#gyoumu_list tr",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA07.html",
+      "popup": "",
+      "screenshot": "09_trace_006_ast_結果表示.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA07",
+        "visibleButtons": [
+          "ｸﾘｱ",
+          "ヘルプ",
+          "検索",
+          "検索結果出力",
+          "代理店画面サンプル",
+          "メニュー",
+          "入力画面",
+          "前 頁",
+          "次 頁",
+          "完了登録"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "event": "click No.リンク",
+      "action": "click",
+      "selector": "#gyoumu_list a[name=link]",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "11_trace_007_click_No.リンク.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "block": "BLK-AZ-LIST-FILTER-OPEN-UPDATE",
+      "event": "ast 遷移 更新画面",
+      "action": "assert",
+      "selector": "input[name=\"update\"]",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "13_trace_008_ast_遷移_更新画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "block": "BLK-AZ-UPDATE-CL",
+      "event": "click CL",
+      "action": "click",
+      "selector": "input[name=\"imperfectClear[0]\"]",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "16_trace_009_click_CL.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "block": "BLK-AZ-UPDATE-CL",
+      "event": "click 更新",
+      "action": "click",
+      "selector": "input[name=\"update\"]",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "17_trace_010_click_更新.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "block": "BLK-AZ-UPDATE-CL",
+      "event": "ast 表示確認",
+      "action": "assert",
+      "selector": "input[name=\"update\"]",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "18_trace_011_ast_表示確認.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "block": "BLK-AZ-COMMON-LOGS",
+      "event": "ast AP/DBログ・テーブル確認",
+      "action": "assert",
+      "selector": "input[name='update']",
+      "value": "",
+      "url": "http://127.0.0.1:10097/AMB/AMA04.html",
+      "popup": "",
+      "screenshot": "20_trace_012_ast_AP_DBログ・テーブル確認.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "AMA04",
+        "visibleButtons": [
+          "....",
+          "....",
+          "履歴",
+          "コピー登録",
+          "機械点検画像",
+          "ＡＤ１カメラ",
+          "検索",
+          "修",
+          "CL",
+          "訂正内容確認書"
+        ]
+      }
+    }
+  ]
+}

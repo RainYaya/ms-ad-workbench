@@ -11,12 +11,16 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 
 | Document | Purpose |
 |---|---|
+| [`docs/USER-GUIDE.md`](docs/USER-GUIDE.md) | **日常使用说明：只看哪些页面、名词、徽章、数据流** |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Components, boundaries, data flow, deployment |
 | [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) | Scenario/route/case/workflow/appendix schemas |
 | [`docs/AUTOMATION.md`](docs/AUTOMATION.md) | CDP runner, screens, blocks, params, evidence |
 | [`docs/DECISIONS.md`](docs/DECISIONS.md) | Why the project is shaped this way |
 | [`docs/REFERENCE-WEBAPPS.md`](docs/REFERENCE-WEBAPPS.md) | What the three uploaded webapps are, and what they are not |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Step-by-step plan, owners, acceptance, and what you need to provide |
+| [`docs/WORKLOG-2026-10-24.md`](docs/WORKLOG-2026-10-24.md) | Day log: discussions, conclusions, mistakes, and reasoning from the block-system rework |
+| [`automation/blocks/SEMANTIC-NORM.md`](automation/blocks/SEMANTIC-NORM.md) | Semantic normalization rules, block taxonomy, coverage guarantees |
+| [`automation/STATUS3.md`](automation/STATUS3.md) | Three-state ledger (planned/coded/verified) in human terms |
 | [`automation/ASSIGNED.md`](automation/ASSIGNED.md) | The 450 assigned tasks, templates, and ordering |
 | [`automation/steps/DESIGN.md`](automation/steps/DESIGN.md) | Step/block composition model |
 | [`automation/steps/INVENTORY.md`](automation/steps/INVENTORY.md) | Raw 450-case step inventory and candidate blocks |

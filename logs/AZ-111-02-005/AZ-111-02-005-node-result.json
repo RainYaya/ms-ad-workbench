@@ -1,0 +1,89 @@
+{
+  "caseId": "AZ-111-02-005",
+  "runner": "node",
+  "ts": "2026-10-25T09:15:05.352Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-SHR-CD763243",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-AZ-INPUT-FILL",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-AZ-REGISTER-UPDATE",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    },
+    {
+      "block": "BLK-SHR-340D4343",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_r018_不備内容入力画面-新規.png",
+    "03_r021_エラーメッセージ.png",
+    "04_BLK-AZ-MENU-CREATE-INPUT.png",
+    "05_BLK-AZ-INPUT-FILL.png",
+    "06_BLK-SHR-CD763243.png",
+    "07_BLK-AZ-MENU-CREATE-INPUT.png",
+    "08_BLK-AZ-INPUT-FILL.png",
+    "09_BLK-AZ-REGISTER-UPDATE.png",
+    "10_BLK-SHR-340D4343.png"
+  ],
+  "evidence": [
+    {
+      "row": 18,
+      "type": "遷移",
+      "item": "不備内容入力画面-新規",
+      "file": "02_r018_不備内容入力画面-新規.png",
+      "exact": true,
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "matchedBy": "url",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 契約入力 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞｺｰﾄﾞ"
+    },
+    {
+      "row": 21,
+      "type": "出力(Msg)",
+      "item": "エラーメッセージ",
+      "file": "03_r021_エラーメッセージ.png",
+      "exact": true,
+      "block": "BLK-AZ-MENU-CREATE-INPUT",
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10097/AMB/AMA03.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 入力区分 契約入力 現地 機械 機械(他) その他 契約マスタ 連動する 「英数字は半角大文字」「年月は西暦」で入力 種目 自動車 自賠責 貨物 種目共通 その他 保険種類 証券番号 明細番号 部店課支社ｺｰﾄﾞ 代理店ｺｰﾄﾞ 代理店名 1 1 ｻﾌﾞｺｰﾄﾞ"
+    }
+  ]
+}

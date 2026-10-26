@@ -1,0 +1,932 @@
+{
+  "caseId": "AY-110-01-011",
+  "entries": [
+    {
+      "n": 1,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA01.html",
+      "popup": "",
+      "screenshot": "02_trace_001_goto_start_screen.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA01",
+        "visibleButtons": [
+          "新規登録",
+          "照会・検索",
+          "申請・承認",
+          "集計",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "click 新規登録",
+      "action": "click",
+      "selector": "#route2",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "04_trace_002_click_新規登録.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "ast transition 取消計上申請登録画面",
+      "action": "assert",
+      "selector": "#regist",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "05_trace_003_ast_transition_取消計上申請登録画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 課支社CD",
+      "action": "fill",
+      "selector": "#section_code",
+      "value": "AHE61",
+      "resolvedValue": "AHE61",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "06_trace_004_fill_課支社CD.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 代理店CD",
+      "action": "fill",
+      "selector": "#agent_code",
+      "value": "252H",
+      "resolvedValue": "252H",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "07_trace_005_fill_代理店CD.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 証券番号",
+      "action": "fill",
+      "selector": "#policy_number",
+      "value": "AY11001",
+      "resolvedValue": "AY11001",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "08_trace_006_fill_証券番号.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 保険契約者名",
+      "action": "fill",
+      "selector": "#insurant_name",
+      "value": "テスト太郎",
+      "resolvedValue": "テスト太郎",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "09_trace_007_fill_保険契約者名.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "select 大種目 自賠責",
+      "action": "fill",
+      "selector": "select[name='large_item_list.selected']",
+      "value": "B",
+      "resolvedValue": "B",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "10_trace_008_select_大種目_自賠責.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 申込日",
+      "action": "fill",
+      "selector": "#cancel_application_date",
+      "value": "2026/10/01",
+      "resolvedValue": "2026/10/01",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "11_trace_009_fill_申込日.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 始期日",
+      "action": "fill",
+      "selector": "#start_date",
+      "value": "2026/10/01",
+      "resolvedValue": "2026/10/01",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "12_trace_010_fill_始期日.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "fill 届出日",
+      "action": "fill",
+      "selector": "#notification_date",
+      "value": "2026/10/02",
+      "resolvedValue": "2026/10/02",
+      "url": "http://127.0.0.1:10097/ANB00/ANA02.html",
+      "popup": "",
+      "screenshot": "13_trace_011_fill_届出日.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA02",
+        "visibleButtons": [
+          "メニュー",
+          "申請一覧",
+          "登録",
+          "終　了"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "click 登録",
+      "action": "click",
+      "selector": "#regist",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "15_trace_012_click_登録.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 13,
+      "block": "BLK-AY-TORIKESHI-REGISTER",
+      "event": "ast transition 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#div_gyoumu_area_03",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "16_trace_013_ast_transition_申請・確認更新画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 14,
+      "block": "BLK-AUTO-CE34C5B8",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "18_trace_014_goto_start_screen.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 15,
+      "block": "BLK-AUTO-CE34C5B8",
+      "event": "input 各項目(契約者名)",
+      "action": "fill",
+      "selector": "#insurant_name",
+      "value": "params.customerName",
+      "resolvedValue": "テスト",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "19_trace_015_input_各項目(契約者名).png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 16,
+      "block": "BLK-AUTO-CE34C5B8",
+      "event": "click 申請依頼先選択",
+      "action": "click",
+      "selector": "input[name='selectReqApplicantUser']",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "20_trace_016_click_申請依頼先選択.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 17,
+      "block": "BLK-AUTO-CE34C5B8",
+      "event": "ast 遷移 担当者検索画面",
+      "action": "popup",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "screenshot": "22_trace_017_ast_遷移_担当者検索画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 18,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "ast 担当者検索 popup表示",
+      "action": "popup",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "screenshot": "26_trace_018_ast_担当者検索_popup表示.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 19,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "input 氏名",
+      "action": "fill",
+      "selector": "#user_name_key",
+      "value": "params.customerName",
+      "resolvedValue": "テスト",
+      "url": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "screenshot": "28_trace_019_input_氏名.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA10",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "閉じる"
+        ]
+      }
+    },
+    {
+      "n": 20,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "input 課支社CD",
+      "action": "fill",
+      "selector": "#section_code_key",
+      "value": "params.sectionCode",
+      "resolvedValue": "ABM62",
+      "url": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html?1=3028004586&1=ABM62&1=1&1=req_applicant&gamid=ANA10&gamcd=ANA00&hubsessid=1",
+      "screenshot": "29_trace_020_input_課支社CD.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA10",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "閉じる"
+        ]
+      }
+    },
+    {
+      "n": 21,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "click 検索",
+      "action": "click",
+      "selector": "#search",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA10.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html",
+      "screenshot": "30_trace_021_click_検索.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA10",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "閉じる"
+        ]
+      }
+    },
+    {
+      "n": 22,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "ast 検索結果表示",
+      "action": "assert",
+      "selector": "#gyoumu_list tr",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA10.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA10.html",
+      "screenshot": "31_trace_022_ast_検索結果表示.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA10",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "閉じる"
+        ]
+      }
+    },
+    {
+      "n": 23,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "click No(選択)",
+      "action": "click",
+      "selector": "#gyoumu_list a",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA10.html",
+      "popup": "",
+      "screenshot": null,
+      "pageSnapshot": {
+        "title": "?",
+        "gamid": "?",
+        "visibleButtons": []
+      }
+    },
+    {
+      "n": 24,
+      "block": "BLK-AUTO-2B9786A5",
+      "event": "ast 遷移 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#act101to001",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "33_trace_024_ast_遷移_申請・確認更新画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 25,
+      "block": "BLK-AUTO-D2C3A480",
+      "event": "goto start screen",
+      "action": "goto",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "35_trace_025_goto_start_screen.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 26,
+      "block": "BLK-AUTO-D2C3A480",
+      "event": "click 更新",
+      "action": "click",
+      "selector": "#update",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "36_trace_026_click_更新.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 27,
+      "block": "BLK-AUTO-D2C3A480",
+      "event": "ast 表示 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#act101to001",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "37_trace_027_ast_表示_申請・確認更新画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 28,
+      "block": "BLK-AUTO-D2C3A480",
+      "event": "click 申請依頼",
+      "action": "click",
+      "selector": "#requestApplicationButton",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "38_trace_028_click_申請依頼.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 29,
+      "block": "BLK-AUTO-D2C3A480",
+      "event": "ast 遷移 送信先(写)選択画面",
+      "action": "popup",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "screenshot": "40_trace_029_ast_遷移_送信先(写)選択画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 30,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "ast 送信先(写)選択 popup表示",
+      "action": "popup",
+      "selector": "",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "screenshot": "44_trace_030_ast_送信先(写)選択_popup表示.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    },
+    {
+      "n": 31,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "input 氏名",
+      "action": "fill",
+      "selector": "#user_name_key",
+      "value": "params.customerName",
+      "resolvedValue": "テスト",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "screenshot": "45_trace_031_input_氏名.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 32,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "input 課支社CD",
+      "action": "fill",
+      "selector": "#section_code_key",
+      "value": "params.sectionCode",
+      "resolvedValue": "ABM62",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html?1=MAYG901I001&1=requestApplication&gamid=ANA11&gamcd=ANA00&hubsessid=1",
+      "screenshot": "46_trace_032_input_課支社CD.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 33,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "click 検索",
+      "action": "click",
+      "selector": "#search",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "screenshot": "47_trace_033_click_検索.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 34,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "ast 検索結果表示",
+      "action": "assert",
+      "selector": "#gyoumu_list tr",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "screenshot": "48_trace_034_ast_検索結果表示.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 35,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "click No(送信先一覧へ追加)",
+      "action": "click",
+      "selector": "#gyoumu_list a",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "screenshot": "49_trace_035_click_No(送信先一覧へ追加).png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 36,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "click OK",
+      "action": "click",
+      "selector": "input[name='ok']",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "screenshot": "50_trace_036_click_OK.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 37,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "ast メッセージ(MAYG901I00x)",
+      "action": "assert",
+      "selector": "#popup_message_area",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "screenshot": "51_trace_037_ast_メッセージ(MAYG901I00x).png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA11",
+        "visibleButtons": [
+          "検索",
+          "前 頁",
+          "次 頁",
+          "削除",
+          "Ｏ　Ｋ",
+          "キャンセル"
+        ]
+      }
+    },
+    {
+      "n": 38,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "click OK(確認Msg)",
+      "action": "click",
+      "selector": "input[name='ok']",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA11.html",
+      "popup": "",
+      "screenshot": null,
+      "pageSnapshot": {
+        "title": "?",
+        "gamid": "?",
+        "visibleButtons": []
+      }
+    },
+    {
+      "n": 39,
+      "block": "BLK-AUTO-DF07A781",
+      "event": "ast 遷移 申請・確認更新画面",
+      "action": "assert",
+      "selector": "#act101to001",
+      "value": "",
+      "url": "http://127.0.0.1:10097/ANB00/ANA03.html",
+      "popup": "",
+      "screenshot": "53_trace_039_ast_遷移_申請・確認更新画面.png",
+      "pageSnapshot": {
+        "title": "",
+        "gamid": "ANA03",
+        "visibleButtons": [
+          "コンプラ確認",
+          "申請依頼先選択",
+          "クリア",
+          "申請代行者選択",
+          "クリア",
+          "承認依頼先選択",
+          "クリア",
+          "承認代行者選択",
+          "クリア",
+          "申請依頼"
+        ]
+      }
+    }
+  ]
+}

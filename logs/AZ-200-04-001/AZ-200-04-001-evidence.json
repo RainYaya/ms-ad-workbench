@@ -1,0 +1,29 @@
+{
+ "caseId": "AZ-200-04-001",
+ "evidence": [
+  {
+   "row": 16,
+   "type": "遷移",
+   "item": "システムエラー画面",
+   "file": "02_r016_システムエラー画面.png",
+   "exact": true,
+   "block": "BLK-AZ-SYSERR-LOGIN",
+   "matchedBy": "url",
+   "url": "http://127.0.0.1:10097/AMB/system_error.html",
+   "title": "システムエラー",
+   "text": "システムエラー MAZG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAZG000E001"
+  },
+  {
+   "row": 17,
+   "type": "出力(Msg)",
+   "item": "エラーメッセージ",
+   "file": "03_r017_エラーメッセージ.png",
+   "exact": true,
+   "block": "BLK-AZ-SYSERR-LOGIN",
+   "matchedBy": "current",
+   "url": "http://127.0.0.1:10097/AMB/system_error.html",
+   "title": "システムエラー",
+   "text": "システムエラー MAZG000E001 システムエラーが発生しました。 処理を継続できません。画面を閉じて、再度操作を行ってください。 エラーコード：MAZG000E001"
+  }
+ ]
+}

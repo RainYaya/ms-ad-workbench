@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Test Monitor</title>
+<style>
+:root{--line:#dfe5e1;--ink:#17211d;--muted:#65716b;--accent:#0f766e;--amber:#b45309;--red:#b42318;--green:#067647}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f4f2;color:var(--ink);font:13px/1.55 "Segoe UI","Yu Gothic UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:14px;padding:14px 20px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0}
+header h1{font-size:16px;margin:0}
+header .case{font-family:Consolas,monospace;color:var(--accent)}
+#caseSel{padding:6px 10px;border:1px solid var(--line);border-radius:8px;font:inherit}
+#status{margin-left:auto;font-weight:700}
+.layout{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:14px;padding:14px 20px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.panel h2{font-size:12px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line-2);color:var(--muted)}
+.steps{max-height:calc(100vh - 190px);overflow:auto}
+.step{display:flex;gap:10px;padding:7px 12px;border-bottom:1px solid #f0f3f1;cursor:pointer;align-items:flex-start}
+.step:hover{background:#f6f9f8}
+.step.cur{background:#e6f4f1}
+.step .n{font-family:Consolas,monospace;font-size:11px;color:var(--muted);min-width:28px}
+.step .ev{font-size:11.5px;font-weight:600}
+.step .meta{font-size:10px;color:var(--muted)}
+.step .icon{margin-left:auto;font-weight:700}
+.shot{width:100%;border:1px solid var(--line);border-radius:8px}
+.detail{padding:12px 16px}
+.detail h3{font-size:13px;margin:0 0 6px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:4px 10px;font-size:12px;margin-bottom:10px}
+.kv .k{color:var(--muted)}
+.kv code{background:#f1f3f2;padding:1px 5px;border-radius:4px;font-size:11px}
+.verdict{padding:12px 14px;border-radius:10px;margin-top:10px;font-size:12.5px}
+.verdict.pass{background:#e8f6ee;border-left:4px solid var(--green)}
+.verdict.pwd{background:#fdf3e3;border-left:4px solid var(--amber)}
+.verdict.fail{background:#feeceb;border-left:4px solid var(--red)}
+.verdict ul{margin:6px 0 0;padding-left:18px}
+.verdict li{margin-bottom:4px}
+.judgeblock{margin-top:8px;border-top:1px dashed var(--line-2);padding-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🖥 Test Monitor</h1>
+  <select id="caseSel"></select>
+  <span id="status"></span>
+</header>
+<div class="layout">
+  <div class="panel"><h2>実行ステップ（クリックで詳細）</h2><div class="steps" id="steps"></div></div>
+  <div class="panel">
+    <h2>ステップ詳細</h2>
+    <div class="detail" id="detail"><p class="muted">左のステップをクリックすると詳細（selector・実値・URL・スナップショット）を表示します。</p></div>
+    <div id="judgeArea"></div>
+  </div>
+</div>
+<script>
+const NL=String.fromCharCode(10);
+let DATA=null;
+async function load(){
+  const sel=document.getElementById('caseSel');
+  const res=await fetch('trace-index.json').catch(()=>null);
+  let cases=[];
+  if(res&&res.ok){const idx=await res.json();cases=idx.cases||[];}
+  sel.innerHTML=cases.map(c=>`<option>${c}</option>`).join('');
+  if(cases.length)sel.value=cases.includes(selCase)?selCase:cases[0];
+  sel.onchange=()=>show(sel.value);
+  if(cases.length)show(sel.value);
+}
+const selCase=decodeURIComponent(location.hash.slice(1));
+function parseUrl(u){try{return new URL(u).pathname.split('/').pop()||u}catch{return u}}
+async function show(cid){
+  document.getElementById('status').textContent='読込中…';
+  const t=await fetch(cid+'-trace.json').then(r=>r.json()).catch(()=>null);
+  const r=await fetch(cid+'-node-result.json').then(r=>r.json()).catch(()=>null);
+  let j=null;
+  try{const jr=await fetch(cid+'-judgment.json');if(jr.ok)j=await jr.json();}catch{}
+  if(!t){document.getElementById('status').textContent='trace なし';return;}
+  document.getElementById('status').innerHTML=`<span style="color:${r&&r.status==='pass'?'var(--green)':'var(--red)'}">${r?r.status.toUpperCase():'?'} · ${t.entries.length} steps</span>`;
+  const byBlock=new Map();
+  for(const e of t.entries){if(!byBlock.has(e.block))byBlock.set(e.block,[]);byBlock.get(e.block).push(e);}
+  const st=document.getElementById('steps');
+  st.innerHTML=t.entries.map(e=>`<div class="step" data-n="${e.n}">
+    <span class="n">${e.n}</span>
+    <div><div class="ev">${e.event||e.action}</div><div class="meta">${e.block.replace(/^BLK-/,'')} · ${e.action}${e.resolvedValue!==undefined&&e.resolvedValue!==''?' = '+JSON.stringify(e.resolvedValue):''}</div></div>
+    <span class="icon">▸</span></div>`).join('');
+  st.querySelectorAll('.step').forEach(el=>el.onclick=()=>detail(+el.dataset.n));
+  // judge panel
+  const ja=document.getElementById('judgeArea');
+  if(j){
+    const byB={};
+    for(const jd of j.judgments)byB[jd.block]=jd;
+    let html='<div class="detail" style="border-top:2px solid var(--line)"><h3>🧑‍⚖️ AI 判定（'+j.model+'）</h3>';
+    for(const [block,rows] of byBlock){
+      const jd=byB[block];if(!jd)continue;
+      const cls=jd.verdict==='pass'?'pass':jd.verdict==='pass-with-doubts'?'pwd':jd.verdict==='fail'?'fail':'';
+      const icon=jd.verdict==='pass'?'✅':jd.verdict==='pass-with-doubts'?'🟧':'❌';
+      html+=`<div class="judgeblock"><b>${icon} ${block}</b><div class="verdict ${cls}">
+        ${jd.intent?'<div><b>意图</b>:'+jd.intent+'</div>':''}
+        ${(jd.doubts&&jd.doubts.length)?'<b>疑点</b><ul>'+jd.doubts.map(d=>'<li>'+d+'</li>').join('')+'</ul>':''}
+        ${jd.notes?'<div class="small muted">'+jd.notes+'</div>':''}
+      </div></div>`;
+    }
+    html+='</div>';
+    ja.innerHTML=html;
+  } else ja.innerHTML='<div class="detail small muted" style="border-top:1px solid var(--line)">AI 判定はまだありません。node judge.mjs --case '+cid+' を実行してください。</div>';
+  detail(t.entries[0].n);
+}
+function detail(n){
+  const e=DATA.entries.find(x=>x.n===n);
+  if(!e)return;
+  document.querySelectorAll('.step').forEach(el=>el.classList.toggle('cur',+el.dataset.n===n));
+  const snap=e.pageSnapshot?`<div class="kv"><span class="k">画面タイトル</span><span>${e.pageSnapshot.title||'—'}</span><span class="k">gamid</span><span>${e.pageSnapshot.gamid||'—'}</span><span class="k">可視ボタン</span><span>${(e.pageSnapshot.visibleButtons||[]).join(' / ')||'—'}</span></div>`:'';
+  document.getElementById('detail').innerHTML=`
+    <h3>Step ${e.n} — ${e.event||e.action}</h3>
+    <div class="kv">
+      <span class="k">ブロック</span><span>${e.block}</span>
+      <span class="k">アクション</span><span>${e.action}</span>
+      <span class="k">selector</span><span><code>${e.selector||'—'}</code></span>
+      <span class="k">実値</span><span>${e.resolvedValue!==undefined&&e.resolvedValue!==''?JSON.stringify(e.resolvedValue):'—'}</span>
+      <span class="k">URL</span><span style="word-break:break-all">${parseUrl(e.url)}</span>
+      ${e.popup?'<span class="k">popup</span><span>'+e.popup.slice(-30)+'</span>':''}
+    </div>${snap}
+    <img class="shot" src="${e.screenshot}" loading="lazy">`;
+  DATA.cur=n;
+}
+load();
+</script>
+</body>
+</html>

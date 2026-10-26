@@ -1,0 +1,44 @@
+{
+  "caseId": "AZ-200-07-002",
+  "runner": "node",
+  "ts": "2026-10-25T09:16:18.231Z",
+  "status": "pass",
+  "blocks": [
+    {
+      "block": "BLK-AZ-SESSION-TIMEOUT",
+      "status": "pass",
+      "fromRow": null,
+      "toRow": null
+    }
+  ],
+  "skipped": [],
+  "shots": [
+    "01_menu.png",
+    "02_r017_エラーメッセージ.png",
+    "03_BLK-AZ-SESSION-TIMEOUT.png"
+  ],
+  "evidence": [
+    {
+      "row": 16,
+      "type": "遷移",
+      "item": "セッションタイムアウト画面 (親画面)",
+      "file": null,
+      "exact": false,
+      "manual": true,
+      "block": "BLK-AZ-SESSION-TIMEOUT",
+      "note": "非浏览器=真機人工"
+    },
+    {
+      "row": 17,
+      "type": "出力(Msg)",
+      "item": "エラーメッセージ",
+      "file": "02_r017_エラーメッセージ.png",
+      "exact": true,
+      "block": "BLK-AZ-SESSION-TIMEOUT",
+      "matchedBy": "current",
+      "url": "http://127.0.0.1:10097/AMB/AMA01.html",
+      "title": "",
+      "text": "日時： 1 1画面ID： 1 1 v 利用者識別：1 1 ：申込書不備内容の新規登録 ：条件を指定して検索 ：条件を指定して集計 ：条件を指定して親子代理店集計 ：営業連携メールの通知先登録 申込書品質管理システムのページ （マニュアル、ツール類、月次集計予定日 等）"
+    }
+  ]
+}

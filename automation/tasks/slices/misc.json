@@ -1,0 +1,897 @@
+{
+ "slice": "misc",
+ "generatedAt": "2026-10-24",
+ "blocks": [
+  {
+   "id": "BLK-AUTO-FCB405E4",
+   "count": 13,
+   "cases": [
+    "AZ-230-01-041",
+    "AZ-230-01-042",
+    "AZ-230-01-078",
+    "AZ-230-01-079",
+    "AZ-230-01-080",
+    "AZ-230-01-105",
+    "AZ-230-01-106",
+    "AZ-230-01-107",
+    "AZ-230-01-110",
+    "AZ-230-01-132",
+    "AZ-230-01-133",
+    "AZ-230-01-134",
+    "AZ-230-01-135"
+   ],
+   "sourceCase": "AZ-230-01-041",
+   "fromScreen": "メ-ル通知先選択",
+   "toScreen": "メ-ル通知先選択",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メ-ル通知先選択",
+     "action": "click",
+     "target": "通知しない",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "メ-ル通知先選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "メ-ル通知先選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "メ-ル通知先選択",
+     "assert": "display",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "メ-ル通知先選択",
+     "assert": "other",
+     "target": "ToDo連携テーブル",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-7A70187A",
+   "count": 11,
+   "cases": [
+    "AZ-230-01-017",
+    "AZ-230-01-020",
+    "AZ-230-01-050",
+    "AZ-230-01-074",
+    "AZ-230-01-077",
+    "AZ-230-01-101",
+    "AZ-230-01-102",
+    "AZ-230-01-104",
+    "AZ-230-01-109",
+    "AZ-230-01-131",
+    "AZ-230-01-155"
+   ],
+   "sourceCase": "AZ-230-01-017",
+   "fromScreen": "メ-ル通知先選択",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "メ-ル通知先選択",
+     "action": "click",
+     "target": "通知しない",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "メ-ル通知先選択",
+     "assert": "message",
+     "target": "メッセージ",
+     "dataClass": "literal"
+    },
+    {
+     "kind": "op",
+     "screen": "メ-ル通知先選択",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "メ-ル通知先選択",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AZ-OPEN-CLOSE-SYS",
+   "count": 2,
+   "cases": [
+    "AZ-200-02-001",
+    "AZ-200-02-002"
+   ],
+   "sourceCase": "AZ-200-02-001",
+   "fromScreen": "運用AP",
+   "toScreen": "閉局",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "運用AP",
+     "target": "閉局用のシェルスクリプトを実行",
+     "dataClass": "bundle",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "運用AP",
+     "target": "画面HC",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "その他(申込書品質管理)",
+     "target": "ログイン画面",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "その他(申込書品質管理)",
+     "target": "ログイン",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "その他(申込書品質管理)",
+     "target": "閉局",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "運用AP",
+     "target": "開局用のシェルスクリプトを実行",
+     "dataClass": "bundle",
+     "action": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-01CAB10D",
+   "count": 2,
+   "cases": [
+    "AZ-200-02-001",
+    "AZ-200-02-002"
+   ],
+   "sourceCase": "AZ-200-02-001",
+   "fromScreen": "運用AP",
+   "toScreen": "閉局",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "運用AP",
+     "target": "画面HC",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "その他(申込書品質管理)",
+     "target": "ログイン画面",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "その他(申込書品質管理)",
+     "target": "ログイン",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "その他(申込書品質管理)",
+     "target": "不備一覧",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備一覧",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備一覧",
+     "target": "回答入力",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "運用AP",
+     "target": "閉局用のシェルスクリプトを実行",
+     "dataClass": "bundle",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "運用AP",
+     "target": "画面HC",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "不備一覧",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "代理店 不備内容入力画面(更新)",
+     "target": "閉局",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SHR-8F1D192A",
+   "count": 2,
+   "cases": [
+    "AY-110-02-001",
+    "AY-110-02-002"
+   ],
+   "sourceCase": "AY-110-02-001",
+   "fromScreen": "計上情報消込処理",
+   "toScreen": "計上情報消込処理",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "計上情報消込処理",
+     "target": "-",
+     "dataClass": "bundle",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "計上情報消込処理",
+     "target": "操作結果",
+     "dataClass": "none",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "計上情報消込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-EF37895C",
+   "count": 1,
+   "cases": [
+    "AZ-100-05-004"
+   ],
+   "sourceCase": "",
+   "fromScreen": "訂正内容確認",
+   "toScreen": "システムエラー画面(子画面)",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "確認者(募集人または社員)",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "eメールによる確認の場合",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "「F12」より開発者ツールを開く",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "開発者ツールでctrl+fを使用し appliction_form_idを検索",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "訂正内容確認",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "application_form_idのvalueの値を削除",
+     "dataClass": "none",
+     "action": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "訂正内容確認",
+     "target": "開発者ツール",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "訂正内容確認",
+     "target": "登録",
+     "dataClass": "none",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "訂正内容確認",
+     "target": "システムエラー画面(子画面)",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "ast",
+     "screen": "訂正内容確認",
+     "target": "エラーメッセージ",
+     "dataClass": "literal",
+     "assert": "message"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-7EE83E5A",
+   "count": 1,
+   "cases": [
+    "AZ-112-01-001"
+   ],
+   "sourceCase": "",
+   "fromScreen": "申込書品質管理メニュー",
+   "toScreen": "申込書品質管理メニュー",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "申込書品質管理メニュー",
+     "target": "メール登録",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "申込書品質管理メニュー",
+     "target": "営業連携メール通知先登録",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "次頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "前頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "追加",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "個別メール通知先検索",
+     "dataClass": "literal",
+     "assert": "transition"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先一覧(親画面)",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "氏名",
+     "dataClass": "literal",
+     "action": "input"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "部店課支社コード",
+     "dataClass": "literal",
+     "action": "other"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "検索結果",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "No",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先一覧(親画面)",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "メッセージボックス",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "個別メール通知先検索",
+     "target": "閉じる",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "個別メール通知先検索",
+     "target": "個別メール通知先検索画面",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全選択",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "次頁",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全選択",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メール通知",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "各項目",
+     "dataClass": "bundle",
+     "action": "inputBundle"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "検索",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "全解除",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "所属課支社別メール通知先一覧",
+     "dataClass": "literal",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "更新",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "営業連携メール通知先登録画面",
+     "dataClass": "bundle",
+     "assert": "display"
+    },
+    {
+     "kind": "op",
+     "screen": "営業連携メール通知先登録",
+     "target": "メニュー",
+     "dataClass": "literal",
+     "action": "click"
+    },
+    {
+     "kind": "ast",
+     "screen": "営業連携メール通知先登録",
+     "target": "申込書品質管理メニュー",
+     "dataClass": "literal",
+     "assert": "transition"
+    }
+   ]
+  },
+  {
+   "id": "BLK-AUTO-F8714C90",
+   "count": 1,
+   "cases": [
+    "AZ-210-08-001"
+   ],
+   "sourceCase": "AZ-110-01-009",
+   "fromScreen": "照会内容編集",
+   "toScreen": "不備内容入力画面-更新",
+   "kind": "family",
+   "pattern": [
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "inputBundle",
+     "target": "各項目",
+     "dataClass": "bundle"
+    },
+    {
+     "kind": "op",
+     "screen": "照会内容編集",
+     "action": "click",
+     "target": "OK",
+     "dataClass": "none"
+    },
+    {
+     "kind": "ast",
+     "screen": "照会内容編集",
+     "assert": "transition",
+     "target": "不備内容入力画面-更新",
+     "dataClass": "literal"
+    }
+   ]
+  },
+  {
+   "id": "BLK-SGL-0C5A44D1",
+   "count": 1,
+   "cases": [
+    "AY-100-08-005"
+   ],
+   "sourceCase": "",
+   "fromScreen": "計上情報消込処理",
+   "toScreen": "計上情報消込処理",
+   "kind": "primitive-verify",
+   "pattern": [
+    {
+     "kind": "ast",
+     "screen": "計上情報消込処理",
+     "target": "取消計上申請テーブル",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "計上情報消込処理",
+     "target": "APログ",
+     "dataClass": "literal",
+     "assert": "other"
+    },
+    {
+     "kind": "ast",
+     "screen": "計上情報消込処理",
+     "target": "DBログ",
+     "dataClass": "literal",
+     "assert": "other"
+    }
+   ]
+  }
+ ]
+}
