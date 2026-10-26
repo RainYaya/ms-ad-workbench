@@ -126,6 +126,8 @@ Case-specific fields:
 
 Common fields include policy number, section/agent codes, field agent ID, customer, dates, sumup fields, item/inquiry codes, correction fields, and the `MAZG101W047` completion error.
 
+Coded values (`largeItemValue`, `inputType`, `sumupStatus`) are **label→code** conversions. The appendix stores labels; `param-map.json` supplies codes. Those codes must match the real SUT option values; see `DECISIONS.md` D16.
+
 Insurance selection uses the **visible label** normalized for whitespace/colon, not a fixed value. `011` and `012` both use `00`, so value-based selection would be ambiguous.
 
 ## 6. Blocks

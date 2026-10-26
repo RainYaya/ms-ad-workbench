@@ -163,3 +163,11 @@ Short architecture decision log. Each entry is a decision, the reason, and the c
 **Reason:** PS hand-rolled WebSocket CDP (185 lines) made every block a quoting ordeal; Edge-155 default-profile CDP and popup races consumed days. Playwright eliminates those classes of bugs. Company machine allows files but no installs; portability verified pending (node hello-world).
 
 **Consequence:** Runner development targets the captured HTML in `automation/screens/` (dev machine) with live verification only on the company machine. Four screens are still missing (AZG101/AZG900/AZG902/AZG906) and must be captured by the user.
+
+## D16. Coded parameters must be checked against the actual option list
+
+**Decision:** Treat every label→code dictionary (`inputType`, `largeItemValue`, `sumupStatus`, …) as a SUT interface that must be verified against the real `<option value>` list; do not infer it from an old map or from mock success.
+
+**Reason:** The appendix is correct but stores labels (`自動車`), while the runner needs codes (`1`). A hand-written map had `自動車=5`; the real page has `自動車=1`, `新種=5`. The generated params were wrong even though the appendix and frontend were right. Mock flow pass did not exercise the real filtered insurance options.
+
+**Consequence:** Regenerating `generated.json` is not enough if `param-map.json` is wrong. Add a validation/audit step comparing coded values with the live option lists. A live 02-004 run caught this; mock-only runs must not be treated as proof of coded values.
