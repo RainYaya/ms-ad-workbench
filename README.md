@@ -26,7 +26,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`automation/ASSIGNED.md`](automation/ASSIGNED.md) | The 450 assigned tasks, templates, and ordering |
 | [`automation/steps/DESIGN.md`](automation/steps/DESIGN.md) | Step/block composition model |
 | [`automation/steps/INVENTORY.md`](automation/steps/INVENTORY.md) | Raw 450-case step inventory and candidate blocks |
-| [`automation/blocks/COVERAGE.md`](automation/blocks/COVERAGE.md) | Static coverage: 34 auto-inclusive / 12 curated-only full; 68.0% / 30.9% events |
+| [`automation/blocks/COVERAGE.md`](automation/blocks/COVERAGE.md) | Static block coverage: 252 blocks, 450/450 composed, 82.4% real-block events |
 | [`automation/PROGRESS.md`](automation/PROGRESS.md) | Per-book/per-case progress, done/remaining/next, and block execution state |
 
 ## Viewer quick start
@@ -66,7 +66,9 @@ Do not use a default Edge `User Data` directory with CDP. `start-edge.ps1` handl
 | Route inference | 26 AZ route chains verified by `tools/verify_routes.py` |
 | Viewer | Built and deployed; dashboard, scenarios, routes, tasks, case drawer, evidence, automation tab, JSON/CSV export |
 | 450 assigned tasks | Grouped: 215 exact procedure signatures, 55 screens, 152 singleton signatures |
-| Block composition | 45 blocks (15 curated + 30 auto candidates); 34 static full / 416 partial; 7,345/10,803 events (68.0% auto-inclusive, 30.9% curated-only) |
+| Mock execution | 446 / 450 pass; 4 fail |
+| Live execution | 3 blocks verified (009 block 1–3); no fully verified case yet |
+| Block composition | 252 blocks (34 curated + 59 auto + 68 shared + 91 singleton); 450/450 composed; 82.4% real-block events; 3 verified blocks |
 | `AZ-110-01-009` | Block 1–3 pass on actual SUT; block 4/5 blocked on agent search returning no rows; block 6–13 not implemented |
 | `AZ-110-01-010..012` | Same 44-row procedure; parameterized runner passes mock, not yet run on actual SUT |
 | Reference webapps | Extracted locally; excluded from git/Pages by default |
