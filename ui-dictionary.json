@@ -1,0 +1,3876 @@
+{
+ "generatedAt": "2026-10-26 22:11:03",
+ "source": "D:\\Code\\ms-ad\\reference\\webapps",
+ "screens": {
+  "AMB/dummy": {
+   "file": "dummy.html",
+   "title": "試験用ログイン画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "メニュー画面",
+     "key": "メニュー画面",
+     "id": "menu_cm",
+     "selector": "#menu_cm"
+    },
+    {
+     "label": "不備一覧画面",
+     "key": "不備一覧画面",
+     "id": "impList_cm",
+     "selector": "#impList_cm"
+    },
+    {
+     "label": "不備内容回答画面",
+     "key": "不備内容回答画面",
+     "id": "impList_cm",
+     "selector": "#impList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkList_cm",
+     "selector": "#checkList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkListFromMail_cm",
+     "selector": "#checkListFromMail_cm"
+    }
+   ],
+   "code": "dummy"
+  },
+  "AMB/insurance_item_select": {
+   "file": "insurance_item_select.html",
+   "title": "保険種類選択画面",
+   "fields": [
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "保険種類",
+     "key": "保険種類",
+     "id": "insurance_item_list.selected",
+     "kind": "select",
+     "selector": "#insurance_item_list.selected"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "ＯＫ",
+     "key": "ＯＫ",
+     "id": "ok",
+     "selector": "#ok"
+    },
+    {
+     "label": "キャンセル",
+     "key": "キャンセル",
+     "id": "cancel",
+     "selector": "#cancel"
+    }
+   ],
+   "code": "insurance_item_select"
+  },
+  "AMB/AMA01": {
+   "file": "AMA01.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "新規登録",
+     "key": "新規登録",
+     "id": "act001to100",
+     "selector": "#act001to100"
+    },
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "act001to200",
+     "selector": "#act001to200"
+    },
+    {
+     "label": "集計",
+     "key": "集計",
+     "id": "act001to201",
+     "selector": "#act001to201"
+    },
+    {
+     "label": "親子集計",
+     "key": "親子集計",
+     "id": "act001to103",
+     "selector": "#act001to103"
+    },
+    {
+     "label": "メール登録",
+     "key": "メール登録",
+     "id": "act001to207",
+     "selector": "#act001to207"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA01"
+  },
+  "AMB/AMA03": {
+   "file": "AMA03.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "入力区分",
+     "key": "入力区分",
+     "id": "selected_input_type_code",
+     "kind": "input",
+     "selector": "#selected_input_type_code"
+    },
+    {
+     "label": "契約マスタ",
+     "key": "契約マスタ",
+     "id": "import_flag",
+     "kind": "input",
+     "selector": "#import_flag"
+    },
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": "selected_large_item_code",
+     "kind": "input",
+     "selector": "#selected_large_item_code"
+    },
+    {
+     "label": "証券番号",
+     "key": "証券番号",
+     "id": "policy_number",
+     "kind": "input",
+     "selector": "#policy_number"
+    },
+    {
+     "label": "明細番号",
+     "key": "明細番号",
+     "id": "sub_policy_number",
+     "kind": "input",
+     "selector": "#sub_policy_number"
+    },
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ",
+     "key": "代理店コード",
+     "id": "agent_code",
+     "kind": "input",
+     "selector": "#agent_code"
+    },
+    {
+     "label": "代理店名",
+     "key": "代理店名",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "ｻﾌﾞｺｰﾄﾞ",
+     "key": "ｻﾌﾞコード",
+     "id": "sub_agent_code",
+     "kind": "input",
+     "selector": "#sub_agent_code"
+    },
+    {
+     "label": "ﾌﾘｰｺｰﾄﾞ",
+     "key": "ﾌﾘｰコード",
+     "id": "free_code_1",
+     "kind": "input",
+     "selector": "#free_code_1"
+    },
+    {
+     "label": "募集人ID",
+     "key": "募集人ID",
+     "id": "field_agent_id",
+     "kind": "input",
+     "selector": "#field_agent_id"
+    },
+    {
+     "label": "契約者名",
+     "key": "契約者名",
+     "id": "insurant_name",
+     "kind": "input",
+     "selector": "#insurant_name"
+    },
+    {
+     "label": "保険始期日",
+     "key": "保険始期日",
+     "id": "start_date",
+     "kind": "input",
+     "selector": "#start_date"
+    },
+    {
+     "label": "変更日",
+     "key": "変更日",
+     "id": "change_date",
+     "kind": "input",
+     "selector": "#change_date"
+    },
+    {
+     "label": "新更変・他",
+     "key": "新更変・他",
+     "id": "selected_application_form_type_code",
+     "kind": "input",
+     "selector": "#selected_application_form_type_code"
+    },
+    {
+     "label": "計上年月",
+     "key": "計上年月",
+     "id": "sumup_year_month",
+     "kind": "input",
+     "selector": "#sumup_year_month"
+    },
+    {
+     "label": "日報／送付",
+     "key": "日報／送付",
+     "id": "daily_report_send",
+     "kind": "input",
+     "selector": "#daily_report_send"
+    },
+    {
+     "label": "日報部課代ｺｰﾄﾞ",
+     "key": "日報部課代コード",
+     "id": "sumup_section_code",
+     "kind": "input",
+     "selector": "#sumup_section_code"
+    },
+    {
+     "label": "計上状態",
+     "key": "計上状態",
+     "id": "selected_sumup_status_code",
+     "kind": "input",
+     "selector": "#selected_sumup_status_code"
+    },
+    {
+     "label": "登録者",
+     "key": "登録者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録日",
+     "key": "登録日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新日",
+     "key": "更新日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "回答締切日",
+     "key": "回答締切日",
+     "id": "reminder_date",
+     "kind": "input",
+     "selector": "#reminder_date"
+    },
+    {
+     "label": "完了日",
+     "key": "完了日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "....",
+     "key": "....",
+     "id": "selectInsuransuItem",
+     "selector": "#selectInsuransuItem"
+    },
+    {
+     "label": "....",
+     "key": "....",
+     "id": "selectFieldAgent",
+     "selector": "#selectFieldAgent"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act100to001",
+     "selector": "#act100to001"
+    },
+    {
+     "label": "一覧画面",
+     "key": "一覧画面",
+     "id": "act100to200",
+     "selector": "#act100to200"
+    },
+    {
+     "label": "登録",
+     "key": "登録",
+     "id": "regist",
+     "selector": "#regist"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA03"
+  },
+  "AMB/AMA04": {
+   "file": "AMA04.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "入力区分",
+     "key": "入力区分",
+     "id": "selected_input_type_code",
+     "kind": "input",
+     "selector": "#selected_input_type_code"
+    },
+    {
+     "label": "契約マスタ",
+     "key": "契約マスタ",
+     "id": "import_flag",
+     "kind": "input",
+     "selector": "#import_flag"
+    },
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": "selected_large_item_code",
+     "kind": "input",
+     "selector": "#selected_large_item_code"
+    },
+    {
+     "label": "保険種類",
+     "key": "保険種類",
+     "id": "selected_insurance_item_code",
+     "kind": "input",
+     "selector": "#selected_insurance_item_code"
+    },
+    {
+     "label": "証券番号",
+     "key": "証券番号",
+     "id": "policy_number",
+     "kind": "input",
+     "selector": "#policy_number"
+    },
+    {
+     "label": "明細番号",
+     "key": "明細番号",
+     "id": "sub_policy_number",
+     "kind": "input",
+     "selector": "#sub_policy_number"
+    },
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ",
+     "key": "代理店コード",
+     "id": "agent_code",
+     "kind": "input",
+     "selector": "#agent_code"
+    },
+    {
+     "label": "代理店名",
+     "key": "代理店名",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "ｻﾌﾞｺｰﾄﾞ",
+     "key": "ｻﾌﾞコード",
+     "id": "sub_agent_code",
+     "kind": "input",
+     "selector": "#sub_agent_code"
+    },
+    {
+     "label": "ﾌﾘｰｺｰﾄﾞ",
+     "key": "ﾌﾘｰコード",
+     "id": "free_code_1",
+     "kind": "input",
+     "selector": "#free_code_1"
+    },
+    {
+     "label": "募集人ID",
+     "key": "募集人ID",
+     "id": "field_agent_id",
+     "kind": "input",
+     "selector": "#field_agent_id"
+    },
+    {
+     "label": "契約者名",
+     "key": "契約者名",
+     "id": "insurant_name",
+     "kind": "input",
+     "selector": "#insurant_name"
+    },
+    {
+     "label": "保険始期日",
+     "key": "保険始期日",
+     "id": "start_date",
+     "kind": "input",
+     "selector": "#start_date"
+    },
+    {
+     "label": "変更日",
+     "key": "変更日",
+     "id": "change_date",
+     "kind": "input",
+     "selector": "#change_date"
+    },
+    {
+     "label": "新更変・他",
+     "key": "新更変・他",
+     "id": "selected_application_form_type_code",
+     "kind": "input",
+     "selector": "#selected_application_form_type_code"
+    },
+    {
+     "label": "計上年月",
+     "key": "計上年月",
+     "id": "sumup_year_month",
+     "kind": "input",
+     "selector": "#sumup_year_month"
+    },
+    {
+     "label": "日報／送付",
+     "key": "日報／送付",
+     "id": "daily_report_send",
+     "kind": "input",
+     "selector": "#daily_report_send"
+    },
+    {
+     "label": "日報部課代ｺｰﾄﾞ",
+     "key": "日報部課代コード",
+     "id": "sumup_section_code",
+     "kind": "input",
+     "selector": "#sumup_section_code"
+    },
+    {
+     "label": "照会ＩＤ",
+     "key": "照会ID",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録者",
+     "key": "登録者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新者",
+     "key": "更新者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録日",
+     "key": "登録日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新日",
+     "key": "更新日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "回答締切日",
+     "key": "回答締切日",
+     "id": "reminder_date",
+     "kind": "input",
+     "selector": "#reminder_date"
+    },
+    {
+     "label": "完了日",
+     "key": "完了日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "連携",
+     "key": "連携",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "計上状態",
+     "key": "計上状態",
+     "id": "sumup_status",
+     "kind": "input",
+     "selector": "#sumup_status"
+    },
+    {
+     "label": "照会方法",
+     "key": "照会方法",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "依頼区分",
+     "key": "依頼区分",
+     "id": "agent_deal_flag_1",
+     "kind": "input",
+     "selector": "#agent_deal_flag_1"
+    },
+    {
+     "label": "点検区分",
+     "key": "点検区分",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "営業対応状況",
+     "key": "営業対応状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店対応状況",
+     "key": "代理店対応状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "社内メモ欄",
+     "key": "社内メモ欄",
+     "id": "inhouse_message",
+     "kind": "input",
+     "selector": "#inhouse_message"
+    },
+    {
+     "label": "送り状印刷",
+     "key": "送り状印刷",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "代理店モード表示",
+     "key": "代理店モード表示",
+     "id": "act101to909",
+     "selector": "#act101to909"
+    },
+    {
+     "label": "....",
+     "key": "....",
+     "id": "selectInsuransuItem",
+     "selector": "#selectInsuransuItem"
+    },
+    {
+     "label": "....",
+     "key": "....",
+     "id": "selectFieldAgent",
+     "selector": "#selectFieldAgent"
+    },
+    {
+     "label": "履歴",
+     "key": "履歴",
+     "id": "act101to912",
+     "selector": "#act101to912"
+    },
+    {
+     "label": "コピー登録",
+     "key": "コピー登録",
+     "id": "copyRegist",
+     "selector": "#copyRegist"
+    },
+    {
+     "label": "機械点検画像",
+     "key": "機械点検画像",
+     "id": "displayInspectorImage",
+     "selector": "#displayInspectorImage"
+    },
+    {
+     "label": "ＭＳ１カメラ",
+     "key": "ＭＳ１カメラ",
+     "id": "displayCameraApp",
+     "selector": "#displayCameraApp"
+    },
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "|imperfectSearch[${stat.index}]|",
+     "selector": "#|imperfectSearch[${stat.index}]|"
+    },
+    {
+     "label": "修",
+     "key": "修",
+     "id": "|editInquiryContents[${stat.index}]|",
+     "selector": "#|editInquiryContents[${stat.index}]|"
+    },
+    {
+     "label": "CL",
+     "key": "CL",
+     "id": "|imperfectClear[${stat.index}]|",
+     "selector": "#|imperfectClear[${stat.index}]|"
+    },
+    {
+     "label": "訂正内容確認書",
+     "key": "訂正内容確認書",
+     "id": "act101to906",
+     "selector": "#act101to906"
+    },
+    {
+     "label": "送り状印刷",
+     "key": "送り状印刷",
+     "id": "printInvoicePDF",
+     "selector": "#printInvoicePDF"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "|delete_file_${stat.index}|",
+     "selector": "#|delete_file_${stat.index}|"
+    },
+    {
+     "label": "一覧画面",
+     "key": "一覧画面",
+     "id": "act101to200",
+     "selector": "#act101to200"
+    },
+    {
+     "label": "入力画面",
+     "key": "入力画面",
+     "id": "act101to100",
+     "selector": "#act101to100"
+    },
+    {
+     "label": "営業連携",
+     "key": "営業連携",
+     "id": "updateBusinessNotify",
+     "selector": "#updateBusinessNotify"
+    },
+    {
+     "label": "代理店連携",
+     "key": "代理店連携",
+     "id": "updateAgentNotify",
+     "selector": "#updateAgentNotify"
+    },
+    {
+     "label": "連携取消",
+     "key": "連携取消",
+     "id": "updateNotifyCancel",
+     "selector": "#updateNotifyCancel"
+    },
+    {
+     "label": "更新",
+     "key": "更新",
+     "id": "update",
+     "selector": "#update"
+    },
+    {
+     "label": "印刷",
+     "key": "印刷",
+     "id": "print",
+     "selector": "#print"
+    },
+    {
+     "label": "回答",
+     "key": "回答",
+     "id": "updateAnswer",
+     "selector": "#updateAnswer"
+    },
+    {
+     "label": "完了登録",
+     "key": "完了登録",
+     "id": "updateCompleteDate",
+     "selector": "#updateCompleteDate"
+    },
+    {
+     "label": "完了取消",
+     "key": "完了取消",
+     "id": "cancelCompleteDate",
+     "selector": "#cancelCompleteDate"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "act101to001",
+     "selector": "#act101to001"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "initialSelf",
+     "selector": "#initialSelf"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "updateAgentNotifyHidden",
+     "selector": "#updateAgentNotifyHidden"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "downloadFileHidden",
+     "selector": "#downloadFileHidden"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "printInvoicePDFHidden",
+     "selector": "#printInvoicePDFHidden"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "updateBusinessNotifyHidden",
+     "selector": "#updateBusinessNotifyHidden"
+    }
+   ],
+   "code": "AMA04"
+  },
+  "AMB/AMA06": {
+   "file": "AMA06.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "予約番号",
+     "key": "予約番号",
+     "id": "reserve_no",
+     "kind": "input",
+     "selector": "#reserve_no"
+    },
+    {
+     "label": "ステータス",
+     "key": "ステータス",
+     "id": "status",
+     "kind": "input",
+     "selector": "#status"
+    },
+    {
+     "label": "受付時間",
+     "key": "受付時間",
+     "id": "registration_date",
+     "kind": "input",
+     "selector": "#registration_date"
+    },
+    {
+     "label": "開始時間",
+     "key": "開始時間",
+     "id": "start_date",
+     "kind": "input",
+     "selector": "#start_date"
+    },
+    {
+     "label": "完了時間",
+     "key": "完了時間",
+     "id": "end_date",
+     "kind": "input",
+     "selector": "#end_date"
+    },
+    {
+     "label": "登録年月",
+     "key": "登録年月",
+     "id": "from_registration_year",
+     "kind": "input",
+     "selector": "#from_registration_year"
+    },
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": "selectded_large_item",
+     "kind": "input",
+     "selector": "#selectded_large_item"
+    },
+    {
+     "label": "入力区分",
+     "key": "入力区分",
+     "id": "input_type_1",
+     "kind": "input",
+     "selector": "#input_type_1"
+    },
+    {
+     "label": "新更変・他",
+     "key": "新更変・他",
+     "id": "application_form_type_1",
+     "kind": "input",
+     "selector": "#application_form_type_1"
+    },
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "regist_section_code",
+     "kind": "input",
+     "selector": "#regist_section_code"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ",
+     "key": "代理店コード",
+     "id": "regist_agent_code",
+     "kind": "input",
+     "selector": "#regist_agent_code"
+    },
+    {
+     "label": "親子代理店定義ファイル",
+     "key": "親子代理店定義ファイル",
+     "id": "oyako_teigi_file",
+     "kind": "input",
+     "selector": "#oyako_teigi_file"
+    },
+    {
+     "label": "集計単位",
+     "key": "集計単位",
+     "id": "total_unit_1",
+     "kind": "input",
+     "selector": "#total_unit_1"
+    },
+    {
+     "label": "集計情報",
+     "key": "集計情報",
+     "id": "total_target_1",
+     "kind": "input",
+     "selector": "#total_target_1"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "実行↓",
+     "key": "実行↓",
+     "id": "feasible",
+     "selector": "#feasible"
+    },
+    {
+     "label": "全部 &#062;&#062;",
+     "key": "全部&#062;&#062;",
+     "id": "addAll",
+     "selector": "#addAll"
+    },
+    {
+     "label": "個別 &#062;",
+     "key": "個別&#062;",
+     "id": "addOne",
+     "selector": "#addOne"
+    },
+    {
+     "label": "&#060;&#060; 全部",
+     "key": "&#060;&#060;全部",
+     "id": "delAll",
+     "selector": "#delAll"
+    },
+    {
+     "label": "&#060; 個別",
+     "key": "&#060;個別",
+     "id": "delOne",
+     "selector": "#delOne"
+    },
+    {
+     "label": "↑",
+     "key": "↑",
+     "id": "upOne",
+     "selector": "#upOne"
+    },
+    {
+     "label": "↓",
+     "key": "↓",
+     "id": "downOne",
+     "selector": "#downOne"
+    },
+    {
+     "label": "クリップボードコピー",
+     "key": "クリップボードコピー",
+     "id": "copyClipboard",
+     "selector": "#copyClipboard"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act103to001",
+     "selector": "#act103to001"
+    },
+    {
+     "label": "状況確認",
+     "key": "状況確認",
+     "id": "act103to204",
+     "selector": "#act103to204"
+    },
+    {
+     "label": "予約実行",
+     "key": "予約実行",
+     "id": "regist",
+     "selector": "#regist"
+    },
+    {
+     "label": "削　除",
+     "key": "削除",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "feasibleHidden",
+     "selector": "#feasibleHidden"
+    }
+   ],
+   "code": "AMA06"
+  },
+  "AMB/AMA07": {
+   "file": "AMA07.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ",
+     "key": "代理店コード",
+     "id": "agent_code",
+     "kind": "input",
+     "selector": "#agent_code"
+    },
+    {
+     "label": "登録部課ｺｰﾄﾞ",
+     "key": "登録部課コード",
+     "id": "register_section_code",
+     "kind": "input",
+     "selector": "#register_section_code"
+    },
+    {
+     "label": "日報部課代ｺｰﾄﾞ",
+     "key": "日報部課代コード",
+     "id": "sumup_section_code",
+     "kind": "input",
+     "selector": "#sumup_section_code"
+    },
+    {
+     "label": "ｻﾌﾞｺｰﾄﾞ",
+     "key": "ｻﾌﾞコード",
+     "id": "sub_agent_code",
+     "kind": "input",
+     "selector": "#sub_agent_code"
+    },
+    {
+     "label": "ﾌﾘｰｺｰﾄﾞ",
+     "key": "ﾌﾘｰコード",
+     "id": "free_code_1",
+     "kind": "input",
+     "selector": "#free_code_1"
+    },
+    {
+     "label": "募集人ID",
+     "key": "募集人ID",
+     "id": "field_agent_id",
+     "kind": "input",
+     "selector": "#field_agent_id"
+    },
+    {
+     "label": "登録者(社員番号)",
+     "key": "登録者(社員番号)",
+     "id": "register_code",
+     "kind": "input",
+     "selector": "#register_code"
+    },
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": "large_item_name_key",
+     "kind": "input",
+     "selector": "#large_item_name_key"
+    },
+    {
+     "label": "明細番号",
+     "key": "明細番号",
+     "id": "sub_policy_number",
+     "kind": "input",
+     "selector": "#sub_policy_number"
+    },
+    {
+     "label": "計上年月",
+     "key": "計上年月",
+     "id": "sumup_year",
+     "kind": "input",
+     "selector": "#sumup_year"
+    },
+    {
+     "label": "計上状態",
+     "key": "計上状態",
+     "id": "sumup_status_key",
+     "kind": "input",
+     "selector": "#sumup_status_key"
+    },
+    {
+     "label": "入力区分",
+     "key": "入力区分",
+     "id": "input_type_key",
+     "kind": "input",
+     "selector": "#input_type_key"
+    },
+    {
+     "label": "営業担当者ｺｰﾄﾞ",
+     "key": "営業担当者コード",
+     "id": "business_staff_code",
+     "kind": "input",
+     "selector": "#business_staff_code"
+    },
+    {
+     "label": "回答締切日",
+     "key": "回答締切日",
+     "id": "reminder_year_from",
+     "kind": "input",
+     "selector": "#reminder_year_from"
+    },
+    {
+     "label": "営業対応状況",
+     "key": "営業対応状況",
+     "id": "status_code_1",
+     "kind": "input",
+     "selector": "#status_code_1"
+    },
+    {
+     "label": "4：完了",
+     "key": "4：完了",
+     "id": "complete_status",
+     "kind": "input",
+     "selector": "#complete_status"
+    },
+    {
+     "label": "連携",
+     "key": "連携",
+     "id": "notify_status_1",
+     "kind": "input",
+     "selector": "#notify_status_1"
+    },
+    {
+     "label": "代理店対応状況",
+     "key": "代理店対応状況",
+     "id": "agent_status_code_1",
+     "kind": "input",
+     "selector": "#agent_status_code_1"
+    },
+    {
+     "label": "回答日",
+     "key": "回答日",
+     "id": "answer_date_year",
+     "kind": "input",
+     "selector": "#answer_date_year"
+    },
+    {
+     "label": "照会方法",
+     "key": "照会方法",
+     "id": "inquiry_method_code_1",
+     "kind": "input",
+     "selector": "#inquiry_method_code_1"
+    },
+    {
+     "label": "点検区分",
+     "key": "点検区分",
+     "id": "ck_type_1",
+     "kind": "input",
+     "selector": "#ck_type_1"
+    },
+    {
+     "label": "依頼区分",
+     "key": "依頼区分",
+     "id": "agent_deal_flag_1",
+     "kind": "input",
+     "selector": "#agent_deal_flag_1"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "ｸﾘｱ",
+     "key": "ｸﾘｱ",
+     "id": "clear_button",
+     "selector": "#clear_button"
+    },
+    {
+     "label": "ヘルプ",
+     "key": "ヘルプ",
+     "id": "helpLink",
+     "selector": "#helpLink"
+    },
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "検索結果出力",
+     "key": "検索結果出力",
+     "id": "outputCSV",
+     "selector": "#outputCSV"
+    },
+    {
+     "label": "代理店画面サンプル",
+     "key": "代理店画面サンプル",
+     "id": "agentModeDisplay",
+     "selector": "#agentModeDisplay"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act200to001",
+     "selector": "#act200to001"
+    },
+    {
+     "label": "入力画面",
+     "key": "入力画面",
+     "id": "act200to100",
+     "selector": "#act200to100"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "完了登録",
+     "key": "完了登録",
+     "id": "updateCompleteDate",
+     "selector": "#updateCompleteDate"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "act200to101",
+     "selector": "#act200to101"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA07"
+  },
+  "AMB/AMA08": {
+   "file": "AMA08.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ",
+     "key": "代理店コード",
+     "id": "agent_code",
+     "kind": "input",
+     "selector": "#agent_code"
+    },
+    {
+     "label": "登録年月",
+     "key": "登録年月",
+     "id": "from_registration_year",
+     "kind": "input",
+     "selector": "#from_registration_year"
+    },
+    {
+     "label": "種目",
+     "key": "種目",
+     "id": "selectded_large_item",
+     "kind": "input",
+     "selector": "#selectded_large_item"
+    },
+    {
+     "label": "入力区分",
+     "key": "入力区分",
+     "id": "input_type_1",
+     "kind": "input",
+     "selector": "#input_type_1"
+    },
+    {
+     "label": "新更変・他",
+     "key": "新更変・他",
+     "id": "application_form_type_1",
+     "kind": "input",
+     "selector": "#application_form_type_1"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act201to001",
+     "selector": "#act201to001"
+    },
+    {
+     "label": "ﾌﾘｰｺｰﾄﾞ集計出力",
+     "key": "ﾌﾘｰコード集計出力",
+     "id": "OutputSumupFreeCodeId",
+     "selector": "#OutputSumupFreeCodeId"
+    },
+    {
+     "label": "不備項目集計出力",
+     "key": "不備項目集計出力",
+     "id": "OutputSumupFieldId",
+     "selector": "#OutputSumupFieldId"
+    },
+    {
+     "label": "不備内容集計出力",
+     "key": "不備内容集計出力",
+     "id": "OutputSumupContentsId",
+     "selector": "#OutputSumupContentsId"
+    },
+    {
+     "label": "登録件数集計出力",
+     "key": "登録件数集計出力",
+     "id": "OutputSumupRegistCountId",
+     "selector": "#OutputSumupRegistCountId"
+    },
+    {
+     "label": "募集人集計出力",
+     "key": "募集人集計出力",
+     "id": "OutputSumupFieldAgentId",
+     "selector": "#OutputSumupFieldAgentId"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA08"
+  },
+  "AMB/AMA11": {
+   "file": "AMA11.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "予約番号",
+     "key": "予約番号",
+     "id": "reserve_no",
+     "kind": "input",
+     "selector": "#reserve_no"
+    },
+    {
+     "label": "ステータス",
+     "key": "ステータス",
+     "id": "status_1",
+     "kind": "input",
+     "selector": "#status_1"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "削",
+     "key": "削",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "再実行",
+     "key": "再実行",
+     "id": "update",
+     "selector": "#update"
+    },
+    {
+     "label": "ﾀﾞｳﾝﾛｰﾄﾞ",
+     "key": "ﾀﾞｳﾝﾛｰﾄﾞ",
+     "id": "download",
+     "selector": "#download"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act204to001",
+     "selector": "#act204to001"
+    },
+    {
+     "label": "予約",
+     "key": "予約",
+     "id": "act204to103",
+     "selector": "#act204to103"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForReload",
+     "selector": "#hiddenButtonForReload"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForDelete",
+     "selector": "#hiddenButtonForDelete"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForUpdate",
+     "selector": "#hiddenButtonForUpdate"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForDownload",
+     "selector": "#hiddenButtonForDownload"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForLink103",
+     "selector": "#hiddenButtonForLink103"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA11"
+  },
+  "AMB/AMA12": {
+   "file": "AMA12.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act301to001",
+     "selector": "#act301to001"
+    },
+    {
+     "label": "状況確認",
+     "key": "状況確認",
+     "id": "act301to204",
+     "selector": "#act301to204"
+    },
+    {
+     "label": "予約",
+     "key": "予約",
+     "id": "act301to103",
+     "selector": "#act301to103"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA12"
+  },
+  "AMB/AMA13": {
+   "file": "AMA13.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "保険種類",
+     "key": "保険種類",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "項目名",
+     "key": "項目名",
+     "id": "field_code_key",
+     "kind": "input",
+     "selector": "#field_code_key"
+    },
+    {
+     "label": "照会内容",
+     "key": "照会内容",
+     "id": "inquiry_contents_code_key",
+     "kind": "input",
+     "selector": "#inquiry_contents_code_key"
+    },
+    {
+     "label": "不備内容",
+     "key": "不備内容",
+     "id": "selected_imperfect_code",
+     "kind": "input",
+     "selector": "#selected_imperfect_code"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "選 択",
+     "key": "選択",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA13"
+  },
+  "AMB/AMA14": {
+   "file": "AMA14.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "出力項目選択",
+     "key": "出力項目選択",
+     "id": "tel_fax_flag",
+     "kind": "input",
+     "selector": "#tel_fax_flag"
+    },
+    {
+     "label": "照会先",
+     "key": "照会先",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "帳票出力",
+     "key": "帳票出力",
+     "id": "Print",
+     "selector": "#Print"
+    },
+    {
+     "label": "クリップボードへコピー",
+     "key": "クリップボードへコピー",
+     "id": "CopyClipboard",
+     "selector": "#CopyClipboard"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "ClosePopup",
+     "selector": "#ClosePopup"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "onDialog",
+     "selector": "#onDialog"
+    }
+   ],
+   "code": "AMA14"
+  },
+  "AMB/AMA15": {
+   "file": "AMA15.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "ＯＫ",
+     "key": "ＯＫ",
+     "id": "ok",
+     "selector": "#ok"
+    },
+    {
+     "label": "キャンセル",
+     "key": "キャンセル",
+     "id": "cancel",
+     "selector": "#cancel"
+    }
+   ],
+   "code": "AMA15"
+  },
+  "AMB/AMA18": {
+   "file": "AMA18.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code_key",
+     "kind": "input",
+     "selector": "#section_code_key"
+    },
+    {
+     "label": "代理店ｺｰﾄﾞ※",
+     "key": "代理店コード",
+     "id": "agent_code_key",
+     "kind": "input",
+     "selector": "#agent_code_key"
+    },
+    {
+     "label": "募集人ID",
+     "key": "募集人ID",
+     "id": "field_agent_id_key",
+     "kind": "input",
+     "selector": "#field_agent_id_key"
+    },
+    {
+     "label": "募集人名",
+     "key": "募集人名",
+     "id": "field_agent_name_key",
+     "kind": "input",
+     "selector": "#field_agent_name_key"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "検　索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "選択",
+     "key": "選択",
+     "id": "closeSelect",
+     "selector": "#closeSelect"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA18"
+  },
+  "AMB/AMA19": {
+   "file": "AMA19.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "名称",
+     "key": "名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "確認者（募集人または社員）",
+     "key": "確認者（募集人または社員）",
+     "id": "confirm_user_name",
+     "kind": "input",
+     "selector": "#confirm_user_name"
+    },
+    {
+     "label": "明細番号",
+     "key": "明細番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "確認日・確認時刻",
+     "key": "確認日・確認時刻",
+     "id": "confirm_date_year",
+     "kind": "input",
+     "selector": "#confirm_date_year"
+    },
+    {
+     "label": "確認相手（氏名）（注1）",
+     "key": "確認相手（氏名）（注1）",
+     "id": "confirm_target_name",
+     "kind": "input",
+     "selector": "#confirm_target_name"
+    },
+    {
+     "label": "確認相手の電話番号",
+     "key": "確認相手の電話番号",
+     "id": "confirm_target_tel",
+     "kind": "input",
+     "selector": "#confirm_target_tel"
+    },
+    {
+     "label": "eメールによる確認の場合",
+     "key": "eメールによる確認の場合",
+     "id": "email_confirm_check",
+     "kind": "input",
+     "selector": "#email_confirm_check"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "登録",
+     "key": "登録",
+     "id": "regist",
+     "selector": "#regist"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA19"
+  },
+  "AMB/AMA25": {
+   "file": "AMA25.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "画面上段を閉じる",
+     "key": "画面上段を閉じる",
+     "id": "btnOpenClose",
+     "selector": "#btnOpenClose"
+    },
+    {
+     "label": "ＭＳ１カメラ",
+     "key": "ＭＳ１カメラ",
+     "id": "displayCameraApp",
+     "selector": "#displayCameraApp"
+    },
+    {
+     "label": "機械点検画像",
+     "key": "機械点検画像",
+     "id": "displayInspectorImage",
+     "selector": "#displayInspectorImage"
+    },
+    {
+     "label": "送り状印刷",
+     "key": "送り状印刷",
+     "id": "printInvoice",
+     "selector": "#printInvoice"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "|dummy_file_${stat.index}|",
+     "selector": "#|dummy_file_${stat.index}|"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "|delete_file_${stat.index}|",
+     "selector": "#|delete_file_${stat.index}|"
+    },
+    {
+     "label": "不備一覧",
+     "key": "不備一覧",
+     "id": "act909toImperfectList",
+     "selector": "#act909toImperfectList"
+    },
+    {
+     "label": "一時中断",
+     "key": "一時中断",
+     "id": "updateTempAnswer",
+     "selector": "#updateTempAnswer"
+    },
+    {
+     "label": "回 答",
+     "key": "回答",
+     "id": "updateAnswer",
+     "selector": "#updateAnswer"
+    },
+    {
+     "label": "印 刷",
+     "key": "印刷",
+     "id": "print",
+     "selector": "#print"
+    },
+    {
+     "label": "メール用コピー",
+     "key": "メール用コピー",
+     "id": "copy",
+     "selector": "#copy"
+    },
+    {
+     "label": "終 了",
+     "key": "終了",
+     "id": "closeAZG909",
+     "selector": "#closeAZG909"
+    }
+   ],
+   "code": "AMA25"
+  },
+  "AMB/AMA26": {
+   "file": "AMA26.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    },
+    {
+     "label": "通知件数",
+     "key": "通知件数",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "全選択",
+     "key": "全選択",
+     "id": "all_select",
+     "selector": "#all_select"
+    },
+    {
+     "label": "全解除",
+     "key": "全解除",
+     "id": "all_clear",
+     "selector": "#all_clear"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "追加",
+     "key": "追加",
+     "id": "add_user",
+     "selector": "#add_user"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act207to001",
+     "selector": "#act207to001"
+    },
+    {
+     "label": "更新",
+     "key": "更新",
+     "id": "update",
+     "selector": "#update"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA26"
+  },
+  "AMB/AMA27": {
+   "file": "AMA27.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "氏名",
+     "key": "氏名",
+     "id": "user_name",
+     "kind": "input",
+     "selector": "#user_name"
+    },
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA27"
+  },
+  "AMB/AMA28": {
+   "file": "AMA28.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "通知先部課ｺｰﾄﾞ",
+     "key": "通知先部課コード",
+     "id": "section_code_set",
+     "kind": "input",
+     "selector": "#section_code_set"
+    },
+    {
+     "label": "氏名",
+     "key": "氏名",
+     "id": "user_name",
+     "kind": "input",
+     "selector": "#user_name"
+    },
+    {
+     "label": "部店課支社ｺｰﾄﾞ",
+     "key": "部店課支社コード",
+     "id": "section_code",
+     "kind": "input",
+     "selector": "#section_code"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "通知先再セット",
+     "key": "通知先再セット",
+     "id": "reset",
+     "selector": "#reset"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "通知する",
+     "key": "通知する",
+     "id": "sendOn",
+     "selector": "#sendOn"
+    },
+    {
+     "label": "通知しない",
+     "key": "通知しない",
+     "id": "sendOff",
+     "selector": "#sendOff"
+    },
+    {
+     "label": "キャンセル",
+     "key": "キャンセル",
+     "id": "cancel",
+     "selector": "#cancel"
+    },
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    }
+   ],
+   "code": "AMA28"
+  },
+  "AMB/AMA29": {
+   "file": "AMA29.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMA29"
+  },
+  "AMB/AMAZS": {
+   "file": "AMAZS.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZS"
+  },
+  "AMB/AMAZT": {
+   "file": "AMAZT.html",
+   "title": "申込書品質管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZT"
+  },
+  "AMB/AMAZU": {
+   "file": "AMAZU.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZU"
+  },
+  "AMB/AMAZV": {
+   "file": "AMAZV.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZV"
+  },
+  "AMB/AMAZW": {
+   "file": "AMAZW.html",
+   "title": "申込書品質管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZW"
+  },
+  "AMB/AMAZY": {
+   "file": "AMAZY.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZY"
+  },
+  "AMB/AMAZZ": {
+   "file": "AMAZZ.html",
+   "title": "申込書品質管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMAZZ"
+  },
+  "AMC00/dummy": {
+   "file": "dummy.html",
+   "title": "試験用ログイン画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "メニュー画面",
+     "key": "メニュー画面",
+     "id": "menu_cm",
+     "selector": "#menu_cm"
+    },
+    {
+     "label": "不備一覧画面",
+     "key": "不備一覧画面",
+     "id": "impList_cm",
+     "selector": "#impList_cm"
+    },
+    {
+     "label": "不備内容回答画面",
+     "key": "不備内容回答画面",
+     "id": "impList_cm",
+     "selector": "#impList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkList_cm",
+     "selector": "#checkList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkListFromMail_cm",
+     "selector": "#checkListFromMail_cm"
+    }
+   ],
+   "code": "dummy"
+  },
+  "AMC00/AMC22": {
+   "file": "AMC22.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "ＣＳＶ出力",
+     "key": "ＣＳＶ出力",
+     "id": "outputCSV",
+     "selector": "#outputCSV"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "act206to104",
+     "selector": "#act206to104"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMC22"
+  },
+  "AMC00/AMC23": {
+   "file": "AMC23.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "画面上段を閉じる",
+     "key": "画面上段を閉じる",
+     "id": "btnOpenClose",
+     "selector": "#btnOpenClose"
+    },
+    {
+     "label": "ＭＳ１カメラ",
+     "key": "ＭＳ１カメラ",
+     "id": "displayCameraApp",
+     "selector": "#displayCameraApp"
+    },
+    {
+     "label": "機械点検画像",
+     "key": "機械点検画像",
+     "id": "displayInspectorImage",
+     "selector": "#displayInspectorImage"
+    },
+    {
+     "label": "訂正内容確認書",
+     "key": "訂正内容確認書",
+     "id": "act104to908",
+     "selector": "#act104to908"
+    },
+    {
+     "label": "送り状印刷",
+     "key": "送り状印刷",
+     "id": "printInvoice",
+     "selector": "#printInvoice"
+    },
+    {
+     "label": "参照...",
+     "key": "参照...",
+     "id": "|input_file_${stat.index}|",
+     "selector": "#|input_file_${stat.index}|"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "|delete_file_${stat.index}|",
+     "selector": "#|delete_file_${stat.index}|"
+    },
+    {
+     "label": "不備一覧",
+     "key": "不備一覧",
+     "id": "act104to22",
+     "selector": "#act104to22"
+    },
+    {
+     "label": "一時中断",
+     "key": "一時中断",
+     "id": "updateTempAnswer",
+     "selector": "#updateTempAnswer"
+    },
+    {
+     "label": "回 答",
+     "key": "回答",
+     "id": "updateAnswer",
+     "selector": "#updateAnswer"
+    },
+    {
+     "label": "確認済",
+     "key": "確認済",
+     "id": "updateConfirmed",
+     "selector": "#updateConfirmed"
+    },
+    {
+     "label": "印刷",
+     "key": "印刷",
+     "id": "print",
+     "selector": "#print"
+    },
+    {
+     "label": "メール用コピー",
+     "key": "メール用コピー",
+     "id": "copyClipboard",
+     "selector": "#copyClipboard"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "initialSelf",
+     "selector": "#initialSelf"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "aZG104PrintPDF",
+     "selector": "#aZG104PrintPDF"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "downloadFileHidden",
+     "selector": "#downloadFileHidden"
+    }
+   ],
+   "code": "AMC23"
+  },
+  "AMC00/AMC24": {
+   "file": "AMC24.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "登 録",
+     "key": "登録",
+     "id": "regist",
+     "selector": "#regist"
+    },
+    {
+     "label": "削 除",
+     "key": "削除",
+     "id": "delete",
+     "selector": "#delete"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMC24"
+  },
+  "AMC00/AMCZT": {
+   "file": "AMCZT.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZT"
+  },
+  "AMC00/AMCZU": {
+   "file": "AMCZU.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZU"
+  },
+  "AMC00/AMCZV": {
+   "file": "AMCZV.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZV"
+  },
+  "AMC00/AMCZW": {
+   "file": "AMCZW.html",
+   "title": "申込書品質管理システム　システムエラー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZW"
+  },
+  "AMC00/AMCZY": {
+   "file": "AMCZY.html",
+   "title": "申込書品質管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZY"
+  },
+  "AMC00/AMCZZ": {
+   "file": "AMCZZ.html",
+   "title": "申込書品質管理システム　システムエラー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "AMCZZ"
+  },
+  "ANB00/dummy": {
+   "file": "dummy.html",
+   "title": "試験用ログイン画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "メニュー画面",
+     "key": "メニュー画面",
+     "id": "menu_cm",
+     "selector": "#menu_cm"
+    },
+    {
+     "label": "不備一覧画面",
+     "key": "不備一覧画面",
+     "id": "impList_cm",
+     "selector": "#impList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkList_cm",
+     "selector": "#checkList_cm"
+    },
+    {
+     "label": "調査一覧画面",
+     "key": "調査一覧画面",
+     "id": "checkListFromMail_cm",
+     "selector": "#checkListFromMail_cm"
+    }
+   ],
+   "code": "dummy"
+  },
+  "ANB00/ANA01": {
+   "file": "ANA01.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "新規登録",
+     "key": "新規登録",
+     "id": "route2",
+     "selector": "#route2"
+    },
+    {
+     "label": "照会・検索",
+     "key": "照会・検索",
+     "id": "route3",
+     "selector": "#route3"
+    },
+    {
+     "label": "申請・承認",
+     "key": "申請・承認",
+     "id": "route4",
+     "selector": "#route4"
+    },
+    {
+     "label": "集計",
+     "key": "集計",
+     "id": "route5",
+     "selector": "#route5"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA01"
+  },
+  "ANB00/ANA02": {
+   "file": "ANA02.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "申請・確認状況",
+     "key": "申請・確認状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "異例管理番号",
+     "key": "異例管理番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "消込状況",
+     "key": "消込状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力者",
+     "key": "申請入力者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力日",
+     "key": "申請入力日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請者",
+     "key": "申請者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請日",
+     "key": "申請日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認者",
+     "key": "承認者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認日",
+     "key": "承認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼者",
+     "key": "要再申請依頼者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼日",
+     "key": "要再申請依頼日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録者",
+     "key": "登録者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録日",
+     "key": "登録日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新者",
+     "key": "更新者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新日",
+     "key": "更新日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "課支社名称",
+     "key": "課支社名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店名称",
+     "key": "代理店名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "取消・変更の計上日",
+     "key": "取消・変更の計上日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "route7",
+     "selector": "#route7"
+    },
+    {
+     "label": "申請一覧",
+     "key": "申請一覧",
+     "id": "route8",
+     "selector": "#route8"
+    },
+    {
+     "label": "登録",
+     "key": "登録",
+     "id": "regist",
+     "selector": "#regist"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route8A",
+     "selector": "#route8A"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route8B",
+     "selector": "#route8B"
+    }
+   ],
+   "code": "ANA02"
+  },
+  "ANB00/ANA03": {
+   "file": "ANA03.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "申請・確認状況",
+     "key": "申請・確認状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "異例管理番号",
+     "key": "異例管理番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "消込状況",
+     "key": "消込状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力者",
+     "key": "申請入力者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力日",
+     "key": "申請入力日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請者",
+     "key": "申請者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請日",
+     "key": "申請日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認者",
+     "key": "承認者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認日",
+     "key": "承認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "コンプラ情報システム連携日",
+     "key": "コンプラ情報システム連携日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼者",
+     "key": "要再申請依頼者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼日",
+     "key": "要再申請依頼日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録者",
+     "key": "登録者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録日",
+     "key": "登録日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新者",
+     "key": "更新者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新日",
+     "key": "更新日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "課支社名称",
+     "key": "課支社名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店名称",
+     "key": "代理店名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "変更事由",
+     "key": "変更事由",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "取消・変更の計上日",
+     "key": "取消・変更の計上日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "異例理由(計上時)",
+     "key": "異例理由(計上時)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "理由変更者",
+     "key": "理由変更者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "理由変更日",
+     "key": "理由変更日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "コンプラ担当者",
+     "key": "コンプラ担当者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "コンプラ確認日",
+     "key": "コンプラ確認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請依頼先",
+     "key": "申請依頼先",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請代行者",
+     "key": "申請代行者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認依頼先",
+     "key": "承認依頼先",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認代行者",
+     "key": "承認代行者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "業務Ｇ担当者",
+     "key": "業務Ｇ担当者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "確認日",
+     "key": "確認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "業務Ｇ長",
+     "key": "業務Ｇ長",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "コンプラ確認",
+     "key": "コンプラ確認",
+     "id": "complianceCheck",
+     "selector": "#complianceCheck"
+    },
+    {
+     "label": "申請依頼先選択",
+     "key": "申請依頼先選択",
+     "id": "selectReqApplicantUser",
+     "selector": "#selectReqApplicantUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearReqAppApplicantUser",
+     "selector": "#clearReqAppApplicantUser"
+    },
+    {
+     "label": "申請代行者選択",
+     "key": "申請代行者選択",
+     "id": "selectActApplicantUser",
+     "selector": "#selectActApplicantUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearActApplicantUser",
+     "selector": "#clearActApplicantUser"
+    },
+    {
+     "label": "承認依頼先選択",
+     "key": "承認依頼先選択",
+     "id": "selectReqApproverUser",
+     "selector": "#selectReqApproverUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearReqApproverUser",
+     "selector": "#clearReqApproverUser"
+    },
+    {
+     "label": "承認代行者選択",
+     "key": "承認代行者選択",
+     "id": "selectActApproverUser",
+     "selector": "#selectActApproverUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearActApproverUser",
+     "selector": "#clearActApproverUser"
+    },
+    {
+     "label": "申請依頼",
+     "key": "申請依頼",
+     "id": "requestApplicationButton",
+     "selector": "#requestApplicationButton"
+    },
+    {
+     "label": "担当確認",
+     "key": "担当確認",
+     "id": "businessGroupCheck",
+     "selector": "#businessGroupCheck"
+    },
+    {
+     "label": "対応登録",
+     "key": "対応登録",
+     "id": "actionRegist",
+     "selector": "#actionRegist"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act101to001",
+     "selector": "#act101to001"
+    },
+    {
+     "label": "申請一覧",
+     "key": "申請一覧",
+     "id": "act101to200",
+     "selector": "#act101to200"
+    },
+    {
+     "label": "新規入力",
+     "key": "新規入力",
+     "id": "act101to100",
+     "selector": "#act101to100"
+    },
+    {
+     "label": "更新",
+     "key": "更新",
+     "id": "update",
+     "selector": "#update"
+    },
+    {
+     "label": "取消",
+     "key": "取消",
+     "id": "cancelButton",
+     "selector": "#cancelButton"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "deleteApplication",
+     "selector": "#deleteApplication"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route12A",
+     "selector": "#route12A"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route12B",
+     "selector": "#route12B"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route12C",
+     "selector": "#route12C"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route18",
+     "selector": "#route18"
+    },
+    {
+     "label": "申請依頼",
+     "key": "申請依頼",
+     "id": "requestApplication",
+     "selector": "#requestApplication"
+    },
+    {
+     "label": "申請依頼",
+     "key": "申請依頼",
+     "id": "route10",
+     "selector": "#route10"
+    },
+    {
+     "label": "取消",
+     "key": "取消",
+     "id": "cancel",
+     "selector": "#cancel"
+    },
+    {
+     "label": "取消",
+     "key": "取消",
+     "id": "route15",
+     "selector": "#route15"
+    }
+   ],
+   "code": "ANA03"
+  },
+  "ANB00/ANA04": {
+   "file": "ANA04.html",
+   "title": "[[]]",
+   "fields": [
+    {
+     "label": "申請・確認状況",
+     "key": "申請・確認状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "異例管理番号",
+     "key": "異例管理番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "消込状況",
+     "key": "消込状況",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力者",
+     "key": "申請入力者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請入力日",
+     "key": "申請入力日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請者",
+     "key": "申請者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請日",
+     "key": "申請日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認者",
+     "key": "承認者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認日",
+     "key": "承認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "コンプラ情報システム連携日",
+     "key": "コンプラ情報システム連携日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼者",
+     "key": "要再申請依頼者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "要再申請依頼日",
+     "key": "要再申請依頼日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録者",
+     "key": "登録者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "登録日",
+     "key": "登録日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新者",
+     "key": "更新者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "更新日",
+     "key": "更新日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "課支社CD",
+     "key": "課支社CD",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "課支社名称",
+     "key": "課支社名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店CD",
+     "key": "代理店CD",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店名称",
+     "key": "代理店名称",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "証券番号",
+     "key": "証券番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "明細番号",
+     "key": "明細番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "保険契約者名",
+     "key": "保険契約者名",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "大種目",
+     "key": "大種目",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "保種",
+     "key": "保種",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "取消保険料",
+     "key": "取消保険料",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "再計上証券番号",
+     "key": "再計上証券番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "再計上明細番号",
+     "key": "再計上明細番号",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "証券送付区分",
+     "key": "証券送付区分",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "変更確認書送付",
+     "key": "変更確認書送付",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申込日(原契約の申込日)",
+     "key": "申込日(原契約の申込日)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "始期日",
+     "key": "始期日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "届出日(変更届出書の届出日)",
+     "key": "届出日(変更届出書の届出日)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "変更・取消の計上日",
+     "key": "変更・取消の計上日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "代理店への募集状況の確認要否",
+     "key": "代理店への募集状況の確認要否",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "実施日",
+     "key": "実施日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "実施方法",
+     "key": "実施方法",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "実施者(社員)",
+     "key": "実施者(社員)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "対象者(募集人名)",
+     "key": "対象者(募集人名)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "募集方法",
+     "key": "募集方法",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "募集実施日",
+     "key": "募集実施日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "その他の募集方法",
+     "key": "その他の募集方法",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "契約手続実施者",
+     "key": "契約手続実施者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "保険始期日と届出日の関係",
+     "key": "保険始期日と届出日の関係",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "対象者(契約者名)",
+     "key": "対象者(契約者名)",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "異例取扱理由",
+     "key": "異例取扱理由",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "契約者からの不満足の表明　　（有の場合、CS・苦情システムに登録）",
+     "key": "契約者からの不満足の表明（有の場合、CS・苦情システムに登録）",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "CS・苦情システム　苦情No",
+     "key": "CS・苦情システム苦情No",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "募集行為に問題の可能性　（有の場合、コンプラ情報システムに登録）",
+     "key": "募集行為に問題の可能性（有の場合、コンプラ情報システムに登録）",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "コンプラ情報システム　管理No",
+     "key": "コンプラ情報システム管理No",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請依頼先",
+     "key": "申請依頼先",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "申請代行者",
+     "key": "申請代行者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認依頼先",
+     "key": "承認依頼先",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "承認代行者",
+     "key": "承認代行者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "業務Ｇ担当者",
+     "key": "業務Ｇ担当者",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "確認日",
+     "key": "確認日",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    },
+    {
+     "label": "業務Ｇ長",
+     "key": "業務Ｇ長",
+     "id": null,
+     "kind": "text-only",
+     "selector": null
+    }
+   ],
+   "buttons": [
+    {
+     "label": "承認依頼先選択",
+     "key": "承認依頼先選択",
+     "id": "selectReqApproverUser",
+     "selector": "#selectReqApproverUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearReqApproverUser",
+     "selector": "#clearReqApproverUser"
+    },
+    {
+     "label": "承認代行者選択",
+     "key": "承認代行者選択",
+     "id": "selectActApproverUser",
+     "selector": "#selectActApproverUser"
+    },
+    {
+     "label": "クリア",
+     "key": "クリア",
+     "id": "clearActApproverUser",
+     "selector": "#clearActApproverUser"
+    },
+    {
+     "label": "承認",
+     "key": "承認",
+     "id": "approveButton",
+     "selector": "#approveButton"
+    },
+    {
+     "label": "不承認",
+     "key": "不承認",
+     "id": "disapproveButton",
+     "selector": "#disapproveButton"
+    },
+    {
+     "label": "要再申請依頼",
+     "key": "要再申請依頼",
+     "id": "rejectButton",
+     "selector": "#rejectButton"
+    },
+    {
+     "label": "業務Ｇ長確認",
+     "key": "業務Ｇ長確認",
+     "id": "businessGroupHeadCheck",
+     "selector": "#businessGroupHeadCheck"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act102to001",
+     "selector": "#act102to001"
+    },
+    {
+     "label": "申請一覧",
+     "key": "申請一覧",
+     "id": "act102to200",
+     "selector": "#act102to200"
+    },
+    {
+     "label": "新規入力",
+     "key": "新規入力",
+     "id": "act102to100",
+     "selector": "#act102to100"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route35A",
+     "selector": "#route35A"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "route35B",
+     "selector": "#route35B"
+    },
+    {
+     "label": "承認",
+     "key": "承認",
+     "id": "approve",
+     "selector": "#approve"
+    },
+    {
+     "label": "承認",
+     "key": "承認",
+     "id": "route31",
+     "selector": "#route31"
+    },
+    {
+     "label": "不承認",
+     "key": "不承認",
+     "id": "disapprove",
+     "selector": "#disapprove"
+    },
+    {
+     "label": "不承認",
+     "key": "不承認",
+     "id": "route32",
+     "selector": "#route32"
+    },
+    {
+     "label": "要再申請依頼",
+     "key": "要再申請依頼",
+     "id": "reject",
+     "selector": "#reject"
+    },
+    {
+     "label": "要再申請依頼",
+     "key": "要再申請依頼",
+     "id": "route33",
+     "selector": "#route33"
+    }
+   ],
+   "code": "ANA04"
+  },
+  "ANB00/ANA05": {
+   "file": "ANA05.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "検索結果出力",
+     "key": "検索結果出力",
+     "id": "outputCSV",
+     "selector": "#outputCSV"
+    },
+    {
+     "label": "申請",
+     "key": "申請",
+     "id": "act200to102",
+     "selector": "#act200to102"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act200to001",
+     "selector": "#act200to001"
+    },
+    {
+     "label": "新規入力",
+     "key": "新規入力",
+     "id": "act200to100",
+     "selector": "#act200to100"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonFor200to102",
+     "selector": "#hiddenButtonFor200to102"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForLink101",
+     "selector": "#hiddenButtonForLink101"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA05"
+  },
+  "ANB00/ANA06": {
+   "file": "ANA06.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act201to001",
+     "selector": "#act201to001"
+    },
+    {
+     "label": "集　計",
+     "key": "集計",
+     "id": "outputSumup",
+     "selector": "#outputSumup"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA06"
+  },
+  "ANB00/ANA07": {
+   "file": "ANA07.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "再表示",
+     "key": "再表示",
+     "id": "select",
+     "selector": "#select"
+    },
+    {
+     "label": "申請",
+     "key": "申請",
+     "id": "act202to102",
+     "selector": "#act202to102"
+    },
+    {
+     "label": "メニュー",
+     "key": "メニュー",
+     "id": "act202to001",
+     "selector": "#act202to001"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonFor202to102",
+     "selector": "#hiddenButtonFor202to102"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "hiddenButtonForLink101",
+     "selector": "#hiddenButtonForLink101"
+    },
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA07"
+  },
+  "ANB00/ANA10": {
+   "file": "ANA10.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA10"
+  },
+  "ANB00/ANA11": {
+   "file": "ANA11.html",
+   "title": "[[]]",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "検索",
+     "key": "検索",
+     "id": "search",
+     "selector": "#search"
+    },
+    {
+     "label": "前 頁",
+     "key": "前頁",
+     "id": "prevPage",
+     "selector": "#prevPage"
+    },
+    {
+     "label": "次 頁",
+     "key": "次頁",
+     "id": "nextPage",
+     "selector": "#nextPage"
+    },
+    {
+     "label": "削除",
+     "key": "削除",
+     "id": "del",
+     "selector": "#del"
+    },
+    {
+     "label": "Ｏ　Ｋ",
+     "key": "ＯＫ",
+     "id": "ok",
+     "selector": "#ok"
+    },
+    {
+     "label": "キャンセル",
+     "key": "キャンセル",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANA11"
+  },
+  "ANB00/ANAZT": {
+   "file": "ANAZT.html",
+   "title": "異例取扱管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZT"
+  },
+  "ANB00/ANAZU": {
+   "file": "ANAZU.html",
+   "title": "異例取扱管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZU"
+  },
+  "ANB00/ANAZV": {
+   "file": "ANAZV.html",
+   "title": "異例取扱管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZV"
+  },
+  "ANB00/ANAZW": {
+   "file": "ANAZW.html",
+   "title": "異例取扱管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZW"
+  },
+  "ANB00/ANAZY": {
+   "file": "ANAZY.html",
+   "title": "異例取扱管理システム",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "閉じる",
+     "key": "閉じる",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZY"
+  },
+  "ANB00/ANAZZ": {
+   "file": "ANAZZ.html",
+   "title": "異例取扱管理システム　メニュー画面",
+   "fields": [],
+   "buttons": [
+    {
+     "label": "",
+     "key": "",
+     "id": "close",
+     "selector": "#close"
+    }
+   ],
+   "code": "ANAZZ"
+  }
+ }
+}

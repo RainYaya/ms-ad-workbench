@@ -1,0 +1,94 @@
+{
+ "_comment": "手で維持する部分。生成物(ui-dictionary.json)と分離してあるので、再生成で失われない。",
+ "_rules": [
+  "rowfields = 表内の動的フィールド。{n} は実行時の行 index。",
+  "selectorTemplate があればコンパイル時に値を埋めて selector を作る。",
+  "selectorTemplate が無ければ pendingRuntime として実機待ちになる。",
+  "qualifiedButtons = 同じラベルのボタンが複数ある画面で、隣の項目名で特定する。"
+ ],
+ "rowfields": {
+  "AMB/AMA18": [
+   {
+    "label": "選択欄",
+    "namePattern": "selectNo",
+    "how": "radioByRowText",
+    "rowTextFrom": "募集人ID",
+    "selectorTemplate": "tr:has(td:has-text(\"{value}\")) input[name=selectNo]",
+    "note": "結果行の radio。th:value は行 index なので行テキストで特定する"
+   }
+  ],
+  "AMB/AMA13": [
+   {
+    "label": "選択欄",
+    "namePattern": null,
+    "how": "runtime-resolve",
+    "status": "unresolved",
+    "note": "結果は <div id=\"Result\"> に JS で動的挿入。テンプレートに tr/radio 構造が無い。実機で DOM 観察が必要"
+   }
+  ],
+  "AMB/AMA04": [
+   {
+    "label": "照会内容チェックボックス",
+    "namePattern": "list[{n}].inquiry_contents_edit_flag",
+    "how": "check",
+    "status": "runtime-resolve",
+    "note": "動的 name。テンプレートに静的定義なし。実行時に行 index を解決する必要あり"
+   },
+   {
+    "label": "代理店照会",
+    "namePattern": "list[{n}].agent_inquiry_flag.selected",
+    "how": "select",
+    "status": "runtime-resolve",
+    "note": "動的 name。実行時に行 index を解決"
+   },
+   {
+    "label": "修",
+    "namePattern": "editInquiryContents[{n}]",
+    "how": "click",
+    "status": "runtime-resolve",
+    "note": "JS が form[...] を直接参照。静的 id なし"
+   },
+   {
+    "label": "検索",
+    "namePattern": "imperfectSearch[{n}]",
+    "how": "click",
+    "status": "runtime-resolve",
+    "note": "r34 は行内の検索ボタン。JS 拼接 name。実機で DOM 観察が必要"
+   }
+  ],
+  "AMB/AMA15": [
+   {
+    "label": "照会内容",
+    "namePattern": "list[{n}].inquiry_contents",
+    "how": "fill",
+    "note": "テンプレートに静的ラベルが無く JS で生成。実機で DOM を取得して埋める"
+   }
+  ]
+ },
+ "qualifiedButtons": {
+  "AMB/AMA04": [
+   {
+    "label": "....",
+    "qualifier": "保険種類欄の横",
+    "id": "selectInsuransuItem"
+   },
+   {
+    "label": "....",
+    "qualifier": "募集人ID欄の横",
+    "id": "selectFieldAgent"
+   }
+  ],
+  "AMB/AMA03": [
+   {
+    "label": "....",
+    "qualifier": "保険種類欄の横",
+    "id": "selectInsuransuItem"
+   },
+   {
+    "label": "....",
+    "qualifier": "募集人ID欄の横",
+    "id": "selectFieldAgent"
+   }
+  ]
+ }
+}

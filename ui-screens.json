@@ -1,0 +1,239 @@
+{
+ "_comment": "手順書の画面名 → mock/実機の画面コード。title はテンプレートでは解決できない(Thymeleaf の screen_title)ので、ここで人手/実機キャプチャで埋める。",
+ "_status": {
+  "confirmed": "実機 or mock で確認済み",
+  "inferred": "URL パターン/screen-rules から推定。要実機確認",
+  "unknown": "未解決。実機で画面を開いて title を取得する必要あり"
+ },
+ "screens": {
+  "申込書品質管理メニュー画面": {
+   "app": "AMB",
+   "code": "AMA01",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備内容入力画面－新規": {
+   "app": "AMB",
+   "code": "AMA03",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備内容入力画面-更新": {
+   "app": "AMB",
+   "code": "AMA04",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備内容入力画面-新規": {
+   "app": "AMB",
+   "code": "AMA03",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備一覧画面": {
+   "app": "AMB",
+   "code": "AMA07",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "項目名検索画面": {
+   "app": "AMB",
+   "code": "AMA13",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "照会内容編集画面": {
+   "app": "AMB",
+   "code": "AMA15",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "募集人検索画面": {
+   "app": "AMB",
+   "code": "AMA18",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "訂正内容確認画面": {
+   "app": "AMB",
+   "code": "AMA19",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "保険種類選択画面": {
+   "app": "AMB",
+   "code": "insurance_item_select",
+   "status": "confirmed",
+   "titleRuntime": false
+  },
+  "帳票印刷画面": {
+   "app": "AMB",
+   "code": "AMA14",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "親子集計状況確認": {
+   "app": "AMB",
+   "code": "AMA11",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備集計画面": {
+   "app": "AMB",
+   "code": "AMA08",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "営業連携メール通知先登録画面": {
+   "app": "AMB",
+   "code": "AMA26",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "個別メール通知先検索画面": {
+   "app": "AMB",
+   "code": "AMA27",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "メール通知先選択画面": {
+   "app": "AMB",
+   "code": "AMA28",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "異例取扱管理メニュー画面": {
+   "app": "ANB00",
+   "code": "ANA01",
+   "status": "unknown",
+   "note": "画面上は『異例取扱管理システム　メニュー画面』。手順書は『異例取扱管理メニュー画面』で 173 行が不一致"
+  },
+  "照会・検索画面": {
+   "app": "ANB00",
+   "code": "ANA05",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "申請・確認更新画面": {
+   "app": "ANB00",
+   "code": "ANA03",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "担当者検索画面": {
+   "app": "ANB00",
+   "code": "ANA10",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "送信先(写)選択画面": {
+   "app": "ANB00",
+   "code": "ANA11",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "申請承認一覧画面": {
+   "app": "ANB00",
+   "code": "ANA07",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "取消計上申請登録画面": {
+   "app": "ANB00",
+   "code": "ANA02",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "取消計上申請承認画面": {
+   "app": "ANB00",
+   "code": "ANA04",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "代理店 不備一覧画面": {
+   "app": "AMC00",
+   "code": "AMC22",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "代理店 不備内容入力画面（更新）": {
+   "app": "AMC00",
+   "code": "AMC23",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "代理店 訂正内容確認画面": {
+   "app": "AMC00",
+   "code": "AMC24",
+   "status": "inferred",
+   "titleRuntime": true
+  },
+  "不備内容入力画面－更新": {
+   "app": "AMB",
+   "code": "AMA04",
+   "status": "inferred",
+   "titleRuntime": true,
+   "note": "手順書に全角－と半角-が混在。NFKC 正規化で同一視する"
+  },
+  "その他（申込書品質管理）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "その他（異例取扱管理）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "運用AP": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "★不承認（申請依頼時）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "★不承認（承認依頼時）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "★対応登録（承認時）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "★対応登録（不承認時）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "営業連携通知メール（事務(貨物)）": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "画面ではなく状態/メール/運用。ブラウザ操作対象外として扱う"
+  },
+  "親子集計予約画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "mock にページ無し。要実機確認"
+  },
+  "親子集計状況確認画面": {
+   "app": "AMB",
+   "code": "AMA11",
+   "status": "inferred",
+   "titleRuntime": true
+  }
+ }
+}
