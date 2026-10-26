@@ -30,6 +30,9 @@
 | 3 | [02-DEV-RULES.md](02-DEV-RULES.md) | 写代码前的硬约束 + 验证标准 |
 | 4 | [03-STATUS.md](03-STATUS.md) | 当前进度 + 明天做什么 + 待解清单 |
 | 5 | [04-ARCHITECTURE.md](04-ARCHITECTURE.md) | 数据怎么流 + 和旧体系关系 |
+| 6 | [05-EXECUTOR.md](05-EXECUTOR.md) | 执行器设计：为什么这样写、6键交互、所学教训 |
+| 7 | [06-ROADMAP.md](06-ROADMAP.md) | **施工顺序** 8 步，每步的验收标准和卡住怎么办 |
+| 8 | [07-REQUIREMENTS.md](07-REQUIREMENTS.md) | **用户原话 + 需求定义** + 11 条硬约束 |
 
 ## 现在能用什么
 

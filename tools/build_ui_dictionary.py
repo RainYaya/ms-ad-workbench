@@ -84,6 +84,7 @@ FIELD_PAIR = re.compile(
     re.S,
 )
 ELEMENT = re.compile(r"<(input|select|textarea)\b[^>]*?(?:id|name)=\"([^\"]+)\"", re.I)
+ATTR_TYPE = re.compile(r"type=" + chr(34) + r"([^" + chr(34) + r"]+)" + chr(34), re.I)
 TAG_ATTR_ID = re.compile(r"(?:id|name)=\"([^\"]+)\"", re.I)
 BUTTON = re.compile(
     r"<(?:input|button)\b[^>]*?type=\"(?:submit|button)\"[^>]*>", re.I
@@ -98,14 +99,43 @@ def parse_page(path: Path, text: str) -> dict:
         label = clean_label(raw_label)
         if not label or PLACEHOLDER.search(label) or NOISE.match(label):
             continue
-        m = ELEMENT.search(inner)
-        entry = {
-            "label": label,
-            "key": norm_label(label),
-            "id": m.group(2) if m else None,
-            "kind": m.group(1).lower() if m else "text-only",
-            "selector": f"#{m.group(2)}" if m else None,
-        }
+        # A label can own SEVERAL controls: a hidden input that carries the
+        # submitted value, plus the select/text the user actually operates.
+        # e.g. 種目 -> <input type=hidden id=selected_large_item_code> +
+        #              <select name=large_item_list.selected>
+        # Picking the first control silently bound the field to the hidden one,
+        # so the popup guard saw selectedIndex<=0 and did nothing.
+        all_ctl = list(ELEMENT.finditer(inner))
+        m = None
+        for cand in all_ctl:
+            full_i = cand.group(0)          # whole matched tag prefix
+            typ_i = ATTR_TYPE.search(full_i)
+            is_hidden = bool(typ_i) and typ_i.group(1).lower() == "hidden"
+            if not is_hidden:
+                m = cand
+                break
+        if m is None and all_ctl:
+            m = all_ctl[0]
+
+        entry = {"label": label, "key": norm_label(label), "id": None,
+                 "kind": m.group(1).lower() if m else "text-only",
+                 "selector": None}
+        if m:
+            value = m.group(2)             # the id or name value
+            matched = m.group(0)           # whole tag prefix
+            if ("id=" + chr(34) + value + chr(34)) in matched:
+                entry["id"] = value
+                entry["selector"] = "#" + value
+            else:
+                entry["name"] = value
+                entry["selector"] = '[name="' + value + '"]'
+            # Use THIS control's own type. Scanning inner[:400] read the sibling
+            # hidden input's type and marked the select as hidden too.
+            type_m = ATTR_TYPE.search(m.group(0) or "")
+            ctl_type = type_m.group(1).lower() if type_m else None
+            if ctl_type == "hidden":
+                entry["kind"] = "hidden"
+            entry["type"] = ctl_type
         if entry not in fields:
             fields.append(entry)
 
@@ -116,12 +146,15 @@ def parse_page(path: Path, text: str) -> dict:
         label = clean_label(vm.group(1)) if vm else ""
         if not idm:
             continue
-        entry = {
-            "label": label,
-            "key": norm_label(label),
-            "id": idm.group(1),
-            "selector": f"#{idm.group(1)}",
-        }
+        value = idm.group(1)
+        # Buttons are often addressable only by name (selectInsuransuItem has no
+        # id). Emitting "#name" produced selectors that never match on the page.
+        if ('id="' + value + '"') in tag:
+            entry = {"label": label, "key": norm_label(label), "id": value,
+                     "selector": "#" + value}
+        else:
+            entry = {"label": label, "key": norm_label(label), "id": None,
+                     "name": value, "selector": '[name="' + value + '"]'}
         if entry not in buttons:
             buttons.append(entry)
 

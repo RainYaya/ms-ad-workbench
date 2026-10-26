@@ -63,6 +63,20 @@
     "how": "fill",
     "note": "テンプレートに静的ラベルが無く JS で生成。実機で DOM を取得して埋める"
    }
+  ],
+  "AMB/AMA19": [
+   {
+    "label": "訂正項目",
+    "namePattern": "tableRecordUploadList[{n}].correct_field",
+    "how": "fill",
+    "note": "表内の訂正項目。動的 index"
+   },
+   {
+    "label": "訂正内容",
+    "namePattern": "tableRecordUploadList[{n}].correct_content",
+    "how": "fill",
+    "note": "表内の訂正内容。動的 index"
+   }
   ]
  },
  "qualifiedButtons": {
@@ -70,24 +84,28 @@
    {
     "label": "....",
     "qualifier": "保険種類欄の横",
-    "id": "selectInsuransuItem"
+    "id": "selectInsuransuItem",
+    "selector": "[name=\"selectInsuransuItem\"]"
    },
    {
     "label": "....",
     "qualifier": "募集人ID欄の横",
-    "id": "selectFieldAgent"
+    "id": "selectFieldAgent",
+    "selector": "[name=\"selectFieldAgent\"]"
    }
   ],
   "AMB/AMA03": [
    {
     "label": "....",
     "qualifier": "保険種類欄の横",
-    "id": "selectInsuransuItem"
+    "id": "selectInsuransuItem",
+    "selector": "[name=\"selectInsuransuItem\"]"
    },
    {
     "label": "....",
     "qualifier": "募集人ID欄の横",
-    "id": "selectFieldAgent"
+    "id": "selectFieldAgent",
+    "selector": "[name=\"selectFieldAgent\"]"
    }
   ]
  }

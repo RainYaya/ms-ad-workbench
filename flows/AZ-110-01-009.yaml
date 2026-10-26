@@ -5,6 +5,7 @@
 # row: は手順書 Excel の行番号。これがあるから「どこを直せばいいか」が分かる。
 #
 case: AZ-110-01-009
+startUrl: /AMB/AMA01.html
 title: 不備登録→項目検索→照会編集→訂正内容確認→完了登録
 user: MS
 pointCheck: 事務S
@@ -94,17 +95,20 @@ steps:
 
   - row: 18
     screen: 保険種類選択画面
+    popup: true
     do: expect
     expect:
       遷移: 初期値
 
   - row: 19
     screen: 保険種類選択画面
+    popup: true
     do: select
     保険種類: "{保険種類}"
 
   - row: 20
     screen: 保険種類選択画面
+    popup: true
     do: click
     ＯＫ: ""
 
@@ -122,33 +126,39 @@ steps:
 
   - row: 23
     screen: 募集人検索画面
+    popup: true
     do: expect
     expect:
       遷移: 初期値
 
   - row: 24
     screen: 募集人検索画面
+    popup: true
     do: fill
     部店課支社コード: "{部店課支社コード}"
 
   - row: 25
     screen: 募集人検索画面
+    popup: true
     do: click
     検　索: ""
 
   - row: 26
     screen: 募集人検索画面
+    popup: true
     do: expectRows
     min: 1
     note: 部店課支社コード AHE61 の検索結果
 
   - row: 27
     screen: 募集人検索画面
+    popup: true
     do: clickRow
     選択欄: "{募集人ID}"
 
   - row: 28
     screen: 募集人検索画面
+    popup: true
     do: click
     選択: ""
 
@@ -235,17 +245,20 @@ steps:
 
   - row: 44
     screen: 照会内容編集画面
+    popup: true
     do: expect
     expect:
       遷移: 初期値
 
   - row: 45
     screen: 照会内容編集画面
+    popup: true
     do: fill
     照会内容: "{編集照会内容}"
 
   - row: 46
     screen: 照会内容編集画面
+    popup: true
     do: click
     ＯＫ: ""
 
@@ -267,17 +280,20 @@ steps:
 
   - row: 50
     screen: 訂正内容確認画面
+    popup: true
     do: expect
     expect:
       遷移: 初期値
 
   - row: 51
     screen: 訂正内容確認画面
+    popup: true
     do: fillAll
     use: [確認者, 確認日・確認時刻, 確認相手, 確認相手の電話番号, 電話番号チェック, 訂正項目, 訂正内容, eメールチェック]
 
   - row: 52
     screen: 訂正内容確認画面
+    popup: true
     do: click
     登録: ""
 
