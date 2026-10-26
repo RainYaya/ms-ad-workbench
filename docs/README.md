@@ -13,6 +13,7 @@
 | [`REFERENCE-WEBAPPS.md`](REFERENCE-WEBAPPS.md) | You need the uploaded webapp snapshots or their visibility policy |
 | [`ROADMAP.md`](ROADMAP.md) | You need the next steps, owners, acceptance criteria, and material requests |
 | [`URL-MAPPING.md`](URL-MAPPING.md) | Mock/source URLs vs real SUT routes, and the central resolver |
+| [`RUNTIME.md`](RUNTIME.md) | End-to-end case execution: params, blocks, selectors, runner, evidence, and failure layers |
 
 Related working documents:
 
