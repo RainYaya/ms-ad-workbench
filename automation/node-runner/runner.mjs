@@ -5,11 +5,12 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
+import { runtimeUrl } from './url-map.mjs';
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const root = dirname(fileURLToPath(import.meta.url));
 const caseId = arg('case', 'AZ-110-01-009');
-const baseUrl = arg('base-url', 'http://127.0.0.1:10081/mhkcmwa11/dummy.html');
+const baseUrl = arg('base-url', 'http://127.0.0.1:82/mhkcmwa11/dummy.html');
 const headed = process.argv.includes('--headed');
 const slow = Number(arg('slow', '0')) || 0;
 const keepOpen = Number(arg('keep-open', '0')) || 0;
@@ -163,7 +164,7 @@ function writeTrace(cid, entries) {
 try {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
   if (P.startUrl) {
-    await page.goto(new URL(P.startUrl, baseUrl).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.goto(runtimeUrl(P.startUrl, baseUrl, live), { waitUntil: 'domcontentloaded', timeout: 30000 });
   }
   // login is manual on the SUT; AZ menu has #act001to100, AY(ANB00) menu has route buttons
   await page.waitForSelector(P.startSelector || '#act001to100, #route2, #route3, input[name=UserID], input[name=menu_cm]', { timeout: 120000 });
@@ -273,7 +274,7 @@ try {
           await target.evaluate((el, v) => { el.value = v; }, String(resolveP(step.value) ?? ''));
           break;
         case 'goto': {
-          const targetUrl = new URL(String(sel(step.url)), baseUrl).href;
+          const targetUrl = runtimeUrl(sel(step.url), baseUrl, live);
           await where.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
           await where.waitForLoadState('domcontentloaded');
           break;

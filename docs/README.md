@@ -12,6 +12,7 @@
 | [`DECISIONS.md`](DECISIONS.md) | You are about to change a structural assumption |
 | [`REFERENCE-WEBAPPS.md`](REFERENCE-WEBAPPS.md) | You need the uploaded webapp snapshots or their visibility policy |
 | [`ROADMAP.md`](ROADMAP.md) | You need the next steps, owners, acceptance criteria, and material requests |
+| [`URL-MAPPING.md`](URL-MAPPING.md) | Mock/source URLs vs real SUT routes, and the central resolver |
 
 Related working documents:
 

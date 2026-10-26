@@ -1,7 +1,7 @@
 param(
     [int]$Port = 9223,
     [string]$Profile = "$env:TEMP\msad-edge-copy",
-    [string]$Url = 'http://127.0.0.1:10081/mhkcmwa11/dummy.html',
+    [string]$Url = 'http://127.0.0.1:82/mhkcmwa11/dummy.html',
     [switch]$RecreateProfile
 )
 

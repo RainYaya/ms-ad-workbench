@@ -10,7 +10,10 @@
 ## 要求
 - Edge（系统自带即可）
 - node.exe（v20+）
-- SUT 可访问 http://127.0.0.1:10081/
+- SUT 可访问 http://127.0.0.1:82/
 
 ## 参数
-- base-url 默认 http://127.0.0.1:10081/mhkcmwa11/dummy.html，改的话编辑 run.cmd
+- `run.cmd` 默认 base URL: `http://127.0.0.1:82/mhkcmwa11/dummy.html`，并加 `--live`。
+- 实际 SUT 的 `/AMB/AMA01.html` 会由 `url-map.mjs` 转成 `/mhkcmwa11/AMA01?gamid=AMA01&gamcd=AMA00` 这类路由。
+- Mock 模式用 `node runner.mjs --case ... --base-url http://127.0.0.1:10090/`（不加 `--live`）。
+- 更多见 `docs/URL-MAPPING.md`。

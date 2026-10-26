@@ -21,7 +21,7 @@
 
 公司 PC 现场用：`http://127.0.0.1:10092/v2/ops/index.html`。每本一页 A4，只有结论、下一步、人工清单、输入值、画面HC、判定栏。
 
-注意：`mock回写/mock简化/mock无后端` 不是“手作業”，是“真机应自动断言”的 mock 替代项。真机加 `--live` 才会执行这些 assert。
+注意：`mock回写/mock简化/mock无后端` 不是“手作業”，是“真机应自动断言”的 mock 替代项。真机加 `--live` 才会执行这些 assert；真机 URL 映射见 `docs/URL-MAPPING.md`（`/AMB/AMA01.html` → `/mhkcmwa11/AMA01?gamid=...`）。
 
 ## 已验证的工作循环（照抄即可）
 
@@ -30,7 +30,7 @@
 2. 手顺行号 → screen-map.json / mock-src/<APP>/<VIEW>.html 找控件真名（grep，禁编造）
 3. 缺控件 → 照 AMA04 样板 enrich（下拉选项/列表行/hidden 字段/popup URL）
 4. 写 block-selectors-<域>.json（挂 cases 过滤）+ params/<category>.json
-5. 起 mock-server（10090 被占就 10091+）→ node runner.mjs --case <id> 跑到 DONE
+5. 起 mock-server（10090 被占就 10091+）→ node runner.mjs --case <id> --base-url http://127.0.0.1:10090/ 跑到 DONE
 6. 常见坑: visibility_hidden 按钮用 force、headless 用 textContent、
    form 校验(種目Z→入力区分5/7等)挡提交、popup URL 空串、th:block 残片崩 JS
 7. 参数不放心就加 `--strict-params`：block 引用值只来自 auto.json 时直接退出 3
