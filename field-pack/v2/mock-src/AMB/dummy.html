@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<!--
+######################################################################
+ ﾌｧｲﾙ番号		：S1100
+ ﾌｧｲﾙ名称		：default.html
+ ﾌｧｲﾙ略称		：ﾃﾞﾌｫﾙﾄﾍﾟｰｼﾞ
+ 著作権			：CrossCAT co.,ltd. Right Reserved.
+ 作成者			：平川一
+ 作成開始日		：2019.02.22
+ 最終更新日		：2019.03.31
+ 修正履歴		：
+######################################################################
+-->
+	<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+			<meta http-equiv="Content-Style-Type" content="text/css">
+			<link type="text/css" rel="stylesheet" href="./dummy.css"></link>
+			<script type="text/javascript" src="./dummy.js"></script>
+			<title>試験用ログイン画面</title>
+	</head>
+
+
+
+	<body onload="set_EnvironmentData()">
+
+		<form name="mainForm" method="post">
+
+		<table border="0" cellpadding="0" cellspacing="0" width="800" class="DefaultFormat">
+			<tr>
+				<td align="left" width="360">
+					<u>申込書品質管理 / 異例取扱管理システム　試験用ログイン画面</u>
+				</td>
+				<td>
+					<div id="Environment_000" align="center" class="NoEnvironment">ローカル環境</div>
+				</td>
+				<td>
+					<div id="Environment_100" align="center" class="NoEnvironment">結合環境</div>
+				</td>
+				<td>
+					<div id="Environment_200" align="center" class="NoEnvironment">疑似環境</div>
+				</td>
+				<td>
+					<div id="Environment_300" align="center" class="NoEnvironment">本番環境</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div id="Debug" class="middle"><br></div>
+				</td>
+			</tr>
+		</table>
+
+
+
+		<!-- // 【１段目】Ⅰ. 事業会社 -->
+		<table border="0" cellpadding="0" cellspacing="0" align="left" width="800" class="DefaultFormat">
+
+			<!-- // 01行名：タイトル -->
+			<tr class="tbl-Header">
+				<td align="right" width="40">Ⅰ.</td>
+				<td align="center" width="20"><font color="#CC99CC">■</font></td>
+				<td align="left" width="400">事業会社</td>
+				<td><br></td>
+			</tr>
+
+
+			<!-- // 02行名：事業会社選択 -->
+			<tr>
+				<td></td>
+
+				<td align="left" valign="top" width="420" colspan="2" class="middle">
+					<br class="small">
+					<input type="radio" name="Enterprise" value="MS" onchange="controlByCompany();">：<font style="color: #CC0000;">●</font> MSI　三井住友海上火災保険株式会社<br>
+					<input type="radio" name="Enterprise" value="AD" onchange="controlByCompany();">：<font style="color: #3366FF;">●</font> ADI　あいおいニッセイ同和損害保険株式会社
+				</td>
+
+				<td valign="middle" align="left" class="small">
+					Client Mode：何れかの事業会社を任意に選択できます。<br>
+					Server Mode：何れかの事業会社が動的に選択されます。<br>
+				</td>
+
+			</tr>
+
+
+		</table>
+
+		<br clear="all">
+		<br clear="all">
+
+		<!-- // 【２段目】Ⅱ. 接続先サーバ  -->
+		<table border="0" cellpadding="0" cellspacing="0" align="left" width="800" class="DefaultFormat">
+
+			<!-- // 01行名：タイトル -->
+			<tr class="tbl-Header">
+				<td align="right" width="40">Ⅱ.</td>
+				<td align="center" width="20"><font color="#CC99CC">■</font></td>
+				<td align="left" width="400">接続先サーバ</td>
+				<td><br></td>
+			</tr>
+
+
+			<!-- // 02行名：接続先選択 -->
+			<tr>
+				<td></td>
+
+				<td align="left" valign="top" width="420" colspan="2" class="middle">
+					<br class="small">
+
+					<!--// ローカル環境 -->
+					<div id="ConnectServer_000" style="display:none">
+						<input type="radio" name="ConnectServer" value="000">：ローカル環境<br>
+						<br>
+					</div>
+
+					<!--// 結合環境 -->
+					<div id="ConnectServer_100" style="display:none">
+						<input type="radio" name="ConnectServer" value="100">：結合環境 LoadBalancer<br>
+						<br>
+					</div>
+
+					<!--// 疑似環境 -->
+					<div id="ConnectServer_200" style="display:none">
+						<input type="radio" name="ConnectServer" value="200">：疑似環境 疑似面　LoadBalancer<br>
+						<input type="radio" name="ConnectServer" value="201">：　疑似環境　疑似面　#1<br>
+						<input type="radio" name="ConnectServer" value="202">：　疑似環境　疑似面　#2<br>
+						<br>
+					</div>
+
+					<div id="ConnectServer_210" style="display:none">
+						<input type="radio" name="ConnectServer" value="210">：疑似環境 ユーザ打鍵面　LoadBalancer<br>
+						<input type="radio" name="ConnectServer" value="211">：　疑似環境　ユーザ打鍵面　#1<br>
+						<input type="radio" name="ConnectServer" value="212">：　疑似環境　ユーザ打鍵面　#2<br>
+						<br>
+					</div>
+
+					<!--// 本番環境 -->
+					<div id="ConnectServer_300" style="display:none">
+						<input type="radio" name="ConnectServer" value="300">：本番環境 稼働確認面　LoadBalancer<br>
+						<input type="radio" name="ConnectServer" value="301">：　本番環境 稼働確認面　#1<br>
+						<input type="radio" name="ConnectServer" value="302">：　本番環境 稼働確認面　#2<br>
+						<input type="radio" name="ConnectServer" value="303">：　本番環境 稼働確認面　#3<br>
+						<br>
+					</div>
+
+					<div id="ConnectServer_310" style="display:none">
+						<input type="radio" name="ConnectServer" value="310">：本番環境 本番稼働面　LoadBalancer<br>
+						<input type="radio" name="ConnectServer" value="311">：　本番環境 本番稼働面　#1<br>
+						<input type="radio" name="ConnectServer" value="312">：　本番環境 本番稼働面　#2<br>
+						<input type="radio" name="ConnectServer" value="313">：　本番環境 本番稼働面　#3<br>
+						<br>
+					</div>
+
+				</td>
+
+				<td valign="middle" align="left" class="small">
+					何れかの接続先を選択します。（原則はLB）
+				</td>
+
+			</tr>
+
+
+		</table>
+
+		<br clear="all">
+
+		<div id="Division_cm" style="display:none">
+
+			<!-- // 【３段目】Ⅲ-1. 事業会社向け機能へのログイン  -->
+			<table border="0" cellpadding="0" cellspacing="0" align="left" width="800" class="DefaultFormat">
+
+
+				<!-- // 01行名：タイトル -->
+				<tr class="tbl-Header">
+					<td align="right" width="40">Ⅲ-1.</td>
+					<td align="center" width="20"><font color="#CC99CC">■</font></td>
+					<td align="left" width="400">事業会社向け機能へのログイン</td>
+					<td><br></td>
+				</tr>
+
+				<!-- // 02行名：セッション情報登録 -->
+				<tr>
+					<td></td>
+
+					<td align="left" valign="top" colspan="3" class="middle">
+
+						<br class="small">
+
+						1. 利用者情報（セッション情報の設定）
+
+						<table cellpadding="0" cellspacing="5" align="left" border="0" class="middle">
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="100"></td>
+								<td width="100"></td>
+								<td width="160"></td>
+								<td width="280"></td>
+							</tr>
+
+							<tr>
+								<td>①</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>ユーザID</td>
+								<td>UserID</td>
+								<td><input type="text" name="UserID" size="10" maxlength="10"></td>
+								<td class="small">[必須] 英数字10桁</td>
+							</tr>
+							<tr>
+								<td>②</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>部課コード</td>
+								<td>BukaCode</td>
+								<td><input type="text" name="BukaCode" size="10" maxlength="6"></td>
+								<td class="small">[必須] 英数字5桁</td>
+							</tr>
+							<tr>
+								<td>③</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>役職段階コード</td>
+								<td>YakusyokuCode</td>
+								<td><input type="text" name="YakusyokuCode" size="10" maxlength="2"></td>
+								<td class="small">[必須] 英数字2桁</td>
+							</tr>
+							<tr>
+                                <td>④</td>
+                                <td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+                                <td>申込書ID</td>
+                                <td>ID</td>
+                                <td><input type="text" name="ID" size="15" maxlength="10"></td>
+                                <td class="small">数字10桁 TODOからの遷移時のみ必須</td>
+                            </tr>
+                            <tr>
+                                <td>⑤</td>
+                                <td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+                                <td>証券番号</td>
+                                <td>021</td>
+                                <td><input type="text" name="policyNumber" size="17" maxlength="12"></td>
+                                <td class="small">英数字12桁 閲覧システムから遷移時のみ入力</td>
+                            </tr>
+
+						</table>
+
+
+
+					</td>
+
+				<!-- // 03行名：遷移先の選択 -->
+				<tr>
+					<td></td>
+
+					<td align="left" valign="top" colspan="3" class="middle">
+
+						<br class="small"><br class="small">
+
+						<div align="left">2. 遷移先</div>
+
+						<table cellpadding="0" cellspacing="5" align="left" border="0" class="middle">
+
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="200"></td>
+								<td width="160"></td>
+								<td width="50"></td>
+								<td width="150"></td>
+							</tr>
+
+							<tr>
+								<td colspan="6">a. 申込書品質管理システム</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>共通機能</td>
+								<td><input type="button" name="menu_cm" value="メニュー画面" class="btn-Flat" onclick="set_EventForCM('MHK001')"></td>
+								<td>from</td>
+								<td>MS1/AD1メニュー</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>不備照会機能</td>
+								<td><input type="button" name="impList_cm" value="不備一覧画面" class="btn-Flat" onclick="set_EventForCM('MHK004')"></td>
+								<td>from</td>
+								<td>申込書閲覧システム</td>
+							</tr>
+
+							<tr>
+                                <td align="right">・</td>
+                                <td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+                                <td>不備入力機能</td>
+                                <td><input type="button" name="impList_cm" value="不備内容回答画面" class="btn-Flat" onclick="set_EventForCM('MHK003')"></td>
+                                <td>from</td>
+                                <td>TODO</td>
+                            </tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #FFFFFF;">●</font></td>
+								<td>代筆・代印点検機能</td>
+								<td><input type="button" name="checkList_cm" value="調査一覧画面" class="btn-Flat" onclick="set_EventForCM('MHK002')"></td>
+								<td>from</td>
+								<td>CS/苦情業務管理メニュー</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #FFFFFF;">●</font></td>
+								<td>代筆・代印点検機能</td>
+								<td><input type="button" name="checkListFromMail_cm" value="調査一覧画面" class="btn-Flat" onclick="set_EventForCM('MHK002')"></td>
+								<td>from</td>
+								<td>××メール</td>
+							</tr>
+
+							<tr>
+								<td colspan="6"><br class="small">b. 異例取扱管理システム</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>共通機能</td>
+								<td><input type="button" name="" value="異例メニュー画面" class="btn-Flat" onclick="set_EventForCM('TKS001')"></td>
+								<td>from</td>
+								<td>MS1/AD1メニュー</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font></td>
+								<td>共通機能</td>
+								<td><input type="button" name="" value="取消計上申請一覧画面" class="btn-Flat" onclick="set_EventForCM('TKS002')"></td>
+								<td>from</td>
+								<td>××メール</td>
+							</tr>
+
+						</table>
+
+
+					</td>
+
+
+				</tr>
+
+			</table>
+
+		</div>
+
+
+		<br clear="all">
+		<br clear="all">
+
+        <div id="Division_ag" style="display:none">
+
+			<!-- // 【４段目】Ⅲ-2. 代理店向け機能へのログイン  -->
+			<table border="0" cellpadding="0" cellspacing="0" align="left" width="800" class="DefaultFormat">
+
+
+				<!-- // 01行名：タイトル -->
+				<tr class="tbl-Header">
+					<td align="right" width="40">Ⅲ-2.</td>
+					<td align="center" width="20"><font color="#CC99CC">■</font></td>
+					<td align="left" width="400">代理店向け機能へのログイン</td>
+					<td><br></td>
+				</tr>
+
+				<!-- // 02行名：認証基盤の選択 -->
+				<tr>
+					<td></td>
+
+					<td align="left" valign="top" colspan="3" class="middle">
+
+						<br class="small"><br class="small">
+
+						<div align="left">0. 認証基盤の選択</div>
+
+						<table cellpadding="0" cellspacing="5" align="left" border="0" class="middle">
+
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="200"></td>
+								<td width="160"></td>
+								<td width="50"></td>
+								<td width="150"></td>
+							</tr>
+
+                            <tr>
+                                <td></td>
+                                <td colspan="5">
+                                    <input type="checkbox" name="nissei" id="nissei" disabled />日本生命　※ADのみ設定可
+                                </td>
+                            </tr>
+							<tr>
+								<td colspan="6">
+									<input type="radio" name="AgentAuth" value="ICEWALL" onchange="controlByAuth();" checked>：<font style="color: #7fff00;">●</font> IceWall　経由
+								</td>
+							</tr>
+							<tr>
+							    <td colspan="3">
+									<input type="radio" name="AgentAuth" value="GW" onchange="controlByAuth();">：<font style="color: #da70d6;">●</font> GW　経由
+								</td>
+								<td>
+								    GW種別：
+								    <select id="gwList" name="gwList" onchange="controlFqdn();" disabled>
+								        <option value="ngw">NGW</option>
+								        <option value="hgw">HGW</option>
+								        <option value="fgw">FGW</option>
+								    </select>
+								</td>
+								<td colspan="2">
+								    導線：
+								    <select id="fqdnList" name="fqdnList" disabled>
+								    </select>
+								</td>
+							</tr>
+							<tr>
+                                <td colspan="3">
+                                    <input type="radio" name="AgentAuth" value="DL" onchange="controlByAuth();">：<font style="color: #7fff00;">●</font> DLWeb　経由
+                                </td>
+                                <td colspan="3">
+                                    <input type="checkbox" name="needs1" id="needs1" disabled />Needs1
+                                </td>
+                            </tr>
+
+						</table>
+
+					</td>
+
+				</tr>
+
+				<!-- // 03行名：セッション情報登録 -->
+				<tr>
+					<td></td>
+
+					<td align="left" valign="top" colspan="3" class="middle">
+
+						<br class="small">
+
+						1. 利用者情報（セッション情報の設定）
+
+						<table cellpadding="0" cellspacing="5" align="left" border="0" class="middle">
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="100"></td>
+								<td width="100"></td>
+								<td width="160"></td>
+								<td width="280"></td>
+							</tr>
+
+							<tr>
+								<td colspan="6"><b>不備一覧画面・不備内容回答画面　共通入力</b></td>
+							</tr>
+
+							<tr>
+								<td>①</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font><font style="color: #7fff00;">●</font></td>
+								<td>ユーザID</td>
+								<td>Input_Uid</td>
+								<td><input type="text" name="input_inputUid" size="20"></td>
+								<td class="small">英数字20桁</td>
+							</tr>
+							<tr>
+								<td>②</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>ログインID</td>
+								<td>uid</td>
+								<td><input type="text" name="input_uid" size="20"></td>
+								<td class="small">英数字20桁</td>
+							</tr>
+							<tr>
+								<td>③</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #7fff00;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>証明書ID</td>
+								<td>param005</td>
+								<td><input type="text" name="input_param005" size="20"></td>
+								<td class="small">英数字20桁</td>
+							</tr>
+							<tr>
+								<td>④</td>
+								<td><font style="color: #3366FF;">●</font><font style="color: #7fff00;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>新認証ID</td>
+								<td>param003</td>
+								<td><input type="text" name="input_param030" size="20"></td>
+								<td class="small"></td>
+							</tr>
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="100"></td>
+								<td width="100"></td>
+								<td width="160"></td>
+								<td width="280"></td>
+							</tr>
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="100"></td>
+								<td width="100"></td>
+								<td width="160"></td>
+								<td width="280"></td>
+							</tr>
+
+							<tr>
+								<td colspan="6"><b>不備内容回答画面　のみ入力</b></td>
+							</tr>
+
+							<tr>
+								<td>⑤</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font><font style="color: #7fff00;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>申込書ID</td>
+								<td>AppFormId</td>
+								<td><input type="text" name="input_applicationFormId" size="10"></td>
+								<td class="small">数字10桁</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<!-- // 04行名：遷移先の選択 -->
+				<tr>
+					<td></td>
+
+					<td align="left" valign="top" colspan="3" class="middle">
+
+						<br class="small"><br class="small">
+
+						<div align="left">2. 遷移先</div>
+
+						<table cellpadding="0" cellspacing="5" align="left" border="0" class="middle">
+
+
+							<tr>
+								<td width="15"></td>
+								<td width="35"></td>
+								<td width="200"></td>
+								<td width="160"></td>
+								<td width="50"></td>
+								<td width="150"></td>
+							</tr>
+
+							<tr>
+								<td colspan="6">a. 申込書品質管理システム</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font><font style="color: #7fff00;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>共通機能</td>
+								<td><input type="button" name="" value="不備一覧画面" class="btn-Flat" onclick="set_EventForAG('MHK101')"></td>
+								<td>from</td>
+								<td>契約手続 - 申込書類対応</td>
+							</tr>
+
+							<tr>
+								<td align="right">・</td>
+								<td><font style="color: #CC0000;">●</font><font style="color: #3366FF;">●</font><font style="color: #7fff00;">●</font><font style="color: #da70d6;">●</font></td>
+								<td>不備登録機能</td>
+								<td><input type="button" name="" value="不備内容回答画面" class="btn-Flat" onclick="set_EventForAG('MHK102')"></td>
+								<td>from</td>
+								<td>ToDo画面 - 証券明細</td>
+							</tr>
+
+
+
+						</table>
+
+					</td>
+
+				</tr>
+
+			</table>
+
+		</div>
+
+		<br clear="all">
+		<br clear="all">
+
+
+		</form>
+
+
+
+	
+<script>
+/* mock shim: the real set_Event uses legacy document.all and targets the real
+   SUT ports; in the simulation we simply navigate to the right menu view. */
+if (window.set_EventForCM) {
+  var __orig = window.set_EventForCM;
+  window.set_EventForCM = function (t) {
+    if (document.mainForm && document.mainForm.UserID && document.mainForm.UserID.value === 'SYSERR') { location.href = '/AMB/system_error.html'; return; }
+    if (t === 'MHK001') { location.href = '/AMB/AMA01.html'; return; }
+    if (t === 'TKS001') { location.href = '/ANB00/ANA01.html'; return; }
+    if (t === 'MHK004') { location.href = '/AMB/AMA07.html'; return; }
+    __orig(t);
+  };
+}
+</script>
+
+</body>
+</html>

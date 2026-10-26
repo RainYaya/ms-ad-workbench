@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><title>積木ワークベンチ v2</title>
+<style>
+:root{--line:#dfe5e1;--line2:#edf1ee;--ink:#17211d;--muted:#65716b;--faint:#8f9a94;--accent:#0f766e;--accent2:#0b4f4a;--soft:#e6f4f1;--amber:#b45309;--amberS:#fdf3e3;--red:#b42318;--redS:#feeceb;--green:#067647;--greenS:#e8f6ee;--violet:#6941c6;--violetS:#f1ebff;--blue:#2563eb;--blueS:#e8efff;--r:12px}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f4f2;color:var(--ink);font:13px/1.55 "Segoe UI","Yu Gothic UI",system-ui,sans-serif}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#c3ccc7;border-radius:6px;border:2px solid transparent;background-clip:content-box}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:12px;transition:.15s}
+.btn:hover{border-color:#b9c8c1;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn.primary:hover{background:var(--accent2)}
+.btn:disabled{opacity:.45;cursor:default}
+input,select,textarea{font:inherit}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.15)}
+code{font-family:Consolas,monospace;background:#f1f3f2;padding:1px 5px;border-radius:4px;font-size:10.5px}
+header{display:flex;align-items:center;gap:12px;padding:10px 18px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:9px}
+.logo .mk{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),#0b4f4a);color:#fff;font-weight:800;font-size:15px}
+.logo h1{font-size:14px;margin:0}
+.logo .sub{font-size:10px;color:var(--muted)}
+.logo{gap:9px}
+.sp{flex:1}
+#caseName{width:190px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;font-family:Consolas,monospace;font-size:12px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:12px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn:disabled{opacity:.45;cursor:default}
+.layout{display:grid;grid-template-columns:285px minmax(0,1fr) 340px;min-height:calc(100vh - 49px)}
+.col{overflow:auto;max-height:calc(100vh - 49px)}
+.col h2{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0;padding:10px 14px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff;z-index:5}
+.col-l{border-right:1px solid var(--line)}
+.col-m{border-right:1px solid var(--line)}
+#search{margin:10px 12px;width:calc(100% - 24px);padding:7px 11px;border:1px solid var(--line);border-radius:8px;font-size:12px}
+.grp{margin:2px 8px 8px;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.grp>summary{cursor:pointer;font-size:12px;font-weight:700;padding:7px 10px;list-style:none;background:#fbfcfb;display:flex;align-items:center;gap:6px}
+.grp>summary::-webkit-details-marker{display:none}
+.grp>summary .cnt{margin-left:auto;color:var(--muted);font-weight:400;font-size:11px}
+.pal-block{padding:8px 10px;border-bottom:1px solid var(--line2);cursor:grab;transition:background .12s}
+.pal-block:hover{background:var(--soft)}
+.pal-block .bid{font-family:Consolas,monospace;font-size:9.5px;color:var(--muted);word-break:break-all}
+.pal-block .scr{color:var(--accent);font-size:10px;font-weight:600;margin-top:2px}
+.pal-block .ops{color:var(--muted);font-size:10px;margin-top:2px}
+#canvasWrap{padding:14px}
+.cb-block{border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.cb-block.sel{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.12)}
+.cb-head{display:flex;align-items:center;gap:9px;padding:10px 14px;cursor:pointer}
+.cb-head .idx{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:700;background:var(--soft);color:var(--accent2)}
+.cb-head .nm{font-weight:700;font-size:12.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cb-head .scr{font-size:10px;color:var(--accent);white-space:nowrap}
+.cb-head .del{border:0;background:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 7px;border-radius:5px}
+.cb-head .del:hover{background:var(--redS);color:var(--red)}
+.arr{text-align:center;color:#b8c2bd;font-size:15px}
+.dropzone{border:2px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--muted);font-size:12px;margin:8px 0}
+.dropzone.hot{border-color:var(--accent);background:var(--soft)}
+#canvasEmpty{text-align:center;color:var(--muted);padding:50px 24px;border:2px dashed var(--line);border-radius:var(--r);margin:10px}
+.cb-steps{border-top:1px solid var(--line2);padding:6px 0 10px}
+.stp{display:grid;grid-template-columns:20px 80px minmax(0,1fr) minmax(0,110px);gap:8px;align-items:center;padding:5px 14px;font-size:11px;border-bottom:1px dashed var(--line2)}
+.stp:last-child{border-bottom:0}
+.stp .an{font-family:Consolas,monospace;color:var(--faint);text-align:center}
+.stp .act{font-family:Consolas,monospace;font-weight:700;color:var(--violet)}
+.stp code{word-break:break-all;font-size:10px}
+.stp input{width:100%;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:Consolas,monospace;font-size:11px}
+.rtabs{display:flex;border-bottom:1px solid var(--line2);position:sticky;top:33px;background:#fff;z-index:5}
+.rtab{flex:1;border:0;background:none;padding:9px 4px;font-size:11.5px;color:var(--muted);border-bottom:2px solid transparent;font-weight:600}
+.rtab.on{color:var(--accent2);border-bottom-color:var(--accent)}
+.rpanel .empty{padding:30px 16px;text-align:center;color:var(--muted);font-size:12px}
+.se-row{padding:8px 14px;border-bottom:1px solid var(--line2)}
+.se-row .se-h{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.se-row .se-h .an{font-family:Consolas,monospace;font-size:10px;color:var(--faint)}
+.se-row .se-h .act{font-family:Consolas,monospace;font-weight:700;color:var(--violet);font-size:11.5px}
+.se-row .se-h .rm{margin-left:auto;border:0;background:none;color:var(--muted);cursor:pointer;font-size:13px}
+.se-row .se-h .rm:hover{color:var(--red)}
+.se-row label{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;display:block;margin:4px 0 2px}
+.se-row input,.se-row select{width:100%;padding:5px 9px;border:1px solid var(--line);border-radius:6px;font-family:Consolas,monospace;font-size:11px}
+#pvFrame{width:100%;min-height:500px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.pv-hint{padding:8px 14px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--line2)}
+.pf{padding:7px 14px;border-bottom:1px solid var(--line2)}
+.pf label{font-size:10.5px;font-family:Consolas,monospace;color:var(--accent2);font-weight:600;display:block;margin-bottom:3px}
+.pf input{width:100%;padding:6px 10px;border:1px solid var(--line);border-radius:7px;font-family:Consolas,monospace;font-size:12px}
+.pf input.missing{border-color:var(--red);background:var(--redS)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#17211d;color:#fff;padding:10px 20px;border-radius:9px;font-size:12px;display:none;z-index:99}
+.cnt{font-size:10px;color:var(--faint);font-weight:400}</style></head><body>
+<header>
+  <div class="logo"><div class="mk">🧩</div><div><h1>積木ワークベンチ v2</h1><div class="sub">ドラッグで組んで、そのまま実行</div></div></div>
+  <span class="sp"></span>
+  <input id="caseName" placeholder="Case ID (例: AZ-110-01-009)">
+  <button class="btn" id="btnLoad">読込</button>
+  <button class="btn" id="btnClear">クリア</button>
+  <button class="btn primary" id="btnDownload">JSON ↓</button>
+</header>
+<div class="layout">
+  <div class="col col-l">
+    <h2>積木ライブラリ <span class="cnt" id="palCount"></span></h2>
+    <input id="search" placeholder="🔍 検索（画面・ID・操作）">
+    <div id="palette"></div>
+  </div>
+  <div class="col col-m">
+    <h2>組立キャンバス <span class="cnt" id="cvCount"></span></h2>
+    <div id="canvasWrap">
+      <div id="canvasEmpty">左の積木をクリック or ドラッグでここに追加。<br>上から下の順に実行。ブロック選択 → 右パネルで編集。</div>
+    </div>
+  </div>
+  <div class="col col-r" id="rightPanel">
+    <div class="rtabs">
+      <button class="rtab on" data-rt="steps">手順</button>
+      <button class="rtab" data-rt="preview">プレビュー</button>
+      <button class="rtab" data-rt="params">パラメータ</button>
+    </div>
+    <div class="rpanel" id="rpSteps"></div>
+    <div class="rpanel" id="rpPreview" style="display:none">
+      <div class="pv-hint" id="pvHint">ブロック選択でプレビュー</div>
+      <iframe id="pvFrame" style="display:none"></iframe>
+    </div>
+    <div class="rpanel" id="rpParams" style="display:none"></div>
+  </div>
+</div>
+<div id="toast"></div>
+<script src="data/lego-data.js"></script>
+<script>
+const D=window.LEGO_DATA;
+let canvas=[];
+let P={};
+let selIdx=-1;
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function palRender(q){
+  q=(q||'').toLowerCase();
+  const host=document.getElementById('palette');host.innerHTML='';
+  for(const [g,items] of Object.entries(D.groups)){
+    const hit=items.filter(b=>!q||b.id.toLowerCase().includes(q)||b.screen.toLowerCase().includes(q)||b.steps.some(st=>(st.event||'').toLowerCase().includes(q)||(st.selector||'').toLowerCase().includes(q)));
+    if(!hit.length)continue;
+    const det=document.createElement('details');det.className='grp';det.open=!!q;
+    det.innerHTML='<summary><span class="chev">▸</span>'+esc(g)+' <span class="cnt">('+hit.length+')</span></summary>';
+    for(const b of hit){
+      const el=document.createElement('div');el.className='pal-block';el.draggable=true;
+      const ops=b.steps.slice(0,4).map(st=>st.action+(st.event?'('+st.event.slice(0,12)+')':'')).join(' → ');
+      el.innerHTML='<div class="bid">'+esc(b.id)+'</div><div class="scr">'+esc(b.screen.slice(0,40))+'</div><div class="ops">'+esc(ops||'(手順なし)')+'</div>';
+      el.onclick=()=>addToCanvas(b.id);
+      el.ondragstart=e=>e.dataTransfer.setData('text/plain',b.id);
+      det.appendChild(el);
+    }
+    host.appendChild(det);
+  }
+}
+palRender('');
+document.getElementById('search').oninput=e=>palRender(e.target.value);
+function addToCanvas(id){
+  if(canvas.some(c=>c.id===id)){toast('その積木は既に追加済みです');return}
+  canvas.push({id,overrides:{}});
+  canvasRender();toast('追加: '+id);
+}
+function canvasRender(){
+  const host=document.getElementById('canvasWrap');
+  if(!canvas.length){
+    host.innerHTML='<div id="canvasEmpty">左の積木をクリック or ドラッグでここに追加。<br>上から下の順に実行。ブロック選択 → 右パネルで編集。</div>';
+    updateCounts();return;
+  }
+  host.innerHTML='';
+  canvas.forEach((c,idx)=>{
+    const blk=D.blocks[c.id];
+    const el=document.createElement('div');el.className='cb-block'+(idx===selIdx?' sel':'');el.dataset.idx=idx;
+    el.innerHTML='<div class="cb-head"><span class="idx">'+(idx+1)+'</span><span class="nm">'+esc(blk.screen||c.id)+'</span><span class="scr">'+esc(c.id.replace(/^BLK-/,''))+'</span><button class="del" title="削除">×</button></div>';
+    el.querySelector('.del').onclick=e=>{e.stopPropagation();canvas.splice(idx,1);if(selIdx===idx)selIdx=-1;canvasRender()};
+    el.querySelector('.cb-head').onclick=e=>{
+      if(e.target.classList.contains('del'))return;
+      selIdx=idx;canvasRender();
+    };
+    el.ondragover=e=>e.preventDefault();
+    host.appendChild(el);
+    if(idx<canvas.length-1){const a=document.createElement('div');a.className='arr';a.textContent='↓';host.appendChild(a)}
+  });
+  const drop=document.createElement('div');drop.className='dropzone';drop.textContent='ここにドロップで追加';
+  drop.ondragover=e=>{e.preventDefault();drop.classList.add('hot')};
+  drop.ondragleave=()=>drop.classList.remove('hot');
+  drop.ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');if(D.blocks[id])addToCanvas(id)};
+  host.appendChild(drop);
+  updateCounts();renderRight();
+}
+function previewViewOf(blk){const m=String(blk.screen||'').match(/A[YZ]G?[0-9]{3}/);if(!m)return null;const map={"AZG001": "AMA01.html", "AZG100": "AMA03.html", "AZG101": "AMA04.html", "AZG200": "AMA07.html", "AZG201": "AMA08.html", "AZG204": "AMA11.html", "AZG301": "AMA12.html", "AZG900": "AMA13.html", "AZG901": "AMA14.html", "AZG902": "AMA15.html", "AZG905": "AMA18.html", "AZG906": "AMA19.html", "AZG910": "AMA27.html", "AZG911": "AMA28.html", "AZG103": "AMA06.html", "AZG108": "AMA25.html", "AZG207": "AMA26.html", "AYG001": "ANA01.html", "AYG100": "ANA02.html", "AYG101": "ANA03.html", "AYG102": "ANA04.html", "AYG202": "ANA05.html", "AYG203": "ANA06.html"};return map[m[0]]||null}
+function updateCounts(){
+  const pc=document.getElementById('palCount');if(pc)pc.textContent=Object.values(D.groups).flat().length;
+  const cc=document.getElementById('cvCount');if(cc)cc.textContent=canvas.length;
+}
+function renderRight(){
+  const rt=document.querySelector('.rtab.on');
+  const tab=rt?rt.dataset.rt:'steps';
+  document.getElementById('rpSteps').style.display=tab==='steps'?'':'none';
+  document.getElementById('rpPreview').style.display=tab==='preview'?'':'none';
+  document.getElementById('rpParams').style.display=tab==='params'?'':'none';
+  if(tab==='steps')renderStepEdit();
+  if(tab==='preview')renderPreview();
+  if(tab==='params')renderParams();
+}
+document.querySelectorAll('.rtab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderRight()});
+function renderStepEdit(){
+  const host=document.getElementById('rpSteps');
+  if(selIdx<0||!canvas[selIdx]){host.innerHTML='<div class="empty">ブロックを選択してください</div>';return}
+  const c=canvas[selIdx];const blk=D.blocks[c.id];
+  host.innerHTML='<div class="se-h" style="padding:10px 14px 0"><b>'+esc(c.id.replace(/^BLK-/,''))+'</b><span class="small muted">'+esc(blk.screen)+'</span></div>'
+    +blk.steps.map((st,i)=>{
+      const val=st.value!==undefined?st.value:(st.label!==undefined?st.label:'');
+      const hasRef=typeof val==='string'&&val.indexOf('params.')===0;
+      const cur=c.overrides[i]!==undefined?c.overrides[i]:(hasRef?'':val);
+      const inp=hasRef||val
+        ?'<input data-st="'+i+'" value="'+esc(cur)+'" placeholder="'+(hasRef?esc(String(val).replace('params.',''))+'（params値）':'')+'">'
+        :'';
+      const rm=(c.overrides[i]!==undefined)?'<button class="rm" data-rm="'+i+'" title="上書き戻す">↺</button>':'';
+      return '<div class="se-row"><div class="se-h"><span class="an">'+(i+1)+'</span><span class="act">'+esc(st.action)+'</span><span class="small muted">'+esc(String(st.selector||st.url||st.match||'').slice(0,40))+'</span>'+rm+'</div>'
+        +(inp?'<label>'+(hasRef?'params 値を上書き':'値')+'</label>'+inp:'')
+        +'</div>';
+    }).join('')
+    +'<div style="padding:10px 14px"><button class="btn" style="width:100%" onclick="dupBlock('+selIdx+')">このブロックを複製</button></div>';
+  host.querySelectorAll('input[data-st]').forEach(inp=>{
+    inp.oninput=()=>{const si=+inp.dataset.st;const v=inp.value.trim();
+      if(v)canvas[selIdx].overrides[si]=v;else delete canvas[selIdx].overrides[si];};
+  });
+  host.querySelectorAll('[data-rm]').forEach(b=>{
+    b.onclick=()=>{delete canvas[selIdx].overrides[+b.dataset.rm];renderStepEdit()};
+  });
+}
+function dupBlock(i){canvas.splice(i+1,0,{...canvas[i],overrides:{...canvas[i].overrides}});canvasRender();toast('複製しました')}
+function renderPreview(){
+  const hint=document.getElementById('pvHint');
+  const fr=document.getElementById('pvFrame');
+  if(selIdx<0||!canvas[selIdx]){hint.textContent='ブロック選択でプレビュー';fr.style.display='none';return}
+  const blk=D.blocks[canvas[selIdx].id];
+  const pv=previewViewOf(blk);
+  if(!pv){hint.textContent='このブロックにはプレビュー画面がありません';fr.style.display='none';return}
+  const isAy=String(blk.screen||'').indexOf('異例')>=0||pv.indexOf('ANA')===0;const viewPath=(isAy?'ANB00/':'AMB/')+pv;
+  hint.textContent='プレビュー: '+pv+' (レイアウト・ボタン配置は実物どおり。CSSはPages上では簡易表示)';
+  fr.src='mock-src/'+viewPath;
+  fr.style.display='';
+
+}
+function usedParams(){
+  const used=new Set();
+  for(const c of canvas){
+    const blk=D.blocks[c.id];
+    blk.steps.forEach((st,i)=>{
+      if(c.overrides[i]!==undefined)return;
+      const sv=String((st.value!==undefined?st.value:(st.label!==undefined?st.label:''))||'');
+      const re=/params\.(\w+)/g;let m;
+      while((m=re.exec(sv))!==null)used.add(m[1]);
+    });
+  }
+  return [...used].sort();
+}
+function renderParams(){
+  const host=document.getElementById('rpParams');
+  const used=usedParams();
+  if(!used.length){host.innerHTML='<div class="empty">パラメータは不要です（またはブロック未選択）</div>';return}
+  host.innerHTML=used.map(f=>{
+    const v=P[f]||'';
+    const missing=!v;
+    return '<div class="pf"><label>{params.'+f+'}</label><input data-pf="'+f+'" class="'+(missing?'missing':'')+'" value="'+esc(v)+'" placeholder="'+f+'"><div class="src">'+(v?'設定済':'⚠ 未設定')+'</div></div>';
+  }).join('');
+  host.querySelectorAll('input[data-pf]').forEach(inp=>inp.oninput=()=>{P[inp.dataset.pf]=inp.value;renderParams()});
+}
+function exportRender(){
+  const btn=document.getElementById('btnDownload');
+  if(!canvas.length){btn.disabled=true;return}
+  const cid=document.getElementById('caseName').value.trim()||'(caseId未入力)';
+  const blocks={};const cs={};
+  for(const c of canvas){
+    const blk=JSON.parse(JSON.stringify(D.blocks[c.id]));
+    blk.steps.forEach((st,i)=>{const ov=c.overrides[i];if(ov!==undefined&&ov!=='')st.value=ov;});
+    blocks[c.id]=blk;
+  }
+  usedParams().forEach(f=>cs[f]=P[f]||'');
+  const csObj={};csObj[cid]=cs;
+  const out={generatedAt:new Date().toISOString(),blocks,cases:csObj,compositionOrder:canvas.map(c=>c.id)};
+  window.__lastExport=out;
+  btn.disabled=false;
+}
+document.getElementById('btnDownload').onclick=()=>{
+  if(!window.__lastExport)return;
+  const cid=document.getElementById('caseName').value.trim()||'custom-flow';
+  const blob=new Blob([JSON.stringify(window.__lastExport,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=cid+'-lego.json';a.click();toast('ダウンロードしました');
+};
+document.getElementById('btnClear').onclick=()=>{canvas=[];P={};selIdx=-1;canvasRender()};
+document.getElementById('btnLoad').onclick=()=>{
+  const cid=prompt('既存 Case ID を入力（例: AZ-110-01-009）');
+  if(!cid)return;
+  fetch('data/blocks.json').then(r=>r.json()).then(B=>{
+    const w=B.workflows[cid];
+    if(!w){toast('見つかりません: '+cid);return}
+    canvas=[];const seen=new Set();
+    for(const b of w.blockDetails){
+      if(seen.has(b.block))continue;seen.add(b.block);
+      if(D.blocks[b.block])canvas.push({id:b.block,overrides:{}});
+    }
+    document.getElementById('caseName').value=cid;
+    selIdx=-1;canvasRender();toast('読込: '+canvas.length+' 積木');
+  }).catch(e=>toast('読込エラー'));
+};
+document.getElementById('canvasWrap').ondragover=e=>e.preventDefault();
+document.getElementById('canvasWrap').ondrop=e=>{
+  e.preventDefault();
+  const id=e.dataTransfer.getData('text/plain');
+  if(D.blocks[id])addToCanvas(id);
+};
+document.addEventListener('keydown',e=>{
+  if(e.key==='Delete'&&selIdx>=0){canvas.splice(selIdx,1);selIdx=-1;canvasRender()}
+});
+canvasRender();
+</script></body></html>
