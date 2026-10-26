@@ -7,3 +7,7 @@ automation/logs/
 automation/node-runner/node_modules/
 automation/node-runner/dbg*.js
 automation/node-runner/check_*.js
+.alma-snapshots/
+
+# local editor state
+.alma-snapshots/
