@@ -429,20 +429,6 @@
     "in": "popup"
    },
    {
-    "event": "input 代理店コード",
-    "action": "fill",
-    "selector": "#agent_code_key",
-    "value": "params.agentCode",
-    "in": "popup"
-   },
-   {
-    "event": "input 募集人ID",
-    "action": "fill",
-    "selector": "#field_agent_id_key",
-    "value": "params.fieldAgentId",
-    "in": "popup"
-   },
-   {
     "event": "click 検索",
     "action": "click",
     "selector": "#search",
@@ -455,7 +441,7 @@
     "selector": "#gyoumu_list tr",
     "min": 1,
     "in": "popup",
-    "note": "009环境无数据=blocked"
+    "note": "result rows required; 009 environment has no data"
    },
    {
     "event": "click 選択欄ラジオ",
