@@ -228,9 +228,10 @@ function renderPreview(){
   const pv=previewViewOf(blk);
   if(!pv){hint.textContent='このブロックにはプレビュー画面がありません';fr.style.display='none';return}
   const isAy=String(blk.screen||'').indexOf('異例')>=0||pv.indexOf('ANA')===0;const viewPath=(isAy?'ANB00/':'AMB/')+pv;
-  hint.textContent='プレビュー: '+pv+' (画面上のボタン・フィールドは実際の配置です)';
-  fr.src='../../automation/node-runner/mock-src/'+viewPath;
+  hint.textContent='プレビュー: '+pv+' (レイアウト・ボタン配置は実物どおり。CSSはPages上では簡易表示)';
+  fr.src='mock-src/'+viewPath;
   fr.style.display='';
+
 }
 function usedParams(){
   const used=new Set();
@@ -283,7 +284,7 @@ document.getElementById('btnClear').onclick=()=>{canvas=[];P={};selIdx=-1;canvas
 document.getElementById('btnLoad').onclick=()=>{
   const cid=prompt('既存 Case ID を入力（例: AZ-110-01-009）');
   if(!cid)return;
-  fetch('../automation/blocks/blocks.json').then(r=>r.json()).then(B=>{
+  fetch('data/blocks.json').then(r=>r.json()).then(B=>{
     const w=B.workflows[cid];
     if(!w){toast('見つかりません: '+cid);return}
     canvas=[];const seen=new Set();
