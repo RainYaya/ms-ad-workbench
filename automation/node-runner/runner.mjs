@@ -114,8 +114,20 @@ const browser = await chromium.launch({
   executablePath: useEdge ? undefined : undefined,
 });
 const context = await browser.newContext({ viewport: { width: 1360, height: 900 } });
-const page = await context.newPage();
+let page = await context.newPage();
 const acceptDialog = (d) => d.accept().catch(() => {});
+const MENU_SELECTOR = P.startSelector || '#act001to100, #route2, #route3';
+async function findMenu(timeout = 120000) {
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    for (const p of context.pages()) {
+      if (p.isClosed()) continue;
+      if (await p.locator(MENU_SELECTOR).count().catch(() => 0)) return p;
+    }
+    await new Promise((r) => setTimeout(r, 250));
+  }
+  return null;
+}
 page.on('dialog', acceptDialog);
 context.on('page', (p) => {
   p.on('dialog', acceptDialog);
@@ -172,16 +184,23 @@ try {
       await userBox.fill(String(loginUser));
       if (loginBuka) await page.locator('input[name="BukaCode"]').fill(String(loginBuka));
       if (loginYak) await page.locator('input[name="YakusyokuCode"]').fill(String(loginYak));
+      const before = new Set(context.pages());
       await page.locator('input[name="menu_cm"]').click();
-      await page.waitForLoadState('domcontentloaded');
-      console.log(`LOGIN ${loginUser}`);
+      await page.waitForTimeout(800);
+      const opened = context.pages().find((p) => !before.has(p));
+      if (opened) page = opened;
+      console.log(`LOGIN ${loginUser}${opened ? ' (new window)' : ''}`);
     }
   }
   if (P.startUrl) {
     await page.goto(runtimeUrl(P.startUrl, baseUrl, live), { waitUntil: 'domcontentloaded', timeout: 30000 });
   }
-  // login is manual on the SUT; AZ menu has #act001to100, AY(ANB00) menu has route buttons
-  await page.waitForSelector(P.startSelector || '#act001to100, #route2, #route3, input[name=UserID], input[name=menu_cm]', { timeout: 120000 });
+  // The SUT login button opens a new window (window.open(..., 'TOP')).
+  // Pick the menu page from all targets; also covers manual login.
+  const menu = await findMenu(120000);
+  if (!menu) throw new Error(`menu not found after login: ${context.pages().map((p) => p.url()).join(', ')}`);
+  page = menu;
+  await page.bringToFront().catch(() => {});
   await shot('menu');
 
   let popup = null; // case-scoped: popups opened in one block persist to the next

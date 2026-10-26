@@ -90,6 +90,8 @@ powershell -ExecutionPolicy Bypass -File .\run-009.ps1 `
   -BaseUrl "http://127.0.0.1:82/mhkcmwa11/dummy.html"
 ```
 
+The SUT login page (`dummy.html`) fills `input[name="UserID"]` and clicks `input[name="menu_cm"]`. That button opens a **new window** (`window.open(..., 'TOP')`), so the runner scans all CDP targets for the menu selector and continues on the menu page.
+
 The runner prints the expected login at startup:
 
 ```text

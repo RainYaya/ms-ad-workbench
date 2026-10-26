@@ -14,7 +14,9 @@
 
 ## 参数
 - `run.cmd CASE [BASE_URL] [USERID]`。默认 base URL: `http://127.0.0.1:82/mhkcmwa11/dummy.html`，并加 `--live`。
-- 登录页 `input[name="UserID"]` 会用 `--user` / `params.loginUser` / `params.user` 自动填写，然后点 `input[name="menu_cm"]`。不传就保持手动登录。
+- 登录页 `input[name="UserID"]` 会用 `--user` / `params.loginUser` / `params.user` 自动填写，然后点 `input[name="menu_cm"]`。
+- `menu_cm` 是 `window.open`，菜单在**新窗口**；runner 会从所有 target 里找菜单，不会一直等登录页。
+- 不传 user 就保持手动登录。
 - 实际 SUT 的 `/AMB/AMA01.html` 会由 `url-map.mjs` 转成 `/mhkcmwa11/AMA01?gamid=AMA01&gamcd=AMA00` 这类路由。
 - Mock 模式用 `node runner.mjs --case ... --base-url http://127.0.0.1:10090/`（不加 `--live`）。
 - 更多见 `docs/URL-MAPPING.md`。
