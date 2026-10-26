@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="Shift_JIS">
+<title>保険種類選択画面</title>
+<link rel="stylesheet" href="./static/css/mhk.css" />
+<script src="./static/js/mhk_common.js"></script>
+<script>
+function bodyOnload() {
+
+	oyawin = window.opener.document.getElementById('gamid').value;
+
+	const form = document.form1;
+	const oyaForm = window.opener.document.mhk_MHKPRForm;
+
+	// 親画面からパラメータを取得
+	const param0 = oyaForm.elements['large_item_list.selected'];
+	const param1 = oyaForm.elements['insurance_item_list.selected'];
+
+	if(param0 != null || param1 != null) {
+
+		let selectedIndex = param0.selectedIndex;
+		let insuranceItemLength = param1.options.length;
+		let insuranceItemObj = form.elements['insurance_item_list.selected'];
+
+		// 種目設定
+		document.getElementById("large_item_name").innerText = param0.options[selectedIndex].text;
+
+		insuranceItemObj.options.length = insuranceItemLength;
+
+		// 保険種類設定
+		for (let i = 0 ; i < insuranceItemLength; i++ ) {
+			insuranceItemObj.options[i].value = param1.options[i].value;
+			insuranceItemObj.options[i].title = param1.options[i].title;
+			insuranceItemObj.options[i].text = param1.options[i].text;
+		}
+
+		insuranceItemObj.selectedIndex = param1.selectedIndex;
+	}
+}
+
+function popupClose(button) {
+
+	// 親画面終了チェック
+	if (!windowOpenerClosedCheck()) {
+		return false;
+	}
+
+	const form = document.form1;
+	let insuranceItemObj = window.opener.document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+	if (button.name == 'ok') {
+		// OKボタン押下時
+		let result = form.elements['insurance_item_list.selected'].selectedIndex;
+
+		if ( result != null && typeof(result) != 'undefined' ) {
+			insuranceItemObj.selectedIndex = result;
+
+			window.opener.document.mhk_MHKPRForm.selected_insurance_item_code.value
+				= insuranceItemObj.options[insuranceItemObj.selectedIndex].value;
+
+			// 不備内容入力画面-新規限定
+			if (oyaGamId == 'AMA03') {
+				window.opener.document.getElementById('insurance_item_title').title
+					= insuranceItemObj.options[insuranceItemObj.selectedIndex].text;
+			}
+		}
+	}
+	window.close();
+}
+</script>
+</head>
+
+<body class="popup_body_common" onload="bodyOnload()">
+<form action="" method="post" name="form1">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	<div id="gyoumu_area" class="wrapperHoshu">
+		<div class="gyoumu_field_title">種目</div>
+		<div class="gyoumu_field_value_left" id="large_item_name">&nbsp;</div>
+		<div class="gyoumu_field_title">保険種類</div>
+		<div class="gyoumu_field_value_left">
+			<select name="insurance_item_list.selected" class="gyoumu_field_control"><option value=""></option><option value="00A1">00 ： 自動車</option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+		</div>
+	</div>
+
+	<!-- ボタンエリア -->
+	<div class="popup_button_area size_button_areaHoshu">
+		<!-- 共通ボタン -->
+		<div class="button_width_60">
+			<input class="popup_button_area_button" name="ok" type="button" value="ＯＫ" onclick="popupClose(this);"/>
+		</div>
+		<!-- 終了ボタン -->
+		<div class="button_width_75">
+			<input class="popup_button_area_button" name="cancel" type="button" value="キャンセル" onclick="popupClose(this);"/>
+		</div>
+	</div>
+</form>
+</body>
+</html>

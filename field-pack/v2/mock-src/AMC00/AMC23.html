@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css" />
+<link rel="stylesheet" type="text/css" href="/AMC00${commonForm.cssFilePath}"/>
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script>
+
+// 添付ファイルアップロード可否フラグ
+var uploadUseFlg = false;
+// 訂正内容確認画面
+var subwin;
+
+function setScrollEvent() {
+
+    var form = document.mhk_MHKPRForm;
+
+    // 申込不備情報の件数
+    var maxIndex = 1;
+
+    // 回答入力欄のスクロールに対するイベント登録
+    for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+        var am = form['tableRecordList[' + indexNo + '].answer_message'];
+        if (am) { am.onscroll = tooltip.Scroll; }
+    }
+
+    // 備考通信欄のスクロールに対するイベント登録
+    if (form['forms_message']) { form['forms_message'].onscroll = tooltip.Scroll; }
+
+    // 外側のdivタグに対するスクロールに対するイベント登録
+    var d1 = document.getElementById('div1'); if (d1) { d1.onscroll = tooltip.Scroll; }
+
+    // 内側のdivタグのスクロールに対するイベント登録
+    var d2 = document.getElementById('div2'); if (d2) { d2.onscroll = tooltip.Scroll; }
+
+    return true;
+}
+
+function bodyOnload() {
+    commonBodyOnload();
+
+    setScrollEvent();
+
+    var downloadErrMsg = '1';
+
+    // データ削除 or 表示対象外の場合、業務エリア非表示
+    // mock: 元 th:if は生成時に '1' へ潰れていた。通常表示ケースとして false 固定。
+    if (false) {
+        document.getElementById('div_gyoumu_area').style.visibility = "hidden";
+        return;
+    }
+
+    if (1 == false &&
+            (   '1' == 'aZG104UpdateTempAnswer'
+             || '1' == 'aZG104UpdateAnswer')) {
+        document.getElementById('message_area').children[0].className = 'popup_message_area_info';
+    }
+
+    // 印刷・メール用コピーボタンの表示
+    document.getElementById('print').style.visibility = "visible";
+    document.getElementById('copyClipboard').style.visibility = "visible";
+
+    //「確認ボタンを押してくださいの文言を非表示
+    document.getElementById('confirmed_word').style.visibility = "hidden";
+    document.getElementById('updateConfirmed').style.display = "none";
+
+    // 一時中断、回答ボタンの表示
+    if ('1' < '3') {
+        document.getElementById('updateTempAnswer').style.visibility = "visible";
+        document.getElementById('updateAnswer').style.display = "inline";
+
+        if ('1' === '連絡') {
+            //確認済みボタンを表示させる
+            document.getElementById('updateConfirmed').style.display = "inline";
+            document.getElementById('updateAnswer').style.display = "none";
+        }
+
+    }
+
+    if ('1' === '連絡') {
+    	  //確認済みボタンを表示させる
+        //document.getElementById('updateConfirmed').style.display = "inline";
+        //document.getElementById('updateAnswer').style.display = "none";
+
+    	  //「確認ボタンを押してくださいの文言を表示させる
+        document.getElementById('confirmed_word').style.visibility = "visible";
+
+        // 申込不備情報の件数
+        var maxIndex = 1;
+
+        //回答欄を無効にする
+        for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+
+          document.mhk_MHKPRForm['list[' + indexNo + '].answer_contents.selected'].disabled = true;
+          document.mhk_MHKPRForm['list[' + indexNo + '].answer_contents.selected'].style.background = "#CCC";
+
+          document.getElementById('tableRecord:' + indexNo + ':answer_message').disabled = true;
+          document.getElementById('tableRecord:' + indexNo + ':answer_message').style.background = "#CCC";
+          document.getElementById('tableRecord:' + indexNo + ':answer_message').style.color = "#666";
+        }
+   }
+    // 機械点検画像ボタンの表示
+    if ('1' == '1') {
+        document.getElementById('displayInspectorImage').style.visibility = "visible";
+    }
+
+    if (window.File) {
+        // fileAPIが利用可能
+        uploadUseFlg = true;
+    } else {
+        try {
+            var fso = new ActiveXObject('Scripting.FileSystemObject');
+         // ActiveXが有効
+            uploadUseFlg = true;
+        } catch (e) {
+            // ActiveXが無効
+            uploadUseFlg = false;
+        }
+    }
+
+    // 添付ファイルエリアの項目制御
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+        document.mhk_MHKPRForm['tableRecordUploadList[' + uploadIndex + '].open_file'].readOnly = true;
+        document.mhk_MHKPRForm['tableRecordUploadList[' + uploadIndex + '].open_file'].disabled = true;
+
+        if (document.mhk_MHKPRForm['tableRecordUploadList[' + uploadIndex + '].business_file_flag'].value != '1'
+            && uploadUseFlg
+            && '1' <= '2') {
+            document.mhk_MHKPRForm['tableRecordUploadList[' + uploadIndex + '].open_file'].disabled = false;
+            document.mhk_MHKPRForm['delete_file_' + uploadIndex].disabled = false;
+        }
+    }
+
+    // カメラアプリボタン名称設定
+    if ('1' == 'MS') {
+        document.getElementById('displayCameraApp').value = 'ＭＳ１カメラ';
+    } else {
+        document.getElementById('displayCameraApp').value = 'ＡＤ１カメラ';
+    }
+
+    if (downloadErrMsg) {
+        alert(downloadErrMsg);
+    }
+
+    if (!uploadUseFlg) {
+        document.getElementById('uploadUseAlert').innerHTML = '※ActiveXコントロールが無効なため、添付ファイルの登録ができません。';
+    }
+
+	// クリップボード用のデータ取得
+    var clipboardCopyData = document.getElementById('clipboard_data').value;
+	var userAgent = window.navigator.userAgent.toLowerCase();
+
+    if (clipboardCopyData != '') {
+        // クリップボード用のデータがセットされた場合、クリップボードにデータをセット
+        // IE
+        if (userAgent.indexOf("msie") != -1 || userAgent.indexOf("trident") != -1) {
+            window.clipboardData.setData('text', clipboardCopyData.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n"));
+        // Edge
+        } else if (userAgent.indexOf("edg") != -1 || userAgent.indexOf("edge") != -1) {
+            navigator.clipboard.writeText(clipboardCopyData.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n"));
+        }
+
+        // クリップボードコピー用データをクリア
+        document.getElementById('clipboard_data').value = '';
+
+        // クリップボードコピー完了のメッセージを出力
+        alert('');
+    }
+
+    // 帳票出力
+    if ('1' == 'aZG104Print' && '1' == '0') {
+
+    	var hiddenButton = document.mhk_MHKPRForm.aZG104PrintPDF;
+        if(hiddenButton != null) {
+            hiddenButton.click();
+        }
+    }
+}
+
+// submit前処理
+function custom_Submit(form) {
+
+    var validate = false;
+
+    // 回答・確認済・一時中断・印刷・メール用コピー・不備一覧・終了押下時に
+    // 訂正内容確認画面が開いているときは閉じる
+    if (clickButtonName == 'updateAnswer'
+            || clickButtonName == 'updateConfirmed'
+            || clickButtonName == 'updateTempAnswer'
+            || clickButtonName == 'print'
+            || clickButtonName == 'copyClipboard'
+            || clickButtonName == 'act104to22'
+            || clickButtonName == 'close') {
+        // 訂正内容確認画面開閉チェックフラグ
+        var teiseiFlg = true;
+        // 訂正内容確認画面を1回以上開いているとき、訂正内容確認画面が閉じているか確認し、
+        // 閉じている場合はtrue、開いている場合はfalseを返却する
+        if (subwin != undefined) {
+            teiseiFlg = subwin.closed;
+        }
+        // 訂正内容確認画面が開いている場合、訂正内容確認画面を閉じる
+        if (!teiseiFlg) {
+            subwin.close();
+        }
+    }
+
+    // 回答ボタン押下時
+    if (clickButtonName == 'updateAnswer') {
+        // 入力チェック
+        if(inputCheck(form)){
+                // 確認メッセージ表示
+                return window.confirm( '');
+        }
+        return false;
+    }
+
+    // 確認済ボタン押下時
+    if (clickButtonName == 'updateConfirmed') {
+    	   // 入力チェック
+        if(inputCheck(form)){
+                // 確認メッセージ表示
+        	return window.confirm( '');
+        }
+        return false;
+
+    }
+
+    // 一時中断、印刷、メール用コピーボタン押下時は、入力チェックを実施
+    if (clickButtonName == 'updateTempAnswer'
+    		|| clickButtonName == 'print'
+    			|| clickButtonName == 'copyClipboard') {
+        return inputCheck(form);
+    } else {
+
+        // その他のボタンを入力チェックを実施しない
+        return true;
+    }
+}
+
+// 入力チェック
+function inputCheck(form) {
+
+    // 申込不備情報の件数
+    var maxIndex = 1;
+
+
+    for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+
+        if (clickButtonName == 'updateAnswer') {
+            // 回答内容が「10000：リストから」の場合
+            if (form['list[' + indexNo + '].answer_contents.selected'].value == '10000') {
+                showValidateMessage(form, form['list[' + indexNo + '].answer_contents.selected'], '');
+                return false;
+            }
+        }
+
+        // 回答入力欄のバイト数チェック＆禁止文字チェック
+        if (!isMaxLenB(form, form['tableRecordList[' + indexNo + '].answer_message'], 300, '') ||
+            !isProhibitionChar(form, form['tableRecordList[' + indexNo + '].answer_message'], '') ) {
+            return false;
+        }
+    }
+
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+
+        // アップロード対象のファイルのみチェック対象とする
+        if (form['tableRecordUploadList[' + uploadIndex + '].insert_file_flag'].value == '1') {
+
+            var fileExists = '';
+
+            // File APIが使用可能な場合
+            if (window.File) {
+                fileExists =  form['tableRecordUploadList[' + uploadIndex + '].open_file'].files[0];
+
+            } else {
+                // ActiveXを使用（IE9以下に対応）
+                // 参照ファイルの存在チェック
+                var fso = new ActiveXObject('Scripting.FileSystemObject');
+                fileExists = fso.FileExists(form['tableRecordUploadList[' + uploadIndex + '].open_file'].value);
+            }
+
+            if (!fileExists) {
+                // 参照ファイルが存在しない場合
+                showValidateMessage(form, form['tableRecordUploadList[' + uploadIndex + '].open_file'], '');
+                return false;
+            }
+        }
+    }
+
+    // 回答済チェック
+    if (clickButtonName == 'updateAnswer') {
+        for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+
+            // 回答内容が「0：その他」の場合
+            if (form['list[' + indexNo + '].answer_contents.selected'].value == '0') {
+
+            	if ('1' == 'MS') {
+                    // 回答入力欄の必須チェック
+                    if (!isRequired(form, form['tableRecordList[' + indexNo + '].answer_message'], '') ) {
+                        return false;
+                    }
+            	} else if ('1' == 'AD') {
+                        // 回答入力欄の必須チェック
+                        if (!isRequired(form, form['tableRecordList[' + indexNo + '].answer_message'], '') ) {
+                            return false;
+                        }
+            	}
+            }
+        }
+    }
+
+    // 添付ファイルサイズチェック
+    var sumSize = 0;
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+        var size = form['tableRecordUploadList[' + uploadIndex + '].upload_file_size'].value;
+
+        // ファイルサイズが設定されている場合
+        if (size) {
+            sumSize = sumSize + parseInt(size);
+        }
+    }
+
+    // 添付ファイルの合計サイズが5MBを超過する場合
+    if (sumSize > 5242880) {
+        showValidateMessage(form, form['tableRecordUploadList[0].open_file'], '');
+        return false;
+    }
+
+    return true;
+}
+
+function checkUploadFiles(id, input) {
+	var form = document.mhk_MHKPRForm;
+	var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+	var fileObj = form[listNameTableRecordUpload + 'open_file'];
+	var file = fileObj.value;
+	
+	var fileName = '';
+	var fileSize = 0;
+
+	// File APIが使用可能な場合
+	if (window.File) {
+	    var files = fileObj.files;
+
+	    // 添付ファイルが存在する場合
+	    if (files[0]) {
+	        fileName = files[0].name;
+	        fileSize = files[0].size;
+	    }
+	} else {
+	    // ActiveXを使用（IE9以下に対応）
+	    var fso = new ActiveXObject('Scripting.FileSystemObject');
+
+	    // 添付ファイルが存在する場合
+	    if (fso.FileExists(file)) {
+	        var fileNameSplit = file.split('\\');
+	        fileName = fileNameSplit[fileNameSplit.length - 1];
+	        fileSize = fso.getFile(file).size;
+	    }
+	}
+	
+    // 添付ファイルサイズチェック
+    var sumSize = 0;
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+        var size = form['tableRecordUploadList[' + uploadIndex + '].upload_file_size'].value;
+
+        // ファイルサイズが設定されている場合
+        if (uploadIndex != id && size) {
+            sumSize = sumSize + parseInt(size);
+        }
+    }
+
+	// 添付ファイルの合計サイズが5MBを超過する場合
+	if (sumSize + fileSize > 5242880) {
+	    showValidateMessage(form, form['tableRecordUploadList[0].open_file'], '');
+		deleteFile(id, true);
+		return false;
+	}
+	return true;
+}
+
+// 検索項目の表示非表示を切り替える
+function switchOpenArea() {
+    var div1 = '';
+    var div2 = '';
+    var openArea = document.getElementById("open_area");
+    var btnObject = document.getElementById("btnOpenClose");
+
+    // Edge・IE8以降
+    if (document.querySelector) {
+        // Edge・IE10以降
+        if (document.querySelector('#div1').classList) {
+            div1 = document.querySelector('#div1').classList;
+            div2 = document.querySelector('#div2').classList;
+
+            // divに特定のクラスがある場合は削除、ない場合は追加する
+            div1.toggle('block_gyoumu_scroll_size_close');
+            div1.toggle('block_gyoumu_scroll_size');
+            div2.toggle('block_answer_scroll_size_close');
+            div2.toggle('block_answer_scroll_size');
+
+        // IE8・IE9
+        } else {
+            div1 = document.getElementById('div1').getAttribute("class");
+            div2 = document.getElementById('div2').getAttribute("class");
+
+            // divに特定のクラスがある場合は削除、ない場合は追加する
+            if (openArea.style.display == "none") {
+                div1 = div1.replace("block_gyoumu_scroll_size_close", "block_gyoumu_scroll_size");
+                div2 = div2.replace("block_answer_scroll_size_close", "block_answer_scroll_size");
+            } else {
+                div1 = div1.replace("block_gyoumu_scroll_size", "block_gyoumu_scroll_size_close");
+                div2 = div2.replace("block_answer_scroll_size", "block_answer_scroll_size_close");
+            }
+            document.getElementById('div1').setAttribute("class", div1);
+            document.getElementById('div2').setAttribute("class", div2);
+
+        }
+
+    // IE7以前
+    } else {
+        div1 = document.getElementById('div1').getAttribute("className");
+        div2 = document.getElementById('div2').getAttribute("className");
+
+        // divに特定のクラスがある場合は削除、ない場合は追加する
+        if (openArea.style.display == "none") {
+            div1 = div1.replace("block_gyoumu_scroll_size_close", "block_gyoumu_scroll_size");
+            div2 = div2.replace("block_answer_scroll_size_close", "block_answer_scroll_size");
+        } else {
+            div1 = div1.replace("block_gyoumu_scroll_size", "block_gyoumu_scroll_size_close");
+            div2 = div2.replace("block_answer_scroll_size", "block_answer_scroll_size_close");
+        }
+        document.getElementById('div1').setAttribute("className", div1);
+        document.getElementById('div2').setAttribute("className", div2);
+
+    }
+
+    // 検索項目の表示非表示とボタンの文言を切り替える
+    if (openArea.style.display == "none") {
+        openArea.style.display = "block";
+        btnObject.value = "画面上段を閉じる";
+    } else {
+        openArea.style.display = "none";
+        btnObject.value = "画面上段を開く";
+    }
+
+}
+
+// カメラアプリ画面表示
+function openCameraApp() {
+    var param = '?023=1'
+              + '&025=1'
+              + '&021=1';
+
+    var url = '1';
+
+    window.open(url + param, null, '1');
+}
+
+// 機械点検画像表示
+function openMachineCheck() {
+	alert( '')
+	window.open('1?image_key=1');
+}
+
+// 訂正内容確認画面表示
+function popupAZG908(button) {
+
+    clickButton(button);
+
+    // mock: 実機はサーブレットへPOST。mock-server の POST ルートに合わせて
+    // /AMC00/<view>/<route> を指定し、303 で AMC24.html を子画面に表示する。
+    var url = '/AMC00/AMC24/aZG908Init';
+
+    var windowOption = 'width=685px,height=516px,toolbar=no,status=no,menubar=no,resizable=no';
+
+    if (displayResult == '2') {
+        // 2.0倍
+        windowOption = 'width=1800px,height=1350px,toolbar=no,status=no,menubar=no,resizable=no';
+    } else if (displayResult == '15') {
+        // 1.5倍
+        windowOption = 'width=1350px,height=1012px,toolbar=no,status=no,menubar=no,resizable=no';
+    } else if (displayResult == '1') {
+        // 1.0倍
+        windowOption = 'width=900px,height=675px,toolbar=no,status=no,menubar=no,resizable=no';
+    } else if (displayResult == '768') {
+        // 1.0倍縮小版
+        windowOption = 'width=900px,height=600px,toolbar=no,status=no,menubar=no,resizable=no';
+    }
+
+    var datetime = new Date();
+
+    // パラメータをPOSTで送信
+    subwin = window.open('about:blank', 'mhkag_AMC24', windowOption);
+
+    // 動的フォームを作成
+    var form = subwin.document.createElement('form');
+    form.method = 'POST';
+    form.action = url;
+    form.target = 'mhkag_AMC24';
+
+    // 訂正内容確認画面に引き渡すパラメータ配列を生成し、hidden項目として送信
+    var params =
+    	[
+    	 		{ name: '1'			,	value: '1'		}
+    	 	,	{ name: '1'			,	value: '1'			}
+    	 	,	{ name: '1'		,	value: '1'		}
+    	 	,	{ name: '1'		,	value: '1'	}
+    	 	,	{ name: '1'	,	value: '1'	}
+    	 	,	{ name: '1'		,	value: '1'	}
+    	 	,	{ name: 'gamid'			,	value: 'AMC24'								}
+    	 	,	{ name: 'gamcd'			,	value: 'AMC00'								}
+    	 	,	{ name: 'screenWidth'	,	value: '1'	}
+    	 	,	{ name: 'screenHeight'	,	value: '1'	}
+    	 	,	{ name: 'hubsessid'		,	value: '1'			}
+    	 	,	{ name: 'datetime'		,	value: datetime								}
+    	 	,   { name: '1'  ,   value: '1'    } 
+    	 ];
+
+    for (var i = 0; i < params.length; i++) {
+    	var param = params[i];
+    	var input = subwin.document.createElement('input');
+    	input.type  = 'hidden';
+    	input.name  = param.name;
+    	input.value = param.value;
+    	form.appendChild(input);
+    }
+
+    subwin.document.body.appendChild(form);
+    form.submit();
+
+}
+
+// 回答内容設定
+function setAnswerContents(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].answer_contents'].value = obj.value;
+
+}
+
+// 添付ファイル参照
+function setFile(id, input) {
+	if (!checkUploadFiles(id, input)) {
+		return;
+	}
+	
+    var form = document.mhk_MHKPRForm;
+    var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+    var listNameTableRecordUploadId = 'tableRecordUpload:' + id + ':';
+    var fileObj = form[listNameTableRecordUpload + 'open_file'];
+    fileObj.readOnly = true;
+
+    var file = fileObj.value;
+
+    // DB登録済みのファイル情報をバックアップする
+    if (form[listNameTableRecordUpload + 'upload_file_id'].value && form[listNameTableRecordUpload + 'insert_file_flag'].value == '') {
+        form[listNameTableRecordUpload + 'upload_file_name_bk'].value = form[listNameTableRecordUpload + 'upload_file_name'].value;
+        form[listNameTableRecordUpload + 'upload_file_size_bk'].value = form[listNameTableRecordUpload + 'upload_file_size'].value;
+        form[listNameTableRecordUpload + 'registration_date_bk'].value = document.getElementById('td_registration_date_view[' + id + ']').innerHTML;
+        form[listNameTableRecordUpload + 'register_id_bk'].value = document.getElementById('td_register_id[' + id + ']').innerHTML;
+    }
+
+    // 添付ファイル削除
+    deleteFile(id, false);
+
+    var fileName = '';
+    var fileSize = 0;
+
+    // File APIが使用可能な場合
+    if (window.File) {
+        var files = fileObj.files;
+
+        // 添付ファイルが存在する場合
+        if (files[0]) {
+            fileName = files[0].name;
+            fileSize = files[0].size;
+        }
+    } else {
+        // ActiveXを使用（IE9以下に対応）
+        var fso = new ActiveXObject('Scripting.FileSystemObject');
+
+        // 添付ファイルが存在する場合
+        if (fso.FileExists(file)) {
+            var fileNameSplit = file.split('\\');
+            fileName = fileNameSplit[fileNameSplit.length - 1];
+            fileSize = fso.getFile(file).size;
+        }
+    }
+
+    // 添付ファイルが存在する場合
+    if (fileName) {
+
+        // ファイル名設定
+        document.getElementById('td_upload_file_name[' + id + ']').innerHTML = fileName;
+        document.getElementById('td_upload_file_name[' + id + ']').title = fileName;
+
+        var fileSizeKB = Math.ceil(fileSize / 1024);
+
+        // サイズ（表示用）設定
+        document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = fileSizeKB + 'KB';
+
+        // 更新用項目の設定
+        form[listNameTableRecordUpload + 'upload_file_name'].value = fileName;
+        form[listNameTableRecordUpload + 'upload_file_size'].value = fileSize;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '1';
+
+        // ファイルパスの設定
+        var fileValue = document.getElementById(listNameTableRecordUploadId + 'open_file').value;
+        document.getElementById(listNameTableRecordUploadId + 'file_text').value = fileValue;
+
+    // 添付ファイルが存在しない場合
+    } else {
+        var fileNameBk = form[listNameTableRecordUpload + 'upload_file_name_bk'].value;
+        var fileSizeBk = form[listNameTableRecordUpload + 'upload_file_size_bk'].value;
+
+        // 表示内容を復元
+        document.getElementById('td_registration_date_view[' + id + ']').innerHTML = form[listNameTableRecordUpload + 'registration_date_bk'].value;
+        document.getElementById('td_register_id[' + id + ']').innerHTML = form[listNameTableRecordUpload + 'register_id_bk'].value;
+
+        // ファイルパスのクリア
+        form[listNameTableRecordUpload + 'file_text'].value = '';
+
+        // hidden項目の整理
+        form[listNameTableRecordUpload + 'upload_file_name'].value = fileNameBk;
+        form[listNameTableRecordUpload + 'upload_file_size'].value = fileSizeBk;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '0';
+
+        // 画面表示値とhidden項目の整理（バックアップ用ファイル名に値が設定されている場合）
+        if (fileNameBk != '') {
+            var fileRef = document.createElement('span');
+            fileRef.setAttribute('title', fileNameBk);
+            fileRef.setAttribute('class', 'link_tag');
+            fileRef.setAttribute('id', 'link_tag');
+            fileRef.setAttribute('onclick', 'downloadFileLink(' + id + ');');
+            fileRef.setAttribute('slot', 'download');
+            fileRef.setAttribute('name', 'link_tag');
+            fileRef.innerHTML = fileNameBk;
+            document.getElementById('td_upload_file_name[' + id + ']').appendChild(fileRef);
+
+            var fileSizeKB = Math.ceil(fileSizeBk / 1024);
+            document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = fileSizeKB + 'KB';
+
+            form[listNameTableRecordUpload + 'delete_file_flag'].value = '0';
+        }
+    }
+
+}
+
+// 添付ファイル削除
+function deleteFile(id, deleteFlag) {
+
+    var form = document.mhk_MHKPRForm;
+    var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+
+    // ファイル名クリア
+    document.getElementById('td_upload_file_name[' + id + ']').innerHTML = '&nbsp;';
+    document.getElementById('td_upload_file_name[' + id + ']').title = '';
+    // サイズ（表示用）クリア
+    document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = '&nbsp;';
+    // 登録日時をクリア
+    document.getElementById('td_registration_date_view[' + id + ']').innerHTML = '&nbsp;';
+    // 登録者IDをクリア
+    document.getElementById('td_register_id[' + id + ']').innerHTML = '&nbsp;';
+    document.getElementById('td_register_id[' + id + ']').title = '';
+
+    // 削除ボタン押下時
+    if (deleteFlag) {
+        var temp = document.getElementById('open_file_obj_' + id).innerHTML;
+        document.getElementById('open_file_obj_' + id).innerHTML = temp;
+        form[listNameTableRecordUpload + 'upload_file_size'].value = 0;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '0';
+
+        // 初期表示時のDB設定値をクリアする
+        form[listNameTableRecordUpload + 'upload_file_name_bk'].value = '';
+        form[listNameTableRecordUpload + 'upload_file_size_bk'].value = '';
+        form[listNameTableRecordUpload + 'registration_date_bk'].value = '';
+        form[listNameTableRecordUpload + 'register_id_bk'].value = '';
+    }
+
+    // 添付ファイルIDが存在する場合、削除フラグを立てる
+    if (form[listNameTableRecordUpload + 'upload_file_id'].value) {
+        form[listNameTableRecordUpload + 'delete_file_flag'].value = '1';
+    }
+}
+
+//添付ファイルダウンロード
+function downloadFileLink(id) {
+    // 添付ファイルIDを設定
+    document.mhk_MHKPRForm.downloadFileId.value = document.mhk_MHKPRForm['tableRecordUploadList[' + id + '].' + 'upload_file_id'].value;
+    document.mhk_MHKPRForm.downloadFileName.value = document.mhk_MHKPRForm['tableRecordUploadList[' + id + '].' + 'upload_file_name'].value;
+
+    sdeDisableCheckSubmitOnce();
+
+    var hiddenButton = document.mhk_MHKPRForm.downloadFileHidden;
+    if(hiddenButton != null) {
+        hiddenButton.click();
+    }
+}
+
+</script>
+</head>
+<body onload="bodyOnload();">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" enctype="multipart/form-data" onsubmit="return submitAZG104(this,null);" >
+  <input type="hidden" />
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMC23" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMC00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMC23" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <input type="hidden" id="screenWidth"  name="screenWidth" />
+  <input type="hidden" id="screenHeight" name="screenHeight" />
+
+  <input type="hidden" id="section_code" name="section_code" />
+  <input type="hidden" id="application_form_id" name="application_form_id" />
+  <input type="hidden" id="status_code" name="status_code"/>
+  <input type="hidden" id="agent_status_code" name="agent_status_code"/>
+
+  <input type="hidden" id="downloadFileId" name="downloadFileId"/>
+  <input type="hidden" id="downloadFileName" name="downloadFileName"/>
+
+  <input type="hidden" id="last_update_user_id" name="last_update_user_id"/>
+  <input type="hidden" id="last_update_date" name="last_update_date"/>
+  <input type="hidden" id="last_agent_update_user_id" name="last_agent_update_user_id"/>
+  <input type="hidden" id="last_agent_update_date" name="last_agent_update_date"/>
+
+  <input type="hidden" id="check_type" name="check_type"/>
+  <input type="hidden" id="check_type_name" name="check_type_name"/>
+  <input type="hidden" id="agent_code" name="agent_code"/>
+  <input type="hidden" id="agent_name" name="agent_name"/>
+  <input type="hidden" id="field_agent_name" name="field_agent_name"/>
+  <input type="hidden" id="large_item_code" name="large_item_code"/>
+  <input type="hidden" id="large_item" name="large_item"/>
+  <input type="hidden" id="insurance_item" name="insurance_item"/>
+  <input type="hidden" id="policy_number" name="policy_number"/>
+  <input type="hidden" id="sub_policy_number" name="sub_policy_number"/>
+  <input type="hidden" id="start_date" name="start_date"/>
+  <input type="hidden" id="change_date" name="change_date"/>
+  <input type="hidden" id="insurant_name" name="insurant_name"/>
+  <input type="hidden" id="send_section_code" name="send_section_code" />
+  <input type="hidden" id="clipboard_data" name="clipboard_data" />
+  <input type="hidden" id="agent_deal_flag_name" name="agent_deal_flag_name" />
+<div id="main">
+
+  <div class="area_head" >
+  <table class="tbl_head_area tbl_head_size" >
+    <tr>
+      <td class="cell_default_color size_head_logo" ><img name="title_logo" class="title_logo" src="/AMC00${commonForm.logoPath}" /></td>
+      <td class="cell_font_bold cell_head_title_font_size"></td>
+      <td class="cell_right size_head_sysinfo">
+        <br/>
+        
+        <br/>
+        1
+        1/1
+        1
+        <br/><br/>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="space"></div>
+
+   <!--/* メッセージエリア */-->
+   <div id="message_area" class="block_msg color_red block_msg_size" ms_positioning="FlowLayout"  >
+     
+         <ul class="popup_message_area_white">
+             <li class="message_area"></li>
+         </ul>
+     
+   </div>
+
+ <!--/* 業務エリア */-->
+  <div class="area_gyoumu" id="div_gyoumu_area">
+
+    <div class="block_open_btn cell_right ">
+      <table class="tbl_layout size_width_100per">
+      <tbody>
+      <tr>
+      <td class="size_btn_openclose">
+        <span><input id="btnOpenClose" type="button" name="btnOpenClose" value="画面上段を閉じる" class="btn_type_openclose" onclick="switchOpenArea()" /></span>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div class="space_higher"></div>
+
+    <div class="block_open_info" id="open_area">
+      <table class="tbl_none_style cell_center size_width_100per" border="0" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td valign="top" class="size_width_twoTable01">
+            <div class="size_width_twoTable01">
+            <table class="tbl_none_style size_width_100per" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top" class="size_width_infoTable01" >
+                  <table class="search_table size_width_infoTable01">
+                  <tbody>
+                    <tr>
+                      <td class="cell_label_title size_width_title01 size_height_default" >種目</td>
+                      <td class="cell_label_value size_width_value01" >
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">保険種類</td>
+                      <td class="cell_label_value">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">証券番号</td>
+                      <td class="cell_label_value">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">明細番号</td>
+                      <td class="cell_label_value">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">入力区分</td>
+                      <td class="cell_label_value">
+                        
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </td>
+                <td valign="top" class="size_width_space"></td>
+                <td valign="top" class="size_width_infoTable02">
+                  <table class="search_table size_width_infoTable02" border="0" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr>
+                      <td class="cell_label_title size_width_title02 size_height_default" >部店課支社ｺｰﾄﾞ</td>
+                      <td class="cell_label_value size_width_value02">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">代理店ｺｰﾄﾞ</td>
+                      <td class="cell_label_value" >
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">代理店名</td>
+                      <td class="cell_label_value">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default">ｻﾌﾞｺｰﾄﾞ</td>
+                      <td class="cell_label_value" >
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default" >ﾌﾘｰｺｰﾄﾞ</td>
+                      <td class="cell_label_value" >
+                        
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top" colspan="3" class="size_width_twoTable01">
+                  <table class="search_table size_width_100per" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="cell_label_title size_width_title01 size_height_default" >募集人ID</td>
+                      <td class="cell_label_value size_width_value01" >
+                        
+                      </td>
+                      <td class="cell_label_value cell_left size_width_fieldId">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cell_label_title size_height_default" >契約者名</td>
+                      <td class="cell_label_value cell_left" colspan="2" >
+                        
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            </div>
+          </td>
+          <td valign="top" class="size_width_twotable02" >
+            <div class="size_width_twotable02">
+            <table>
+            <tr>
+              <td valign="top" class="size_width_space"></td>
+              <td valign="top" class="size_width_infoTable01">
+                <table class="search_table size_width_infoTable01" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="cell_label_title size_width_title01 size_height_default" >保険始期日</td>
+                  <td class="cell_label_value size_width_value01" >
+                    
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cell_label_title size_height_default" >変更日</td>
+                  <td class="cell_label_value" >
+                    
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cell_label_title size_height_default" >新更変・他</td>
+                  <td class="cell_label_value" >
+                    
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cell_label_title size_height_default" >計上年月</td>
+                  <td class="cell_label_value" >
+                    
+                  </td>
+                </tr>
+                </table>
+                <table class="tbl_none_style cell_center size_width_infoTable01 size_height_btn" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input type="button" class="btn_type_othersys" id="displayCameraApp" name="displayCameraApp" onclick="openCameraApp();" style="visibility:hidden;" value="ＭＳ１カメラ"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td >
+                      <input type="button" class="btn_type_othersys" id="displayInspectorImage" name="displayInspectorImage" onclick="openMachineCheck();window.focus();" style="visibility:hidden;" value="機械点検画像"/>
+                    </td>
+                  </tr>
+                </tbody>
+                </table>
+              </td>
+              <td valign="top" class="size_width_space"></td>
+              <td valign="top" class="size_width_infoTable01">
+                <table class="search_table size_width_infoTable01" cellspacing="0" cellpadding="0" border="0" >
+                <tbody>
+                  <tr>
+                    <td class="cell_label_title size_width_title01 size_height_default" >照会ＩＤ</td>
+                    <td class="cell_label_value size_width_value01" >
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell_label_title size_height_default" >登録日</td>
+                    <td class="cell_label_value" >
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell_label_title size_height_default" >更新者ID</td>
+                    <td class="cell_label_value">
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell_label_title size_height_default" >依頼区分</td>
+                    <td class="cell_label_value">
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell_label_title size_height_default" >回答締切日</td>
+                    <td class="cell_label_value">
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell_label_title size_height_default" >計上状態</td>
+                    <td class="cell_label_value" >
+                      
+                    </td>
+                  </tr>
+                </tbody>
+                </table>
+              </td>
+            </tr>
+            </table>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="div1" class="block_scroll block_gyoumu_scroll_size position_relative">
+      <table class="tbl_result size_width_scroll_gyoumu" cellspacing="0" cellpadding="0" border="1">
+        <tr class="cell_title_label size_height_default">
+          <td class="cell_slide size_tableRecord_no" >No</td>
+          <td class="cell_slide size_field_name" >項目名</td>
+          <td class="cell_slide size_contents_name" >照会内容</td>
+        </tr>
+      </table>
+      <div id="div2" class="block_scroll block_answer_scroll_size size_width_scroll_gyoumu position_relative">
+        <table class="tbl_result size_width_scroll_answer" cellspacing="0" cellpadding="0" border="0" >
+          
+          <tr>
+            <td class="cell_label_title size_tableRecord_no" rowspan="2">
+              1
+            </td>
+            <td class="cell_label_value cell_left size_field_name size_tableRecord_row" id="td_field_name[0]" style="white-space:pre-wrap;">1</td>
+            <td class="cell_textarea_value cell_left size_scroll_contents_name" onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();">1</td>
+          </tr>
+          <tr>
+            <td class="cell_left" colspan="2">
+              <table class="tbl_result size_width_100per" cellspacing="0" cellpadding="0" border="1">
+                <tr class="cell_title_label">
+                  <td class="cell_label_value size_answer_title size_height_default">回答内容</td>
+                  <td class="cell_default_color size_answer_select">
+                    <select class="cell_input_value size_width_100per size_height_default" onchange="setAnswerContents(this);"  >
+                      
+                      <option>1</option>
+                      
+                    </select>
+                  </td>
+                </tr>
+                <tr class="cell_title_label" rowspan="2">
+                  <td class="cell_label_value">回答入力欄<br />(150文字まで)</td>
+                  <td class="cell_default_color cell_left size_answer_msg_row">
+                    <textarea class="cell_input_value input_ime_active size_answer_select size_answer_msg_row" onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();" onfocus="tooltip.FocusIn();"></textarea>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <input type="hidden" />
+          <input type="hidden" />
+          
+        </table>
+      </div>
+
+      <div class="space_higher"></div>
+
+      <table class="size_width_scroll_gyoumu" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="cell_label_title size_memo_title">備考・通信欄</td>
+          <td class="cell_textarea_value">
+            <textarea id="forms_message" name="forms_message" class="size_memo_value" onmousedown="return false;" readonly="true" tabindex="-1" onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();"></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <div class="space"></div>
+
+      <table class="tbl_result cell_center size_width_scroll_gyoumu" cellspacing="0" cellpadding="0"  border="1">
+        <tr class="cell_title_label">
+          <td class="cell_slide size_width_half size_height_default">申込書類の訂正内容に関する確認書</td>
+          <td class="cell_slide">送り状印刷</td>
+        </tr>
+        <tr class="cell_label_value cell_center">
+          <td class="size_width_half size_height_default">訂正内容確認書を使用して訂正する場合</td>
+          <td style="border-left:1px solid #cccccc;" >会社に書類本紙の提出が必要な場合</td>
+        </tr>
+        <tr class="cell_label_value cell_center size_width_half">
+          <td>
+            <table class="tbl_layout cell_center size_width_100per">
+            <tr>
+              <td class="cell_right size_col03 size_teisei_btn_row">
+                <input type="button" class="btn_type_gyoumu" name="act104to908" onclick="popupAZG908(this);" value="訂正内容確認書" title="保険契約者による訂正署名(印)が必要な場合で、&#10;訂正内容について保険契約者本人に了承を得た&#10;場合に押下します。"/>1
+                <input type="hidden" id="correct_confirm_view" name="correct_confirm_status" />
+              </td>
+              <td class="cell_left">
+                1<span id="correct_confirm_view_td" class="color_red cell_font_bold">1    11</span>
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td style="border-left:1px solid #cccccc;">
+             <input type="submit" class="btn_type_gyoumu" id="printInvoice" name="printInvoice" onclick="clickButton(this);sdeDisableCheckSubmitOnce();" value="送り状印刷" formaction="/AMC23/aZG104PrintInvoice" title="会社に書類本紙の提出が必要な場合に押下します。&#10;書類本紙とは、照会内容で本紙の提出&#10;を依頼しているものや、契約者または&#10;記名被保険者等から署名または記名・押印&#10;をいただいた書類をいいます。" >
+          </td>
+        </tr>
+      </table>
+
+      <div class="space_higher"></div>
+
+      <div>
+      <table class="tbl_none_style size_width_scroll_gyoumu" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td id="uploadUseAlert" class="cell_left color_red size_width_half"></td>
+          <td class="cell_right size_height_default"><label>※登録可能な添付ファイルのサイズは、合算で5MBまでです。</label></td>
+        </tr>
+      </table>
+      </div>
+
+      <div>
+      <table class="tbl_result size_width_scroll_gyoumu" cellspacing="0" cellpadding="0" border="1">
+        <tr class="cell_title_label size_height_default">
+          <td class="cell_slide size_upload_col01">添付ファイル名</td>
+          <td class="cell_slide size_upload_col02">サイズ</td>
+          <td class="cell_slide size_upload_col03">登録日時</td>
+          <td class="cell_slide size_upload_col04">登録者ID</td>
+          <td class="cell_slide size_upload_col05" title="添付ファイルをつける場合は参照ボタンを押下します。&#10;該当のファイルを選択し、開くを押下します。">添付ファイル選択</td>
+          <td class="cell_slide size_upload_col06"></td>
+        </tr>
+      
+        <tr class="row_odd cell_center size_height_default">
+          <td class="cell_slide cell_label_value cell_left">
+            
+            <span class="link_tag" id="link_tag" name="link_tag" slot="download"></span>
+            
+            
+            1
+            
+          </td>
+          <td class="cell_slide" >
+            1
+          </td>
+          <td class="cell_slide" >
+            1
+          </td>
+          <td class="cell_slide">
+            1
+          </td>
+          <td class="cell_slide position_relative">
+            <span >
+              <input type="file" title="" class="size_width_100per size_height_default open_file_opacity" onclick="this.readOnly=false;" onkeydown="this.readOnly=true;" onblur="this.readOnly=true;" />
+              <input type="text" class="input_file size_file_text input_file_text" readonly="true" /><!--/*テキストボックスとボタンの間を詰めるためのコメント
+              */--><input type="button" class="input_file size_file_button size_height_default input_file_button" value="参照..." />
+            </span>
+          </td>
+          <td class="cell_slide">
+            <input type="button" class="btn_upload_del size_height_default" value="削除" disabled="disabled" />
+          </td>
+        </tr>
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        <input type="hidden" />
+        
+      </table>
+      </div>
+    </div>
+    <div class="space"></div>
+    <div class="cell_left color_red size_width_100per" >
+      <table class="gyoumu_area_width" cellspacing="0" cellpadding="0" border="0" >
+        <tr>
+          <td style="color:red;">
+            ※一時中断ボタンを押下せずに60分経過するとタイムアウトとなり、編集中のデータは失われますので、こまめに一時中断ボタンを押下してください。
+          </td>
+        </tr>
+        <tr>
+          <td style="color:red;">
+            <span id="confirmed_word">※連絡の内容を確認後、「確認済」ボタンを押下してください。</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+ <!--/* ボタン部 */-->
+  <div class="area_btn area_btn_color">
+    <table class="size_tbl_btn">
+      <tr>
+        <td class="size_width_40per cell_left" >
+          <input type="submit" id="act104to22" name="act104to22" value="不備一覧" class="btn_type_normal" formaction="/AMC23/aZG104To22" onclick="clickButton(this)">
+        </td>
+        <td class="size_width_25per cell_left" >
+          <input type="submit" id="updateTempAnswer" name="updateTempAnswer" value="一時中断" class="btn_type_normal" formaction="/AMC23/aZG104UpdateTempAnswer" onclick="clickButton(this)" style="visibility:hidden;" >
+          <span class="cell_span_width"></span>
+          <input type="submit" id="updateAnswer" name="updateAnswer" value="回 答" class="btn_type_normal" formaction="/AMC23/aZG104UpdateAnswer" onclick="clickButton(this)" style="display:none;">
+          <input type="submit" id="updateConfirmed" name="updateConfirmed" value="確認済" class="btn_type_normal" formaction="/AMC23/aZG104UpdateAnswer" onclick="clickButton(this)" style="display:none;">
+        </td>
+        <td  class="size_width_25per cell_left">
+          <input type="submit" id="print" name="print" value="印刷" class="btn_type_normal" formaction="/AMC23/aZG104Print" onclick="clickButton(this);sdeDisableCheckSubmitOnce();" style="visibility:hidden;">
+          <span class="cell_span_width"></span>
+          <input type="submit" id="copyClipboard" name="copyClipboard" value="メール用コピー" class="btn_type_large" formaction="/AMC23/aZG104CopyClipboard" onclick="clickButton(this);sdeDisableCheckSubmitOnce();" style="visibility:hidden;">
+        </td>
+        <td class="size_btn_right cell_right" >
+          <input class="btn_type_normal" type="button" value="終 了" />
+        </td>
+      </tr>
+    </table>
+  </div>
+  <input type="submit" id="close" name="close" formaction="/AMC23/close" style="display:none;" >
+  <input type="submit" id="initialSelf" name="initialSelf" formaction="/AMC23/aZG104Initial" style="display:none;" onclick="clickButton(this);" >
+  <input type="submit" id="aZG104PrintPDF" name="aZG104PrintPDF" formaction="/AMC23/aZG104PrintPDF" style="display:none;" onclick="clickButton(this);sdeDisableCheckSubmitOnce();" >
+  <input type="submit" id="downloadFileHidden" name="downloadFileHidden" formaction="/AMC23/aZG104DownloadFile" style="display:none;" onclick="clickButton(this);" >
+
+</div>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+body, th, td, input, select, textarea, div	{ font-size:15pt; }
+input, select { height:30px; line-height:30px; }
+#main	{ width:1350px; height:1012px; left:0; right:0; margin:auto; }
+div.space	{ margin-top:3px; }
+div.space_higher { margin-top:6px; }
+/* ヘッダー */
+div.area_head	{ width:100%; height:93px;  }
+table.tbl_head_size	{ width:100%; height:100%;  }
+td.size_head_logo	{ width:216px;  }
+td.cell_head_title_font_size	{ font-size:23pt;  }
+td.size_head_sysinfo	{ font-size:12pt;width:330px;  }
+/* エラーメッセージ */
+div.block_msg_size	{ line-height:24px; height:24px;  }
+/* 一覧画面-業務エリア */
+div.area_gyoumu	{ width:1350px; height:838px; }
+div.size_block_search	{ width:1350px; height:180px;  }
+table.tbl_search_size	{ width:1350px; height:100%;  }
+td.size_search_col01	{ width:149px; }
+td.size_search_col02	{ width:189px; }
+input.size_agent_code	{ width:75px;  }
+input.size_input_col02	{ width:183px; }
+select.size_select_col02	{ width:187px; }
+td.size_search_col03	{ width:121px; }
+td.size_search_col04	{ width:234px; }
+select.size_select_col04	{ width:231px; }
+td.size_search_col05	{ width:124px; }
+td.size_search_col06	{ width:186px; }
+input.size_input_col06	{ width:181px; }
+td.size_search_col07	{ width:147px; }
+td.size_search_col08	{ width:186px; }
+input.size_input_col08	{ width:181px; }
+input.size_year	{ width:60px;  }
+input.size_month_day	{ width:30px;  }
+input.size_password	{ width:184px; }
+.size_width_100per  { width:100%; }
+.btn_type_normal	{ width:120px; height:42px;margin:0px;padding:0px; }
+.btn_type_large	    { width:135px; height:42px;margin:0px;padding:0px; }
+div.block_execute	{ width:1350px; height:81px;  }
+td.size_csv_col01	{ width:11%;  }
+td.size_csv_col02	{ width:41%;  }
+td.size_csv_col03	{ width:24%;  }
+td.size_csv_col04	{ width:14%;  }
+td.size_csv_col05	{ width:10%;  }
+div.block_result_title	{ width:1305px; height:54px;  }
+tr.size_title_row	{ height:54px;  }
+tr.size_result_height	{ line-height:36px;height:36px;  }
+td.size_result_col01	{ width:38px; }
+td.size_result_col02	{ width:68px; }
+td.size_result_col03	{ width:68px; }
+td.size_result_col04	{ width:86px; }
+td.size_result_col05	{ width:83px; }
+td.size_result_col06	{ width:101px; }
+td.size_result_col07	{ width:63px; }
+td.size_result_col08	{ width:116px; }
+td.size_result_col09	{ width:60px; }
+td.size_result_col10	{ width:318px; }
+td.size_result_col11	{ width:63px; }
+td.size_result_col12	{ width:93px; }
+td.size_result_col13	{ width:93px; }
+td.size_result_col14	{ width:53px; }
+div.block_result_scroll_size	{ width:1350px; height:510px;  }
+table.size_result_list { width:1305px; }
+div.area_btn	{ width:100%; height:48px; bottom:0px;left:0px;position:fixed; }
+table.size_tbl_btn	{ width:100%; height:100%;  }
+td.size_btn_left	{ width:40%;  }
+td.size_btn_center	{ width:50%;  }
+td.size_btn_right	{ width:10%;  }
+span.cell_span_width { width:22px; }
+.size_height_default	{ height:36px;  }
+td.size_code { width:84px; }
+td.size_checkbox { width:30px; }
+td.size_title { width:110px; }
+input.size_checkbox { height:27px;width:18px; }
+td.size_status01{ width:105px; }
+td.size_status02{ width:105px; }
+td.size_status03{ width:195px; }
+/* 回答画面 */
+td.size_btn_openclose { height:42px; }
+.btn_type_openclose	{ width:180px; height:42px; margin:0px; padding:0px; }
+.btn_type_othersys	{ width:303px; height:45px; margin:0px; padding:0px; }
+.btn_type_gyoumu	{ width:210px; height:39px; margin:0px; padding:0px; }
+.btn_upload_del { width:66px; }
+div.block_open_btn { width:100%; height:42px; }
+div.block_open_info { width:100%; height:270px; }
+div.block_gyoumu_scroll_size { height:477px;  }
+div.block_gyoumu_scroll_size_close { height:747px; }
+div.block_answer_scroll_size	{ height:420px;  }
+div.block_answer_scroll_size_close	{ height:550px; }
+.size_width_scroll_gyoumu { width:1330px; }
+.size_width_scroll_answer { width:1310px; }
+.size_width_twoTable01	{ width:705px; }
+.size_width_twoTable02	{ width:645px; }
+.size_width_infoTable01	{ width:303px; }
+.size_width_infoTable02	{ width:378px; }
+.size_width_space	{ width:15px; }
+.size_width_title01	{ width:120px;  }
+.size_width_title02	{ width:165px;  }
+.size_width_value01	{ width:185px;  }
+.size_width_value02	{ width:215px;  }
+.size_width_fieldId	{ width:396px;  }
+.size_height_btn	{ height:112px;  }
+/* 照会内容 */
+.size_tableRecord_no	{ width:37px;  }
+.size_field_name	{ width:330px;  }
+.size_contents_name	{ width:930px;  }
+.size_scroll_contents_name	{ width:910px;  }
+.size_tableRecord_row { height: 66px; }
+.size_answer_msg_row { height:39px;  }
+.size_answer_title { width :150px; }
+.size_width_half	{ width:50%;  }
+.size_answer_select { width:1111px; }
+.size_memo_title { width:180px; height:126px; }
+.size_memo_value { width:1140px; height:126px; }
+.size_teisei_btn_row { height:45px; }
+.size_width_25per	{ width:25%;  }
+.size_wh_100per	{ width:100%; height:100%;  }
+td.size_upload_col01	{ width:331px; }
+td.size_upload_col02	{ width:94px;  }
+td.size_upload_col03	{ width:183px; }
+td.size_upload_col04	{ width:157px; }
+td.size_upload_col05	{ width:480px; }
+td.size_upload_col06	{ width:66px;  }
+.size_file_text	{ width:380px; height:32px; }
+.size_file_button	{ width:96px; }
+/* 訂正画面 */
+#main_teisei	{ width:1350px; height:982px; left:0; right:0; margin:auto; }
+div.block_popup_gyoumu_scrcoll_size   { width:1350px; height:930px; }
+div.block_teisei_scroll_size   { width:100%; height:138px; }
+div.block_comment_height { height:45px;line-height:45px; }
+.size_scroll_contents_teisei { width:1333px; }
+.size_width_10per { width:10% }
+.size_col01	{ width:25%;  }
+.size_col02	{ width:15%;  }
+.size_col03	{ width:60%;  }
+.size_input_text_long	{ width:991px;  }
+.size_width_5per	{ width:5%;  }
+.size_width_20per	{ width:20%;  }
+.size_width_40per	{ width:40%;  }
+.size_width_35per	{ width:35%;  }
+.size_height_48px	{ height:72px;  }
+.size_teisei_col01 { width:310px; }
+.size_teisei_col02 { width:660px; }
+.size_input_year { width: 75px; }
+.size_input_datetime { width: 45px; }
+.size_radio_onetext { width: 30px; }
+.size_twotext { width: 60px; }
+input.size_radiobox { height:27px;width:18px; }
+img.title_logo{height:90px;width:213px;}
+
+/***********************************/
+/* カスタムツールチップ            */
+/***********************************/
+
+.tooltip-content {
+    position: absolute;
+    line-height: 1.3;
+    letter-spacing: normal;
+    font-size: 13.5pt;
+    font-family: 'Yu Gothic UI';
+    color: #707070;
+    background-color: #FFFFFF;
+    border: 2px gray solid;
+    padding-top: 6px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+    word-break: break-all;
+}

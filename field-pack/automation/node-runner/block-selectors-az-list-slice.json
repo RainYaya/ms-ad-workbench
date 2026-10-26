@@ -1,0 +1,2570 @@
+{
+ "BLK-AUTO-5C1EFE0E": {
+  "screen": "AZG900",
+  "cases": [
+   "AZ-210-08-001",
+   "AZ-210-09-001",
+   "AZ-230-01-011",
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-014",
+   "AZ-230-01-015",
+   "AZ-230-01-016",
+   "AZ-230-01-017",
+   "AZ-230-01-018",
+   "AZ-230-01-019",
+   "AZ-230-01-020",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-043",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-050",
+   "AZ-230-01-071",
+   "AZ-230-01-072",
+   "AZ-230-01-073",
+   "AZ-230-01-074",
+   "AZ-230-01-075",
+   "AZ-230-01-076",
+   "AZ-230-01-077",
+   "AZ-230-01-078",
+   "AZ-230-01-079",
+   "AZ-230-01-080",
+   "AZ-230-01-101",
+   "AZ-230-01-102",
+   "AZ-230-01-103",
+   "AZ-230-01-104",
+   "AZ-230-01-105",
+   "AZ-230-01-106",
+   "AZ-230-01-107",
+   "AZ-230-01-108",
+   "AZ-230-01-109",
+   "AZ-230-01-110",
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-139",
+   "AZ-230-01-140",
+   "AZ-230-01-151",
+   "AZ-230-01-152",
+   "AZ-230-01-153",
+   "AZ-230-01-154",
+   "AZ-230-01-155",
+   "AZ-230-01-156",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 検索(項目名検索popup起動)",
+    "action": "click",
+    "selector": "input[name='imperfectSearch[0]']"
+   },
+   {
+    "event": "ast 遷移 項目名検索画面(popup)",
+    "action": "popup",
+    "match": "AMA13|aZG900"
+   },
+   {
+    "event": "inputBundle 項目コード",
+    "action": "fill",
+    "selector": "#field_code_key",
+    "value": "params.itemCode",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 項目名",
+    "action": "fill",
+    "selector": "#field_name_key",
+    "value": "params.itemName",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 照会コード",
+    "action": "fill",
+    "selector": "#inquiry_contents_code_key",
+    "value": "params.inquiryCode",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 照会内容",
+    "action": "fill",
+    "selector": "#inquiry_contents_name_key",
+    "value": "params.inquiryContent",
+    "in": "popup"
+   },
+   {
+    "event": "select 項目一覧",
+    "action": "selectOptionByLabel",
+    "selector": "select[name='field_list.selected']",
+    "label": "params.itemCode",
+    "in": "popup"
+   },
+   {
+    "event": "select 照会内容一覧",
+    "action": "selectOptionByLabel",
+    "selector": "select[name='inquiry_contents_list.selected']",
+    "label": "params.inquiryCode",
+    "in": "popup"
+   },
+   {
+    "event": "select 不備内容",
+    "action": "selectOptionByLabel",
+    "selector": "select[name='imperfect_list.selected']",
+    "label": "1",
+    "in": "popup"
+   },
+   {
+    "event": "click 選択",
+    "action": "click",
+    "selector": "#select",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "popup選択後の親画面（mockはpopup再表示）"
+   }
+  ]
+ },
+ "BLK-AUTO-E1BDF237": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-230-01-014",
+   "AZ-230-01-015",
+   "AZ-230-01-016",
+   "AZ-230-01-017",
+   "AZ-230-01-018",
+   "AZ-230-01-020",
+   "AZ-230-01-042",
+   "AZ-230-01-050",
+   "AZ-230-01-074",
+   "AZ-230-01-075",
+   "AZ-230-01-076",
+   "AZ-230-01-101",
+   "AZ-230-01-102",
+   "AZ-230-01-103",
+   "AZ-230-01-104",
+   "AZ-230-01-105",
+   "AZ-230-01-109",
+   "AZ-230-01-110",
+   "AZ-230-01-131",
+   "AZ-230-01-132",
+   "AZ-230-01-135",
+   "AZ-230-01-136",
+   "AZ-230-01-137",
+   "AZ-230-01-138",
+   "AZ-230-01-139",
+   "AZ-230-01-140",
+   "AZ-230-01-151",
+   "AZ-230-01-155",
+   "AZ-230-01-156",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "input 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-AUTO-9750F4CE": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-230-01-011",
+   "AZ-230-01-012",
+   "AZ-230-01-013",
+   "AZ-230-01-019",
+   "AZ-230-01-041",
+   "AZ-230-01-042",
+   "AZ-230-01-046",
+   "AZ-230-01-048",
+   "AZ-230-01-049",
+   "AZ-230-01-073",
+   "AZ-230-01-076",
+   "AZ-230-01-079",
+   "AZ-230-01-080",
+   "AZ-230-01-107",
+   "AZ-230-01-108",
+   "AZ-230-01-133",
+   "AZ-230-01-134",
+   "AZ-230-01-135",
+   "AZ-230-01-138",
+   "AZ-230-01-154",
+   "AZ-230-01-157"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SHR-63C4E6D6": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-110-02-001",
+   "AZ-110-02-002",
+   "AZ-110-02-003",
+   "AZ-110-02-004",
+   "AZ-110-38-001",
+   "AZ-110-63-001",
+   "AZ-110-66-001",
+   "AZ-310-05-001",
+   "AZ-310-37-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票出力後 名前を付けて保存",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票DL/名前を付けて保存=OSダイアログ=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-AUTO-18958C37": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-230-01-043",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-046",
+   "AZ-230-01-047",
+   "AZ-230-01-049",
+   "AZ-230-01-106",
+   "AZ-230-01-133",
+   "AZ-230-01-151"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面(更新)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-AUTO-23229D4F": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-110-14-001",
+   "AZ-110-15-001",
+   "AZ-110-34-001",
+   "AZ-110-39-001",
+   "AZ-210-51-001",
+   "AZ-210-64-001",
+   "AZ-310-22-001",
+   "AZ-310-23-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票出力後 名前を付けて保存",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票DL/名前を付けて保存=OSダイアログ=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込書テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込不備テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-AUTO-9EB5A282": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-100-05-003",
+   "AZ-100-05-004",
+   "AZ-150-04-002",
+   "AZ-160-01-004",
+   "AZ-160-01-005",
+   "AZ-160-01-006",
+   "AZ-160-01-007"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SHR-072E06D9": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-230-01-041",
+   "AZ-230-01-044",
+   "AZ-230-01-045",
+   "AZ-230-01-047",
+   "AZ-230-01-048",
+   "AZ-230-01-133",
+   "AZ-230-01-134"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "ast ToDo連携テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（ToDo連携テーブル）"
+   }
+  ]
+ },
+ "BLK-SHR-6F09B48C": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-150-13-001",
+   "AZ-150-13-002",
+   "AZ-150-13-003",
+   "AZ-150-13-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 関連代理店",
+    "action": "click",
+    "selector": "#relation_agent",
+    "force": true
+   },
+   {
+    "event": "input 代理店コード(mock company_kbn未設定のため必須)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "click 営業対応状況",
+    "action": "click",
+    "selector": "#status_code_2",
+    "force": true
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "ast 課支社代理店情報移管バッチ処理 別紙操作①",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast 申込書テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast TODO連携テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 移管情報テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 統合代理店情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（未出力確認）"
+   },
+   {
+    "event": "ast 移管エラー情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（未出力確認）"
+   },
+   {
+    "event": "ast バッチログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "ast ToDo再送設定バッチ処理 別紙操作②",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast TODO連携テーブル(再送)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 移管情報テーブル(再送)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(再送)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   }
+  ]
+ },
+ "BLK-SHR-E593E2FC": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-160-01-004",
+   "AZ-160-01-005",
+   "AZ-160-01-006",
+   "AZ-160-01-007"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 代理店コード",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle サブコード",
+    "action": "fill",
+    "selector": "#sub_agent_code",
+    "value": "params.subAgentCode"
+   },
+   {
+    "event": "inputBundle フリーコード",
+    "action": "fill",
+    "selector": "#free_code_1",
+    "value": "params.freeCode"
+   },
+   {
+    "event": "inputBundle 募集人ID",
+    "action": "fill",
+    "selector": "#field_agent_id",
+    "value": "params.fieldAgentId"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "inputBundle 計上年",
+    "action": "fill",
+    "selector": "#sumup_year",
+    "value": "2026"
+   },
+   {
+    "event": "inputBundle 計上月",
+    "action": "fill",
+    "selector": "#sumup_month",
+    "value": "11"
+   },
+   {
+    "event": "ast 入力内容",
+    "action": "assert",
+    "assert": "value",
+    "selector": "#policy_number",
+    "equals": "params.policyNo"
+   }
+  ]
+ },
+ "BLK-SHR-1D4C0178": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-210-11-001",
+   "AZ-210-12-001",
+   "AZ-210-16-001",
+   "AZ-210-34-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票出力後 名前を付けて保存",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票DL/名前を付けて保存=OSダイアログ=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込書テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込不備テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-B42FB7FD": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-160-03-001",
+   "AZ-160-03-002",
+   "AZ-160-03-003"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No.1",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "click 送り状印刷",
+    "action": "click",
+    "selector": "input[name='printInvoicePDF']",
+    "force": true
+   },
+   {
+    "event": "ast 帳票(送り状)出力",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "帳票(送り状)DL=真機人工（mockは画面再表示のみ）"
+   }
+  ]
+ },
+ "BLK-SGL-6163165A": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-110-38-001",
+   "AZ-310-05-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast APログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast DBログ",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込書テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast 申込不備テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ },
+ "BLK-SHR-269893EF": {
+  "screen": "AZG201",
+  "cases": [
+   "AZ-150-13-001",
+   "AZ-150-13-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 関連代理店",
+    "action": "click",
+    "selector": "#relation_agent",
+    "force": true
+   },
+   {
+    "event": "input 代理店コード(mock company_kbn未設定のため必須)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "click 営業対応状況",
+    "action": "click",
+    "selector": "#status_code_2",
+    "force": true
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "ast 不備項目集計バッチ処理 別紙操作③",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast 不備項目集計テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(不備項目)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "ast 不備内容集計バッチ処理 別紙操作④",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast 不備内容集計テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(不備内容)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "ast 登録件数集計バッチ処理 別紙操作⑤",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast 登録件数集計テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(登録件数)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "ast フリーコード集計バッチ処理 別紙操作⑥",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast フリーコード集計テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(フリーコード)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "ast 募集人集計バッチ処理 別紙操作⑦",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（バッチ実行）"
+   },
+   {
+    "event": "ast 募集人集計テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast バッチログ(募集人)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07",
+    "note": "非浏览器=真機人工（エラー件数0件）"
+   },
+   {
+    "event": "goto start screen 申込書品質管理メニュー",
+    "action": "goto",
+    "url": "/AMB/AMA01.html"
+   },
+   {
+    "event": "click 集計",
+    "action": "click",
+    "selector": "#act001to201"
+   },
+   {
+    "event": "ast 遷移 不備集計画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupFieldId"
+   },
+   {
+    "event": "input 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "input 代理店コード",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input 登録年月From(年)",
+    "action": "fill",
+    "selector": "#from_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録年月From(月)",
+    "action": "fill",
+    "selector": "#from_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "input 登録年月To(年)",
+    "action": "fill",
+    "selector": "#to_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録年月To(月)",
+    "action": "fill",
+    "selector": "#to_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "ast 不備集計画面 入力内容",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupFieldId"
+   },
+   {
+    "event": "click 不備項目集計出力",
+    "action": "click",
+    "selector": "#OutputSumupFieldId"
+   },
+   {
+    "event": "ast 不備項目集計情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupContentsId",
+    "note": "出力ファイル(DL)=真機人工（mockは再表示）"
+   },
+   {
+    "event": "input 部店課支社コード(再入力)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "input 代理店コード(再入力)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input 登録年月From(再入力)",
+    "action": "fill",
+    "selector": "#from_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月From(再入力)",
+    "action": "fill",
+    "selector": "#from_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "input 登録年To(再入力)",
+    "action": "fill",
+    "selector": "#to_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月To(再入力)",
+    "action": "fill",
+    "selector": "#to_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "click 不備内容集計出力",
+    "action": "click",
+    "selector": "#OutputSumupContentsId"
+   },
+   {
+    "event": "ast 不備内容集計情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupRegistCountId",
+    "note": "出力ファイル(DL)=真機人工"
+   },
+   {
+    "event": "input 部店課支社コード(再入力2)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "input 代理店コード(再入力2)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input 登録年From(再入力2)",
+    "action": "fill",
+    "selector": "#from_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月From(再入力2)",
+    "action": "fill",
+    "selector": "#from_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "input 登録年To(再入力2)",
+    "action": "fill",
+    "selector": "#to_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月To(再入力2)",
+    "action": "fill",
+    "selector": "#to_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "click 登録件数集計出力",
+    "action": "click",
+    "selector": "#OutputSumupRegistCountId"
+   },
+   {
+    "event": "ast 登録件数集計情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupFreeCodeId",
+    "note": "出力ファイル(DL)=真機人工"
+   },
+   {
+    "event": "input 部店課支社コード(再入力3)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "input 代理店コード(再入力3)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input 登録年From(再入力3)",
+    "action": "fill",
+    "selector": "#from_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月From(再入力3)",
+    "action": "fill",
+    "selector": "#from_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "input 登録年To(再入力3)",
+    "action": "fill",
+    "selector": "#to_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月To(再入力3)",
+    "action": "fill",
+    "selector": "#to_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "click フリーコード集計出力",
+    "action": "click",
+    "selector": "#OutputSumupFreeCodeId"
+   },
+   {
+    "event": "ast フリーコード集計情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupFieldAgentId",
+    "note": "出力ファイル(DL)=真機人工"
+   },
+   {
+    "event": "input 部店課支社コード(再入力4)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "input 代理店コード(再入力4)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "input 登録年From(再入力4)",
+    "action": "fill",
+    "selector": "#from_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月From(再入力4)",
+    "action": "fill",
+    "selector": "#from_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "input 登録年To(再入力4)",
+    "action": "fill",
+    "selector": "#to_registration_year",
+    "value": "2026"
+   },
+   {
+    "event": "input 登録月To(再入力4)",
+    "action": "fill",
+    "selector": "#to_registration_month",
+    "value": "11"
+   },
+   {
+    "event": "click 募集人集計出力",
+    "action": "click",
+    "selector": "#OutputSumupFieldAgentId"
+   },
+   {
+    "event": "ast 募集人集計情報ファイル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#OutputSumupFieldId",
+    "note": "出力ファイル(DL)=真機人工"
+   },
+   {
+    "event": "goto 不備集計画面",
+    "action": "goto",
+    "url": "/AMB/AMA08.html"
+   },
+   {
+    "event": "ast 不備集計画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#mhk_MHKPRForm"
+   }
+  ]
+ },
+ "BLK-SHR-4E8C4FC2": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-150-13-003",
+   "AZ-150-13-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "click 関連代理店",
+    "action": "click",
+    "selector": "#relation_agent",
+    "force": true
+   },
+   {
+    "event": "input 代理店コード(mock company_kbn未設定のため必須)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "click 営業対応状況",
+    "action": "click",
+    "selector": "#status_code_2",
+    "force": true
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   }
+  ]
+ },
+ "BLK-SHR-F0C72208": {
+  "screen": "AZG900",
+  "cases": [
+   "AZ-210-08-001",
+   "AZ-210-09-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 検索(項目名検索popup起動)",
+    "action": "click",
+    "selector": "input[name='imperfectSearch[0]']"
+   },
+   {
+    "event": "ast 遷移 項目名検索画面(popup)",
+    "action": "popup",
+    "match": "AMA13|aZG900"
+   },
+   {
+    "event": "inputBundle 項目コード",
+    "action": "fill",
+    "selector": "#field_code_key",
+    "value": "params.itemCode",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 項目名",
+    "action": "fill",
+    "selector": "#field_name_key",
+    "value": "params.itemName",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 照会コード",
+    "action": "fill",
+    "selector": "#inquiry_contents_code_key",
+    "value": "params.inquiryCode",
+    "in": "popup"
+   },
+   {
+    "event": "inputBundle 照会内容",
+    "action": "fill",
+    "selector": "#inquiry_contents_name_key",
+    "value": "params.inquiryContent",
+    "in": "popup"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#search",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 項目名検索画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#ButtonP",
+    "in": "popup"
+   },
+   {
+    "event": "ast 項目一覧表示",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "select[name='field_list.selected']",
+    "in": "popup"
+   }
+  ]
+ },
+ "BLK-SHR-106D33F6": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-210-15-001",
+   "AZ-210-33-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票出力後 名前を付けて保存",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票DL/名前を付けて保存=OSダイアログ=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SGL-4CB0EA5C": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-120-03-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "inputBundle 検索条件",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 代理店コード",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click 選択チェックボックス",
+    "action": "click",
+    "selector": "input[name='itemSelected.checked']",
+    "force": true
+   },
+   {
+    "event": "click 完了登録",
+    "action": "click",
+    "selector": "#updateCompleteDate",
+    "force": true
+   },
+   {
+    "event": "ast 表示 不備一覧画面(2回目)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "inputBundle 検索条件(2回目)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 代理店コード(2回目)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 証券番号(2回目)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号(2回目)",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索(2回目)",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "click 選択チェックボックス(2回目)",
+    "action": "click",
+    "selector": "input[name='itemSelected.checked']",
+    "force": true
+   },
+   {
+    "event": "click 完了登録(2回目)",
+    "action": "click",
+    "selector": "#updateCompleteDate",
+    "force": true
+   },
+   {
+    "event": "ast 表示 不備一覧画面(3回目)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   }
+  ]
+ },
+ "BLK-SGL-BDA7A359": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-120-03-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "inputBundle 検索条件",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 代理店コード",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click 選択チェックボックス",
+    "action": "click",
+    "selector": "input[name='itemSelected.checked']",
+    "force": true
+   },
+   {
+    "event": "click 完了登録",
+    "action": "click",
+    "selector": "#updateCompleteDate",
+    "force": true
+   },
+   {
+    "event": "goto 完了登録後 更新画面",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "完了登録エラー時の画面=真機人工"
+   },
+   {
+    "event": "goto 不備一覧へ戻る",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "inputBundle 検索条件(2回目)",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 代理店コード(2回目)",
+    "action": "fill",
+    "selector": "#agent_code",
+    "value": "params.agentCode"
+   },
+   {
+    "event": "inputBundle 証券番号(2回目)",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号(2回目)",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   },
+   {
+    "event": "click 検索(2回目)",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "click 選択チェックボックス(2回目)",
+    "action": "click",
+    "selector": "input[name='itemSelected.checked']",
+    "force": true
+   },
+   {
+    "event": "click 完了登録(2回目)",
+    "action": "click",
+    "selector": "#updateCompleteDate",
+    "force": true
+   },
+   {
+    "event": "ast 表示 不備一覧画面(2回目)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click 4:完了チェックボックス",
+    "action": "click",
+    "selector": "#complete_status",
+    "force": true
+   },
+   {
+    "event": "click 検索(3回目)",
+    "action": "click",
+    "selector": "#select"
+   },
+   {
+    "event": "ast 表示 不備一覧画面(3回目)",
+    "action": "assert",
+    "assert": "rows",
+    "selector": "#gyoumu_list tr",
+    "min": 1
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 表示 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SGL-022A6268": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-120-04-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "click ヘルプ",
+    "action": "click",
+    "selector": "#helpLink",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 ヘルプ画面(別タブ)",
+    "action": "popup",
+    "match": "/1"
+   },
+   {
+    "event": "ast ヘルプURL",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "body",
+    "in": "popup",
+    "note": "ヘルプ外部URL(環境定義)=真機人工（mockは外部ページ未収録）"
+   }
+  ]
+ },
+ "BLK-SGL-FE33E38E": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備一覧",
+    "action": "goto",
+    "url": "/AMB/AMA07.html"
+   },
+   {
+    "event": "input 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "ast 入力内容",
+    "action": "assert",
+    "assert": "value",
+    "selector": "#policy_number",
+    "equals": "params.policyNo"
+   }
+  ]
+ },
+ "BLK-SGL-1ECE1684": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類不備照会・返送票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "click 一覧画面",
+    "action": "click",
+    "selector": "#act101to200"
+   },
+   {
+    "event": "ast 遷移 不備一覧",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07"
+   },
+   {
+    "event": "click No",
+    "action": "click",
+    "selector": "a[name='link']"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新(2回目)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   }
+  ]
+ },
+ "BLK-SGL-2995218F": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類不備照会・返送票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "ast 遷移 不備内容入力画面-更新",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']"
+   },
+   {
+    "event": "click 終了",
+    "action": "click",
+    "selector": "input[value='終　了']"
+   }
+  ]
+ },
+ "BLK-SGL-1CC6C3EC": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-150-04-002"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類不備照会・返送票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   }
+  ]
+ },
+ "BLK-SGL-FCF80BAC": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 不備照会・返送票(FAX用)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "click 一覧画面",
+    "action": "click",
+    "selector": "#act101to200"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   }
+  ]
+ },
+ "BLK-SGL-2DDFC25D": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-004"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 不備照会・返送票(FAX用)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   }
+  ]
+ },
+ "BLK-SGL-DB2830E2": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-005"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 不備督促票(FAX用)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "click 一覧画面",
+    "action": "click",
+    "selector": "#act101to200"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   }
+  ]
+ },
+ "BLK-SGL-134186E1": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-005"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 不備督促票(FAX用)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   }
+  ]
+ },
+ "BLK-SGL-A5BF2BD4": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-006"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類不備照会・返送票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "click 一覧画面",
+    "action": "click",
+    "selector": "#act101to200"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   }
+  ]
+ },
+ "BLK-SGL-1E78A599": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-006"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類不備照会・返送票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   }
+  ]
+ },
+ "BLK-SGL-F1F96812": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-007"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類訂正済連絡票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工"
+   },
+   {
+    "event": "click 閉じる",
+    "action": "click",
+    "selector": "input[name='ClosePopup']",
+    "in": "popup"
+   },
+   {
+    "event": "click 一覧画面",
+    "action": "click",
+    "selector": "#act101to200"
+   },
+   {
+    "event": "ast 表示 不備一覧画面",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#table07"
+   },
+   {
+    "event": "inputBundle 部店課支社コード",
+    "action": "fill",
+    "selector": "#section_code",
+    "value": "params.sectionCode"
+   },
+   {
+    "event": "inputBundle 証券番号",
+    "action": "fill",
+    "selector": "#policy_number",
+    "value": "params.policyNo"
+   },
+   {
+    "event": "inputBundle 明細番号",
+    "action": "fill",
+    "selector": "#sub_policy_number",
+    "value": "params.detailNo"
+   }
+  ]
+ },
+ "BLK-SGL-86665200": {
+  "screen": "AZG901",
+  "cases": [
+   "AZ-160-01-007"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "click 印刷",
+    "action": "click",
+    "selector": "input[name='print']",
+    "force": true
+   },
+   {
+    "event": "ast 遷移 帳票印刷画面(popup)",
+    "action": "popup",
+    "match": "AMA14|aZG901"
+   },
+   {
+    "event": "click 帳票出力",
+    "action": "click",
+    "selector": "#Print",
+    "in": "popup"
+   },
+   {
+    "event": "ast 帳票 申込書類訂正済連絡票",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "#Print",
+    "in": "popup",
+    "note": "帳票PDF=真機人工（mockは帳票未生成）"
+   }
+  ]
+ },
+ "BLK-SGL-CB6C5414": {
+  "screen": "AZG101",
+  "cases": [
+   "AZ-210-63-001"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "select 代理店照会",
+    "action": "selectOptionByLabel",
+    "selector": "select[name='list[0].agent_inquiry_flag.selected']",
+    "label": "否"
+   },
+   {
+    "event": "ast 代理店照会=否",
+    "action": "assert",
+    "assert": "value",
+    "selector": "select[name='list[0].agent_inquiry_flag.selected']",
+    "equals": "0"
+   }
+  ]
+ },
+ "BLK-SGL-C16D256A": {
+  "screen": "AZG200",
+  "cases": [
+   "AZ-230-01-049"
+  ],
+  "steps": [
+   {
+    "event": "goto start screen 不備内容入力画面-更新",
+    "action": "goto",
+    "url": "/AMB/AMA04.html"
+   },
+   {
+    "event": "ast ToDo連携テーブル",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工（TODO連携区分0:送信待ち）"
+   },
+   {
+    "event": "ast ToDo連携テーブル(継続確認)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   },
+   {
+    "event": "ast ToDo連携テーブル(送信前打鍵)",
+    "action": "assert",
+    "assert": "visible",
+    "selector": "input[name='update']",
+    "note": "非浏览器=真機人工"
+   }
+  ]
+ }
+}
