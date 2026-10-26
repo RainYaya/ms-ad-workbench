@@ -35,6 +35,7 @@
 | 8 | [07-REQUIREMENTS.md](07-REQUIREMENTS.md) | **用户原话 + 需求定义** + 11 条硬约束 |
 | 9 | [08-FEASIBILITY.md](08-FEASIBILITY.md) | **可行性实测**：24 条共享配置覆盖 86% 的行 |
 | 10 | [09-AI-VERIFY.md](09-AI-VERIFY.md) | **AI Agent 确认流程/参数/可行性的工作规程** |
+| 11 | [10-DEBUG-BY-CODE.md](10-DEBUG-BY-CODE.md) | **R0 规矩：碰到问题先查代码** + 5种症状排查表 |
 
 ## 现在能用什么
 
