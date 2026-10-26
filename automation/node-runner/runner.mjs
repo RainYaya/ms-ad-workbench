@@ -51,7 +51,10 @@ function loadParams(cid) {
 }
 const P = loadParams(caseId);
 if (!P) { console.error(`params not found for ${caseId}`); process.exit(2); }
-console.log(`user ${P.user || '?'} / ${P.pointCheck || '?'}`);
+const loginUser = arg('user', '') || P.loginUser || (P.user && P.user !== '?' ? P.user : '');
+const loginBuka = arg('buka', '') || P.bukaCode || '';
+const loginYak = arg('yak', '') || P.yakusyokuCode || '';
+console.log(`user ${P.user || '?'} / ${P.pointCheck || '?'}${loginUser ? ` | login ${loginUser}` : ''}`);
 
 const SEL_ALL = {};
 for (const f of readdirSync(root).filter(f => /^block-selectors.*\.json$/.test(f))) {
@@ -163,6 +166,17 @@ function writeTrace(cid, entries) {
 
 try {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  if (loginUser) {
+    const userBox = page.locator('input[name="UserID"]');
+    if (await userBox.count()) {
+      await userBox.fill(String(loginUser));
+      if (loginBuka) await page.locator('input[name="BukaCode"]').fill(String(loginBuka));
+      if (loginYak) await page.locator('input[name="YakusyokuCode"]').fill(String(loginYak));
+      await page.locator('input[name="menu_cm"]').click();
+      await page.waitForLoadState('domcontentloaded');
+      console.log(`LOGIN ${loginUser}`);
+    }
+  }
   if (P.startUrl) {
     await page.goto(runtimeUrl(P.startUrl, baseUrl, live), { waitUntil: 'domcontentloaded', timeout: 30000 });
   }

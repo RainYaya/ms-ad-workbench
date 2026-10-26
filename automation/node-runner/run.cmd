@@ -13,7 +13,11 @@ if "%CASE%"=="" set CASE=AZ-110-01-010
 set BASE=%~2
 if "%BASE%"=="" set BASE=http://127.0.0.1:82/mhkcmwa11/dummy.html
 
-"%NODE_EXE%" "%~dp0runner.mjs" --case %CASE% --base-url "%BASE%" --live
+set LOGIN_USER=%~3
+set USER_ARG=
+if not "%LOGIN_USER%"=="" set USER_ARG=--user %LOGIN_USER%
+
+"%NODE_EXE%" "%~dp0runner.mjs" --case %CASE% --base-url "%BASE%" --live %USER_ARG%
 
 endlocal
 

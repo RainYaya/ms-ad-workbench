@@ -79,6 +79,15 @@ node runner.mjs --case AZ-110-01-009 --base-url http://127.0.0.1:10090/
 
 `base-url` can be the login entry or the actual routed entry. The only requirement is that it has the right host/port and that `startUrl`/`step.url` can be resolved against it.
 
+Login is optional/automatic:
+
+```powershell
+run.cmd AZ-110-01-009 http://127.0.0.1:82/mhkcmwa11/dummy.html MS-3n
+node runner.mjs --case AZ-110-01-009 --base-url http://127.0.0.1:82/mhkcmwa11/dummy.html --live --user MS-3n
+```
+
+The runner fills `input[name="UserID"]`, optional `BukaCode`/`YakusyokuCode`, then clicks `input[name="menu_cm"]`. If no user is supplied, it leaves login manual.
+
 ## Known exceptions
 
 - If a popup route does not contain the view code (`AMA18`), the existing `step.match` must be updated; the URL resolver does not guess popups.
