@@ -12,6 +12,8 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | Document | Purpose |
 |---|---|
 | [`docs/USER-GUIDE.md`](docs/USER-GUIDE.md) | **日常使用说明：只看哪些页面、名词、徽章、数据流** |
+| [`docs/PIPELINE-DEEP-DIVE.md`](docs/PIPELINE-DEEP-DIVE.md) | **逐环拆解：数据怎么从 Excel 变成能跑的东西，每层形状/取值规则/已知坑** |
+| [`docs/WHY-THIS-WAY.md`](docs/WHY-THIS-WAY.md) | **每个设计决策的「为什么」与「代价」——想改之前先看这个** |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Components, boundaries, data flow, deployment |
 | [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) | Scenario/route/case/workflow/appendix schemas |
 | [`docs/AUTOMATION.md`](docs/AUTOMATION.md) | CDP runner, screens, blocks, params, evidence |
@@ -58,31 +60,44 @@ powershell -ExecutionPolicy Bypass -File .\run-009.ps1 `
 
 Do not use a default Edge `User Data` directory with CDP. `start-edge.ps1` handles the copied-profile workaround. See [`docs/AUTOMATION.md`](docs/AUTOMATION.md).
 
-## Current status (2026-10-23)
+## Current status (2026-10-26, verified against live data)
 
 | Area | Status |
 |---|---|
-| Scenario/route/case data | Built: 347 scenarios, 1,386 cases, 1,371 workflows, 1,277 appendices |
-| Route inference | 26 AZ route chains verified by `tools/verify_routes.py` |
-| Viewer | Built and deployed; dashboard, scenarios, routes, tasks, case drawer, evidence, automation tab, JSON/CSV export |
-| 450 assigned tasks | Grouped: 215 exact procedure signatures, 55 screens, 152 singleton signatures |
-| Mock execution | 446 / 450 pass; 4 fail |
-| Live execution | 3 blocks verified (009 block 1–3); no fully verified case yet |
-| Block composition | 252 blocks (34 curated + 59 auto + 68 shared + 91 singleton); 450/450 composed; 82.4% real-block events; 3 verified blocks |
-| `AZ-110-01-009` | Block 1–3 pass on actual SUT; block 4/5 blocked on agent search returning no rows; block 6–13 not implemented |
-| `AZ-110-01-010..012` | Same 44-row procedure; parameterized runner passes mock, not yet run on actual SUT |
+| Scenario/route/case data | 1,371 workflow files; 1,310 appendix documents matched from 1,448 scanned Excel files |
+| Viewer | Deployed on Pages; dashboard, scenarios, routes, tasks, case drawer, evidence, automation tab, **lego workbench**, JSON/CSV export |
+| 450 assigned tasks | All composed: 450/450 |
+| Block composition | **252 blocks**; 10,803 events, 8,897 covered = **82.4%**; 1,906 events in gaps |
+| Block status3 | verified **3** / coded **246** / unclassified **3** (still `draft-*` in blocks.json) |
+| Mock execution | 446/450 pass (4 were D-class rule conflicts, now fixed → 450/450 after param rules) |
+| **Full 450-book AI audit** | **clean 7 / clean-with-notes 432 / suspicious 11** — see `logs/AUDIT-SUMMARY-FINAL.md` |
+| AI judge layer | `judge.mjs` — per-block adversarial review; first run on 009: 0 clean pass, 3 fail + 7 with-doubts |
+| Live execution | 3 blocks verified on real SUT (009 block 1–3); no fully verified case yet |
 | Reference webapps | Extracted locally; excluded from git/Pages by default |
+
+### What changed since 2026-10-23
+
+- All 450 books ran through the mock pipeline and received a per-book audit report (`logs/<CASE>/<CASE>-audit.md`)
+- D-class rule conflicts fixed: `種目 Z → inputType 5/7`, `種目 0 → 9` (appendix said 2; source validation was right)
+- `AZ-210-46` group (6 books) block expanded from 2 to 9 steps to match procedure rows 20–26
+- Step-level trace added to runner (`trace.jsonl` with resolved param values + page snapshots)
+- `judge.mjs` added: AI reviews each block adversarially, requires counter-evidence for every pass
+- Lego workbench added: 252 blocks, visual composition, exports runner-ready JSON
 
 ## Repository map
 
 ```text
-v2/                 viewer + normalized data
-automation/         task plan, screen evidence, CDP runner, step inventory
-tools/              data build, route verification, task/step analysis
+v2/                 viewer (index.html) + lego workbench (lego.html) + normalized data
+automation/         252 block definitions, selector files, params, node-runner, execution status
+tools/              20 build/analysis scripts (build_data → build_blocks → build_runner_defs)
 date/, workflow/    source snapshots used by the data build
-reference/webapps/  client webapp snapshots (local-only)
-docs/               architecture, data model, automation, decisions
+reference/webapps/  client webapp snapshots (local-only, mock source)
+logs/               per-case execution evidence, traces, judgments, audit reports
+docs/               architecture (start with PIPELINE-DEEP-DIVE.md), data model, decisions
 HANDOFF.MD          working handoff (not the architecture spec)
+
+Removed in 2026-10-26 cleanup: field-pack/ (in-repo duplicate of the zip),
+legacy.html + root css/js (v1 viewer, unreferenced), dist/, one-off audit task files.
 ```
 
 ## Non-goals
