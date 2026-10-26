@@ -33,6 +33,8 @@
 | 6 | [05-EXECUTOR.md](05-EXECUTOR.md) | 执行器设计：为什么这样写、6键交互、所学教训 |
 | 7 | [06-ROADMAP.md](06-ROADMAP.md) | **施工顺序** 8 步，每步的验收标准和卡住怎么办 |
 | 8 | [07-REQUIREMENTS.md](07-REQUIREMENTS.md) | **用户原话 + 需求定义** + 11 条硬约束 |
+| 9 | [08-FEASIBILITY.md](08-FEASIBILITY.md) | **可行性实测**：24 条共享配置覆盖 86% 的行 |
+| 10 | [09-AI-VERIFY.md](09-AI-VERIFY.md) | **AI Agent 确认流程/参数/可行性的工作规程** |
 
 ## 现在能用什么
 
