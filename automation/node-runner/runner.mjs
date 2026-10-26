@@ -308,6 +308,10 @@ try {
           break;
         case 'goto': {
           const targetUrl = runtimeUrl(sel(step.url), baseUrl, live);
+          if (where.url() === targetUrl) {
+            console.log(`GOTO skipped (already at target): ${targetUrl}`);
+            break;
+          }
           await where.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
           await where.waitForLoadState('domcontentloaded');
           break;
