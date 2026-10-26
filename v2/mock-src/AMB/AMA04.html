@@ -1,0 +1,2659 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
+<base id="AZG101Base" target="_self"/>
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script type="text/javascript" src="/static/js/AMA04_check_function_select.js"></script>
+<script type="text/javascript" src="/static/js/AMA04_check_function.js"></script>
+<script>
+var     inputTypeObj;
+var     largeItemObj;
+var     insuranceItemObj;
+var     appFormTypeObj;
+
+var     old_input_type;
+var     old_policy_number;
+var     old_insurance_item_code;
+
+// 閲覧システム連携フラグ
+var etsuranFlag = ('1' == '1');
+
+function onCloseClick() {
+    clickButtonName = 'close';
+    return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+function setScrollEvent() {
+    var form = document.mhk_MHKPRForm;
+    for (var indexNo = 0; indexNo < 20; indexNo++) {
+        var am = form['list[' + indexNo + '].answer_message'];
+        if (am) { am.onscroll = tooltip.Scroll; }
+    }
+    if (form['forms_message']) { form['forms_message'].onscroll = tooltip.Scroll; }
+    var d1 = document.getElementById('div1'); if (d1) { d1.onscroll = tooltip.Scroll; }
+    var d2 = document.getElementById('div2'); if (d2) { d2.onscroll = tooltip.Scroll; }
+    return true;
+}
+
+function bodyOnload() {
+    commonBodyOnload();
+
+    setScrollEvent();
+
+    var form = document.mhk_MHKPRForm;
+
+    if (etsuranFlag) {
+        form.selectInsuransuItem.disabled = true;
+        form.selectFieldAgent.disabled = true;
+        form.act101to100.style.visibility = 'hidden';
+    }
+
+    if (etsuranFlag || form.notify_status.value != '1') {
+        document.getElementById('act101to909').style.display = 'none';
+    }
+
+    var searchIndexErrMsg = '1';
+    var downloadErrMsg = '1';
+    var mailErrMsg = '1';
+
+    if (document.mhk_MHKPRForm.company_kbn.value == 'MS' &&
+            document.mhk_MHKPRForm.use_division_online.value != '4') {
+        document.getElementById('check_status_title').style.display = 'block';
+        document.getElementById('check_status_value').style.display = 'block';
+    }
+
+    inputTypeObj    = form['input_type_list.selected'];
+    largeItemObj    = form['large_item_list.selected'];
+    insuranceItemObj= form['insurance_item_list.selected'];
+    appFormTypeObj  = form['application_form_type_list.selected'];
+
+    old_input_type          = form.old_input_type.value;
+    old_policy_number       = form.old_policy_number.value;
+    old_insurance_item_code = form.old_insurance_item_code.value;
+
+    setInsuranceItemTitle(insuranceItemObj);
+
+    // 振分検索エラーの場合、入力内容を再表示するため、連動するチェックは変更しない
+    if (!searchIndexErrMsg) {
+        onChangeInputType(inputTypeObj);
+    }
+
+    var mode = parseInt(form.operation_mode.value);
+
+    if (mode == 2) {
+        // 削除
+        form['update'].style.visibility = "hidden";
+        form['print'].style.visibility = "hidden";
+        form['updateCompleteDate'].style.visibility = "hidden";
+        form['cancelCompleteDate'].style.visibility = "hidden";
+        form['delete'].style.visibility = "hidden";
+        document.getElementById('div_gyoumu_area').style.visibility = "hidden";
+
+    // 削除以外
+    } else if (mode != 2) {
+        // 各チェックボックスと照会内容編集ボタンの非活性制御
+        initEditInquiryContents(form);
+
+        // 添付ファイルを読み取り専用とする
+        for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+            if (etsuranFlag) {
+                form['tableRecordUploadList[' + uploadIndex + '].open_file'].disabled = true;
+                form['delete_file_' + uploadIndex].disabled = true;
+            } else {
+                form['tableRecordUploadList[' + uploadIndex + '].open_file'].readOnly = true;
+            }
+        }
+
+        // 項目表示制御
+        itemDisplayControl();
+
+        // カメラアプリボタン名称設定
+        if ('1' == 'MS') {
+            document.getElementById('displayCameraApp').value = 'ＭＳ１カメラ';
+        } else {
+            document.getElementById('displayCameraApp').value = 'ＡＤ１カメラ';
+        }
+    }
+
+    if ( form.popup_AZG901_flag.value == "true" ) {
+        // 印刷設定画面表示フラグをfalseに再設定
+        form.popup_AZG901_flag.value = "false";
+        // 帳票印刷画面を開く
+        popupAZG901();
+    } else if (form.outputInvoiceFlag.value == "true") {
+        // 送り状出力フラグをfalseに設定
+        form.outputInvoiceFlag.value = "false"
+
+        // 送り状をダウンロード
+        var hiddenButton = document.mhk_MHKPRForm.printInvoicePDFHidden;
+        if(hiddenButton != null) {
+            hiddenButton.click();
+        }
+    }
+
+    if ( searchIndexErrMsg != '') {
+        alert(searchIndexErrMsg);
+    } else if (downloadErrMsg) {
+        alert(downloadErrMsg);
+    } else if (mailErrMsg != '') {
+      alert(mailErrMsg);
+    }
+}
+
+// 各チェックボックスと照会内容編集ボタンの非活性制御を行う
+function initEditInquiryContents(form) {
+    var indexNo;
+
+    // 不備項目全行処理する
+    for (indexNo = 0; indexNo < 20; indexNo++) {
+
+        //チェックボックスがONの場合
+        if(form['list[' + indexNo + '].inquiry_contents_edit_flag'].checked == true){
+            form['editInquiryContents[' + indexNo + ']'].disabled = false;
+         }else{
+         //チェックボックスがOFFの場合
+            var eic = form['editInquiryContents[' + indexNo + ']']; if (eic) { eic.disabled = true; }
+         }
+
+        // 不備情報の登録点検区分権限による項目制御
+        if (form['list[' + indexNo + '].disabled_flag'].value == '1') {
+            // 非活性フラグがONの場合
+            form['imperfectSearch[' + indexNo + ']'].disabled = true;
+            form['imperfectClear[' + indexNo + ']'].disabled = true;
+
+            if (etsuranFlag) {
+                form['list[' + indexNo + '].exclude_receipt_flag'].disabled = true;
+                form['list[' + indexNo + '].inquiry_contents_edit_flag'].disabled = true;
+                var eic = form['editInquiryContents[' + indexNo + ']']; if (eic) { eic.disabled = true; }
+            }
+
+            continue;
+        }
+
+        if (form['list[' + indexNo + '].inquiry_contents_id'].value) {
+            if (form['list[' + indexNo + '].inquiry_contents_edit_flag'].checked == false) {
+                var eic = form['editInquiryContents[' + indexNo + ']']; if (eic) { eic.disabled = true; }
+            }
+        } else {
+            form['list[' + indexNo + '].inquiry_contents_edit_flag'].disabled = true;
+            var eic = form['editInquiryContents[' + indexNo + ']']; if (eic) { eic.disabled = true; }
+        }
+
+        if (form['list[' + indexNo + '].field_code'].value) {
+            form['list[' + indexNo + '].exclude_receipt_flag'].disabled = false;
+            form['list[' + indexNo + '].answer_message'].disabled = false;
+        } else {
+            if (etsuranFlag) {
+                form['imperfectSearch[' + indexNo + ']'].disabled = true;
+                form['imperfectClear[' + indexNo + ']'].disabled = true;
+            }
+
+            form['list[' + indexNo + '].exclude_receipt_flag'].disabled = true;
+            form['list[' + indexNo + '].answer_message'].disabled = true;
+        }
+    }
+}
+
+// 照会内容編集チェックボックスON/OFF時の処理
+function checkInquiryEdit(obj) {
+    var form = document.mhk_MHKPRForm;
+    var indexNo = getNameToIndexNo(obj.name);
+
+    // 照会内容設定値
+    var inquiryContentsValue;
+
+    // 照会内容編集ボタン
+    var editInquiryContents = form['editInquiryContents[' + indexNo + ']'];
+
+    // 照会内容
+    var inquiryContentsNameElement = document.getElementById('td_inquiry_contents_name[' + indexNo + ']');
+
+    if (obj.checked) {
+        editInquiryContents.disabled = false;
+        inquiryContentsValue = form['list[' + indexNo + '].inquiry_contents_name_edit'].value;
+    } else {
+        editInquiryContents.disabled = true;
+        inquiryContentsValue = form['list[' + indexNo + '].inquiry_contents_name_mst'].value;
+    }
+
+    // 照会内容設定
+    inquiryContentsNameElement.innerText = (inquiryContentsValue == '' ? ' ' : inquiryContentsValue);
+    form['list[' + indexNo + '].inquiry_contents_name'].value = inquiryContentsValue;
+    // 20180322 WF更改で追加
+    form['tableRecordList[' + indexNo + '].inquiry_contents_name'].value = inquiryContentsValue;
+}
+
+function setInsuranceItemTitle(insuranceItem) {
+    var i;
+    for (i = 0; i < insuranceItem.options.length ; i++ ) {
+        insuranceItem.options[i].title = insuranceItem.options[i].text;
+    }
+}
+
+// 契約マスタインポート条件を満たしているかチェック
+function checkPolicyMasterImport(form) {
+    var result = false;
+    // 更新ボタンが押下され、かつ契約マスタがチェック状態？
+    if ( clickButtonName == 'update' && form.import_flag.checked ) {
+        // 入力区分＝契約入力
+        if ( inputTypeObj.value == '1' ) {
+            // 入力区分もしくは証券番号もしくは保種が変更されたか？
+            if (    old_policy_number != form.policy_number.value ||
+                    old_insurance_item_code != getInsuranceItemCode() ||
+                    old_input_type != inputTypeObj.value ) {
+                // インポートを実行
+                result = true;
+            }
+        }
+        else {
+            // 入力区分が契約入力以外で契約マスタがチェックされていた場合、
+            // インポートを実行
+            result = true;
+        }
+    }
+    return result;
+}
+
+function onChangeInputType(inputTypeObj) {
+    var form = document.mhk_MHKPRForm;
+    // 入力区分 = 契約入力
+    if ( inputTypeObj.value == '1' ) {
+        form.import_flag.checked = true;
+    }
+    else {
+        form.import_flag.checked = false;
+    }
+}
+
+// 項目表示制御
+function itemDisplayControl() {
+    var itemDisplayPorp = document.getElementById('item_display_prop').value;
+    var itemDisplays = itemDisplayPorp.split(';');
+
+    for (var itemIndex = 0; itemIndex < itemDisplays.length; itemIndex++) {
+        var itemDisplay = itemDisplays[itemIndex].split(':');
+
+        if (itemDisplay[1] == '0') {
+            // 非表示
+            document.getElementById(itemDisplay[0]).style.visibility = "hidden";
+        } else if (itemDisplay[1] == '1') {
+            // 表示
+            document.getElementById(itemDisplay[0]).style.visibility = "visible";
+            document.getElementById(itemDisplay[0]).disabled = false;
+        } else if (itemDisplay[1] == '2') {
+            // 非活性
+            document.getElementById(itemDisplay[0]).style.visibility = "visible";
+            document.getElementById(itemDisplay[0]).disabled = true;
+        }
+    }
+
+    // 依頼区分による項目制御
+    onClickAgentDealFlag();
+}
+
+// 依頼区分変更時
+function onClickAgentDealFlag() {
+    var form = document.mhk_MHKPRForm;
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    // 依頼区分設定
+    form.agent_deal_flag.value = agentDealFlag;
+
+    // 申込不備情報の件数
+    var maxIndex = 1;
+
+    if (agentDealFlag == 2) {
+        // 回答・確認済ボタンの表示を「確認済」にする
+        document.getElementById('updateAnswer').value = '確認済';
+
+        // 連絡に関する固定文言を表示する
+        document.getElementById('gyoumu_area_footer').style.visibility = "visible";
+
+        // 回答内容・回答入力欄を非活性にする
+        for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+            var acSel = form['list[' + indexNo + '].answer_contents.selected'];
+            if (acSel) { acSel.disabled = true; }
+            form['list[' + indexNo + '].answer_message'].disabled = true;
+        }
+
+    } else {
+        // 回答・確認済ボタンの表示を「回答」にする
+        document.getElementById('updateAnswer').value = '回答';
+
+        // 連絡に関する固定文言を非表示にする
+        document.getElementById('gyoumu_area_footer').style.visibility = "hidden";
+
+        // 回答内容・回答入力欄を活性にする
+        for (var indexNo = 0 ; indexNo < maxIndex ; indexNo++) {
+            form['list[' + indexNo + '].answer_contents.selected'].disabled = false;
+            form['list[' + indexNo + '].answer_message'].disabled = false;
+        }
+
+    }
+
+}
+
+// 入力チェックを実施
+function execInputCheck(code, status) {
+    var key = clickButtonName + '-' + code + '-' + status + '-' + document.mhk_MHKPRForm.notify_status.value + '-' + getInquiryCount(code);
+
+    // 入力チェック定義が存在する場合
+    if (inputCheckNo[key]) {
+        // 入力チェック配列を取得
+        var inputCheckFunctions = inputCheck[inputCheckNo[key]];
+
+        for (var i = 0; i < inputCheckFunctions.length; i++) {
+            // 入力チェックを実施
+            if (inputCheckFunctions[i]() == false) {
+                return false
+            }
+        }
+    }
+
+    // 入力チェック未実施／エラーなし
+    return true;
+}
+
+// 単項目チェック
+function checkUnit(copyRegistFlag) {
+    var form = document.mhk_MHKPRForm;
+    var inputTypeObj = form.elements['input_type_list.selected'];
+    var largeItemObj = form.elements['large_item_list.selected'];
+    var insuranceItemObj = form.elements['insurance_item_list.selected'];
+    var appFormTypeObj = form.elements['application_form_type_list.selected'];
+    var sumupStatusObj = form.elements['sumup_status_list.selected'];
+
+    // 入力区分の必須チェック
+    if ( !isRequired(form, inputTypeObj, '') ) {
+        return false;
+    }
+
+    // 大種目の必須チェック
+    if ( !isRequired(form, largeItemObj, '') ) {
+        return false;
+    }
+
+    // 証券番号の必須チェック&半角英数チェック
+    if ( !isRequired(form, form.policy_number, '') ||
+         !isAlphaNumeric(form, form.policy_number, '') ) {
+        return false;
+    }
+
+    // 明細番号の半角英数チェック
+    if ( !isAlphaNumeric(form, form.sub_policy_number, '') ) {
+        return false;
+    }
+
+    // 募集人IDの半角英数チェック
+    if ( !isAlphaNumeric(form, form.field_agent_id, '') ) {
+        return false;
+    }
+
+    // 契約者名の最大バイト数＆記号チェック
+    if (!isMaxLenB(form, form.insurant_name, 120, '') ||
+        !isProhibitionChar(form, form.insurant_name, '') ) {
+        return false;
+    }
+
+    // 課支社CD 最小文字数＆半角英数チェック
+    if (
+        (copyRegistFlag == true && !isRequired(form, form.section_code, '') ) ||
+        !isMinLenB(form, form.section_code, 3, '') ||
+         !isAlphaNumeric(form, form.section_code, '') ) {
+        return false;
+    }
+
+    // 代理店CD 半角英数チェック
+    if (
+        (copyRegistFlag == true && !isRequired(form, form.agent_code, '') ) ||
+        !isAlphaNumeric(form, form.agent_code, '') ) {
+        return false;
+    }
+
+    // サブの半角チェック＆記号チェック
+    if (!isAllHankaku(form, form.sub_agent_code, '') ||
+        !isProhibitionChar(form, form.sub_agent_code, '') ) {
+        return false;
+    }
+
+    // フリーコード1の半角チェック
+    if ( !isAllHankaku(form, form.free_code_1, '') ) {
+         return false;
+    }
+
+    // 保険始期日
+    if ( !isValidDateYMD(form, form.start_date, '') ) {
+        return false;
+    }
+
+    // 変更日
+    if ( !isValidDateYMD(form, form.change_date, '') ) {
+        return false;
+    }
+
+    // 新更変・他の必須チェック
+    if ( !isRequired(form, appFormTypeObj, '') ) {
+        return false;
+    }
+
+    // 計上年月のチェック
+    if ( !isValidYearMonth(form, form.sumup_year_month, '') ) {
+        return false;
+    }
+
+    // 日報送付の半角英数チェック
+    if ( !isAlphaNumeric(form, form.daily_report_send, '') ) {
+        return false;
+    }
+
+    // 管理部課CDの半角英数チェック
+    if ( !isMinLenB(form, form.sumup_section_code, 3, '') ||
+          !isAlphaNumeric(form, form.sumup_section_code, '') ) {
+        return false;
+    }
+
+    // 回答締切日の日付チェック
+    if ( !isRequired(form, form.reminder_date, '') ||
+         !isValidDateYMD(form, form.reminder_date, '') ) {
+        return false;
+    }
+
+    // 計上状態の必須チェック
+    if ( !isRequired(form, sumupStatusObj, '') ) {
+        return false;
+    }
+
+    // 帳票印刷用　備考・通信欄のバイト数チェック＆記号チェック
+    if (!isMaxLenB(form, form.forms_message, 1296, '') ||
+        !isProhibitionChar(form, form.forms_message, '') ) {
+        return false;
+    }
+
+    // 社内メモ欄　バイト数チェック＆記号チェック
+    if (!isMaxLenB(form, form.inhouse_message, 200, '') ||
+        !isProhibitionChar(form, form.inhouse_message, '') ) {
+        return false;
+    }
+
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+
+        // アップロード対象のファイルのみチェック対象とする
+        if (form['tableRecordUploadList[' + uploadIndex + '].insert_file_flag'].value == '1') {
+
+            var fileExists = '';
+
+            // File APIが使用可能な場合
+            if (window.File) {
+                fileExists =  form['tableRecordUploadList[' + uploadIndex + '].open_file'].files[0];
+            }
+
+            if (!fileExists) {
+                // 参照ファイルが存在しない場合
+                showValidateMessage(form, form[listNameTableRecordUpload + 'open_file'], '');
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+// 相関チェック
+function checkCorrelation(copyRegistFlag) {
+    var form = document.mhk_MHKPRForm;
+    var inputTypeObj = form.elements['input_type_list.selected'];
+    var largeItemObj = form.elements['large_item_list.selected'];
+    var insuranceItemObj = form.elements['insurance_item_list.selected'];
+
+    // 入力区分のチェック(大種目が0の時のみ)
+    if ( largeItemObj.value == '0' ) {
+        if ( inputTypeObj.value != '9' ) {
+            showValidateMessage(form, inputTypeObj, '');
+            return false;
+        }
+    }
+
+    // 入力区分のチェック(大種目がZの時のみ)
+    if ( largeItemObj.value == 'Z' ) {
+        if ( !(inputTypeObj.value == '5' || inputTypeObj.value == '7') ) {
+            showValidateMessage(form, inputTypeObj, '');
+            return false;
+        }
+    }
+
+    // 保種の必須チェック(大種目が5、7の時のみ)
+    if(form.company_kbn.value == 'AD'){
+        if ( largeItemObj.value == '5' || largeItemObj.value == '7' ) {
+            if ( !isRequired(form, insuranceItemObj, '') ) {
+                return false;
+            }
+        }
+    }
+
+    // 保種の必須チェック(大種目が5、7、X の時のみ)
+    if(form.company_kbn.value == 'MS'){
+        if ( largeItemObj.value == '5' || largeItemObj.value == '7'  || largeItemObj.value == 'X' ) {
+            if ( !isRequired(form, insuranceItemObj, '') ) {
+                return false;
+            }
+        }
+    }
+
+    // 課支社CD、代理店CD、計上年月の必須チェック(契約マスタ引き込み時以外)
+    // (コピー登録時は除く)
+    if ( !form.import_flag.checked && copyRegistFlag == false ) {
+        // 課支社CDの必須チェック
+        if ( !isRequired(form, form.section_code, '') ) {
+            return false;
+        }
+        // 代理店CDの必須チェック
+        if ( !isRequired(form, form.agent_code, '') ) {
+            return false;
+        }
+        // 計上年月の必須チェック
+        if ( !isRequired(form, form.sumup_year_month, '') ) {
+            return false;
+        }
+    }
+
+    // 回答締切日 < 登録日のチェック
+    var registrationDate = '1';
+
+    if (form.reminder_date.value < registrationDate) {
+        showValidateMessage(form, form.reminder_date, '');
+        return false;
+    }
+
+    // 依頼区分
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    // 全ての申込不備情報を走査
+    var indexNo;
+    for (indexNo = 0 ; indexNo < 20 ; indexNo++) {
+        var listName = 'list[' + indexNo + '].';
+
+        // 項目コード
+        var fieldCode = form[listName + 'field_code'].value;
+
+        // 照会内容ID
+        var inquiryContentsId = form[listName + 'inquiry_contents_id'].value;
+
+        // 項目コードが設定されている行は、入力済みの行とみなし、入力チェック対象とする
+        if (fieldCode != null && fieldCode.length > 0) {
+
+            // 依頼区分が照会時、照会内容が設定されていること
+            if (agentDealFlag == '1' && (inquiryContentsId == null || inquiryContentsId.length == 0)) {
+                showValidateMessage(form, form['imperfectSearch[' + indexNo + ']' ], '');
+                return false;
+            }
+
+            // 回答入力欄のバイト数チェック＆記号チェック
+            if (!isMaxLenB(form, form[listName + 'answer_message'], 300, '') ||
+                !isProhibitionChar(form, form[listName + 'answer_message'], '') ) {
+                return false;
+            }
+        }
+    }
+
+    // 添付ファイルサイズチェック
+    var sumSize = 0;
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+        var size = form['tableRecordUploadList[' + uploadIndex + '].upload_file_size'].value;
+
+        // ファイルサイズが設定されている場合
+        if (size) {
+            sumSize = sumSize + parseInt(size);
+        }
+    }
+
+    // 添付ファイルの合計サイズが5MBを超過する場合
+    if (sumSize > 5242880) {
+        showValidateMessage(form, form['tableRecordUploadList[0].open_file'], '');
+        return false;
+    }
+
+    return true;
+}
+
+function checkUploadFiles(id, input) {
+    var form = document.mhk_MHKPRForm;
+    var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+    var fileObj = form[listNameTableRecordUpload + 'open_file'];
+    var files = fileObj.files;
+    if (files[0]) {
+        fileName = files[0].name;
+        fileSize = files[0].size;
+    }
+    
+    // 添付ファイルサイズチェック
+    var sumSize = 0;
+    for (var uploadIndex = 0; uploadIndex < 5; uploadIndex++ ) {
+        var size = form['tableRecordUploadList[' + uploadIndex + '].upload_file_size'].value;
+
+        // ファイルサイズが設定されている場合
+        if (uploadIndex != id && size) {
+            sumSize = sumSize + parseInt(size);
+        }
+    }
+
+    // 添付ファイルの合計サイズが5MBを超過する場合
+    if (sumSize + fileSize > 5242880) {
+        showValidateMessage(form, form['tableRecordUploadList[0].open_file'], '');
+        deleteFile(id, true);
+        return false;
+    }
+    return true;
+}
+
+// 営業回答済チェック
+function checkAnswer1() {
+    var form = document.mhk_MHKPRForm;
+    // 依頼区分
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    // 依頼区分によって出力するメッセージIDを変更
+    if (agentDealFlag == '1') {
+        return checkAnswer('0', '');
+    } else if (agentDealFlag == '2') {
+        return checkAnswer('0', '');
+    }
+}
+
+// 代理店回答済チェック
+function checkAnswer2() {
+    var form = document.mhk_MHKPRForm;
+    // 依頼区分
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    // 依頼区分によって出力するメッセージIDを変更
+    if (agentDealFlag == '1') {
+        return checkAnswer('1', '');
+    } else if (agentDealFlag == '2') {
+        return checkAnswer('1', '');
+    }
+}
+
+// 回答済チェック
+function checkAnswer(agentInquiryFlag, errorMessage) {
+    var form = document.mhk_MHKPRForm;
+    var indexNo;
+    var targetExistsFlag = false;
+
+    // 依頼区分
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    for (indexNo = 0; indexNo < 20; indexNo++) {
+
+        var listName = 'list[' + indexNo + '].';
+
+        // 項目コード
+        var fieldCode = form[listName + 'field_code'].value;
+
+        // 項目コードが設定されている行は、入力済みの行とみなし、回答済チェックを実施
+        if (fieldCode != null && fieldCode.length > 0) {
+
+            // 対象の照会内容かチェック
+            if (form[listName + 'agent_inquiry_flag.selected'].value == agentInquiryFlag) {
+
+                // 対象の照会内容の存在チェックフラグを立てる
+                targetExistsFlag = true;
+
+                // 依頼区分が「照会」のときに実施
+                if (agentDealFlag == '1') {
+                    if (form[listName + 'answer_contents.selected'].value == '10000') {
+                        if (agentInquiryFlag == '0') {
+                            showValidateMessage(form, form[listName + 'answer_contents.selected'], '');
+                        } else {
+                            showValidateMessage(form, form[listName + 'answer_contents.selected'], errorMessage);
+                        }
+                        return false;
+                    }
+
+                    // 回答内容が「0：その他」の場合
+                    if (form[listName + 'answer_contents.selected'].value == '0') {
+                        // 回答入力欄の必須チェック
+                        if (!isRequired(form, form[listName + 'answer_message'], errorMessage) ) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 対象の照会件数が0件の場合
+    if (!targetExistsFlag) {
+        showValidateMessage(form, form['list[0].agent_inquiry_flag.selected'], errorMessage);
+        return false;
+    }
+
+    return true;
+}
+
+// 代理店照会件数チェック
+function checkAgentInquiryCountFunc() {
+    if (getInquiryCount('2') == '0') {
+        // 代理店照会件数が0件の場合
+        showValidateMessage(document.mhk_MHKPRForm, document.mhk_MHKPRForm['list[0].agent_inquiry_flag.selected'], '');
+        return false;
+    }
+    return true;
+}
+
+// 照会件数チェック
+function checkInquiryCountFunc() {
+    var form = document.mhk_MHKPRForm;
+    // 依頼区分
+    var agentDealFlag = getRadioSelectedValue(form.agent_deal_flag_radio);
+
+    if (getInquiryCount('1') == '0' && getInquiryCount('2') == '0') {
+        // 依頼区分によって出力するメッセージIDを変更
+        if (agentDealFlag == '1') {
+            // 照会件数が0件の場合
+            showValidateMessage(document.mhk_MHKPRForm, document.mhk_MHKPRForm['list[0].agent_inquiry_flag.selected'], '');
+            return false;
+        } else if (agentDealFlag == '2') {
+            // 照会件数が0件の場合
+            showValidateMessage(document.mhk_MHKPRForm, document.mhk_MHKPRForm['list[0].agent_inquiry_flag.selected'], '');
+            return false;
+        }
+    }
+    return true;
+}
+
+// 完了登録チェック
+function checkCompleteFunc() {
+    var form = document.mhk_MHKPRForm;
+
+    // 依頼区分が「連絡」の場合
+    if (getRadioSelectedValue(form.agent_deal_flag_radio) == '2') {
+        return true;
+    }
+
+    // 点検区分が「機械点検」かつ 連携状態が「未連携」／「取消済」
+    if (form.check_type.value == '1' && (form.notify_status.value == '0' || form.notify_status.value == '9')) {
+        return true;
+    }
+
+    // 営業対応状況が「回答済」 かつ 代理店対応状況が「対象外」／「回答済」
+    if (form.status_code.value == '3' && (form.agent_status_code.value == '0' || form.agent_status_code.value == '3')) {
+        return true;
+    }
+
+    // 代理店対応状況が「回答済」 かつ 営業対応状況が「対象外」／「回答済」
+    if (form.agent_status_code.value == '3' && (form.status_code.value == '0' || form.status_code.value == '3')) {
+        return true;
+    }
+
+    // 完了登録チェックエラー
+    alert('');
+    return false;
+}
+
+function custom_Submit(form) {
+
+    // initialSelf押下時は画面ロード時の子画面開閉チェックを行わない
+    if (clickButtonName == 'initialSelf') {
+        window.onbeforeunload = null;
+    }
+
+    // 回答内容プルダウンの値をサーバ送信項目に設定
+    for (var ansIdxNo = 0; ansIdxNo < 20; ansIdxNo++) {
+        var answerList = document.mhk_MHKPRForm['list[' + ansIdxNo + '].answer_contents.selected'];
+        if (answerList) {
+            document.mhk_MHKPRForm['tableRecordList[' + ansIdxNo + '].answer_contents'].value = document.mhk_MHKPRForm['list[' + ansIdxNo + '].answer_contents.selected'].value
+        }
+    }
+
+    var confMessage = null;
+
+    if (clickButtonName == 'cancelCompleteDate') {
+        // 完了取消ボタン押下時
+        confMessage = '';
+
+    } else if (clickButtonName == 'delete') {
+        // 削除ボタン押下時
+        confMessage = '';
+
+    } else if (clickButtonName == 'copyRegist') {
+        // コピー登録ボタン押下時
+        confMessage = '';
+
+    } else if (clickButtonName == 'updateNotifyCancel') {
+        // 連携取消ボタン押下時
+            confMessage = '';
+    }
+
+    var validate = true;
+
+    // 削除、入力画面、一覧画面、営業連携、完了取消、終了、その他処理用のhiddenボタン押下時はバリデートを行わない
+    if ( clickButtonName == 'delete' ||
+         clickButtonName == 'act101to100' ||
+         clickButtonName == 'act101to200' ||
+         clickButtonName == 'act101to001' ||
+         clickButtonName == 'updateBusinessNotify' ||
+         clickButtonName == 'cancelCompleteDate' ||
+         clickButtonName == 'close' ||
+         clickButtonName == 'initialSelf' ||
+         clickButtonName == 'updateAgentNotifyHidden' ||
+         clickButtonName == 'downloadFileHidden' ||
+         clickButtonName == 'printInvoicePDFHidden') {
+        // バリデート実施フラグをfalseに設定
+        validate = false;
+    }
+    else {
+        // 契約マスタからのインポート要否を設定
+        form.import_execute_flag.value = checkPolicyMasterImport(form);
+        // バリデート実施フラグをtrueに設定
+        validate = true;
+    }
+
+    // 削除処理の場合
+    if( clickButtonName == 'delete') {
+        // 確認ダイアログ
+        if (window.confirm(confMessage)) {
+            // OK選択
+            if (form.check_status_name.value != "") {
+                // 調査情報が登録済の場合
+                alert('');
+                return false;
+            } else {
+                // 申込書削除実行
+                return true;
+            }
+        } else {
+            // キャンセル選択
+            return false;
+        }
+    } else {
+        // 削除処理以外の場合
+
+        if ( clickButtonName == 'updateBusinessNotifyHidden') {
+            // メール通知先選択画面での通知有無選択後に入力チェックを行うためにボタン名を変更
+            clickButtonName = 'updateBusinessNotify';
+        }
+
+        if (validate) {
+            // 入力チェックを実施
+            if (execInputCheck('1', form.status_code.value) == false) {
+                AZG101Base.target = '_self';
+                return false;
+            }
+            if (execInputCheck('2', form.agent_status_code.value) == false) {
+                AZG101Base.target = '_self';
+                return false;
+            }
+        }
+
+        if (confMessage != null) {
+            // 確認メッセージ表示
+            return window.confirm(confMessage);
+        }
+
+        return true;
+    }
+}
+
+// メール通知先選択画面
+function popupAZG911() {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    var form = document.mhk_MHKPRForm;
+    clickButtonName = 'updateBusinessNotify';
+
+    // 契約マスタからのインポート要否を設定
+    form.import_execute_flag.value = checkPolicyMasterImport(form);
+
+    // 入力チェックを実施
+    if (execInputCheck('1', form.status_code.value) == false) {
+        AZG101Base.target = '_self';
+        return false;
+    }
+    if (execInputCheck('2', form.agent_status_code.value) == false) {
+        AZG101Base.target = '_self';
+        return false;
+    }
+
+    // メール通知先選択画面に引き渡すパラメータ生成
+    var param = '1' + '=' + form.check_type.value
+              + '&1' + '=' + form["input_type_list.selected"].value
+              + '&1' + '=' + form.sumup_section_code.value
+              + '&1' + '=' + form.section_code.value
+              + '&1' + '=' + form.agent_code.value
+              + '&gamid=AMA28&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA28.html", "AMA28", "");
+}
+
+function getInsuranceItemCode() {
+    var value = insuranceItemObj.value;
+
+    if ( value.length > 2 ) {
+        value = value.substring(0,2);
+    }
+    return value;
+}
+
+function getLayoutType() {
+    var value = insuranceItemObj.value;
+
+    if ( value != null && value.length > 0 ) {
+        if ( value.length > 2 ) {
+            value = value.substring(2,4);
+        }
+        if ( value.length > 2 ) {
+            value = value.substring(0,2);
+        }
+    }
+    else {
+        var form = document.mhk_MHKPRForm;
+        value = form.layout_type_a.value;
+    }
+    return value;
+}
+
+function convTdEmptyString(value) {
+    return (value == '' || value == null || typeof(value) == 'undefined') ? ' ' : value;
+}
+
+function showAZG900Result(result) {
+    var debugResult = '';
+    var i;
+    for ( i = 0 ; i < result.length ; i++ ) {
+        debugResult += 'result[' + i + '] = ' + result[i] + '\n';
+    }
+    alert(debugResult);
+}
+
+// 項目名検索画面
+function popupAZG900(button) {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    clickButton(button);
+    var form = document.mhk_MHKPRForm;
+    var indexNo = getNameToIndexNo(button.name);
+
+    // 入力項目から項目検索画面に引き渡すパラメータを取得する
+    var largeItemCode           = largeItemObj.value;
+    var insuranceItemCode       = getInsuranceItemCode();
+    var layoutTypeA             = getLayoutType();
+    // リスト内のhidden項目から項目検索画面に引き渡すパラメータを取得する
+    var imperfectID             = form['list[' + indexNo + '].imperfect_id'].value;
+    var imperfectCode           = form['list[' + indexNo + '].imperfect_code'].value;
+    var inquiryContentsID       = form['list[' + indexNo + '].inquiry_contents_id'].value;
+    var layoutTypeI             = form['list[' + indexNo + '].layout_type'].value;
+    var fieldCode               = form['list[' + indexNo + '].field_code'].value;
+    var internalCode            = form['list[' + indexNo + '].internal_code'].value;
+    var dd                      = form['list[' + indexNo + '].dd'].value;
+    var inquiryContentsEditFlag;
+
+    // 照会内容編集チェックボックスON/OFFによる設定
+    if (form['list[' + indexNo + '].inquiry_contents_edit_flag'].checked == true) {
+        inquiryContentsEditFlag = '1';
+        inquiryContentsID = '';
+    } else {
+        inquiryContentsEditFlag = '0';
+    }
+
+    var param =     '1'     + '=' + largeItemCode       + '&'
+                +   '1' + '=' + insuranceItemCode   + '&'
+                +   '1'       + '=' + layoutTypeA         + '&'
+                +   '1'       + '=' + layoutTypeI         + '&'
+                +   '1'         + '=' + fieldCode           + '&'
+                +   '1'      + '=' + internalCode        + '&'
+                +   '1'                + '=' + dd                  + '&'
+                +   '1' + '=' + inquiryContentsID   + '&'
+                +   '1'     + '=' + imperfectCode       + '&'
+                +   '1' + '=' + inquiryContentsEditFlag + '&'
+                +   '1'                    + '=' + indexNo
+                +   '&gamid=AMA13&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA13.html", "AMA13", "");
+}
+
+// 帳票印刷画面
+function popupAZG901() {
+
+    var form        = document.mhk_MHKPRForm;
+
+    var appFormID   = form.application_form_id.value;
+
+    var param =     '1'     + '=' + appFormID
+                +   '&gamid=AMA14&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA14.html", "AMA14", "");
+}
+
+// 照会内容編集画面
+function popupAZG902(button) {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    clickButton(button);
+    var form = document.mhk_MHKPRForm;
+    var indexNo = getNameToIndexNo(button.name);
+
+    var param = '1'     + '=' + indexNo
+                + '&gamid=AMA15&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA15.html", "AMA15", "");
+}
+
+// 募集人検索画面
+function popupAZG905() {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    var form         = document.mhk_MHKPRForm;
+    var sectionCode  = form.section_code.value;
+    var agentCode    = form.agent_code.value;
+    var fieldAgentId = form.field_agent_id.value;
+    var firstSearchFlag = '0';
+
+    if ( formValidateForPopupAZG905(form) ) {
+        firstSearchFlag = '1';
+    }
+
+    var param = '1' + '=' + sectionCode
+                + '&' + '1' + '=' + agentCode
+                + '&' + '1' + '=' + fieldAgentId
+                + '&' + '1' + '=' + firstSearchFlag
+                + '&gamid=AMA18&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA18.html", "AMA18", "");
+}
+
+// CLボタン押下
+// mock 補完: server-rendered の CL ボタン用（実機は clearImperfectInfo と同等の行クリア）
+function imperfectClear(button) {
+    clickButton(button);
+}
+
+function clearImperfectInfo(button) {
+    clickButton(button);
+    var     form    = document.mhk_MHKPRForm;
+    var     indexNo = getNameToIndexNo(button.name);
+
+    // 一覧の該当行クリア
+    document.getElementById('td_field_code['                + indexNo + ']').innerText = ' ';
+    document.getElementById('td_field_name['                + indexNo + ']').innerText = ' ';
+    document.getElementById('td_imperfect_name['            + indexNo + ']').innerText = ' ';
+    document.getElementById('td_imperfect_name['            + indexNo + ']').title = '';
+    document.getElementById('td_inquiry_contents_name['     + indexNo + ']').innerText = ' ';
+    document.getElementById('td_inquiry_contents_name['     + indexNo + ']').title = '';
+
+    // 一覧の該当行に紐付くhidden項目をクリア
+    var     listName = 'list[' + indexNo + '].';
+    var     listNameTableRecord = 'tableRecordList[' + indexNo + '].';
+
+    form[listName + 'imperfect_id'              ].value = '';
+    form[listName + 'imperfect_code'            ].value = '';
+    form[listName + 'inquiry_contents_id'       ].value = '';
+    form[listName + 'layout_type'               ].value = '';
+    form[listName + 'field_code'                ].value = '';
+    form[listName + 'internal_code'             ].value = '';
+    form[listName + 'dd'                        ].value = '';
+    form['editInquiryContents[' + indexNo + ']' ].disabled = true;
+    form[listName + 'inquiry_contents_edit_flag'].checked = false;
+    form[listName + 'inquiry_contents_edit_flag'].disabled = true;
+
+    form[listName + 'agent_inquiry_flag.selected'].selectedIndex = 0;
+    form[listName + 'exclude_receipt_flag'      ].checked = false;
+    form[listName + 'exclude_receipt_flag'      ].disabled = true;
+    form[listName + 'answer_message'            ].value = '';
+    form[listName + 'answer_message'            ].disabled = true;
+
+    // 回答内容クリア
+    clearAnswerContents(indexNo);
+
+    // 20180322 WF更改で追加 start
+    form[listNameTableRecord + 'imperfect_id'               ].value = '';
+    form[listNameTableRecord + 'imperfect_code'         ].value = '';
+    form[listNameTableRecord + 'inquiry_contents_id'        ].value = '';
+    form[listNameTableRecord + 'layout_type'                ].value = '';
+    form[listNameTableRecord + 'field_code'             ].value = '';
+    form[listNameTableRecord + 'internal_code'              ].value = '';
+    form[listNameTableRecord + 'dd'                     ].value = '';
+    form[listNameTableRecord + 'inquiry_contents_edit_flag'].value = '';
+    form[listNameTableRecord + 'inquiry_contents_code'      ].value = '';
+    form[listNameTableRecord + 'inquiry_contents_name_mst'  ].value = '';
+    form[listNameTableRecord + 'inquiry_contents_name_edit' ].value = '';
+    form[listNameTableRecord + 'inquiry_contents_name'      ].value = '';
+    form[listNameTableRecord + 'field_name'                 ].value = '';
+    form[listNameTableRecord + 'imperfect_name'             ].value = '';
+    // 20180322 WF更改で追加 end
+
+    form[listNameTableRecord + 'agent_inquiry_flag'                 ].value = '';
+    form[listNameTableRecord + 'exclude_receipt_flag'               ].value = '';
+    form[listNameTableRecord + 'answer_message'                     ].value = '';
+}
+
+// 保種選択画面
+function onClickSelectInsurance() {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    var largeItemObj = document.mhk_MHKPRForm.elements['large_item_list.selected'];
+    var selectedIndex = largeItemObj.selectedIndex;
+    if ( selectedIndex <= 0 ) {
+        return;
+    }
+
+    var insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+	var url = new URL("/AMB/insurance_item_select.html", window.location.origin);
+    showPopup(url.href, "insurance_item_select", "1");
+}
+
+// 入力区分
+function setInputTypeSelect(obj) {
+    document.mhk_MHKPRForm.input_type_code.value = obj.value;
+}
+
+// 保種
+function setInsuranceItemSelect(obj) {
+    document.mhk_MHKPRForm.insurance_item_code.value = obj.value;
+}
+
+//新更変・他
+function setApplicationFormTypeSelect(obj) {
+    document.mhk_MHKPRForm.application_form_type.value = obj.value;
+}
+
+// 計上状態
+function setSumupStatusSelect(obj) {
+    document.mhk_MHKPRForm.sumup_status.value = obj.value;
+}
+
+// 照会内容編集フラグ
+function setInquiryContentsEditFlag(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    if (document.mhk_MHKPRForm['list[' + indexNo + '].inquiry_contents_edit_flag'].checked == true) {
+        document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].inquiry_contents_edit_flag'].value = '1';
+    } else {
+        document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].inquiry_contents_edit_flag'].value = '';
+    }
+}
+
+// 集計カウント対象外
+function setExcludeReceiptFlag(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    if (document.mhk_MHKPRForm['list[' + indexNo + '].exclude_receipt_flag'].checked == true) {
+        document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].exclude_receipt_flag'].value = '1';
+    } else {
+        document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].exclude_receipt_flag'].value = '';
+    }
+}
+
+// 代理店照会フラグ
+function setAgentInquiryFlag(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].agent_inquiry_flag'].value = obj.value;
+}
+
+// 回答内容
+function setAnswerContents(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].answer_contents'].value = obj.value;
+}
+
+// 回答内容クリア
+function clearAnswerContents(indexNo) {
+
+    var selectObj = document.mhk_MHKPRForm['list[' + indexNo + '].answer_contents.selected'];
+
+    // 回答内容リストをクリア
+    while (0 < selectObj.length) {
+        selectObj.remove(0);
+    }
+
+    // 回答内容をクリア
+    document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].answer_contents'].value = '';
+}
+
+// 回答入力欄
+function setAnswerMessage(obj) {
+    var indexNo = getNameToIndexNo(obj.name);
+    document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].answer_message'].value = obj.value;
+}
+
+// 訂正内容確認画面
+function popupAZG906(button) {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    clickButton(button);
+    var form = document.mhk_MHKPRForm;
+
+    // 訂正内容確認画面に引き渡すパラメータ生成
+    var param = '1' + '=' + form.section_code.value
+              + '&1' + '=' + form.agent_code.value
+              + '&1' + '=' + form.policy_number.value
+              + '&1' + '=' + form.sub_policy_number.value
+              + '&1=' + form.application_form_id.value
+              + '&1' + '=' + form.status_code.value
+              + '&gamid=AMA19&gamcd=AMA00&hubsessid=1';
+
+    var url = showPopup("/AMB/AMA19.html", "AMA19", "");
+}
+
+// 代理店モード　回答入力画面
+function popupAZG909(button) {
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    clickButton(button);
+    var form = document.mhk_MHKPRForm;
+
+    // 代理店モード　回答入力画面に引き渡すパラメータ生成
+    var param = '1=' + form.application_form_id.value
+              + '&gamid=AMA25&gamcd=AMA00&hubsessid=1';
+
+    var url = new URL('', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+    showPopup(url.href, 'azg909', "1");
+}
+
+//更新履歴画面
+function popupAZG912(button){
+    // 子画面開閉チェック
+    subWinOpenCheck();
+
+    clickButton(button);
+    var form = document.mhk_MHKPRForm;
+
+    //更新履歴画面に引き渡すパラメータ作成
+    var param = '1='+ form.application_form_id.value
+        + '&gamid=AMA29&gamcd=AMA00&hubsessid=1';
+
+    var url = new URL('', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+    showPopup(url.href, 'azg912', "1");
+}
+
+// 対象の代理店照会の有無をチェックする
+function getInquiryCount(code) {
+    // 営業照会の場合
+    var agentInquiryFlag = '0';
+
+    // 代理店照会の場合
+    if (code == '2') {
+        agentInquiryFlag = '1';
+    }
+
+    var indexNo;
+    for (indexNo = 0; indexNo < 20; indexNo++) {
+        // 項目コード
+        var fieldCode = document.mhk_MHKPRForm['list[' + indexNo + '].field_code'].value;
+
+        // 項目コードが設定されている行は、入力済みの行とみなし、照会有無をチェックする
+        if (fieldCode != null && fieldCode.length > 0) {
+            if (document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].agent_inquiry_flag'].value == agentInquiryFlag) {
+                return '1';
+            }
+        }
+    }
+    return '0';
+}
+
+// 添付ファイル参照
+function setFile(id, input) {
+    if (!checkUploadFiles(id, input)) {
+        return;
+    }
+
+    var form = document.mhk_MHKPRForm;
+    var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+    var fileObj = form[listNameTableRecordUpload + 'open_file'];
+    fileObj.readOnly = true;
+
+    var file = fileObj.value;
+
+    // DB登録済みのファイル情報をバックアップする
+    if (form[listNameTableRecordUpload + 'upload_file_id'].value && form[listNameTableRecordUpload + 'insert_file_flag'].value == '') {
+        form[listNameTableRecordUpload + 'upload_file_name_bk'].value = form[listNameTableRecordUpload + 'upload_file_name'].value;
+        form[listNameTableRecordUpload + 'upload_file_size_bk'].value = form[listNameTableRecordUpload + 'upload_file_size'].value;
+        form[listNameTableRecordUpload + 'registration_date_bk'].value = document.getElementById('td_registration_date_view[' + id + ']').innerHTML;
+        form[listNameTableRecordUpload + 'register_id_bk'].value = document.getElementById('td_register_id[' + id + ']').innerHTML;
+    }
+
+    // 添付ファイル削除
+    deleteFile(id, false);
+
+    var fileName = '';
+    var fileSize = 0;
+
+    var files = fileObj.files;
+
+    // 添付ファイルが存在する場合
+    if (files[0]) {
+        fileName = files[0].name;
+        fileSize = files[0].size;
+    }
+
+    if (fileName) {
+        // ファイル名設定
+        document.getElementById('td_upload_file_name[' + id + ']').innerHTML = fileName;
+        document.getElementById('td_upload_file_name[' + id + ']').title = fileName;
+
+        var fileSizeKB = Math.ceil(fileSize / 1024);
+
+        // サイズ（表示用）設定
+        document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = fileSizeKB + 'KB';
+
+        // 更新用項目の設定
+        form[listNameTableRecordUpload + 'upload_file_name'].value = fileName;
+        form[listNameTableRecordUpload + 'upload_file_size'].value = fileSize;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '1';
+
+    // 添付ファイルが存在しない場合
+    } else {
+        var fileNameBk = form[listNameTableRecordUpload + 'upload_file_name_bk'].value;
+        var fileSizeBk = form[listNameTableRecordUpload + 'upload_file_size_bk'].value;
+
+        // 表示内容を復元
+        document.getElementById('td_registration_date_view[' + id + ']').innerHTML = form[listNameTableRecordUpload + 'registration_date_bk'].value;
+        document.getElementById('td_register_id[' + id + ']').innerHTML = form[listNameTableRecordUpload + 'register_id_bk'].value;
+        document.getElementById('td_register_id[' + id + ']').title = form[listNameTableRecordUpload + 'register_id_bk'].value;
+
+        // ファイルパスのクリア
+        //form[listNameTableRecordUpload + 'file_text'].value = '';
+
+        // hidden項目の整理
+        form[listNameTableRecordUpload + 'upload_file_name'].value = fileNameBk;
+        form[listNameTableRecordUpload + 'upload_file_size'].value = fileSizeBk;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '0';
+
+        // 画面表示値とhidden項目の整理（バックアップ用ファイル名に値が設定されている場合）
+        if (fileNameBk != '') {
+            var fileRef = document.createElement('a');
+            fileRef.setAttribute('href', '#');
+            fileRef.setAttribute('name', fileNameBk);
+            fileRef.setAttribute('onclick', 'downloadFileLink(' + id + ');');
+            fileRef.setAttribute('title', fileNameBk);
+            fileRef.innerHTML = fileNameBk;
+            document.getElementById('td_upload_file_name[' + id + ']').innerHTML = '';
+            document.getElementById('td_upload_file_name[' + id + ']').appendChild(fileRef);
+
+            var fileSizeKB = Math.ceil(fileSizeBk / 1024);
+            document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = fileSizeKB + 'KB';
+
+            form[listNameTableRecordUpload + 'delete_file_flag'].value = '0';
+        }
+    }
+}
+
+// 添付ファイル削除
+function deleteFile(id, deleteFlag) {
+
+    var form = document.mhk_MHKPRForm;
+    var listNameTableRecordUpload = 'tableRecordUploadList[' + id + '].';
+
+    // ファイル名クリア
+    document.getElementById('td_upload_file_name[' + id + ']').innerHTML = '&nbsp;';
+    document.getElementById('td_upload_file_name[' + id + ']').title = '';
+    // サイズ（表示用）クリア
+    document.getElementById('td_upload_file_size_view[' + id + ']').innerHTML = '&nbsp;';
+    // 登録日時をクリア
+    document.getElementById('td_registration_date_view[' + id + ']').innerHTML = '&nbsp;';
+    // 登録者IDをクリア
+    document.getElementById('td_register_id[' + id + ']').innerHTML = '&nbsp;';
+    document.getElementById('td_register_id[' + id + ']').title = '';
+
+    // 削除ボタン押下時
+    if (deleteFlag) {
+        //var temp = document.getElementById('open_file_obj_' + id).innerHTML;
+        //document.getElementById('open_file_obj_' + id).innerHTML = temp;
+        form[listNameTableRecordUpload + 'open_file'].value = '';
+        form[listNameTableRecordUpload + 'upload_file_size'].value = 0;
+        form[listNameTableRecordUpload + 'insert_file_flag'].value = '0';
+
+        // 初期表示時のDB設定値をクリアする
+        form[listNameTableRecordUpload + 'upload_file_name_bk'].value = '';
+        form[listNameTableRecordUpload + 'upload_file_size_bk'].value = '';
+        form[listNameTableRecordUpload + 'registration_date_bk'].value = '';
+        form[listNameTableRecordUpload + 'register_id_bk'].value = '';
+    }
+
+    // 添付ファイルIDが存在する場合、削除フラグを立てる
+    if (form[listNameTableRecordUpload + 'upload_file_id'].value) {
+        form[listNameTableRecordUpload + 'delete_file_flag'].value = '1';
+    }
+}
+
+// 代理店連携ボタン押下
+function clickAgentNotify() {
+    document.mhk_MHKPRForm.agentExistCheckCompFlag.value = '0';
+
+    // ターゲットを代理店連携用iframeに変更する
+    AZG101Base.target = 'agentNotifyFrame';
+    sdeDisableCheckSubmitOnce();
+}
+
+// 代理店連携後のメッセージ表示
+function loadAgentNotify() {
+
+    // ターゲットを自分自身に変更する
+    window.parent.AZG101Base.target = '_self';
+
+    var idoc = window.document.getElementById('agentNotifyFrame').contentWindow.document;
+
+    // エラー画面が返却されている場合、対象の画面を表示させる
+    if (idoc.mhk_MHKPRForm) {
+      if (idoc.mhk_MHKPRForm.gamid.value != 'AMA04') {
+        window.location.href = idoc.mhk_MHKPRForm.action;
+        return;
+      }
+    }
+
+    var form = document.mhk_MHKPRForm;
+    var errMsg = '1';
+    var agentNotifyConfirmMsg1 = '1';
+    var inquiry_method_code  = '1';
+    var sumupAgentFlag = '1';
+
+    if (errMsg) {
+        window.parent.document.getElementById('message_area').innerHTML = errMsg;
+        window.parent.document.getElementById('message_area').style.backgroundColor = "FF0000";
+        window.parent.document.getElementById('message_area').style.color = "FFFFFF";
+    } else if (agentNotifyConfirmMsg1) {
+
+        window.parent.document.getElementById('message_area').innerHTML = "";
+        window.parent.document.getElementById('message_area').style.backgroundColor = "ffffdc";
+        window.parent.document.getElementById('message_area').style.color = "FF0000";
+
+        if (inquiry_method_code == 12
+                || inquiry_method_code ==  13
+                || inquiry_method_code ==  14
+                || inquiry_method_code ==  15
+                || inquiry_method_code ==  16) {
+
+            alert(agentNotifyConfirmMsg1);
+        } else if (inquiry_method_code==11) {
+
+            if (!confirm(agentNotifyConfirmMsg1)) {
+
+                if (sumupAgentFlag == 1) {
+                    form.agent_name.value = '1';
+                } else {
+                    form.agent_name.value = '1';
+                }
+                clickButton(window.parent.document.getElementById('updateAgentNotify'));
+                window.parent.document.mhk_MHKPRForm.agentExistCheckCompFlag.value = '1';
+
+                var hiddenButton = window.parent.document.mhk_MHKPRForm.updateAgentNotifyHidden;
+                if (hiddenButton != null) {
+                    hiddenButton.click();
+                }
+            }
+        } else {
+
+            if (confirm(agentNotifyConfirmMsg1)) {
+
+                if (sumupAgentFlag == 1) {
+                    form.agent_name.value = '1';
+                } else {
+                    form.agent_name.value = '1';
+                }
+
+                clickButton(window.parent.document.getElementById('updateAgentNotify'));
+                window.parent.document.mhk_MHKPRForm.agentExistCheckCompFlag.value = '1';
+
+                var hiddenButton = window.parent.document.mhk_MHKPRForm.updateAgentNotifyHidden;
+                if(hiddenButton != null) {
+                    hiddenButton.click();
+                }
+            }
+        }
+    }
+}
+
+// 添付ファイルダウンロード
+function downloadFileLink(id) {
+    // 添付ファイルIDを設定
+    document.mhk_MHKPRForm.downloadFileId.value = document.mhk_MHKPRForm['tableRecordUploadList[' + id + '].' + 'upload_file_id'].value;
+    document.mhk_MHKPRForm.downloadFileName.value = document.mhk_MHKPRForm['tableRecordUploadList[' + id + '].' + 'upload_file_name'].value;
+
+    sdeDisableCheckSubmitOnce();
+
+    var hiddenButton = document.mhk_MHKPRForm.downloadFileHidden;
+    if(hiddenButton != null) {
+        hiddenButton.click();
+    }
+}
+
+// 機械点検画像表示
+function openMachineCheck() {
+	var url = new URL("1", window.location.origin);
+	var params = new URLSearchParams("image_key=1")
+	url.search = params.toString();
+    window.open(url.href);
+}
+
+//カメラアプリ画面表示
+function openCameraApp() {
+    var param = '023=' + document.mhk_MHKPRForm.section_code.value
+              + '&025=' + document.mhk_MHKPRForm.agent_code.value
+              + '&021=' + document.mhk_MHKPRForm.policy_number.value;
+
+    var url = new URL('1', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+    window.open(url.href, null, '1');
+}
+
+</script>
+</head>
+<body class="body_common body04" onload="bodyOnload();">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" enctype="multipart/form-data" onsubmit="return submitAZG101(this,null);" >
+  <input type="hidden" />
+  <!--/* タイトルエリア */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img class="title_logo" src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br/>
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      
+          <ul class="message_area bgcolor_red_message">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA04" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA04" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <input type="hidden" id="application_form_id" name="application_form_id" value="0000000001" />
+  <input type="hidden" id="operation_mode" name="operation_mode" />
+  <input type="hidden" id="import_execute_flag" name="import_execute_flag" />
+  <input type="hidden" id="popup_AZG901_flag" name="popup_AZG901_flag" />
+  <input type="hidden" id="complete_date" name="complete_date" />
+  <input type="hidden" id="layout_type_a" name="layout_type_a" />
+  <input type="hidden" id="check_status_name" name="check_status_name" />
+  <input type="hidden" id="company_kbn" name="company_kbn" />
+  <input type="hidden" id="old_input_type" name="old_input_type" />
+  <input type="hidden" id="old_policy_number" name="old_policy_number" />
+  <input type="hidden" id="old_insurance_item_code" name="old_insurance_item_code" />
+  <input type="hidden" id="check_type" name="check_type" />
+  <input type="hidden" id="system_admin_flag" name="system_admin_flag" />
+  <input type="hidden" id="send_section_code" name="send_section_code" />
+  <input type="hidden" id="papion_designation_key" name="papion_designation_key" />
+  <input type="hidden" id="use_division_online" name="use_division_online"/>
+  <input type="hidden" id="agent_deal_flag" name="agent_deal_flag"/>
+  <input type="hidden" id="status_code" name="status_code"/>
+  <input type="hidden" id="agent_status_code" name="agent_status_code"/>
+  <input type="hidden" id="notify_status" name="notify_status"/>
+  <input type="hidden" id="last_update_user_id" name="last_update_user_id"/>
+  <input type="hidden" id="last_update_date" name="last_update_date"/>
+  <input type="hidden" id="last_agent_update_user_id" name="last_agent_update_user_id"/>
+  <input type="hidden" id="last_agent_update_date" name="last_agent_update_date"/>
+  <input type="hidden" id="display_auth" name="display_auth"/>
+  <input type="hidden" id="item_display_prop" name="item_display_prop" value="updateBusinessNotify:1;updateAgentNotify:1;updateNotifyCancel:1;update:1;print:1;updateAnswer:1;updateCompleteDate:1;cancelCompleteDate:1;delete:1"/>
+  <input type="hidden" id="agentExistCheckCompFlag" name="agentExistCheckCompFlag"/>
+  <input type="hidden" id="downloadFileId" name="downloadFileId"/>
+  <input type="hidden" id="downloadFileName" name="downloadFileName"/>
+  <input type="hidden" id="outputInvoiceFlag" name="outputInvoiceFlag"/>
+  <input type="hidden" id="inquiry_method_code" name="inquiry_method_code"/>
+  <input type="hidden" id="old_section_code" name="old_section_code"/>
+  <input type="hidden" id="old_agent_code" name="old_agent_code"/>
+  <input type="hidden" id="old_sumup_section_code" name="old_sumup_section_code"/>
+  <input type="hidden" id="business_notify_result" name="business_notify_result"/>
+  <input type="hidden" id="mail_send_list" name="mail_send_list"/>
+
+  <!--/* 振分検索例外発生時に画面表示に必要な①募集人名と②点検区分もサーバへ送信する */-->
+  <input type="hidden" id="field_agent_name_post" name="field_agent_name" />
+  <input type="hidden" name="check_type_name" />
+  <!--/* 業務固有領域 */-->
+  <div id="div_gyoumu_area" class="gyoumu_area">
+  <div class="wrapper04">
+
+  <div class="item">
+    <div class="gyoumu_field_title">入力区分</div>
+    <div class="gyoumu_field_value_left">
+      <input type="hidden" id="selected_input_type_code" name="input_type_code" />
+      <select name="input_type_list.selected" class="gyoumu_field_control" onchange="setInputTypeSelect(this);onChangeInputType(this);" tabindex="1"><option value=""></option><option value="2">現地</option><option value="5">機械</option><option value="7">機械(他)</option><option value="9">その他</option></select>
+    </div>
+    <div class="gyoumu_field_title">契約マスタ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="checkbox" id="import_flag" name="import_flag" value="true" tabindex="2" /><!--
+      --><label>連動する</label>
+    </div>
+  </div>
+
+  <div class="item">
+    <span class="text_bold">「英数字は半角大文字」「年月は西暦」で入力</span>
+    <input id="act101to909" type="button" class="button_agent_mode_display" name="act101to909"
+      tabindex="3" onclick="popupAZG909(this);" value="代理店モード表示" />
+  </div>
+
+  <!--/* 種目から明細番号欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">種目</div>
+    <div class="gyoumu_field_value_left">
+      <input type="hidden" id="selected_large_item_code" name="large_item_code" />
+      <select name="large_item_list.selected" class="gyoumu_field_control" disabled="true" tabindex="4"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option><option value="5">自動車</option><option value="7">自動車(7)</option><option value="9">その他(9)</option></select>
+    </div>
+    <div class="gyoumu_field_title">保険種類</div>
+    <div class="gyoumu_field_value_left">
+      <input type="hidden" id="selected_insurance_item_code" name="insurance_item_code" />
+      <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="setInsuranceItemSelect(this);" tabindex="5"><option value=""></option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+    </div>
+    <div class="gyoumu_field_title">証券番号</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="policy_number" name="policy_number"
+        class="gyoumu_field_control" tabindex="7" maxlength="12" onblur="toUpper(this);">
+    </div>
+    <div class="gyoumu_field_title">明細番号</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="sub_policy_number" name="sub_policy_number"
+        class="gyoumu_field_control" tabindex="8" maxlength="10" onblur="subPolicyNumberOutput(this); toUpper(this);" >
+    </div>
+    <div class="button_select_insurance_item">
+      <input type="button" name="selectInsuransuItem" class="small_square_button" tabindex="6" value="...." onclick="onClickSelectInsurance();" />
+    </div>
+  </div>
+
+  <!--/* 部店課支社ｺｰﾄﾞからフリーコード欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">部店課支社ｺｰﾄﾞ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="section_code" name="section_code"
+        class="gyoumu_field_control" tabindex="12" maxlength="6" onblur="toUpper(this);" >
+    </div>
+    <div class="gyoumu_field_title">代理店ｺｰﾄﾞ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="agent_code" name="agent_code"
+        class="gyoumu_field_control" tabindex="13" maxlength="6" onblur="toUpper(this);" >
+    </div>
+    <div class="gyoumu_field_title">代理店名</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="agent_name" name="agent_name" />
+    <div class="gyoumu_field_title">ｻﾌﾞｺｰﾄﾞ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="sub_agent_code" name="sub_agent_code"
+        class="gyoumu_field_control" tabindex="14" maxlength="6" onblur="toUpper(this);">
+    </div>
+    <div class="gyoumu_field_title">ﾌﾘｰｺｰﾄﾞ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="free_code_1" name="free_code_1"
+        class="gyoumu_field_control" tabindex="15" maxlength="10" onblur="toUpper(this);">
+    </div>
+  </div>
+
+  <!--/* 募集人IDから契約者名欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">募集人ID</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="field_agent_id" name="field_agent_id"
+        class="gyoumu_field_control" tabindex="9" maxlength="10" onblur="toUpper(this);" >
+    </div>
+    <div class="gyoumu_field_value_left" id="field_agent_name">
+      1
+      1
+    </div>
+    <div class="gyoumu_field_value">
+      <input type="button" name="selectFieldAgent" class="small_square_button" tabindex="10" value="...." onclick="popupAZG905()"/>
+    </div>
+    <div class="gyoumu_field_title">契約者名</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="insurant_name" name="insurant_name"
+        class="gyoumu_field_control" tabindex="11" maxlength="120" >
+    </div>
+  </div>
+
+  <!--/* 保険始期日から点検状態欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">保険始期日</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="start_date" name="start_date"
+        class="gyoumu_field_control" tabindex="16" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" >
+    </div>
+    <div class="gyoumu_field_title">変更日</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="change_date" name="change_date"
+        class="gyoumu_field_control" tabindex="17" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" >
+    </div>
+    <div class="gyoumu_field_title">新更変・他</div>
+    <div class="gyoumu_field_value_left">
+      <input type="hidden" id="selected_application_form_type_code" name="application_form_type" />
+      <select name="application_form_type_list.selected" class="gyoumu_field_control" onchange="setApplicationFormTypeSelect(this);" tabindex="18"><option value=""></option><option value="1">新規</option></select>
+    </div>
+    <div class="gyoumu_field_title">計上年月</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="sumup_year_month" name="sumup_year_month"
+        class="gyoumu_field_control" tabindex="19" maxlength="7" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,6)" >
+    </div>
+    <div class="gyoumu_field_title">日報／送付</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="daily_report_send" name="daily_report_send"
+        class="gyoumu_field_control" tabindex="20" maxlength="12" >
+    </div>
+    <div class="gyoumu_field_title">日報部課代ｺｰﾄﾞ</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="sumup_section_code" name="sumup_section_code"
+        class="gyoumu_field_control" tabindex="21" maxlength="9" onblur="toUpper(this);" >
+    </div>
+    <div id="check_status_title" class="gyoumu_field_title">点検状態</div>
+    <div id="check_status_value" class="gyoumu_field_value">
+      1
+      1
+    </div>
+  </div>
+
+  <!--/* 照会IDから連携欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">照会ＩＤ</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <div class="gyoumu_field_title">登録者</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="regist_user" name="regist_user" />
+    <div class="gyoumu_field_title">更新者</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="update_user" name="update_user" />
+    <div class="gyoumu_field_title">登録日</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="registration_date" name="registration_date" />
+    <div class="gyoumu_field_title txt_aln_l">
+      1更新日
+    </div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="update_date" name="update_date" />
+    <div class="gyoumu_field_title">回答締切日</div>
+    <div class="gyoumu_field_value_left">
+      <input type="text" id="reminder_date" name="reminder_date"
+        class="gyoumu_field_control" tabindex="23" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)" >
+    </div>
+    <div class="gyoumu_field_title">完了日</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <div class="gyoumu_field_title">連携</div>
+    <div class="gyoumu_field_value">
+      1
+      1
+    </div>
+    <input type="hidden" id="notify_status_name" name="notify_status_name" />
+
+    <div class="button_operation_history">
+      <input type="button" name="act101to912" onclick="popupAZG912(this)" value="履歴"  tabindex="22"/>
+    </div>
+  </div>
+
+  <!--/* 計上状態から照会方法欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">計上状態</div>
+    <div class="gyoumu_field_value_left">
+      <input type="hidden" name="sumup_status" id="selected_sumup_status" />
+      <select name="sumup_status_list.selected" class="gyoumu_field_control" onchange="setSumupStatusSelect(this);" tabindex="24"><option value=""></option><option value="1">未計上</option></select>
+    </div>
+    <div class="gyoumu_field_title">照会方法</div>
+    <div class="gyoumu_field_value">
+      11
+    </div>
+  </div>
+
+  <!--/* 各種ボタン欄 */-->
+  <div class="item">
+    <div>
+      <input type="submit" class="button_area_button gyoumu_field_control" id="copyRegist" name="copyRegist" onclick="clickButton(this)" value="コピー登録" formaction="/AMA04/aZG101CopyRegist" tabindex="25">
+    </div>
+    <div>
+      <input type="button" class="button_area_button gyoumu_field_control" id="displayInspectorImage" name="displayInspectorImage" onclick="openMachineCheck()" value="機械点検画像" tabindex="26" />
+    </div>
+    <div>
+      <input type="button" class="button_area_button gyoumu_field_control" id="displayCameraApp" name="displayCameraApp" onclick="openCameraApp()" value="ＭＳ１カメラ" tabindex="27" />
+    </div>
+  </div>
+
+  <!--/* 依頼区分から点検区分欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">依頼区分</div>
+    <div class="gyoumu_field_value_left">
+      <fieldset id="agent_deal_flag_td"><!--
+      --><input type="radio" id="agent_deal_flag_1" name="agent_deal_flag_radio" value="1" onclick="onClickAgentDealFlag()" tabindex="28" /><!--
+      --><label>照会</label><!--
+      --><input type="radio" id="agent_deal_flag_2" name="agent_deal_flag_radio" value="2" onclick="onClickAgentDealFlag()" tabindex="29" /><!--
+      --><label>連絡</label><!--
+      --></fieldset>
+    </div>
+    <div class="gyoumu_field_title">点検区分</div>
+    <div class="gyoumu_field_value">
+      11
+    </div>
+  </div>
+
+  <!--/* 営業対応状況から代理店対応状況欄 */-->
+  <div class="item">
+    <div class="gyoumu_field_title">営業対応状況</div>
+    <div class="gyoumu_field_value">
+      11
+    </div>
+    <input type="hidden" id="status_name" name="status_name" />
+    <div class="gyoumu_field_title">代理店対応状況</div>
+    <div class="gyoumu_field_value">
+      11
+    </div>
+    <input type="hidden" id="agent_status_name" name="agent_status_name" />
+  </div>
+  </div><!--/* wrapper閉じタグ */-->
+
+  <div id="div1" class="gyoumu_screen_field_scroll">
+    <!--/* 内部ヘッダ */-->
+    <div class="gyoumu_screen_field_header">
+      <div class="gyoumu_field_title">項目ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_title">項目名</div>
+      <div class="gyoumu_field_title">不備内容</div>
+      <div class="gyoumu_field_title">照会内容</div>
+      <div class="gyoumu_field_title">代理店照会</div>
+      <div class="gyoumu_field_title"><br/></div>
+      <div class="gyoumu_field_title">外</div>
+    </div>
+    <div id="div2" class="gyoumu_list_data_scroll">
+      <table class="sticky_table">
+        <colgroup>
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+          <col class="col_width_04" />
+        </colgroup>
+        <tbody>
+          
+          <tr class="div2_table_row1">
+            <td class="sticky_table_value">
+              <input type="button" class="gyoumu_field_control" name="imperfectSearch[0]" value="検索" onclick="popupAZG900(this);" />
+            </td>
+            <td class="sticky_table_value txt_aln_c" >
+              1
+            </td>
+            <td class="sticky_table_value" colspan="2">
+              1
+            </td>
+            <td class="sticky_table_value imperfect_name">
+              1
+            </td>
+            <td class="sticky_table_value txt_aln_c">
+              <input type="checkbox"
+                onclick="checkInquiryEdit(this);setInquiryContentsEditFlag(this);"
+                value="1"/>
+            </td>
+            <td class="sticky_table_value">
+              <input type="button" class="gyoumu_field_control"
+                value="修" onclick="popupAZG902(this);" />
+            </td>
+            <td class="sticky_table_value inquiry_contents_name"
+              onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();">
+              1</td>
+            <td class="sticky_table_value select_agent_inquiry_flag">
+              <select name="list[0].agent_inquiry_flag.selected" onchange="setAgentInquiryFlag(this);">
+                <option value="1">要</option>
+                <option value="0">否</option>
+              </select>
+            </td>
+            <td class="sticky_table_value">
+              <input type="button" class="gyoumu_field_control" value="CL"  onclick="clearImperfectInfo(this);" />
+            </td>
+            <td class="sticky_table_value txt_aln_c" rowspan="3">
+              <input type="checkbox" value="1" onchange="setExcludeReceiptFlag(this)" />
+            </td>
+          </tr>
+
+          <tr class="div2_table_row2">
+            <td class="sticky_table_title txt_aln_c" colspan="3">回答内容</td>
+            <td class="sticky_table_value" colspan="7">
+              <select name="list[0].answer_contents.selected" class="gyoumu_field_control" onchange="setAnswerContents(this);">
+              
+                <option value="0">0：その他</option>
+                <option value="10000">10000：リストから</option>
+                <option value="1">1：回答</option>
+              
+              </select>
+            </td>
+          </tr>
+
+          <tr class="div2_table_row3">
+            <td class="sticky_table_title txt_aln_c" colspan="3">回答入力欄<br/>（150文字まで）</td>
+            <td class="sticky_table_value" colspan="7">
+              <textarea class="gyoumu_field_control"
+                onblur="setAnswerMessage(this);" onmouseover="tooltip.Schedule(this);"
+                onmouseout="tooltip.MouseOut();" onfocus="tooltip.FocusIn();">1</textarea>
+            </td>
+          </tr>
+
+          <!--/* 制御用 */-->
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+
+          <!--/* 更新用 */-->
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+        
+        </tbody>
+      </table>
+    </div>
+
+    <!--/* 備考・通信欄から社内メモ欄 */-->
+    <div class="gyoumu_message_area">
+      <div class="gyoumu_field_title">備考・通信欄<br/>(648文字まで)</div>
+      <div class="gyoumu_field_value" id="div_forms_message">
+        <textarea id="forms_message" name="forms_message" class="gyoumu_field_control"
+          onmouseover="tooltip.Schedule(this);" onmouseout="tooltip.MouseOut();" onfocus="tooltip.FocusIn();"></textarea>
+      </div>
+      <div class="gyoumu_field_title">社内メモ欄</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="inhouse_message" name="inhouse_message" class="gyoumu_field_control">
+      </div>
+    </div>
+
+    <!--/* 訂正内容確認書ボタン・送り状印刷 */-->
+    <div class="confirm_area">
+      <div class="gyoumu_field_title">申込書類の訂正内容に関する確認書</div>
+      <div class="gyoumu_field_title">送り状印刷</div>
+      <div class="gyoumu_field_value">
+        <div>訂正内容確認書を使用して訂正する場合</div>
+        <div>
+          <input type="button" name="act101to906" onclick="popupAZG906(this)" value="訂正内容確認書" class="confirm_area_button"
+            title="保険契約者による訂正署名(印)が必要な場合で、&#10;訂正内容について保険契約者本人に了承を得た&#10;場合に押下します。" />
+          <span id="correct_confirm_view_td" class="color_red text_bold">
+            1
+          </span>
+        </div>
+        <input type="hidden" id="correct_confirm_view" name="correct_confirm_view" />
+      </div>
+      <div class="gyoumu_field_value">
+        <div>会社に書類本紙の提出が必要な場合</div>
+        <input type="submit" class="gyoumu_field_control confirm_area_button visibility_hidden" id="printInvoicePDF" name="printInvoicePDF"
+          onclick="clickButton(this)" value="送り状印刷" formaction="/AMA04/aZG101PrintInvoice"
+          title="会社に書類本紙の提出が必要な場合に押下します。&#10;書類本紙とは、照会内容で本紙の提出&#10;を依頼しているものや、契約者または&#10;記名被保険者等から署名または記名・押印&#10;をいただいた書類をいいます。" >
+      </div>
+    </div>
+
+    <div class="file_size_attention">
+      ※登録可能な添付ファイルのサイズは、合算で5MBまでです。
+    </div>
+
+    <!--/* 添付ファイル欄 */-->
+    <table class="sticky_table table_attached_file">
+      <thead>
+        <tr class="sticky_table_thead_tr">
+          <th class="sticky_table_title">添付ファイル名</th>
+          <th class="sticky_table_title">サイズ</th>
+          <th class="sticky_table_title">登録日時</th>
+          <th class="sticky_table_title">登録者ID</th>
+          <th class="sticky_table_title" title="添付ファイルをつける場合は参照ボタンを押下します。&#10;該当のファイルを選択し、開くを押下します。">添付ファイル選択</th>
+          <th class="sticky_table_title">1</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="sticky_table_value">
+          
+            <a href="#" name="downloadFileLink">1</a>
+          
+          
+            1
+          
+          </td>
+          <td class="sticky_table_value  txt_aln_c">
+            1
+          </td>
+          <td class="sticky_table_value  txt_aln_c">
+            1
+          </td>
+          <td class="sticky_table_value  txt_aln_c">
+            1
+          </td>
+          <td class="sticky_table_value  txt_aln_c">
+            <span >
+              <input type="file" class="attached_file" onclick="this.readOnly=false;" onkeydown="this.readOnly=true;" onblur="this.readOnly=true;" />
+            </span>
+          </td>
+          <td class="sticky_table_value  txt_aln_c">
+            <input type="button" class="gyoumu_field_control" value="削除" />
+          </td>
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+          <input type="hidden" />
+        </tr>
+        
+      </tbody>
+    </table>
+
+  </div><!--/* div1閉じタグ */-->
+
+  <div class="gyoumu_area_footer">
+    <div class="color_red">
+      ※更新ボタンを押下せずに60分経過するとタイムアウトとなり、編集中のデータは失われますので、こまめに更新ボタンを押下してください。
+    </div>
+    <div class="color_red" id="gyoumu_area_footer">
+      ※連絡の内容を確認後、「確認済」ボタンを押下してください。
+    </div>
+  </div>
+  </div><!--/* div_gyoumu_area閉じタグ */-->
+
+<!--/* ボタンエリア */-->
+<div class="button_area size_button_area04">
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button" id="act101to200" name="act101to200" onclick="clickButton(this)"
+      value="一覧画面" formaction="/AMA04/aZG101To07">
+  </div>
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button" id="act101to100" name="act101to100" onclick="clickButton(this)"
+      value="入力画面" formaction="/AMA04/aZG101To03">
+  </div>
+  <div class="button_width_75">
+    <input id="updateBusinessNotify" name="updateBusinessNotify" class="button_area_button visibility_hidden" type="button" value="営業連携" onclick="popupAZG911();" />
+  </div>
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button visibility_hidden" id="updateAgentNotify" name="updateAgentNotify"
+      onclick="clickAgentNotify();clickButton(this);" value="代理店連携" formaction="/AMA04/aZG101UpdateAgentNotify">
+  </div>
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button visibility_hidden" id="updateNotifyCancel" name="updateNotifyCancel"
+      onclick="clickButton(this)" value="連携取消" formaction="/AMA04/aZG101UpdateNotifyCancel">
+  </div>
+  <div class="button_width_60">
+    <input type="submit" class="button_area_button visibility_hidden" id="update" name="update"
+      onclick="if(!document.mhk_MHKPRForm.application_form_id.value){location.href='/AMB/system_error.html';return false;}clickButton(this)" value="更新" formaction="/AMA04/aZG101Update">
+  </div>
+  <div class="button_width_60">
+    <input type="button" class="button_area_button visibility_hidden" id="print" name="print"
+      onclick="clickButton(this);popupAZG901();" value="印刷">
+  </div>
+  <div class="button_width_60">
+    <input type="submit" class="button_area_button visibility_hidden" id="updateAnswer" name="updateAnswer"
+      onclick="clickButton(this)" value="回答" formaction="/AMA04/aZG101UpdateAnswer">
+  </div>
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button visibility_hidden" id="updateCompleteDate" name="updateCompleteDate"
+      onclick="clickButton(this)" value="完了登録" formaction="/AMA04/aZG101UpdateCompleteDate">
+  </div>
+  <div class="button_width_75">
+    <input type="submit" class="button_area_button visibility_hidden" id="cancelCompleteDate" name="cancelCompleteDate"
+      onclick="clickButton(this)" value="完了取消" formaction="/AMA04/aZG101CancelCompleteDate">
+  </div>
+  <div class="button_width_60">
+    <input type="submit" class="button_area_button visibility_hidden" id="delete" name="delete"
+      onclick="clickButton(this)" value="削除" formaction="/AMA04/aZG101Delete">
+  </div>
+  <div class="button_width_60">
+    <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+  </div>
+</div>
+
+<input type="submit" id="act101to001" name="act101to001" formaction="/AMA04/aZG101To01" class="display_none" onclick="clickButton(this);">
+<input type="submit" id="close" name="close" formaction="/AMA04/close" class="display_none" >
+<input type="submit" id="initialSelf" name="initialSelf" formaction="/AMA04/aZG101Initial" class="display_none" onclick="clickButton(this);" >
+<input type="submit" id="updateAgentNotifyHidden" name="updateAgentNotifyHidden" formaction="/AMA04/aZG101UpdateAgentNotify" class="display_none" onclick="clickButton(this);" >
+<input type="submit" id="downloadFileHidden" name="downloadFileHidden" formaction="/AMA04/aZG101DownloadFile" class="display_none" onclick="clickButton(this);" >
+<input type="submit" id="printInvoicePDFHidden" name="printInvoicePDFHidden" formaction="/AMA04/aZG101PrintInvoicePDF" class="display_none" onclick="clickButton(this);sdeDisableCheckSubmitOnce();" >
+<input type="submit" id="updateBusinessNotifyHidden" name="updateBusinessNotifyHidden" formaction="/AMA04/aZG101UpdateBusinessNotify" class="display_none" onclick="clickButton(this);">
+<iframe name="agentNotifyFrame" id="agentNotifyFrame" class="visibility_hidden" width="0" height="0" tabindex="-1" onload="loadAgentNotify();">
+</iframe>
+
+
+
+
+
+<!-- mock: server-rendered list rows (0..19) -->
+<!-- mock: tableRecordList display-state fields read by AMA04 js (0..19) -->
+<input type="hidden" name="tableRecordList[0].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[0].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[0].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[0].answer_message" value="">
+<input type="hidden" name="tableRecordList[0].answer_contents" value="">
+<input type="hidden" name="tableRecordList[0].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[1].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[1].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[1].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[1].answer_message" value="">
+<input type="hidden" name="tableRecordList[1].answer_contents" value="">
+<input type="hidden" name="tableRecordList[1].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[2].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[2].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[2].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[2].answer_message" value="">
+<input type="hidden" name="tableRecordList[2].answer_contents" value="">
+<input type="hidden" name="tableRecordList[2].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[3].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[3].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[3].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[3].answer_message" value="">
+<input type="hidden" name="tableRecordList[3].answer_contents" value="">
+<input type="hidden" name="tableRecordList[3].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[4].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[4].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[4].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[4].answer_message" value="">
+<input type="hidden" name="tableRecordList[4].answer_contents" value="">
+<input type="hidden" name="tableRecordList[4].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[5].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[5].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[5].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[5].answer_message" value="">
+<input type="hidden" name="tableRecordList[5].answer_contents" value="">
+<input type="hidden" name="tableRecordList[5].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[6].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[6].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[6].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[6].answer_message" value="">
+<input type="hidden" name="tableRecordList[6].answer_contents" value="">
+<input type="hidden" name="tableRecordList[6].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[7].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[7].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[7].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[7].answer_message" value="">
+<input type="hidden" name="tableRecordList[7].answer_contents" value="">
+<input type="hidden" name="tableRecordList[7].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[8].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[8].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[8].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[8].answer_message" value="">
+<input type="hidden" name="tableRecordList[8].answer_contents" value="">
+<input type="hidden" name="tableRecordList[8].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[9].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[9].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[9].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[9].answer_message" value="">
+<input type="hidden" name="tableRecordList[9].answer_contents" value="">
+<input type="hidden" name="tableRecordList[9].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[10].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[10].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[10].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[10].answer_message" value="">
+<input type="hidden" name="tableRecordList[10].answer_contents" value="">
+<input type="hidden" name="tableRecordList[10].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[11].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[11].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[11].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[11].answer_message" value="">
+<input type="hidden" name="tableRecordList[11].answer_contents" value="">
+<input type="hidden" name="tableRecordList[11].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[12].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[12].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[12].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[12].answer_message" value="">
+<input type="hidden" name="tableRecordList[12].answer_contents" value="">
+<input type="hidden" name="tableRecordList[12].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[13].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[13].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[13].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[13].answer_message" value="">
+<input type="hidden" name="tableRecordList[13].answer_contents" value="">
+<input type="hidden" name="tableRecordList[13].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[14].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[14].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[14].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[14].answer_message" value="">
+<input type="hidden" name="tableRecordList[14].answer_contents" value="">
+<input type="hidden" name="tableRecordList[14].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[15].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[15].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[15].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[15].answer_message" value="">
+<input type="hidden" name="tableRecordList[15].answer_contents" value="">
+<input type="hidden" name="tableRecordList[15].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[16].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[16].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[16].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[16].answer_message" value="">
+<input type="hidden" name="tableRecordList[16].answer_contents" value="">
+<input type="hidden" name="tableRecordList[16].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[17].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[17].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[17].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[17].answer_message" value="">
+<input type="hidden" name="tableRecordList[17].answer_contents" value="">
+<input type="hidden" name="tableRecordList[17].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[18].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[18].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[18].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[18].answer_message" value="">
+<input type="hidden" name="tableRecordList[18].answer_contents" value="">
+<input type="hidden" name="tableRecordList[18].inquiry_contents_name" value="1">
+<input type="hidden" name="tableRecordList[19].agent_inquiry_flag" value="1">
+<input type="hidden" name="tableRecordList[19].inquiry_contents_edit_flag" value="0">
+<input type="hidden" name="tableRecordList[19].exclude_receipt_flag" value="0">
+<input type="hidden" name="tableRecordList[19].answer_message" value="">
+<input type="hidden" name="tableRecordList[19].answer_contents" value="">
+<input type="hidden" name="tableRecordList[19].inquiry_contents_name" value="1">
+
+<input type="hidden" name="list[0].answer_message">
+<input type="hidden" name="list[0].dd" value="1">
+<input type="hidden" name="list[0].disabled_flag" value="0">
+<input type="checkbox" name="list[0].exclude_receipt_flag">
+<input type="hidden" name="list[0].field_code" value="T0">
+<input type="hidden" name="list[0].imperfect_code" value="T0">
+<input type="hidden" name="list[0].imperfect_id" value="1">
+<input type="checkbox" name="list[0].inquiry_contents_edit_flag">
+<input type="hidden" name="list[0].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[0].internal_code" value="0">
+<input type="hidden" name="list[0].layout_type" value="A">
+<input type="button" name="imperfectSearch[0]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[0]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[0]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[1].answer_message">
+<input type="hidden" name="list[1].dd" value="1">
+<input type="hidden" name="list[1].disabled_flag" value="0">
+<input type="checkbox" name="list[1].exclude_receipt_flag">
+<input type="hidden" name="list[1].field_code" value="T0">
+<input type="hidden" name="list[1].imperfect_code" value="T0">
+<input type="hidden" name="list[1].imperfect_id" value="1">
+<input type="checkbox" name="list[1].inquiry_contents_edit_flag">
+<input type="hidden" name="list[1].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[1].internal_code" value="0">
+<input type="hidden" name="list[1].layout_type" value="A">
+<input type="button" name="imperfectSearch[1]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[1]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[1]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[2].answer_message">
+<input type="hidden" name="list[2].dd" value="1">
+<input type="hidden" name="list[2].disabled_flag" value="0">
+<input type="checkbox" name="list[2].exclude_receipt_flag">
+<input type="hidden" name="list[2].field_code" value="T0">
+<input type="hidden" name="list[2].imperfect_code" value="T0">
+<input type="hidden" name="list[2].imperfect_id" value="1">
+<input type="checkbox" name="list[2].inquiry_contents_edit_flag">
+<input type="hidden" name="list[2].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[2].internal_code" value="0">
+<input type="hidden" name="list[2].layout_type" value="A">
+<input type="button" name="imperfectSearch[2]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[2]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[2]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[3].answer_message">
+<input type="hidden" name="list[3].dd" value="1">
+<input type="hidden" name="list[3].disabled_flag" value="0">
+<input type="checkbox" name="list[3].exclude_receipt_flag">
+<input type="hidden" name="list[3].field_code" value="T0">
+<input type="hidden" name="list[3].imperfect_code" value="T0">
+<input type="hidden" name="list[3].imperfect_id" value="1">
+<input type="checkbox" name="list[3].inquiry_contents_edit_flag">
+<input type="hidden" name="list[3].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[3].internal_code" value="0">
+<input type="hidden" name="list[3].layout_type" value="A">
+<input type="button" name="imperfectSearch[3]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[3]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[3]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[4].answer_message">
+<input type="hidden" name="list[4].dd" value="1">
+<input type="hidden" name="list[4].disabled_flag" value="0">
+<input type="checkbox" name="list[4].exclude_receipt_flag">
+<input type="hidden" name="list[4].field_code" value="T0">
+<input type="hidden" name="list[4].imperfect_code" value="T0">
+<input type="hidden" name="list[4].imperfect_id" value="1">
+<input type="checkbox" name="list[4].inquiry_contents_edit_flag">
+<input type="hidden" name="list[4].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[4].internal_code" value="0">
+<input type="hidden" name="list[4].layout_type" value="A">
+<input type="button" name="imperfectSearch[4]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[4]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[4]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[5].answer_message">
+<input type="hidden" name="list[5].dd" value="1">
+<input type="hidden" name="list[5].disabled_flag" value="0">
+<input type="checkbox" name="list[5].exclude_receipt_flag">
+<input type="hidden" name="list[5].field_code" value="T0">
+<input type="hidden" name="list[5].imperfect_code" value="T0">
+<input type="hidden" name="list[5].imperfect_id" value="1">
+<input type="checkbox" name="list[5].inquiry_contents_edit_flag">
+<input type="hidden" name="list[5].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[5].internal_code" value="0">
+<input type="hidden" name="list[5].layout_type" value="A">
+<input type="button" name="imperfectSearch[5]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[5]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[5]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[6].answer_message">
+<input type="hidden" name="list[6].dd" value="1">
+<input type="hidden" name="list[6].disabled_flag" value="0">
+<input type="checkbox" name="list[6].exclude_receipt_flag">
+<input type="hidden" name="list[6].field_code" value="T0">
+<input type="hidden" name="list[6].imperfect_code" value="T0">
+<input type="hidden" name="list[6].imperfect_id" value="1">
+<input type="checkbox" name="list[6].inquiry_contents_edit_flag">
+<input type="hidden" name="list[6].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[6].internal_code" value="0">
+<input type="hidden" name="list[6].layout_type" value="A">
+<input type="button" name="imperfectSearch[6]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[6]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[6]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[7].answer_message">
+<input type="hidden" name="list[7].dd" value="1">
+<input type="hidden" name="list[7].disabled_flag" value="0">
+<input type="checkbox" name="list[7].exclude_receipt_flag">
+<input type="hidden" name="list[7].field_code" value="T0">
+<input type="hidden" name="list[7].imperfect_code" value="T0">
+<input type="hidden" name="list[7].imperfect_id" value="1">
+<input type="checkbox" name="list[7].inquiry_contents_edit_flag">
+<input type="hidden" name="list[7].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[7].internal_code" value="0">
+<input type="hidden" name="list[7].layout_type" value="A">
+<input type="button" name="imperfectSearch[7]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[7]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[7]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[8].answer_message">
+<input type="hidden" name="list[8].dd" value="1">
+<input type="hidden" name="list[8].disabled_flag" value="0">
+<input type="checkbox" name="list[8].exclude_receipt_flag">
+<input type="hidden" name="list[8].field_code" value="T0">
+<input type="hidden" name="list[8].imperfect_code" value="T0">
+<input type="hidden" name="list[8].imperfect_id" value="1">
+<input type="checkbox" name="list[8].inquiry_contents_edit_flag">
+<input type="hidden" name="list[8].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[8].internal_code" value="0">
+<input type="hidden" name="list[8].layout_type" value="A">
+<input type="button" name="imperfectSearch[8]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[8]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[8]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[9].answer_message">
+<input type="hidden" name="list[9].dd" value="1">
+<input type="hidden" name="list[9].disabled_flag" value="0">
+<input type="checkbox" name="list[9].exclude_receipt_flag">
+<input type="hidden" name="list[9].field_code" value="T0">
+<input type="hidden" name="list[9].imperfect_code" value="T0">
+<input type="hidden" name="list[9].imperfect_id" value="1">
+<input type="checkbox" name="list[9].inquiry_contents_edit_flag">
+<input type="hidden" name="list[9].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[9].internal_code" value="0">
+<input type="hidden" name="list[9].layout_type" value="A">
+<input type="button" name="imperfectSearch[9]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[9]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[9]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[10].answer_message">
+<input type="hidden" name="list[10].dd" value="1">
+<input type="hidden" name="list[10].disabled_flag" value="0">
+<input type="checkbox" name="list[10].exclude_receipt_flag">
+<input type="hidden" name="list[10].field_code" value="T0">
+<input type="hidden" name="list[10].imperfect_code" value="T0">
+<input type="hidden" name="list[10].imperfect_id" value="1">
+<input type="checkbox" name="list[10].inquiry_contents_edit_flag">
+<input type="hidden" name="list[10].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[10].internal_code" value="0">
+<input type="hidden" name="list[10].layout_type" value="A">
+<input type="button" name="imperfectSearch[10]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[10]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[10]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[11].answer_message">
+<input type="hidden" name="list[11].dd" value="1">
+<input type="hidden" name="list[11].disabled_flag" value="0">
+<input type="checkbox" name="list[11].exclude_receipt_flag">
+<input type="hidden" name="list[11].field_code" value="T0">
+<input type="hidden" name="list[11].imperfect_code" value="T0">
+<input type="hidden" name="list[11].imperfect_id" value="1">
+<input type="checkbox" name="list[11].inquiry_contents_edit_flag">
+<input type="hidden" name="list[11].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[11].internal_code" value="0">
+<input type="hidden" name="list[11].layout_type" value="A">
+<input type="button" name="imperfectSearch[11]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[11]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[11]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[12].answer_message">
+<input type="hidden" name="list[12].dd" value="1">
+<input type="hidden" name="list[12].disabled_flag" value="0">
+<input type="checkbox" name="list[12].exclude_receipt_flag">
+<input type="hidden" name="list[12].field_code" value="T0">
+<input type="hidden" name="list[12].imperfect_code" value="T0">
+<input type="hidden" name="list[12].imperfect_id" value="1">
+<input type="checkbox" name="list[12].inquiry_contents_edit_flag">
+<input type="hidden" name="list[12].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[12].internal_code" value="0">
+<input type="hidden" name="list[12].layout_type" value="A">
+<input type="button" name="imperfectSearch[12]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[12]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[12]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[13].answer_message">
+<input type="hidden" name="list[13].dd" value="1">
+<input type="hidden" name="list[13].disabled_flag" value="0">
+<input type="checkbox" name="list[13].exclude_receipt_flag">
+<input type="hidden" name="list[13].field_code" value="T0">
+<input type="hidden" name="list[13].imperfect_code" value="T0">
+<input type="hidden" name="list[13].imperfect_id" value="1">
+<input type="checkbox" name="list[13].inquiry_contents_edit_flag">
+<input type="hidden" name="list[13].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[13].internal_code" value="0">
+<input type="hidden" name="list[13].layout_type" value="A">
+<input type="button" name="imperfectSearch[13]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[13]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[13]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[14].answer_message">
+<input type="hidden" name="list[14].dd" value="1">
+<input type="hidden" name="list[14].disabled_flag" value="0">
+<input type="checkbox" name="list[14].exclude_receipt_flag">
+<input type="hidden" name="list[14].field_code" value="T0">
+<input type="hidden" name="list[14].imperfect_code" value="T0">
+<input type="hidden" name="list[14].imperfect_id" value="1">
+<input type="checkbox" name="list[14].inquiry_contents_edit_flag">
+<input type="hidden" name="list[14].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[14].internal_code" value="0">
+<input type="hidden" name="list[14].layout_type" value="A">
+<input type="button" name="imperfectSearch[14]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[14]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[14]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[15].answer_message">
+<input type="hidden" name="list[15].dd" value="1">
+<input type="hidden" name="list[15].disabled_flag" value="0">
+<input type="checkbox" name="list[15].exclude_receipt_flag">
+<input type="hidden" name="list[15].field_code" value="T0">
+<input type="hidden" name="list[15].imperfect_code" value="T0">
+<input type="hidden" name="list[15].imperfect_id" value="1">
+<input type="checkbox" name="list[15].inquiry_contents_edit_flag">
+<input type="hidden" name="list[15].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[15].internal_code" value="0">
+<input type="hidden" name="list[15].layout_type" value="A">
+<input type="button" name="imperfectSearch[15]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[15]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[15]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[16].answer_message">
+<input type="hidden" name="list[16].dd" value="1">
+<input type="hidden" name="list[16].disabled_flag" value="0">
+<input type="checkbox" name="list[16].exclude_receipt_flag">
+<input type="hidden" name="list[16].field_code" value="T0">
+<input type="hidden" name="list[16].imperfect_code" value="T0">
+<input type="hidden" name="list[16].imperfect_id" value="1">
+<input type="checkbox" name="list[16].inquiry_contents_edit_flag">
+<input type="hidden" name="list[16].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[16].internal_code" value="0">
+<input type="hidden" name="list[16].layout_type" value="A">
+<input type="button" name="imperfectSearch[16]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[16]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[16]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[17].answer_message">
+<input type="hidden" name="list[17].dd" value="1">
+<input type="hidden" name="list[17].disabled_flag" value="0">
+<input type="checkbox" name="list[17].exclude_receipt_flag">
+<input type="hidden" name="list[17].field_code" value="T0">
+<input type="hidden" name="list[17].imperfect_code" value="T0">
+<input type="hidden" name="list[17].imperfect_id" value="1">
+<input type="checkbox" name="list[17].inquiry_contents_edit_flag">
+<input type="hidden" name="list[17].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[17].internal_code" value="0">
+<input type="hidden" name="list[17].layout_type" value="A">
+<input type="button" name="imperfectSearch[17]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[17]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[17]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[18].answer_message">
+<input type="hidden" name="list[18].dd" value="1">
+<input type="hidden" name="list[18].disabled_flag" value="0">
+<input type="checkbox" name="list[18].exclude_receipt_flag">
+<input type="hidden" name="list[18].field_code" value="T0">
+<input type="hidden" name="list[18].imperfect_code" value="T0">
+<input type="hidden" name="list[18].imperfect_id" value="1">
+<input type="checkbox" name="list[18].inquiry_contents_edit_flag">
+<input type="hidden" name="list[18].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[18].internal_code" value="0">
+<input type="hidden" name="list[18].layout_type" value="A">
+<input type="button" name="imperfectSearch[18]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[18]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[18]" value="修" onclick="popupAZG902(this);">
+<input type="hidden" name="list[19].answer_message">
+<input type="hidden" name="list[19].dd" value="1">
+<input type="hidden" name="list[19].disabled_flag" value="0">
+<input type="checkbox" name="list[19].exclude_receipt_flag">
+<input type="hidden" name="list[19].field_code" value="T0">
+<input type="hidden" name="list[19].imperfect_code" value="T0">
+<input type="hidden" name="list[19].imperfect_id" value="1">
+<input type="checkbox" name="list[19].inquiry_contents_edit_flag">
+<input type="hidden" name="list[19].inquiry_contents_id" value="T007">
+<input type="hidden" name="list[19].internal_code" value="0">
+<input type="hidden" name="list[19].layout_type" value="A">
+<input type="button" name="imperfectSearch[19]" value="検索" onclick="popupAZG900(this);">
+<input type="button" name="imperfectClear[19]" value="CL" onclick="imperfectClear(this);">
+<input type="button" name="editInquiryContents[19]" value="修" onclick="popupAZG902(this);">
+
+<input type="button" name="delete_file_0" value="削除">
+<input type="button" name="delete_file_1" value="削除">
+<input type="button" name="delete_file_2" value="削除">
+<input type="button" name="delete_file_3" value="削除">
+<input type="button" name="delete_file_4" value="削除">
+
+<!-- mock fields -->
+<input type="hidden" name="tableRecordUploadList[0].open_file" value="">
+<input type="hidden" name="tableRecordUploadList[0].file_name" value="">
+<input type="hidden" name="tableRecordUploadList[1].open_file" value="">
+<input type="hidden" name="tableRecordUploadList[1].file_name" value="">
+<input type="hidden" name="tableRecordUploadList[2].open_file" value="">
+<input type="hidden" name="tableRecordUploadList[2].file_name" value="">
+<input type="hidden" name="tableRecordUploadList[3].open_file" value="">
+<input type="hidden" name="tableRecordUploadList[3].file_name" value="">
+<input type="hidden" name="tableRecordUploadList[4].open_file" value="">
+<input type="hidden" name="tableRecordUploadList[4].file_name" value="">
+
+<select name="list[0].answer_contents.selected"></select>
+<select name="list[1].answer_contents.selected"></select>
+<input name="list[0].answer_message" value="">
+<input name="list[1].answer_message" value="">
+</form>
+
+<script>
+/* mock shim: stand in for server-rendered list fields so the page's own JS
+   (written against a fully rendered list) does not crash on the flat view. */
+(function () {
+  var form = document.mhk_MHKPRForm;
+  if (!form || form.__mockShimmed) return;
+  var dummyOf = function (name) {
+    var el = document.createElement('input');
+    el.type = 'hidden'; el.name = name; el.value = ''; el.checked = false;
+    el.disabled = false; el.options = { length: 0 };
+    return el;
+  };
+  form.__mockShimmed = true;
+  // named access via form['name'] goes through elements collection:
+  var handler = {
+    get: function (target, prop) {
+      if (prop in target) return target[prop];
+      var v = target[prop];
+      if (v === undefined && typeof prop === 'string') {
+        var d = dummyOf(prop); target[prop] = d; return d;
+      }
+      return v;
+    }
+  };
+  try { Object.defineProperty(form, 'elements', { value: new Proxy(form.elements, handler) }); } catch (e) {}
+})();
+</script>
+
+</body>
+
+</html>

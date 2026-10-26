@@ -1,0 +1,127 @@
+body, th, td, input, select, textarea, div	{ font-size:10pt; }
+input, select { height:20px; line-height:20px; }
+#main	{ width:900px; height:635px; }
+/* ヘッダー */
+.area_head	{ width:100%; height:63px; }
+.size_head_logo	{ width:144px;height:60px; }
+.size_head_title	{ width:535px; height:100%; }
+.cell_head_title_font_size	{ font-size:15pt; }
+.size_head_sysinfo	{ font-size:9pt;width:220px;height:100%; }
+/* エラーメッセージ */
+.block_msg_size	{ line-height:16px; height:16px; }
+/* 一覧画面-業務エリア */
+.area_gyoumu	{ width:900px; height:530px; }
+.block_open_btn { width:100%; height:28px; margin:4px 0; }
+.block_open_info { width:100%; height:175px; }
+
+.block_gyoumu_scrcoll_size	{ height:284px;margin-bottom:4px; }
+.block_answer_scrcoll_size	{ height:245px;margin-bottom:4px; }
+.size_width_scroll_gyoumu { width:100%; } /* 885px */
+.size_width_scroll_answer { width:866px; }
+
+.size_tableRecord_no	{ width:25px; }
+.size_field_name	{ width:220px; }
+.size_contents_name	{ width:640px; }
+.size_answer_select { width:100%; }
+
+.size_memo_title { width:120px; height:84px; align-content:center; }
+.size_memo_value { width:765px; height:84px; }
+
+.size_ag_confirm_area { grid:22px 55px / 1fr 1fr;margin-top:10px; }
+
+.size_tbl_result_colgroup > col:nth-child(1) { width: 25px; }
+.size_tbl_result_colgroup > col:nth-child(2) { width: 100px; }
+.size_tbl_result_colgroup > col:nth-child(3) { width: 120px; }
+.size_tbl_result_colgroup > col:nth-child(4) { width: 624px; }
+
+div.size_block_search	{ width:900px; height:124px;  }
+table.tbl_search_size	{ width:900px; height:100%;  }
+td.size_search_col01	{ width:99px; }
+td.size_search_col02	{ width:126px; }
+input.size_agent_code	{ width:50px;  }
+input.size_input_col02	{ width:120px; }
+select.size_select_col02	{ width:124px; }
+td.size_search_col03	{ width:81px; }
+td.size_search_col04	{ width:156px; }
+select.size_select_col04	{ width:154px; }
+td.size_search_col05	{ width:83px; }
+td.size_search_col06	{ width:124px; }
+input.size_input_col06	{ width:118px; }
+td.size_search_col07	{ width:98px; }
+td.size_search_col08	{ width:124px; }
+input.size_input_col08	{ width:118px; }
+input.size_year	{ width:40px;  }
+input.size_month_day	{ width:20px;  }
+.size_width_100per  { width:100%; }
+.btn_type_normal	{ width:80px; height:28px;margin:0px;padding:0px; }
+.btn_type_mailcopy	{ width:90px; height:28px;margin:0px;padding:0px; }
+div.block_execute	{ width:900px; height:54px;  }
+td.size_csv_col01	{ width:11%;  }
+td.size_csv_col02	{ width:41%;  }
+td.size_csv_col03	{ width:24%;  }
+td.size_csv_col04	{ width:14%;  }
+td.size_csv_col05	{ width:10%;  }
+div.block_result_title	{ width:870px; height:36px;  }
+tr.size_title_row	{ height:36px;  }
+tr.size_result_height	{ line-height:24px;height:24px;  }
+td.size_result_col01	{ width:25px; }
+td.size_result_col02	{ width:50px; }
+td.size_result_col03	{ width:50px; }
+td.size_result_col04	{ width:100px; }
+td.size_result_col05	{ width:78px; }
+td.size_result_col06	{ width:95px; }
+td.size_result_col07	{ width:46px; }
+td.size_result_col08	{ width:160px; }
+td.size_result_col09	{ width:56px; }
+td.size_result_col10	{ width:85px; }
+td.size_result_col11	{ width:85px; }
+td.size_result_col12	{ width:40px; }
+div.block_result_scrcoll_size	{ width:900px; height:340px;  }
+table.size_result_list { width:870px; }
+div.area_btn	{ width:100%; height:32px; bottom:0px;left:0px;position:absolute; }
+table.size_tbl_btn	{ width:100%; height:100%;  }
+td.size_btn_left	{ width:40%;  }
+td.size_btn_center	{ width:25%;  }
+td.size_btn_right	{ width:10%;  }
+span.cell_span_width { width:15px; }
+.size_height_default	{ height:24px;  }
+td.size_code { width:50px; }
+td.size_checkbox { width:20px; }
+td.size_title { width:80px; }
+input.size_checkbox { height:18px;width:12px; }
+td.size_status01{ width:70px; }
+td.size_status02{ width:70px; }
+td.size_status03{ width:130px; }
+/* 回答画面 */
+td.size_btn_openclose { height:28px; }
+.btn_type_openclose	{ width:120px; height:28px; margin:0px; padding:0px; }
+.btn_type_othersys	{ width:205px; height:30px; margin:0px; padding:0px; }
+.btn_type_gyoumu	{ width:140px; height:26px; margin:0px; padding:0px; }
+.btn_upload_del { width:44px; }
+.size_width_twoTable01	{ width:470px; }
+.size_width_twoTable02	{ width:430px; }
+.size_width_infoTable01	{ width:202px; }
+.size_width_infoTable02	{ width:252px; }
+.size_width_space	{ width:10px; }
+.size_width_title01	{ width:80px;  }
+.size_width_title02	{ width:110px;  }
+.size_width_value01	{ width:122px;  }
+.size_width_value02	{ width:142px;  }
+.size_width_fieldId	{ width:264px;  }
+.size_height_btn	{ height:75px;  }
+.size_height_btn2	{ height:25px;  }
+/* 照会内容 */
+.size_tableRecord_row { height: 44px; }
+.size_answer_msg_row { height:30px;  }
+.size_answer_title { width :100px; }
+.size_width_half	{ width:50%;  }
+.size_teisei_btn_row { height:30px; }
+.size_upload_col01	{ width:221px; }
+.size_upload_col02	{ width:63px;  }
+.size_upload_col03	{ width:122px; }
+.size_upload_col04	{ width:105px; }
+.size_upload_col05	{ width:320px; }
+.size_upload_col06	{ width:44px;  }
+.dummy_input_file	{ width:100%;  }
+.size_dummy_file_button { width:109.31px;height:24px;padding:1px 6px;margin:0 4px 0 0; }
+.size_dummy_file_label { height:24px; }

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
+<base target="_self"/>
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script>
+
+function bodyOnload() {
+	commonBodyOnload();
+
+	var form = document.mhk_MHKPRForm;
+
+	// 検索結果0件、または100件を超える場合
+	if ((parseInt("1") == 0 || parseInt("1") > 99)
+			&& form.section_mail_send_flag.value == "1") {
+		document.getElementById("sendCount").style.backgroundColor= "#ffff00";
+		document.getElementById("sendCount").style.color = "#ff0000";
+		document.getElementById("sendCount").style.fontWeight = "bold";
+	}
+
+	if (form.prevPage) {
+		// 前頁ボタン制御(ページ番号 > 1のみ表示)
+		if ( parseInt(form.page_no.value) > 1 ) {
+			form.prevPage.style.visibility = "visible";
+		} else {
+			form.prevPage.style.visibility = "hidden";
+		}
+
+		// 次ページボタン制御(ページ番号 > 1のみ表示)
+		if ( parseInt(form.total_page.value) > parseInt(form.page_no.value) ) {
+			form.nextPage.style.visibility = "visible";
+		} else {
+			form.nextPage.style.visibility = "hidden";
+		}
+	}
+
+	// メール通知要否切り替え
+	changeMailSend();
+}
+
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+//検索のバリデート
+function searchValidate(form) {
+
+  // 課支社CD
+  if (!isRequired(form, form.section_code, '') ||
+	 !isMinLenB(form, form.section_code, 5, '') ||
+     !isAlphaNumeric(form, form.section_code, '') ) {
+    return false;
+  } else {
+	return true;
+  }
+
+}
+
+function custom_Submit(form) {
+
+	var  form = document.mhk_MHKPRForm;
+
+	// 検索ボタン押下時
+	if (clickButtonName == 'search') {
+		if (searchValidate(form)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+	// 所属課支社別メール通知一覧の値をinputHiddenに退避
+	var sectionUserMailSendFlagParam = "";
+	var sectionUserIdParam = "";
+
+	var i = 0;
+
+	while (document.getElementById("sectionUser:user_mail_send_flag_" + i)) {
+		if (sectionUserMailSendFlagParam) {
+			sectionUserMailSendFlagParam += ',';
+			sectionUserIdParam += ',';
+		}
+		sectionUserMailSendFlagParam += document.getElementById("sectionUser:user_mail_send_flag_" + i).checked ? '1' : '0';
+		sectionUserIdParam += document.getElementById("sectionUser:user_id_" + i).value;
+
+		i++;
+	}
+
+	document.getElementById("sectionUser_user_mail_send_flag").value = sectionUserMailSendFlagParam;
+	document.getElementById("sectionUser_user_id").value = sectionUserIdParam;
+
+	// 個別メール通知一覧の値をinputHiddenに退避
+	var addUserMailSendFlagParam = "";
+	var addSectionCodeParam = "";
+	var addUserNameParam = "";
+	var addUserIdParam = "";
+
+	i = 0;
+
+
+	while (document.getElementById("addUser:user_mail_send_flag_" + i)) {
+		if (addUserMailSendFlagParam) {
+			addUserMailSendFlagParam += ',';
+			addSectionCodeParam += ',';
+			addUserNameParam += ',';
+			addUserIdParam += ',';
+		}
+		addUserMailSendFlagParam += document.getElementById("addUser:user_mail_send_flag_" + i).checked ? '1' : '0';
+		addSectionCodeParam += document.getElementById("addUser:section_code_" + i).value;
+		addUserNameParam += document.getElementById("addUser:user_name_" + i).value;
+		addUserIdParam += document.getElementById("addUser:user_id_" + i).value;
+
+		i++;
+	}
+
+	document.getElementById("addUser_user_mail_send_flag").value = addUserMailSendFlagParam;
+	document.getElementById("addUser_section_code").value = addSectionCodeParam;
+	document.getElementById("addUser_user_name").value = addUserNameParam;
+	document.getElementById("addUser_user_id").value = addUserIdParam;
+
+	return true;
+}
+
+// 個別メール通知先画面POPUP表示
+function searchUser() {
+
+	// 子画面開閉チェック
+	subWinOpenCheck();
+
+	var url = new URL('', window.location.origin);
+
+	showPopup(url.href, "AMA27", "1");
+}
+
+// メール通知要否切り替え
+function changeMailSend() {
+	var form = document.mhk_MHKPRForm;
+
+	if (form.section_mail_send_flag_radio) {
+		// ラジオボタンで選択中の値を取得する
+		var sectionMailSendFlag = getRadioSelectedValue(form.section_mail_send_flag_radio);
+
+		form.section_mail_send_flag.value = sectionMailSendFlag;
+
+		var disabledFlag = (sectionMailSendFlag == "0");
+
+		if(form.all_select){
+			// 全選択
+			document.getElementById("all_select").disabled = disabledFlag;
+			// 全解除
+			document.getElementById("all_clear").disabled = disabledFlag;
+		}
+		// 追加
+		document.getElementById("add_user").disabled = disabledFlag;
+
+		// 所属課支社別メール通知先一覧
+		var i = 0;
+		while (document.getElementById("sectionUser:user_mail_send_flag_" + i)) {
+			document.getElementById("sectionUser:user_mail_send_flag_" + i).disabled = disabledFlag;
+			i++;
+		}
+
+		// 個別メール通知先一覧
+		i = 0;
+		while (document.getElementById("addUser:user_mail_send_flag_" + i)) {
+			document.getElementById("addUser:user_mail_send_flag_" + i).disabled = disabledFlag;
+			i++;
+		}
+
+		// メール通知を否にしたとき子画面開閉チェックを行う
+		if(disabledFlag) {
+			subWinOpenCheck();
+		}
+	}
+
+}
+
+function change_all_flags() {
+	var i = 0;
+	// 全選択／全解除ボタン押下
+	if (clickButtonName == 'all_select') {
+
+		while (document.getElementById("sectionUser:user_mail_send_flag_" + i)) {
+			document.getElementById("sectionUser:user_mail_send_flag_" + i).checked = "checked";
+			i++;
+		}
+	} else if (clickButtonName == 'all_clear') {
+
+		while (document.getElementById("sectionUser:user_mail_send_flag_" + i)) {
+			document.getElementById("sectionUser:user_mail_send_flag_" + i).checked = null;
+			i++;
+		}
+
+	}
+}
+</script>
+</head>
+<body class="body_common" onload="bodyOnload();">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG207(this,null);" >
+<input type="hidden" />
+<input type="hidden" name="mhk_MHKPRForm" value="mhk_MHKPRForm" />
+  <!--/* タイトルエリア */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img class="title_logo" src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br/>
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA26" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA26" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <!--/* 業務エリア */-->
+  <div id="gyoumu_area" class="wrapper26 gyoumu_area">
+    <div class="item">
+      <div class="gyoumu_field_title"> 部店課支社ｺｰﾄﾞ </div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="section_code" name="section_code" class="gyoumu_field_control" maxlength="6" onblur="toUpper(this);">
+      </div>
+      <div class="gyoumu_field_value">
+        <div class="search_button">
+          <input type="submit" id="search" name="search" class="gyoumu_field_control" value="検索" onclick="clickButton(this)" formaction="/AMA26/aZG207Select">
+        </div>
+      </div>
+      <div class="gyoumu_field_value_left">
+        1
+      </div>
+    </div>
+
+    <div class="item separator"></div>
+
+    <!--/* 検索後に表示 */-->
+    
+
+    <div class="item">
+      <div class="gyoumu_field_title"> メール通知 </div>
+      <fieldset class="gyoumu_field_value_left">
+        <input type="radio" id="section_mail_send_flag_1" name="section_mail_send_flag_radio" value="1"
+            onclick="changeMailSend()" /><!--
+        --><label>要</label>
+        <input type="radio" id="section_mail_send_flag_0" name="section_mail_send_flag_radio" value="0"
+            onclick="changeMailSend()" /><!--
+        --><label>否</label>
+      </fieldset>
+      <div class="gyoumu_field_title"> 通知件数 </div>
+      <div class="gyoumu_field_value" id="sendCount">
+        1
+      </div>
+      <input type="hidden" id="section_code_key" name="section_code_key" />
+    </div>
+
+    <div class="item">
+      <span class="color_red">
+        メール通知:否を選択した場合、以下の一覧で通知設定しても、営業連携時にメールは送信されません。
+      </span>
+    </div>
+
+    <!--/* 一覧エリア */-->
+    <div class="item">
+      <!--/* 業務エリア左側 */-->
+      <div class="text_bold">■所属課支社別メール通知先一覧</div>
+
+      <!--/* 件数が0件の場合 */-->
+      
+        <div class="section_user_list_area color_red">
+          入力された部店課支社ｺｰﾄﾞに所属するユーザは存在しません。
+        </div>
+      
+
+      <!--/* 件数が1件以上の場合 */-->
+      
+        <div class="user_list_area_top">
+          <div class="button_width_45">
+            <input id="all_select" type="button" name="all_select" value="全選択" class="button_area_button" onclick="clickButton(this); change_all_flags()" />
+          </div>
+          <div class="button_width_45">
+            <input id="all_clear" type="button" name="all_clear" value="全解除" class="button_area_button" onclick="clickButton(this); change_all_flags()" />
+          </div>
+          <span class="gyoumu_search_count">
+            1/1ページ　検索結果1件
+          </span>
+        </div>
+
+        <!--/* 所属課支社別メール通知先一覧表 */-->
+        <div class="sticky_table_wrapper size_table26">
+          <table class="sticky_table">
+            <!--/* 固定ヘッダ */-->
+            <thead>
+              <tr class="sticky_table_thead_tr">
+                <th class="sticky_table_title">ﾒｰﾙ<br />通知</th>
+                <th class="sticky_table_title">部課ｺｰﾄﾞ</th>
+                <th class="sticky_table_title">氏名</th>
+              </tr>
+            </thead>
+            <!--/* 一覧表 */-->
+            <tbody>
+              
+                <tr>
+                  <td class="sticky_table_value txt_aln_c">
+                    <input type="checkbox" class="gyoumu_field_control;" />
+                  </td>
+                  <td class="sticky_table_value txt_aln_c">
+                    1
+                  </td>
+                  <td class="sticky_table_value">
+                    1
+                  </td>
+                  <input type="hidden" />
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+
+        <div class="user_list_area_bottom">
+          <div class="button_width_60">
+            <input type="submit" id="prevPage" name="prevPage" class="button_area_button" value="前 頁" onclick="clickButton(this)" formaction="/AMA26/aZG207PrevPage">
+          </div>
+          <div class="button_width_60">
+            <input type="submit" id="nextPage" name="nextPage" class="button_area_button" value="次 頁" onclick="clickButton(this)" formaction="/AMA26/aZG207NextPage">
+          </div>
+        </div>
+      
+
+      <!--/* 業務エリア左側末尾 */-->
+    </div><!--/* 一覧エリア末尾 */-->
+
+    <!--/* 業務エリア右側 */-->
+    <div class="item">
+      <div class="text_bold">■個別メール通知先一覧</div>
+      <div class="user_list_area_top">
+        <div class="button_width_60">
+          <input id="add_user" type="button" name="add_user" value="追加" class="button_area_button" onclick="searchUser();" />
+        </div>
+      </div>
+
+      <!--/* 個別メール通知先一覧 */-->
+      <div class="sticky_table_wrapper size_table26">
+        <table class="sticky_table">
+          <!--/* 固定ヘッダ */-->
+          <thead>
+            <tr class="sticky_table_thead_tr">
+              <th class="sticky_table_title">ﾒｰﾙ<br />通知</th>
+              <th class="sticky_table_title">部課ｺｰﾄﾞ</th>
+              <th class="sticky_table_title">氏名</th>
+            </tr>
+          </thead>
+          <!--/* 一覧表 */-->
+          <tbody id="list_table">
+            
+              <tr>
+                <td class="sticky_table_value txt_aln_c">
+                  <input type="checkbox" />
+                </td>
+                <td class="sticky_table_value txt_aln_c">
+                  1
+                </td>
+                <td class="sticky_table_value">
+                  1
+                </td>
+                <input type="hidden" />
+                <input type="hidden" />
+                <input type="hidden" />
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+    </div><!--/* 業務エリア右側末尾 */-->
+
+    
+  </div>
+
+  <!--/* ボタンエリア */-->
+  <div class="button_area size_button_area26">
+    <div class="button_width_75">
+      <input type="submit" id="act207to001" name="act207to001" class="button_area_button"
+          value="メニュー" onclick="clickButton(this)" formaction="/AMA26/aZG207To01">
+    </div>
+    <div class="button_width_75">
+      
+        <input type="submit" id="update" name="update" class="button_area_button" value="更新" onclick="clickButton(this)"
+            formaction="/AMA26/aZG207Update">
+      
+    </div>
+    <div class="button_width_60">
+      <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+    </div>
+  </div>
+
+  <input type="hidden" id="page_no" name="page_no" />
+  <input type="hidden" id="total_page" name="total_page" />
+  <input type="hidden" id="total_count" name="total_count" />
+  <input type="hidden" id="section_name" name="section_name" />
+  <input type="hidden" id="send_count" name="send_count" />
+
+  <input type="hidden" id="section_mail_send_flag" name="section_mail_send_flag" />
+  <input type="hidden" id="sectionUser_user_mail_send_flag" name="sectionUser_user_mail_send_flag" />
+  <input type="hidden" id="sectionUser_user_id" name="sectionUser_user_id" />
+  <input type="hidden" id="addUser_user_mail_send_flag" name="addUser_user_mail_send_flag" />
+  <input type="hidden" id="addUser_section_code" name="addUser_section_code" />
+  <input type="hidden" id="addUser_user_name" name="addUser_user_name" />
+  <input type="hidden" id="addUser_user_id" name="addUser_user_id" />
+
+  <input type="submit" id="close" name="close" formaction="/AMA26/close" class="display_none" >
+
+</form>
+</body>
+
+</html>

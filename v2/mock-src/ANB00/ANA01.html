@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/tks.css"/>
+<script type="text/javascript" src="/static/js/tks_common.js"></script>
+<script>
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.tks_TKSPRForm.close, '');
+}
+
+function custom_BodyOnload() {
+	commonBodyOnload();
+
+}
+</script>
+</head>
+<body leftmargin="5" topmargin="0" class="body_common" onload="custom_BodyOnload()">
+<form id="tks_TKSPRForm" name="tks_TKSPRForm" method="post" onsubmit="return submitAYG001(this,null);" >
+
+  <input type="hidden" />
+
+  <!--/* タイトル表示領域 */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" src="/ANB00${commonForm.logoPath}" width="auto" height="32" alt="タイトルロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br />
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="message_area" id="message_area">
+    <div class="message_text">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="ANA01" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="ANA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="ANA01" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <!--/* 業務固有領域 */-->
+  <input type="hidden" id="company_kbn" name="company_kbn"/>
+
+  <div class="menu_area">
+    <div class="item">
+      <input type="submit" id="route2" name="route2" formaction="/ANA02/route2" class="menu_button" value="新規登録" onclick="clickButton(this)">
+    </div>
+    <div class="item">
+      <span>：</span>取消計上申請内容の新規登録
+    </div>
+    <div class="item">
+      <input type="submit" id="route3" name="route3" formaction="/ANA01/route3" class="menu_button" value="照会・検索" onclick="clickButton(this)">
+    </div>
+    <div class="item">
+      <span>：</span>条件を指定して照会・検索　申請依頼・承認も可能
+    </div>
+    <div class="item">
+      <input type="submit" id="route4" name="route4" formaction="/ANA07/route4" class="menu_button" value="申請・承認" onclick="clickButton(this)">
+    </div>
+    <div class="item">
+      <span>：</span>管下の申請・承認案件の一覧表示
+    </div>
+    
+    <!-- MS条件一致時、「集計」そのままHTMLに出力されます -->
+    <div class="item">
+      <input type="submit" id="route5" name="route5" formaction="/ANA01/route5" class="menu_button" value="集計" onclick="clickButton(this)">
+    </div>
+    <div class="item">
+      <span>：</span>条件を指定して集計
+    </div>
+    
+  </div>
+  <div class="menu_explanation_area">
+    
+      <div id="menu_explanation" class="menu_explanation">遡及取消再計上・遡及始期日変更で「異例取扱理由コード［T35］」が「６」に該当する場合、<br/>異例取扱理由の「具体的説明」欄は入力必須です。前月登録分で入力漏れがないか確認してください。</div>
+    
+  </div>
+  <div class="tool_link_font_margin1"><a target="_blank" href="/ANB00${ANA01Form.manual_path}"></a></div>
+  <div class="tool_link_font_margin2"></div>
+  <br/>
+  
+    <div class="tool_link_font_margin1"><a target="_blank" href="/ANB00${ANA01Form.manual_path_marine}"></a></div>
+    <div class="tool_link_font_margin2"></div>
+  
+  <!--/* ボタン部 */-->
+  <div class="button_area">
+    <!--/* 共通ボタン */-->
+    <div class="button_area_navigate"></div>
+    <!--/* 処理実行ボタン */-->
+    <div class="button_area_normal_operation"></div>
+    <!--/* 削除ボタン */-->
+    <div class="button_area_delete_operation"></div>
+    <!--/* 終了ボタン */-->
+    <div class="button_area_end">
+      <div class="button_area_button_length3">
+        <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()"/>
+      </div>
+    </div>
+  </div>
+  <input type="submit" id="close" name="close" formaction="/ANA01/close" style="display:none;" >
+</form>
+</body>
+
+</html>

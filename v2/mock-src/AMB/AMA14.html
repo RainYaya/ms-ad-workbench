@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/static/css/mhk.css"/>
+<base id="AZG901Base" target="_self"/>
+
+<script type="text/javascript" src="/static/js/mhk_common.js"></script>
+<script>
+function initialSelfClick() {
+	var hiddenButton = window.opener.document.mhk_MHKPRForm.initialSelf;
+
+	if(hiddenButton != null) {
+		hiddenButton.click();
+	}
+}
+
+function custom_Load()
+{
+	// ウィンドウの×ボタンを無効化
+	commonPopupBodyOnload();
+
+	// 画面を閉じるときに親画面の再描画を行う
+	window.onbeforeunload = function () {
+		if (clickButtonName != 'CopyClipboard') {
+			initialSelfClick();
+		}
+	};
+
+	var hideGyoumuAreaFlag = document.getElementById('hide_gyoumu_area_flag');
+
+	// 業務エリアを非表示にする場合
+	if(hideGyoumuAreaFlag.value == '1') {
+
+		// 業務エリア
+		var area = document.getElementById('gyoumu_area');
+
+		// 出力ボタン
+		var button = document.getElementById('Print');
+
+		// クリップボードへコピーボタン
+		var copyButton = document.getElementById('CopyClipboard');
+
+		area.style.visibility = 'hidden';
+		button.style.visibility = 'hidden';
+		copyButton.style.visibility = 'hidden';
+
+		return;
+	}
+
+	// 以下、業務エリアを表示する場合
+
+	// 代理店対応＝「照会」の場合の値
+	var FLG_SYOKAI = '1';
+
+	// 代理店対応フラグを取得
+	var agentDealFlag = document.getElementById('agent_deal_flag');
+
+	// 非活性制御（照会・返送票）
+	document.getElementById('report_type_1').disabled = (agentDealFlag.value != FLG_SYOKAI);
+
+	// 非活性制御（照会・返送票　FAX用）
+	document.getElementById('report_type_4').disabled = (agentDealFlag.value != FLG_SYOKAI);
+
+	// 非活性制御（連絡票）
+	document.getElementById('report_type_2').disabled = (agentDealFlag.value == FLG_SYOKAI);
+
+	// 非活性制御（督促票）
+	document.getElementById('report_type_3').disabled = (agentDealFlag.value != FLG_SYOKAI);
+
+	// 非活性制御（督促票　FAX用）
+	document.getElementById('report_type_5').disabled = (agentDealFlag.value != FLG_SYOKAI);
+
+	// 帳票種類　選択状態プリセット
+	var report_type_for_check = document.getElementById('report_type_for_check').value;
+	switch (report_type_for_check) {
+
+	// 照会・返送票
+	case '1':
+		document.getElementById('report_type_1').checked = true;
+		break;
+	// 照会・返送票　FAX用
+	case '4':
+		document.getElementById('report_type_4').checked = true;
+		break;
+	// 連絡票
+	case '2':
+		document.getElementById('report_type_2').checked = true;
+		break;
+	// 督促票
+	case '3':
+		document.getElementById('report_type_3').checked = true;
+		break;
+	// 督促票　FAX用
+	case '5':
+		document.getElementById('report_type_5').checked = true;
+		break;
+	}
+
+	// 非活性制御（回答締切日（督促日））
+	document.getElementById('reminder_date_flag').disabled   = (agentDealFlag.value != FLG_SYOKAI);
+
+	// 非活性制御（照会不要項目）
+	document.getElementById('inquiry_unnecessary_flag').disabled = false;
+
+	// 表示制御（タイトル選択）
+	if (document.getElementById('company_kbn').value == 'AD') {
+		// AD時のみ表示
+		document.getElementById("titleTypeArea").style.display = 'grid';
+		document.getElementById("gyoumu_area").classList.remove = 'wrapper14_ms';
+		document.getElementById("gyoumu_area").classList.add = 'wrapper14_ad';
+
+		// 入力区分が「その他(9)」の場合のみ、「その他不備」を活性化する
+		var INPUT_TYPE_OTHER = '9';
+		if ( document.getElementById('input_type').value == INPUT_TYPE_OTHER ) {
+			document.getElementById('title_type_9').disabled = false;
+		}
+	}
+
+	// 非表示制御（「クリップボードへコピー」ボタン
+	if ( agentDealFlag.value != FLG_SYOKAI ) {
+		// 代理店対応 !=「照会」の場合、「クリップボードへコピー」ボタンを非表示にする
+		document.getElementById('CopyClipboard').style.visibility = "hidden";
+	}
+
+	// クリップボード表示用のデータ取得
+	var clipboardCopyData = document.getElementById('clipboard_data').value;
+
+	// クリップボード表示用のデータあり？
+	if ( clipboardCopyData != '' ) {
+		// ダイアログ表示
+		var onDialog = document.getElementById('onDialog');
+		onDialog.click();
+	}
+}
+
+function custom_Submit(form) {
+	// 親画面終了チェック
+	if (!windowOpenerClosedCheck()) {
+		return false;
+	}
+
+	var tel = document.getElementById("user_tel");
+	var fax = document.getElementById("user_fax");
+	var sectionName = document.getElementById("user_section_name");
+	var messageField = document.getElementById("notification_print_message");
+
+	// TELの半角数字と「-（ハイフン）」チェック
+	if (typeof(tel) != 'undefined') {
+		if ( !isNumericHyphen(form, tel, '') ) {
+			return false;
+		}
+	}
+
+	// FAXの半角数字と「-（ハイフン）」チェック
+	if (typeof(fax) != 'undefined') {
+		if ( !isNumericHyphen(form, fax, '') ) {
+			return false;
+		}
+	}
+
+	// 課支社名の最大バイト数チェック
+	if(!isMaxLenB(form, sectionName, 28, '')) {
+		return false;
+	}
+
+	// 課支社名の記号チェックチェック
+	if(!isProhibitionChar(form, sectionName, '')) {
+
+		return false;
+	}
+
+	// 帳票印刷用　備考・通信欄の最大バイト数チェック
+	if(!isMaxLenB(form, messageField, 1296, '')) {
+		return false;
+	}
+
+	// 帳票印刷用　備考・通信欄の記号チェックチェック
+	if(!isProhibitionChar(form, messageField, '')) {
+
+		return false;
+	}
+
+	// 印刷ボタン押下時
+	if ( clickButtonName == 'Print' ) {
+		// アクティブなボタンからフォーカスをはずす
+		document.activeElement.blur();
+		// ターゲットをダウンロードフレームに変更する
+		AZG901Base.target = "downloadFrame";
+	}
+	// クリップボードへコピーボタン押下時
+	else if ( clickButtonName == 'CopyClipboard' ) {
+		// 確認メッセージを表示
+		if ( !window.confirm('') ) {
+			return false;
+		}
+		// ターゲットを自分自身に変更する
+		AZG901Base.target = "_self";
+	}
+	// その他の場合
+	else {
+		// ターゲットを自分自身に変更する
+		AZG901Base.target = "_self";
+	}
+
+	return true;
+}
+
+function dialogClose() {
+
+	window.close();
+}
+
+// 課支社の情報を表示チェックボックス
+function checkBoxOnclick() {
+    if (document.getElementById('section_Info_flag').checked == true) {
+
+        // 入力情報を退避
+        document.getElementById('tel').value = document.getElementById('user_tel').value;
+        document.getElementById('fax').value = document.getElementById('user_fax').value;
+        document.getElementById('section_name').value = document.getElementById('user_section_name').value;
+
+        document.getElementById('user_tel').value = document.getElementById('treatment_tel').value;
+        document.getElementById('user_fax').value = document.getElementById('treatment_fax').value;
+        document.getElementById('user_section_name').value = document.getElementById('treatment_section_name').value;
+    } else {
+        document.getElementById('user_tel').value = document.getElementById('tel').value;
+        document.getElementById('user_fax').value = document.getElementById('fax').value;
+        document.getElementById('user_section_name').value = document.getElementById('section_name').value;
+    }
+}
+
+// クリップボードにデータコピー
+function copyClipboard() {
+	var clipboardCopyData = document.getElementById('clipboard_data').value;
+	var userAgent = window.navigator.userAgent.toLowerCase();
+
+	// IE
+	if (userAgent.indexOf("msie") != -1 || userAgent.indexOf("trident") != -1) {
+		window.clipboardData.setData('text', clipboardCopyData);
+	// Edge
+	} else if (userAgent.indexOf("edg") != -1 || userAgent.indexOf("edge") != -1) {
+		// HTTP・HTTPS確認
+		if (window.isSecureContext && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(clipboardCopyData);
+		} else {
+			const textarea = document.createElement('textarea');
+			textarea.value = clipboardCopyData;
+			textarea.style.opacity = 0;
+			document.body.appendChild(textarea);
+			textarea.focus();
+			textarea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textarea);
+		}
+	}
+}
+
+// クリップボードへコピー用ダイアログ
+document.addEventListener('DOMContentLoaded', function() {
+	var dialog = document.getElementById('dialog_clipboard');
+	var dialogMsg = ''
+	var clipboardUsableFlag = true;
+
+	if (!navigator.clipboard && !document.execCommand) {
+		dialogMsg = '本環境はクリップボード機能がサポートされていないため、データの作成ができません。';
+		clipboardUsableFlag = false;
+	}
+
+	document.getElementById('dialog_msg').textContent = dialogMsg;
+	dialog.addEventListener('close', (event) => {
+		var dialog = event.target;
+		var returnValue = dialog.returnValue;
+		if (returnValue === 'OK' && clipboardUsableFlag) {
+			copyClipboard();
+		}
+	});
+});
+</script>
+
+</head>
+<body class="popup_body_common" onload="custom_Load()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG901(this,null);" >
+
+<input type="hidden" />
+
+<!--/* 業務画面共通項目 */-->
+<input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+<input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+<input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA14" />
+<input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+<input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+<input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+<input type="hidden" id="gamid"        name="gamid"        value="AMA14" />
+<input type="hidden" id="hubsessid"    name="hubsessid" />
+<input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+<input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+<input type="hidden" id="pfkey"        name="pfkey" />
+<input type="hidden" id="seniType"     name="seniType" />
+<input type="hidden" id="sys_mode"     name="sys_mode" />
+<input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+<input type="hidden" id="application_form_id" name="application_form_id" />
+<input type="hidden" id="complete_date" name="complete_date" />
+<input type="hidden" id="agent_deal_flag" name="agent_deal_flag" />
+<input type="hidden" id="hide_gyoumu_area_flag" name="hide_gyoumu_area_flag" />
+<input type="hidden" id="company_kbn" name="company_kbn" />
+<input type="hidden" id="input_type" name="input_type" />
+<input type="hidden" id="clipboard_data" name="clipboard_data" />
+<input type="hidden" id="report_type_for_check" name="report_type_for_check" />
+<input type="hidden" id="tel" name="tel" />
+<input type="hidden" id="fax" name="fax" />
+<input type="hidden" id="section_name" name="section_name" />
+<input type="hidden" id="treatment_tel" name="treatment_tel" />
+<input type="hidden" id="treatment_fax" name="treatment_fax" />
+<input type="hidden" id="treatment_section_name" name="treatment_section_name" />
+
+	<!--/* メッセージエリア */-->
+	<div id="err_msg" class="popup_message_area">
+		
+		    <ul class="message_area">
+		        <li class="message_area"></li>
+		    </ul>
+		1
+	</div>
+
+	<div id="gyoumu_area">
+		<div id="report_type" class="item">
+			<div class="gyoumu_field_title">帳票種類</div>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="report_type" id="report_type_1" value="1" tabindex="1"/><!--
+				--><label>正しい申込書類の作成についてのお願い（3項目表示）</label>
+			</fieldset>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="report_type" id="report_type_4" value="4" tabindex="2"/><!--
+				--><label>正しい申込書類の作成についてのお願い（2項目表示）</label>
+			</fieldset>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="report_type" id="report_type_2" value="2" tabindex="3"/><!--
+				--><label>申込書類訂正済連絡票</label>
+			</fieldset>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="report_type" id="report_type_3" value="3" tabindex="4"/><!--
+				--><label>正しい申込書類の作成についてのお願い（督促）（3項目表示）</label>
+			</fieldset>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="report_type" id="report_type_5" value="5" tabindex="5"/><!--
+				--><label>正しい申込書類の作成についてのお願い（督促）（2項目表示）</label>
+			</fieldset>
+		</div>
+
+		<div id="titleTypeArea" class="item">
+			<div class="gyoumu_field_title">タイトル選択</div>
+			<fieldset class="gyoumu_field_value_left">
+				<input type="radio" class="" name="title_type" id="title_type_1" value="1" tabindex="6" /><!--
+				--><label>申込書類不備</label>
+				<input type="radio" class="" name="title_type" id="title_type_9" value="9" tabindex="7" disabled="true" /><!--
+				--><label>その他不備</label>
+			</fieldset>
+		</div>
+
+		<div class="item">
+			<div class="gyoumu_field_title">出力項目選択</div>
+			<div class="gyoumu_field_value_left">
+				<input type="checkbox" id="tel_fax_flag" name="tel_fax_flag" value="1" tabindex="8"/>TEL &amp; FAX 1
+				<input type="checkbox" id="insurant_name_flag" name="insurant_name_flag" value="1" tabindex="9"/>契約者名1
+				<input type="checkbox" id="reminder_date_flag" name="reminder_date_flag" value="1" tabindex="10"/>回答締切日（督促日）1
+				<input type="checkbox" id="inquiry_unnecessary_flag" name="inquiry_unnecessary_flag" value="1" tabindex="11"/>照会不要項目1
+				<input type="checkbox" id="field_agent_flag" name="field_agent_flag" value="1" tabindex="12"/>募集人ID &amp; 募集人名1
+			</div>
+		</div>
+
+		<div id="shokai_saki" class="item">
+			<div class="gyoumu_field_title">照会先</div>
+			<div class="gyoumu_field_value_left">
+				<div>
+					1下記「TEL」「FAX」「課支社名」の入力内容が印字されます。(TEL、FAXについては「TEL &amp; FAX」チェック時のみ印字)
+				</div>
+				<div>
+					<input type="checkbox" name="section_Info_flag"  id="section_Info_flag" value="1" onclick="checkBoxOnclick();" tabindex="13"  />
+					
+				</div>
+				<div>
+					1
+					<input type="text" id="user_tel" name="user_tel" class="input_size22" maxlength="16" tabindex="14">
+					1
+					<input type="text" id="user_fax" name="user_fax" class="input_size22" maxlength="16" tabindex="15">
+					1
+					<input type="text" id="user_section_name" name="user_section_name" class="input_size37" maxlength="28" tabindex="16">
+				</div>
+			</div>
+		</div>
+
+		<div id="print_message" class="item">
+			<div class="gyoumu_field_title">帳票印刷用　備考・通信欄　(全角648文字まで)</div>
+			<div id="div_notification_print_message" class="gyoumu_field_value">
+				<textarea id="notification_print_message" name="notification_print_message" class="gyoumu_field_control" tabindex="18"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<!--/* ボタンエリア */-->
+	<div id="ButtonP" class="popup_button_area size_button_area14">
+		<!--/* 共通ボタン */-->
+		<div class="button_width_75">
+			<input type="submit" class="popup_button_area_button" id="Print" name="Print" onclick="clickButton(this);sdeDisableCheckSubmitOnce();"
+				value="帳票出力" formaction="/AMA14/aZG901Print" tabindex="19">
+		</div>
+
+		<div class="button_width_140">
+			<input type="submit" class="popup_button_area_button" id="CopyClipboard" name="CopyClipboard" onclick="clickButton(this)"
+				value="クリップボードへコピー" formaction="/AMA14/aZG901CopyClipboard" tabindex="20">
+		</div>
+
+		<!--/* 終了ボタン */-->
+		<div class="button_width_60">
+			<input type="button" name="ClosePopup" class="popup_button_area_button" value="閉じる" onclick="dialogClose()" tabindex="21"/>
+		</div>
+	</div>
+
+<iframe name="downloadFrame" id="downloadFrame" class="visibility_hidden" width="0" height="0" tabindex="-1"></iframe>
+</form>
+<dialog id="dialog_clipboard">
+	<p id="dialog_msg" class="dialog_msg"></p>
+	<form method="dialog">
+		<div class="dialog_button_area">
+			<button class="dialog_button" value="OK">ＯＫ</button>
+		</div>
+	</form>
+</dialog>
+<input id="onDialog" type="button" class="display_none" onclick="document.getElementById('dialog_clipboard').showModal();" />
+</body>
+
+</html>
