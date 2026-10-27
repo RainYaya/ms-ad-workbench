@@ -32,8 +32,8 @@
 <a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="当前进度-/-下一步">当前进度 / 下一步</h1>
 <blockquote>最后更新：2026-10-27</blockquote>
 <h2 id="一句话（2026-10-27-晚）">一句话（2026-10-27 晚）</h2>
-<p>全量生成跑通了：1,371 本里 124 本可以只靠 <code>auto/confirmed</code> 绑定 + 别紙值直接生成， 132/132 通过 L0（124 生成 + 8 手写）（0 error 且步数 = 手顺行数）；<code>AY-120-08-001</code> 在 mock 上实跑 8 done / 5 pending / 0 failed。剩下 1,249 本不是失败，而是卡在三类明确原因上， 逐本写在 <code>flows/books-status.json</code>；其中 220 条待确认绑定可在 Studio 的 「绑定」页逐条点选。没有一条是"猜"出来的。</p>
-<p>关键修正：<strong>操作行的画面来自 <code>functionName</code> 列向下继承</strong>，不是从 <code>遷移</code> 行反推 （ADR-0006）。这一条把"画面不明"的行从 1,843 降到 0，绑定规则从 455 降到 409。</p>
+<p>全量生成跑通了：1,371 本里 122 本可以只靠 <code>auto/confirmed</code> 绑定 + 别紙值直接生成， 130/130 通过 L0（122 生成 + 8 手写）（0 error 且步数 = 手顺行数）；<code>AY-120-08-001</code> 在 mock 上实跑 8 done / 5 pending / 0 failed。剩下 1,249 本不是失败，而是卡在三类明确原因上， 逐本写在 <code>flows/books-status.json</code>；其中 220 条待确认绑定可在 Studio 的 「绑定」页逐条点选。没有一条是"猜"出来的。</p>
+<p>关键修正：<strong>操作行的画面来自 <code>functionName</code> 列向下继承</strong>，不是从 <code>遷移</code> 行反推 （ADR-0006）。这一条把"画面不明"的行从 1,843 降到 0，绑定规则从 455 降到 409。 另两条同批修正：绑定表开始应用 <code>ui-aliases.json</code> 里的<strong>显式同义词</strong>（課支社コード → 部店課支社ｺｰﾄﾞ 等，19 条）；别紙里的「その他項目は別紙参照」按<strong>未解析</strong>处理并阻塞该本（162 本），不再生成"只填一半输入"的流程。<code>tools/derive_screen_chain.py</code> 的画面派生率从 91.2% 升到 100%。</p>
 <h2 id="本阶段产出">本阶段产出</h2>
 <div class="table-wrap"><table><thead><tr><th>产出</th><th>状态</th><th>说明</th></tr></thead><tbody><tr><td><code>tools/build_controls.py</code></td><td>✅</td><td>54 画面 / 1,998 控件；含 checkbox/radio/textarea/link/file/dialog</td></tr><tr><td><code>tools/build_bindings.py</code></td><td>✅</td><td>519 条规则：template 169 / field 110 / directive 25 / rowlink 28 / explicit 151 / no-screen 36</td></tr><tr><td><code>tools/generate_books.py</code></td><td>✅</td><td>手顺 + 别紙 + 绑定 → <code>flows/books/*.yaml</code>；阻塞必带原因</td></tr><tr><td><code>tools/report.py</code></td><td>✅</td><td>L0/L1/L2 报告 → <code>docs/rpa/14-REPORT.md</code></td></tr><tr><td><code>flows/overrides/</code></td><td>✅</td><td>本别覆盖：skip/manual/capture/valueFrom/binding，拒绝 <code>expect</code></td></tr><tr><td><code>studio/</code></td><td>✅</td><td>预览 mock 画面、悬停高亮、点选即绑定、待确认队列、列表含 122 本</td></tr><tr><td>ADR 0001–0007</td><td>✅</td><td>四层真值 / 两种身份 / 绑定表 / 闭集原语 / 三级完成 / 画面来源 / 值来源</td></tr></tbody></table></div>
 <h2 id="上一阶段（保留）">上一阶段（保留）</h2>
@@ -165,5 +165,5 @@ large_item_list.selected = Z (種目共通)</code></pre>
 601 条 guards：32 前置 / 569 校验
 旧积木 252 个，只有 4 个 live-verified</code></pre></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 10:56</div>
+2026-10-27 11:01</div>
 </main></div></body></html>
