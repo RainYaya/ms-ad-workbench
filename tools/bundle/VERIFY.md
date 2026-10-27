@@ -14,24 +14,25 @@
 有：
 
 ```
-automation/node-runner/   执行器：flow-loader / check-flow / run-flow / mock-server / capture / studio
+automation/node-runner/   执行器：flow-loader / check-flow / check-patch / run-flow / mock-server /
+                          capture / make-brief / make-pack / add-control / dom-check / studio
 automation/node-runner/mock-src/   65 个 mock 画面（Studio 预览和 mock 跑都用它）
 automation/node-runner/node_modules/   playwright-core + js-yaml（不用 npm install）
-flows/                    8 本手写 + 122 本生成（flows/books/）+ env/ + overrides/
+flows/                    手写本 + flows/books/ 生成本 + tests/ + env/ + overrides/ + patches/
 ui-controls.json          54 画面 / 1,998 控件（生成物）
-ui-screens.json           手顺画面名 → 画面码
+ui-screens.json           手顺画面名 → 画面码 + 真机路由
 ui-aliases.json           别紙措辞 → 画面措辞（显式同义词）
 ui-rowfields.json         人工覆盖层（行内控件 / 组合控件）
-flows/bindings.yaml       519 条绑定（auto 265 / needs-human 218 / blocked 36）
-guards.json               601 条前置/校验（32 前置 / 569 校验）
-reports/screen-chain.json check-flow 的画面链依据（100% 派生，18,966 行）
-docs/rpa/ docs/adr/       设计、状态、报告、ADR
-tools/                    重建四层真值的脚本（Python，仅重建时需要）
-v2/data/cases/            1,386 本手顺/别紙源数据（仅重建时需要）
-reference/webapps/        前端 HTML 源（仅重建控件库时需要）
+flows/bindings.yaml       绑定表（auto / confirmed / needs-human / blocked）
+guards.json               前置/校验（32 前置 / 569 校验）
+reports/screen-chain.json check-flow 的画面链依据（100% 派生）
+docs/rpa/ docs/adr/       设计、状态、报告、ADR（17-USAGE / 19-REAL-MACHINE / 20 / 21 是入口）
+tools/                    重建脚本（Python，仅重建时需要）+ save-clip.ps1（剪贴板 → YAML）
+v2/data/cases/            手顺/别紙源数据（仅重建、make-brief 需要）
 ```
 
-没有：`logs/`（旧证据）、`docs/` 里旧架构的文档、旧积木、`reports/` 里除 screen-chain 之外的报告。
+没有：`logs/`（运行证据，自动生成）、`reference/webapps/`（客户源码快照，local-only，
+打包默认不带；确需重建控件库时用 `--with-reference` 显式生成）、`capture-*/`（实机页面）。
 
 边界：mock 绿只证明"操作链正确"，不证明"业务报文/DB 结果正确"。
 L2（真机）目前仍是 0，靠第 4 节去补。
@@ -41,7 +42,7 @@ L2（真机）目前仍是 0，靠第 4 节去补。
 ## 1. 解包 & 环境
 
 ```bat
-cd ms-ad-rpa-pack-2026-10-27
+cd ms-ad-rpa-pack-2026-10-28
 node -v
 ```
 
