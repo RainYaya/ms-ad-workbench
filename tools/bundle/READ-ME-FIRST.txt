@@ -1,4 +1,4 @@
-ms-ad RPA 包（2026-10-27）
+ms-ad RPA 包（2026-10-28）
 ==========================
 
 先看 VERIFY.md。那一份写清楚了：装什么、跑什么、看到什么才算通过、
@@ -7,15 +7,47 @@ ms-ad RPA 包（2026-10-27）
 要求
   - Node 20+（没有就把便携版 node.exe 放在本文件夹根目录）
   - Edge（系统自带；抓取和 mock 跑都用它）
-  - 可选：Python 3.10+ 和 PyYAML（只有“从零重建四层真值”才需要）
+  不需要外网，也不需要 npm install：node_modules 已经随包。
+  Python 只有「从零重建四层真值」才用得到，日常一条龙不需要。
 
-不需要外网。Studio、mock、check-flow 都在本机跑。
+-= 在实机上跑完一本 ======================================================
+完整说明：docs\rpa\19-REAL-MACHINE.md
+白话版怎么写/改一本：docs\rpa\21-WRITE-A-FLOW.md
+语言（类型/寻址/顺序/边界）：docs\rpa\20-YAML-AS-LANGUAGE.md
 
-最快的一条路
+  1) 抓页面（手动走完整本，走完 Ctrl+C）
+     node automation\node-runner\capture.mjs --url "<真机URL>" --out capture-20261028 --edge
+
+  2) 打材料包（全是 .txt，网页 AI 的上传框都收）
+     node automation\node-runner\make-brief.mjs --case AZ-110-01-009 --capture capture-20261028
+
+  3) 打开 Copilot，上传 brief\AZ-110-01-009\ 里的 00/01/02/03*/04，
+     把 05-PROMPT.txt 全文粘进对话框。
+
+  4) 把它的回复复制到剪贴板，然后存成文件（会自动去掉 ```yaml 围栏）
+     powershell -NoProfile -ExecutionPolicy Bypass -File tools\save-clip.ps1 -Path flows\tests\AZ-110-01-009.ai.yaml
+
+  5) 校验（两条都要 0 error）
+     node automation\node-runner\check-flow.mjs flows\tests\AZ-110-01-009.ai.yaml
+     node automation\node-runner\check-patch.mjs --flow flows\tests\AZ-110-01-009.ai.yaml --capture capture-20261028
+
+     有报错：把错误原文 + 出错那一小块真实 HTML + 别紙的值贴回同一个对话，
+     只让它改出错的行，不要让它重写整本。
+
+  6) 真机演示跑（每步都有红框，按 Space 可暂停）
+     node automation\node-runner\run-flow.mjs flows\tests\AZ-110-01-009.ai.yaml --live --login --demo --demo-delay 1500
+
+判读：PENDING / ANCHOR / NO-CAPTURE 都不是通过。
+      3 个 ANCHOR 若都是「行锚点值不在这份 capture 的数据里」，要用真机数据再跑一次。
+
+-= 最快确认这套东西能跑 ====================================================
   1) 双击 verify-check.cmd        （三项离线检查，约 10 秒）
-  2) 双击 studio.cmd              （浏览器打开 http://127.0.0.1:10200）
+  2) 双击 studio.cmd              （浏览器打开 http://127.0.0.1:10200，看画面）
   3) 双击 mock-demo.cmd           （mock 实跑一本，约 1 分钟）
 
-真机抓 DOM
-  node automation\node-runner\capture.mjs --url <真机URL> --out capture-20261028 --edge
-  详见 VERIFY.md 第 4 节；抓完把 capture-20261028 整个文件夹打包回传。
+  注意：mock 只实现了部分画面，跑到没有数据的行会停 —— 那是 mock 缺数据，
+  不是流程错。mock 绿也不算真机通过。
+
+-= 回传什么 ================================================================
+  capture-2026xxxx 整个文件夹（含 pages\*.html 和 index.json）打包回传。
+  不要放 GitHub：这个仓库是公开的，实机页面只在本地流转。

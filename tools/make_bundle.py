@@ -122,7 +122,7 @@ def git(*args: str) -> str:
         return ""
 
 
-def build(stage: Path) -> dict:
+def build(stage: Path, include_reference: bool = True) -> dict:
     stage.mkdir(parents=True)
 
     # kernel
@@ -154,7 +154,11 @@ def build(stage: Path) -> dict:
 
     # pipeline inputs (optional for running, required for the rebuild check)
     copy_tree(ROOT / "v2" / "data" / "cases", stage / "v2" / "data" / "cases")
-    copy_tree(ROOT / "reference" / "webapps", stage / "reference" / "webapps")
+    # reference/webapps holds the client's source snapshots: local-only by
+    # default (see reference/webapps/.gitignore). A pack built for handoff must
+    # leave them out, or the .zip becomes a way around that decision.
+    if include_reference:
+        copy_tree(ROOT / "reference" / "webapps", stage / "reference" / "webapps")
 
     (stage / "tools").mkdir()
     for name in TOOLS:
@@ -207,6 +211,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "dist"))
     ap.add_argument("--name", default=f"ms-ad-rpa-pack-{date.today().isoformat()}")
+    ap.add_argument("--with-reference", action="store_true",
+                    help="also ship reference/webapps (client source snapshots; "
+                         "leave OFF for any pack that leaves this machine)")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -219,7 +226,7 @@ def main() -> int:
         elif p.exists():
             p.unlink()
 
-    extra = build(stage)
+    extra = build(stage, include_reference=args.with_reference)
     data = manifest(stage, extra)
     zip_dir(stage, zip_path)
     digest = sha256(zip_path)
