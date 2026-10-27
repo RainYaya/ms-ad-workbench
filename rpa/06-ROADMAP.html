@@ -23,13 +23,13 @@
 <a class="nav" href="13-DESIGN.html">设计总稿</a>
 <a class="nav" href="14-REPORT.html">完成度报告</a>
 <div class="grp">ADR</div>
-<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
-<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
-<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
-<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
-<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
-<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
-<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="开发步骤（按顺序做，每步可验收）">开发步骤（按顺序做，每步可验收）</h1>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001 四层真源</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002 本与自建流程是两种身份，共用引擎</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003 用显式绑定表取代模糊匹配</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="开发步骤（按顺序做，每步可验收）">开发步骤（按顺序做，每步可验收）</h1>
 <blockquote>这份是<strong>施工顺序</strong>。前面都完成了才做后面，不要跳。 每一步都写了「做什么 / 验收标准 / 卡住怎么办」。</blockquote>
 <hr>
 <h2 id="第-0-步：真机抓-DOM-✅-工具已就绪，等你执行">第 0 步：真机抓 DOM ✅ 工具已就绪，等你执行</h2>
@@ -106,5 +106,5 @@ node capture.mjs --url https://真机/AMB/AMA01.html --out capture-1027 --edge</
 <h3 id="纪律-4：格式大改要重新确认">纪律 4：格式大改要重新确认</h3>
 <p>因为一改就影响 450 本。格式定稿点在第 4 步（4 本验证完）。</p></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 10:34</div>
+2026-10-27 10:43</div>
 </main></div></body></html>

@@ -23,13 +23,13 @@
 <a class="nav" href="13-DESIGN.html">设计总稿</a>
 <a class="nav" href="14-REPORT.html">完成度报告</a>
 <div class="grp">ADR</div>
-<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
-<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
-<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
-<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
-<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
-<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
-<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="旧积木-vs-新内核：一页对照">旧积木 vs 新内核：一页对照</h1>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001 四层真源</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002 本与自建流程是两种身份，共用引擎</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003 用显式绑定表取代模糊匹配</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="旧积木-vs-新内核：一页对照">旧积木 vs 新内核：一页对照</h1>
 <blockquote>2026-10-27。目的：说明为什么保留旧积木、但不沿用它做执行单位。</blockquote>
 <h2 id="结论先说">结论先说</h2>
 <p>旧体系的<strong>本体论是对的</strong>：它已经把自动化拆成「画面 / 操作 / 验证 / 证据」。 错的是<strong>分解粒度</strong>：把「一段可复用的操作序列」当成积木，导致一本手顺要跨 10 个积木、16 个 selector 文件、9 个 params 文件， 改一处要穿四层，而且积木里塞了 <code>force</code>、固定 sleep、正则分类这些 「让它看起来能跑」的东西。</p>
@@ -47,5 +47,5 @@
 <p>   真机通过后，才把它标成可复用。</p>
 <ol><li>450 本批量生成等格式冻结后再做。</li></ol></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 10:34</div>
+2026-10-27 10:43</div>
 </main></div></body></html>

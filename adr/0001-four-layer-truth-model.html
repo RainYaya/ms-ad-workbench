@@ -23,13 +23,13 @@
 <a class="nav" href="../rpa/13-DESIGN.html">设计总稿</a>
 <a class="nav" href="../rpa/14-REPORT.html">完成度报告</a>
 <div class="grp">ADR</div>
-<a class="nav on" href="0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
-<a class="nav" href="0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
-<a class="nav" href="0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
-<a class="nav" href="0004-closed-primitive-set.html">0004-closed-primitive-set</a>
-<a class="nav" href="0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
-<a class="nav" href="0006-screen-from-functionname.html">0006-screen-from-functionname</a>
-<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="0001-—-四层真源：手顺行-/-控件库-/-绑定表-/-本别覆盖">0001 — 四层真源：手顺行 / 控件库 / 绑定表 / 本别覆盖</h1>
+<a class="nav on" href="0001-four-layer-truth-model.html">0001 四层真源</a>
+<a class="nav" href="0002-book-vs-authored-flow.html">0002 本与自建流程是两种身份，共用引擎</a>
+<a class="nav" href="0003-binding-table-over-fuzzy-matching.html">0003 用显式绑定表取代模糊匹配</a>
+<a class="nav" href="0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
+<a class="nav" href="0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
+<a class="nav" href="0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
+<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="0001-—-四层真源：手顺行-/-控件库-/-绑定表-/-本别覆盖">0001 — 四层真源：手顺行 / 控件库 / 绑定表 / 本别覆盖</h1>
 <p><strong>Status</strong>: accepted（取代 <code>docs/rpa/00-DECISIONS.md</code> D3 的「三层结构」）</p>
 <p>一本流程里的事实原来混在一个 YAML 里，出错时说不清是手顺写错了、字典缺控件、还是绑定找错了人。我们把它拆成四层，每层只有一个主人：手顺行（只读，来自手顺数据）、控件库（来自真实 HTML，自动挖）、绑定表（人工确认，跨本共享）、本别覆盖（单本例外，必须写理由）。按具体程度决胜：覆盖 &gt; 绑定 &gt; 控件库；「做什么」永远以手顺为准，「怎么做」以下层为准。任何一层都不得修改期望。</p>
 <p><strong>Considered Options</strong></p>
@@ -37,5 +37,5 @@
 <p><strong>Consequences</strong></p>
 <ul><li>新增 <code>ui-controls.json</code> 与 <code>flows/bindings.yaml</code> 两个一等文件。</li><li>编译器从"查字典 + 模糊"变成"查绑定表 + 模板 + 报错"。</li><li>一次绑定修正影响全部本，而不是逐本改。</li></ul></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 10:34</div>
+2026-10-27 10:43</div>
 </main></div></body></html>
