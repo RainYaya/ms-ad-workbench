@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>RPA Studio（只读快照）</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="ro-banner"><b>只读快照</b>
+  <span>画面、步骤、绑定队列都是真数据；保存/运行请在本地运行 <code>node studio/server.mjs</code>。</span>
+  <span class="spacer"></span><a href="../index.html">← 文档站</a></div>
+<header>
+  <div class="brand">RPA <span>Studio</span><small>17 primitives · 1 book = 1 flow</small></div>
+  <div class="spacer"></div>
+  <div class="tabs" id="propTabs">
+    <button data-tab="step" class="on">步骤</button>
+    <button data-tab="bind">绑定队列</button>
+  </div>
+  <span id="count" class="badge"></span>
+</header>
+<main>
+  <aside>
+    <input id="flowFilter" class="flow-filter" placeholder="筛选手順 / books/…">
+    <div id="flows"></div>
+  </aside>
+  <section id="canvas">
+    <div id="steps" class="steps"></div>
+  </section>
+  <aside id="props">
+    <div id="propBody"></div>
+  </aside>
+  <section id="screenPane" hidden>
+    <div class="sp-head">
+      <span id="spTitle">画面</span>
+      <span id="spPick" class="badge"></span>
+      <span class="spacer"></span>
+      <button id="spClose">×</button>
+    </div>
+    <iframe id="spFrame" title="画面预览"></iframe>
+    <div id="spHint" class="hint">悬停高亮控件，点击查看 selector</div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body></html>

@@ -29,7 +29,9 @@
 <a class="nav" href="../adr/0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
 <a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
 <a class="nav" href="../adr/0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
-<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="13-—-设计（四轮追问后的定稿）">13 — 设计（四轮追问后的定稿）</h1>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a>
+<div class="grp">工具</div>
+<a class="nav" href="../studio/index.html">Studio（只读快照）</a></aside><main><article><h1 id="13-—-设计（四轮追问后的定稿）">13 — 设计（四轮追问后的定稿）</h1>
 <blockquote>2026-10-27。词汇以 <code>GLOSSARY.md</code> 为准。 这份文档回答一个问题：<strong>为什么现在的 RPA 不够定制，改成什么样才算够。</strong></blockquote>
 <h2 id="0.-一句话">0. 一句话</h2>
 <p>把手顺的 19,056 行操作收敛成 <strong>452 条绑定规则</strong>，让控件、绑定、值、流程各自只有一个主人； 人只需要在 Studio 里对着<strong>真实画面</strong>确认约 220 条绑定，1,371 本就自动跟着对。</p>
@@ -79,5 +81,5 @@ overrides:
 <div class="table-wrap"><table><thead><tr><th>旧</th><th>新</th><th>说明</th></tr></thead><tbody><tr><td><code>00-DECISIONS.md</code> D3「三层结构」</td><td>四层真源（增加绑定表）</td><td>字典 + 流程之间原来少了"措辞→控件"这一层</td></tr><tr><td><code>00-DECISIONS.md</code> D5「模糊匹配 ≥60%」</td><td>删除</td><td>模糊就是猜</td></tr><tr><td><code>12-DIFF.md</code>「收拢成三层」</td><td>四层</td><td>同上</td></tr></tbody></table></div>
 <p>AD 记录见 <code>docs/adr/</code>。</p></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 11:01</div>
+2026-10-27 11:32</div>
 </main></div></body></html>

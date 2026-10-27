@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" href="static/css/mhk.css"/>
+<script src="static/js/mhk_common.js"></script>
+<script>
+function onCloseClick() {
+	return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+function custom_BodyOnload() {
+	commonBodyOnload();
+
+	document.getElementById('manual_link').href = document.mhk_MHKPRForm.manual_pass.value;
+}
+</script>
+</head>
+<body class="body_common" onload="custom_BodyOnload()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG001(this,null);">
+
+  <input type="hidden" />
+
+  <!--/* タイトルエリア */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" data-unresolved-src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br />
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA01" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA01" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <!--/* 業務固有領域 */-->
+  <!--/* 契約情報 */-->
+  <div class="gyoumu_area">
+    <div class="wrapper01">
+      <div class="item">
+        <input type="submit" id="act001to100" name="act001to100" formaction="/AMA01/aZG001To03" class="gyoumu_field_control" value="新規登録">
+      </div>
+      <div class="item">
+        <span class="colon">：</span>申込書不備内容の新規登録
+      </div>
+      <div class="item">
+        <input type="submit" id="act001to200" name="act001to200" formaction="/AMA01/aZG001To07" class="gyoumu_field_control"
+            value="検索" onclick="clickButton(this);">
+      </div>
+      <div class="item">
+        <span class="colon">：</span>条件を指定して検索
+      </div>
+      
+      <!-- MS(AD以外条件)一致時、「集計」、「親子集計」そのままHTMLに出力されます -->
+      <div class="item">
+        <input type="submit" id="act001to201" name="act001to201" formaction="/AMA01/aZG001To08" class="gyoumu_field_control"
+            value="集計" onclick="clickButton(this);">
+      </div>
+      <div class="item">
+        <span class="colon">：</span>条件を指定して集計
+      </div>
+      <div class="item">
+        <input type="submit" id="act001to103" name="act001to103" formaction="/AMA01/aZG001To06" class="gyoumu_field_control"
+            value="親子集計" onclick="clickButton(this);">
+      </div>
+      <div class="item">
+        <span class="colon">：</span>条件を指定して親子代理店集計
+      </div>
+      
+      <div id="mail_regi" class="item">
+        <input type="submit" id="act001to207" name="act001to207" formaction="/AMA01/aZG001To26" class="gyoumu_field_control"
+            value="メール登録" onclick="clickButton(this);">
+      </div>
+      <div class="item">
+        <span class="colon">：</span>営業連携メールの通知先登録
+      </div>
+      <div class="menu_tool_link_font grid_column_span2">
+        <p class="text_indent1">
+          <a id="manual_link" target="_blank" href="">申込書品質管理システムのページ</a><br />
+          （マニュアル、ツール類、月次集計予定日　等）
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!--/* ボタンエリア */-->
+  <div class="button_area">
+    <div class="button_width_60">
+      <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick();"/>
+    </div>
+  </div>
+
+  <input type="hidden" id="company_kbn" name="company_kbn"/>
+  <input type="hidden" id="manual_pass" name="manual_pass"/>
+  <input type="hidden" id="use_division_online" name="use_division_online"/>
+  <input type="submit" id="close" name="close" formaction="/AMA01/close" class="display_none" >
+</form>
+<script src="../../picker.js"></script></body>
+
+</html>

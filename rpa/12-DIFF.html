@@ -29,7 +29,9 @@
 <a class="nav" href="../adr/0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
 <a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
 <a class="nav" href="../adr/0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
-<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="旧积木-vs-新内核：一页对照">旧积木 vs 新内核：一页对照</h1>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a>
+<div class="grp">工具</div>
+<a class="nav" href="../studio/index.html">Studio（只读快照）</a></aside><main><article><h1 id="旧积木-vs-新内核：一页对照">旧积木 vs 新内核：一页对照</h1>
 <blockquote>2026-10-27。目的：说明为什么保留旧积木、但不沿用它做执行单位。</blockquote>
 <h2 id="结论先说">结论先说</h2>
 <p>旧体系的<strong>本体论是对的</strong>：它已经把自动化拆成「画面 / 操作 / 验证 / 证据」。 错的是<strong>分解粒度</strong>：把「一段可复用的操作序列」当成积木，导致一本手顺要跨 10 个积木、16 个 selector 文件、9 个 params 文件， 改一处要穿四层，而且积木里塞了 <code>force</code>、固定 sleep、正则分类这些 「让它看起来能跑」的东西。</p>
@@ -47,5 +49,5 @@
 <p>   真机通过后，才把它标成可复用。</p>
 <ol><li>450 本批量生成等格式冻结后再做。</li></ol></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 11:01</div>
+2026-10-27 11:32</div>
 </main></div></body></html>

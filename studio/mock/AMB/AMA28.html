@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="static/css/mhk.css"/>
+<base target="_self"/>
+<script type="text/javascript" src="static/js/mhk_common.js"></script>
+<script>
+
+function custom_Load() {
+	// ウィンドウの×ボタンを無効化
+	commonPopupBodyOnload();
+
+	var form = document.mhk_MHKPRForm;
+
+	// 検索結果表示、頁ボタン表示制御
+	var gyoumu_list = document.getElementById('gyoumu_list');
+
+	// 件数0件の場合における検索結果欄の非表示制御
+	if (parseInt(form.totalCount.value) == 0 ) {
+		gyoumu_list.style.visibility = "hidden";
+	} else {
+		gyoumu_list.style.visibility = "visible";
+	}
+
+	// 前頁ボタン制御(ページ番号 > 1のみ表示)
+	if (parseInt(form.pageNumber.value) > 1 ) {
+		form.prevPage.style.visibility = "visible";
+	} else {
+		form.prevPage.style.visibility = "hidden";
+	}
+
+	// 次頁ボタン制御(ページ総数 > ページ番号のみ表示)
+	if (parseInt(form.totalPage.value) > parseInt(form.pageNumber.value) ) {
+		form.nextPage.style.visibility = "visible";
+	} else {
+		form.nextPage.style.visibility = "hidden";
+	}
+}
+
+// クリックした通知先を通知先一覧に追加する
+function selectNo(indexNo) {
+	var form = document.mhk_MHKPRForm;
+	var mailSendList = form.mail_send_list.options;
+
+	// クリックした行に対応するユーザidを取得
+	var selectUserId = document.getElementById("user_id_" + indexNo).value;
+
+	// 通知先重複選択バリデート
+	// 通知先一覧の各行についてループ
+	for (i = 0; i < mailSendList.length; i++) {
+		// 選択したユーザIDが、ループ中の一覧行のユーザIDに一致したら、バリデートエラー
+		if (selectUserId == mailSendList[i].id) {
+			alert('');
+			return;
+		}
+	}
+
+	// 通知先一覧に選択した通知先を追加
+	mailSendList.length++;
+
+	mailSendList[mailSendList.length -1].id = selectUserId;
+	mailSendList[mailSendList.length -1].value = document.getElementById("mail_address_" + indexNo).value;
+	mailSendList[mailSendList.length -1].text
+			= document.getElementById("section_code_" + indexNo).value + "　" + document.getElementById("user_name_" + indexNo).value;
+
+}
+
+// 通知先一覧　削除ボタン押下
+function onClickDelete() {
+	var mailSendList = document.getElementById("mail_send_list").options;
+	var idx = document.getElementById("mail_send_list").selectedIndex;
+	var listCount = 0;
+
+	// 未選択の場合、処理を行わない
+	if (idx == -1) {
+		return;
+	}
+
+	for (i = 0; i < mailSendList.length; i++) {
+		// 削除対象外のオプションを設定
+		if (mailSendList[i].selected == false) {
+			mailSendList[listCount].id = mailSendList[i].id;
+			mailSendList[listCount].value = mailSendList[i].value;
+			mailSendList[listCount].text = mailSendList[i].text;
+			mailSendList[listCount].selected = false;
+			listCount++;
+		}
+	}
+
+	// リストの長さを設定
+	mailSendList.length = listCount;
+}
+
+// 通知先再セット押下時のバリデート
+function resetValidate(form) {
+	// 課支社CD
+	if (isEmptyField(form.section_code_set)) {
+		alert('');
+		form.section_code_set.focus();
+		return false;
+	}
+	if (!isMinLenB(form, form.section_code_set, 5, '')
+			|| !isAlphaNumeric(form, form.section_code_set, '') ) {
+		return false;
+	}
+	return true;
+}
+
+// 検索(前頁、次頁)のバリデート
+function searchValidate(form) {
+	// 氏名
+	if (!isMaxLenB(form, form.user_name, 22, '')
+			|| !isProhibitionChar(form, form.user_name, '') ) {
+		return false;
+	}
+
+	// 課支社CD
+	if (!isMinLenB(form, form.section_code, 3, '')
+			|| !isAlphaNumeric(form, form.section_code, '') ) {
+		return false;
+	}
+
+	// 相関入力チェック
+
+    // 氏名, 課支社CD全て未入力の場合はエラー
+    if( isEmptyField(form.user_name)
+    		&& isEmptyField(form.section_code)) {
+		alert('');
+		form.user_name.focus();
+		return false;
+	}
+
+	return true;
+}
+
+// 検索押下時、通知先一覧のid, ラベル, value の連結文字列を設定する
+function unionMailSendListStr(form) {
+	var mailSendList = document.getElementById("mail_send_list").options;
+
+	var strValueList = '';
+	var strLabelList = '';
+	var strIdList = '';
+
+	for(i = 0; i < mailSendList.length; i++) {
+		if (strValueList != '') {
+			strValueList += ',';
+			strLabelList += ',';
+			strIdList += ',';
+	    }
+		strValueList += mailSendList[i].value;
+		strLabelList += mailSendList[i].text;
+		strIdList += mailSendList[i].id;
+	}
+
+	document.getElementById('mailSendListLabels').value = strLabelList;
+	document.getElementById('mailSendListValues').value = strValueList;
+	document.getElementById('mailSendListIds').value = strIdList;
+}
+
+// 検索押下時、通知先検索結果のNo・部課コード・課支社名・氏名・ユーザID・メールアドレスの連結文字列を設定する
+function unionMailSetUserListStr(form) {
+
+	var strRowNumberList = '';
+	var strSectionCodeList = '';
+	var strSectionNameList = '';
+	var strUserNameList = '';
+	var strUserIdList = '';
+	var strMailAddressList = '';
+
+	for(i = 0; i < 10; i++) {
+
+		if (document.getElementById('row_number_' + i) != null) {
+			if (strRowNumberList != '') {
+				strRowNumberList += ',';
+				strSectionCodeList += ',';
+				strSectionNameList += ',';
+				strUserNameList += ',';
+				strUserIdList += ',';
+				strMailAddressList += ',';
+	    	}
+			strRowNumberList += document.getElementById('row_number_' + i).value;
+			strSectionCodeList += document.getElementById('section_code_' + i).value;
+			strSectionNameList += document.getElementById('section_name_' + i).value;
+			strUserNameList += document.getElementById('user_name_' + i).value;
+			strUserIdList += document.getElementById('user_id_' + i).value;
+			strMailAddressList += document.getElementById('mail_address_' + i).value;
+		}
+	}
+
+	document.getElementById('mailSetUserListRowNumbers').value = strRowNumberList;
+	document.getElementById('mailSetUserListSectionCodes').value = strSectionCodeList;
+	document.getElementById('mailSetUserListSectionNames').value = strSectionNameList;
+	document.getElementById('mailSetUserListUserNames').value = strUserNameList;
+	document.getElementById('mailSetUserListUserIds').value = strUserIdList;
+	document.getElementById('mailSetUserListMailAddresses').value = strMailAddressList;
+
+}
+
+function custom_Submit(form) {
+	// 親画面終了チェック
+	if (!windowOpenerClosedCheck()) {
+		return false;
+	}
+
+	// 通知先再セット押下時
+	if (clickButtonName == 'reset') {
+		// 検索条件のバリデートを実行
+		if (!resetValidate(form)) {
+			// バリデートエラー
+			return false;
+		}
+	}
+
+	// 検索・次頁・前頁ボタン押下時
+	if (clickButtonName == 'search'
+			|| clickButtonName == 'nextPage'
+			|| clickButtonName == 'prevPage') {
+		// 検索条件のバリデートを実行
+		if (!searchValidate(form)) {
+			// バリデートエラー
+			return false;
+		}
+	}
+
+	// バリデートOK
+	// メッセージエリアのメッセージをクリア
+	document.getElementById('popup_message_area').innerText = '';
+	// 通知先一覧注意メッセージをクリア
+	document.getElementById('warning_message').innerText = '';
+
+	// 通知先一覧のid, ラベル, value の連結文字列を設定する
+	unionMailSendListStr(form);
+	// 通知先検索結果のNo・部課コード・課支社名・氏名・ユーザID・メールアドレスの連結文字列を設定する
+	unionMailSetUserListStr(form);
+
+	// 検索実行
+	return true;
+}
+
+// 通知する 押下時
+function onClickSendOn() {
+	var mailSendList = document.getElementById("mail_send_list").options;
+	var listLen = mailSendList.length;
+
+	// 通知先一覧件数によるバリデート
+
+	// 通知先一覧の表示件数が0件の場合、エラー
+	if (listLen == 0) {
+		alert('');
+		return;
+	}
+	// 通知先一覧の表示件数が99件より多い場合、エラー
+	if (listLen > 99) {
+		alert('');
+		return;
+	}
+
+	// バリデーションOK
+	// 確認メッセージを出力
+	if (confirm('')) {
+		// 不備内容更新画面に返す配列
+		var retArray = new Array(listLen + 1);
+
+		// 1要素目 1:通知あり
+		retArray[0] = '1';
+
+		// 2要素目以降、通知先一覧の各行をループし、各行に紐づくメールアドレス(value)を配列に追加
+		for (i = 0; i < listLen; i++) {
+			retArray[i + 1] = mailSendList[i].value;
+		}
+
+		// 営業連携結果を設定
+		window.opener.document.mhk_MHKPRForm.business_notify_result.value = '1';
+
+		// 通知先一覧を設定
+		window.opener.document.mhk_MHKPRForm.mail_send_list.value = retArray;
+
+		// 親画面の営業連携ボタン押下
+		window.opener.document.getElementById('updateBusinessNotifyHidden').click();
+
+		// 画面を閉じる
+		window.close();
+	}
+}
+
+// 通知しない 押下時
+function onClickSendOff() {
+	if (confirm('')) {
+		// 不備内容更新画面に返す配列を設定
+		// 1要素目 2:通知なし
+		var retArray = [2];
+
+		// 営業連携結果を設定
+		window.opener.document.mhk_MHKPRForm.business_notify_result.value = '2';
+
+		// 通知先一覧を設定
+		window.opener.document.mhk_MHKPRForm.mail_send_list.value = retArray;
+
+		// 親画面の営業連携ボタン押下
+		window.opener.document.getElementById('updateBusinessNotifyHidden').click();
+
+		// 画面を閉じる
+		window.close();
+	}
+}
+
+// キャンセル 押下時
+function onClickCancel() {
+	if (confirm('')) {
+		// 画面を閉じる
+		window.close();
+	}
+}
+
+</script>
+</head>
+
+<body class="popup_body_common" onload="custom_Load()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" class="popup_form_AMA28" onsubmit="return submitAZG911(this,null);" >
+
+  <input type="hidden" />
+
+  <!--/* メッセージエリア */-->
+  <div id="popup_message_area" class="popup_message_area">
+    
+        <ul class="message_area">
+            <li class="message_area"></li>
+        </ul>
+    1
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA28" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA28" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+  <!--/* 業務エリア */-->
+  <div id="gyoumu_area" class="wrapper28">
+    <div class="item">
+      <div class="grid_column_span2">■通知先一覧</div>
+      <div id="mail_send_list_search">
+        <div class="gyoumu_field_title txt_aln_l">通知先部課ｺｰﾄﾞ</div>
+        <div class="gyoumu_field_value_left">
+          <input type="text" id="section_code_set" name="section_code_set" class="gyoumu_field_control" maxlength="6" onblur="toUpper(this);">
+        </div>
+      </div>
+      <div>
+        <input type="submit" border="0" id="reset" name="reset" class="gyoumu_field_control" value="通知先再セット" onclick="clickButton(this)" formaction="/AMA28/aZG911Reset">
+      </div>
+      <div id="warning_message" class="popup_message_area grid_column_span2">
+        1
+      </div>
+    </div>
+
+    <div class="item">
+      <select name="mail_send_list" id="mail_send_list" multiple="multiple" class="gyoumu_field_control">
+        
+          <option>
+            1
+          </option>
+        
+      </select>
+    </div>
+
+    <!--/* 削除ボタン */-->
+    <div class="item">
+      <div id="delete_button" class="button_width_60">
+        <input name="delete" type="button" class="popup_button_area_button" value="削除" onclick="onClickDelete();" />
+      </div>
+    </div>
+
+    <!--/* 通知する・通知しない・キャンセルボタン */-->
+    <div class="item">
+      <div class="button_width_75">
+        <input name="sendOn" type="button" class="popup_button_area_button" value="通知する" onclick="onClickSendOn();" />
+      </div>
+      <div class="button_width_75">
+        <input name="sendOff" type="button" class="popup_button_area_button" value="通知しない" onclick="onClickSendOff();" />
+      </div>
+      <div class="button_width_60"></div>
+      <div class="button_width_75">
+        <input name="cancel" type="button" class="popup_button_area_button" value="キャンセル" onclick="onClickCancel();" />
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="grid_column_span2">■通知先追加</div>
+      <div id="mail_set_user_list_search">
+        <div class="gyoumu_field_title txt_aln_l">氏名</div>
+        <div class="gyoumu_field_value_left">
+          <input type="text" id="user_name" name="user_name" class="gyoumu_field_control" maxlength="22">
+        </div>
+        <div class="gyoumu_field_title txt_aln_l">部店課支社ｺｰﾄﾞ</div>
+        <div class="gyoumu_field_value_left">
+          <input type="text" id="section_code" name="section_code" class="gyoumu_field_control" maxlength="6" onblur="toUpper(this);">
+        </div>
+      </div>
+      <div>
+        <input type="submit" class="search_button" id="search" name="search" value="検索" onclick="clickButton(this)" formaction="/AMA28/aZG911Select">
+      </div>
+      <div class="gyoumu_search_count">
+        1/1ページ 検索結果1件
+      </div>
+    </div>
+
+    <div class="item">
+      <div><!--/* 行の縦幅が広がる事象の解消目的で入れている */-->
+        <table id="table28" class="sticky_table">
+          <thead>
+            <tr class="sticky_table_thead_tr">
+              <th class="sticky_table_title">No.</th>
+              <th class="sticky_table_title">部課ｺｰﾄﾞ</th>
+              <th class="sticky_table_title">課支社名</th>
+              <th class="sticky_table_title">氏名</th>
+            </tr>
+          </thead>
+          <tbody id="gyoumu_list">
+            
+            <tr>
+              <td class="sticky_table_value txt_aln_c">
+                <div>
+                  <a href="#" onclick="selectNo(0)">1</a>
+                </div>
+              </td>
+              <td class="sticky_table_value txt_aln_c">
+                1
+              </td>
+              <td class="sticky_table_value">
+                1
+              </td>
+              <td class="sticky_table_value">
+                1
+              </td>
+            </tr>
+            <input type="hidden" id="user_id_0" value="U0001" />
+            <input type="hidden" id="mail_address_0" value="test@example.com" />
+            <input type="hidden" id="section_code_0" value="AHE61" />
+            <input type="hidden" id="user_name_0" value="TEST" />
+            <input type="hidden" />
+            <input type="hidden" />
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--/* 前頁・次頁ボタン */-->
+    <div class="item">
+      <div class="button_width_60">
+        <input type="submit" id="prevPage" name="prevPage" class="button_area_button" onclick="clickButton(this)" value="前 頁" formaction="/AMA28/aZG911PrevPage">
+      </div>
+      <div class="button_width_60">
+        <input type="submit" id="nextPage" name="nextPage" class="button_area_button" onclick="clickButton(this)" value="次 頁" formaction="/AMA28/aZG911NextPage">
+      </div>
+    </div>
+
+    <input type="hidden" id="section_code_key" name="section_code_key" />
+    <input type="hidden" id="section_mail_send_flag" name="section_mail_send_flag" />
+    <input type="hidden" id="mail_set_transfer_flag" name="mail_set_transfer_flag" />
+    <!--/* 画面表示中の通知先一覧のラベル・value・idを順に結合した文字列の送信 */-->
+    <input type="hidden" id="mailSendListLabels" name="mailSendListLabels" />
+    <input type="hidden" id="mailSendListValues" name="mailSendListValues" />
+    <input type="hidden" id="mailSendListIds" name="mailSendListIds" />
+
+    <input type="hidden" id="pageNumber" name="pageNumber" />
+    <input type="hidden" id="totalPage" name="totalPage" />
+    <input type="hidden" id="totalCount" name="totalCount" />
+
+    <!--/* 画面表示中の通知先検索結果のNo・部課コード・課支社名・氏名・ユーザID・メールアドレスを順に結合した文字列の送信 */-->
+    <input type="hidden" id="mailSetUserListRowNumbers" name="mailSetUserListRowNumbers" />
+    <input type="hidden" id="mailSetUserListSectionCodes" name="mailSetUserListSectionCodes" />
+    <input type="hidden" id="mailSetUserListSectionNames" name="mailSetUserListSectionNames" />
+    <input type="hidden" id="mailSetUserListUserNames" name="mailSetUserListUserNames" />
+    <input type="hidden" id="mailSetUserListUserIds" name="mailSetUserListUserIds" />
+    <input type="hidden" id="mailSetUserListMailAddresses" name="mailSetUserListMailAddresses" />
+
+  </div>
+</form>
+<script src="../../picker.js"></script></body>
+
+
+</html>

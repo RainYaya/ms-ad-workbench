@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="static/css/mhk.css"/>
+<link rel="stylesheet" type="text/css" data-unresolved-href="/AMC00${commonForm.cssFilePath}"/>
+<script type="text/javascript" src="static/js/mhk_common.js"></script>
+<script>
+var insuranceItems = [
+    ''
+    
+    ,'1','1','1','1'
+    
+];
+</script>
+<script>
+// 画面ロード時の初期処理
+function custom_bodyLoad() {
+    commonBodyOnload();
+    var form = document.mhk_MHKPRForm;
+
+    var	gyoumu_list = document.getElementById('gyoumu_list');
+
+    // 件数0件の場合における検索結果欄の非表示制御
+    if ( parseInt(form.total_count.value) == 0 ) {
+        gyoumu_list.style.visibility = "hidden";
+    } else {
+        gyoumu_list.style.visibility = "visible";
+    }
+
+    // 前頁ボタン制御(ページ番号 > 1のみ表示)
+    if ( parseInt(form.page_no.value) > 1 ) {
+        form.prevPage.style.visibility = "visible";
+    } else {
+        form.prevPage.style.visibility = "hidden";
+    }
+
+    // 次ページボタン制御(総ページ数 > 現在ページ数のみ表示)
+    if ( parseInt(form.total_page.value) > parseInt(form.page_no.value) ) {
+        form.nextPage.style.visibility = "visible";
+    } else {
+        form.nextPage.style.visibility = "hidden";
+    }
+
+    // 大種目による保険種類プルダウンを設定
+    onChangeLargeItem(false);
+}
+
+//検索(前頁、次頁、)のバリデート
+function searchValidate(form, isDownload) {
+
+	// 住生認証におけるパスワードチェック
+    var sumiseiPW = document.getElementById('sumisei_csv_password').value;
+
+	// 住生・大樹認証チェック
+    var sumiseiTaijuKeiyu = document.getElementById('sumisei_taiju_keiyu').value;
+
+	// 部店課支社ｺｰﾄﾞ
+	if ( !isAlphaNumeric(form, form.section_code, '') ) {
+		return false;
+	}
+
+	// 代理店ｺｰﾄﾞ
+	if ( !isAlphaNumeric(form, form.agent_code, '') ) {
+		return false;
+	}
+
+	// 住生・大樹認証の確認
+	if (sumiseiTaijuKeiyu == "sumiseiTaijuUser") {
+		// 関連代理店
+		if ( !checkRelationAgent(form, form.relation_agent, '') ) {
+			return false;
+		}
+	}
+
+	// ｻﾌﾞｺｰﾄﾞ
+	if ( !isAllHankaku(form, form.sub_agent_code, '') ||
+		 !isProhibitionChar(form, form.sub_agent_code, '') ) {
+		return false;
+	}
+
+	// ﾌﾘｰｺｰﾄﾞ
+	if ( !isAllHankaku(form, form.free_code_1, '') ) {
+		return false;
+	}
+
+	var maxlength = 10;
+
+	if (document.getElementById("select_search_item_key").value == 1){
+		// 証券番号
+		if ( !isAlphaNumeric(form, form.policy_number, '') ) {
+			return false;
+		}
+	}else{
+		//照会ＩＤ
+		if ( !isRegExp(form, form.policy_number, NO_NUMERIC_PATTERN, true, '') ||
+			 !isMaxLenB(form, form.policy_number, maxlength, '')){
+			return false;
+		}
+	}
+
+	// 明細番号
+	if ( !isAlphaNumeric(form, form.sub_policy_number, '') ) {
+		return false;
+	}
+
+	// 計上年
+	if ( !isNumeric(form, form.sumup_year, '') ||
+		 !isLenB(form, form.sumup_year, 4, '') ) {
+		return false;
+	}
+
+	// 計上月
+	if ( !isNumeric(form, form.sumup_month, '') ||
+		 !isIntRange(form, form.sumup_month, 1, 12, '') ) {
+		return false;
+	}
+
+	// 募集人ID
+	if ( !isAlphaNumeric(form, form.field_agent_id, '') ) {
+		return false;
+	}
+
+	// 登録年(from)
+	if ( !isNumeric(form, form.regist_year_from, '') ||
+		 !isLenB(form, form.regist_year_from, 4, '') ) {
+		return false;
+	}
+
+	// 登録月(from)
+	if ( !isNumeric(form, form.regist_month_from, '') ||
+		 !isIntRange(form, form.regist_month_from, 1, 12, '') ) {
+		return false;
+	}
+
+	// 登録日(from)
+	if ( !isNumeric(form, form.regist_day_from, '') ) {
+		return false;
+	}
+
+	// 登録年(to)
+	if ( !isNumeric(form, form.regist_year_to, '') ||
+		 !isLenB(form, form.regist_year_to, 4, '') ) {
+		return false;
+	}
+	// 登録月(to)
+	if ( !isNumeric(form, form.regist_month_to, '') ||
+		 !isIntRange(form, form.regist_month_to, 1, 12, '') ) {
+		return false;
+	}
+
+	// 登録日(to)
+	if ( !isNumeric(form, form.regist_day_to, '') ) {
+		return false;
+	}
+
+	// 回答締切年(from)
+	if ( !isNumeric(form, form.reminder_year_from, '') ||
+		 !isLenB(form, form.reminder_year_from, 4, '') ) {
+		return false;
+	}
+
+	// 回答締切月(from)
+	if ( !isNumeric(form, form.reminder_month_from, '') ||
+		 !isIntRange(form, form.reminder_month_from, 1, 12, '') ) {
+		return false;
+	}
+
+	// 回答締切日(from)
+	if ( !isNumeric(form, form.reminder_day_from, '') ) {
+		return false;
+	}
+
+	// 回答締切年(to)
+	if ( !isNumeric(form, form.reminder_year_to, '') ||
+		 !isLenB(form, form.reminder_year_to, 4, '') ) {
+		return false;
+	}
+
+	// 回答締切月(to)
+	if ( !isNumeric(form, form.reminder_month_to, '') ||
+		 !isIntRange(form, form.reminder_month_to, 1, 12, '') ) {
+		return false;
+	}
+
+	// 回答締切日(to)
+	if ( !isNumeric(form, form.reminder_day_to, '') ) {
+		return false;
+	}
+
+	// フォームに入力されたパスワードとデコードしたパスワードの値が一致しない場合、メッセージを表示する
+	if ( isDownload && sumiseiPW != "notSumiseiUser" &&
+			!checkSumiseiPassword(form, form.password, sumiseiPW, '')){
+    		return false;
+	}
+
+	// 検索結果出力ボタン押下時におけるパスワードの必須＆半角英数(大文字)チェック
+	if ( isDownload &&
+		 (!isRequired(form, form.password, '') ||
+		  !isMinLenB(form, form.password, 7,'')||
+		  !isAlphaNumeric(form, form.password, ''))
+		) {
+		return false;
+	}
+
+	// 相関チェック
+	// 検索条件
+	if (sumiseiTaijuKeiyu == "sumiseiTaijuUser") {
+
+		var		conditionOK = false;
+		// 部店課支社ｺｰﾄﾞ
+		if (form.section_code.value != '') {
+			conditionOK = true;
+		}
+		// 代理店ｺｰﾄﾞ
+		else if (form.agent_code.value != '') {
+			conditionOK = true;
+		}
+		// 証券番号
+		else if (form.policy_number.value != '') {
+			conditionOK = true;
+		}
+
+		// すべて入力されてない場合、エラー
+		if ( conditionOK == false ) {
+			alert('');
+			form.section_code.focus();
+			return false;
+		}
+
+	} else {
+		var		conditionOK = false;
+		// 部店課支社ｺｰﾄﾞ
+		if (form.section_code.value != '') {
+			conditionOK = true;
+		}
+		// 代理店ｺｰﾄﾞ
+		else if (form.agent_code.value != '') {
+			conditionOK = true;
+		}
+		// 関連代理店
+		else if (form.relation_agent.checked == true) {
+			conditionOK = true;
+		}
+		// 証券番号
+		else if (form.policy_number.value != '') {
+			conditionOK = true;
+		}
+
+		// すべて入力されてない場合、エラー
+		if ( conditionOK == false ) {
+			alert('');
+			form.section_code.focus();
+			return false;
+		}
+	}
+
+	// 計上年月
+	// 共に入力されていること
+	if ( checkAllInput(form, new Array(form.sumup_year, form.sumup_month), '', false) == -1) {
+		return false;
+	}
+
+	// 登録年月 すべて入力されていること
+	{
+		var		checkFields = new Array(
+								form.regist_year_from,
+								form.regist_month_from,
+								form.regist_day_from,
+								form.regist_year_to,
+								form.regist_month_to,
+								form.regist_day_to);
+		var		inputFieldCount = checkAllInput(form, checkFields, '', false);
+		//
+		if ( inputFieldCount == -1 ) {
+			return false;
+		}
+		else if ( inputFieldCount == 6 ) {
+			// 登録日 from 暦日チェック
+			if ( !isValidDate(form, form.regist_year_from, form.regist_month_from, form.regist_day_from,
+					'') ) {
+				return false;
+			}
+			// 登録日 to 暦日チェック
+			if ( !isValidDate(form, form.regist_year_to, form.regist_month_to, form.regist_day_to,
+					'') ) {
+				return false;
+			}
+
+			// 登録日(from)≦登録日(to)チェック
+			var		from = 	('000' + form.regist_year_from.value).slice(-4) +
+							('0'   + form.regist_month_from.value).slice(-2) +
+							('0'   + form.regist_day_from.value).slice(-2);
+			var		to = 	('000' + form.regist_year_to.value).slice(-4) +
+							('0'   + form.regist_month_to.value).slice(-2) +
+							('0'   + form.regist_day_to.value).slice(-2);
+
+			if ( to < from ) {
+				alert('');
+				return false;
+			}
+		}
+	}
+
+	// 登録年月 すべて入力されていること
+	{
+		var		checkFields = new Array(
+					form.reminder_year_from,
+					form.reminder_month_from,
+					form.reminder_day_from,
+					form.reminder_year_to,
+					form.reminder_month_to,
+					form.reminder_day_to);
+		var		inputFieldCount = checkAllInput(form, checkFields, '', false);
+		//
+		if ( inputFieldCount == -1 ) {
+			return false;
+		}
+		else if ( inputFieldCount == 6 ) {
+			// 回答締切日 from 暦日チェック
+			if ( !isValidDate(form, form.reminder_year_from, form.reminder_month_from, form.reminder_day_from,
+					'') ) {
+				return false;
+			}
+			// 回答締切日 to 暦日チェック
+			if ( !isValidDate(form, form.reminder_year_to, form.reminder_month_to, form.reminder_day_to,
+					'') ) {
+				return false;
+			}
+
+			// 登録日(from)≦登録日(to)チェック
+			var		from = 	('000' + form.reminder_year_from.value).slice(-4) +
+							('0'   + form.reminder_month_from.value).slice(-2) +
+							('0'   + form.reminder_day_from.value).slice(-2);
+			var		to = 	('000' + form.reminder_year_to.value).slice(-4) +
+							('0'   + form.reminder_month_to.value).slice(-2) +
+							('0'   + form.reminder_day_to.value).slice(-2);
+
+			if ( to < from ) {
+				alert('');
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+function custom_Submit(form) {
+	// 終了ボタン押下？
+	if ( clickButtonName == '206toClose' ) {
+		if ( window.confirm('') ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else if (clickButtonName == 'outputCSV') {
+		// メッセージエリアのメッセージをクリア
+		document.getElementById('message_area').innerText = '';
+
+		// 検索条件のバリデートを実行
+		if ( searchValidate(form, true) == false ) {
+			return false;
+		}
+
+		// アクティブなボタンからフォーカスをはずす
+		document.activeElement.blur();
+
+		// ダウンロード注意喚起メッセージ表示
+		return window.confirm('');
+	}
+	else if (	clickButtonName == 'select'		||
+				clickButtonName == 'nextPage'	||
+				clickButtonName == 'prevPage') {
+		// メッセージエリアのメッセージをクリア
+		document.getElementById('message_area').innerText = '';
+		// 検索条件のバリデートを実行
+		return searchValidate(form, false);
+	}
+	else {
+		// その他ボタン時はそのままサブミットする
+		return true;
+	}
+}
+
+// 計上状態を設定
+function setSumupStatusSelect(obj) {
+    document.mhk_MHKPRForm.sumup_status_key.value = obj.value;
+}
+
+function onChangeLargeItem(resetFlag) {
+
+    var largeItemObj = document.mhk_MHKPRForm.elements['large_item_list.selected'];
+    var insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+    // 大種目設定
+    document.mhk_MHKPRForm.large_item_name_key.value = largeItemObj.value;
+
+    var i = 0;
+    var j = 0;
+    var selectedIndex = 0;
+    insuranceItemObj.options.length = 1;
+    insuranceItemObj.options[j].value = '';
+    insuranceItemObj.options[j++].text = '';
+
+    for (i = 0 ; i < insuranceItems.length / 4; i++ ) {
+        if (insuranceItems[i*4+1] == largeItemObj.value ) {
+            insuranceItemObj.options.length++;
+            insuranceItemObj.options[j].value = insuranceItems[i*4+2] + insuranceItems[i*4+3];
+            insuranceItemObj.options[j].title = insuranceItems[i*4+4];
+            insuranceItemObj.options[j].text = insuranceItems[i*4+4];
+
+            if (insuranceItemObj.options[j].value == document.mhk_MHKPRForm.insurance_item_key.value) {
+                selectedIndex = insuranceItemObj.options.length - 1;
+            }
+            j++;
+        }
+    }
+
+    if (resetFlag) {
+        insuranceItemObj.selectedIndex = 0;
+    } else {
+        insuranceItemObj.selectedIndex = selectedIndex;
+    }
+
+    onChangeInsuranceItem(insuranceItemObj);
+}
+
+// 保険種類を設定
+function onChangeInsuranceItem(insuranceItem) {
+    document.mhk_MHKPRForm.insurance_item_key.value = insuranceItem.value;
+
+    // タイトルを設定
+    var selectedIndex = insuranceItem.selectedIndex;
+    if (selectedIndex >= 0 ) {
+        insuranceItem.title = insuranceItem.options[selectedIndex].text;
+    } else {
+        insuranceItem.title = '';
+    }
+}
+
+//選択検索項目を設定
+function setSelectSearchItem(obj) {
+	document.mhk_MHKPRForm.select_search_item.value = obj.value;
+}
+
+function submit206to104(value) {
+    // 申込書IDを設定
+    document.mhk_MHKPRForm.appFormId.value = value;
+    // ボタンact206to104をクリック
+    var hiddenButton = document.mhk_MHKPRForm.act206to104;
+    if(hiddenButton != null) {
+    	hiddenButton.click();
+    }
+}
+
+</script>
+</head>
+<body leftmargin="5" topmargin="0" onload="custom_bodyLoad()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" enctype="multipart/form-data" onsubmit="return submitAZG206(this,null);" >
+  <input type="hidden" />
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMC22" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMC00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMC22" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <!--/* mock: 住専ユーザ判定はサーバ側。CSV出力の操作が検証に阻まれないよう非住専ユーザを既定値に固定 */-->
+  <input type="hidden" id="sumisei_csv_password" name="sumisei_csv_password" value="notSumiseiUser" />
+  <input type="hidden" id="sumisei_taiju_keiyu" name="sumisei_taiju_keiyu" />
+  <input type="hidden" id="screenWidth"  name="screenWidth" />
+  <input type="hidden" id="screenHeight" name="screenHeight" />
+
+<div id="main">
+
+  <!--/* タイトル表示領域 */-->
+  <div class="area_head">
+  <table class="tbl_head_area tbl_head_size" >
+    <tr>
+      <td class="cell_default_color size_head_logo"><img name="title_logo" class="title_logo" data-unresolved-src="/AMC00${commonForm.logoPath}" /></td>
+      <td class="cell_font_bold cell_head_title_font_size">  </td>
+      <td class="cell_right size_head_sysinfo">
+        <br/>
+        
+        <br/>
+        1
+        1/1
+        1
+        <br/><br/>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="space"></div>
+
+   <!--/* メッセージエリア */-->
+   <div id="message_area" class="block_msg color_red block_msg_size" ms_positioning="FlowLayout"  >
+     
+         <ul class="popup_message_area">
+             <li class="message_area"></li>
+         </ul>
+     
+   </div>
+
+  <div class="space"></div>
+
+ <!--/* 業務エリア */-->
+  <div class="area_gyoumu">
+
+    <!--/* 業務固有領域 */-->
+    <input type="hidden" id="pageNumber" name="page_no" />
+    <input type="hidden" id="totalPage" name="total_page" />
+    <input type="hidden" id="totalCount" name="total_count" />
+
+	<div class="size_block_search">
+    <table class="search_table tbl_search_size" rules="rows">
+      <!--/* 検索条件1行目 */-->
+      <tr>
+        <td class="cell_label_title size_search_col01 size_height_default"> 部店課支社ｺｰﾄﾞ </td>
+        <td class="cell_slide size_search_col02">
+          <input type="text" id="section_code" name="section_code" class="cell_input_value size_input_col02" maxlength="6" onblur="toHankaku(this);toUpper(this);trimHankakuSpace(this);" />
+        </td>
+        <td class="cell_label_title size_search_col03"> 代理店ｺｰﾄﾞ </td>
+        <td class="cell_slide size_search_col04" >
+          <table class="tbl_none_style">
+          <tbody>
+          <tr>
+            <td class="size_code">
+              <input type="text" id="agent_code" name="agent_code" class="cell_input_value size_agent_code" maxlength="6" onblur="toHankaku(this);toUpper(this);trimHankakuSpace(this);" />
+            </td>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="relation_agent" name="relation_agent" value="1" />
+            </td>
+            <td class="size_title">
+              <label title="関連代理店を含む">関連代理店</label>
+            </td>
+          </tr>
+          </tbody>
+          </table>
+        </td>
+        <td class="cell_label_title size_search_col05"> ｻﾌﾞｺｰﾄﾞ </td>
+        <td class="cell_slide size_search_col06">
+          <input type="text" id="sub_agent_code" name="sub_agent_code" class="cell_input_value size_input_col06 input_ime_inactive" maxlength="6" onblur="toUpper(this);" />
+        </td>
+        <td class="cell_label_title size_search_col07"> ﾌﾘｰｺｰﾄﾞ </td>
+        <td class="cell_slide size_search_col08">
+          <input type="text" id="free_code_1" name="free_code_1" class="cell_input_value size_input_col08 input_ime_inactive" maxlength="10" onblur="toUpper(this);" />
+        </td>
+      </tr>
+      <!--/* 検索条件2行目 */-->
+      <tr>
+        <td class="cell_label_title size_height_default" > 種目 </td>
+        <td class="cell_slide">
+        <input type="hidden" id="large_item_name_key" name="large_item_name_key" />
+          <select name="large_item_list.selected" class="cell_input_value size_select_col02" onchange="onChangeLargeItem(true);"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+        </td>
+        <td class="cell_label_title" > 保険種類 </td>
+        <td class="cell_slide">
+        <input type="hidden" id="insurance_item_key" name="insurance_item_key" />
+          <select name="insurance_item_list.selected"  class="cell_input_value size_select_col04" onchange="onChangeInsuranceItem(this);"><option value=""></option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+        </td>
+        <td class="cell_label_title" >
+        <input type="hidden" id="select_search_item_key" name="select_search_item" />
+        <select name="select_search_item_list.selected" class="cell_label_title_pulldown" onchange="setSelectSearchItem(this);" >
+          
+            <option>1</option>
+          
+        </select>
+        </td>
+        <td class="cell_slide">
+          <input type="text" id="policy_number" name="policy_number" class="cell_input_value size_input_col06" maxlength="12" onblur="toHankaku(this);toUpper(this);trimHankakuSpace(this);" >
+        </td>
+        <td class="cell_label_title" > 明細番号 </td>
+        <td class="cell_slide">
+          <input type="text" id="sub_policy_number" name="sub_policy_number" class="cell_input_value size_input_col08"  maxlength="10" onblur="toHankaku(this);toUpper(this);trimHankakuSpace(this);" >
+        </td>
+      </tr>
+      <!--/* 検索条件3行目 */-->
+      <tr>
+        <td class="cell_label_title size_height_default" >計上年月</td>
+        <td class="cell_slide">
+          <input type="text" id="sumup_year" name="sumup_year" class="cell_input_value size_input_height size_year" maxlength="4" >
+          年
+          <input type="text" id="sumup_month" name="sumup_month" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          月</td>
+        <td class="cell_label_title" > 計上状態 </td>
+        <td class="cell_slide">
+        <input type="hidden" id="sumup_status_key" name="sumup_status_key" />
+        <select size="1" class="cell_input_value size_select_col04" onchange="setSumupStatusSelect(this);">
+          
+            <option>1</option>
+          
+        </select>
+        </td>
+        <td class="cell_label_title" > 募集人ID </td>
+        <td class="cell_slide" colspan="3" >
+          <input type="text" id="field_agent_id" name="field_agent_id" class="cell_input_value size_input_col06" maxlength="10" onblur="toUpper(this);" >
+        </td>
+      </tr>
+      <!--/* 検索条件4行目 */-->
+      <tr>
+        <td class="cell_label_title size_height_default" > 登録日 </td>
+        <td class="cell_slide cell_left" colspan="3" >
+          <input type="text" id="regist_year_from" name="regist_year_from" class="cell_input_value size_input_height size_year" maxlength="4" >
+          年
+          <input type="text" id="regist_month_from" name="regist_month_from" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          月
+          <input type="text" id="regist_day_from" name="regist_day_from" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          日
+          1
+          <input type="text" id="regist_year_to" name="regist_year_to" class="cell_input_value size_input_height size_year" maxlength="4" >
+          年
+          <input type="text" id="regist_month_to" name="regist_month_to" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          月
+          <input type="text" id="regist_day_to" name="regist_day_to" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          日
+        </td>
+        <td class="cell_label_title" > 回答締切日 </td>
+        <td class="cell_slide cell_left" colspan="3" >
+          <input type="text" id="reminder_year_from" name="reminder_year_from" class="cell_input_value size_input_height size_year" maxlength="4" >
+          年
+          <input type="text" id="reminder_month_from" name="reminder_month_from" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          月
+          <input type="text" id="reminder_day_from" name="reminder_day_from" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          日
+          1
+          <input type="text" id="reminder_year_to" name="reminder_year_to" class="cell_input_value size_input_height size_year" maxlength="4" >
+          年
+          <input type="text" id="reminder_month_to" name="reminder_month_to" class="cell_input_value size_input_height size_month_day" maxlength="2">
+          月
+          <input type="text" id="reminder_day_to" name="reminder_day_to" class="cell_input_value size_input_height size_month_day" maxlength="2" >
+          日
+         </td>
+      </tr>
+      <!--/* 検索条件5行目 */-->
+      <tr>
+        <td class="cell_label_title size_height_default" > 対応状況 </td>
+        <td class="cell_slide cell_left" colspan="3"  >
+          <table class="tbl_none_style">
+          <tbody>
+          <tr>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="agent_status_code_1" name="agent_status_code_1" value="1" />
+            </td>
+            <td class="size_status01">
+              1：未対応1
+            </td>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="agent_status_code_2" name="agent_status_code_2" value="2" />
+            </td>
+            <td class="size_status02">
+              2：対応中1
+            </td>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="agent_status_code_3" name="agent_status_code_3" value="3" />
+            </td>
+            <td class="size_status03">
+              3：回答済1/14：完了1
+            </td>
+          </tr>
+          </tbody>
+          </table>
+        </td>
+        <td class="cell_label_title size_height_default" > 依頼区分 </td>
+        <td class="cell_slide cell_left" colspan="3"  >
+          <table class="tbl_none_style">
+          <tbody>
+          <tr>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="agent_deal_flag_1" name="agent_deal_flag_1" value="1" />
+            </td>
+            <td class="size_status01">
+              1：照会1
+            </td>
+            <td class="size_checkbox">
+              <input type="checkbox" class="size_checkbox" id="agent_deal_flag_2" name="agent_deal_flag_2" value="2" />
+            </td>
+            <td class="size_status02">
+              2：連絡1
+            </td>
+          </tr>
+          </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+    </div>
+
+    <div class="space_higher"></div>
+
+	<div class="block_execute">
+	 <table class="tbl_none_style size_width_100per">
+     <tbody>
+         <tr class="size_result_height">
+             <td class="size_csv_col01" rowspan="2">
+               <input type="submit" class="btn_type_normal" id="select" name="select" onclick="clickButton(this)" value="検索" formaction="/AMC22/aZG206Search">
+             </td>
+             <td class="size_csv_col02" >「英数字は半角大文字」「年月は西暦」で入力</td>
+             <td class="size_csv_col03 cell_right" rowspan="2">任意のパスワード(CSV出力)</td>
+             <td class="size_csv_col04" rowspan="2">
+                 <input type="text" id="password" name="password" class="cell_input_value size_password" maxlength="20" />
+             </td>
+             <td class="size_csv_col05 cell_right" rowspan="2">
+                 <input type="submit" class="btn_type_normal" id="outputCSV" name="outputCSV" value="ＣＳＶ出力" formaction="/AMC22/aZG206OutputCSV" onclick="clickButton(this); sdeDisableCheckSubmitOnce()" >
+             </td>
+         </tr>
+
+         <tr>
+             <td >※詳細についてはNoをクリックしてください。</td>
+         </tr>
+         <tr>
+             <td></td>
+             <td  colspan="2">※<span style="background: #FFFF00;">黄色</span>＝回答締切日時点で未完了の照会：至急ご回答ください。<span style="background:#88ffff;">水色</span>＝連絡：内容をご確認ください。</td>
+             <td class="cell_right" colspan="2">
+                 /ページ　検索結果件
+             </td>
+         </tr>
+     </tbody>
+    </table>
+    </div>
+
+	<div class="result_table_title block_result_title">
+      <table rules="rows" border="1" cellspacing="0" cellpadding="0">
+        <tr class="cell_title_label size_title_row">
+          <td class="size_result_col01"><div>No.</div></td>
+          <td class="size_result_col02">部店<br/>課支社</td>
+          <td class="size_result_col03">代理店</td>
+          <td class="size_result_col04">ｻﾌﾞｺｰﾄﾞ</td>
+          <td class="size_result_col05">ﾌﾘｰｺｰﾄﾞ</td>
+          <td class="size_result_col06">募集人名</td>
+          <td class="size_result_col07">種目</td>
+          <td class="size_result_col08">証券番号</td>
+          <td class="size_result_col09">明細<br />番号</td>
+          <td class="size_result_col10">契約者名</td>
+          <td class="size_result_col11">計上<br />状態</td>
+          <td class="size_result_col12">登録日</td>
+          <td class="size_result_col13">回答<br/>締切日</td>
+          <td class="size_result_col14"  title="1：未対応&#13;&#10;2：対応中&#13;&#10;3：回答済&#13;&#10;4：完了" >対応<br/>状況</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="gyoumu_list" class="result_table_list block_scroll block_result_scroll_size" >
+      <table class="size_result_list" rules="rows" border="1" cellspacing="0" cellpadding="0">
+        
+         <tr>
+         <!--/* No. */-->
+          <td class="size_result_col01" >
+            <div class="cell_center" >
+              <a href="#" name="link_tag" id="link_tag" onclick="clickButton(this);submit206to104('1234567890');">1</a>
+            </div>
+          </td>
+          <!--/* 部店課支社ｺｰﾄﾞ */-->
+          <td class="size_result_col02" >1</td>
+          <!--/* 代理店ｺｰﾄﾞ */-->
+          <td class="size_result_col03" >1</td>
+          <!--/* ｻﾌﾞｺｰﾄﾞ */-->
+          <td class="size_result_col04" >1</td>
+          <!--/* ﾌﾘｰｺｰﾄﾞ */-->
+          <td class="size_result_col05" >1</td>
+          <!--/* 募集人名 */-->
+          <td class="size_result_col06 cell_left" >1</td>
+          <!--/* 種目 */-->
+          <td class="size_result_col07" >1</td>
+          <!--/* 証券番号 */-->
+          <td class="size_result_col08" >1</td>
+          <!--/* 明細番号 */-->
+          <td class="size_result_col09" >1</td>
+          <!--/* 契約者名 */-->
+          <td class="size_result_col10 cell_left" >1</td>
+          <!--/* 計上状態 */-->
+          <td class="size_result_col11" ><font >1</font></td>
+          <!--/* 登録日 */-->
+          <td class="size_result_col12" >1</td>
+          <!--/* 回答締切日 */-->
+          <td class="size_result_col13" >1</td>
+          <!--/* 対応状況 */-->
+          <td class="size_result_col14" >1</td>
+        </tr>
+        
+      </table>
+    </div><!--/* 検索結果エリアDIV終了タグ */-->
+
+  </div><!--/*  業務エリアDIV終了タグ */-->
+
+  <!--/* ボタン部 */-->
+  <div class="area_btn area_btn_color">
+    <table class="tbl_layout size_tbl_btn" rules="rows" border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="size_btn_left"></td>
+        <td class="size_btn_center cell_left">
+          <!--/* 処理実行ボタン */-->
+          <input type="submit" class="btn_type_normal" id="prevPage" name="prevPage" onclick="clickButton(this)" value="前 頁" formaction="/AMC22/aZG206PrevPage">
+          <span class="cell_span_width"></span>
+          <input type="submit" class="btn_type_normal" id="nextPage" name="nextPage" onclick="clickButton(this)" value="次 頁" formaction="/AMC22/aZG206NextPage">
+        </td>
+        <td class="size_btn_right cell_right">
+          <input class="btn_type_normal" type="button" value="終　了" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+  <!--/* 一覧「No.」用（不備内容入力-更新画面用key）申込書IDおよびHiddenボタン  */-->
+  <input type="hidden" id="appFormId" name="appFormId" />
+  <input type="submit" id="act206to104" name="act206to104" formaction="/AMC22/aZG206To23" style="display:none;" >
+  <input type="submit" id="close" name="close" formaction="/AMC22/close" style="display:none;" >
+</form>
+<script src="../../picker.js"></script></body>
+
+</html>

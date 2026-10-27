@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title>異例取扱管理システム</title>
+<link rel="stylesheet" type="text/css" href="static/css/tks.css"/>
+<script type="text/javascript" th:src='static/js/tks_common.js'></script>
+<script>
+function custom_BodyOnload() {
+	commonPopupBodyOnload();
+
+	if (window != window.parent) {
+        window.parent.document.body.innerHTML = window.document.body.innerHTML;
+    }
+}
+</script>
+</head>
+<body class="popup_body_common" onload="custom_BodyOnload()">
+<form id="tks_MHKPRForm" name="tks_MHKPRForm" method="post">
+	<input type="hidden" />
+	<!--/* メッセージエリア */-->
+	<div class="popup_message_area" id="popup_message_area">
+		<ul class="popup_message_area"><li class="popup_message_area"></li></ul>
+	</div>
+    <!--/* 業務画面共通項目 */-->
+    <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+    <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+    <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="ANAZY" />
+    <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+    <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+    <input type="hidden" id="gamcd"        name="gamcd"        value="ANA00" />
+    <input type="hidden" id="gamid"        name="gamid"        value="ANAZY" />
+    <input type="hidden" id="hubsessid"    name="hubsessid" />
+    <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+    <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+    <input type="hidden" id="pfkey"        name="pfkey"        value="child" />
+    <input type="hidden" id="seniType"     name="seniType" />
+    <input type="hidden" id="sys_mode"     name="sys_mode" />
+    <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+	<!--/* ボタンエリア */-->
+	<div id="ButtonP" class="popup_button_area">
+		<!--/* 終了ボタン */-->
+		<div class="popup_button_area_close">
+			<input name="close" type="button" class="popup_button_area_button"  value="閉じる" onclick="window.close();"/>
+		</div>
+	</div>
+  </form>
+<script src="../../picker.js"></script></body>
+
+</html>

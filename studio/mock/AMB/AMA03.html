@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" href="static/css/mhk.css"/>
+<script src="static/js/mhk_common.js"></script>
+<script>
+var	insuranceItems = ['','B','00','A0','自賠責','5','00','A1','自動車','5','11','A0','クルマの保険／はじめての自動車保険','5','13','A0','クルマの保険・一般用','5','03','A0','1DAY保険／GK　クルマの保険・ドライバー保険','Y','02','A0','国内貨物総合保険','Z','00','Z0','種目共通','0','00','00','その他'];
+</script>
+<script>
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.mhk_MHKPRForm.close, '');
+}
+
+function custom_BodyOnload() {
+	commonBodyOnload();
+	onChangeLargeItem();
+
+	var searchIndexErrMsg = '';
+
+	if ( searchIndexErrMsg != '') {
+		// 保種の再選択
+		var selectedIndex = document.mhk_MHKPRForm.insuranceSelectedIndex.value;
+		var insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+		if (insuranceItemObj.options[selectedIndex]) {
+			insuranceItemObj.selectedIndex = selectedIndex;
+			document.getElementById('insurance_item_title').title = insuranceItemObj.options[selectedIndex].text;
+		}
+
+		// 振分検索エラーメッセージ表示
+		alert(searchIndexErrMsg);
+	}
+}
+
+// mock 補完: 画面 submit ハンドラ（実機 Struts の submitAZG100 相当）
+function submitAZG100(form, param) {
+	return custom_Submit(form);
+}
+
+function custom_Submit(form) {
+
+	// 登録時のみバリデートを実行
+	if ( clickButtonName == 'regist' ) {
+		// Struts(SDE)バリデート実行(Client側)
+		if ( formValidate(form) == false ) {
+			return false;
+		}
+
+		form.insuranceSelectedIndex.value = form.elements['insurance_item_list.selected'].selectedIndex;
+
+		return true;
+	}
+	else {
+		return true;
+	}
+}
+
+function onChangeInputType(inputTypeObj) {
+	// 入力区分 = 契約入力
+	if ( inputTypeObj.value == '1' ) {
+		document.mhk_MHKPRForm.import_flag.checked = true;
+	}
+	else {
+		document.mhk_MHKPRForm.import_flag.checked = false;
+	}
+}
+
+function onChangeLargeItem() {
+	var		largeItemObj = document.mhk_MHKPRForm.elements['large_item_list.selected'];
+	var		insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+	var		i = 0;
+	var		j = 0;
+
+	document.getElementById('insurance_item_title').title = '';
+
+	insuranceItemObj.options.length = 1;
+	insuranceItemObj.options[j].value = '';
+	insuranceItemObj.options[j++].text = '';
+
+	for (i = 0 ; i < insuranceItems.length / 4; i++ ) {
+		if ( insuranceItems[i*4+1] == largeItemObj.value ) {
+			insuranceItemObj.options.length++;
+			insuranceItemObj.options[j].value = insuranceItems[i*4+2] + insuranceItems[i*4+3];
+			insuranceItemObj.options[j].title = insuranceItems[i*4+2] + ' ： ' + insuranceItems[i*4+4];
+			insuranceItemObj.options[j++].text = insuranceItems[i*4+2] + ' ： ' + insuranceItems[i*4+4];
+		}
+	}
+	document.mhk_MHKPRForm.insurance_item_code.value = insuranceItemObj.value;
+}
+
+function onChangeInsuranceItem(insuranceItem) {
+	var		selectedIndex = insuranceItem.selectedIndex;
+	if ( selectedIndex >= 0 ) {
+		document.getElementById('insurance_item_title').title = insuranceItem.options[selectedIndex].text;
+	}
+}
+
+// 保種選択画面
+function onClickSelectInsurance() {
+	var largeItemObj = document.mhk_MHKPRForm.elements['large_item_list.selected'];
+	var selectedIndex = largeItemObj.selectedIndex;
+
+	if ( selectedIndex <= 0 ) {
+		return;
+	}
+
+	// 子画面開閉チェック
+	subWinOpenCheck();
+
+	var	insuranceItemObj = document.mhk_MHKPRForm.elements['insurance_item_list.selected'];
+
+	var url = new URL("/AMB/insurance_item_select.html", window.location.origin);
+	showPopup(url.href, "insurance_item_select", "1");
+}
+
+// 募集人検索画面
+function popupAZG905() {
+	var form            = document.mhk_MHKPRForm;
+	var sectionCode     = form.section_code.value;
+	var agentCode       = form.agent_code.value;
+	var fieldAgentId    = form.field_agent_id.value;
+	var firstSearchFlag = '0';
+
+	// 子画面開閉チェック
+	subWinOpenCheck();
+
+	// 募集人検索画面表示前の入力チェック
+	if ( formValidateForPopupAZG905(form) ) {
+		firstSearchFlag = '1';
+	}
+
+	var param = '1' + '=' + sectionCode
+				+ '&' + '1' + '=' + agentCode
+				+ '&' + '1' + '=' + fieldAgentId
+				+ '&' + '1' + '=' + firstSearchFlag
+				+ '&gamid=AMA18&gamcd=AMA00&hubsessid=1';
+
+	var url = new URL('/AMB/AMA18.html', window.location.origin);
+	var params = new URLSearchParams(param)
+	url.search = params.toString();
+
+	showPopup(url.href, "AMA18", "1");
+}
+
+function formValidate(form) {
+	var inputTypeObj	= form.elements['input_type_list.selected'];
+	var largeItemObj	= form.elements['large_item_list.selected'];
+	var insuranceItemObj= form.elements['insurance_item_list.selected'];
+	var appFormTypeObj	= form.elements['application_form_type_list.selected'];
+	var sumupStatusObj	= form.elements['sumup_status_list.selected'];
+
+	// 入力区分の必須チェック
+	if ( !isRequired(form, inputTypeObj, '') ) {
+		return false;
+	}
+
+	// 大種目の必須チェック
+	if ( !isRequired(form, largeItemObj, '') ) {
+		return false;
+	}
+
+	// 証券番号の必須チェック&半角英数チェック
+	if ( !isRequired(form, form.policy_number, '') ||
+		 !isAlphaNumeric(form, form.policy_number, '') ) {
+		return false;
+	}
+
+	// 明細番号の半角英数チェック
+	if ( !isAlphaNumeric(form, form.sub_policy_number, '') ) {
+		return false;
+	}
+
+	// 募集人IDの半角英数チェック
+	if ( !isAlphaNumeric(form, form.field_agent_id, '') ) {
+		return false;
+	}
+
+	// 契約者名の最大バイト数＆記号チェック
+	if (!isMaxLenB(form, form.insurant_name, 120, '') ||
+		!isProhibitionChar(form, form.insurant_name, '') ) {
+		return false;
+	}
+
+	// 課支社CD 最小文字数＆半角英数チェック
+	if ( !isMinLenB(form, form.section_code, 3, '') ||
+		 !isAlphaNumeric(form, form.section_code, '') ) {
+		return false;
+	}
+
+	// 代理店CD 半角英数チェック
+	if ( !isAlphaNumeric(form, form.agent_code, '') ) {
+		return false;
+	}
+
+	// サブの半角チェック＆記号チェック
+	if (!isAllHankaku(form, form.sub_agent_code, '') ||
+		!isProhibitionChar(form, form.sub_agent_code, '') ) {
+		return false;
+	}
+
+	// フリーコード1の半角チェック
+	if ( !isAllHankaku(form, form.free_code_1, '') ) {
+	     return false;
+	}
+
+	// 保険始期日
+	if ( !isValidDateYMD(form, form.start_date, '') ) {
+		return false;
+	}
+
+	// 変更日
+	if ( !isValidDateYMD(form, form.change_date, '') ) {
+		return false;
+	}
+
+	// 新更変・他の必須チェック
+	if ( !isRequired(form, appFormTypeObj, '') ) {
+		return false;
+	}
+
+	// 計上年月のチェック
+	if ( !isValidYearMonth(form, form.sumup_year_month, '') ) {
+		return false;
+	}
+
+	// 日報送付の半角英数チェック
+	if ( !isAlphaNumeric(form, form.daily_report_send, '') ) {
+		return false;
+	}
+
+	// 日報部課代CD 半角英数チェック
+	if ( !isMinLenB(form, form.sumup_section_code, 3, '') ||
+		  !isAlphaNumeric(form, form.sumup_section_code, '') ) {
+		return false;
+	}
+
+	// 計上状態の必須チェック
+	if ( !isRequired(form, sumupStatusObj, '') ) {
+		return false;
+	}
+
+	// 督促日の日付チェック
+	if ( !isRequired(form, form.reminder_date, '') ||
+		 !isValidDateYMD(form, form.reminder_date, '') ) {
+		return false;
+	}
+
+	// 入力区分のチェック(大種目が0の時のみ)
+	if ( largeItemObj.value == '0' ) {
+		if ( inputTypeObj.value != '9' ) {
+			showValidateMessage(form, inputTypeObj, '');
+			return false;
+		}
+	}
+
+	// 保種の必須チェック(大種目が5、7の時のみ)
+	if(form.company_kbn.value == 'AD'){
+		if ( largeItemObj.value == '5' || largeItemObj.value == '7' ) {
+			if ( !isRequired(form, insuranceItemObj, '') ) {
+				return false;
+			}
+		}
+	}
+
+	// 保種の必須チェック(大種目が5、7、X の時)
+	if(form.company_kbn.value == 'MS'){
+		if ( largeItemObj.value == '5' || largeItemObj.value == '7'  || largeItemObj.value == 'X' ) {
+			if ( !isRequired(form, insuranceItemObj, '') ) {
+				return false;
+			}
+		}
+	}
+
+	// 課支社CD、代理店CD、計上年月の必須チェック(契約マスタ引き込み時以外)
+	if ( !form.import_flag.checked ) {
+		// 課支社CDの必須チェック
+		if ( !isRequired(form, form.section_code, '') ) {
+			return false;
+		}
+		// 代理店CDの必須チェック
+		if ( !isRequired(form, form.agent_code, '') ) {
+			return false;
+		}
+		// 計上年月の必須チェック
+		if ( !isRequired(form, form.sumup_year_month, '') ) {
+			return false;
+		}
+	}
+	// 督促日<登録日のチェック
+	var		registrationDate = '1';
+
+	if (form.reminder_date.value < registrationDate) {
+		showValidateMessage(form, form.reminder_date, '');
+		return false;
+	}
+
+	// 入力区分のチェック(大種目がZの時のみ)
+	if ( largeItemObj.value == 'Z' ) {
+		if ( inputTypeObj.value != '5' && inputTypeObj.value != '7') {
+			showValidateMessage(form, inputTypeObj, '');
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// 入力区分の選択値を設定
+function setInputTypeSelect(obj) {
+	document.mhk_MHKPRForm.input_type_code.value = obj.value;
+}
+
+//大種目の選択値を設定
+function setLargeItemSelect(obj) {
+	document.mhk_MHKPRForm.large_item_code.value = obj.value;
+}
+
+// 保種の選択値を設定
+function setInsuranceItemSelect(obj) {
+	document.mhk_MHKPRForm.insurance_item_code.value = obj.value;
+}
+
+// 新更変・他の選択値を設定
+function setApplicationFormTypeSelect(obj) {
+	document.mhk_MHKPRForm.application_form_type.value = obj.value;
+}
+
+//計上状態の選択値を設定
+function setSumupStatusSelect(obj) {
+	document.mhk_MHKPRForm.sumup_status.value = obj.value;
+}
+</script>
+</head>
+<body class="body_common" onload="custom_BodyOnload()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG100(this,null);" >
+  <input type="hidden" />
+  <!--/* タイトルエリア */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" data-unresolved-src="/AMB${commonForm.logoPath}" width="auto" height="32" alt="企業ロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br />
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+
+  <!--/* メッセージエリア */-->
+  <div class="div_message_area">
+    <div id="message_area" class="message_area">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA03" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="AMA03" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <input type="hidden" id="company_kbn"  name="company_kbn" />
+
+  <!--/* 業務固有領域 */-->
+  <div class="wrapper03 gyoumu_area">
+    <!--/* 入力区分から契約マスタ欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">入力区分</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_input_type_code" name="input_type_code" />
+        <select name="input_type_list.selected" class="gyoumu_field_control" onchange="setInputTypeSelect(this);onChangeInputType(this);" tabindex="1"><option value=""></option><option value="1">契約入力</option><option value="2">現地</option><option value="5">機械</option><option value="7">機械(他)</option><option value="9">その他</option></select>
+      </div>
+      <div class="gyoumu_field_title">契約マスタ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="checkbox" id="import_flag" name="import_flag" value="true" tabindex="2" /><!--
+         --><label>連動する</label>
+      </div>
+    </div>
+
+    <!--/* 画面右上の注意文言 */-->
+    <div class="item">
+      <div class="text_bold">「英数字は半角大文字」「年月は西暦」で入力</div>
+    </div>
+
+    <!--/* 種類から明細番号欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">種目</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_large_item_code" name="large_item_code" />
+        <select name="large_item_list.selected" class="gyoumu_field_control" onchange="setLargeItemSelect(this);onChangeLargeItem();" tabindex="3"><option value=""></option><option value="5">自動車</option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+      </div>
+
+      <div class="gyoumu_field_title">保険種類</div>
+      <div id="insurance_item_title" class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_insurance_item_code" name="insurance_item_code" />
+        <select name="insurance_item_list.selected" class="gyoumu_field_control" onchange="setInsuranceItemSelect(this);onChangeInsuranceItem(this);" tabindex="4"><option value=""></option><option value="11A0">11：クルマの保険／はじめての自動車保険</option><option value="13A0">13：クルマの保険・一般用</option><option value="03A0">03：1DAY保険／GK　クルマの保険・ドライバー保険</option><option value="00A1">00 ： 自動車</option><option value="00A0">00 ： 自賠責</option><option value="02A0">02 ： 国内貨物総合保険</option><option value="00Z0">00 ： 種目共通</option><option value="0000">00 ： その他</option></select>
+      </div>
+
+      <div class="gyoumu_field_title">証券番号</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="policy_number" name="policy_number"
+            class="gyoumu_field_control" tabindex="6" maxlength="12" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">明細番号</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sub_policy_number" name="sub_policy_number"
+            class="gyoumu_field_control" tabindex="7" maxlength="10" onblur="subPolicyNumberOutput(this);toUpper(this);">
+      </div>
+
+      <div class="button_select_insurance_item">
+        <input type="button" name="selectInsuransuItem" class="small_square_button" tabindex="5" value="...." onclick="onClickSelectInsurance();" />
+      </div>
+    </div>
+
+    <!--/* 部店課支社ｺｰﾄﾞからフリーコード欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">部店課支社ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="section_code" name="section_code"
+            class="gyoumu_field_control" tabindex="11" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">代理店ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="agent_code" name="agent_code"
+            class="gyoumu_field_control" tabindex="12" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">代理店名</div>
+      <div class="gyoumu_field_value">
+        1
+        1
+      </div>
+
+      <div class="gyoumu_field_title">ｻﾌﾞｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sub_agent_code" name="sub_agent_code"
+            class="gyoumu_field_control" tabindex="13" maxlength="6" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">ﾌﾘｰｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="free_code_1" name="free_code_1"
+            class="gyoumu_field_control" tabindex="14" maxlength="10" onblur="toUpper(this);">
+      </div>
+    </div>
+
+    <!--/* 募集人IDから契約者名欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">募集人ID</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="field_agent_id" name="field_agent_id"
+            class="gyoumu_field_control" tabindex="8" maxlength="10" onblur="toUpper(this);" >
+      </div>
+      <div class="gyoumu_field_value_left" id="field_agent_name" title="">
+        1
+        1
+      </div>
+      <div class="gyoumu_field_value">
+        <input type="button" name="selectFieldAgent" class="small_square_button" tabindex="9" value="...." onclick="popupAZG905()"/>
+      </div>
+      <div class="gyoumu_field_title">契約者名</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="insurant_name" name="insurant_name"
+           class="gyoumu_field_control" tabindex="10" maxlength="120" >
+      </div>
+    </div>
+
+    <!--/* 保険始期日から計上状態欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">保険始期日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="start_date" name="start_date"
+            class="gyoumu_field_control" tabindex="15" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">変更日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="change_date" name="change_date"
+            class="gyoumu_field_control" tabindex="16" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">新更変・他</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_application_form_type_code" name="application_form_type" />
+        <select name="application_form_type_list.selected" class="gyoumu_field_control" onchange="setApplicationFormTypeSelect(this);" tabindex="17"><option value=""></option><option value="1">新規</option></select>
+      </div>
+
+      <div class="gyoumu_field_title">計上年月</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sumup_year_month" name="sumup_year_month"
+            class="gyoumu_field_control" tabindex="18" maxlength="7" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,6)">
+      </div>
+
+      <div class="gyoumu_field_title">日報／送付</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="daily_report_send" name="daily_report_send"
+            class="gyoumu_field_control" tabindex="19" maxlength="12">
+      </div>
+
+      <div class="gyoumu_field_title">日報部課代ｺｰﾄﾞ</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="sumup_section_code" name="sumup_section_code"
+            class="gyoumu_field_control" tabindex="20" maxlength="9" onblur="toUpper(this);">
+      </div>
+
+      <div class="gyoumu_field_title">計上状態</div>
+      <div class="gyoumu_field_value_left">
+        <input type="hidden" id="selected_sumup_status_code" name="sumup_status" />
+        <select name="sumup_status_list.selected" class="gyoumu_field_control" onchange="setSumupStatusSelect(this);" tabindex="21"><option value=""></option><option value="1">未計上</option></select>
+      </div>
+    </div>
+
+    <!--/* 登録者から完了日欄 */-->
+    <div class="item">
+      <div class="gyoumu_field_title">登録者</div>
+      <div class="gyoumu_field_value">
+        1
+        1
+      </div>
+
+      <div class="gyoumu_field_title">登録日</div>
+      <div class="gyoumu_field_value">
+        1
+        1
+      </div>
+
+      <div class="gyoumu_field_title">更新日</div>
+      <div class="gyoumu_field_value">
+        1
+        1
+      </div>
+
+      <div class="gyoumu_field_title">回答締切日</div>
+      <div class="gyoumu_field_value_left">
+        <input type="text" id="reminder_date" name="reminder_date"
+            class="gyoumu_field_control" tabindex="22" maxlength="10" onfocus="dateFiledInput(this)" onblur="dateFiledOutput(this,8)">
+      </div>
+
+      <div class="gyoumu_field_title">完了日</div>
+      <div class="gyoumu_field_value">
+        1
+        1
+      </div>
+    </div>
+
+  </div>
+
+  <input type="hidden" id="insuranceSelectedIndex" name="insuranceSelectedIndex" />
+
+  <!--/* ボタンエリア */-->
+  <div class="button_area size_button_area03">
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act100to001" name="act100to001" onclick="clickButton(this)"
+          value="メニュー" formaction="/AMA03/aZG100To01">
+    </div>
+    <div class="button_width_75">
+      <input type="submit" class="button_area_button" id="act100to200" name="act100to200" onclick="clickButton(this)"
+          value="一覧画面" formaction="/AMA03/aZG100To07">
+    </div>
+    <div class="button_width_60">
+      <input type="submit" class="button_area_button" id="regist" name="regist" onclick="clickButton(this)"
+          value="登録" formaction="/AMA03/aZG100Regist">
+    </div>
+    <div class="button_width_60">
+      <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()"/>
+    </div>
+  </div>
+
+  <input type="submit" id="close" name="close" formaction="/AMA03/close" class="display_none" >
+</form>
+<script src="../../picker.js"></script></body>
+
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="static/css/mhk.css"/>
+<base target="_self" />
+<script type="text/javascript" th:src='static/js/mhk_common.js'></script>
+<script>
+
+// 半角空白化処理
+function convTdEmptyString(value) {
+	return (value == '' || value == null || typeof(value) == 'undefined') ? ' ' : value;
+}
+
+// 回答内容クリア
+function clearAnswerContents(indexNo) {
+
+	var selectObj = window.opener.document.mhk_MHKPRForm['list[' + indexNo + '].answer_contents.selected'];
+
+	// 回答内容リストをクリア
+	while (0 < selectObj.length) {
+		selectObj.remove(0);
+	}
+
+	// 回答内容をクリア
+	window.opener.document.mhk_MHKPRForm['tableRecordList[' + indexNo + '].answer_contents'].value = '';
+}
+
+function custom_Load() {
+	// ウィンドウの×ボタンを無効化
+	commonPopupBodyOnload();
+
+	var form = document.mhk_MHKPRForm;
+	var hideGyoumuAreaFlag = document.getElementById('hide_gyoumu_area_flag');
+
+	// 業務エリアを非表示にする場合
+	if( form.hide_gyoumu_area_flag.value == '1') {
+
+		// 業務エリア
+		var area = document.getElementById('gyoumu_area');
+
+		// 選択ボタン
+		var button = form['selectItem'];
+
+		area.style.visibility = 'hidden';
+		button.style.visibility = 'hidden';
+	} else {
+		ElementSelectCheck(form['inquiry_contents_list.selected'], 'Result');
+	}
+
+	// 照会内容エリアの非活性制御
+	controlInquiryContents(form);
+
+	// 保種のツールチップの再設定
+	document.getElementById('insurance_item_name_title').title = document.getElementById('insurance_item_name_title').title.split('&nbsp;').join(' ');
+
+	if(form.answer_content_flag.value == "true"){
+
+		var result = new Array(
+			form.large_item_code.value,
+			form.insurance_item_code.value,
+			form.layout_type_i.value,
+			form.field_code.value,
+			form.internal_code.value,
+			form.dd.value,
+			form.field_name.value,
+			form.inquiry_contents_id.value,
+			form.inquiry_contents_code.value,
+			form.inquiry_contents_name.value,
+			form.imperfect_code.value,
+			form.imperfect_name.value,
+			form.answer_content.value
+		);
+
+		// 一覧の該当行情報取得
+		var oyaForm = window.opener.document.mhk_MHKPRForm;
+		var indexNo = document.getElementById('index_no').value;
+
+		// 集計カウント対象外チェックボックスを活性
+		oyaForm['list[' + indexNo + '].exclude_receipt_flag'].disabled = false;
+
+		// 依頼区分
+		var agentDealFlag = getRadioSelectedValue(oyaForm.agent_deal_flag_radio);
+
+		// 依頼区分ラジオボタンの選択値が1:照会のときに実施
+		if (agentDealFlag == '1') {
+			// 回答入力欄を活性
+			oyaForm['list[' + indexNo + '].answer_message'].disabled = false;
+		}
+
+		// 項目CD
+		window.opener.document.getElementById('td_field_code[' + indexNo + ']').innerText = convTdEmptyString(result[3]);
+		// 項目名
+		window.opener.document.getElementById('td_field_name[' + indexNo + ']').innerText = convTdEmptyString(result[6]);
+		// 不備内容
+		var imperfectNameElement = window.opener.document.getElementById('td_imperfect_name[' + indexNo + ']');
+		var imperfectNameValue   = convTdEmptyString(result[11]);
+		imperfectNameElement.innerText = imperfectNameValue;
+		imperfectNameElement.title     = imperfectNameValue;
+
+		var listName = 'list[' + indexNo + '].';
+		var listNameTableRecord = 'tableRecordList[' + indexNo + '].';
+
+		// 照会内容編集チェックボックスがOFFの場合のみ設定
+		if (oyaForm[listName + 'inquiry_contents_edit_flag'].checked == false) {
+			// 照会内容
+			var inquiryContentsNameElement = window.opener.document.getElementById('td_inquiry_contents_name[' + indexNo + ']');
+			var inquiryContentsNameValue   = convTdEmptyString(result[9]);
+			inquiryContentsNameElement.innerText = inquiryContentsNameValue;
+
+			// 照会IDに変更がある場合
+			if(oyaForm[listName + 'inquiry_contents_id'].value != result[7]) {
+				// 回答内容の設定
+
+				// 回答内容をクリア
+				clearAnswerContents(indexNo);
+
+				if (result[12]) {
+					// 戻り値に回答内容がある場合、回答内容リストを生成
+					var ansContSprit = result[12].split(",");
+					var optLen = 0;
+
+					for (; optLen < ansContSprit.length;) {
+						var addOption = window.opener.document.createElement("option");
+						addOption.value = ansContSprit[optLen++];
+						addOption.text = ansContSprit[optLen++];
+						oyaForm[listName + 'answer_contents.selected'].add(addOption);
+					}
+
+					// 回答内容を設定
+					oyaForm[listNameTableRecord + 'answer_contents'].value = oyaForm[listName + 'answer_contents.selected'].options[0].value;
+				}
+			}
+
+			// 照会内容ID
+			oyaForm[listName + 'inquiry_contents_id'].value = result[7];
+			// 20180322 WF更改で追加
+			oyaForm[listNameTableRecord + 'inquiry_contents_id'].value = result[7];
+			// 照会CD
+			oyaForm[listName + 'inquiry_contents_code'].value = result[8];
+			// 20180322 WF更改で追加
+			oyaForm[listNameTableRecord + 'inquiry_contents_code'].value = result[8];
+			// マスタ照会内容
+			oyaForm[listName + 'inquiry_contents_name_mst'].value = inquiryContentsNameValue;
+			// 20180322 WF更改で追加
+			oyaForm[listNameTableRecord + 'inquiry_contents_name_mst'].value = inquiryContentsNameValue;
+			// 任意照会内容
+			oyaForm[listName + 'inquiry_contents_name_edit'].value = inquiryContentsNameValue;
+			// 20180322 WF更改で追加
+			oyaForm[listNameTableRecord + 'inquiry_contents_name_edit'].value  = inquiryContentsNameValue;
+			oyaForm[listName + 'inquiry_contents_name'].value  = inquiryContentsNameValue;
+			// 20180322 WF更改で追加
+			oyaForm[listNameTableRecord + 'inquiry_contents_name'].value   = inquiryContentsNameValue;
+
+			// 照会内容の選択/未選択により、照会内容編集チェックボックスを活性/非活性を制御する
+			if (result[7] == '') {
+				oyaForm[listName + 'inquiry_contents_edit_flag'].disabled = true;
+				oyaForm[listNameTableRecord + 'inquiry_contents_edit_flag'].value = '0';
+			} else {
+				oyaForm[listName + 'inquiry_contents_edit_flag'].disabled = false;
+				oyaForm[listNameTableRecord + 'inquiry_contents_edit_flag'].value = '0';
+			}
+		}
+
+		// 不備内容コード
+		oyaForm[listName + 'imperfect_code'].value = result[10];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'imperfect_code'].value = result[10];
+		// レイアウト区分
+		oyaForm[listName + 'layout_type'].value = result[2];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'layout_type'].value = result[2];
+		// 項目CD
+		oyaForm[listName + 'field_code'].value = result[3];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'field_code'].value = result[3];
+		// 内部コード
+		oyaForm[listName + 'internal_code'].value = result[4];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'internal_code'].value = result[4];
+		// DD
+		oyaForm[listName + 'dd'].value = result[5];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'dd'].value = result[5];
+
+		// 項目名 hidden
+		oyaForm[listName + 'field_name'].value  = result[6];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'field_name'].value  = result[6];
+		// 不備内容表示名 hidden
+		oyaForm[listName + 'imperfect_name'].value = result[11];
+		// 20180322 WF更改で追加
+		oyaForm[listNameTableRecord + 'imperfect_name'].value  = result[11];
+
+		oyaForm[listNameTableRecord + 'agent_inquiry_flag'].value = oyaForm[listName + 'agent_inquiry_flag.selected'].value;
+
+		window.close();
+	}
+}
+
+// 照会内容エリアの非活性制御を行う
+function controlInquiryContents(form) {
+
+	if (form.inquiry_contents_edit_flag.value == "1") {
+		form['inquiry_contents_code_key'].disabled = true;
+		form['inquiry_contents_code_key'].style.background = "gray";
+		form['inquiry_contents_name_key'].disabled = true;
+		form['inquiry_contents_name_key'].style.background = "gray";
+		form['inquiry_contents_list.selected'].disabled = true;
+		form['inquiry_contents_list.selected'].style.background = "gray";
+	}
+}
+
+/*
+**********************************************************************
+ ﾓｼﾞｭｰﾙ名称  ：ElementSelectCheck
+ ﾓｼﾞｭｰﾙ略称  ：ｴﾚﾒﾝﾄ選択有無ﾁｪｯｸ処理関数
+ 処理概要    ：引数で指定されたｴﾚﾒﾝﾄの子ｴﾚﾒﾝﾄの中で選択されているｴﾚﾒﾝﾄを取得する。
+ 引数        ：arg_TagElement      / 走査対象のｴﾚﾒﾝﾄｵﾌﾞｼﾞｪｸﾄ
+          ：arg_ResultID        / 結果表示ﾀｸﾞのID
+ 復帰値      ：(Nothing)
+ 作成者      ：平川
+ 修正履歴    ：2008-05-23 （平川） 作成。
+**********************************************************************
+*/
+function ElementSelectCheck( arg_TagElement, arg_ResultID )
+{
+
+    // --------------------------------------------------
+    // ﾛｰｶﾙ変数宣言
+    // --------------------------------------------------
+    var lo_str_Result = "";
+    var lo_obj_List = arg_TagElement;
+
+    // --------------------------------------------------
+    // 子ｴﾚﾒﾝﾄ走査処理
+    // --------------------------------------------------
+    for ( var i = 0; i < lo_obj_List.length; i++ )
+    {
+        // 選択されていた場合、当該ｴﾚﾒﾝﾄのTitle値を保持する。
+        if ( lo_obj_List.item( i ).selected )
+        {
+            lo_str_Result =  lo_obj_List.item( i ).text;
+            break;
+        }
+    }
+    // --------------------------------------------------
+    // 走査結果表示処理
+    // --------------------------------------------------
+    if ( lo_str_Result != null && lo_str_Result.length >= 8 ) {
+      lo_str_Result = lo_str_Result.substring(7);
+    }
+    else {
+      lo_str_Result = '';
+    }
+    document.getElementById(arg_ResultID).innerHTML = lo_str_Result;
+
+}
+
+function checkInquiryContentsKeyup(element, resultID) {
+  // 上カーソルキー、下カーソルキーいずれかが押された場合
+  if ( event.code == 'ArrowUp' || event.code == 'ArrowDown' ) {
+    ElementSelectCheck(element, resultID);
+  }
+}
+
+function setFieldItem() {
+  var    form  = document.mhk_MHKPRForm;
+  var    list  = form['field_list.selected'];
+
+  var    selectedIndex = list.selectedIndex;
+
+  if ( selectedIndex >= 0 ) {
+    var  option = list.options[selectedIndex];
+
+    // form.field_name.value  = option.text.substr(6);
+    var    fieldNames = option.text.split(' ： ');
+    if ( fieldNames.length >= 2 ) {
+      form.field_name.value  = fieldNames[1];
+    }
+    else {
+      form.field_name.value = '';
+    }
+
+    form.layout_type_i.value = option.value.substring(0,2);
+    form.field_code.value    = rtrim(option.value.substring(2,5));
+    form.internal_code.value = option.value.substring(5,7);
+    form.dd.value            = option.value.substring(7,14);
+  }
+}
+
+function setInquiryContentsItem() {
+	var form = document.mhk_MHKPRForm;
+	var list = form['inquiry_contents_list.selected'];
+
+	var selectedIndex = list.selectedIndex;
+
+	if ( selectedIndex >= 0 ) {
+		var option = list.options[selectedIndex];
+
+		var inquiryContents = option.text.split(' ： ');
+		if ( inquiryContents.length >= 2 ) {
+			form.inquiry_contents_code.value = rtrim(inquiryContents[0]);
+			form.inquiry_contents_name.value = inquiryContents[1];
+		} else if (inquiryContents.length == 1) {
+			form.inquiry_contents_code.value = rtrim(inquiryContents[0]);
+			form.inquiry_contents_name.value = '';
+		}
+		//form.inquiry_contents_code.value  = option.text.substr(0,4);
+		//form.inquiry_contents_name.value  = option.text.substr(7);
+		form.inquiry_contents_id.value    = option.value;
+	} else {
+		// 未選択時は照会IDを空文字列に設定
+		form.inquiry_contents_id.value    = '';
+	}
+}
+
+function setImperfectItem() {
+	var form = document.mhk_MHKPRForm;
+	var list = form['imperfect_list.selected'];
+	var selectedIndex = list.selectedIndex;
+
+	if ( selectedIndex >= 0 ) {
+		var  option = list.options[selectedIndex];
+		form.imperfect_code.value = option.value;
+		form.imperfect_name.value = option.text;
+		// WF更改で追加
+		form.selectded_imperfect_code.value = option.value;
+	}
+}
+
+function selectClick() {
+	setFieldItem();
+	setInquiryContentsItem();
+	setImperfectItem();
+}
+
+function popupClose(button) {
+	window.close();
+}
+
+function custom_Submit(form) {
+	// 親画面終了チェック
+	if (!windowOpenerClosedCheck()) {
+		return false;
+	}
+
+	if (clickButtonName == 'search') {
+		// 項目ｺｰﾄﾞ
+		if ( !isAlphaNumeric(form, form.field_code_key, '')  ) {
+			return false;
+		}
+		// 項目名
+		if ( !isProhibitionChar(form, form.field_name_key, '') ) {
+			return false;
+		}
+		// 照会ｺｰﾄﾞ
+		if ( !isInqueryContentsCode(form, form.inquiry_contents_code_key, '') ) {
+			return false;
+		}
+		// 照会内容
+		if ( !isProhibitionChar(form, form.inquiry_contents_name_key, '') ) {
+			return false;
+		}
+
+		// 不備内容をHidden項目へ設定
+		setImperfectItem();
+	}
+	if(clickButtonName == 'select' ) {
+		// 不備項目の必須チェック
+		if ( !isRequired(form, form['field_list.selected'], '') ) {
+			return false;
+		}
+
+		// 不備内容の必須チェック
+		if ( !isRequired(form, form['imperfect_list.selected'], '') ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+// 項目ｺｰﾄﾞの選択値を設定
+function setFieldCodeSelect(obj) {
+	document.mhk_MHKPRForm.selectded_field_code.value = obj.value;
+}
+
+// 照会ｺｰﾄﾞの選択値を設定
+function setInquiryContentsCodeSelect(obj) {
+	document.mhk_MHKPRForm.selectded_inquiry_contents_code.value = obj.value;
+}
+
+</script>
+</head>
+<body class="popup_body_common" onload="custom_Load()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post" onsubmit="return submitAZG900(this,null);">
+	<input type="hidden" />
+	<!--/* メッセージエリア */-->
+	<div class="popup_message_area">
+		
+		    <ul class="message_area">
+		        <li class="message_area"></li>
+		    </ul>
+		1
+	</div>
+
+	<!--/* 業務画面共通項目 */-->
+	<input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+	<input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+	<input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMA13" />
+	<input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+	<input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+	<input type="hidden" id="gamcd"        name="gamcd"        value="AMA00" />
+	<input type="hidden" id="gamid"        name="gamid"        value="AMA13" />
+	<input type="hidden" id="hubsessid"    name="hubsessid" />
+	<input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+	<input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+	<input type="hidden" id="pfkey"        name="pfkey" />
+	<input type="hidden" id="seniType"     name="seniType" />
+	<input type="hidden" id="sys_mode"     name="sys_mode" />
+	<input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+
+	<!--/* 業務エリア */-->
+	<div id="gyoumu_area" class="wrapper13">
+		<div class="item">
+			<div class="gyoumu_field_title">種目</div>
+			<div class="gyoumu_field_title">保険種類</div>
+			<div class="gyoumu_field_value">
+				
+			</div>
+			<div id="insurance_item_name_title" class="gyoumu_field_value">
+				1
+			</div>
+		</div>
+
+		<div class="item">
+			<input type="submit" id="search" formaction="/AMA13/aZG900Search" class="b3" value="検索" name="search" onclick="clickButton(this)" >
+		</div>
+
+		<div class="item">
+			<div class="gyoumu_field_title">項目ｺｰﾄﾞ</div>
+			<div class="gyoumu_field_title">項目名</div>
+			<div class="gyoumu_field_value">
+				<input type="text" id="field_code_key" name="field_code_key" class="input_size5" maxlength="3" onblur="toUpper(this);"/>
+			</div>
+			<div class="gyoumu_field_value">
+				<input type="text" id="field_name_key" name="field_name_key" class="input_size30" maxlength="15" />
+			</div>
+		</div>
+
+		<div class="item">
+			<div class="gyoumu_field_title">照会ｺｰﾄﾞ</div>
+			<div class="gyoumu_field_title">照会内容</div>
+			<div class="gyoumu_field_value">
+				<input type="text" id="inquiry_contents_code_key" name="inquiry_contents_code_key" class="input_size5" maxlength="4" onblur="toUpper(this);" />
+			</div>
+			<div class="gyoumu_field_value">
+				<input type="text" id="inquiry_contents_name_key" name="inquiry_contents_name_key" class="gyoumu_field_control" maxlength="30" />
+			</div>
+		</div>
+
+		<div class="item separator"></div>
+
+		<div class="item">
+			<input type="hidden" id="selected_field_code" name="selectded_field_code" />
+			<select size="10" class="gyoumu_field_control" name="field_list.selected" onchange="setFieldCodeSelect(this);" ><option value=""></option><option value="T0">T0：損保取引確認書</option></select>
+		</div>
+
+		<div class="item">
+			<input type="hidden" id="selected_inquiry_contents_code" name="selectded_inquiry_contents_code" />
+			<select size="10" class="gyoumu_field_control" name="inquiry_contents_list.selected" onchange="setInquiryContentsCodeSelect(this);" onclick="ElementSelectCheck( this, 'Result')" onkeyup="checkInquiryContentsKeyup(this, 'Result')"><option value=""></option><option value="T007">T007：「損保取引確認書」の添付がもれています。</option></select>
+		</div>
+
+		<div class="item">
+			<span><span class="text_bold">注意</span>：「999 ： その他項目」は該当項目が選択肢にない場合にのみ選択してください。</span>
+		</div>
+
+		<div class="item" id="Result"></div>
+
+		<div class="item">
+			<div class="gyoumu_field_title">不備内容</div>
+			<div class="gyoumu_field_value_left">
+				<input type="hidden" id="selected_imperfect_code" name="selectded_imperfect_code" />
+				<select class="gyoumu_field_control" name="imperfect_list.selected">
+				
+					<option value="1">1</option>
+				
+				</select>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="large_item_code" name="large_item_code" />
+	<input type="hidden" id="insurance_item_code" name="insurance_item_code"/>
+	<input type="hidden" id="imperfect_code" name="imperfect_code" />
+	<input type="hidden" id="layout_type_a" name="layout_type_a" />
+	<input type="hidden" id="layout_type_i" name="layout_type_i" />
+	<input type="hidden" id="field_code" name="field_code" />
+	<input type="hidden" id="field_name" name="field_name" />
+	<input type="hidden" id="internal_code" name="internal_code" />
+	<input type="hidden" id="dd" name="dd" />
+	<input type="hidden" id="inquiry_contents_id" name="inquiry_contents_id" />
+	<input type="hidden" id="inquiry_contents_code" name="inquiry_contents_code" />
+	<input type="hidden" id="inquiry_contents_name" name="inquiry_contents_name" />
+	<input type="hidden" id="imperfect_name" name="imperfect_name" />
+	<input type="hidden" id="hide_gyoumu_area_flag" name="hide_gyoumu_area_flag" />
+	<input type="hidden" id="inquiry_contents_edit_flag" name="inquiry_contents_edit_flag" />
+	<input type="hidden" id="answer_content" name="answer_content" />
+	<input type="hidden" id="answer_content_flag" name="answer_content_flag" />
+	<input type="hidden" id="import_flag" name="import_flag" />
+	<input type="hidden" id="index_no" name="index_no" />
+
+	<!--/* ボタンエリア */-->
+	<div id="ButtonP" class="popup_button_area size_button_area13">
+		<!--/* 共通ボタン */-->
+		<div class="button_width_60">
+			<input type="submit"  id="select" class="popup_button_area_button" value="選 択"
+				formaction="/AMA13/aZG900Select" name="select" onclick = "selectClick();clickButton(this);" >
+		</div>
+		<!--/* 終了ボタン */-->
+		<div class="button_width_60">
+			<input name="close" type="button" class="popup_button_area_button"  value="閉じる" onclick="popupClose(this);"/>
+		</div>
+	</div>
+
+</form>
+<script src="../../picker.js"></script></body>
+
+</html>

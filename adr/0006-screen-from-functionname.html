@@ -29,7 +29,9 @@
 <a class="nav" href="0004-closed-primitive-set.html">0004 17 个原语封闭，组件只能是组合</a>
 <a class="nav" href="0005-three-level-completion-criteria.html">0005 完成分三级，mock 绿不算完成</a>
 <a class="nav on" href="0006-screen-from-functionname.html">0006 操作行属于哪个画面，由 functionName 列决定</a>
-<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a></aside><main><article><h1 id="0006-—-操作行属于哪个画面，由-functionName-列决定">0006 — 操作行属于哪个画面，由 functionName 列决定</h1>
+<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007 值是别紙【操作内容】的原文，生成器不做任何补全</a>
+<div class="grp">工具</div>
+<a class="nav" href="../studio/index.html">Studio（只读快照）</a></aside><main><article><h1 id="0006-—-操作行属于哪个画面，由-functionName-列决定">0006 — 操作行属于哪个画面，由 functionName 列决定</h1>
 <p><strong>Status</strong>: accepted</p>
 <p>手顺的每一行操作都带 <code>functionName</code>，但它只写在「項目」块的第一行，后续行留空。最初的实现认为 <code>遷移</code> 行才是画面的事实来源，于是把"第一个操作行之前没有遷移"的 1,843 行判成"画面不明"（<code>no-screen</code> / <code>blocked</code>）。实际上这些行全部都能确定画面：<code>functionName</code> 向下继承即可，1,371 本里没有一行操作是缺画面的。</p>
 <p><code>遷移</code> 行描述的是"操作之后落到哪个画面"，用它反推"操作发生在哪个画面"会晚一行；对弹出窗口更是错的（点击发生在父画面，遷移写的是弹窗）。因此：</p>
@@ -39,5 +41,5 @@
 <p><strong>Consequences</strong></p>
 <ul><li>可绑定行数从 17,213 提升到 19,056；<code>no-screen</code> 规则从 77 条降到 36 条（剩余的是批处理/非浏览器小节）。</li><li>生成器在画面未解析且 <code>operationType != その他</code> 时必须阻塞，不能猜。</li><li><code>ui-screens.json</code> 缺画面（如「ヘルプ画面」）时，<code>遷移</code> 生成 <code>manual</code> 步骤并保留画面名，供后续行使用。</li></ul></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 11:01</div>
+2026-10-27 11:32</div>
 </main></div></body></html>

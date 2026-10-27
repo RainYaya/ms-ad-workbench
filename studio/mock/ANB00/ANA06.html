@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="static/css/tks.css"/>
+<script type="text/javascript" src="static/js/tks_common.js"></script>
+<script>
+
+function custom_Load() {
+
+	commonBodyOnload();
+
+	var sumupType = document.tks_TKSPRForm.sumup_type;
+
+	var i;
+
+	for (i = 0; i < sumupType.length; i++) {
+		if (sumupType[i].checked) {
+			changeSumupType(sumupType[i]);
+		}
+	}
+}
+
+function custom_Submit(form) {
+
+	// メニューボタンもしくは終了ボタン押下
+	if ( clickButtonName == 'act201to001' ||  clickButtonName == 'close' ) {
+		return true;
+	}
+
+	// 単体入力チェック
+
+	// 集計内容
+	if ( !isRequiredRadio(form, form.sumup_type, '')) {
+      return false;
+    }
+
+	// 本部CD
+	if ( !isAlphaNumeric(form, form.head_office_code, '') ) {
+		return false;
+	}
+
+	// 課支社CD
+	if ( !isMinLenB(form, form.section_code, 3, '') ||
+	     !isAlphaNumeric(form, form.section_code, '') ) {
+		return false;
+	}
+
+	// 代理店CD
+	if ( !isAlphaNumeric(form, form.agent_code, '') ) {
+		return false;
+	}
+
+	// 集計年(FROM)
+	if ( !isRequired(form, form.from_sumup_year, '') ||
+		 !isNumeric(form, form.from_sumup_year, '') ||
+		 !isLenB(form, form.from_sumup_year, 4, '') ) {
+		return false;
+	}
+
+	// 集計月(FROM)
+	if ( !isRequired(form, form.from_sumup_month, '') ||
+		 !isNumeric(form, form.from_sumup_month, '') ||
+		 !isIntRange(form, form.from_sumup_month, 1, 12, '') ) {
+		return false;
+	}
+
+	// 集計年(TO)
+	if ( !isRequired(form, form.to_sumup_year, '') ||
+		 !isNumeric(form, form.to_sumup_year, '') ||
+		 !isLenB(form, form.to_sumup_year, 4, '') ) {
+		return false;
+	}
+
+	// 集計月(TO)
+	if ( !isRequired(form, form.to_sumup_month, '') ||
+		 !isNumeric(form, form.to_sumup_month, '') ||
+		 !isIntRange(form, form.to_sumup_month, 1, 12, '') ) {
+		return false;
+	}
+
+
+	// 相関入力チェック
+
+	// 本部CD
+	// 課支社CD
+	// 代理店CD
+	{
+		// 本部CD, 課支社CD, 代理店CD全て未入力の場合はエラー
+		if (isEmptyField(form.head_office_code) &&
+			isEmptyField(form.section_code) &&
+			isEmptyField(form.agent_code)) {
+
+			alert('');
+			form.head_office_code.focus();
+			return false;
+		}
+	}
+
+	// 課支社CD
+	// 代理店CD
+	{
+	    // 代理店CDが入力時は課支社CD必須
+	    if (!isEmptyField(form.agent_code) &&
+	        isEmptyField(form.section_code)) {
+
+	        alert('');
+			form.section_code.focus();
+			return false;
+		}
+	}
+
+	// 集計年(FROM)
+	// 集計月(FROM)
+	// 集計年(TO)
+	// 集計月(TO)
+	{
+		var		from = 	('000' + form.from_sumup_year.value).slice(-4) +
+						('0'   + form.from_sumup_month.value).slice(-2);
+
+		var		to = 	('000' + form.to_sumup_year.value).slice(-4) +
+						('0'   + form.to_sumup_month.value).slice(-2);
+
+		// 集計年月(FROM) > 集計年月(TO) の場合はエラー
+		if ( from > to ) {
+
+			alert('');
+			form.from_sumup_year.focus();
+			return false;
+		}
+	}
+
+	// 集計ボタン押下
+	if ( clickButtonName == 'outputSumup' ) {
+		// アクティブなボタンからフォーカスをはずす
+		document.activeElement.blur();
+	}
+
+	return true;
+}
+
+function onCloseClick() {
+	clickButtonName = 'close';
+	return closeSubmit(document.tks_TKSPRForm.close, '');
+}
+
+function changeSumupType(sumupType) {
+    var form = document.tks_TKSPRForm;
+
+    if (sumupType.value == '1') {
+        form.application_base_item_1.disabled = false;
+        form.application_base_item_2.disabled = false;
+        form.application_base_item_3.disabled = false;
+        form.application_base_item_4.disabled = false;
+        form.application_base_item_5.disabled = false;
+        form.application_base_item_6.disabled = false;
+    } else if (sumupType.value == '2') {
+        form.application_base_item_1.disabled = true;
+        form.application_base_item_2.disabled = true;
+        form.application_base_item_3.disabled = true;
+        form.application_base_item_4.disabled = true;
+        form.application_base_item_5.disabled = true;
+        form.application_base_item_6.disabled = true;
+    } else {
+        form.application_base_item_1.disabled = true;
+        form.application_base_item_2.disabled = true;
+        form.application_base_item_3.disabled = true;
+        form.application_base_item_4.disabled = true;
+        form.application_base_item_5.disabled = false;
+        form.application_base_item_6.disabled = false;
+    }
+}
+
+</script>
+
+</head>
+<body leftmargin="5" topmargin="0" class="body_common" onload="custom_Load()">
+<form id="tks_TKSPRForm" name="tks_TKSPRForm" method="post" onsubmit="return submitAYG201(this,null);" >
+  <input type="hidden" />
+  <!--/* タイトル表示領域 */-->
+  <div class="title_area">
+    <div class="title_area_logo">
+      <img name="title_logo" class="title_logo" data-unresolved-src="/ANB00${commonForm.logoPath}" width="auto" height="32" alt="タイトルロゴ" />
+    </div>
+    <div class="title_area_title"></div>
+    <div class="title_area_sysinfo">
+      <span>日時：
+        1
+        1画面ID：
+        1
+        1
+        v<br />
+        利用者識別：1
+      </span>
+    </div>
+  </div>
+  <!--/* メッセージエリア */-->
+  <div class="message_area" id="message_area">
+    <div class="message_text">
+      
+          <ul class="message_area">
+              <li class="message_area"></li>
+          </ul>
+      1
+    </div>
+  </div>
+  <!--/* 業務画面共通項目 */-->
+  <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+  <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+  <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="ANA06" />
+  <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+  <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+  <input type="hidden" id="gamcd"        name="gamcd"        value="ANA00" />
+  <input type="hidden" id="gamid"        name="gamid"        value="ANA06" />
+  <input type="hidden" id="hubsessid"    name="hubsessid" />
+  <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+  <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+  <input type="hidden" id="pfkey"        name="pfkey" />
+  <input type="hidden" id="seniType"     name="seniType" />
+  <input type="hidden" id="sys_mode"     name="sys_mode" />
+  <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+  <!--/* 業務固有領域 */-->
+  <div class="gyoumu_area_02">
+    <div><span class="title_mark_gray">■</span><span class="title_char_black">基本情報</span></div>
+    <div class="grid_area_06_01">
+      <div class="gyoumu_field_title" >集計内容</div>
+      <div class="gyoumu_field">
+        <input type="radio" id="sumup_type_1" name="sumup_type" value="1" onclick="changeSumupType(this);" />
+        <span>異例取扱理由集計</span>
+        <input type="radio" id="sumup_type_2" name="sumup_type" value="2" onclick="changeSumupType(this);" />
+        <span>申請状況集計</span>
+        <input type="radio" id="sumup_type_3" name="sumup_type" value="3" onclick="changeSumupType(this);" />
+        <span>変更事由集計</span>
+      </div>
+      <div class="gyoumu_field_title">本部CD</div>
+      <div class="gyoumu_field_input">
+        <input type="text" id="head_office_code" name="head_office_code" maxlength="2" />
+      </div>
+      <div class="gyoumu_field_title">課支社CD</div>
+      <div class="gyoumu_field_input">
+        <input type="text" id="section_code" name="section_code" maxlength="6" />
+      </div>
+      <div class="gyoumu_field_title">代理店CD</div>
+      <div class="gyoumu_field_input">
+        <input type="text" id="agent_code" name="agent_code" maxlength="6" />
+      </div>
+      <div class="gyoumu_field">1</div>
+      <div class="gyoumu_field_title" >大種目</div>
+      <div class="gyoumu_field" >
+        <input type="checkbox" id="large_item_1" name="large_item_1" value="1" />自動車　
+        <input type="checkbox" id="large_item_2" name="large_item_2" value="3" />火災
+        <input type="checkbox" id="large_item_3" name="large_item_3" value="4" />積立火災　
+        <input type="checkbox" id="large_item_4" name="large_item_4" value="5" />新種　
+        <input type="checkbox" id="large_item_5" name="large_item_5" value="6" />積立新種　
+        <input type="checkbox" id="large_item_6" name="large_item_6" value="7" />傷害　
+        <input type="checkbox" id="large_item_7" name="large_item_7" value="8" />積傷/積特　
+        <input type="checkbox" id="large_item_8" name="large_item_8" value="X" />長期医療　
+        <input type="checkbox" id="large_item_9" name="large_item_9" value="M" />マリン　
+      </div>
+      <div class="gyoumu_field_title">集計年月</div>
+      <div class="gyoumu_field date_input_area_02" >
+        <input type="text" id="from_sumup_year" name="from_sumup_year" class="field_control" maxlength="4" />
+        1
+        <input type="text" id="from_sumup_month" name="from_sumup_month" class="field_control" maxlength="2" />
+        1
+        1
+        <input type="text" id="to_sumup_year" name="to_sumup_year" class="field_control" maxlength="4" />
+        1
+        <input type="text" id="to_sumup_month" name="to_sumup_month" class="field_control" maxlength="2" />
+        1
+      </div>
+    </div>
+  </div>
+  <div class="gyoumu_area_02">
+    <div><span class="title_mark_blue">■</span><span class="title_char_black">申請案件</span></div>
+    <div class="grid_area_06_02">
+      <div class="gyoumu_field_title" >申請基準</div>
+      <div class="gyoumu_field">
+        <input type="checkbox" id="application_base_item_1" name="application_base_item_1" value="1" />1.再計上契約のない取消計上
+        <input type="checkbox" id="application_base_item_2" name="application_base_item_2" value="2" />2.始期日解約
+        <input type="checkbox" id="application_base_item_3" name="application_base_item_3" value="3" />3.契約計上前の取消
+        <input type="checkbox" id="application_base_item_4" name="application_base_item_4" value="4" />4.再計上契約のある取消計上（積立種目）
+      </div>
+    </div>
+  </div>
+  <div class="gyoumu_area_02">
+    <div><span class="title_mark_red">■</span><span class="title_char_black">課支社確認案件</span></div>
+    <div class="grid_area_06_02">
+      <div class="gyoumu_field_title" >確認基準</div>
+      <div class="gyoumu_field">
+        <input type="checkbox" id="application_base_item_5" name="application_base_item_5" value="5" />5.再計上契約のある取消計上（一般種目）
+        <input type="checkbox" id="application_base_item_6" name="application_base_item_6" value="6" />6.遡及始期日変更
+      </div>
+    </div>
+  </div>
+  <!--/* ボタン部 */-->
+  <div class="button_area">
+    <!--/* 共通ボタン */-->
+    <div class="button_area_navigate">
+      <div class="button_area_button_length4">
+        <input type="submit" formaction="/ANA06/route41" id="act201to001" name="act201to001" value="メニュー" class="button_area_button" onclick="clickButton(this)">
+      </div>
+    </div>
+    <!--/* 処理実行ボタン */-->
+    <div class="button_area_normal_operation">
+      <div class="button_area_space_02"></div>
+      <div class="button_area_button_length3">
+        <input type="submit" formaction="/ANA06/route42" id="outputSumup" name="outputSumup" value="集　計" class="button_area_button" onclick="clickButton(this); sdeDisableCheckSubmitOnce();">
+      </div>
+    </div>
+    <!--/* 削除ボタン */-->
+    <div class="button_area_delete_operation"></div>
+    <!--/* 終了ボタン */-->
+    <div class="button_area_end">
+      <div class="button_area_button_length3">
+        <input class="button_area_button" type="button" value="終　了" onclick="onCloseClick()" />
+      </div>
+    </div>
+  </div>
+  <input type="submit" id="close" name="close" formaction="/ANA06/close" style="display:none;" >
+</form>
+<script src="../../picker.js"></script></body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><link rel="icon" href="data:,"><style>img[data-unresolved-src]{display:none}</style><script>window.opener=window.opener||window;</script>
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title>申込書品質管理システム</title>
+<link rel="stylesheet" type="text/css" href="static/css/mhk.css"/>
+<link rel="stylesheet" type="text/css" data-unresolved-href="/AMC00${commonForm.cssFilePath}"/>
+<script type="text/javascript" src="static/js/mhk_common.js"></script>
+<script>
+function custom_BodyOnload() {
+	commonPopupBodyOnload();
+}
+</script>
+</head>
+<body onload="custom_BodyOnload()">
+<form id="mhk_MHKPRForm" name="mhk_MHKPRForm" method="post">
+<input type="hidden" />
+<div id="main">
+	<!--/* メッセージエリア */-->
+    <div id="message_area" class="block_msg color_red cell_left block_msg_size" ms_positioning="FlowLayout">
+        <ul class="message_area"><li class="message_area"></li></ul>
+    </div>
+    <!--/* 業務画面共通項目 */-->
+    <input type="hidden" id="GateFLG"      name="GateFLG"      value="0" />
+    <input type="hidden" id="ai21__aid"    name="ai21__aid"    value="" />
+    <input type="hidden" id="ai21__gid"    name="ai21__gid"    value="AMCZY" />
+    <input type="hidden" id="ai21__data"   name="ai21__data"   value="" />
+    <input type="hidden" id="dousaMode"    name="dousaMode"    value="" />
+    <input type="hidden" id="gamcd"        name="gamcd"        value="AMC00" />
+    <input type="hidden" id="gamid"        name="gamid"        value="AMCZY" />
+    <input type="hidden" id="hubsessid"    name="hubsessid" />
+    <input type="hidden" id="H0000A_Z6"    name="h0000A_Z6" />
+    <input type="hidden" id="H0000A_Z6_M"  name="h0000A_Z6_M" />
+    <input type="hidden" id="pfkey"        name="pfkey"        value="child" />
+    <input type="hidden" id="seniType"     name="seniType" />
+    <input type="hidden" id="sys_mode"     name="sys_mode" />
+    <input type="hidden" id="H0000_NEXTGM" name="h0000_NEXTGM" />
+    <input type="hidden" id="screenWidth"  name="screenWidth" />
+    <input type="hidden" id="screenHeight" name="screenHeight" />
+	<!--/* ボタンエリア */-->
+  <div class="area_btn area_btn_color">
+    <table class="size_tbl_btn" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+        <td class="size_btn_left"></td>
+        <td class="size_btn_center cell_left"></td>
+        <td class="size_btn_right cell_right">
+            <input name="close" type="button" class="btn_type_normal"  value="閉じる" onclick="window.close();"/>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </form>
+<script src="../../picker.js"></script></body>
+
+</html>
