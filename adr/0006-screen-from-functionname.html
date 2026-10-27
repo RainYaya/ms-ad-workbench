@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0006 — 操作行属于哪个画面，由 functionName 列决定 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="../rpa/README.html">总览</a>
+<a class="nav" href="../rpa/GOAL.html">目标与红线</a>
+<a class="nav" href="../rpa/00-DECISIONS.html">已定决策</a>
+<a class="nav" href="../rpa/01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="../rpa/02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="../rpa/03-STATUS.html">当前进度</a>
+<a class="nav" href="../rpa/04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="../rpa/05-EXECUTOR.html">执行器</a>
+<a class="nav" href="../rpa/06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="../rpa/07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="../rpa/08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="../rpa/09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="../rpa/10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="../rpa/11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="../rpa/12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="../rpa/13-DESIGN.html">设计总稿</a>
+<a class="nav" href="../rpa/14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav on" href="0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="0006-—-操作行属于哪个画面，由-functionName-列决定">0006 — 操作行属于哪个画面，由 functionName 列决定</h1>
+<p><strong>Status</strong>: accepted</p>
+<p>手顺的每一行操作都带 <code>functionName</code>，但它只写在「項目」块的第一行，后续行留空。最初的实现认为 <code>遷移</code> 行才是画面的事实来源，于是把"第一个操作行之前没有遷移"的 1,843 行判成"画面不明"（<code>no-screen</code> / <code>blocked</code>）。实际上这些行全部都能确定画面：<code>functionName</code> 向下继承即可，1,371 本里没有一行操作是缺画面的。</p>
+<p><code>遷移</code> 行描述的是"操作之后落到哪个画面"，用它反推"操作发生在哪个画面"会晚一行；对弹出窗口更是错的（点击发生在父画面，遷移写的是弹窗）。因此：</p>
+<ul><li>操作行的画面 = 该行所在「項目」块最近一次出现的 <code>functionName</code>；</li><li><code>遷移/表示</code> 行仍用于更新"当前画面"，但只作为下一行之后的画面，不覆盖操作行自身的画面；</li><li><code>functionName</code> 匹配不到 <code>ui-screens.json</code> 时（<code>その他（…）</code>、批处理名、未收录的弹窗），画面记为未解析，<strong>不继承上一个画面</strong>——否则会把非浏览器操作错误地挂到某个画面上。</li></ul>
+<p><strong>Considered Options</strong></p>
+<ul><li>用 <code>遷移</code> 行反推：实现简单，但每个块的第一个操作行都无解，且弹窗场景语义相反。</li><li>用行号区间硬编码：不可维护，也解释不了为什么。</li></ul>
+<p><strong>Consequences</strong></p>
+<ul><li>可绑定行数从 17,213 提升到 19,056；<code>no-screen</code> 规则从 77 条降到 36 条（剩余的是批处理/非浏览器小节）。</li><li>生成器在画面未解析且 <code>operationType != その他</code> 时必须阻塞，不能猜。</li><li><code>ui-screens.json</code> 缺画面（如「ヘルプ画面」）时，<code>遷移</code> 生成 <code>manual</code> 步骤并保留画面名，供后续行使用。</li></ul></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

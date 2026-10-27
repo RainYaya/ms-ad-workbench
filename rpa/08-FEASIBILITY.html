@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>可行性分析：每本到底要定制多少 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav on" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="可行性分析：每本到底要定制多少">可行性分析：每本到底要定制多少</h1>
+<blockquote>用户的疑问：「如果每一本都需要专门定制很多复杂的东西，那就算了。」 这份文档用<strong>实测数据</strong>回答：不需要。</blockquote>
+<h2 id="结论先说">结论先说</h2>
+<p><strong>不需要每本定制。</strong> 全量实测：</p>
+<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th></tr></thead><tbody><tr><td>别紙不同标签</td><td>91 种</td></tr><tr><td>已被字典覆盖的行</td><td>1906 / 2203 = <strong>86%</strong></td></tr><tr><td>未覆盖</td><td>297 行 = 14%</td></tr><tr><td>其中「非浏览器」（命令/批处理/服务器）</td><td>21 行</td></tr><tr><td><strong>真正需要在画面上补的</strong></td><td><strong>276 行 = 全体的 12%</strong></td></tr></tbody></table></div>
+<p>而这 86% 的覆盖率，是靠<strong>极少的共享配置</strong>达成的：</p>
+<pre><code>ui-aliases.json    19 条别名
+ui-rowfields.json   5 个画面的行内字段</code></pre>
+<p><strong>19 + 5 = 24 条配置，覆盖了 86% 的行。</strong> 这就是"不需要每本定制"的证据。</p>
+<h2 id="为什么能这样">为什么能这样</h2>
+<p>因为本质就是用户说的那句话：</p>
+<blockquote>"本质就是那几个动作在重复，比如点按钮、输参数，或者做跳转之类的。"</blockquote>
+<p>实测支持：</p>
+<ul><li>1613 个执行步骤 → 只有 10 种动作</li><li>55 个画面名 → 8 个是主干</li><li>171 种操作项 → 前 5 种覆盖大部分</li></ul>
+<p><strong>差异只在「值」和「走哪条分支」，不在「动作」。</strong></p>
+<h2 id="剩下-12%-是什么">剩下 12% 是什么</h2>
+<p>按性质分四类，没有一类需要"逐本定制"：</p>
+<h3 id="1.-同义写法（加一条别名即可）">1. 同义写法（加一条别名即可）</h3>
+<pre><code>具体的内容 / 具体的説明 / その他の項目   ← 共通の自由記述欄
+代理店への募集状況の確認要否 / 保険始期日と届出日の関係  ← チェック項目
+証券送付区分 / 変更確認書送付 / 変更確認書課支社送付の理由
+役職段階コード / 大種目コード / 保種コード</code></pre>
+<p>→ 每加一条 <code>ui-aliases.json</code>，所有用到那个说法的本一起生效。</p>
+<h3 id="2.-非浏览器（本来就不该进自动化）">2. 非浏览器（本来就不该进自动化）</h3>
+<pre><code>実行コマンド(27) / java -jar / chmod / cp -p / echo / DBサーバ / 戻り値</code></pre>
+<p>→ 这类要<strong>识别出来并排除</strong>，不是"补进字典"。</p>
+<h3 id="3.-只显示字段（只能断言，不能填）">3. 只显示字段（只能断言，不能填）</h3>
+<pre><code>作成日時 / 異例管理番号 / 申込日 / 届出日 / 取消・変更の計上日</code></pre>
+<p>→ 字典里 <code>kind: text-only</code>，流程里只能出现在 <code>expect:</code>。</p>
+<h3 id="4.-特定业务的专有字段（少数本）">4. 特定业务的专有字段（少数本）</h3>
+<pre><code>取消保険料(10) / 再計上証券番号 / 変更事由1-6</code></pre>
+<p>→ 属于「取消計上」「異例」这些特殊业务线，加起来十几本。</p>
+<h2 id="实测：009-到底改了多少">实测：009 到底改了多少</h2>
+<p>用户观察到「你跑 09 的时候改了很多东西」。<strong>确实改了 5 处，但全在共享层，不在 009 本身。</strong></p>
+<div class="table-wrap"><table><thead><tr><th>改了什么</th><th>在哪</th><th>影响范围</th></tr></thead><tbody><tr><td>字典优先选非 hidden 控件</td><td><code>build_ui_dictionary.py</code></td><td><strong>全部 53 画面</strong></td></tr><tr><td>用控件自己的 type 判断</td><td>同上</td><td>全部</td></tr><tr><td>按钮区分 id / name</td><td>同上</td><td>全部</td></tr><tr><td><code>{变量}</code> 编译期插值</td><td><code>flow-loader.mjs</code></td><td>全部流程</td></tr><tr><td>跨页面查找 + 重试</td><td><code>run-flow.mjs</code></td><td>全部流程</td></tr></tbody></table></div>
+<p><strong>009 的流程文件本身，从写出来到现在只改过一次</strong>（加 <code>requires</code> 和 <code>popup</code> 标记）。</p>
+<p>这正是要的形状：<strong>改的是地基，不是每本</strong>。</p>
+<h2 id="风险在哪（诚实说）">风险在哪（诚实说）</h2>
+<div class="table-wrap"><table><thead><tr><th>风险</th><th>程度</th><th>应对</th></tr></thead><tbody><tr><td>表内动态 name（<code>list[n].xxx</code>）</td><td>中</td><td>已标 <code>pendingRuntime</code>，真机 DOM 一次确定</td></tr><tr><td>JS 动态插入的结果区（<code>&lt;div id=Result&gt;</code>）</td><td>中</td><td>同上</td></tr><tr><td>画面名表记ゆれ（<code>異例取扱管理</code>）</td><td>低</td><td>真机看一眼标题即可</td></tr><tr><td>特殊业务线（取消計上/異例）</td><td>低</td><td>十几本，单独处理</td></tr><tr><td><strong>未知的未知</strong></td><td><strong>?</strong></td><td>只能靠真机跑出来</td></tr></tbody></table></div>
+<p>最后一条是唯一无法用数据消除的。所以路线是：<strong>先真机跑 1 本 → 再跑 4 本 → 再批量</strong>， 而不是一次性 450 本。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

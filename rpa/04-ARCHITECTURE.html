@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>架构 — 数据怎么流 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav on" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="架构-—-数据怎么流">架构 — 数据怎么流</h1>
+<h2 id="总图">总图</h2>
+<pre><code>【输入】真实前端 HTML (Shift_JIS)
+reference/webapps/AMB|AMC00|ANB00/webapp/WEB-INF/views/*.html
+        │
+        │ tools/build_ui_dictionary.py      ← 也能吃真机抓的页面
+        ▼
+【字典】ui-dictionary.json
+  screens: { &quot;AMB/AMA04&quot;: { title, fields[], buttons[] } }
+  rowfields: { &quot;AMB/AMA04&quot;: [{label, namePattern, selectorTemplate}] }
+        │
+        │  ┌── ui-screens.json    手顺画面名 → 画面码
+        │  ├── ui-aliases.json    别紙说法 → 前端说法
+        │  │
+        │  │   ┌── 手顺 JSON (v2/data/cases/*.js)
+        │  │   │      ↓ AI 阅读 + 人确认
+        │  │   │   flows/&lt;CASE&gt;.yaml
+        ▼  ▼   ▼
+   tools/compile_flow.py
+        │
+        ▼
+【可执行】{ row, screen, screenKey, do, targets[{label, selector, value}], expect }
+        │
+        │ runner.mjs (待接)
+        ▼
+     Edge (Playwright)</code></pre>
+<h2 id="三个文件的职责">三个文件的职责</h2>
+<h3 id="ui-dictionary.json-—-唯一的-selector-来源">ui-dictionary.json — 唯一的 selector 来源</h3>
+<pre><code class="lang-json">{
+ &quot;screens&quot;: {
+  &quot;AMB/AMA04&quot;: {
+   &quot;file&quot;: &quot;AMA04.html&quot;,
+   &quot;title&quot;: &quot;[[]]&quot;,
+   &quot;fields&quot;: [
+    {&quot;label&quot;: &quot;部店課支社ｺｰﾄﾞ&quot;, &quot;key&quot;: &quot;部店課支社ｺｰﾄﾞ&quot;,
+     &quot;id&quot;: &quot;section_code&quot;, &quot;kind&quot;: &quot;input&quot;, &quot;selector&quot;: &quot;#section_code&quot;},
+    {&quot;label&quot;: &quot;代理店名&quot;, &quot;key&quot;: &quot;代理店名&quot;, &quot;id&quot;: null, &quot;kind&quot;: &quot;text-only&quot;}
+   ],
+   &quot;buttons&quot;: [
+    {&quot;label&quot;: &quot;更新&quot;, &quot;key&quot;: &quot;更新&quot;, &quot;id&quot;: &quot;update&quot;, &quot;selector&quot;: &quot;#update&quot;}
+   ]
+  }
+ },
+ &quot;rowfields&quot;: {
+  &quot;AMB/AMA04&quot;: [
+   {&quot;label&quot;: &quot;照会内容チェックボックス&quot;, &quot;namePattern&quot;: &quot;list[{n}].inquiry_contents_edit_flag&quot;,
+    &quot;how&quot;: &quot;check&quot;}
+  ]
+ }
+}</code></pre>
+<p><strong>注意</strong>：<code>rowfields</code> 和 <code>qualifiedButtons</code> <strong>不在这个文件里</strong>，在 <code>ui-rowfields.json</code> （手工维护）。这个文件是 100% 生成的，随时可以删掉重建。</p>
+<p><strong>要点</strong>：</p>
+<ul><li><code>id: null</code> = 只显示字段，只能断言</li><li><code>kind</code> 区分 <code>input</code> / <code>select</code> / <code>textarea</code> / <code>button</code> / <code>text-only</code></li><li><code>rowfields</code> = 表内动态字段，<code>{n}</code> 是行索引</li></ul>
+<h3 id="ui-rowfields.json-—-手工维护的补充">ui-rowfields.json — 手工维护的补充</h3>
+<pre><code class="lang-json">{
+ &quot;rowfields&quot;: {
+  &quot;AMB/AMA18&quot;: [
+   {&quot;label&quot;: &quot;選択欄&quot;, &quot;selectorTemplate&quot;: &quot;tr:has(td:has-text(\&quot;{value}\&quot;)) input[name=selectNo]&quot;}
+  ]
+ },
+ &quot;qualifiedButtons&quot;: {
+  &quot;AMB/AMA04&quot;: [
+   {&quot;label&quot;: &quot;....&quot;, &quot;qualifier&quot;: &quot;保険種類欄の横&quot;, &quot;id&quot;: &quot;selectInsuransuItem&quot;}
+  ]
+ }
+}</code></pre>
+<p><strong>为什么单独一个文件</strong>：这两段是人从真机/代码分析得出、模板里推不出来的信息。 如果和生成物放一起，每次重跑生成器就会被清空（踩过，见 P17）。</p>
+<h3 id="ui-screens.json-—-手顺画面名到画面码">ui-screens.json — 手顺画面名到画面码</h3>
+<pre><code class="lang-json">{
+ &quot;screens&quot;: {
+  &quot;募集人検索画面&quot;: {&quot;app&quot;: &quot;AMB&quot;, &quot;code&quot;: &quot;AMA18&quot;, &quot;status&quot;: &quot;inferred&quot;},
+  &quot;異例取扱管理メニュー画面&quot;: {&quot;app&quot;: &quot;ANB00&quot;, &quot;code&quot;: &quot;ANA01&quot;,
+                              &quot;status&quot;: &quot;unknown&quot;, &quot;note&quot;: &quot;表記ゆれ 173 行&quot;}
+ }
+}</code></pre>
+<p><strong>status 含义</strong>：</p>
+<ul><li><code>confirmed</code> — 真机/mock 确认过（目前只 1 个）</li><li><code>inferred</code> — 从 URL 规则推的（25 个，<strong>全部需要真机确认</strong>）</li><li><code>unknown</code> — 未解（10 个，多是批处理/邮件类，本不需要浏览器）</li></ul>
+<h3 id="flows/.yaml-—-一本手顺">flows/&lt;CASE&gt;.yaml — 一本手顺</h3>
+<p>三段：<code>values</code> / <code>steps</code> / <code>evidence</code>。</p>
+<p><strong>关键设计</strong>：<code>row</code> 字段贯穿全部 —— 每个值和每个步骤都指回 Excel 行号。</p>
+<h2 id="compileflow.py-的判定逻辑">compile_flow.py 的判定逻辑</h2>
+<p>对每个 <code>targets</code> 里的 <code>label</code>：</p>
+<pre><code>1. 查 rowfields[当前画面]
+   有 → kind=rowfield
+        ├ 有 selectorTemplate → 填入 value 生成 selector
+        └ 无 → pendingRuntime（列出来等真机）
+
+2. 查 screens[当前画面].fields/buttons
+   有唯一匹配 → kind=field/button，用 #id
+   同名多 id  → 拒绝，报错
+   没有       → 查 ui-aliases.json 再来一遍
+   还没有     → 报错（带 row 号）</code></pre>
+<p><strong>不会做的事</strong>：用相似度硬凑一个 selector。</p>
+<h2 id="runner.mjs-待改的地方">runner.mjs 待改的地方</h2>
+<p>现在的 runner 吃老格式：</p>
+<pre><code class="lang-json">{ &quot;blockId&quot;: { &quot;screen&quot;: &quot;AZG001&quot;, &quot;steps&quot;: [{action, selector, value}], &quot;cases&quot;: [...] } }</code></pre>
+<p>要接新格式：</p>
+<pre><code class="lang-json">{ &quot;case&quot;: &quot;...&quot;, &quot;steps&quot;: [{ &quot;row&quot;: 24, &quot;screenKey&quot;: &quot;AMB/AMA18&quot;,
+                            &quot;do&quot;: &quot;fill&quot;, &quot;targets&quot;: [{&quot;label&quot;:&quot;...&quot;,&quot;selector&quot;:&quot;#...&quot;,&quot;value&quot;:&quot;...&quot;}] }] }</code></pre>
+<p><strong>建议做法</strong>：不要改 runner.mjs。写一个新的 <code>run-flow.mjs</code>，只支持 10 个动作， 把老 runner 留着跑旧积木做对照。</p>
+<p>理由：runner.mjs 有 510 行，混着登录、菜单扫描、证据收集、trace。改它风险高。</p>
+<h2 id="动作清单（10-个）">动作清单（10 个）</h2>
+<div class="table-wrap"><table><thead><tr><th>do</th><th>参数</th><th>说明</th></tr></thead><tbody><tr><td><code>click</code></td><td>targets</td><td>点按钮/链接</td></tr><tr><td><code>fill</code></td><td>targets</td><td>输入</td></tr><tr><td><code>fillAll</code></td><td><code>use: [标签...]</code></td><td>批量输入（从 values 取值）</td></tr><tr><td><code>select</code></td><td>targets</td><td>下拉框</td></tr><tr><td><code>check</code></td><td>targets</td><td>复选框</td></tr><tr><td><code>clickRow</code></td><td>targets</td><td>表内行，用值定位</td></tr><tr><td><code>expect</code></td><td><code>expect: {类型: 值}</code></td><td>断言（迁移/显示/值）</td></tr><tr><td><code>expectRows</code></td><td><code>min</code></td><td>表格行数</td></tr><tr><td><code>expectMessage</code></td><td><code>expect: {出力: 码}</code></td><td>消息</td></tr><tr><td><code>manual</code></td><td><code>note</code></td><td>停下等人工</td></tr></tbody></table></div>
+<h2 id="和旧体系的关系">和旧体系的关系</h2>
+<div class="table-wrap"><table><thead><tr><th>旧</th><th>新</th><th>动作</th></tr></thead><tbody><tr><td>blocks.json (252 块)</td><td><strong>保留</strong>，作模板库</td><td>不删</td></tr><tr><td>block-selectors*.json (16 个)</td><td>被 ui-dictionary.json 替代</td><td>迁移完可归档</td></tr><tr><td>cdp/params/*.json (9 个叠加)</td><td>被 flows/*.yaml 的 <code>values:</code> 替代</td><td>迁移完可归档</td></tr><tr><td>runner.mjs</td><td>保留，新写 run-flow.mjs</td><td>不动</td></tr><tr><td>build_blocks.py</td><td>n-gram+DP 部分废弃</td><td>保留文件，不再跑</td></tr></tbody></table></div></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

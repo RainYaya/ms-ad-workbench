@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>踩过的坑 — 别再踩第二次 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav on" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="踩过的坑-—-别再踩第二次">踩过的坑 — 别再踩第二次</h1>
+<blockquote>全部是 2026-10-26 实测踩出来的。每条都写清现象、原因、解法。</blockquote>
+<h2 id="★-最贵的三个">★ 最贵的三个</h2>
+<h3 id="P1.-前端-HTML-全是-ShiftJIS">P1. 前端 HTML 全是 Shift_JIS</h3>
+<p><strong>现象</strong>：读 HTML 出来全是乱码（<code>\x90\\x8d\x9e...</code>），标签变成 <code>�w��</code></p>
+<p><strong>原因</strong>：<code>reference/webapps/**/*.html</code> 全部是 Shift_JIS / CP932。按 UTF-8 读必炸。</p>
+<p><strong>解法</strong>：</p>
+<pre><code class="lang-python">for enc in (&#x27;cp932&#x27;, &#x27;shift_jis&#x27;, &#x27;utf-8-sig&#x27;, &#x27;utf-8&#x27;, &#x27;euc_jp&#x27;):
+    try:
+        text = raw.decode(enc)
+        if re.search(r&#x27;[\u3040-\u30ff]&#x27;, text):   # 有假名就是对的
+            return text
+    except UnicodeDecodeError:
+        continue</code></pre>
+<p><strong>注意</strong>：33 个是 shift_jis、4 个是 cp932、剩下是没有日文的页面。<strong>不要只试一个编码。</strong></p>
+<hr>
+<h3 id="P2.-mjs-脚本必须在-node-runner-目录跑">P2. mjs 脚本必须在 node-runner 目录跑</h3>
+<p><strong>现象</strong>：<code>Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright-core'</code></p>
+<p><strong>原因</strong>：Node 按 <strong>cwd</strong> 找 <code>node_modules</code>，不是按脚本位置。<code>playwright-core</code> 只装在了 <code>automation/node-runner/node_modules</code>。</p>
+<p><strong>解法</strong>：</p>
+<ul><li>所有 mjs 放 <code>automation/node-runner/</code></li><li>或者运行时 <code>cd</code> 到那里</li><li>这次在 <code>tools/capture/</code> 下建文件，白跑一遍才知道，又搬回去</li></ul>
+<hr>
+<h3 id="P3.-chromium.launch-不指定-channel-会找不到浏览器">P3. <code>chromium.launch()</code> 不指定 channel 会找不到浏览器</h3>
+<p><strong>现象</strong>：<code>Executable doesn't exist at ...chromium_headless_shell-1248\...</code></p>
+<p><strong>原因</strong>：项目只装了 <code>playwright-core</code>，<strong>没有下载浏览器</strong>。必须用系统 Edge。</p>
+<p><strong>解法</strong>：</p>
+<pre><code class="lang-javascript">chromium.launch({ headless: !headed, channel: &#x27;msedge&#x27; })</code></pre>
+<p><strong>这也是设计约束不是 bug</strong>：真机装不了浏览器。</p>
+<hr>
+<h2 id="解析器的坑">解析器的坑</h2>
+<h3 id="P4.-title="..."-属性会吃掉标签">P4. <code>title="..."</code> 属性会吃掉标签</h3>
+<p><strong>现象</strong>：<code>確認相手</code> 提取不到，字段数少了 49 个（194 → 243）</p>
+<p><strong>原因</strong>：</p>
+<pre><code class="lang-html">&lt;div class=&quot;gyoumu_field_title&quot; title=&quot;一大段业务说明...&quot;&gt;
+  確認相手（氏名）（注1）
+&lt;/div&gt;</code></pre>
+<p>正则 <code>&lt;div class="...field_title"&gt;\s*([^&lt;]+)&lt;/div&gt;</code> 匹配不到，因为 <code>&gt;</code> 前还有 <code>title</code> 属性。</p>
+<p><strong>解法</strong>：<code>&lt;div class="[^"]*field_title[^"]*"[^&gt;]*&gt;\s*([^&lt;]{1,60}?)\s*&lt;/div&gt;</code></p>
+<p><strong>教训</strong>：提取到的字段数突然下降，先怀疑正则漏了属性。</p>
+<hr>
+<h3 id="P5.-半角/全角假名不是同一个字">P5. 半角/全角假名不是同一个字</h3>
+<p><strong>现象</strong>：<code>ｻﾌﾞｺｰﾄﾞ</code>（前端）vs <code>サブコード</code>（手顺）匹配不上</p>
+<p><strong>解法</strong>：统一归一化</p>
+<pre><code class="lang-python">unicodedata.normalize(&#x27;NFKC&#x27;, s)      # 半角→全角
+s.replace(&#x27;コード&#x27;, &#x27;ｺｰﾄﾞ&#x27;)          # 再统一回前端写法
+s.replace(&#x27;ID&#x27;, &#x27;ＩＤ&#x27;)</code></pre>
+<p><strong>坑</strong>：只做 NFKC 反而更差（64.4% vs 69.3%），因为前端用半角。<strong>两边都归一化到同一个方向。</strong></p>
+<hr>
+<h3 id="P6.-长音符/连字符有多种写法">P6. 长音符/连字符有多种写法</h3>
+<p><code>不備内容入力画面－新規</code>（全角－）/ <code>不備内容入力画面-新規</code>（半角-）/ <code>ｰ</code>（半角长音）</p>
+<p><strong>解法</strong>：归一化时 <code>.replace('－','-').replace('ー','-').replace('ｰ','-')</code></p>
+<hr>
+<h3 id="P7.-模糊匹配会点错按钮">P7. 模糊匹配会点错按钮</h3>
+<p><strong>现象</strong>：<code>選択欄</code>（表格行的单选钮）被匹配到 <code>選択</code>（确认按钮 <code>#closeSelect</code>）</p>
+<p><strong>原因</strong>：纯 substring 匹配太松。<code>row 39</code> 还错配到 <code>#select</code>。</p>
+<p><strong>解法</strong>：重叠度门槛 + 歧义拒绝</p>
+<pre><code class="lang-python">if min(len(n), len(k)) / max(len(n), len(k)) &lt; 0.6: skip
+if len(set(v[&quot;id&quot;] for v in 同名字段)) &gt; 1: return None   # 拒绝猜</code></pre>
+<hr>
+<h2 id="业务的坑">业务的坑</h2>
+<h3 id="P8.-种目没选，保险种类按钮点了没反应">P8. 种目没选，保险种类按钮点了没反应</h3>
+<p><strong>现象</strong>：点 <code>....</code>（保险种类），弹窗不开，<strong>也不报错</strong></p>
+<p><strong>原因</strong>（AMA03 源码）：</p>
+<pre><code class="lang-javascript">function onClickSelectInsurance() {
+    var selectedIndex = largeItemObj.selectedIndex;
+    if ( selectedIndex &lt;= 0 ) { return; }   // 静默 return
+    ...
+}</code></pre>
+<p><strong>教训</strong>：这类"守卫条件"在模板里看不出来，手顺只写"各項目に入力"。<strong>必须在流程文件里写 <code>requires:</code>。</strong></p>
+<hr>
+<h3 id="P9.-表内字段的-name-是运行时拼的">P9. 表内字段的 name 是运行时拼的</h3>
+<p><strong>现象</strong>：<code>照会内容チェックボックス</code> / <code>代理店照会</code> / <code>修</code> / <code>検索</code> 都解析不出来</p>
+<p><strong>原因</strong>：</p>
+<pre><code class="lang-javascript">form[&#x27;imperfectSearch[&#x27; + indexNo + &#x27;]&#x27;]
+form[&#x27;list[&#x27; + indexNo + &#x27;].inquiry_contents_edit_flag&#x27;]</code></pre>
+<p>模板里只有 JS 字符串拼接，<strong>没有静态 HTML 元素</strong>。</p>
+<p><strong>解法</strong>：标成 <code>pendingRuntime</code>，等真机 DOM。或用手顺行的文本定位：</p>
+<pre><code>tr:has(td:has-text(&quot;3028004586&quot;)) input[name=selectNo]</code></pre>
+<hr>
+<h3 id="P10.-搜索结果可能是-JS-插入的空-div">P10. 搜索结果可能是 JS 插入的空 div</h3>
+<p><strong>现象</strong>：<code>AMA13</code>（項目名検索）找不到任何 <code>&lt;table&gt;</code> / <code>&lt;tbody&gt;</code></p>
+<p><strong>原因</strong>：</p>
+<pre><code class="lang-html">&lt;div class=&quot;item&quot; id=&quot;Result&quot;&gt;&lt;/div&gt;</code></pre>
+<p>结果由 JS 填进去，模板里是空的。</p>
+<p><strong>解法</strong>：只能真机抓。<code>ui-dictionary.json</code> 里标 <code>status: runtime-resolve</code>。</p>
+<hr>
+<h3 id="P11.-画面名对不上（173-行受影响）">P11. 画面名对不上（173 行受影响）</h3>
+<p><strong>现象</strong>：手顺 <code>異例取扱管理メニュー画面</code> vs 前端 <code>&lt;title&gt;異例取扱管理システム　メニュー画面</code></p>
+<p><strong>原因</strong>：少了「システム」三个字 + 全角空格</p>
+<p><strong>现状</strong>：<code>ui-screens.json</code> 里标 <code>status: unknown</code>，等真机确认。 <strong>影响</strong>：159/439 本有映射不上的行，其中最严重 11 本（AZ-200-01 组）整本 100% 对不上。</p>
+<hr>
+<h2 id="数据处理坑">数据处理坑</h2>
+<h3 id="P12.-参数"看起来齐"是假象">P12. 参数"看起来齐"是假象</h3>
+<p><strong>现象</strong>：391/450 本显示"参数全齐"</p>
+<p><strong>真相</strong>：<code>auto.json</code> 有 30 个全局兜底值（<code>sectionCode=AHE61</code> / <code>agentCode=252H</code> / <code>policyNo=AZ11001</code>）， <strong>任何本缺值都会拿到这几个</strong>。60 本"跑通了"其实是代入同一套假数据。</p>
+<p><strong>教训</strong>：看到"全覆盖"先查兜底。</p>
+<hr>
+<h3 id="P13.-9-个-param-文件叠加，靠"谁先命中"">P13. 9 个 param 文件叠加，靠"谁先命中"</h3>
+<p><code>generated.json</code> / <code>auto.json</code> / <code>AZ-110-01.json</code> / <code>bulk.json</code> … 同一个键在不同文件里有不同值（<code>insuranceLabel</code>：<code>00 ： 自賠責</code> vs <code>00：自賠責</code>）。</p>
+<p>靠代码里的 <code>replace('\uFF1A',':')</code> 掩盖分歧。<strong>真机下拉框一变就必炸。</strong></p>
+<p><strong>新设计</strong>：一本一个 <code>flows/*.yaml</code>，<code>values:</code> 块里只写一本的值。没有叠加。</p>
+<hr>
+<h2 id="工具使用坑">工具使用坑</h2>
+<h3 id="P14.-Bash-heredoc-写大文件会被截断">P14. Bash heredoc 写大文件会被截断</h3>
+<p><strong>现象</strong>：8KB 以上的中文内容写进去只有一半</p>
+<p><strong>解法</strong>：大文件用 Write 工具，不要用 bash heredoc。</p>
+<h3 id="P15.-Windows-控制台-GBK，日文输出会崩">P15. Windows 控制台 GBK，日文输出会崩</h3>
+<p><strong>解法</strong>：<code>PYTHONIOENCODING=utf-8</code> + 脚本内 <code>sys.stdout.reconfigure(encoding='utf-8')</code></p>
+<h3 id="P16.-mock-端口被孤儿进程占用">P16. mock 端口被孤儿进程占用</h3>
+<p><strong>现象</strong>：<code>EADDRINUSE</code> 静默死，但看起来像"路由 404"</p>
+<p><strong>解法</strong>：起 mock 前先 <code>pkill -f mock-server</code>，或者每次换端口（10083 → 10097 → 10109）</p>
+<hr>
+<h2 id="★-数据丢失的坑">★ 数据丢失的坑</h2>
+<h3 id="P17.-生成器会覆盖手工配置（已修）">P17. 生成器会覆盖手工配置（已修）</h3>
+<p><strong>现象</strong>：<code>build_ui_dictionary.py</code> 重跑一次，<code>compile_flow.py</code> 立刻报 5 个错—— 之前手工加进 <code>ui-dictionary.json</code> 的 <code>rowfields</code> 和 <code>qualifiedButtons</code> 全没了。</p>
+<p><strong>原因</strong>：手工维护的数据和生成的数据混在同一个文件里，生成器整个重写。</p>
+<p><strong>解法（结构性）</strong>：<strong>手工段独立成 <code>ui-rowfields.json</code></strong>，永不被覆盖。</p>
+<pre><code>ui-dictionary.json   ← 100% 生成，随时可删可重建
+ui-rowfields.json    ← 100% 手工，只有人改
+ui-screens.json      ← 100% 人工整理
+ui-aliases.json      ← 100% 人工整理</code></pre>
+<p><strong>验证方法</strong>：连续跑两次 <code>build_ui_dictionary.py</code> + <code>compile_flow.py</code>，结果必须一致。</p>
+<p><strong>教训</strong>：<strong>生成物和人工物必须分文件。</strong> 只要混在一起，早晚被覆盖一次， 而且是在你以为"改好了"之后才发现。这类 bug 不报错，只是静默丢失。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RPA 重构 — 已定的决策 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav on" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="RPA-重构-—-已定的决策">RPA 重构 — 已定的决策</h1>
+<blockquote>这份文档是给"上下文已经清空的我"看的。每条都写清：定了什么、为什么、代价是什么、什么情况下该推翻。 最后更新：2026-10-26</blockquote>
+<h2 id="一句话总结">一句话总结</h2>
+<p>把手順書 450 本从"积木拼装"改成"1 本 = 1 个可读流程文件"，CSS 从 UI 字典查，真机 DOM 缺失的地方明确标成待办，不猜。</p>
+<hr>
+<h2 id="D1.-形态：做成-RPA">D1. 形态：做成 RPA</h2>
+<p><strong>定了什么</strong>：不是"更聪明的批处理"，是可交互、可定制、带预制模板的 RPA。</p>
+<p><strong>为什么</strong>：</p>
+<ul><li>现执行器一遇错就 <code>throw</code> → 关浏览器 → 只剩一行日志。真机上没法 debug</li><li>一本要跨 10 个积木 + 16 个 selector 文件 + 9 个 params 文件，改不动</li><li>用户原话："哪怕我手动，应该也可以形成一个自动化的流"</li></ul>
+<p><strong>代价</strong>：要重做数据层，450 本要迁移。</p>
+<p><strong>什么情况下推翻</strong>：如果最终发现真机上流程极其稳定、几乎不用改，那成本就不值。但目前已知有 6 个运行期才能确定的字段，所以不成立。</p>
+<hr>
+<h2 id="D2.-技术栈：不改">D2. 技术栈：不改</h2>
+<ul><li>Node v24.18.0 + <strong>playwright-core 1.64.1</strong>（不是 playwright）</li><li><code>chromium.launch({ channel: 'msedge' })</code> → 用系统自带 Edge，<strong>不下载浏览器</strong></li><li>原因：真机（公司电脑）装不了新浏览器，也没有安装权限</li></ul>
+<p><strong>⚠️ 硬性约束</strong>：所有 mjs 脚本必须放在 <code>automation/node-runner/</code> 目录内运行，否则 <code>playwright-core</code> 解析不到（Node 按 cwd 找 node_modules）。这次已经踩了 2 次。</p>
+<hr>
+<h2 id="D3.-三层结构（不是四层）">D3. 三层结构（不是四层）</h2>
+<pre><code>① 动作层     goto/click/fill/select/check/clickRow/expect/wait/manual   （10 个原子，几乎不动）
+② 字典层     ui-dictionary.json + ui-screens.json + ui-aliases.json     （前端变化改这里）
+③ 流程层     flows/&lt;CASE&gt;.yaml                                          （一本一个，人和 AI 都改这个）</code></pre>
+<p><strong>没有"积木层"。</strong></p>
+<p><strong>为什么砍掉 252 个积木</strong>：</p>
+<ul><li>实测 1613 个执行步骤里 <strong>只有 177 步引用 params（10%）</strong>，其余 90% 硬编码（<code>AHE61</code> 写死 17 次）</li><li>所以"一块被 348 本复用"是统计巧合（手顺长得一样），不是真复用</li><li>125/252 个块只被 1~2 本用 → 是"手顺的化石"，不是积木</li><li>积木把"动作"和"画面名"绑死，而画面名本身有 10 处对不上前端</li></ul>
+<p><strong>什么该保留</strong>：252 个积木<strong>原样留在仓库</strong>，定位改成"模板片段库"。迁移期间新旧可对照，出问题能退回。</p>
+<hr>
+<h2 id="D4.-流程文件：写标签，不写-CSS">D4. 流程文件：写标签，不写 CSS</h2>
+<pre><code class="lang-yaml">- row: 24                  # 手順書 Excel 行号，这是证据链
+  screen: 募集人検索画面
+  do: fill
+  部店課支社コード: &quot;{部店課支社コード}&quot;</code></pre>
+<p><strong>关键</strong>：<code>部店課支社コード</code> 是日文标签，不是 selector。selector 由 <code>compile_flow.py</code> 从字典查。</p>
+<p><strong>为什么</strong>：</p>
+<ul><li>真机上 CSS 会变（尤其是表内动态 name），但日文标签不会变</li><li>用户能读懂、能改</li><li>改一处（字典）→ 450 本全生效</li></ul>
+<hr>
+<h2 id="D5.-编译器：宁可报错，绝不猜">D5. 编译器：宁可报错，绝不猜</h2>
+<p><code>compile_flow.py</code> 对每个 target 分三种结果：</p>
+<div class="table-wrap"><table><thead><tr><th>结果</th><th>含义</th><th>处理</th></tr></thead><tbody><tr><td><code>selector</code></td><td>字典里有 id</td><td>直接用</td></tr><tr><td><code>rowfield</code></td><td>表内行，有模板</td><td>生成 <code>tr:has(td:has-text("值")) input[name=xxx]</code></td></tr><tr><td><code>pendingRuntime</code></td><td>模板里没有，只能真机看</td><td><strong>列出来，当待办</strong></td></tr></tbody></table></div>
+<p><strong>绝不做的三件事</strong>：</p>
+<ol><li>同名多 id 时不猜（<code>....</code> 在 AMA04 有两个：保险种类/募集人，模糊匹配会点错）</li><li>模糊匹配要求重叠度 ≥60%（<code>選択欄</code> 曾错配到 <code>選択</code> 按钮）</li><li>不认识的画面名直接报错，带上 Excel 行号</li></ol>
+<p><strong>为什么这么严</strong>：用户今天问题的根源就是"看起来差不多"被当成"对"。这层必须严。</p>
+<hr>
+<h2 id="D6.-真机抓取：DOM-只能从真机拿">D6. 真机抓取：DOM 只能从真机拿</h2>
+<p><strong>定了什么</strong>：<code>automation/node-runner/capture.mjs</code>，人手动操作，自动保存每个画面的渲染后 DOM。</p>
+<p><strong>为什么不能"另存为网页"</strong>：</p>
+<ul><li>前端全部 <strong>Shift_JIS</strong>，手动另存会变 UTF-8 或乱码</li><li>弹窗存不下来</li><li>一页一页点太慢</li></ul>
+<p><strong>为什么必须真机 DOM</strong>：</p>
+<ul><li>实测 6 个待解字段全在"表内动态 name"或"JS 动态插入"处</li><li>模板里有的是 <code>th:value</code> / <code>[(${...})]</code>，不是渲染后的样子</li><li>例：<code>form['imperfectSearch[' + indexNo + ']']</code> —— 运行时拼接，静态文件里根本没有</li></ul>
+<hr>
+<h2 id="D7.-数据分工">D7. 数据分工</h2>
+<div class="table-wrap"><table><thead><tr><th>文件</th><th>来源</th><th>谁维护</th></tr></thead><tbody><tr><td><code>ui-dictionary.json</code></td><td>前端 HTML 自动提取 / 真机捕获</td><td><strong>100% 脚本生成</strong>，随时可重建</td></tr><tr><td><code>ui-rowfields.json</code></td><td>代码分析（动态 name）</td><td><strong>100% 人工</strong>，见 P17</td></tr><tr><td><code>ui-screens.json</code></td><td>手顺画面名 → 画面码</td><td><strong>人工</strong>（真机确认后改 status）</td></tr><tr><td><code>ui-aliases.json</code></td><td>别紙说法 → 前端说法</td><td><strong>人工</strong>（短、明确、可审计）</td></tr><tr><td><code>flows/*.yaml</code></td><td>手顺 JSON + AI 阅读</td><td>人 + AI</td></tr><tr><td><code>reference/webapps/</code></td><td>原始前端快照</td><td>只读，不动</td></tr></tbody></table></div>
+<hr>
+<h2 id="D8.-450-本怎么迁移">D8. 450 本怎么迁移</h2>
+<p><strong>不要一次性全做。</strong></p>
+<ol><li>先 1 本（009）跑通全链</li><li>再 5 本不同类型（含异常系、批处理），验证普适性</li><li>确认格式不改了，再批量生成 450 本</li></ol>
+<p><strong>为什么</strong>：格式一旦返工，450 本全废。先小样本锁定格式。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOAL — ms-ad RPA 平台 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav on" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="GOAL-—-ms-ad-RPA-平台">GOAL — ms-ad RPA 平台</h1>
+<h2 id="目标（一句话）">目标（一句话）</h2>
+<p>把 450 本保险业务手顺书，变成一个<strong>可跑、可改、可查</strong>的 RPA 系统： 每本一个可读文件，跑的时候能停下来人工接管，出错能指回 Excel 行号。</p>
+<h2 id="为什么">为什么</h2>
+<p>真机第一次跑"惨不忍睹"。根因不是 selector 写错了，是三件事：</p>
+<ol><li>出错就关浏览器，看不到现场</li><li>一本要跨 10 积木 + 16 selector 文件 + 9 params 文件，改一处穿四层</li><li>没有证据链，判断不了"对不对"</li></ol>
+<h2 id="成功标准（可验收）">成功标准（可验收）</h2>
+<h3 id="必须（MVP）">必须（MVP）</h3>
+<ul><li>[ ] 一本手顺（009）从 YAML 跑完 44 步，mock 上 done=44</li><li>[ ] 任意一步失败时，<strong>浏览器不关</strong>，能选 重试/跳过/手填/保留/退出</li><li>[ ] 每个 step 带 Excel 行号，能指回原文</li><li>[ ] 改一个参数值，只改一行，重跑生效</li><li>[ ] 改一个 selector，只改字典一处，所有本生效</li></ul>
+<h3 id="应该">应该</h3>
+<ul><li>[ ] 4 本不同类型（更新系/另一业务线/异常系/批处理）都能编译通过</li><li>[ ] 批处理本被正确识别为"不进浏览器"</li><li>[ ] 有 UI：能选一本、点运行、看进度、失败时停下</li></ul>
+<h3 id="不做">不做</h3>
+<ul><li>不追求 450 本全绿（mock 绿不代表对）</li><li>不改 <code>runner.mjs</code></li><li>不用 playwright（只用 playwright-core + 系统 Edge）</li><li>不手改 <code>execution-status.json</code></li></ul>
+<h2 id="关键约束（违反即失败）">关键约束（违反即失败）</h2>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>约束</th><th>原因</th></tr></thead><tbody><tr><td>R0</td><td><strong>碰到问题先查代码，不许猜</strong></td><td>reference/webapps 是权威，Shift_JIS</td></tr><tr><td>R1</td><td>不许猜 selector</td><td>查不到就标 pendingRuntime</td></tr><tr><td>R2</td><td>只显示字段不能当输入</td><td>id 为 null 的只能断言</td></tr><tr><td>R3</td><td>流程文件不写 CSS</td><td>否则 450 本各改一遍</td></tr><tr><td>R4</td><td>不许为通过改断言</td><td>改断言是造假</td></tr><tr><td>R5</td><td>每步必须有 Excel 行号</td><td>否则无法验证</td></tr><tr><td>R6</td><td>输入值与期望值分开</td><td>混一起会误报</td></tr><tr><td>R7</td><td>手工配置与生成物分文件</td><td>否则被覆盖</td></tr><tr><td>R8</td><td>大文件不用 heredoc 写</td><td>超 8KB 静默截断</td></tr></tbody></table></div>
+<h2 id="现状（2026-10-27-00:05）">现状（2026-10-27 00:05）</h2>
+<pre><code>分支 feat/rpa-flow
+已完成：
+  字典层  53画面 / 189可输入 / 131只显示 / 295按钮
+  流程层  009: 44步 0error 8 pendingRuntime
+  执行器  run-flow.mjs 跑通 row 14→31（18步）
+  抓取器  capture.mjs mock 验证通过
+文档    11 份（docs/rpa/）
+
+卡住：
+  row 32  点「更新」但页面还在 AMA03（登録后没跳转）
+          按 R0 查过：formValidate 返回 false
+          已补 変更日/回答締切日 进 fillAll，但 row 30 的登録仍未跳转</code></pre>
+<h2 id="待办顺序">待办顺序</h2>
+<ol><li><strong>修 row 30→32 的跳转</strong>（mock 路由或 formValidate）</li><li>真机抓 DOM → 消 8 个 pendingRuntime</li><li>做 UI（选本/运行/看进度/失败停下）</li><li>4 本验证 → 批量</li></ol>
+<h2 id="判据（怎么算做完）">判据（怎么算做完）</h2>
+<p>用户原话：</p>
+<blockquote>"只要流程正确、参数正确就行。"</blockquote>
+<ul><li><strong>流程正确</strong>：每个 step 能指回手顺行号，人能读懂</li><li><strong>参数正确</strong>：每个值能指回别紙行，标了来源类型</li></ul>
+<p>两条都满足 = 做完。mock 跑绿不算。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

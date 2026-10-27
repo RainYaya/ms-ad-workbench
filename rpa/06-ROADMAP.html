@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>开发步骤（按顺序做，每步可验收） · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav on" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="开发步骤（按顺序做，每步可验收）">开发步骤（按顺序做，每步可验收）</h1>
+<blockquote>这份是<strong>施工顺序</strong>。前面都完成了才做后面，不要跳。 每一步都写了「做什么 / 验收标准 / 卡住怎么办」。</blockquote>
+<hr>
+<h2 id="第-0-步：真机抓-DOM-✅-工具已就绪，等你执行">第 0 步：真机抓 DOM ✅ 工具已就绪，等你执行</h2>
+<p><strong>做什么</strong></p>
+<pre><code class="lang-cmd">cd automation\node-runner
+node capture.mjs --url https://真机/AMB/AMA01.html --out capture-1027 --edge</code></pre>
+<p>手动把 009 走一遍（顺便摸环境），<code>Ctrl+C</code>，把 <code>capture-1027</code> 发回。</p>
+<p><strong>注意</strong></p>
+<ul><li><code>種目</code> 必须先选，否则保险种类 <code>....</code> 按钮<strong>静默无反应</strong>（源码 <code>if(selectedIndex&lt;=0) return;</code>）</li><li>点了没反应的步骤，记下是哪一步</li><li>不需要提供任何账号密码</li></ul>
+<p><strong>验收</strong>：<code>capture-1027/pages/</code> 里有 10+ 个画面，<code>.json</code> 里有 <code>ids</code>/<code>pairs</code>/<code>tables</code></p>
+<p><strong>卡住怎么办</strong>：如果 node 跑不起来，先确认在 <code>automation/node-runner</code> 目录下</p>
+<hr>
+<h2 id="第-1-步：用真机-DOM-消除-pendingRuntime">第 1 步：用真机 DOM 消除 pendingRuntime</h2>
+<p><strong>做什么</strong></p>
+<ol><li><code>python tools/build_ui_dictionary.py --src capture-1027/pages --merge</code></li><li>对比真机 DOM 和当前字典的差异</li><li>把 8 个 <code>pendingRuntime</code> 全部确定（row 34/39/42/43/45/48/51×2）</li><li><code>ui-screens.json</code> 里 25 个 <code>inferred</code> → <code>confirmed</code></li></ol>
+<p><strong>验收</strong>：<code>compile_flow</code> 的 <code>pendingRuntime</code> 为空</p>
+<p><strong>卡住怎么办</strong>：某个字段真机上就是不可操作 → 标 <code>runtime-resolve</code> 并在流程里写 <code>manual</code></p>
+<hr>
+<h2 id="第-2-步：009-在-mock-上跑通全部-44-步">第 2 步：009 在 mock 上跑通全部 44 步</h2>
+<p><strong>现状</strong>：<code>row 14→31</code> 通过，<code>row 32</code> 卡住（点「登録」后 mock 不跳转）</p>
+<p><strong>做什么</strong>（二选一）</p>
+<ul><li>A. 修 mock 路由，让 POST 正确跳转到更新画面</li><li>B. 在流程文件里加 <code>goto</code>，跳过 mock 的路由缺陷</li></ul>
+<p><strong>倾向 A</strong>：因为真机上路由是对的，为迁就 mock 而加 <code>goto</code> 会污染流程文件。</p>
+<p><strong>验收</strong>：<code>done 44 / failed 0</code></p>
+<p><strong>卡住怎么办</strong>：如果 mock 路由太复杂修不动，就用 B 并注释 <code># mock 限制</code></p>
+<hr>
+<h2 id="第-3-步：交互模式实测">第 3 步：交互模式实测</h2>
+<p><strong>做什么</strong></p>
+<pre><code class="lang-cmd">node run-flow.mjs flows/AZ-110-01-009.yaml --base http://127.0.0.1:10083</code></pre>
+<p>故意制造失败（改错一个 selector），验证 6 个交互键都能用： <code>Enter</code> 重试 / <code>s</code> 跳过 / <code>v</code> 手填 / <code>k</code> 保留浏览器 / <code>q</code> 退出 / <code>a</code> 全停</p>
+<p><strong>验收</strong>：<code>k</code> 之后浏览器确实不关，人能继续操作</p>
+<p><strong>卡住怎么办</strong>：<code>readline</code> 在 Windows 下可能有回车问题 → 改用 <code>process.stdin</code> 逐字节读</p>
+<hr>
+<h2 id="第-4-步：再做-4-本，验证格式普适性">第 4 步：再做 4 本，验证格式普适性</h2>
+<p><strong>选哪 4 本</strong>（覆盖不同结构）</p>
+<div class="table-wrap"><table><thead><tr><th>case</th><th>类型</th><th>验证什么</th></tr></thead><tbody><tr><td><code>AY-120-01-001</code></td><td>更新系，多次弹窗</td><td>同一弹窗反复进出</td></tr><tr><td><code>AZ-310-01-001</code></td><td>另一条业务线</td><td>画面集不同</td></tr><tr><td><code>AZ-200-03-001</code></td><td>异常系（会话超时）</td><td>无字段，纯断言</td></tr><tr><td><code>AZ-150-11-001</code></td><td>批处理</td><td><strong>应该识别为「不进浏览器」</strong></td></tr></tbody></table></div>
+<p><strong>验收</strong>：4 本都能编译且 0 error；批处理本被正确标为非浏览器</p>
+<p><strong>卡住怎么办</strong>：如果格式要改，<strong>现在改</strong>——改完这 4 本验证，再进第 5 步</p>
+<hr>
+<h2 id="第-5-步：批量生成-450-本">第 5 步：批量生成 450 本</h2>
+<p><strong>前置</strong>：第 4 步确认格式不再变</p>
+<p><strong>做什么</strong></p>
+<ol><li>写 <code>tools/gen_flows.py</code>：读手顺 JSON → 生成 <code>flows/&lt;CASE&gt;.yaml</code></li><li><strong>不能全自动</strong>：AI 逐本读手顺，产出带 <code>row</code> 的步骤，人抽检</li><li>分批：每批 20-30 本，跑通再下一批</li></ol>
+<p><strong>验收</strong>：450 个 yaml，<code>compile_flow</code> 全部 0 error</p>
+<p><strong>卡住怎么办</strong>：某类本结构特殊 → 单独归一类，不要硬塞进通用格式</p>
+<hr>
+<h2 id="第-6-步：现场交互打磨">第 6 步：现场交互打磨</h2>
+<p><strong>做什么</strong>（真机经验驱动，不在 mock 上空想）</p>
+<ul><li>失败时自动截图 + 记录当时的 DOM 片段</li><li><code>k</code> 保留后，提供一个「事后补记」命令：把人工做过的步骤写回 yaml</li><li>断点续跑：<code>--from-row 32</code></li></ul>
+<p><strong>验收</strong>：真机上遇到 3 种没预见的失败，都能通过交互解决</p>
+<hr>
+<h2 id="第-7-步：和旧体系对照">第 7 步：和旧体系对照</h2>
+<p><strong>做什么</strong></p>
+<ul><li>用 <code>runner.mjs</code>（旧）和 <code>run-flow.mjs</code>（新）跑同一本</li><li>逐块对比结果，记录差异</li></ul>
+<p><strong>为什么</strong>：用户要求"之前的自动化不能浪费"。252 个积木作为模板库的可靠性，需要这个对照来证明。</p>
+<p><strong>验收</strong>：差异清单写进 <code>docs/rpa/07-DIFF.md</code></p>
+<hr>
+<h2 id="优先级建议">优先级建议</h2>
+<p>如果时间有限，<strong>0 → 1 → 2 → 3</strong> 是必须的（能跑一本完整的）。</p>
+<p>第 4 步之后的 450 本迁移，<strong>建议等真机验证过 3-5 本再做</strong>—— 否则格式一改，450 本全废。</p>
+<hr>
+<h2 id="每一步的通用纪律（用户要求）">每一步的通用纪律（用户要求）</h2>
+<h3 id="纪律-1：了解清楚了再弄">纪律 1：了解清楚了再弄</h3>
+<blockquote>"碰到什么情况，也是先看代码了解。还是那个原则：了解清楚了再弄。"</blockquote>
+<p><strong>反例（今晚）</strong>：我在"改代码 → 跑 80 秒 → 失败 → 再改"里空转了 1 小时。 <strong>正例</strong>：花 5 分钟读 <code>AMA03.html</code>，一眼看出 <code>種目</code> 有 hidden + select 两个控件。</p>
+<p><strong>规则</strong>：动手改之前，必须能回答「现在的实际结构是什么」，不能靠"应该是"。</p>
+<h3 id="纪律-2：流程和参数必须-AI-实际确认">纪律 2：流程和参数必须 AI 实际确认</h3>
+<blockquote>"流程和参数这两个必须实际开 AI Agent 来确认，不然肯定会出错。"</blockquote>
+<p>不是"跑通了就算对"。见 <code>09-AI-VERIFY.md</code>。</p>
+<h3 id="纪律-3：人工-review-是最后一道">纪律 3：人工 review 是最后一道</h3>
+<blockquote>"我人工 review 是最后一道，那倒无所谓，就是对流程正确性的判断。"</blockquote>
+<p><strong>所以 AI 的产出必须是人能 review 的</strong>：</p>
+<ul><li>有行号</li><li>有原文对照</li><li>不确定的地方显式标出（不是藏起来）</li></ul>
+<h3 id="纪律-4：格式大改要重新确认">纪律 4：格式大改要重新确认</h3>
+<p>因为一改就影响 450 本。格式定稿点在第 4 步（4 本验证完）。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

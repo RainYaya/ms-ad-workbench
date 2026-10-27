@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 确认流程 / 参数 / 可行性的工作规程 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav on" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="AI-确认流程-/-参数-/-可行性的工作规程">AI 确认流程 / 参数 / 可行性的工作规程</h1>
+<blockquote>用户明确要求：「流程和参数这两个必须实际开 AI Agent 来确认，不然肯定会出错。」 这份文档定义 AI Agent 具体怎么干、产出什么、什么算合格。</blockquote>
+<h2 id="为什么必须-AI-读，不能只靠程序">为什么必须 AI 读，不能只靠程序</h2>
+<p>程序能做：</p>
+<ul><li>从 Excel 抽出「标签 → 值」</li><li>把标签映射成 selector</li><li>验证"这步能不能执行"</li></ul>
+<p>程序<strong>不能</strong>做：</p>
+<ul><li>判断「各項目に入力」到底要填哪几个字段</li><li>判断「照会内容チェックボックス」是表内第几行的那个</li><li>判断「※ 保险种类选择画面で设置」意味着不用填、要走弹窗</li><li>判断某一行的手顺是不是写错了</li></ul>
+<p><strong>这些必须读原文 + 理解意图。</strong> 所以要 AI Agent，而且必须留证据。</p>
+<h2 id="三类确认，分开做">三类确认，分开做</h2>
+<h3 id="A.-流程确认（每本一次）">A. 流程确认（每本一次）</h3>
+<p><strong>输入</strong></p>
+<ul><li>手顺正文（<code>workflow.rows</code>，含 <code>sourceRow</code>）</li><li>别紙操作内容 / 表示内容</li><li><code>ui-dictionary.json</code>（有哪些控件）</li><li><code>ui-screens.json</code>（画面名 → 画面码）</li></ul>
+<p><strong>Agent 要产出</strong>：<code>flows/&lt;CASE&gt;.yaml</code></p>
+<p><strong>必须满足</strong>（否则不算完成）：</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>要求</th><th>怎么检查</th></tr></thead><tbody><tr><td>1</td><td>每个 step 有 <code>row</code></td><td><code>rows == 连续覆盖 </code></td></tr><tr><td>2</td><td>手顺每一行都有对应 step，或被显式标为"跳过+原因"</td><td>逐行核对</td></tr><tr><td>3</td><td>不确定的字段标 <code>pendingRuntime</code> 或 <code>manual</code>，<strong>不许猜</strong></td><td>人工抽检</td></tr><tr><td>4</td><td>期望值放 <code>expect:</code>，不混进输入字段</td><td>编译无假错</td></tr></tbody></table></div>
+<h3 id="B.-参数确认（每本一次）">B. 参数确认（每本一次）</h3>
+<p><strong>输入</strong>：别紙操作内容 + 表示内容</p>
+<p><strong>Agent 要产出</strong>：<code>values:</code> 块，每条带 <code>row</code> 和 <code>source</code></p>
+<div class="table-wrap"><table><thead><tr><th>source</th><th>含义</th><th>例子</th></tr></thead><tbody><tr><td><code>human</code></td><td>人手输入的具体值</td><td><code>AHE61</code></td></tr><tr><td><code>sys</code></td><td>系统生成</td><td><code>システム日＋7日</code>、<code>現在日付</code></td></tr><tr><td><code>blank</code></td><td>明确空白</td><td><code>（入力なし）</code>、<code>空白</code></td></tr><tr><td><code>auto</code></td><td>自动设定</td><td><code>（自動設定）</code></td></tr><tr><td><code>na</code></td><td>対象外</td><td><code>対象外</code>、<code>連動しない</code></td></tr><tr><td><code>manual</code></td><td>手顺没写清，要人现场填</td><td>别紙写「参照」但没给源</td></tr></tbody></table></div>
+<p><strong>"参数正确"的判定</strong>：</p>
+<ol><li>每个值都能指回别紙的某一行</li><li><code>source</code> 分类正确（把<code>対象外</code>当值填进去 = 错）</li><li>标 <code>manual</code> 的必须列出「为什么需要人填」</li></ol>
+<h3 id="C.-可行性确认（每本一次，轻量）">C. 可行性确认（每本一次，轻量）</h3>
+<p><strong>Agent 回答三个问题</strong>：</p>
+<ol><li><strong>这本能不能自动化？</strong> 分三档</li><li><code>browser</code> — 纯浏览器操作</li><li><code>mixed</code> — 浏览器 + 批处理/文件</li><li><code>non-browser</code> — 纯命令/批处理，不该进自动化</li></ol>
+<ol><li><strong>有哪些步骤是模板里看不出来的？</strong>（列出 <code>pendingRuntime</code>）</li></ol>
+<ol><li><strong>有哪些前置条件会静默失败？</strong>（如 <code>種目</code> 未选 → 保险种类按钮无反应）</li></ol>
+<h2 id="Agent-的工作纪律（硬约束）">Agent 的工作纪律（硬约束）</h2>
+<p>从 <code>02-DEV-RULES.md</code> 和 <code>07-REQUIREMENTS.md</code> 继承，此处强调：</p>
+<ol><li><strong>不许猜 selector</strong> — 查不到就报 <code>pendingRuntime</code></li><li><strong>不许为了通过改断言</strong> — 断言不过先判断是期望值错、selector 错、还是功能真的坏了</li><li><strong>必须留行号</strong> — 没行号 = 无法验证 = 不算完成</li><li><strong>不确定就标出来</strong> — <code>manual</code> / <code>pendingRuntime</code> 是合法产出，硬猜不是</li><li><strong>先看代码再动手</strong> — 用户原话：「碰到什么情况，也是先看代码了解」</li></ol>
+<h2 id="用户特别强调的两点">用户特别强调的两点</h2>
+<h3 id="1.-「了解清楚了再弄」">1. 「了解清楚了再弄」</h3>
+<blockquote>"以前也聊过：了解清楚了再弄。"</blockquote>
+<p><strong>执行方式</strong>：Agent 拿到一本手顺，第一步不是写 yaml，是：</p>
+<ul><li>读完整手顺</li><li>读涉及画面的真实 HTML</li><li>对照别紙</li><li><strong>然后才写</strong></li></ul>
+<p>今晚的教训：我上来就改代码，在"改-跑-错"循环里空转 1 小时。后来花 5 分钟读 AMA03.html， 一眼就看出 <code>種目</code> 是 hidden + select 两个控件。</p>
+<h3 id="2.-「尽量多看前端引用代码」">2. 「尽量多看前端引用代码」</h3>
+<blockquote>"测试的时候尽量多看发给你的前端引用代码。"</blockquote>
+<p><strong>执行方式</strong>：</p>
+<ul><li><code>reference/webapps/</code> 是权威来源（Shift_JIS）</li><li>遇到"点了没反应" → 先读 JS，找守卫条件（<code>if (selectedIndex &lt;= 0) return;</code>）</li><li>遇到表内字段 → 先读 <code>&lt;tbody&gt;</code> 模板，看行结构</li></ul>
+<h2 id="产出物检查清单">产出物检查清单</h2>
+<p>一本做完，目录里应该有：</p>
+<pre><code>flows/&lt;CASE&gt;.yaml           流程 + 值（带 row）
+（字典/别名如有新增）
+logs/&lt;CASE&gt;-flow/run.json   执行结果</code></pre>
+<p><strong>合格标准</strong>：</p>
+<ul><li>[ ] <code>compile_flow</code> 退出码 0</li><li>[ ] <code>errors</code> 为空</li><li>[ ] <code>pendingRuntime</code> 每条都有 note 说明为什么</li><li>[ ] <code>rows</code> 连续覆盖手顺范围</li><li>[ ] 每个 <code>values</code> 有 <code>row</code> 和 <code>source</code></li><li>[ ] 手顺里明确跳过的行，在 yaml 里注释了原因</li></ul>
+<h2 id="批量时的分档">批量时的分档</h2>
+<p>不要 450 本一个模式。先分档：</p>
+<div class="table-wrap"><table><thead><tr><th>档</th><th>本数</th><th>处理方式</th></tr></thead><tbody><tr><td>纯浏览器·主干</td><td>~374</td><td>通用流程，AI 逐本生成 + 抽检</td></tr><tr><td>混合（浏览器+批处理）</td><td>~65</td><td>拆分：浏览器部分自动化，批处理标 <code>manual</code></td></tr><tr><td>纯非浏览器</td><td>~11</td><td>不进自动化，标记并跳过</td></tr></tbody></table></div>
+<p><strong>先做「纯浏览器·主干」这一档</strong>，因为它占多数、结构最像、验证最快。</p>
+<h2 id="汇总要求">汇总要求</h2>
+<p>每批做完，产出一份汇总：</p>
+<pre><code class="lang-markdown">## Batch N (cases X-Y)
+
+| case | steps | errors | pending | 可行档 | 备注 |
+|---|---|---|---|---|---|
+| AZ-110-01-009 | 44 | 0 | 8 | browser | 表内动态name |
+...
+
+### 本批新增的共享配置
+- ui-aliases.json: +3 条
+- ui-rowfields.json: +1 画面
+
+### 本批发现的新问题
+- ...</code></pre>
+<p><strong>这个汇总比 450 个 yaml 更重要</strong>——它让人一眼看出"哪里有系统性问题"。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

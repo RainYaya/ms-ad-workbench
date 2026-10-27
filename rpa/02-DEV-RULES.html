@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>开发要求 — 写代码前先读这个 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav on" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="开发要求-—-写代码前先读这个">开发要求 — 写代码前先读这个</h1>
+<blockquote>这些不是偏好，是<strong>从今天实际踩的坑反推出来的硬约束</strong>。</blockquote>
+<h2 id="★★★-R0（最高优先）：碰到问题先查代码，不许猜">★★★ R0（最高优先）：碰到问题先查代码，不许猜</h2>
+<p>用户 2026-10-26 明确要求。详见 <code>10-DEBUG-BY-CODE.md</code>。</p>
+<p><strong>改任何代码之前，必须能回答：</strong></p>
+<ol><li>现在的实际结构是什么？（引用具体文件 + 行号）</li><li>为什么现在会失败？（引用具体代码）</li></ol>
+<p><strong>回答不出来 = 不许动手。</strong></p>
+<p>权威顺序：<code>reference/webapps/</code>（真机源码，Shift_JIS）&gt; mock-src &gt; v2/mock-src。</p>
+<hr>
+<h2 id="一、绝对不许做的">一、绝对不许做的</h2>
+<h3 id="R1.-不许猜-selector">R1. 不许猜 selector</h3>
+<p>字典里查不到就<strong>报错并给出行号</strong>，不要用模糊匹配糊过去。</p>
+<pre><code class="lang-python"># ✅
+if not hit: errors.append(f&quot;row {row}: label not in {screen_key}: {label!r}&quot;)
+
+# ❌ 绝不允许
+hit = hit or guess_by_similarity(label)</code></pre>
+<p><strong>理由</strong>：<code>選択欄</code> 被猜成 <code>選択</code> 按钮；<code>....</code> 被猜成错的那个。用户现场会看到"点了没反应"或"点错按钮"，比报错难查 10 倍。</p>
+<hr>
+<h3 id="R2.-不许把"仅显示字段"当输入字段">R2. 不许把"仅显示字段"当输入字段</h3>
+<p>字典里 <code>id: null</code> 的字段是<strong>后端填的只读值</strong>，只能断言，不能填。</p>
+<p><strong>现状</strong>：106 个有 id（可输入）/ 131 个无 id（只显示）</p>
+<p><strong>如果混用会怎样</strong>：<code>#field_agent_name</code> 这种字段 fill 进去无效，但它会静默成功（Playwright 允许改 readonly 的 value），然后断言又能过 —— <strong>假阳性</strong>。</p>
+<hr>
+<h3 id="R3.-不许在流程文件里写-CSS">R3. 不许在流程文件里写 CSS</h3>
+<pre><code class="lang-yaml"># ✅
+- do: click
+  新規登録: &quot;&quot;
+
+# ❌
+- do: click
+  selector: &quot;#act001to100&quot;</code></pre>
+<p><strong>理由</strong>：CSS 一进流程文件，450 本就要各改一遍。</p>
+<p><strong>例外</strong>：确实需要精确 selector 时，写进 <code>ui-dictionary.json</code>，流程文件只引用标签。</p>
+<hr>
+<h3 id="R4.-不许"为了通过"改断言">R4. 不许"为了通过"改断言</h3>
+<p>如果断言不过，先判断是：</p>
+<ol><li>期望值错（手顺抄错）→ 改 <code>values</code></li><li>selector 错 → 改字典</li><li><strong>功能真的坏了</strong> → 报告，不要改断言</li></ol>
+<p><strong>红线</strong>：<code>execution-status.json</code> 不能手改（历史教训）。</p>
+<hr>
+<h2 id="二、必须做的">二、必须做的</h2>
+<h3 id="R5.-每一步必须带-Excel-行号">R5. 每一步必须带 Excel 行号</h3>
+<pre><code class="lang-yaml">- row: 24</code></pre>
+<p><strong>用途</strong>：</p>
+<ul><li>出问题时能指回原文</li><li>改的时候知道在改什么</li><li>450 本迁移时能验证"44 行手顺 → 44 步"是否一一对应</li></ul>
+<p><strong>验证方法</strong>：<code>rows == list(range(14, 58))</code>（009 已通过）</p>
+<hr>
+<h3 id="R6.-期望值和输入值分开">R6. 期望值和输入值分开</h3>
+<pre><code class="lang-yaml"># ✅ 输入
+- do: fill
+  部店課支社コード: &quot;{部店課支社コード}&quot;
+
+# ✅ 期望
+- do: expect
+  expect:
+    遷移: 表示内容１</code></pre>
+<p><strong>理由</strong>：混在一起会让编译器把 <code>遷移</code> 当成字段查字典，报 17 个假错误（这是实际发生的）。</p>
+<hr>
+<h3 id="R7.-运行期才能确定的，明确标记">R7. 运行期才能确定的，明确标记</h3>
+<pre><code class="lang-json">{ &quot;label&quot;: &quot;検索&quot;, &quot;how&quot;: &quot;runtime-resolve&quot;, &quot;status&quot;: &quot;unresolved&quot;,
+  &quot;note&quot;: &quot;JS 拼接 name，需真机 DOM&quot; }</code></pre>
+<p>然后 <code>compile_flow.py</code> 输出 <code>pendingRuntime</code> 清单。</p>
+<p><strong>理由</strong>：6 个这样的字段比 6 个错误猜测好。至少知道缺什么。</p>
+<hr>
+<h3 id="R8.-脚本必须能在两种环境跑">R8. 脚本必须能在两种环境跑</h3>
+<p><code>build_ui_dictionary.py</code> 的 <code>--src</code> 参数：</p>
+<pre><code class="lang-bash"># mock / 仓库内的模板
+python tools/build_ui_dictionary.py
+
+# 真机抓下来的页面
+python tools/build_ui_dictionary.py --src capture-1027/pages --merge</code></pre>
+<p><strong>理由</strong>：真机发现差异时，要能一键用真机数据覆盖字典，而不是手工改 json。</p>
+<hr>
+<h3 id="R9.-中文/日文输出必须处理编码">R9. 中文/日文输出必须处理编码</h3>
+<pre><code class="lang-python">import sys
+sys.stdout.reconfigure(encoding=&#x27;utf-8&#x27;)</code></pre>
+<p>Windows 控制台 GBK 会让日文直接崩。</p>
+<hr>
+<h2 id="三、验证标准">三、验证标准</h2>
+<p>每个产出物必须能通过下面这些检查才算完成。</p>
+<h3 id="字典">字典</h3>
+<ul><li>[ ] <code>screens</code> 数量 ≥ 50</li><li>[ ] 有 id 的字段 ≥ 100</li><li>[ ] 别紙标签覆盖率 ≥ 70%（当前 73.5%）</li><li>[ ] 无空 label / 无乱码 label</li></ul>
+<h3 id="流程文件">流程文件</h3>
+<ul><li>[ ] <code>compile_flow.py</code> 退出码 0</li><li>[ ] <code>errors</code> 为空</li><li>[ ] <code>rows</code> 连续覆盖手顺范围</li><li>[ ] <code>pendingRuntime</code> 每条都有 note 说明为什么</li></ul>
+<h3 id="抓取工具">抓取工具</h3>
+<ul><li>[ ] mock 上能跑（已验证：菜单→新規→弹窗 4 阶段全抓到）</li><li>[ ] 同一画面不重复保存（已验证：dedupe 1200ms）</li><li>[ ] 文件名不带 <code>.html.html</code>（已验证）</li></ul>
+<hr>
+<h2 id="四、用户的明确要求">四、用户的明确要求</h2>
+<p><strong>原话记录</strong>：</p>
+<blockquote>"比起完全的自动化，也能有一个我自己可以来定制化的东西" "哪怕我手动，应该也可以形成一个自动化的流" "希望加入这个功能（手动输入）" "主要是该怎么实现这个东西，我不太清楚"</blockquote>
+<p><strong>所以</strong>：</p>
+<ul><li>手动介入不是降级方案，是<strong>一等公民</strong></li><li>流程文件必须人手可写</li><li>要有 <code>do: manual</code> 让执行器停下等人</li></ul>
+<hr>
+<h2 id="五、错误处理原则">五、错误处理原则</h2>
+<h3 id="现场-vs-开发">现场 vs 开发</h3>
+<div class="table-wrap"><table><thead><tr><th>场景</th><th>行为</th></tr></thead><tbody><tr><td>开发/mock</td><td>报错，退出码非 0</td></tr><tr><td><strong>真机现场</strong></td><td><strong>不许退出</strong>。停下来，等人决定</td></tr></tbody></table></div>
+<p>现场交互（待实现，见 03-ROADMAP）：</p>
+<pre><code>[Enter] 重试   [s] 跳过   [v] 手填值   [e] 编辑这步   [q] 退出</code></pre>
+<p><strong>理由</strong>：今天真机最大的痛点就是"出错就关浏览器，什么都看不到"。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

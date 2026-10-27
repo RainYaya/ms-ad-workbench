@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>旧积木 vs 新内核：一页对照 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav on" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="旧积木-vs-新内核：一页对照">旧积木 vs 新内核：一页对照</h1>
+<blockquote>2026-10-27。目的：说明为什么保留旧积木、但不沿用它做执行单位。</blockquote>
+<h2 id="结论先说">结论先说</h2>
+<p>旧体系的<strong>本体论是对的</strong>：它已经把自动化拆成「画面 / 操作 / 验证 / 证据」。 错的是<strong>分解粒度</strong>：把「一段可复用的操作序列」当成积木，导致一本手顺要跨 10 个积木、16 个 selector 文件、9 个 params 文件， 改一处要穿四层，而且积木里塞了 <code>force</code>、固定 sleep、正则分类这些 「让它看起来能跑」的东西。</p>
+<p>新内核不否定旧积木，只把它降级为<strong>模板片段库</strong>： 新流程直接写 17 个原语；旧积木只在需要对照/回退时查。</p>
+<h2 id="实测数字（旧体系）">实测数字（旧体系）</h2>
+<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th><th>含义</th></tr></thead><tbody><tr><td>积木</td><td>252</td><td>真正的「块」</td></tr><tr><td>只被 1–2 本用</td><td>125</td><td>一半是手顺化石，不是积木</td></tr><tr><td>live-verified</td><td>4</td><td>真机验证过的只有 4 个</td></tr><tr><td>无前置条件</td><td>240 / 252</td><td>大多数块没有「什么时候能用」的约束</td></tr><tr><td><code>force</code> 使用</td><td>184 次</td><td>绕过 disabled/可见性</td></tr><tr><td><code>goto</code> 使用</td><td>213 次</td><td>跳过界面，直接跳 URL</td></tr><tr><td>「全通过」的 450 本</td><td>全部 mock-only</td><td>没有业务真值</td></tr></tbody></table></div>
+<h2 id="对照表">对照表</h2>
+<div class="table-wrap"><table><thead><tr><th>旧概念</th><th>新内核</th><th>处理</th></tr></thead><tbody><tr><td>积木（一段操作序列）</td><td>单步原语 + 画面链</td><td>不再合成；片段留作参考</td></tr><tr><td><code>force</code> 点击</td><td><code>click</code> 前置「可见可用」</td><td>废除；不可用就带行号报错</td></tr><tr><td>固定 sleep</td><td><code>waitUntil(condition)</code> / 画面码等待</td><td>废除；只等条件</td></tr><tr><td>正则从 note 判「人工/非浏览器」</td><td>显式 <code>manual</code> / <code>externalIs</code></td><td>废除；用字段</td></tr><tr><td><code>goto</code> 跳页</td><td><code>goto</code> 必须写 <code>reason</code></td><td>保留但收紧</td></tr><tr><td>画面名 → selector 散落多处</td><td><code>ui-dictionary</code> + <code>ui-screens</code> + 手维护 overlay</td><td>收拢成三层</td></tr><tr><td>参数写死在块里</td><td><code>values</code> 五种来源（literal/env/case/sys/prev）</td><td>值可追溯</td></tr><tr><td>mock 绿 = 通过</td><td>mock 只证明操作链；报文/DB 记 pending</td><td>不许假绿</td></tr><tr><td>一个块一个「前置条件」正则</td><td>step 的 <code>on</code> + 编译器画面链校验</td><td>前置条件变成结构</td></tr></tbody></table></div>
+<h2 id="借过来的东西">借过来的东西</h2>
+<ol><li><strong>画面码/URL 规则</strong>：旧 <code>screen-rules</code> 里的 AMAxx/ANAxx 映射，直接用于 <code>ui-screens.json</code>。</li><li><strong>截图/DOM 捕获</strong>：旧 runner 的证据机制（sha 去重、失败截图）保留并强化。</li><li><strong>验证类型词汇</strong>：遷移/表示/出力(画面HC/ポップアップMsg/DL) 映射到 6 个断言原语。</li><li><strong>block-selectors 里的真机 selector</strong>：作为 <code>ui-rowfields.json</code> / 字典的线索，不直接执行。</li></ol>
+<h2 id="不借的东西">不借的东西</h2>
+<ul><li>n-gram 挖掘 + DP 合成（<code>build_blocks.py</code>）：它优化覆盖率，不优化正确性。</li><li>块级前置条件正则：容易把「看起来像」当成「能用」。</li><li><code>force</code> / 固定 sleep / 运行时猜控件：违反内核红线。</li></ul>
+<h2 id="迁移顺序">迁移顺序</h2>
+<ol><li>新本一律写 YAML（1 本 = 1 文件）。</li><li>旧积木不删，作为「这段大概长什么样」的参考。</li><li>遇到旧积木里 live-verified 的片段，用新内核重写并跑 mock；</li></ol>
+<p>   真机通过后，才把它标成可复用。</p>
+<ol><li>450 本批量生成等格式冻结后再做。</li></ol></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

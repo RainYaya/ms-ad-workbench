@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>内核（Kernel）— 17 个原语 + 组合规则 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav on" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="内核（Kernel）—-17-个原语-+-组合规则">内核（Kernel）— 17 个原语 + 组合规则</h1>
+<blockquote>定稿：2026-10-27。这份文档是"玩具盒"的说明书。 原则：<strong>原语锁死，组合无限。</strong> 自由度来自组合，不来自加第 18 个原语。</blockquote>
+<hr>
+<h2 id="0.-一句话">0. 一句话</h2>
+<p>一本手顺 = 一条<strong>可静态检查的状态链</strong>：</p>
+<pre><code>(row, on, do, target, value, expect, requires, evidence)</code></pre>
+<ul><li><code>row</code>：手顺 Excel 行号。证据链，必填。</li><li><code>on</code>：这一步执行前必须所在的画面。</li><li><code>do</code>：17 个原语之一。</li><li><code>target</code>：点/填哪个控件（4 种定位策略）。</li><li><code>value</code>：填什么（5 种来源）。</li><li><code>expect</code>：执行后要成立什么（6 种断言）。</li><li><code>requires</code>：前置条件（守卫），编译期强制。</li><li><code>evidence</code>：这一步要留下的证据（默认按策略）。</li></ul>
+<hr>
+<h2 id="1.-为什么正好是-17-个">1. 为什么正好是 17 个</h2>
+<p>全量实测（1386 本 / 1371 本有手顺）：</p>
+<div class="table-wrap"><table><thead><tr><th>数据</th><th>数量</th><th>推出的原语</th></tr></thead><tbody><tr><td>操作行</td><td>18,966</td><td>5 种 <code>operationType</code> → click / fill / select / check / chooseRow / press</td></tr><tr><td>非标准操作</td><td>590 <code>その他</code></td><td>goto / waitUntil / manual（批处理/DB/邮件不进内核）</td></tr><tr><td>验证行</td><td>11,232</td><td>遷移 7,138 / 表示 3,374 / Msg 822 / DL 173 / その他 2,904</td></tr><tr><td>证据</td><td>14,374 条</td><td>capture（画面HC 9,776）</td></tr><tr><td>守卫</td><td>15 个函数 / 11 页面</td><td>requires（静态提取，见 <code>guards.json</code>）</td></tr></tbody></table></div>
+<p><strong>加原语的门槛</strong>：≥10 本用到，且现有 17 个无法组合出来。 达不到就写 <code>manual</code>，不要发明第 18 个。</p>
+<hr>
+<h2 id="2.-分层">2. 分层</h2>
+<pre><code>① 原语层     17 个动作/断言，几乎不动
+② 定位层     T1 字典 / T2 标签锚点 / T3 行锚点 / T4 人工
+③ 字典层     ui-dictionary / ui-screens / ui-aliases / ui-rowfields / guards
+④ 流程层     flows/&lt;CASE&gt;.yaml
+⑤ 执行层     flow-loader.mjs + run-flow.mjs
+⑥ 证据层     logs/&lt;CASE&gt;-flow/{run.json, run.html, *.png}</code></pre>
+<p>没有积木层。旧 <code>blocks/</code> 只作交叉验证样本。</p>
+<hr>
+<h2 id="3.-流程文件-schema">3. 流程文件 schema</h2>
+<pre><code class="lang-yaml">case: AZ-110-01-009
+start:
+  screen: 申込書品質管理メニュー画面
+  url: /AMB/AMA01.html
+env: prod-a                     # 环境剖面，见 §6
+evidencePolicy: required        # required | all | failures | none
+# mode: external                # 画面の無い本（バッチ/DB/メール）。下記 §3.1
+
+values:
+  証券番号: { value: AZ11001, source: case, row: 11 }
+  部店課支社コード: { value: &quot;${env.部店課支社コード}&quot;, source: env }
+  回答締切日: { value: &quot;${sys.today+7d}&quot;, source: sys, row: 26 }
+
+steps:
+  - row: 14
+    on: 申込書品質管理メニュー画面
+    do: click
+    target: { label: 新規登録 }
+
+  - row: 15
+    on: 不備内容入力画面－新規
+    do: screenIs
+    # screenIs 的期望画面就是 on；不需要重复写
+
+  - row: 16
+    on: 不備内容入力画面－新規
+    do: fill
+    target: { label: 証券番号 }
+    value: &quot;${case.証券番号}&quot;</code></pre>
+<h3 id="3.1-画面の無い本（mode:-external）">3.1 画面の無い本（<code>mode: external</code>）</h3>
+<p>バッチ / DB / メールだけの本はブラウザ画面を持たない（全 1,386 本中 38 本）。 <code>mode: external</code> を書くと、ブラウザを開かず、<code>manual</code>（人が実行）と <code>externalIs</code>（外部の結果を人が確認）だけで表せる。<code>start</code> と <code>on</code> は書かない。</p>
+<pre><code class="lang-yaml">case: AZ-150-05-001
+mode: external
+evidencePolicy: none
+steps:
+  - row: 14
+    do: manual
+    note: 親子集計バッチ処理を実行する
+  - row: 16
+    do: externalIs
+    expect: {external: {type: APログ, note: エラー件数が0件であること}}</code></pre>
+<p><code>check-flow</code> はこのモードで画面チェーンを検査しない代わりに、 <code>manual</code> / <code>externalIs</code> / <code>capture</code> / <code>waitUntil</code> 以外をエラーにする。 mock では全部 pending（未検証）で、緑にはならない。</p>
+<h3 id="兼容旧写法（迁移期）">兼容旧写法（迁移期）</h3>
+<ul><li><code>screen:</code> 等同 <code>on:</code></li><li>标签键写法 <code>新規登録: ""</code> 等同 <code>target: { label: 新規登録 }</code></li><li><code>expect: {遷移: 表示内容１}</code> 是<strong>未解析的别紙引用</strong>，不算断言通过。</li></ul>
+<p>  必须改成 <code>expect: {ref: {appendix: 表示内容１, status: unresolved}}</code>   或解析成具体 <code>screen/field</code>。</p>
+<hr>
+<h2 id="4.-动作原语（8）">4. 动作原语（8）</h2>
+<div class="table-wrap"><table><thead><tr><th>原语</th><th>参数</th><th>前置</th><th>效果 / 产出</th><th>失败</th></tr></thead><tbody><tr><td><code>click</code></td><td>target</td><td><code>on</code> 成立、控件可见可用</td><td>记录点击前后画面</td><td>找不到 / disabled / 画面没变</td></tr><tr><td><code>fill</code></td><td>target, value</td><td>控件可写</td><td>记录实际写入值</td><td>readonly / hidden 非预期</td></tr><tr><td><code>select</code></td><td>target, value</td><td>控件是 select</td><td>记录选中 option 的文本和 value</td><td>0 匹配 / 多匹配</td></tr><tr><td><code>check</code></td><td>target, value(bool)</td><td>控件是 checkbox/radio</td><td>记录勾选状态</td><td>—</td></tr><tr><td><code>chooseRow</code></td><td>target{row, column, anchor}</td><td>结果 ≥1 行</td><td>支持表行（radio/按钮）与列表框（option）；记录命中行</td><td>0 行 / 多行（拒绝猜）</td></tr><tr><td><code>press</code></td><td>key, target?</td><td><code>on</code> 成立</td><td>记录按键</td><td>—</td></tr><tr><td><code>goto</code></td><td>url, reason</td><td>reason 必填</td><td>记录跳转前后 URL</td><td>URL 不在白名单</td></tr><tr><td><code>waitUntil</code></td><td>condition(screen/selector/idle), timeout</td><td>—</td><td>记录等待条件和耗时</td><td>超时</td></tr></tbody></table></div>
+<p><strong>动作不包含</strong>：force 点击、enable、固定 sleep、运行时 LLM 猜控件。</p>
+<hr>
+<h2 id="5.-证据原语（1）">5. 证据原语（1）</h2>
+<p><code>capture</code> 是唯一不推进画面的原语。</p>
+<div class="table-wrap"><table><thead><tr><th>参数</th><th>值</th></tr></thead><tbody><tr><td><code>of</code></td><td><code>viewport</code>（默认）/ <code>fullpage</code> / <code>element</code> / <code>popup</code> / <code>all</code> / <code>dom</code></td></tr><tr><td><code>target</code></td><td><code>of: element</code> 时必填</td></tr><tr><td><code>evidence</code></td><td>对应手顺的证据类型（画面HC / ポップアップMsg / …）</td></tr><tr><td><code>name</code></td><td>可选；默认 <code>r&lt;row&gt;_&lt;screen&gt;</code></td></tr><tr><td><code>required</code></td><td>默认 <code>false</code>；<code>true</code> 时拍不到算失败</td></tr><tr><td><code>waitFor</code></td><td>可选条件，避免拍到半渲染</td></tr></tbody></table></div>
+<p>产出：<code>logs/&lt;case&gt;-flow/NNN_rXX_&lt;name&gt;.png</code> + <code>run.json</code> 一条 <code>{row, screen, of, file, bytes, sha256, evidence}</code>。</p>
+<p>下载（手顺证据类型「PDFﾌｧｲﾙ」）不是截图：<code>downloadIs</code> 在真机把文件存到 <code>logs/&lt;case&gt;-flow/NNN_&lt;suggestedFilename&gt;</code>，<code>run.json</code> 记 <code>{name, file, bytes, sha256}</code>。下载事件发生了但别紙「出力結果」未解析时， 该 step 仍记 <strong>pending</strong>（<code>expect.ref</code> 优先），不因为「落了文件」算通过。</p>
+<p><strong>真值原则</strong>：拍不到 → 记 <code>missing</code>，不许假装有证据。 同一次运行内 sha256 相同的不重复存。</p>
+<p>自动证据的触发点（<code>evidencePolicy</code>）：</p>
+<ul><li><code>required</code>（默认）：手顺要求证据的行 + 失败 + manual</li><li><code>all</code>：每步</li><li><code>failures</code>：只失败</li><li><code>none</code>：关</li></ul>
+<hr>
+<h2 id="6.-断言原语（6）与-expect-的类型">6. 断言原语（6）与 <code>expect</code> 的类型</h2>
+<p>断言可以写成独立 step（手顺有专门的验证行时）， 也可以写成动作 step 的 <code>expect</code>（手顺同一行完成操作+确认时）。</p>
+<pre><code class="lang-yaml"># 独立断言行
+- row: 31
+  on: 不備内容入力画面-更新
+  do: screenIs
+
+# 动作 + 后置断言
+- row: 30
+  on: 不備内容入力画面－新規
+  do: click
+  target: { label: 登録 }
+  expect:
+    screen: 不備内容入力画面-更新</code></pre>
+<div class="table-wrap"><table><thead><tr><th>原语</th><th><code>expect</code> 形式</th><th>覆盖手顺</th></tr></thead><tbody><tr><td><code>screenIs</code></td><td><code>screen: &lt;画面名&gt;</code>（默认取 <code>on</code>）</td><td>遷移 7,138</td></tr><tr><td><code>fieldIs</code></td><td><code>fields: [{label, equals?/contains?}]</code></td><td>表示 3,374</td></tr><tr><td><code>rowsAtLeast</code></td><td><code>rows: {min: n}</code></td><td>检索结果</td></tr><tr><td><code>messageIs</code></td><td><code>message: {code: MAZG...}</code></td><td>出力Msg 822</td></tr><tr><td><code>downloadIs</code></td><td><code>download: {name?, ext?}</code></td><td>出力DL 173</td></tr><tr><td><code>externalIs</code></td><td><code>external: {type: DBダンプ/APログ/…, note}</code></td><td>その他 2,904（人工）</td></tr></tbody></table></div>
+<p><strong>别紙引用</strong>：<code>表示内容１</code> 不是字段名，是别紙里的表。 未解析时写 <code>ref: {appendix: 表示内容１, status: unresolved}</code>， 计入 <code>pendingRuntime</code>，<strong>不许当成通过</strong>。</p>
+<hr>
+<h2 id="7.-定位策略（4）">7. 定位策略（4）</h2>
+<div class="table-wrap"><table><thead><tr><th>级</th><th>怎么找</th><th>适用</th><th>失败行为</th></tr></thead><tbody><tr><td>T1</td><td>字典 <code>selector</code>（id 或 name）</td><td>服务端渲染的控件</td><td>报错 + 行号</td></tr><tr><td>T2</td><td>精确标签文本 → 该标签到下一个标签之间的控件</td><td>无 id 的按钮/字段</td><td>0 / 2+ → 报错（列出候选）</td></tr><tr><td>T3</td><td>行锚点：可见值定位行 → <code>namePattern</code> 取控件</td><td><code>list[n]</code> / <code>div#Result</code></td><td>0 行 / 多行 → 报错</td></tr><tr><td>T4</td><td><code>manual</code></td><td>真解不了</td><td>停下等人</td></tr></tbody></table></div>
+<p><strong>禁止</strong>：模糊相似度兜底、同名多 id 任选一个、把 hidden 当可见控件。</p>
+<p>T2 用精确标签文本，不用模糊包含。标签与下一个标签之间可能同时有输入框和 「....」弹窗按钮：只取唯一的<strong>可读</strong>控件（input/select/textarea，排除 button/hidden）； 可读控件 2 个以上 = 报错。没有可读控件时才取唯一的按钮。</p>
+<p>T3 的索引在运行时发现，不在编译期猜。运行时规则（实测于 009）：</p>
+<ol><li><strong>表行 + 行内控件</strong>：<code>tr:has-text(anchor)</code> 命中唯一行，再取该行内 <code>namePattern</code> 控件。</li></ol>
+<p>   0 行 / 2 行 → 报错。</p>
+<ol><li><strong>列表框（不是表）</strong>：结果是一排 <code>&lt;option&gt;</code>（如 AMA13 項目名検索）时，</li></ol>
+<p>   取文本与 anchor 匹配的唯一 option。匹配只认「等于」或「anchor + 非字母数字边界」，    所以 <code>T0</code> 不会命中 <code>T00</code>。0 / 2+ → 报错。</p>
+<ol><li><strong><code>namePattern</code> 的 <code>{n}</code></strong>：</li><li>全页只有一个 index → 用它；</li><li>表格里只有一个可见数据行带该 name 族 → 用该行的 index；</li><li>mock/模板里同行的兄弟控件丢了 name（如可见「修」按钮）时，</li></ol>
+<p>     复用同一画面上一步已经解析出的行 index；</p>
+<ul><li>以上都不成立 → 报错，不按 0/1 猜。</li><li><strong>一个手顺标签 = 多个控件</strong>（如「確認日・確認時刻」= 年/月/日/午前午後/時/分）：</li></ul>
+<p>   在 <code>ui-rowfields.json</code> 里声明 <code>parts</code>，运行时按 <code>YYYY/MM/DD HH:MM</code> 拆分并逐项回读。    拆分规则固定：24h→12h、0 时=午前 0 时、12 时=午後 0 时。</p>
+<ol><li><strong>一个标签 = 一组 radio</strong>（如「代理店への募集状況の確認要否」）：</li></ol>
+<p>   overlay 写 <code>choices: {必要: #radio1, 不要: #radio2}</code>，按<strong>选择项的文字</strong>选，    不按位置选。文字不在 choices 里就报错。</p>
+<ol><li><strong>结果表的「NO」是行内链接</strong>，不是按钮：把行内链接的 selector 放进字典</li></ol>
+<p>   （如 <code>#gyoumu_list tr a[onclick^="popupCloseNo"]</code>）。<code>chooseRow</code> 的 selector    目标必须<strong>恰好命中 1 个</strong>；0 或 2+ 都是错误，不点第一个。</p>
+<ol><li><strong>同一个标签在不同画面有不同值</strong>（如「氏名」在担当者検索和送信先選択）：</li></ol>
+<p>   <code>fillAll</code> 的项写成 <code>{label: 氏名, value: "${case.担当者氏名}"}</code>。    flow 级 <code>values</code> 里没有该标签时，用项上的值。</p>
+<ol><li><strong>断言（fieldIs / screenIs.expect.fields）先查字典/overlay 的精确 selector</strong>，</li></ol>
+<p>   查不到才退回 T2 标签扫描。断言不猜控件，只读已声明的控件。</p>
+<ol><li><strong>同名按钮在字典里有多个</strong>（如「申請依頼」有可见按钮和隐藏的 submit）：</li></ol>
+<p>   取 DOM 顺序第一个；隐藏的候选会在点击的「可见」检查处失败，    不会静默点到别的按钮。</p>
+<p><strong>mock 绿 ≠ 真机绿</strong>：<code>messageIs</code> / <code>downloadIs</code> / <code>externalIs</code> / <code>manual</code> 在 mock（或 <code>--yes</code> 跳过人工确认）时找不到目标，一律记 <code>pending</code>， 不计入 done。mock 只证明流程能走通，不证明业务报文。</p>
+<p><strong>mock 保真修复</strong>：mock 生成器会丢 <code>th:name</code>，也会把 Thymeleaf 条件冻成常量。 发现时按 <code>reference/webapps/</code>（权威）补回控件的 name/可见性， 不许为了跑通放宽断言或改流程。009 已修：AMA04 可见行的 checkbox/「修」按钮、 AMA19 訂正項目/訂正内容输入框、AMA19「登録」按钮可见条件。</p>
+<hr>
+<h2 id="8.-值来源（5）与表达式">8. 值来源（5）与表达式</h2>
+<div class="table-wrap"><table><thead><tr><th>source</th><th>含义</th><th>例子</th><th>校验</th></tr></thead><tbody><tr><td><code>literal</code></td><td>写死</td><td><code>"現地"</code></td><td>非空</td></tr><tr><td><code>env</code></td><td>环境剖面</td><td><code>${env.部店課支社コード}</code></td><td>剖面里必须存在</td></tr><tr><td><code>case</code></td><td>别紙值</td><td><code>${case.証券番号}</code></td><td>必须有 row</td></tr><tr><td><code>sys</code></td><td>系统生成</td><td><code>${sys.today}</code> / <code>${sys.today+7d}</code></td><td>只允许白名单</td></tr><tr><td><code>prev</code></td><td>上一步的值</td><td><code>${prev.保険種類}</code></td><td>上一步必须产生该值</td></tr></tbody></table></div>
+<p>表达式只允许上述形式。<strong>不执行任意代码。</strong> 环境值（部店課支社コード、代理店コード、base URL、user）必须放 <code>env</code>， 不许复制进 450 本。</p>
+<hr>
+<h2 id="9.-状态链">9. 状态链</h2>
+<h3 id="9.1-画面怎么来">9.1 画面怎么来</h3>
+<p>手顺的 <code>verificationType == 遷移</code> 行给出目标画面。 按 rows 顺序推：起始画面（case 级，人工/AI 确认一次）→ 每次遷移更新。</p>
+<p><code>verificationType == 表示</code> 行如果 <code>verificationItem</code> <strong>就是画面名</strong>（不是字段名， 且精确/变体命中 <code>ui-screens.json</code>），也视为一次画面确认。例如 AZ-240-01-001 行 20 按「一覧画面」、行 21 用表示确认「代理店 不備一覧画面」—— 只看遷移会把行 22–24 判成还停在详细画面。未知名不匹配、不做模糊兜底。</p>
+<p>实测：18,966 个操作行里 <strong>17,294 行（91.2%）</strong> 能由这条规则确定画面； 剩下 1,672 行是每个 case 的起始画面（菜单/一覧），一个 case 只差一个。</p>
+<h3 id="9.2-检查规则">9.2 检查规则</h3>
+<ol><li>每个 step 的 <code>on</code> 必须等于<strong>手顺派生的当前画面</strong>（按 sourceRow）。</li><li>动作 step 的 <code>expect.screen</code>（若有）成为下一步的期望画面。</li><li>没有 <code>expect.screen</code> 的动作不推进画面。</li><li><code>capture</code> 不推进画面。</li><li>冲突 → 编译错误 + 行号。</li></ol>
+<p>这条检查<strong>离线可跑全量</strong>，不需要浏览器。</p>
+<hr>
+<h2 id="10.-失败协议（真机）">10. 失败协议（真机）</h2>
+<pre><code>X row 20 [click] 保険種類選択画面
+  element not found: [name=&quot;ok&quot;] (pages: AMA03.html)
+
+  [Enter]retry [s]skip [v]manual value [k]keep browser [q]quit [a]stop all &gt;</code></pre>
+<div class="table-wrap"><table><thead><tr><th>键</th><th>行为</th></tr></thead><tbody><tr><td>Enter</td><td>重试（人先看一眼界面）</td></tr><tr><td>s</td><td>跳过</td></tr><tr><td>v</td><td>手填值，写进 values 后重试</td></tr><tr><td>k</td><td>保留浏览器，脚本退出（<strong>人工接管</strong>）</td></tr><tr><td>q</td><td>中止</td></tr><tr><td>a</td><td>之后全部中止</td></tr></tbody></table></div>
+<p>失败时自动截图 + 记录当时的 URL / 画面 / 目标 / 候选。</p>
+<hr>
+<h2 id="11.-编译器检查清单">11. 编译器检查清单</h2>
+<p>一条 flow 算"通过"，必须全部为真：</p>
+<ul><li>[ ] 每个 step 有 <code>row</code>，且覆盖手顺范围（或显式注释跳过原因）</li><li>[ ] <code>on</code> 与手顺派生画面一致（§9.2）</li><li>[ ] <code>do</code> ∈ 17 原语</li><li>[ ] 动作 step 的 target 能被 T1–T3 确定；否则报错带行号</li><li>[ ] fill/select/check 有 <code>value</code> 且来源合法</li><li>[ ] 每个 value 有 <code>row</code> + <code>source</code></li><li>[ ] <code>expect</code> 类型合法；未解析的别紙引用进 <code>pendingRuntime</code></li><li>[ ] <code>requires</code> 覆盖已知守卫（<code>guards.json</code>）</li><li>[ ] 400/450 本批量前，格式不再变</li></ul>
+<hr>
+<h2 id="12.-与旧系统的映射（交叉验证用）">12. 与旧系统的映射（交叉验证用）</h2>
+<div class="table-wrap"><table><thead><tr><th>旧</th><th>新</th><th>处理</th></tr></thead><tbody><tr><td><code>blocks.json</code> 252 块</td><td>无</td><td>保留作样本，不作单位</td></tr><tr><td><code>screen-rules.json</code> 29 条</td><td><code>ui-screens.json</code></td><td>吸收</td></tr><tr><td>assert <code>visible/hidden/rows/value/text</code></td><td><code>screenIs/fieldIs/rowsAtLeast</code></td><td>吸收</td></tr><tr><td><code>captureRow</code> / <code>trace</code></td><td><code>capture</code></td><td>吸收</td></tr><tr><td><code>selectByLabelPrefix</code></td><td><code>select</code> 显式降级</td><td>吸收</td></tr><tr><td><code>goto</code> / <code>wait</code></td><td><code>goto</code> / <code>waitUntil</code></td><td>保留为逃生舱，必须写 reason</td></tr><tr><td><code>force</code> / <code>enable</code></td><td>无</td><td><strong>禁止</strong></td></tr><tr><td>固定 <code>wait ms</code></td><td>无</td><td>禁止</td></tr><tr><td>note 正则分类人工</td><td><code>manual</code> / <code>externalIs</code> 显式字段</td><td>替换</td></tr><tr><td>"mock full"</td><td>live-verified 才算</td><td>替换</td></tr></tbody></table></div>
+<p>旧系统 252 块只有 4 个验证过、240 个无前置、force 184 次、goto 213 次。 <strong>它的本体论对，分解错。</strong> 只借鉴，不继承。</p>
+<hr>
+<h2 id="13.-非目标">13. 非目标</h2>
+<ul><li>第 18 个原语</li><li>运行时 LLM 猜控件 / 自愈 selector / 视觉识别</li><li>DB / 批处理 / 邮件 / JP1 进内核（用 <code>externalIs</code> + manual）</li><li>无人值守全自动</li><li>把 mock 绿当成功</li><li>手改 <code>execution-status.json</code></li></ul>
+<hr>
+<h2 id="14.-迁移顺序">14. 迁移顺序</h2>
+<ol><li>009 用新 schema 重写（保留旧文件做对照）</li><li><code>tools/derive_screen_chain.py</code> 产出全量画面链</li><li><code>tools/extract_guards.py</code> 产出 <code>guards.json</code></li><li><code>check-flow.mjs</code> 校验 009 → 0 错</li><li>其余 3 本（AY / 异常 / 批处理）验证格式</li><li>格式定稿后批量生成</li></ol></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

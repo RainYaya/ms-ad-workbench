@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RPA 重构（feat/rpa-flow 分支） · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav on" href="README.html">总览</a>
+<a class="nav" href="GOAL.html">目标与红线</a>
+<a class="nav" href="00-DECISIONS.html">已定决策</a>
+<a class="nav" href="01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="03-STATUS.html">当前进度</a>
+<a class="nav" href="04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="05-EXECUTOR.html">执行器</a>
+<a class="nav" href="06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="13-DESIGN.html">设计总稿</a>
+<a class="nav" href="14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="../adr/0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="../adr/0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="../adr/0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="../adr/0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav" href="../adr/0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="../adr/0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="../adr/0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="RPA-重构（feat/rpa-flow-分支）">RPA 重构（feat/rpa-flow 分支）</h1>
+<p>2026-10-26 起，ms-ad 自动化从"积木拼装"转向 RPA 形态。</p>
+<h2 id="为什么重做">为什么重做</h2>
+<p>原设计的问题（全部实测）：</p>
+<ul><li>1613 个执行步骤里只有 <strong>10%</strong> 引用参数，其余硬编码（<code>AHE61</code> 写死 17 次）</li><li>252 个积木里 <strong>125 个只被 1-2 本用</strong> —— 是手顺的化石，不是积木</li><li>一本要跨 10 积木 + 16 selector 文件 + 9 params 文件，改一处要穿四层</li><li>出错就 <code>throw</code> 关浏览器，真机上没法 debug</li><li>60 本"跑通了"其实是代入 <code>auto.json</code> 的同一套假数据</li></ul>
+<h2 id="新形态">新形态</h2>
+<pre><code>一本手顺 = 一个 YAML 文件
+        ↓ 从字典查 selector（不写 CSS）
+        ↓ 每个步骤带 Excel 行号
+   真的能跑，也能手动改</code></pre>
+<h2 id="文档索引（按阅读顺序）">文档索引（按阅读顺序）</h2>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="00-DECISIONS.html">00-DECISIONS.md</a></td><td>已定的 8 条决策 + 为什么 + 何时该推翻</td></tr><tr><td>2</td><td><a href="01-PITFALLS.html">01-PITFALLS.md</a></td><td>16 个踩过的坑（编码/解析/业务/工具）</td></tr><tr><td>3</td><td><a href="02-DEV-RULES.html">02-DEV-RULES.md</a></td><td>写代码前的硬约束 + 验证标准</td></tr><tr><td>4</td><td><a href="03-STATUS.html">03-STATUS.md</a></td><td>当前进度 + 明天做什么 + 待解清单</td></tr><tr><td>5</td><td><a href="04-ARCHITECTURE.html">04-ARCHITECTURE.md</a></td><td>数据怎么流 + 和旧体系关系</td></tr><tr><td>6</td><td><a href="05-EXECUTOR.html">05-EXECUTOR.md</a></td><td>执行器设计：为什么这样写、6键交互、所学教训</td></tr><tr><td>7</td><td><a href="06-ROADMAP.html">06-ROADMAP.md</a></td><td><strong>施工顺序</strong> 8 步，每步的验收标准和卡住怎么办</td></tr><tr><td>8</td><td><a href="07-REQUIREMENTS.html">07-REQUIREMENTS.md</a></td><td><strong>用户原话 + 需求定义</strong> + 11 条硬约束</td></tr><tr><td>9</td><td><a href="08-FEASIBILITY.html">08-FEASIBILITY.md</a></td><td><strong>可行性实测</strong>：24 条共享配置覆盖 86% 的行</td></tr><tr><td>10</td><td><a href="09-AI-VERIFY.html">09-AI-VERIFY.md</a></td><td><strong>AI Agent 确认流程/参数/可行性的工作规程</strong></td></tr><tr><td>11</td><td><a href="10-DEBUG-BY-CODE.html">10-DEBUG-BY-CODE.md</a></td><td><strong>R0 规矩：碰到问题先查代码</strong> + 5种症状排查表</td></tr><tr><td>12</td><td><a href="11-KERNEL.html">11-KERNEL.md</a></td><td><strong>17 原语内核</strong>：动作/证据/断言、T1–T4、值来源、失败协议</td></tr><tr><td>13</td><td><a href="GOAL.html">GOAL.md</a></td><td>目标与红线（自由度来自组合，流程正确 + 值正确）</td></tr><tr><td>14</td><td><a href="12-DIFF.html">12-DIFF.md</a></td><td>旧积木 vs 新内核：一页对照 + 迁移顺序</td></tr><tr><td>15</td><td><a href="13-DESIGN.html">13-DESIGN.md</a></td><td><strong>四层真值 / 两种身份 / 绑定层 / Studio / 完成标准</strong></td></tr><tr><td>16</td><td><a href="14-REPORT.html">14-REPORT.md</a></td><td><strong>当前覆盖率与 L0/L1/L2 实测</strong>（<code>tools/report.py</code> 生成）</td></tr><tr><td>17</td><td><a href="../adr/index.html">../adr/</a></td><td>ADR 0001–0007：为什么是这四层、为什么删掉模糊匹配、画面从哪来、值从哪来</td></tr></tbody></table></div>
+<h2 id="现在能用什么">现在能用什么</h2>
+<pre><code class="lang-bash"># 0. 重建四层真值（每次改 HTML / 手顺数据后跑这个顺序）
+python tools/build_controls.py        # 前端 HTML → 控件库 ui-controls.json
+python tools/build_bindings.py        # 手顺措辞 → 绑定表 flows/bindings.yaml
+python tools/generate_books.py        # 手顺 + 别紙 + 绑定 → flows/books/*.yaml
+python tools/report.py --write docs/rpa/14-REPORT.md
+
+# 1. 离线检查（画面链 / 行覆盖 / 定位 / 值来源 / expect 类型）
+node automation/node-runner/check-flow.mjs flows/books/AY-120-08-001.yaml
+
+# 2. 可视化检阅 + 绑定确认
+node automation/node-runner/studio/server.mjs 10200   # → http://127.0.0.1:10200
+
+# 3. mock 上跑完整流程
+cd automation/node-runner
+node mock-server.mjs 10117
+node run-flow.mjs ../../flows/books/AY-120-08-001.yaml \
+  --base http://127.0.0.1:10117/AMB/dummy.html --headless --yes
+
+# 4. 真机跑（业务真值）
+node run-flow.mjs ../../flows/AZ-110-01-009.yaml --live --base https://真机/
+
+# 5. 真机抓 DOM（人操作，自动存）
+node capture.mjs --url https://真机/AMB/AMA01.html --out capture-1027 --edge</code></pre>
+<p><code>tools/compile_flow.py</code> 已落后于 <code>flow-loader.mjs</code>，只作历史参考； 编译/检查/执行的唯一路径是 <code>flow-loader.mjs</code> + <code>check-flow.mjs</code> + <code>run-flow.mjs</code>。</p>
+<h2 id="当前覆盖（2026-10-27-实测）">当前覆盖（2026-10-27 实测）</h2>
+<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th></tr></thead><tbody><tr><td>手顺里的本</td><td>1,386（其中 1,371 有操作行，15 本无手顺）</td></tr><tr><td>可直接生成的本（auto/confirmed 绑定 + 别紙值齐全）</td><td>122</td></tr><tr><td>生成后 L0（0 error、步数=手顺行数）</td><td>122 / 122</td></tr><tr><td>绑定规则</td><td>519（auto 263 / needs-human 220 / blocked 36）</td></tr><tr><td>控件库</td><td>54 画面 / 1,998 控件</td></tr><tr><td>mock 跑通（L1）</td><td>AY-120-08-001 等，见 <a href="14-REPORT.html">14-REPORT.md</a></td></tr></tbody></table></div>
+<p>剩下的本不是"生不出来"，而是卡在三类<strong>明确</strong>的原因上，全部列在 <code>flows/books-status.json</code> 与 <code>14-REPORT.md</code> 第 4 节：别紙标签在画面上找不到 （多为「課支社コード」vs「部店課支社ｺｰﾄﾞ」这类措辞差）、绑定待人工确认、 手顺本身没有画面（批处理/非浏览器小节）。</p>
+<h2 id="目录">目录</h2>
+<pre><code>ui-controls.json        控件库：从 reference HTML 挖出的全部交互控件（生成物）
+ui-dictionary.json      画面 / 字段 / 按钮 / 行内字段（生成物，逐步被控件库取代）
+ui-screens.json         手顺画面名 → 画面码
+ui-aliases.json         别紙说法 → 前端说法
+ui-rowfields.json       手维护覆盖层：行内控件 / 组合控件 / 限定按钮
+bindings.yaml           绑定表：画面 + 措辞 → 控件（生成物，人工确认写回）
+flows/                  手写/精修的本；flows/books/ 生成的本；flows/env/ 环境值
+flows/overrides/        本别覆盖（只许改怎么做，不许改期望）
+tools/rpa_common.py     手顺/别紙解析的唯一定义（归一化必须与 flow-loader 一致）
+tools/build_controls.py 控件库生成
+tools/build_bindings.py 绑定表生成
+tools/generate_books.py 本生成
+tools/report.py         L0/L1/L2 报告
+automation/node-runner/flow-loader.mjs   编译
+automation/node-runner/check-flow.mjs    离线检查
+automation/node-runner/run-flow.mjs      执行（mock / 真机）
+automation/node-runner/studio/           Studio（预览 / 拾取 / 绑定确认 / 运行）
+automation/node-runner/capture.mjs       真机 DOM 抓取</code></pre>
+<h2 id="核心原则">核心原则</h2>
+<p><strong>宁可报错，绝不猜。</strong></p>
+<p>今天所有问题的根源都是"看起来差不多"被当成"对"。 字典查不到就带行号报错，运行期才能确定的就标 <code>pendingRuntime</code>。</p></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0005 — 完成分三级，mock 绿不算完成 · ms-ad RPA</title>
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside><div class="brand"><a href="../index.html">ms-ad RPA</a></div>
+<div class="grp">RPA 文档</div>
+<a class="nav" href="../rpa/README.html">总览</a>
+<a class="nav" href="../rpa/GOAL.html">目标与红线</a>
+<a class="nav" href="../rpa/00-DECISIONS.html">已定决策</a>
+<a class="nav" href="../rpa/01-PITFALLS.html">踩过的坑</a>
+<a class="nav" href="../rpa/02-DEV-RULES.html">开发要求</a>
+<a class="nav" href="../rpa/03-STATUS.html">当前进度</a>
+<a class="nav" href="../rpa/04-ARCHITECTURE.html">架构</a>
+<a class="nav" href="../rpa/05-EXECUTOR.html">执行器</a>
+<a class="nav" href="../rpa/06-ROADMAP.html">施工顺序</a>
+<a class="nav" href="../rpa/07-REQUIREMENTS.html">需求与定义</a>
+<a class="nav" href="../rpa/08-FEASIBILITY.html">可行性</a>
+<a class="nav" href="../rpa/09-AI-VERIFY.html">AI 确认规程</a>
+<a class="nav" href="../rpa/10-DEBUG-BY-CODE.html">先查代码（R0）</a>
+<a class="nav" href="../rpa/11-KERNEL.html">内核（17 原语）</a>
+<a class="nav" href="../rpa/12-DIFF.html">旧 vs 新</a>
+<a class="nav" href="../rpa/13-DESIGN.html">设计总稿</a>
+<a class="nav" href="../rpa/14-REPORT.html">完成度报告</a>
+<div class="grp">ADR</div>
+<a class="nav" href="0001-four-layer-truth-model.html">0001-four-layer-truth-model</a>
+<a class="nav" href="0002-book-vs-authored-flow.html">0002-book-vs-authored-flow</a>
+<a class="nav" href="0003-binding-table-over-fuzzy-matching.html">0003-binding-table-over-fuzzy-matching</a>
+<a class="nav" href="0004-closed-primitive-set.html">0004-closed-primitive-set</a>
+<a class="nav on" href="0005-three-level-completion-criteria.html">0005-three-level-completion-criteria</a>
+<a class="nav" href="0006-screen-from-functionname.html">0006-screen-from-functionname</a>
+<a class="nav" href="0007-appendix-is-the-only-value-source.html">0007-appendix-is-the-only-value-source</a></aside><main><article><h1 id="0005-—-完成分三级，mock-绿不算完成">0005 — 完成分三级，mock 绿不算完成</h1>
+<p>一本"做对了"需要同时满足三级：L0 静态（编译 0 error、0 条未确认绑定、步骤数 = 手顺操作行数）、L1 mock（全行 done、<code>evidencePolicy: all</code>、0 fail）、L2 真机（每个画面至少一本在真实 SUT 上跑通并存证）。mock 只证明操作链能走通，不证明业务对；画面没有真实前端 HTML 的本（约 9%）不生成，只进未覆盖清单。</p>
+<p><strong>Considered Options</strong></p>
+<ul><li>以 mock 全绿为完成：过去 450 本"全部通过"正是 mock-only，没有业务真值。</li><li>只做真机：1,371 本 × 每本数十步，人工与时间都不可行。</li></ul>
+<p><strong>Consequences</strong></p>
+<ul><li>报告必须分别给出 L0 / L1 / L2 的数字，禁止合并成一句"跑通"。</li><li>L2 以画面为抽样单位（每画面至少 1 本），而不是以本为单位。</li><li>未覆盖清单本身是交付物，不是失败。</li></ul></article>
+<div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
+2026-10-27 10:34</div>
+</main></div></body></html>
