@@ -1,0 +1,95 @@
+# AY-120-08-002  更新（シナリオ導線２） / MS / 異例取扱管理
+#
+# 新 schema（docs/rpa/11-KERNEL.md）。これは «更新系» の検証用。
+# 異例取扱管理メニュー → 照会・検索(ANA05) → No.リンク → 申請・確認更新(ANA03)
+# → 異例取扱理由と具体的内容を直して「更新」。
+#
+# - 実施前提（別紙）: シナリオID「AY-120-06-002」が実施済み＝対象レコードが存在する。
+#   mock にはそのレコードが無いので、表示内容1/2 は検証できない（ref: unresolved）。
+# - 別紙【操作内容】1 = 証券番号 AY12003 / 明細番号 0000000050。
+#   【操作内容】2 = 異例取扱理由 G / 具体的内容「社員による二重計上」。
+# - 表示内容2 はサーバ側の更新結果（更新者/更新日/理由/具体的内容）。mock は
+#   「更新」で再表示しない（DOM 保持）ため、真機で確認する。
+
+case: AY-120-08-002
+start:
+  screen: 異例取扱管理メニュー画面
+  url: /ANB00/ANA01.html
+title: 照会・検索→No.リンク→申請・確認更新→異例取扱理由を更新
+user: MS
+pointCheck: 異例取扱管理
+env: prod-a
+evidencePolicy: required
+
+values:
+  証券番号: {value: "AY12003", source: case, row: 3, note: シナリオID}
+  明細番号: {value: "0000000050", source: case, row: 4}
+  異例取扱理由: {value: "G.当社・代理店の責による計上時等の事務ミスによる保険契約の解消", source: case, row: 5}
+  具体的内容: {value: "社員による二重計上", source: case, row: 6}
+
+steps:
+  - row: 14
+    on: 異例取扱管理メニュー画面
+    do: click
+    target: {label: 照会・検索}
+    expect: {screen: 照会・検索画面}
+
+  - row: 15
+    on: 照会・検索画面
+    do: screenIs
+    evidence: 画面HC
+    expect: {ref: {appendix: 初期値, status: unresolved, note: 検索条件の初期値（別紙に明記なし）}}
+
+  - row: 16
+    on: 照会・検索画面
+    do: fillAll
+    use: [証券番号, 明細番号]
+    note: 操作内容1。
+
+  - row: 17
+    on: 照会・検索画面
+    do: click
+    target: {label: 検索}
+    note: 検索条件は証券番号と明細番号だけ。
+
+  - row: 18
+    on: 照会・検索画面
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 検索結果, status: unresolved,
+            note: "入力内容（AY12003 / 0000000050）に該当する1件が表示されること。mock の結果行は固定値"}
+
+  - row: 19
+    on: 照会・検索画面
+    do: chooseRow
+    target: {label: 結果行のNo.}
+    note: 結果表の No. 列リンク。1件でなければ chooseRow がエラー。
+
+  - row: 20
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 表示内容１, status: unresolved,
+            note: "申請・確認状況ほか既存レコードの内容。mock は ANA03 の静的テンプレートで値が入らない"}
+
+  - row: 21
+    on: 申請・確認更新画面
+    do: fillAll
+    use: [異例取扱理由, 具体的内容]
+    note: 操作内容2。既存値を更新する。
+
+  - row: 22
+    on: 申請・確認更新画面
+    do: click
+    target: {label: 更新}
+    note: 画面再表示は行 23 で確認する。mock は再表示せず DOM を保持する。
+
+  - row: 23
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 表示内容２, status: unresolved,
+            note: "更新者=営業 / 更新日=現在時刻 / 異例取扱理由=G / 具体的内容=社員による二重計上。mock はサーバ更新結果を返さない"}

@@ -1,0 +1,82 @@
+# AZ-110-05-008 控件补丁
+# 全部来自 capture-20261028（实机 AZ-110-05-008 抓取）。
+# 每条 selector 都用 check-patch.mjs 对真实 DOM 数过：恰好 1 个可见元素。
+kind: control-patch
+case: AZ-110-05-008
+
+entries:
+  # ── 募集人検索画面 ─────────────────────────────────────────────
+  # 结果表每行一个 radio，name 全是 selectNo（value=行号）。
+  # 手顺行 27「選択欄ラジオボタン」：用募集人ID 3028004586 认行。
+  - screen: 募集人検索画面
+    label: 選択欄ラジオボタン
+    selectorTemplate: 'tr:has(td:text-is("{value}")) [name="selectNo"]'
+    how: rowByText
+    sample: '3028004586'
+    status: confirmed
+    note: '実機 capture 2026-10-28；結果行 radio。行锚点=募集人ID'
+
+  # ── 項目名検索画面 ─────────────────────────────────────────────
+  # 结果是 <select name="field_list.selected"> 的 option 一覧（不是表行）。
+  # chooseRow 在运行期按锚点文字选 option；没有静态 selector。
+  # 锚点用項目コード T0（不会误中 T01）。
+  - screen: 項目名検索画面
+    label: 各項目の選択
+    namePattern: field_list.selected
+    how: optionByText
+    status: runtime-resolve
+    note: '実機 capture；AMA13 の結果は option 一覧。chooseRow がアンカー文字で選ぶ'
+
+  # ── 不備内容入力画面-更新 ──────────────────────────────────────
+  # 表は 20 行分の枠があり、name に list[n]/imperfectSearch[n] が付く。
+  # 手顺行 32/40/41/46 は「登録した不備の行」を操作する。
+  # 行锚点=不備内容（添付書類もれ）。空行にはこの文字が無いので一意。
+  - screen: 不備内容入力画面-更新
+    label: 検索
+    selectorTemplate: 'tr:has(td:text-is("{value}")) [name^="imperfectSearch["]'
+    how: rowByText
+    sample: 添付書類もれ
+    status: confirmed
+    note: '実機 capture；行内検索ボタン。行锚点=不備内容'
+
+  - screen: 不備内容入力画面-更新
+    label: 照会内容チェックボックス
+    selectorTemplate: 'tr:has(td:text-is("{value}")) [name^="list["][name$=".inquiry_contents_edit_flag"]'
+    how: rowByText
+    sample: 添付書類もれ
+    status: confirmed
+    note: '実機 capture；行内 checkbox。行锚点=不備内容'
+
+  - screen: 不備内容入力画面-更新
+    label: 修
+    selectorTemplate: 'tr:has(td:text-is("{value}")) [name^="editInquiryContents["]'
+    how: rowByText
+    sample: 添付書類もれ
+    status: confirmed
+    note: '実機 capture；行内 修 ボタン。行锚点=不備内容'
+
+  - screen: 不備内容入力画面-更新
+    label: 代理店照会
+    selectorTemplate: 'tr:has(td:text-is("{value}")) [name^="list["][name$=".agent_inquiry_flag.selected"]'
+    how: rowByText
+    sample: 添付書類もれ
+    status: confirmed
+    note: '実機 capture；行内 select（要/否）。行锚点=不備内容'
+
+  # ── 訂正内容確認画面 ───────────────────────────────────────────
+  # 画面には空の訂正行が 20 行ある。手顺は「訂正項目１」を入れるだけで
+  # 行を指定しないため、先頭の空き行（index 0）を固定で使う。
+  # 20 行はすべて同じ空き枠で、業務結果は変わらない。
+  - screen: 訂正内容確認画面
+    label: 訂正項目
+    selector: '[name="tableRecordUploadList[0].correct_field"]'
+    kind: input
+    status: confirmed
+    note: '実機 capture；別紙5 訂正項目１。空き枠 20 行の先頭（手顺は行を指定しない）'
+
+  - screen: 訂正内容確認画面
+    label: 訂正内容
+    selector: '[name="tableRecordUploadList[0].correct_contents"]'
+    kind: input
+    status: confirmed
+    note: '実機 capture；別紙5 訂正内容１。先頭行'

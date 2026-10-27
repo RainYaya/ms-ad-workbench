@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RPA Studio</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">RPA <span>Studio</span><small>17 primitives · 1 book = 1 flow</small></div>
+  <select id="flowSelect" title="当前手顺"></select>
+  <span id="dirty" class="badge dirty" hidden>未保存</span>
+  <div class="spacer"></div>
+  <span id="envChip" class="badge"></span>
+  <button id="btnScreen" title="显示/隐藏画面预览">画面</button>
+  <button id="btnCheck" title="离线检查 (Ctrl+Enter)">检查</button>
+  <button id="btnSave" title="保存 YAML (Ctrl+S)">保存</button>
+  <button id="btnRun" class="primary" title="启动 mock 后端并运行（显示浏览器；Shift+点击=无头）">▶ 运行</button>
+  <button id="btnRunLive" title="真机运行：需要 --base 地址">真机</button>
+  <button id="btnStop" hidden>■ 停止</button>
+</header>
+
+<main>
+  <aside>
+    <input id="flowFilter" class="flow-filter" placeholder="筛选手順 / books/…" />
+    <div id="flows"></div>
+  </aside>
+
+  <section id="canvas">
+    <div id="palette"></div>
+    <div id="canvasBody">
+      <div id="steps" class="steps"></div>
+      <div id="screenPane" hidden>
+        <div class="sp-head">
+          <span id="spTitle">画面</span>
+          <span id="spPick" class="badge"></span>
+          <span class="spacer"></span>
+          <button id="spClose" title="关闭画面">×</button>
+        </div>
+        <iframe id="spFrame" title="画面预览"></iframe>
+        <div id="spHint" class="hint">悬停高亮控件，点击选中</div>
+      </div>
+    </div>
+  </section>
+
+  <aside id="props">
+    <div class="tabs" id="propTabs">
+      <button data-tab="step" class="on">步骤</button>
+      <button data-tab="values">数据</button>
+      <button data-tab="bind">绑定</button>
+      <button data-tab="flow">流程</button>
+    </div>
+    <div id="propBody"></div>
+  </aside>
+</main>
+
+<footer>
+  <div class="tabs" id="consoleTabs">
+    <button data-ctab="log" class="on">运行日志</button>
+    <button data-ctab="evidence">证据</button>
+    <button data-ctab="check">检查输出</button>
+    <span class="spacer"></span>
+    <span id="runState" class="badge"></span>
+  </div>
+  <div id="consoleBody">
+    <pre id="log"></pre>
+    <div id="evidence"></div>
+    <pre id="checkOut" hidden></pre>
+  </div>
+</footer>
+
+<datalist id="screenList"></datalist>
+<datalist id="labelList"></datalist>
+<script src="/app.js"></script>
+</body>
+</html>

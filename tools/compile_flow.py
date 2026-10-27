@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Compile a human-authored flow YAML into an executable step list.
+"""DEPRECATED — use automation/node-runner/flow-loader.mjs + check-flow.mjs.
+
+This file predates the 17-primitive kernel (docs/rpa/11-KERNEL.md) and the
+canonical schema (`on` / `target` / `value` / typed `expect`). It still treats
+`popup: true` as a field label and only reads `f["id"]`, so it reports false
+errors on the current flows. Kept for history / cross-checking only; do not
+extend it. The single source of truth for compiling, checking and running is
+the Node runner.
+
+Compile a human-authored flow YAML into an executable step list.
 
 The flow says WHAT (screen + label). This resolves it to HOW (selector) using
 ui-dictionary.json + ui-screens.json. Nothing is guessed: an unresolved label

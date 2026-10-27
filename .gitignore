@@ -14,3 +14,13 @@ automation/node-runner/check_*.js
 # field pack must keep its bundled node_modules (offline execution)
 !field-pack/automation/node-runner/node_modules/
 !field-pack/automation/node-runner/node_modules/**
+.pages-out/
+
+# offline field pack staging + zip
+/dist/
+
+# 实机抓取（公司 SUT 的 DOM / 截图）：只在本地与回传里用，不进公开仓库
+/实机dom/
+/capture-*/
+# 给网页 AI 的材料包（含实机 HTML 副本）
+/brief/

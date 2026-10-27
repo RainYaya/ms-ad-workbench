@@ -1,0 +1,10 @@
+book: AZ-110-05-008
+overrides:
+  - row: 32
+    binding:
+      label: 検索
+      selector: '[name="imperfectSearch[0]"]'
+    reason: >-
+      登録直後の不備行はまだ項目コード/不備内容が空で、行锚点になる値が無い。
+      手顺は直前に登録した1件を検索するので先頭行（index 0）を明示する。
+      行 40/41/46 は項目名選択後なので不備内容で行を特定できる（控件覆盖の {value} 模板）。

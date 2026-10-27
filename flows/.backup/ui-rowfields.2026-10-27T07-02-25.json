@@ -1,0 +1,415 @@
+{
+ "_comment": "手で維持する部分。生成物(ui-dictionary.json)と分離してあるので、再生成で失われない。",
+ "_rules": [
+  "rowfields = 表内の動的フィールド。{n} は実行時の行 index。",
+  "selectorTemplate があればコンパイル時に値を埋めて selector を作る。",
+  "selectorTemplate が無ければ pendingRuntime として実機待ちになる。",
+  "qualifiedButtons = 同じラベルのボタンが複数ある画面で、隣の項目名で特定する。"
+ ],
+ "rowfields": {
+  "AMB/AMA18": [
+   {
+    "label": "選択欄",
+    "namePattern": "selectNo",
+    "how": "radioByRowText",
+    "rowTextFrom": "募集人ID",
+    "selectorTemplate": "tr:has(td:has-text(\"{value}\")) input[name=selectNo]",
+    "note": "結果行の radio。th:value は行 index なので行テキストで特定する"
+   },
+   {
+    "label": "選択欄ラジオボタン",
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name=\"selectNo\"]",
+    "how": "rowByText",
+    "note": "実機 capture 2026-10-28；結果行 radio。行锚点=募集人ID",
+    "status": "confirmed"
+   }
+  ],
+  "AMB/AMA13": [
+   {
+    "label": "選択欄",
+    "namePattern": null,
+    "how": "runtime-resolve",
+    "status": "unresolved",
+    "note": "結果は <div id=\"Result\"> に JS で動的挿入。テンプレートに tr/radio 構造が無い。実機で DOM 観察が必要"
+   },
+   {
+    "label": "各項目の選択",
+    "namePattern": "field_list.selected",
+    "how": "optionByText",
+    "status": "runtime-resolve",
+    "note": "実機 capture；AMA13 の結果は option 一覧。chooseRow がアンカー文字で選ぶ"
+   }
+  ],
+  "AMB/AMA04": [
+   {
+    "label": "照会内容チェックボックス",
+    "namePattern": "list[{n}].inquiry_contents_edit_flag",
+    "how": "rowByText",
+    "status": "confirmed",
+    "note": "実機 capture；行内 checkbox。行锚点=不備内容",
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".inquiry_contents_edit_flag\"]"
+   },
+   {
+    "label": "代理店照会",
+    "namePattern": "list[{n}].agent_inquiry_flag.selected",
+    "how": "rowByText",
+    "status": "confirmed",
+    "note": "実機 capture；行内 select（要/否）。行锚点=不備内容",
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".agent_inquiry_flag.selected\"]"
+   },
+   {
+    "label": "修",
+    "namePattern": "editInquiryContents[{n}]",
+    "how": "rowByText",
+    "status": "confirmed",
+    "note": "実機 capture；行内 修 ボタン。行锚点=不備内容",
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"editInquiryContents[\"]"
+   },
+   {
+    "label": "検索",
+    "namePattern": "imperfectSearch[{n}]",
+    "how": "rowByText",
+    "status": "confirmed",
+    "note": "実機 capture；行内検索ボタン。行锚点=不備内容",
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"imperfectSearch[\"]"
+   }
+  ],
+  "AMB/AMA15": [
+   {
+    "label": "編集照会内容",
+    "selector": "textarea[name=\"inquiry_content_name_edit\"]",
+    "kind": "textarea",
+    "how": "selector",
+    "status": "confirmed",
+    "note": "手順 r45 の『照会内容』。画面のラベルは『編集照会内容』で、親画面の list[n].inquiry_contents とは別物"
+   }
+  ],
+  "ANB00/ANA02": [
+   {
+    "label": "申請・確認基準項目",
+    "selector": "select[name=\"application_base_item_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed",
+    "note": "画面の見出しは『該当項目を選択』。別紙の『申請・確認基準項目』"
+   },
+   {
+    "label": "課支社CD",
+    "selector": "#section_code",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "代理店CD",
+    "selector": "#agent_code",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "証券番号",
+    "selector": "#policy_number",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "明細番号",
+    "selector": "#sub_policy_number",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "保険契約者氏名",
+    "selector": "#insurant_name",
+    "kind": "input",
+    "status": "confirmed",
+    "note": "画面ラベルは『保険契約者名』。別紙の『保険契約者氏名』"
+   },
+   {
+    "label": "大種目",
+    "selector": "select[name=\"large_item_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "保種",
+    "selector": "select[name=\"insurance_item_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "取消保険料",
+    "selector": "#cancel_premium",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "証券送付区分",
+    "selector": "select[name=\"policy_send_type_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "変更確認書送付",
+    "selector": "select[name=\"change_confirm_send_type_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "変更確認書課支社送付の理由",
+    "selector": "#change_confirm_send_reason",
+    "kind": "textarea",
+    "status": "confirmed"
+   },
+   {
+    "label": "申込日(原契約の申込日)",
+    "selector": "#cancel_application_date",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "始期日",
+    "selector": "#start_date",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "届出日(変更届出書の届出日)",
+    "selector": "#notification_date",
+    "kind": "input",
+    "status": "confirmed"
+   }
+  ],
+  "ANB00/ANA03": [
+   {
+    "label": "異例取扱理由",
+    "selector": "select[name=\"cancel_reason_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "具体的内容",
+    "selector": "select[name=\"concrete_content_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "具体的説明",
+    "selector": "#concrete_explanation",
+    "kind": "textarea",
+    "status": "confirmed"
+   },
+   {
+    "label": "代理店への募集状況の確認要否",
+    "selector": "input[name=\"agent_invitation_status\"]",
+    "kind": "radio",
+    "status": "confirmed",
+    "choices": {
+     "必要": "#agent_invitation_status_1",
+     "不要": "#agent_invitation_status_2"
+    },
+    "note": "1つの手順ラベルが2つのradio。値の文言で選ぶ"
+   },
+   {
+    "label": "保険始期日と届出日の関係",
+    "selector": "select[name=\"contract_relation_list.selected\"]",
+    "kind": "select",
+    "status": "confirmed"
+   },
+   {
+    "label": "申請依頼先",
+    "selector": "#req_applicant_name",
+    "kind": "text",
+    "status": "confirmed",
+    "note": "表示専用のdiv。ポップアップ選択後に値が入る"
+   }
+  ],
+  "ANB00/ANA10": [
+   {
+    "label": "氏名",
+    "selector": "#user_name_key",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "課支社CD",
+    "selector": "#section_code_key",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "結果行のNo.",
+    "selector": "#gyoumu_list tr a[onclick^=\"popupCloseNo\"]",
+    "kind": "link",
+    "status": "confirmed",
+    "note": "手順の『NO』は結果表のNo.列リンク。1件のときだけ押す（複数はエラー）"
+   }
+  ],
+  "AMC00/AMC22": [
+   {
+    "label": "証券番号",
+    "selector": "#policy_number",
+    "kind": "input",
+    "status": "confirmed",
+    "note": "検索条件1行目。mock の AMC22.html と同名の id"
+   },
+   {
+    "label": "明細番号",
+    "selector": "#sub_policy_number",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "結果行のNo.",
+    "selector": "#link_tag",
+    "kind": "link",
+    "how": "chooseRow",
+    "status": "mock-only",
+    "note": "mock は検索結果1行の <a id=link_tag name=link_tag>。真機の複数行時の id/name は未確認。chooseRow は恰好1件でなければエラー"
+   }
+  ],
+  "AMC00/AMC23": [
+   {
+    "label": "一覧画面",
+    "selector": "#act104to22",
+    "kind": "button",
+    "status": "alias",
+    "note": "画面のボタン表示は『不備一覧』。手順書の『一覧画面』は一覧に戻る操作。mock-routes の aZG104To22 も同じ対応"
+   }
+  ],
+  "ANB00/ANA05": [
+   {
+    "label": "証券番号",
+    "selector": "#policy_number",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "明細番号",
+    "selector": "#sub_policy_number",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "結果行のNo.",
+    "selector": "#gyoumu_list a[name=\"link101\"]",
+    "kind": "link",
+    "how": "chooseRow",
+    "status": "mock-only",
+    "note": "mock は検索結果1行の <a name=link101>（id なし）。真機の複数行時の name は未確認。chooseRow は恰好1件でなければエラー"
+   }
+  ],
+  "ANB00/ANA11": [
+   {
+    "label": "氏名",
+    "selector": "#user_name_key",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "課支社CD",
+    "selector": "#section_code_key",
+    "kind": "input",
+    "status": "confirmed"
+   },
+   {
+    "label": "結果行のNo.",
+    "selector": "#gyoumu_list tr a[onclick^=\"selectNo\"]",
+    "kind": "link",
+    "status": "confirmed",
+    "note": "押すと送信先(写)一覧に追加される。1件のときだけ押す"
+   },
+   {
+    "label": "送信先(写)一覧",
+    "selector": "#select_name_list",
+    "kind": "select",
+    "status": "confirmed"
+   }
+  ],
+  "AMB/AMA19": [
+   {
+    "label": "確認日・確認時刻",
+    "how": "datetime",
+    "status": "confirmed",
+    "note": "1つの手順ラベルが年/月/日/午前午後/時/分の6コントロール。値は YYYY/MM/DD HH:MM。",
+    "parts": [
+     {
+      "part": "yyyy",
+      "selector": "#confirm_date_year"
+     },
+     {
+      "part": "MM",
+      "selector": "#confirm_date_month"
+     },
+     {
+      "part": "dd",
+      "selector": "#confirm_date_day"
+     },
+     {
+      "part": "ampm",
+      "selector": "#confirm_date_ampm_0",
+      "selectorPm": "#confirm_date_ampm_1"
+     },
+     {
+      "part": "hh12",
+      "selector": "#confirm_date_hour"
+     },
+     {
+      "part": "mm",
+      "selector": "#confirm_date_minute"
+     }
+    ]
+   },
+   {
+    "label": "電話番号チェック",
+    "selector": "#tel_confirm_check",
+    "kind": "checkbox",
+    "how": "checkbox",
+    "status": "confirmed",
+    "note": "別紙の『電話番号チェック チェックオン』。確認相手電話番号の入力欄とは別物"
+   },
+   {
+    "label": "訂正項目",
+    "how": "fill",
+    "note": "実機 capture；別紙5 訂正項目１。空き枠 20 行の先頭（手顺は行を指定しない）",
+    "selector": "[name=\"tableRecordUploadList[0].correct_field\"]",
+    "kind": "input"
+   },
+   {
+    "label": "訂正内容",
+    "how": "fill",
+    "note": "実機 capture；別紙5 訂正内容１。先頭行",
+    "selector": "[name=\"tableRecordUploadList[0].correct_contents\"]",
+    "kind": "input"
+   }
+  ]
+ },
+ "qualifiedButtons": {
+  "AMB/AMA04": [
+   {
+    "label": "....",
+    "qualifier": "保険種類欄の横",
+    "id": "selectInsuransuItem",
+    "selector": "[name=\"selectInsuransuItem\"]"
+   },
+   {
+    "label": "....",
+    "qualifier": "募集人ID欄の横",
+    "id": "selectFieldAgent",
+    "selector": "[name=\"selectFieldAgent\"]"
+   }
+  ],
+  "AMB/AMA03": [
+   {
+    "label": "....",
+    "qualifier": "保険種類欄の横",
+    "id": "selectInsuransuItem",
+    "selector": "[name=\"selectInsuransuItem\"]"
+   },
+   {
+    "label": "....",
+    "qualifier": "募集人ID欄の横",
+    "id": "selectFieldAgent",
+    "selector": "[name=\"selectFieldAgent\"]"
+   }
+  ]
+ }
+}

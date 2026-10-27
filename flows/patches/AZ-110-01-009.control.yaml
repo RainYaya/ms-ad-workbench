@@ -1,0 +1,50 @@
+kind: control-patch
+case: AZ-110-01-009
+screen: 募集人検索画面
+entries:
+  - screen: 募集人検索画面
+    label: 部店課支社コード
+    selector: '#section_code_key'
+    note: "実機 DOM では部店課支社ｺｰﾄﾞ → input#section_code_key"
+
+  - screen: 募集人検索画面
+    label: 検索
+    selector: '#search'
+    note: "ボタン「検　索」→ id/name=search を手順の「検索」に対応付け"
+
+  - screen: 募集人検索画面
+    label: 選択欄ラジオボタン
+    selectorTemplate: 'tr:has(td:text-is("{value}")) input[name="selectNo"]'
+    sample: "3028004586"
+    how: rowByText
+    note: "募集人ID を行アンカーにして selectNo ラジオを特定"
+
+  - screen: 保険種類選択画面
+    label: OK
+    selector: '#ok'
+    note: "ボタン「ＯＫ」→ id/name=ok を手順の「OK」に対応付け"
+
+  - screen: 不備内容入力画面-更新
+    label: 照会内容チェックボックス
+    selector: 'input[name="list[0].inquiry_contents_edit_flag"]'
+    note: "不備内容一覧の 1 行目の照会内容チェック用フラグ"
+
+  - screen: 不備内容入力画面-更新
+    label: 代理店照会
+    selector: 'select[name="list[0].agent_inquiry_flag.selected"]'
+    note: "一覧テーブルの代理店照会フラグ（1 行目）"
+
+  - screen: 訂正内容確認画面
+    label: 訂正項目
+    selector: 'input#tableRecord:0:correct_field'
+    note: "訂正項目（1 行目）の入力フィールド"
+
+  - screen: 訂正内容確認画面
+    label: 訂正内容
+    selector: 'input#tableRecord:0:correct_contents'
+    note: "訂正内容（1 行目）の入力フィールド"
+
+  - screen: 訂正内容確認画面
+    label: eメールチェック
+    selector: '#email_confirm_check'
+    note: "eメールによる確認の場合 → input#email_confirm_check を手順の eメールチェック に対応付け"

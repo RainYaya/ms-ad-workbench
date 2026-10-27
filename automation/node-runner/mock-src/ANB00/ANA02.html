@@ -10,16 +10,18 @@
 <script>
 	var    insuranceItems = [
 	  ''
-	  
-	  ,'1','1','1','1'
-	  
+
+	  ,'A','11','A0','クルマの保険/はじめての自動車保険'
+
+	  ,'B','00','A0','自賠責'
+
 	  ];
 
 	var    applicationBaseItems = [
 	  ''
-	  
-	  ,'1','1'
-	  
+
+	  ,'1','1.再計上契約のない取消計上'
+
 	  ];
 </script>
 <script>
@@ -414,9 +416,11 @@ function route8Submit() {
         <div class="gyoumu_field_input">
           <input type="hidden" id="application_base_item_key" name="application_base_item_key" />
           <select name="application_base_item_list.selected" onchange="onChangeAppBaseItem();setApplicationBaseItemSelect(this);">
-            
-              <option>1</option>
-            
+
+              <option value="1">1.再計上契約のない取消計上</option>
+              <option value="2">2.再計上契約のある取消計上</option>
+              <option value="3">3.その他</option>
+
           </select>
         </div>
         <div id="application_base_explanation" class="gyoumu_field"></div>
@@ -440,7 +444,7 @@ function route8Submit() {
         <div class="gyoumu_field_title" >大種目</div>
         <div class="gyoumu_field_input">
           <input type="hidden" id="large_item_key" name="large_item_key" />
-          <select name="large_item_list.selected" onchange="onChangeLargeItem();onChangeInsuranceItem();setLargeItemSelect(this);"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+          <select name="large_item_list.selected" onchange="onChangeLargeItem();onChangeInsuranceItem();setLargeItemSelect(this);"><option value=""></option><option value="A">自動車</option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
         </div>
         <div class="gyoumu_field_title" >保種</div>
         <div id="insurance_item_title" class="gyoumu_field_input">
@@ -460,18 +464,20 @@ function route8Submit() {
         <div class="gyoumu_field_input">
           <input type="hidden" id="policy_send_type_key" name="policy_send_type_key" />
           <select name="policy_send_type_list.selected" onchange="setPolicySendTypeSelect(this);">
-            
-              <option>1</option>
-            
+
+              <option value="1">直送</option>
+              <option value="2">窓口</option>
+
           </select>
         </div>
         <div class="gyoumu_field_title" >変更確認書送付</div>
         <div class="gyoumu_field_input">
           <input type="hidden" id="change_confirm_send_type_key" name="change_confirm_send_type_key" />
           <select name="change_confirm_send_type_list.selected" onchange="setChangeConfirmSendTypeSelect(this);">
-            
-              <option>1</option>
-            
+
+              <option value="1">直送</option>
+              <option value="2">窓口</option>
+
           </select>
         </div>
         <span class="empty"></span>

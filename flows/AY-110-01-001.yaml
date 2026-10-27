@@ -1,0 +1,244 @@
+# AY-110-01-001  異例取扱 取消計上申請 → 申請依頼  (MS / 異例取扱管理)
+#
+# 新 schema（docs/rpa/11-KERNEL.md）。別紙【操作内容】1–4 /【表示内容】1–3。
+# - 4 画面: 異例取扱管理メニュー → 取消計上申請登録(ANA02) → 申請・確認更新(ANA03)
+#           → 担当者検索(ANA10, popup) / 送信先(写)選択(ANA11, popup)
+# - 別紙「表示内容N」は未解析のまま ref: unresolved で残す（通過扱いにしない）。
+#   mock では画面上部のステータス/登録者がサーバ生成値なので検証できない。
+# - 氏名 は ANA10 と ANA11 で値が違うため、fillAll の項目に value を明示する。
+
+# - 既知の矛盾（2026-10-27）: 別紙の「保険始期日と届出日の関係 = 届出日は始期日以降
+#   <ルールに則り、保険契約者ヒアリング不要>」は、reference ANA03.html 1350–1353 行の
+#   相関チェックと両立しない（届出日 >= 始期日 のとき value=1 は MAYG101W059）。
+#   value=2 にすると 1359 行以降で契約者ヒアリング項目が必須になるが、別紙の
+#   表示内容2 ではそれらは空欄。値は推測せず manual にして、真機/書主の確認待ち。
+#   そのため行 29（申請依頼）以降は現時点では通らない。
+
+case: AY-110-01-001
+start:
+  screen: 異例取扱管理メニュー画面
+  url: /ANB00/ANA01.html
+title: 取消計上申請登録→申請・確認更新→担当者選択→送信先(写)選択→申請依頼
+user: MS
+pointCheck: 異例取扱管理
+env: prod-a
+evidencePolicy: required
+
+# ── 値 ───────────────────────────────────────────────
+# 別紙【操作内容】の行番号。source: case=別紙 / env=環境 / sys=システム生成
+values:
+  申請・確認基準項目: {value: "1.再計上契約のない取消計上", source: case, row: 6}
+  課支社CD:        {value: "ABM62",       source: case, row: 7, note: "※変更となる可能性あり"}
+  代理店CD:        {value: "2031",        source: case, row: 8, note: "※変更となる可能性あり"}
+  証券番号:        {value: "AY1101",      source: case, row: 9, note: シナリオID}
+  明細番号:        {value: "0000000001",  source: case, row: 10, note: シナリオ枝番}
+  保険契約者氏名:   {value: "テスト",       source: case, row: 11}
+  大種目:          {value: "自動車",       source: case, row: 12}
+  保種:            {value: "11：クルマの保険/はじめての自動車保険", source: case, row: 13}
+  取消保険料:      {value: "1234",        source: case, row: 14}
+  証券送付区分:     {value: "直送",         source: case, row: 15}
+  変更確認書送付:   {value: "直送",         source: case, row: 16}
+  変更確認書課支社送付の理由: {value: "テスト理由", source: case, row: 17}
+  申込日(原契約の申込日): {value: "20260303", source: case, row: 18}
+  始期日:          {value: "20260404",    source: case, row: 19}
+  届出日(変更届出書の届出日): {value: "20260505", source: case, row: 20}
+  異例取扱理由:     {value: "A.当社・代理店の責による意図しない保険契約の解消", source: case, row: 21}
+  具体的内容:       {value: "募集人(代理店)の説明誤り", source: case, row: 22}
+  具体的説明:       {value: "テスト",       source: case, row: 23}
+  代理店への募集状況の確認要否: {value: "不要", source: case, row: 24}
+  保険始期日と届出日の関係: {value: "届出日(変更届出書の届出日)は始期日以降　　<ルールに則り、保険契約者ヒアリング不要>", source: case, row: 25}
+  担当者氏名:       {value: "課支社長",     source: case, row: 26, note: 操作内容3 担当者検索の氏名}
+  送信先氏名:       {value: "黒川　京子",    source: case, row: 28, note: 操作内容4 送信先(写)選択の氏名}
+
+# ── 手順 ─────────────────────────────────────────────
+steps:
+  - row: 14
+    on: 異例取扱管理メニュー画面
+    do: click
+    target: {label: 新規登録}
+    expect: {screen: 取消計上申請登録画面}
+
+  - row: 15
+    on: 取消計上申請登録画面
+    do: screenIs
+    evidence: 画面HC
+    expect: {ref: {appendix: 初期値, status: unresolved, note: 初期値の表示内容確認}}
+
+  - row: 16
+    on: 取消計上申請登録画面
+    do: fillAll
+    use: [申請・確認基準項目, 課支社CD, 代理店CD, 証券番号, 明細番号, 保険契約者氏名,
+          大種目, 保種, 取消保険料, 証券送付区分, 変更確認書送付,
+          変更確認書課支社送付の理由, 申込日(原契約の申込日), 始期日, 届出日(変更届出書の届出日)]
+    note: 操作内容1。申請・確認基準項目は「1.再計上契約のない取消計上」。
+
+  - row: 17
+    on: 取消計上申請登録画面
+    do: click
+    target: {label: 登録}
+    expect: {screen: 申請・確認更新画面}
+
+  - row: 18
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect: {ref: {appendix: 表示内容１, status: unresolved, note: 申請・確認状況/登録者/登録日はサーバ生成値}}
+
+  - row: 19
+    on: 申請・確認更新画面
+    do: fillAll
+    use: [異例取扱理由, 具体的内容, 具体的説明, 代理店への募集状況の確認要否]
+    note: >
+      操作内容2。募集状況の確認要否はラジオ「不要」。
+      保険始期日と届出日の関係は未入力のまま（下の expect.ref）。
+      別紙の「始期日以降 / ヒアリング不要」は reference ANA03.html 1350–1353 行の
+      相関チェック（届出日 >= 始期日 なら value≠1）と、1361 行以降の
+      value=2 のときの契約者ヒアリング必須の両方に合わない。推測せず確認待ち。
+    expect: {ref: {appendix: 保険始期日と届出日の関係, status: unresolved, note: 別紙の値と reference の検証が両立しない。真機/書主の確認待ち}}
+
+  - row: 20
+    on: 申請・確認更新画面
+    do: click
+    target: {label: 申請依頼先選択}
+    note: 操作内容2 のボタン。担当者検索画面が popup で開く。
+
+  - row: 21
+    on: 担当者検索画面
+    do: screenIs
+    evidence: 画面HC
+    popup: true
+    expect: {ref: {appendix: 初期値, status: unresolved, note: 検索条件の初期値}}
+
+  - row: 22
+    on: 担当者検索画面
+    do: fillAll
+    popup: true
+    use:
+      - {label: 氏名, value: "${case.担当者氏名}"}
+      - 課支社CD
+    note: 操作内容3。
+
+  - row: 23
+    on: 担当者検索画面
+    do: click
+    target: {label: 検索}
+    popup: true
+
+  - row: 24
+    on: 担当者検索画面
+    do: rowsAtLeast
+    evidence: 画面HC
+    popup: true
+    min: 1
+
+  - row: 25
+    on: 担当者検索画面
+    do: chooseRow
+    popup: true
+    target: {label: 結果行のNo.}
+    note: 手順の「NO」= 結果表の No. 列リンク。1件でなければエラー。
+
+  - row: 26
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      fields:
+        - {label: 申請依頼先, equals: "${case.担当者氏名}"}
+      ref: {appendix: 表示内容２, status: unresolved, note: 申請依頼先の反映のみ検証（他はサーバ生成値）}
+
+  - row: 27
+    on: 申請・確認更新画面
+    do: click
+    target: {label: 更新}
+    note: 操作内容5。手順では「更新」押下後に表示内容2を確認。
+
+  - row: 28
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect: {ref: {appendix: 表示内容２, status: unresolved, note: 契約内容はサーバ保持値。mock は画面遷移で状態を保持しない}}
+
+  - row: 29
+    on: 申請・確認更新画面
+    do: click
+    target: {label: 申請依頼}
+    note: 送信先(写)選択画面が popup で開く。
+
+  - row: 30
+    on: 送信先(写)選択画面
+    do: screenIs
+    evidence: 画面HC
+    popup: true
+    expect: {ref: {appendix: 初期値, status: unresolved, note: 検索条件の初期値}}
+
+  - row: 31
+    on: 送信先(写)選択画面
+    do: fillAll
+    popup: true
+    use:
+      - {label: 氏名, value: "${case.送信先氏名}"}
+      - 課支社CD
+    note: 操作内容4。
+
+  - row: 32
+    on: 送信先(写)選択画面
+    do: click
+    target: {label: 検索}
+    popup: true
+
+  - row: 33
+    on: 送信先(写)選択画面
+    do: rowsAtLeast
+    evidence: 画面HC
+    popup: true
+    min: 1
+
+  - row: 34
+    on: 送信先(写)選択画面
+    do: chooseRow
+    popup: true
+    target: {label: 結果行のNo.}
+    note: 押すと送信先（写）一覧に追加される。
+
+  - row: 35
+    on: 送信先(写)選択画面
+    do: click
+    target: {label: OK}
+    popup: true
+    note: 1回目のOKで確認メッセージを表示。
+
+  - row: 36
+    on: 送信先(写)選択画面
+    do: messageIs
+    evidence: ポップアップMsg
+    popup: true
+    expect: {message: {code: MAYG901I001}}
+
+  - row: 37
+    on: 送信先(写)選択画面
+    do: click
+    target: {label: OK}
+    popup: true
+    note: 2回目のOKで確定して popup を閉じる。
+
+  - row: 38
+    on: 申請・確認更新画面
+    do: screenIs
+    evidence: 画面HC
+    expect: {ref: {appendix: 表示内容３, status: unresolved, note: 申請・確認状況/申請入力者/申請入力日}}
+
+  - row: 39
+    on: 申請・確認更新画面
+    do: externalIs
+    expect: {external: {type: APログ, note: ログに出力されること}}
+
+  - row: 40
+    on: 申請・確認更新画面
+    do: externalIs
+    expect: {external: {type: DBログ, note: ログに出力されること}}
+
+  - row: 41
+    on: 申請・確認更新画面
+    do: externalIs
+    expect: {external: {type: 取消計上申請テーブル, note: データが登録されたこと}}

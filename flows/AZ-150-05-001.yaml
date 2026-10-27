@@ -1,0 +1,32 @@
+# AZ-150-05-001  親子集計バッチ処理（正常終了） / 集計（日次）
+#
+# 新 schema（docs/rpa/11-KERNEL.md）。これは「バッチ（ブラウザ外）」型の検証用。
+# 手順は 3 行だけで、画面操作が無い:
+#   14 バッチ実行 → 15 操作結果 → 16 APログ（エラー件数0件）
+#
+# mode: external の本は browser を開かない。内核の原語は manual（人が実行）と
+# externalIs（外部の結果を人が確認）だけ。mock では何も検証できないので
+# すべて pending になる（--yes）。真機/実環境では人が結果を見て Enter する。
+#
+# 実施前提（別紙）: AZ-150-07-001 と AZ-140-01-001 で集計データ登録が完了していること。
+
+case: AZ-150-05-001
+mode: external
+title: 親子集計バッチ処理（正常終了）
+pointCheck: 集計（日次）
+evidencePolicy: none
+
+steps:
+  - row: 14
+    do: manual
+    note: 親子集計バッチ処理を実行する（ブラウザ操作なし）。実行コマンド/JP1 は環境依存。
+
+  - row: 15
+    do: externalIs
+    expect:
+      external: {type: 操作結果, note: "正常終了（-）。手順の期待は『-』"}
+
+  - row: 16
+    do: externalIs
+    expect:
+      external: {type: APログ, note: エラー件数が0件であること}

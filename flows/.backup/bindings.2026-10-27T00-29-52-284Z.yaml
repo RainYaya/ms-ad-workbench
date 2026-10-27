@@ -1,0 +1,9086 @@
+version: 1
+generated: '2026-10-27 09:29:03'
+source: v2/data/cases/*.js + ui-controls.json
+corpus:
+  books: 1386
+  rules: 455
+  rows: 19056
+  byStatus:
+    auto: 207
+    blocked: 77
+    needs-human: 171
+  byType:
+    template: 158
+    directive: 29
+    rowlink: 31
+    no-screen: 77
+    explicit: 160
+rules:
+- id: B0001
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 720
+  books: 499
+  types:
+    ボタン: 720
+  sample:
+    book: AZ-110-01-001
+    row: 29
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: button:|imperfectSearch[${stat.index}]|
+  selector: null
+  kind: button
+- id: B0002
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 669
+  books: 519
+  types:
+    ボタン: 669
+  sample:
+    book: AY-130-02-001
+    row: 51
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0003
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 630
+  books: 495
+  types:
+    入力: 630
+  sample:
+    book: AY-130-02-001
+    row: 50
+    content: '【別紙】操作内容
+
+      入力内容：4参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0004
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 591
+  books: 478
+  types:
+    クリック: 591
+  sample:
+    book: AZ-100-01-001
+    row: 29
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0005
+  screen: null
+  screenName: メニュー画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 537
+  books: 537
+  types:
+    ボタン: 537
+  sample:
+    book: AZ-100-01-001
+    row: 24
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0006
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 480
+  books: 393
+  types:
+    ボタン: 480
+  sample:
+    book: AZ-110-02-001
+    row: 54
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0007
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「OK」ボタン押下
+  key: 「OK」ボタン押下
+  rows: 468
+  books: 126
+  types:
+    ボタン: 468
+  sample:
+    book: AY-120-03-001
+    row: 31
+    content: －
+  label: OK
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:ok
+    selector: '[name="ok"]'
+    kind: button
+  - control: dialog:confirm
+    selector: '@dialog:confirm'
+    kind: dialog
+  note: 标签为 OK 的控件有 2 个，必须人选定一个
+- id: B0008
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 453
+  books: 420
+  types:
+    入力: 453
+  sample:
+    book: AZ-110-01-001
+    row: 31
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0009
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 「選択」押下
+  key: 「選択」押下
+  rows: 451
+  books: 420
+  types:
+    ボタン: 451
+  sample:
+    book: AZ-110-01-001
+    row: 35
+    content: ''
+  label: 選択
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0010
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 422
+  books: 272
+  types:
+    ボタン: 422
+  sample:
+    book: AY-100-01-001
+    row: 27
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0011
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 372
+  books: 238
+  types:
+    入力: 372
+  sample:
+    book: AY-120-01-001
+    row: 16
+    content: 【別紙】操作内容　１　参照
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0012
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「No.」リンククリック
+  key: 「No.」リンククリック
+  rows: 334
+  books: 200
+  types:
+    クリック: 334
+  sample:
+    book: AY-120-05-001
+    row: 21
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0013
+  screen: null
+  screenName: メニュー画面
+  phrase: 「新規登録」押下
+  key: 「新規登録」押下
+  rows: 331
+  books: 331
+  types:
+    ボタン: 331
+  sample:
+    book: AY-100-02-001
+    row: 24
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0014
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「登録」押下
+  key: 「登録」押下
+  rows: 312
+  books: 303
+  types:
+    ボタン: 312
+  sample:
+    book: AZ-100-07-001
+    row: 39
+    content: ''
+  label: 登録
+  type: template
+  op: click
+  status: auto
+  control: submit:regist
+  selector: '#regist'
+  kind: submit
+- id: B0015
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 312
+  books: 303
+  types:
+    入力: 312
+  sample:
+    book: AZ-100-07-001
+    row: 38
+    content: '【別紙】操作内容　の
+
+      操作内容1　参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0016
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 295
+  books: 262
+  types:
+    ボタン: 295
+  sample:
+    book: AZ-110-01-001
+    row: 32
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0017
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 各項目の選択
+  key: 各項目の選択
+  rows: 292
+  books: 261
+  types:
+    クリック: 273
+    入力: 19
+  sample:
+    book: AZ-110-01-002
+    row: 39
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0018
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「No.」リンククリック
+  key: 「No.」リンククリック
+  rows: 280
+  books: 166
+  types:
+    クリック: 280
+  sample:
+    book: AY-100-07-001
+    row: 39
+    content: －
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0019
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「氏名」入力
+  key: 「氏名」入力
+  rows: 280
+  books: 166
+  types:
+    入力: 280
+  sample:
+    book: AY-100-07-001
+    row: 36
+    content: 「黒川　京子」
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name_key
+  selector: '#user_name_key'
+  kind: text
+- id: B0020
+  screen: null
+  screenName: メニュー画面
+  phrase: 「照会・検索」押下
+  key: 「照会・検索」押下
+  rows: 272
+  books: 272
+  types:
+    ボタン: 272
+  sample:
+    book: AY-100-01-001
+    row: 24
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0021
+  screen: AMB/AMA15
+  screenName: 照会内容編集画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 246
+  books: 232
+  types:
+    ボタン: 246
+  sample:
+    book: AZ-110-01-001
+    row: 41
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: button:ok
+  selector: '[name="ok"]'
+  kind: button
+- id: B0022
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「修」押下
+  key: 「修」押下
+  rows: 245
+  books: 232
+  types:
+    ボタン: 245
+  sample:
+    book: AZ-110-01-001
+    row: 38
+    content: ''
+  label: 修
+  type: template
+  op: click
+  status: auto
+  control: button:|editInquiryContents[${stat.index}]|
+  selector: null
+  kind: button
+- id: B0023
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 照会内容チェックボックス
+  key: 照会内容チェックボックス
+  rows: 245
+  books: 232
+  types:
+    クリック: 245
+  sample:
+    book: AZ-110-01-001
+    row: 37
+    content: チェックありにする
+  label: 照会内容チェックボックス
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0024
+  screen: AMB/AMA15
+  screenName: 照会内容編集画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 244
+  books: 231
+  types:
+    入力: 244
+  sample:
+    book: AZ-110-01-001
+    row: 40
+    content: '【別紙】操作内容
+
+      入力内容：４参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0025
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「更新」押下
+  key: 「更新」押下
+  rows: 238
+  books: 201
+  types:
+    ボタン: 238
+  sample:
+    book: AZ-100-05-001
+    row: 25
+    content: ''
+  label: 更新
+  type: template
+  op: click
+  status: auto
+  control: submit:update
+  selector: '#update'
+  kind: submit
+- id: B0026
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: バッチ実行（JP1）
+  key: バッチ実行(JP1)
+  rows: 235
+  books: 155
+  types:
+    その他: 235
+  sample:
+    book: AZ-230-01-002
+    row: 30
+    content: 10時
+  label: バッチ実行(JP1)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0027
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「検索」ボタン押下
+  key: 「検索」ボタン押下
+  rows: 234
+  books: 126
+  types:
+    ボタン: 234
+  sample:
+    book: AY-120-03-001
+    row: 28
+    content: －
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0028
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 230
+  books: 109
+  types:
+    ボタン: 230
+  sample:
+    book: AY-100-07-001
+    row: 40
+    content: －
+  label: OK
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:ok
+    selector: '[name="ok"]'
+    kind: button
+  - control: dialog:confirm
+    selector: '@dialog:confirm'
+    kind: dialog
+  note: 标签为 OK 的控件有 2 个，必须人选定一个
+- id: B0029
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「代理店連携」押下
+  key: 「代理店連携」押下
+  rows: 228
+  books: 211
+  types:
+    ボタン: 224
+    入力: 4
+  sample:
+    book: AZ-110-73-001
+    row: 46
+    content: ''
+  label: 代理店連携
+  type: template
+  op: click
+  status: auto
+  control: submit:updateAgentNotify
+  selector: '#updateAgentNotify'
+  kind: submit
+- id: B0030
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「営業連携」押下
+  key: 「営業連携」押下
+  rows: 200
+  books: 194
+  types:
+    ボタン: 200
+  sample:
+    book: AZ-100-07-001
+    row: 26
+    content: ''
+  label: 営業連携
+  type: template
+  op: click
+  status: auto
+  control: button:updateBusinessNotify
+  selector: '#updateBusinessNotify'
+  kind: button
+- id: B0031
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 'No'
+  key: 'No'
+  rows: 197
+  books: 133
+  types:
+    クリック: 197
+  sample:
+    book: AZ-230-01-011
+    row: 42
+    content: 対象の申込情報
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0032
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 代理店照会
+  key: 代理店照会
+  rows: 192
+  books: 178
+  types:
+    入力: 52
+    クリック: 140
+  sample:
+    book: AZ-110-01-001
+    row: 50
+    content: 「否」を入力
+  label: 代理店照会
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0033
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 141
+  books: 81
+  types:
+    ボタン: 141
+  sample:
+    book: AY-100-03-002
+    row: 24
+    content: チェックする
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0034
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 129
+  books: 103
+  types:
+    ボタン: 129
+  sample:
+    book: AZ-110-74-002
+    row: 18
+    content: ''
+  label: 検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0035
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「通知しない」押下
+  key: 「通知しない」押下
+  rows: 127
+  books: 127
+  types:
+    ボタン: 127
+  sample:
+    book: AZ-110-02-001
+    row: 53
+    content: ''
+  label: 通知しない
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0036
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 123
+  books: 110
+  types:
+    入力: 123
+  sample:
+    book: AZ-110-09-001
+    row: 37
+    content: '【別紙】操作内容
+
+      入力内容：５参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0037
+  screen: AMB/AMA18
+  screenName: 募集人検索画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 121
+  books: 121
+  types:
+    ボタン: 121
+  sample:
+    book: AZ-110-01-001
+    row: 20
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0038
+  screen: AMB/AMA18
+  screenName: 募集人検索画面
+  phrase: 「選択」押下
+  key: 「選択」押下
+  rows: 121
+  books: 121
+  types:
+    ボタン: 121
+  sample:
+    book: AZ-110-01-001
+    row: 23
+    content: ''
+  label: 選択
+  type: template
+  op: click
+  status: auto
+  control: button:closeSelect
+  selector: '[name="closeSelect"]'
+  kind: button
+- id: B0039
+  screen: AMB/AMA18
+  screenName: 募集人検索画面
+  phrase: 選択欄ラジオボタン
+  key: 選択欄ラジオボタン
+  rows: 121
+  books: 121
+  types:
+    クリック: 121
+  sample:
+    book: AZ-110-01-001
+    row: 22
+    content: 募集人ID:1000010648を選択
+  label: 選択欄ラジオ
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:closeSelect
+    selector: '[name="closeSelect"]'
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0040
+  screen: AMB/AMA18
+  screenName: 募集人検索画面
+  phrase: 部店課支社コード
+  key: 部店課支社ｺ-ﾄﾞ
+  rows: 121
+  books: 121
+  types:
+    入力: 121
+  sample:
+    book: AZ-110-01-001
+    row: 19
+    content: ABM62
+  label: 部店課支社ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code_key
+  selector: '#section_code_key'
+  kind: text
+- id: B0041
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「....」（保険種類欄の横）
+  key: 「....」(保険種類欄の横)
+  rows: 120
+  books: 120
+  types:
+    ボタン: 120
+  sample:
+    book: AZ-110-01-002
+    row: 17
+    content: ''
+  label: '....'
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:selectInsuransuItem
+    selector: '[name="selectInsuransuItem"]'
+    kind: button
+  - control: button:selectFieldAgent
+    selector: '[name="selectFieldAgent"]'
+    kind: button
+  note: 标签为 .... 的控件有 2 个，必须人选定一个
+- id: B0042
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「....」（募集人ID欄の横）
+  key: 「....」(募集人ＩＤ欄の横)
+  rows: 120
+  books: 120
+  types:
+    ボタン: 120
+  sample:
+    book: AZ-110-01-002
+    row: 22
+    content: ''
+  label: '....'
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:selectInsuransuItem
+    selector: '[name="selectInsuransuItem"]'
+    kind: button
+  - control: button:selectFieldAgent
+    selector: '[name="selectFieldAgent"]'
+    kind: button
+  note: 标签为 .... 的控件有 2 个，必须人选定一个
+- id: B0043
+  screen: AMB/insurance_item_select
+  screenName: 保険種類選択画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 120
+  books: 120
+  types:
+    ボタン: 120
+  sample:
+    book: AZ-110-01-002
+    row: 20
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: button:ok
+  selector: '[name="ok"]'
+  kind: button
+- id: B0044
+  screen: AMB/insurance_item_select
+  screenName: 保険種類選択画面
+  phrase: 保険種類
+  key: 保険種類
+  rows: 120
+  books: 120
+  types:
+    クリック: 120
+  sample:
+    book: AZ-110-01-002
+    row: 19
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  label: 保険種類
+  type: template
+  op: click
+  status: auto
+  control: select:insurance_item_list.selected
+  selector: '[name="insurance_item_list.selected"]'
+  kind: select
+- id: B0045
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「完了登録」押下
+  key: 「完了登録」押下
+  rows: 119
+  books: 100
+  types:
+    ボタン: 119
+  sample:
+    book: AZ-110-01-001
+    row: 48
+    content: ''
+  label: 完了登録
+  type: template
+  op: click
+  status: auto
+  control: submit:updateCompleteDate
+  selector: '#updateCompleteDate'
+  kind: submit
+- id: B0046
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 115
+  books: 109
+  types:
+    ボタン: 115
+  sample:
+    book: AY-100-07-001
+    row: 37
+    content: －
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0047
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 「再表示」押下
+  key: 「再表示」押下
+  rows: 112
+  books: 92
+  types:
+    ボタン: 112
+  sample:
+    book: AY-120-02-001
+    row: 17
+    content: '-'
+  label: 再表示
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0048
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「印刷」押下
+  key: 「印刷」押下
+  rows: 109
+  books: 96
+  types:
+    ボタン: 109
+  sample:
+    book: AZ-110-02-001
+    row: 32
+    content: ''
+  label: 印刷
+  type: template
+  op: click
+  status: auto
+  control: submit:print
+  selector: '#print'
+  kind: submit
+- id: B0049
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「更新」押下
+  key: 「更新」押下
+  rows: 106
+  books: 106
+  types:
+    ボタン: 106
+  sample:
+    book: AY-100-05-001
+    row: 25
+    content: ''
+  label: 更新
+  type: template
+  op: click
+  status: auto
+  control: submit:update
+  selector: '#update'
+  kind: submit
+- id: B0050
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 証券番号・明細番号
+  key: 証券番号・明細番号
+  rows: 103
+  books: 95
+  types:
+    入力: 103
+  sample:
+    book: AZ-230-01-014
+    row: 30
+    content: 対象の申込情報
+  label: 証券番号・明細番号
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:policy_number
+    selector: '#policy_number'
+    kind: text
+  - control: text:sub_policy_number
+    selector: '#sub_policy_number'
+    kind: text
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0051
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 102
+  books: 102
+  types:
+    入力: 102
+  sample:
+    book: AY-110-01-001
+    row: 19
+    content: 【別紙】操作内容　2　参照
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0052
+  screen: null
+  screenName: null
+  phrase: 「申請・承認」押下
+  key: 「申請・承認」押下
+  rows: 101
+  books: 101
+  types:
+    ボタン: 101
+  sample:
+    book: AY-120-02-001
+    row: 14
+    content: －
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0053
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「NO」をクリック
+  key: 「NO」をクリック
+  rows: 101
+  books: 59
+  types:
+    クリック: 101
+  sample:
+    book: AY-100-07-001
+    row: 31
+    content: '-'
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0054
+  screen: null
+  screenName: 集計画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 99
+  books: 93
+  types:
+    入力: 99
+  sample:
+    book: AY-140-01-001
+    row: 16
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0055
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: 「登録」押下
+  key: 「登録」押下
+  rows: 96
+  books: 96
+  types:
+    ボタン: 96
+  sample:
+    book: AZ-100-03-002
+    row: 25
+    content: ''
+  label: 登録
+  type: template
+  op: click
+  status: auto
+  control: submit:regist
+  selector: '#regist'
+  kind: submit
+- id: B0056
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「訂正内容確認書」押下
+  key: 「訂正内容確認書」押下
+  rows: 95
+  books: 95
+  types:
+    ボタン: 95
+  sample:
+    book: AZ-100-03-002
+    row: 20
+    content: ''
+  label: 訂正内容確認書
+  type: template
+  op: click
+  status: auto
+  control: button:act101to906
+  selector: '[name="act101to906"]'
+  kind: button
+- id: B0057
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「帳票出力」押下
+  key: 「帳票出力」押下
+  rows: 95
+  books: 83
+  types:
+    ボタン: 95
+  sample:
+    book: AZ-110-02-001
+    row: 34
+    content: ''
+  label: 帳票出力
+  type: template
+  op: click
+  status: auto
+  control: submit:Print
+  selector: '#Print'
+  kind: submit
+- id: B0058
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 90
+  books: 90
+  types:
+    入力: 90
+  sample:
+    book: AZ-110-01-001
+    row: 45
+    content: '【別紙】操作内容
+
+      入力内容：５参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0059
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「照会・検索」押下
+  key: 「照会・検索」押下
+  rows: 90
+  books: 54
+  types:
+    ボタン: 90
+  sample:
+    book: AY-120-05-001
+    row: 39
+    content: '-'
+  label: 照会・検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0060
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 90
+  books: 54
+  types:
+    入力: 90
+  sample:
+    book: AY-110-01-001
+    row: 22
+    content: 【別紙】操作内容　3　参照
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0061
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 87
+  books: 81
+  types:
+    ボタン: 87
+  sample:
+    book: AZ-100-07-001
+    row: 31
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0062
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「閉じる」押下
+  key: 「閉じる」押下
+  rows: 86
+  books: 84
+  types:
+    ボタン: 86
+  sample:
+    book: AZ-110-02-001
+    row: 36
+    content: ''
+  label: 閉じる
+  type: template
+  op: click
+  status: auto
+  control: button:ClosePopup
+  selector: '[name="ClosePopup"]'
+  kind: button
+- id: B0063
+  screen: null
+  screenName: null
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 81
+  books: 81
+  types:
+    クリック: 81
+  sample:
+    book: AZ-110-74-001
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0064
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「回答」押下
+  key: 「回答」押下
+  rows: 81
+  books: 65
+  types:
+    ボタン: 81
+  sample:
+    book: AZ-110-10-001
+    row: 20
+    content: （ステータス遷移確認）
+  label: 回答
+  type: template
+  op: click
+  status: auto
+  control: submit:updateAnswer
+  selector: '#updateAnswer'
+  kind: submit
+- id: B0065
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「名前を付けて保存」押下
+  key: 「名前を付けて保存」押下
+  rows: 74
+  books: 72
+  types:
+    ボタン: 74
+  sample:
+    book: AZ-110-02-001
+    row: 35
+    content: ''
+  label: 名前を付けて保存
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0066
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 「通知しない」押下
+  key: 「通知しない」押下
+  rows: 74
+  books: 74
+  types:
+    ボタン: 74
+  sample:
+    book: AZ-230-01-004
+    row: 28
+    content: '-'
+  label: 通知しない
+  type: template
+  op: click
+  status: auto
+  control: button:sendOff
+  selector: '[name="sendOff"]'
+  kind: button
+- id: B0067
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 「承認」押下
+  key: 「承認」押下
+  rows: 74
+  books: 74
+  types:
+    ボタン: 74
+  sample:
+    book: AY-120-03-001
+    row: 50
+    content: 事前準備で登録したレコードと合致する「承認」ボタンを押下
+  label: 承認
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0068
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「対応登録」ボタン押下
+  key: 「対応登録」ボタン押下
+  rows: 72
+  books: 36
+  types:
+    ボタン: 72
+  sample:
+    book: AY-120-07-001
+    row: 23
+    content: －
+  label: 対応登録
+  type: template
+  op: click
+  status: auto
+  control: submit:actionRegist
+  selector: '#actionRegist'
+  kind: submit
+- id: B0069
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 登録内容入力
+  key: 登録内容入力
+  rows: 72
+  books: 36
+  types:
+    入力: 72
+  sample:
+    book: AY-120-07-001
+    row: 22
+    content: 【別紙】操作内容　２　参照
+  label: 登録内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0070
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 69
+  books: 65
+  types:
+    ボタン: 69
+  sample:
+    book: AZ-220-02-001
+    row: 23
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0071
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「NO」をクリック
+  key: 「NO」をクリック
+  rows: 69
+  books: 69
+  types:
+    クリック: 69
+  sample:
+    book: AY-110-01-001
+    row: 34
+    content: '-'
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0072
+  screen: null
+  screenName: 権限エラー画面
+  phrase: バッチ実行
+  key: バッチ実行
+  rows: 63
+  books: 47
+  types:
+    その他: 63
+  sample:
+    book: AY-100-01-001
+    row: 18
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0073
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 部店課支社
+  key: 部店課支社
+  rows: 63
+  books: 61
+  types:
+    入力: 63
+  sample:
+    book: AZ-230-01-011
+    row: 39
+    content: 対象の申込情報
+  label: 部店課支社
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0074
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「不備一覧」押下
+  key: 「不備一覧」押下
+  rows: 63
+  books: 61
+  types:
+    ボタン: 63
+  sample:
+    book: AZ-230-01-011
+    row: 37
+    content: ''
+  label: 不備一覧
+  type: template
+  op: click
+  status: auto
+  control: submit:act104to22
+  selector: '#act104to22'
+  kind: submit
+- id: B0075
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '回答内容
+
+    回答入力欄'
+  key: 回答内容回答入力欄
+  rows: 61
+  books: 39
+  types:
+    入力: 61
+  sample:
+    book: AZ-210-31-001
+    row: 24
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 回答内容回答入力欄
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0076
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「一時中断」押下
+  key: 「一時中断」押下
+  rows: 59
+  books: 59
+  types:
+    ボタン: 59
+  sample:
+    book: AZ-210-30-001
+    row: 24
+    content: ''
+  label: 一時中断
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0077
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「回答」押下
+  key: 「回答」押下
+  rows: 58
+  books: 58
+  types:
+    ボタン: 58
+  sample:
+    book: AZ-110-74-001
+    row: 19
+    content: ''
+  label: 回答
+  type: template
+  op: click
+  status: auto
+  control: submit:updateAnswer
+  selector: '#updateAnswer'
+  kind: submit
+- id: B0078
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「CL」押下
+  key: 「CL」押下
+  rows: 57
+  books: 56
+  types:
+    ボタン: 57
+  sample:
+    book: AZ-110-12-001
+    row: 20
+    content: ''
+  label: CL
+  type: template
+  op: click
+  status: auto
+  control: button:|imperfectClear[${stat.index}]|
+  selector: null
+  kind: button
+- id: B0079
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「連携取消」押下
+  key: 「連携取消」押下
+  rows: 57
+  books: 57
+  types:
+    ボタン: 57
+  sample:
+    book: AZ-110-25-001
+    row: 22
+    content: ''
+  label: 連携取消
+  type: template
+  op: click
+  status: auto
+  control: submit:updateNotifyCancel
+  selector: '#updateNotifyCancel'
+  kind: submit
+- id: B0080
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「不承認」押下
+  key: 「不承認」押下
+  rows: 57
+  books: 39
+  types:
+    ボタン: 57
+  sample:
+    book: AY-120-03-001
+    row: 25
+    content: '-'
+  label: 不承認
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:disapproveButton
+    selector: '#disapproveButton'
+    kind: button
+  - control: button:disapprove
+    selector: '#disapprove'
+    kind: button
+  - control: submit:route32
+    selector: '#route32'
+    kind: submit
+  note: 标签为 不承認 的控件有 3 个，必须人选定一个
+- id: B0081
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「不承認取消」押下
+  key: 「不承認取消」押下
+  rows: 56
+  books: 38
+  types:
+    ボタン: 56
+  sample:
+    book: AY-120-05-001
+    row: 23
+    content: '-'
+  label: 不承認取消
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:cancelButton
+    selector: '#cancelButton'
+    kind: button
+  - control: button:cancel
+    selector: '#cancel'
+    kind: button
+  - control: submit:route15
+    selector: '#route15'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0082
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 54
+  books: 45
+  types:
+    入力: 54
+  sample:
+    book: AZ-111-09-001
+    row: 51
+    content: '【別紙】操作内容
+
+      入力内容：４参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0083
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「要再申請」押下
+  key: 「要再申請」押下
+  rows: 54
+  books: 36
+  types:
+    ボタン: 54
+  sample:
+    book: AY-120-06-001
+    row: 23
+    content: '-'
+  label: 要再申請
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0084
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 承認表示条件の「11：承認待ち」
+  key: 承認表示条件の「11:承認待ち」
+  rows: 54
+  books: 54
+  types:
+    クリック: 54
+  sample:
+    book: AY-120-03-001
+    row: 47
+    content: チェックする（他の項目全部チェックなし）
+  label: 承認表示条件の「11:承認待ち」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0085
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 54
+  books: 54
+  types:
+    入力: 54
+  sample:
+    book: AY-110-01-001
+    row: 31
+    content: 【別紙】操作内容　4　参照
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0086
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「削除」押下
+  key: 「削除」押下
+  rows: 52
+  books: 51
+  types:
+    ボタン: 52
+  sample:
+    book: AZ-110-67-001
+    row: 20
+    content: ''
+  label: 削除
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:|delete_file_${stat.index}|
+    selector: null
+    kind: button
+  - control: submit:delete
+    selector: '#delete'
+    kind: submit
+  note: 标签为 削除 的控件有 2 个，必须人选定一个
+- id: B0087
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 連携取消押下
+  key: 連携取消押下
+  rows: 50
+  books: 50
+  types:
+    ボタン: 50
+  sample:
+    book: AZ-230-01-017
+    row: 52
+    content: '-'
+  label: 連携取消
+  type: template
+  op: click
+  status: auto
+  control: submit:updateNotifyCancel
+  selector: '#updateNotifyCancel'
+  kind: submit
+- id: B0088
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「照会・検索」押下
+  key: 「照会・検索」押下
+  rows: 50
+  books: 46
+  types:
+    ボタン: 50
+  sample:
+    book: AY-100-07-001
+    row: 51
+    content: ''
+  label: 照会・検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0089
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「NO」をクリック
+  key: 「NO」をクリック
+  rows: 48
+  books: 48
+  types:
+    クリック: 48
+  sample:
+    book: AY-110-02-001
+    row: 24
+    content: 前提条件で登録したレコードと合致する「NO」をクリック
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0090
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 証券番号
+  key: 証券番号
+  rows: 46
+  books: 22
+  types:
+    入力: 46
+  sample:
+    book: AZ-100-07-001
+    row: 18
+    content: AZ10007
+  label: 証券番号
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0091
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「申請依頼」押下
+  key: 「申請依頼」押下
+  rows: 46
+  books: 40
+  types:
+    ボタン: 46
+  sample:
+    book: AY-100-07-001
+    row: 33
+    content: '-'
+  label: 申請依頼
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:requestApplicationButton
+    selector: '#requestApplicationButton'
+    kind: button
+  - control: button:requestApplication
+    selector: '#requestApplication'
+    kind: button
+  - control: submit:route10
+    selector: '#route10'
+    kind: submit
+  note: 标签为 申請依頼 的控件有 3 个，必须人选定一个
+- id: B0092
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「申請依頼先選択」押下
+  key: 「申請依頼先選択」押下
+  rows: 46
+  books: 40
+  types:
+    ボタン: 46
+  sample:
+    book: AY-100-07-001
+    row: 26
+    content: ''
+  label: 申請依頼先選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectReqApplicantUser
+  selector: '[name="selectReqApplicantUser"]'
+  kind: button
+- id: B0093
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 依頼区分
+  key: 依頼区分
+  rows: 45
+  books: 43
+  types:
+    クリック: 45
+  sample:
+    book: AZ-110-04-001
+    row: 52
+    content: 「連絡」に変更
+  label: 依頼区分
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: radio:agent_deal_flag_1
+    selector: '#agent_deal_flag_1'
+    kind: radio
+  - control: radio:agent_deal_flag_2
+    selector: '#agent_deal_flag_2'
+    kind: radio
+  note: 标签为 依頼区分 的控件有 2 个，必须人选定一个
+- id: B0094
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「No」押下
+  key: 「No」押下
+  rows: 44
+  books: 44
+  types:
+    ボタン: 44
+  sample:
+    book: AZ-230-01-011
+    row: 33
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0095
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「一時中断」押下
+  key: 「一時中断」押下
+  rows: 44
+  books: 40
+  types:
+    ボタン: 44
+  sample:
+    book: AZ-110-77-001
+    row: 57
+    content: ''
+  label: 一時中断
+  type: template
+  op: click
+  status: auto
+  control: submit:updateTempAnswer
+  selector: '#updateTempAnswer'
+  kind: submit
+- id: B0096
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「検索結果出力」押下
+  key: 「検索結果出力」押下
+  rows: 42
+  books: 8
+  types:
+    ボタン: 42
+  sample:
+    book: AY-130-02-001
+    row: 45
+    content: '-'
+  label: 検索結果出力
+  type: template
+  op: click
+  status: auto
+  control: submit:outputCSV
+  selector: '#outputCSV'
+  kind: submit
+- id: B0097
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 42
+  books: 28
+  types:
+    ボタン: 42
+  sample:
+    book: AZ-111-09-001
+    row: 50
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0098
+  screen: null
+  screenName: null
+  phrase: ログイン画面
+  key: ログイン画面
+  rows: 40
+  books: 38
+  types:
+    入力: 8
+    その他: 32
+  sample:
+    book: AZ-100-07-002
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0099
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: No押下
+  key: No押下
+  rows: 40
+  books: 8
+  types:
+    クリック: 40
+  sample:
+    book: AZ-150-01-001
+    row: 19
+    content: 明細番号「00001」
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0100
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 帳票出力
+  key: 帳票出力
+  rows: 40
+  books: 8
+  types:
+    ボタン: 40
+  sample:
+    book: AZ-150-01-001
+    row: 23
+    content: ''
+  label: 帳票出力
+  type: template
+  op: click
+  status: auto
+  control: submit:Print
+  selector: '#Print'
+  kind: submit
+- id: B0101
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 38
+  books: 36
+  types:
+    クリック: 38
+  sample:
+    book: AZ-110-77-001
+    row: 55
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0102
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 印刷
+  key: 印刷
+  rows: 38
+  books: 8
+  types:
+    ボタン: 38
+  sample:
+    book: AZ-150-01-001
+    row: 21
+    content: ''
+  label: 印刷
+  type: template
+  op: click
+  status: auto
+  control: submit:print
+  selector: '#print'
+  kind: submit
+- id: B0103
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認」押下
+  key: 「承認」押下
+  rows: 38
+  books: 38
+  types:
+    ボタン: 38
+  sample:
+    book: AY-120-04-001
+    row: 21
+    content: '-'
+  label: 承認
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  note: 标签为 承認 的控件有 3 个，必须人选定一个
+- id: B0104
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 「申請」押下
+  key: 「申請」押下
+  rows: 38
+  books: 38
+  types:
+    ボタン: 38
+  sample:
+    book: AY-120-02-001
+    row: 19
+    content: 【別紙】表示内容　１　参照
+  label: 申請
+  type: template
+  op: click
+  status: auto
+  control: submit:act202to102
+  selector: '#act202to102'
+  kind: submit
+- id: B0105
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「No.」リンククリック
+  key: 「No.」リンククリック
+  rows: 38
+  books: 20
+  types:
+    クリック: 38
+  sample:
+    book: AY-120-02-001
+    row: 27
+    content: －
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0106
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「氏名」入力
+  key: 「氏名」入力
+  rows: 38
+  books: 20
+  types:
+    入力: 38
+  sample:
+    book: AY-120-02-001
+    row: 23
+    content: 「部支店長」
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name_key
+  selector: '#user_name_key'
+  kind: text
+- id: B0107
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「課支社CD」入力
+  key: 「課支社CD」入力
+  rows: 38
+  books: 20
+  types:
+    ? ''
+    : 38
+  sample:
+    book: AY-120-02-001
+    row: 24
+    content: '「ABM62」
+
+      ※変更となる可能性あり'
+  label: 課支社CD
+  type: template
+  op: click
+  status: auto
+  control: text:section_code_key
+  selector: '#section_code_key'
+  kind: text
+- id: B0108
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「承認依頼取消」押下
+  key: 「承認依頼取消」押下
+  rows: 37
+  books: 37
+  types:
+    ボタン: 37
+  sample:
+    book: AY-120-05-001
+    row: 92
+    content: '-'
+  label: 承認依頼取消
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:cancelButton
+    selector: '#cancelButton'
+    kind: button
+  - control: button:cancel
+    selector: '#cancel'
+    kind: button
+  - control: submit:route15
+    selector: '#route15'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0109
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「OK」ボタン押下
+  key: 「OK」ボタン押下
+  rows: 36
+  books: 36
+  types:
+    ボタン: 36
+  sample:
+    book: AY-120-09-001
+    row: 23
+    content: －
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0110
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「削除」押下
+  key: 「削除」押下
+  rows: 36
+  books: 36
+  types:
+    ボタン: 36
+  sample:
+    book: AY-120-09-001
+    row: 21
+    content: '-'
+  label: 削除
+  type: template
+  op: click
+  status: auto
+  control: submit:deleteApplication
+  selector: '#deleteApplication'
+  kind: submit
+- id: B0111
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認／要再申請依頼理由」入力
+  key: 「承認/要再申請依頼理由」入力
+  rows: 36
+  books: 36
+  types:
+    入力: 36
+  sample:
+    book: AY-120-03-001
+    row: 52
+    content: 「テスト」
+  label: 承認/要再申請依頼理由
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  - control: button:rejectButton
+    selector: '#rejectButton'
+    kind: button
+  - control: button:reject
+    selector: '#reject'
+    kind: button
+  - control: submit:route33
+    selector: '#route33'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0112
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 課支社長　申請表示条件の「10：申請依頼」
+  key: 課支社長申請表示条件の「10:申請依頼」
+  rows: 36
+  books: 36
+  types:
+    クリック: 36
+  sample:
+    book: AY-120-02-001
+    row: 16
+    content: チェックする（他の項目全部チェックなし）
+  label: 課支社長申請表示条件の「10:申請依頼」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:act202to102
+    selector: '#act202to102'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0113
+  screen: null
+  screenName: null
+  phrase: ダミーログイン画面
+  key: ダミ-ログイン画面
+  rows: 34
+  books: 22
+  types:
+    入力: 34
+  sample:
+    book: AY-100-01-001
+    row: 14
+    content: '一般ユーザでログイン
+
+      ※ユーザIDマスタに存在しない'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0114
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「確認済」押下
+  key: 「確認済」押下
+  rows: 34
+  books: 33
+  types:
+    ボタン: 34
+  sample:
+    book: AZ-110-76-001
+    row: 58
+    content: ''
+  label: 確認済
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0115
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 閉じる
+  key: 閉じる
+  rows: 34
+  books: 8
+  types:
+    ボタン: 34
+  sample:
+    book: AZ-150-01-001
+    row: 25
+    content: ''
+  label: 閉じる
+  type: template
+  op: click
+  status: auto
+  control: button:ClosePopup
+  selector: '[name="ClosePopup"]'
+  kind: button
+- id: B0116
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: バッチ実行
+  key: バッチ実行
+  rows: 33
+  books: 9
+  types:
+    その他: 33
+  sample:
+    book: AZ-150-01-001
+    row: 60
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  label: バッチ実行
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0117
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「完了取消」押下
+  key: 「完了取消」押下
+  rows: 32
+  books: 32
+  types:
+    ボタン: 32
+  sample:
+    book: AZ-110-60-001
+    row: 26
+    content: ''
+  label: 完了取消
+  type: template
+  op: click
+  status: auto
+  control: submit:cancelCompleteDate
+  selector: '#cancelCompleteDate'
+  kind: submit
+- id: B0118
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 検索
+  key: 検索
+  rows: 32
+  books: 12
+  types:
+    ボタン: 32
+  sample:
+    book: AZ-112-01-001
+    row: 80
+    content: 押下
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0119
+  screen: null
+  screenName: null
+  phrase: '-'
+  key: '-'
+  rows: 29
+  books: 21
+  types:
+    その他: 29
+  sample:
+    book: AY-110-02-001
+    row: 14
+    content: 【別紙】操作内容　２　参照
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0120
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: ダウンロード申請番号
+  key: ダウンロ-ド申請番号
+  rows: 26
+  books: 8
+  types:
+    入力: 26
+  sample:
+    book: AY-130-02-001
+    row: 43
+    content: 「Z990000002」を入力
+  label: ダウンロ-ド申請番号
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0121
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 一覧画面
+  key: 一覧画面
+  rows: 24
+  books: 6
+  types:
+    ボタン: 24
+  sample:
+    book: AZ-150-01-001
+    row: 27
+    content: ''
+  label: 一覧画面
+  type: template
+  op: click
+  status: auto
+  control: submit:act101to200
+  selector: '#act101to200'
+  kind: submit
+- id: B0122
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 24
+  books: 14
+  types:
+    入力: 24
+  sample:
+    book: AY-100-01-001
+    row: 26
+    content: '【別紙】操作内容
+
+      入力内容：2参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0123
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「代理店照会」プルダウン
+  key: 「代理店照会」プルダウン
+  rows: 23
+  books: 23
+  types:
+    入力: 20
+    クリック: 3
+  sample:
+    book: AZ-210-05-001
+    row: 46
+    content: 「否」に変更
+  label: 代理店照会
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0124
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 部店課支社
+  key: 部店課支社
+  rows: 23
+  books: 23
+  types:
+    入力: 23
+  sample:
+    book: AZ-230-01-040
+    row: 54
+    content: 対象の申込情報
+  label: 部店課支社
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:section_code
+    selector: '#section_code'
+    kind: text
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0125
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '回答内容
+
+    回答入力欄'
+  key: 回答内容回答入力欄
+  rows: 22
+  books: 22
+  types:
+    入力: 22
+  sample:
+    book: AZ-210-31-001
+    row: 28
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 回答内容回答入力欄
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0126
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認依頼」押下
+  key: 「承認依頼」押下
+  rows: 21
+  books: 21
+  types:
+    ボタン: 21
+  sample:
+    book: AY-120-02-001
+    row: 37
+    content: －
+  label: 承認依頼
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:selectReqApproverUser
+    selector: '[name="selectReqApproverUser"]'
+    kind: button
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0127
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認依頼先選択」押下
+  key: 「承認依頼先選択」押下
+  rows: 21
+  books: 21
+  types:
+    ボタン: 21
+  sample:
+    book: AY-120-02-001
+    row: 21
+    content: －
+  label: 承認依頼先選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectReqApproverUser
+  selector: '[name="selectReqApproverUser"]'
+  kind: button
+- id: B0128
+  screen: null
+  screenName: null
+  phrase: メニュー画面
+  key: メニュ-画面
+  rows: 20
+  books: 14
+  types:
+    ボタン: 20
+  sample:
+    book: AY-100-04-001
+    row: 15
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0129
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 営業対応状況
+  key: 営業対応状況
+  rows: 20
+  books: 10
+  types:
+    ? ''
+    : 20
+  sample:
+    book: AZ-150-13-001
+    row: 18
+    content: すべてチェック
+  label: 営業対応状況
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: checkbox:status_code_1
+    selector: '#status_code_1'
+    kind: checkbox
+  - control: checkbox:status_code_2
+    selector: '#status_code_2'
+    kind: checkbox
+  - control: checkbox:status_code_3
+    selector: '#status_code_3'
+    kind: checkbox
+  - control: checkbox:status_code_4
+    selector: '#status_code_4'
+    kind: checkbox
+  note: 标签为 営業対応状況 的控件有 4 个，必须人选定一个
+- id: B0130
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 関連代理店
+  key: 関連代理店
+  rows: 20
+  books: 10
+  types:
+    ? ''
+    : 20
+  sample:
+    book: AZ-150-13-001
+    row: 17
+    content: 未チェック
+  label: 関連代理店
+  type: template
+  op: click
+  status: auto
+  control: checkbox:relation_agent
+  selector: '#relation_agent'
+  kind: checkbox
+- id: B0131
+  screen: ANB00/ANA02
+  screenName: 取消計上申請登録画面
+  phrase: 「登録」押下
+  key: 「登録」押下
+  rows: 20
+  books: 20
+  types:
+    ボタン: 20
+  sample:
+    book: AY-100-08-001
+    row: 17
+    content: ボタン押下時の時刻をメモ
+  label: 登録
+  type: template
+  op: click
+  status: auto
+  control: submit:regist
+  selector: '#regist'
+  kind: submit
+- id: B0132
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「申請・承認」押下
+  key: 「申請・承認」押下
+  rows: 20
+  books: 20
+  types:
+    ボタン: 20
+  sample:
+    book: AY-120-03-001
+    row: 45
+    content: '-'
+  label: 申請・承認
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0133
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 19
+  books: 12
+  types:
+    クリック: 19
+  sample:
+    book: AZ-111-09-001
+    row: 54
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0134
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「申請依頼取消」押下
+  key: 「申請依頼取消」押下
+  rows: 19
+  books: 19
+  types:
+    ボタン: 19
+  sample:
+    book: AY-120-05-001
+    row: 46
+    content: '-'
+  label: 申請依頼取消
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:requestApplicationButton
+    selector: '#requestApplicationButton'
+    kind: button
+  - control: button:requestApplication
+    selector: '#requestApplication'
+    kind: button
+  - control: submit:route10
+    selector: '#route10'
+    kind: submit
+  - control: button:cancelButton
+    selector: '#cancelButton'
+    kind: button
+  - control: button:cancel
+    selector: '#cancel'
+    kind: button
+  - control: submit:route15
+    selector: '#route15'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0135
+  screen: ANB00/ANA02
+  screenName: 取消計上申請登録画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 18
+  books: 18
+  types:
+    入力: 18
+  sample:
+    book: AY-110-01-001
+    row: 16
+    content: 【別紙】操作内容　1　参照
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0136
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「承認代行者選択」押下
+  key: 「承認代行者選択」押下
+  rows: 18
+  books: 18
+  types:
+    ボタン: 18
+  sample:
+    book: AY-121-01-001
+    row: 29
+    content: '-'
+  label: 承認代行者選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectActApproverUser
+  selector: '[name="selectActApproverUser"]'
+  kind: button
+- id: B0137
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「承認依頼」押下
+  key: 「承認依頼」押下
+  rows: 18
+  books: 18
+  types:
+    ボタン: 18
+  sample:
+    book: AY-121-01-001
+    row: 38
+    content: '-'
+  label: 承認依頼
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:selectReqApproverUser
+    selector: '[name="selectReqApproverUser"]'
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0138
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「承認依頼先選択」押下
+  key: 「承認依頼先選択」押下
+  rows: 18
+  books: 18
+  types:
+    ボタン: 18
+  sample:
+    book: AY-121-01-001
+    row: 22
+    content: '-'
+  label: 承認依頼先選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectReqApproverUser
+  selector: '[name="selectReqApproverUser"]'
+  kind: button
+- id: B0139
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「申請代行者選択」押下
+  key: 「申請代行者選択」押下
+  rows: 18
+  books: 18
+  types:
+    ボタン: 18
+  sample:
+    book: AY-120-01-001
+    row: 29
+    content: '-'
+  label: 申請代行者選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectActApplicantUser
+  selector: '[name="selectActApplicantUser"]'
+  kind: button
+- id: B0140
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認代行者選択」押下
+  key: 「承認代行者選択」押下
+  rows: 18
+  books: 18
+  types:
+    ボタン: 18
+  sample:
+    book: AY-120-02-001
+    row: 29
+    content: '-'
+  label: 承認代行者選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectActApproverUser
+  selector: '[name="selectActApproverUser"]'
+  kind: button
+- id: B0141
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認依頼／要再申請依頼理由」入力
+  key: 「承認依頼/要再申請依頼理由」入力
+  rows: 18
+  books: 18
+  types:
+    入力: 18
+  sample:
+    book: AY-120-03-001
+    row: 24
+    content: 「テスト」
+  label: 承認依頼/要再申請依頼理由
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  - control: button:rejectButton
+    selector: '#rejectButton'
+    kind: button
+  - control: button:reject
+    selector: '#reject'
+    kind: button
+  - control: submit:route33
+    selector: '#route33'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0142
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「検索結果出力」押下
+  key: 「検索結果出力」押下
+  rows: 18
+  books: 6
+  types:
+    ボタン: 18
+  sample:
+    book: AY-100-07-001
+    row: 22
+    content: ''
+  label: 検索結果出力
+  type: template
+  op: click
+  status: auto
+  control: submit:outputCSV
+  selector: '#outputCSV'
+  kind: submit
+- id: B0143
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 部支店長　承認表示条件の「11：承認待ち」
+  key: 部支店長承認表示条件の「11:承認待ち」
+  rows: 18
+  books: 18
+  types:
+    クリック: 18
+  sample:
+    book: AY-120-04-001
+    row: 16
+    content: チェックする（他の項目全部チェックなし）
+  label: 部支店長承認表示条件の「11:承認待ち」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0144
+  screen: null
+  screenName: null
+  phrase: 「Enter」押下
+  key: 「Enter」押下
+  rows: 17
+  books: 9
+  types:
+    その他: 17
+  sample:
+    book: AY-210-01-001
+    row: 20
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0145
+  screen: null
+  screenName: null
+  phrase: 操作コマンド
+  key: 操作コマンド
+  rows: 17
+  books: 9
+  types:
+    入力: 17
+  sample:
+    book: AY-210-01-001
+    row: 19
+    content: 「echo $status」
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0146
+  screen: null
+  screenName: null
+  phrase: 「集計」ボタン押下
+  key: 「集計」ボタン押下
+  rows: 16
+  books: 1
+  types:
+    ボタン: 16
+  sample:
+    book: AY-140-01-001
+    row: 14
+    content: '-'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0147
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 回答内容
+  key: 回答内容
+  rows: 15
+  books: 15
+  types:
+    入力: 1
+    クリック: 14
+  sample:
+    book: AZ-110-74-002
+    row: 24
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 回答内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0148
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: No.リンク
+  key: No.リンク
+  rows: 15
+  books: 9
+  types:
+    クリック: 15
+  sample:
+    book: AZ-100-03-002
+    row: 18
+    content: （任意のデータ）
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0149
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「確認済」押下
+  key: 「確認済」押下
+  rows: 15
+  books: 15
+  types:
+    ボタン: 15
+  sample:
+    book: AZ-110-78-001
+    row: 57
+    content: ''
+  label: 確認済
+  type: template
+  op: click
+  status: auto
+  control: submit:updateConfirmed
+  selector: '#updateConfirmed'
+  kind: submit
+- id: B0150
+  screen: ANB00/ANA11
+  screenName: 送信先(写)選択画面
+  phrase: 「氏名」
+  key: 「氏名」
+  rows: 15
+  books: 15
+  types:
+    入力: 15
+  sample:
+    book: AY-410-01-001
+    row: 30
+    content: 黒川　京子
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name_key
+  selector: '#user_name_key'
+  kind: text
+- id: B0151
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: ダウンロード申請番号
+  key: ダウンロ-ド申請番号
+  rows: 14
+  books: 6
+  types:
+    入力: 14
+  sample:
+    book: AY-100-07-001
+    row: 21
+    content: A999999999
+  label: ダウンロ-ド申請番号
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:act200to102
+    selector: '#act200to102'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0152
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 「通知する」押下
+  key: 「通知する」押下
+  rows: 13
+  books: 7
+  types:
+    ボタン: 13
+  sample:
+    book: AZ-100-07-001
+    row: 30
+    content: ''
+  label: 通知
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:section_code_set
+    selector: '#section_code_set'
+    kind: text
+  - control: submit:reset
+    selector: '#reset'
+    kind: submit
+  - control: button:sendOn
+    selector: '[name="sendOn"]'
+    kind: button
+  - control: button:sendOff
+    selector: '[name="sendOff"]'
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0153
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 13
+  books: 7
+  types:
+    入力: 13
+  sample:
+    book: AZ-100-07-001
+    row: 28
+    content: '【別紙】操作内容　の
+
+      操作内容3　参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0154
+  screen: null
+  screenName: null
+  phrase: 「No」リンク
+  key: 「No」リンク
+  rows: 12
+  books: 12
+  types:
+    クリック: 12
+  sample:
+    book: AZ-200-03-001
+    row: 15
+    content: 任意のデータ
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0155
+  screen: null
+  screenName: null
+  phrase: 「異例メニュー画面」押下
+  key: 「異例メニュ-画面」押下
+  rows: 12
+  books: 6
+  types:
+    ボタン: 12
+  sample:
+    book: AY-100-01-001
+    row: 15
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0156
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 回答入力欄
+  key: 回答入力欄
+  rows: 12
+  books: 12
+  types:
+    入力: 12
+  sample:
+    book: AZ-230-01-006
+    row: 34
+    content: '【別紙】操作内容
+
+      入力内容：3参照'
+  label: 回答入力欄
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0157
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: バッチ実行（JP1）
+  key: バッチ実行(JP1)
+  rows: 12
+  books: 10
+  types:
+    その他: 12
+  sample:
+    book: AZ-230-01-032
+    row: 56
+    content: 14時
+  label: バッチ実行(JP1)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0158
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: No.リンク
+  key: No.リンク
+  rows: 12
+  books: 6
+  types:
+    クリック: 12
+  sample:
+    book: AY-100-03-002
+    row: 18
+    content: （任意のデータ）
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0159
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「明細番号」
+  key: 「明細番号」
+  rows: 12
+  books: 12
+  types:
+    入力: 12
+  sample:
+    book: AY-110-02-001
+    row: 20
+    content: 「0000000019」を入力
+  label: 明細番号
+  type: template
+  op: click
+  status: auto
+  control: text:sub_policy_number
+  selector: '#sub_policy_number'
+  kind: text
+- id: B0160
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「消込状況」
+  key: 「消込状況」
+  rows: 12
+  books: 12
+  types:
+    クリック: 12
+  sample:
+    book: AY-110-02-001
+    row: 21
+    content: 「30：登録完了」をチェックする
+  label: 消込状況
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0161
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「証券番号」
+  key: 「証券番号」
+  rows: 12
+  books: 12
+  types:
+    入力: 12
+  sample:
+    book: AY-110-02-001
+    row: 19
+    content: 「AY11002」を入力
+  label: 証券番号
+  type: template
+  op: click
+  status: auto
+  control: text:policy_number
+  selector: '#policy_number'
+  kind: text
+- id: B0162
+  screen: null
+  screenName: null
+  phrase: 検索
+  key: 検索
+  rows: 10
+  books: 10
+  types:
+    ボタン: 10
+  sample:
+    book: AZ-150-13-001
+    row: 14
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0163
+  screen: null
+  screenName: null
+  phrase: 画面を操作せず、一時間待機
+  key: 画面を操作せず、一時間待機
+  rows: 10
+  books: 10
+  types:
+    その他: 10
+  sample:
+    book: AY-100-03-001
+    row: 14
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0164
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 営業連携押下
+  key: 営業連携押下
+  rows: 10
+  books: 10
+  types:
+    ボタン: 10
+  sample:
+    book: AZ-230-01-026
+    row: 55
+    content: ''
+  label: 営業連携
+  type: template
+  op: click
+  status: auto
+  control: button:updateBusinessNotify
+  selector: '#updateBusinessNotify'
+  kind: button
+- id: B0165
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」①
+  key: 「【別紙】操作内容」1
+  rows: 10
+  books: 10
+  types:
+    その他: 10
+  sample:
+    book: AZ-150-13-001
+    row: 21
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0166
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」②
+  key: 「【別紙】操作内容」2
+  rows: 10
+  books: 10
+  types:
+    その他: 10
+  sample:
+    book: AZ-150-13-001
+    row: 28
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0167
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「クリップボードへコピー」押下
+  key: 「クリップボ-ドへコピ-」押下
+  rows: 10
+  books: 6
+  types:
+    ボタン: 10
+  sample:
+    book: AZ-111-09-001
+    row: 24
+    content: ''
+  label: クリップボ-ドへコピ-
+  type: template
+  op: click
+  status: auto
+  control: submit:CopyClipboard
+  selector: '#CopyClipboard'
+  kind: submit
+- id: B0168
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「一覧画面」押下
+  key: 「一覧画面」押下
+  rows: 10
+  books: 10
+  types:
+    ボタン: 10
+  sample:
+    book: AZ-160-01-001
+    row: 26
+    content: ''
+  label: 一覧画面
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0169
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 'No'
+  key: 'No'
+  rows: 10
+  books: 9
+  types:
+    クリック: 10
+  sample:
+    book: AZ-230-01-025
+    row: 43
+    content: 対象の申込情報
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0170
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「申請一覧」押下
+  key: 「申請一覧」押下
+  rows: 10
+  books: 4
+  types:
+    ボタン: 10
+  sample:
+    book: AY-100-08-003
+    row: 21
+    content: '-'
+  label: 申請一覧
+  type: template
+  op: click
+  status: auto
+  control: submit:act101to200
+  selector: '#act101to200'
+  kind: submit
+- id: B0171
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 10
+  books: 10
+  types:
+    クリック: 10
+  sample:
+    book: AY-100-01-001
+    row: 29
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0172
+  screen: null
+  screenName: null
+  phrase: 「再表示」押下
+  key: 「再表示」押下
+  rows: 9
+  books: 9
+  types:
+    ボタン: 9
+  sample:
+    book: AY-410-01-002
+    row: 17
+    content: '-'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0173
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 9
+  books: 9
+  types:
+    クリック: 9
+  sample:
+    book: AY-410-01-002
+    row: 54
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0174
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 9
+  books: 9
+  types:
+    ボタン: 9
+  sample:
+    book: AY-410-01-002
+    row: 53
+    content: ''
+  label: 検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0175
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: システムズ様にメール送信情報を連携
+  key: システムズ様にメ-ル送信情報を連携
+  rows: 9
+  books: 9
+  types:
+    その他: 9
+  sample:
+    book: AY-410-01-002
+    row: 49
+    content: ''
+  label: システムズ様にメ-ル送信情報を連携
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0176
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: メール内のリンクを押下
+  key: メ-ル内のリンクを押下
+  rows: 9
+  books: 9
+  types:
+    その他: 9
+  sample:
+    book: AY-410-01-002
+    row: 50
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0177
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 9
+  books: 9
+  types:
+    入力: 9
+  sample:
+    book: AY-410-01-002
+    row: 52
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0178
+  screen: null
+  screenName: null
+  phrase: ログイン
+  key: ログイン
+  rows: 8
+  books: 6
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-100-07-002
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0179
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「メニュー」押下
+  key: 「メニュ-」押下
+  rows: 8
+  books: 4
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-100-02-001
+    row: 28
+    content: ※閉局後
+  label: メニュ-
+  type: template
+  op: click
+  status: auto
+  control: submit:act100to001
+  selector: '#act100to001'
+  kind: submit
+- id: B0180
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「代理店照会」
+  key: 「代理店照会」
+  rows: 8
+  books: 8
+  types:
+    クリック: 8
+  sample:
+    book: AZ-210-38-001
+    row: 20
+    content: 代理店照会（代理店照会が"要"）の不備情報をすべて営業照会（代理店照会が”否”）にする
+  label: 代理店照会
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0181
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 終了
+  key: 終了
+  rows: 8
+  books: 8
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-150-01-001
+    row: 57
+    content: ''
+  label: 終了
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0182
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 8
+  books: 6
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-100-08-004
+    row: 22
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0183
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「更新」押下
+  key: 「更新」押下
+  rows: 8
+  books: 8
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-230-01-043
+    row: 45
+    content: ''
+  label: 更新
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0184
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 不備内容有
+  key: 不備内容有
+  rows: 8
+  books: 2
+  types:
+    クリック: 8
+  sample:
+    book: AZ-120-02-001
+    row: 22
+    content: チェック状態にする
+  label: 不備内容有
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0185
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 簡易版
+  key: 簡易版
+  rows: 8
+  books: 2
+  types:
+    クリック: 8
+  sample:
+    book: AY-130-02-001
+    row: 44
+    content: チェック状態にする
+  label: 簡易版
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0186
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 詳細版
+  key: 詳細版
+  rows: 8
+  books: 2
+  types:
+    クリック: 8
+  sample:
+    book: AY-130-02-001
+    row: 47
+    content: チェック状態にする
+  label: 詳細版
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0187
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 帳票種類ラジオボタン
+  key: 帳票種類ラジオボタン
+  rows: 8
+  books: 4
+  types:
+    入力: 8
+  sample:
+    book: AZ-160-02-001
+    row: 23
+    content: '申込書類不備照会・返送票
+
+      正しい申込書類の作成についてのお願い（3項目表示）を選択'
+  label: 帳票種類ラジオ
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0188
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: No.リンク
+  key: No.リンク
+  rows: 8
+  books: 2
+  types:
+    クリック: 8
+  sample:
+    book: AZ-100-07-001
+    row: 29
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0189
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「CSV出力」押下
+  key: 「CSV出力」押下
+  rows: 8
+  books: 4
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-200-07-004
+    row: 18
+    content: ボタン押下時の時刻をメモ
+  label: CSV出力
+  type: template
+  op: click
+  status: auto
+  control: submit:outputCSV
+  selector: '#outputCSV'
+  kind: submit
+- id: B0190
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 8
+  books: 4
+  types:
+    ボタン: 8
+  sample:
+    book: AZ-200-07-004
+    row: 20
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0191
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: '-'
+  key: '-'
+  rows: 8
+  books: 8
+  types:
+    その他: 8
+  sample:
+    book: AY-120-10-001
+    row: 23
+    content: 【別紙】操作内容　3　参照
+  label: '-'
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:act101to001
+    selector: '#act101to001'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0192
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「No」リンク
+  key: 「No」リンク
+  rows: 8
+  books: 2
+  types:
+    クリック: 8
+  sample:
+    book: AY-100-08-003
+    row: 19
+    content: '【別紙】事前準備
+
+      テストデータ：１参照'
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0193
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 各画面項目入力
+  key: 各画面項目入力
+  rows: 8
+  books: 2
+  types:
+    入力: 8
+  sample:
+    book: AY-100-07-001
+    row: 18
+    content: '【別紙】操作内容　の
+
+      操作内容1　参照'
+  label: 各画面項目
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0194
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 8
+  books: 2
+  types:
+    入力: 8
+  sample:
+    book: AY-100-07-001
+    row: 28
+    content: '【別紙】操作内容　の
+
+      操作内容2　参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0195
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「送り状印刷」押下
+  key: 「送り状印刷」押下
+  rows: 7
+  books: 7
+  types:
+    ボタン: 7
+  sample:
+    book: AZ-111-03-003
+    row: 22
+    content: ''
+  label: 送り状印刷
+  type: template
+  op: click
+  status: auto
+  control: submit:printInvoicePDF
+  selector: '#printInvoicePDF'
+  kind: submit
+- id: B0196
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 更新
+  key: 更新
+  rows: 7
+  books: 2
+  types:
+    ボタン: 7
+  sample:
+    book: AZ-112-01-001
+    row: 25
+    content: 押下
+  label: 更新
+  type: template
+  op: click
+  status: auto
+  control: submit:update
+  selector: '#update'
+  kind: submit
+- id: B0197
+  screen: null
+  screenName: null
+  phrase: 「承認」押下
+  key: 「承認」押下
+  rows: 6
+  books: 6
+  types:
+    ボタン: 6
+  sample:
+    book: AY-410-01-003
+    row: 18
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0198
+  screen: null
+  screenName: null
+  phrase: 閉局用のシェルスクリプトを実行
+  key: 閉局用のシェルスクリプトを実行
+  rows: 6
+  books: 6
+  types:
+    その他: 6
+  sample:
+    book: AY-100-02-001
+    row: 14
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0199
+  screen: null
+  screenName: 閉局画面
+  phrase: 開局用のシェルスクリプトを実行
+  key: 開局用のシェルスクリプトを実行
+  rows: 6
+  books: 6
+  types:
+    その他: 6
+  sample:
+    book: AY-100-02-001
+    row: 19
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0200
+  screen: AMB/AMA01
+  screenName: 申込書品質管理メニュー画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 6
+  books: 2
+  types:
+    ボタン: 6
+  sample:
+    book: AZ-100-07-001
+    row: 44
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:act001to200
+  selector: '#act001to200'
+  kind: submit
+- id: B0201
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「連絡」チェックボックスを選択
+  key: 「連絡」チェックボックスを選択
+  rows: 6
+  books: 6
+  types:
+    その他: 6
+  sample:
+    book: AZ-230-01-003
+    row: 21
+    content: ''
+  label: 連絡
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0202
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 部店課支社
+  key: 部店課支社
+  rows: 6
+  books: 6
+  types:
+    入力: 6
+  sample:
+    book: AZ-230-01-044
+    row: 63
+    content: 対象の申込情報
+  label: 部店課支社
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:section_code
+    selector: '#section_code'
+    kind: text
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0203
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: eメールによる確認の場合
+  key: eメ-ルによる確認の場合
+  rows: 6
+  books: 6
+  types:
+    クリック: 6
+  sample:
+    book: AZ-100-03-002
+    row: 24
+    content: チェックする
+  label: eメ-ルによる確認の場合
+  type: template
+  op: click
+  status: auto
+  control: checkbox:email_confirm_check
+  selector: '#email_confirm_check'
+  kind: checkbox
+- id: B0204
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: 確認者(募集人または社員)
+  key: 確認者(募集人または社員)
+  rows: 6
+  books: 6
+  types:
+    入力: 6
+  sample:
+    book: AZ-100-03-002
+    row: 23
+    content: test
+  label: 確認者(募集人または社員)
+  type: template
+  op: click
+  status: auto
+  control: text:confirm_user_name
+  selector: '#confirm_user_name'
+  kind: text
+- id: B0205
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 「新規登録」押下
+  key: 「新規登録」押下
+  rows: 6
+  books: 2
+  types:
+    ボタン: 6
+  sample:
+    book: AZ-100-07-001
+    row: 36
+    content: ''
+  label: 新規登録
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0206
+  screen: AMB/system_error
+  screenName: システムエラー画面（代理店）
+  phrase: ログイン
+  key: ログイン
+  rows: 6
+  books: 2
+  types:
+    ボタン: 6
+  sample:
+    book: AZ-100-07-002
+    row: 24
+    content: ''
+  label: ログイン
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0207
+  screen: AMB/system_error
+  screenName: システムエラー画面（代理店）
+  phrase: ログイン画面
+  key: ログイン画面
+  rows: 6
+  books: 2
+  types:
+    入力: 6
+  sample:
+    book: AZ-100-07-002
+    row: 23
+    content: ''
+  label: ログイン画面
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0208
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 任意のパスワード(CSV出力)
+  key: 任意のパスワ-ド(CSV出力)
+  rows: 6
+  books: 2
+  types:
+    入力: 6
+  sample:
+    book: AZ-220-02-001
+    row: 17
+    content: 「AZ2200200」を入力
+  label: 任意のパスワ-ド(CSV出力)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:outputCSV
+    selector: '#outputCSV'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0209
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 6
+  books: 4
+  types:
+    入力: 6
+  sample:
+    book: AZ-220-02-001
+    row: 22
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0210
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「印刷」押下
+  key: 「印刷」押下
+  rows: 6
+  books: 4
+  types:
+    ボタン: 6
+  sample:
+    book: AZ-111-09-001
+    row: 47
+    content: ''
+  label: 印刷
+  type: template
+  op: click
+  status: auto
+  control: submit:print
+  selector: '#print'
+  kind: submit
+- id: B0211
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「開く」押下
+  key: 「開く」押下
+  rows: 6
+  books: 1
+  types:
+    ボタン: 6
+  sample:
+    book: AZ-211-02-001
+    row: 21
+    content: ''
+  label: 開く
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0212
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  key: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  rows: 6
+  books: 1
+  types:
+    クリック: 6
+  sample:
+    book: AZ-211-02-001
+    row: 20
+    content: '【別紙】事前準備の
+
+      添付ファイル：１参照'
+  label: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0213
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 6
+  books: 6
+  types:
+    クリック: 6
+  sample:
+    book: AY-410-01-001
+    row: 54
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0214
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 6
+  books: 6
+  types:
+    ボタン: 6
+  sample:
+    book: AY-410-01-001
+    row: 53
+    content: ''
+  label: 検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0215
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: システムズ様にメール送信情報を連携
+  key: システムズ様にメ-ル送信情報を連携
+  rows: 6
+  books: 6
+  types:
+    その他: 6
+  sample:
+    book: AY-410-01-001
+    row: 49
+    content: ''
+  label: システムズ様にメ-ル送信情報を連携
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0216
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: メール内のリンクを押下
+  key: メ-ル内のリンクを押下
+  rows: 6
+  books: 6
+  types:
+    その他: 6
+  sample:
+    book: AY-410-01-001
+    row: 50
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0217
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 6
+  books: 6
+  types:
+    入力: 6
+  sample:
+    book: AY-410-01-001
+    row: 52
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0218
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「承認／要再申請依頼理由」
+  key: 「承認/要再申請依頼理由」
+  rows: 6
+  books: 6
+  types:
+    入力: 6
+  sample:
+    book: AY-410-01-004
+    row: 20
+    content: test
+  label: 承認/要再申請依頼理由
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:approveButton
+    selector: '#approveButton'
+    kind: button
+  - control: button:approve
+    selector: '#approve'
+    kind: button
+  - control: submit:route31
+    selector: '#route31'
+    kind: submit
+  - control: button:rejectButton
+    selector: '#rejectButton'
+    kind: button
+  - control: button:reject
+    selector: '#reject'
+    kind: button
+  - control: submit:route33
+    selector: '#route33'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0219
+  screen: null
+  screenName: 集計画面
+  phrase: 「変更事由集計」チェック
+  key: 「変更事由集計」チェック
+  rows: 5
+  books: 1
+  types:
+    クリック: 5
+  sample:
+    book: AY-140-01-001
+    row: 23
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0220
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「戻る」押下
+  key: 「戻る」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-002
+    row: 23
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0221
+  screen: null
+  screenName: 集計画面
+  phrase: 「申請状況集計」チェック
+  key: 「申請状況集計」チェック
+  rows: 5
+  books: 1
+  types:
+    クリック: 5
+  sample:
+    book: AY-140-01-001
+    row: 20
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0222
+  screen: null
+  screenName: 集計画面
+  phrase: 「異例取扱理由集計」チェック
+  key: 「異例取扱理由集計」チェック
+  rows: 5
+  books: 1
+  types:
+    クリック: 5
+  sample:
+    book: AY-140-01-001
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0223
+  screen: null
+  screenName: null
+  phrase: 事後作業
+  key: 事後作業
+  rows: 5
+  books: 5
+  types:
+    その他: 5
+  sample:
+    book: AY-210-02-003
+    row: 19
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0224
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「一覧画面」押下
+  key: 「一覧画面」押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-100-01-001
+    row: 31
+    content: ''
+  label: 一覧画面
+  type: template
+  op: click
+  status: auto
+  control: submit:act101to200
+  selector: '#act101to200'
+  kind: submit
+- id: B0225
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 不備情報
+  key: 不備情報
+  rows: 5
+  books: 5
+  types:
+    入力: 5
+  sample:
+    book: AZ-111-05-007
+    row: 20
+    content: 代理店照会が"否"の任意の不備情報を1件追加
+  label: 不備情報
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0226
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「No.1」リンク押下
+  key: 「No.1」リンク押下
+  rows: 5
+  books: 5
+  types:
+    クリック: 5
+  sample:
+    book: AZ-160-03-001
+    row: 19
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0227
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「前頁」押下
+  key: 「前頁」押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AY-130-02-001
+    row: 41
+    content: ''
+  label: 前頁
+  type: template
+  op: click
+  status: auto
+  control: submit:prevPage
+  selector: '#prevPage'
+  kind: submit
+- id: B0228
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 営業連携押下
+  key: 営業連携押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-230-01-040
+    row: 59
+    content: ''
+  label: 営業連携
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: checkbox:notify_status_1
+    selector: '#notify_status_1'
+    kind: checkbox
+  - control: checkbox:notify_status_2
+    selector: '#notify_status_2'
+    kind: checkbox
+  - control: checkbox:notify_status_3
+    selector: '#notify_status_3'
+    kind: checkbox
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0229
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「フリーコード集計出力」押下
+  key: 「フリ-ｺ-ﾄﾞ集計出力」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-001
+    row: 17
+    content: ''
+  label: フリ-ｺ-ﾄﾞ集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFreeCodeId
+  selector: '#OutputSumupFreeCodeId'
+  kind: submit
+- id: B0230
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「不備内容集計出力」押下
+  key: 「不備内容集計出力」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-001
+    row: 21
+    content: ''
+  label: 不備内容集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupContentsId
+  selector: '#OutputSumupContentsId'
+  kind: submit
+- id: B0231
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「不備項目集計出力」押下
+  key: 「不備項目集計出力」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-001
+    row: 19
+    content: ''
+  label: 不備項目集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFieldId
+  selector: '#OutputSumupFieldId'
+  kind: submit
+- id: B0232
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「募集人集計出力」押下
+  key: 「募集人集計出力」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-001
+    row: 25
+    content: ''
+  label: 募集人集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFieldAgentId
+  selector: '#OutputSumupFieldAgentId'
+  kind: submit
+- id: B0233
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「登録件数集計出力」押下
+  key: 「登録件数集計出力」押下
+  rows: 5
+  books: 1
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-130-01-001
+    row: 23
+    content: ''
+  label: 登録件数集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupRegistCountId
+  selector: '#OutputSumupRegistCountId'
+  kind: submit
+- id: B0234
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 5
+  books: 1
+  types:
+    入力: 5
+  sample:
+    book: AZ-130-01-001
+    row: 16
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0235
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 'No'
+  key: 'No'
+  rows: 5
+  books: 5
+  types:
+    クリック: 5
+  sample:
+    book: AZ-510-01-001
+    row: 25
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0236
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-510-01-001
+    row: 23
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0237
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「訂正内容確認書」押下
+  key: 「訂正内容確認書」押下
+  rows: 5
+  books: 3
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-200-07-001
+    row: 20
+    content: '-'
+  label: 訂正内容確認書
+  type: template
+  op: click
+  status: auto
+  control: button:act104to908
+  selector: '[name="act104to908"]'
+  kind: button
+- id: B0238
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「送り状印刷」押下
+  key: 「送り状印刷」押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-240-03-001
+    row: 18
+    content: ''
+  label: 送り状印刷
+  type: template
+  op: click
+  status: auto
+  control: submit:printInvoice
+  selector: '#printInvoice'
+  kind: submit
+- id: B0239
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 「登録」押下
+  key: 「登録」押下
+  rows: 5
+  books: 5
+  types:
+    ボタン: 5
+  sample:
+    book: AZ-200-03-002
+    row: 21
+    content: ''
+  label: 登録
+  type: template
+  op: click
+  status: auto
+  control: submit:regist
+  selector: '#regist'
+  kind: submit
+- id: B0240
+  screen: null
+  screenName: null
+  phrase: （初期表示）
+  key: (初期表示)
+  rows: 4
+  books: 4
+  types:
+    ? ''
+    : 4
+  sample:
+    book: AZ-220-01-001
+    row: 14
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0241
+  screen: null
+  screenName: null
+  phrase: 「F12」押下
+  key: 「F12」押下
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-111-06-001
+    row: 14
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0242
+  screen: null
+  screenName: null
+  phrase: 画面
+  key: 画面
+  rows: 4
+  books: 4
+  types:
+    遷移: 4
+  sample:
+    book: AY-100-09-001
+    row: 14
+    content: 初期表示
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0243
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 4
+  books: 1
+  types:
+    入力: 4
+  sample:
+    book: AZ-140-01-001
+    row: 52
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0244
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「新規登録」押下
+  key: 「新規登録」押下
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-111-02-002
+    row: 28
+    content: ''
+  label: 新規登録
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:regist
+    selector: '#regist'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0245
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「照会」チェックボックスを選択
+  key: 「照会」チェックボックスを選択
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-230-01-045
+    row: 42
+    content: ''
+  label: 照会
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0246
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「連絡」チックボックス押下
+  key: 「連絡」チックボックス押下
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-230-01-016
+    row: 41
+    content: ''
+  label: 連絡
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0247
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」③
+  key: 「【別紙】操作内容」3
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-150-13-001
+    row: 39
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0248
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」④
+  key: 「【別紙】操作内容」4
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-150-13-001
+    row: 42
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0249
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」⑤
+  key: 「【別紙】操作内容」5
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-150-13-001
+    row: 45
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0250
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」⑥
+  key: 「【別紙】操作内容」6
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-150-13-001
+    row: 48
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0251
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「【別紙】操作内容」⑦
+  key: 「【別紙】操作内容」7
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-150-13-001
+    row: 51
+    content: ''
+  label: 【別紙】操作内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0252
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「完了登録」押下
+  key: 「完了登録」押下
+  rows: 4
+  books: 2
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-120-03-001
+    row: 19
+    content: 「完了登録」押下前に、全てのデータを他のユーザで「代理店対応」について、「連絡」から「照会」に変更する
+  label: 完了登録
+  type: template
+  op: click
+  status: auto
+  control: submit:updateCompleteDate
+  selector: '#updateCompleteDate'
+  kind: submit
+- id: B0253
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: '各項目に入力
+
+    ※項番5-1～6-2の手順を繰り返し、点検区分ごとの結果を確認すること'
+  key: 各項目に入力※項番5-1~6-2の手順を繰り返し、点検区分ごとの結果を確認すること
+  rows: 4
+  books: 4
+  types:
+    入力: 4
+  sample:
+    book: AZ-100-01-001
+    row: 26
+    content: '【別紙】操作内容
+
+      入力内容：２～５参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0254
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 選択チェックボックス
+  key: 選択チェックボックス
+  rows: 4
+  books: 2
+  types:
+    クリック: 4
+  sample:
+    book: AZ-120-03-001
+    row: 18
+    content: 全てチェックオンにする
+  label: 選択チェックボックス
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0255
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 集計
+  key: 集計
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 54
+    content: ''
+  label: 集計
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0256
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: フリーコード集計出力
+  key: フリ-ｺ-ﾄﾞ集計出力
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 65
+    content: ''
+  label: フリ-ｺ-ﾄﾞ集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFreeCodeId
+  selector: '#OutputSumupFreeCodeId'
+  kind: submit
+- id: B0257
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 不備内容集計出力
+  key: 不備内容集計出力
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 61
+    content: ''
+  label: 不備内容集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupContentsId
+  selector: '#OutputSumupContentsId'
+  kind: submit
+- id: B0258
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 不備項目集計出力
+  key: 不備項目集計出力
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 59
+    content: ''
+  label: 不備項目集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFieldId
+  selector: '#OutputSumupFieldId'
+  kind: submit
+- id: B0259
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 募集人集計出力
+  key: 募集人集計出力
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 67
+    content: ''
+  label: 募集人集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupFieldAgentId
+  selector: '#OutputSumupFieldAgentId'
+  kind: submit
+- id: B0260
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 登録件数集計出力
+  key: 登録件数集計出力
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-150-13-001
+    row: 63
+    content: ''
+  label: 登録件数集計出力
+  type: template
+  op: click
+  status: auto
+  control: submit:OutputSumupRegistCountId
+  selector: '#OutputSumupRegistCountId'
+  kind: submit
+- id: B0261
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 登録年月
+  key: 登録年月
+  rows: 4
+  books: 4
+  types:
+    ? ''
+    : 4
+  sample:
+    book: AZ-150-13-001
+    row: 57
+    content: 2027年3月～2027年3月
+  label: 登録年月
+  type: template
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:from_registration_year
+    selector: '#from_registration_year'
+    kind: text
+  - control: text:from_registration_month
+    selector: '#from_registration_month'
+    kind: text
+  - control: text:to_registration_year
+    selector: '#to_registration_year'
+    kind: text
+  - control: text:to_registration_month
+    selector: '#to_registration_month'
+    kind: text
+  note: 标签为 登録年月 的控件有 4 个，必须人选定一个
+- id: B0262
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 部店課支社コード
+  key: 部店課支社ｺ-ﾄﾞ
+  rows: 4
+  books: 4
+  types:
+    入力: 4
+  sample:
+    book: AZ-150-13-001
+    row: 56
+    content: A4T
+  label: 部店課支社ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code
+  selector: '#section_code'
+  kind: text
+- id: B0263
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 4
+  books: 2
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-111-09-001
+    row: 25
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0264
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: 「F12」より開発者ツールを開く
+  key: 「F12」より開発者ツ-ルを開く
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-100-05-002
+    row: 24
+    content: ''
+  label: F12
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0265
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: '開発者ツールでctrl+fを使用し
+
+    appliction_form_idを検索'
+  key: 開発者ツ-ルでctrl+fを使用しappliction_form_ＩＤを検索
+  rows: 4
+  books: 4
+  types:
+    その他: 4
+  sample:
+    book: AZ-100-05-002
+    row: 25
+    content: ''
+  label: 開発者ツ-ルでctrl+fを使用しappliction_form_ＩＤを検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0266
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 検索
+  key: 検索
+  rows: 4
+  books: 2
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-112-01-001
+    row: 17
+    content: 押下
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0267
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 部店課支社ｺｰﾄﾞ
+  key: 部店課支社ｺ-ﾄﾞ
+  rows: 4
+  books: 2
+  types:
+    入力: 4
+  sample:
+    book: AZ-112-01-001
+    row: 16
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  label: 部店課支社ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code
+  selector: '#section_code'
+  kind: text
+- id: B0268
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 通知先再セット
+  key: 通知先再セット
+  rows: 4
+  books: 2
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-112-01-001
+    row: 98
+    content: 押下
+  label: 通知先再セット
+  type: template
+  op: click
+  status: auto
+  control: submit:reset
+  selector: '#reset'
+  kind: submit
+- id: B0269
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 通知先部課コード
+  key: 通知先部課ｺ-ﾄﾞ
+  rows: 4
+  books: 2
+  types:
+    入力: 4
+  sample:
+    book: AZ-112-01-001
+    row: 97
+    content: '【別紙】操作内容
+
+      入力内容：５参照'
+  label: 通知先部課ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code_set
+  selector: '#section_code_set'
+  kind: text
+- id: B0270
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「メール用コピー」押下
+  key: 「メ-ル用コピ-」押下
+  rows: 4
+  books: 4
+  types:
+    ボタン: 4
+  sample:
+    book: AZ-111-09-001
+    row: 48
+    content: ''
+  label: メ-ル用コピ-
+  type: template
+  op: click
+  status: auto
+  control: submit:copyClipboard
+  selector: '#copyClipboard'
+  kind: submit
+- id: B0271
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: eメールによる確認の場合
+  key: eメ-ルによる確認の場合
+  rows: 4
+  books: 4
+  types:
+    クリック: 4
+  sample:
+    book: AZ-200-03-002
+    row: 20
+    content: チェックする
+  label: eメ-ルによる確認の場合
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0272
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 確認者(募集人または社員)
+  key: 確認者(募集人または社員)
+  rows: 4
+  books: 4
+  types:
+    入力: 4
+  sample:
+    book: AZ-200-03-002
+    row: 19
+    content: test
+  label: 確認者(募集人または社員)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0273
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 簡易版
+  key: 簡易版
+  rows: 4
+  books: 2
+  types:
+    クリック: 4
+  sample:
+    book: AY-130-02-001
+    row: 20
+    content: チェック状態にする
+  label: 簡易版
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0274
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 詳細版
+  key: 詳細版
+  rows: 4
+  books: 2
+  types:
+    クリック: 4
+  sample:
+    book: AY-130-02-001
+    row: 23
+    content: チェック状態にする
+  label: 詳細版
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0275
+  screen: null
+  screenName: null
+  phrase: 「申請」押下
+  key: 「申請」押下
+  rows: 3
+  books: 3
+  types:
+    ボタン: 3
+  sample:
+    book: AY-410-01-002
+    row: 18
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0276
+  screen: null
+  screenName: null
+  phrase: 「集計」押下
+  key: 「集計」押下
+  rows: 3
+  books: 3
+  types:
+    ボタン: 3
+  sample:
+    book: AY-100-09-001
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0277
+  screen: null
+  screenName: null
+  phrase: 課支社長　申請表示条件の「10：申請依頼」
+  key: 課支社長申請表示条件の「10:申請依頼」
+  rows: 3
+  books: 3
+  types:
+    クリック: 3
+  sample:
+    book: AY-410-01-002
+    row: 16
+    content: チェックする（他の項目全部チェックなし）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0278
+  screen: null
+  screenName: null
+  phrase: 課支社長　申請表示条件の「11：承認待ち」
+  key: 課支社長申請表示条件の「11:承認待ち」
+  rows: 3
+  books: 3
+  types:
+    クリック: 3
+  sample:
+    book: AY-410-01-012
+    row: 16
+    content: チェックする（他の項目全部チェックなし）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0279
+  screen: null
+  screenName: null
+  phrase: 部支店長　承認表示条件の「11：承認待ち」
+  key: 部支店長承認表示条件の「11:承認待ち」
+  rows: 3
+  books: 3
+  types:
+    クリック: 3
+  sample:
+    book: AY-410-01-003
+    row: 16
+    content: チェックする（他の項目全部チェックなし）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0280
+  screen: AMB/AMA01
+  screenName: 申込書品質管理メニュー画面
+  phrase: 「親子集計」押下
+  key: 「親子集計」押下
+  rows: 3
+  books: 2
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-100-09-001
+    row: 21
+    content: ''
+  label: 親子集計
+  type: template
+  op: click
+  status: auto
+  control: submit:act001to103
+  selector: '#act001to103'
+  kind: submit
+- id: B0281
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「メール用コピー」押下
+  key: 「メ-ル用コピ-」押下
+  rows: 3
+  books: 3
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-210-68-001
+    row: 24
+    content: ''
+  label: メ-ル用コピ-
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0282
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「履歴」押下
+  key: 「履歴」押下
+  rows: 3
+  books: 2
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-111-09-001
+    row: 76
+    content: ''
+  label: 履歴
+  type: template
+  op: click
+  status: auto
+  control: button:act101to912
+  selector: '[name="act101to912"]'
+  kind: button
+- id: B0283
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '回答内容
+
+    回答入力欄
+
+    （代理店照会が"否"のもの）'
+  key: 回答内容回答入力欄(代理店照会が"否"のもの)
+  rows: 3
+  books: 3
+  types:
+    入力: 3
+  sample:
+    book: AZ-410-03-001
+    row: 20
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 回答内容回答入力欄(代理店照会が"否"のもの)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0284
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「次頁」押下
+  key: 「次頁」押下
+  rows: 3
+  books: 3
+  types:
+    ボタン: 3
+  sample:
+    book: AY-130-02-001
+    row: 39
+    content: ''
+  label: 次頁
+  type: template
+  op: click
+  status: auto
+  control: submit:nextPage
+  selector: '#nextPage'
+  kind: submit
+- id: B0285
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 「検索」押下
+  key: 「検索」押下
+  rows: 3
+  books: 2
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-140-01-001
+    row: 44
+    content: ''
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:select
+  selector: '#select'
+  kind: submit
+- id: B0286
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 予約番号
+  key: 予約番号
+  rows: 3
+  books: 2
+  types:
+    入力: 3
+  sample:
+    book: AZ-140-01-001
+    row: 43
+    content: 項番2-20～2-21の操作で表示された予約番号を入力
+  label: 予約番号
+  type: template
+  op: click
+  status: auto
+  control: text:reserve_no
+  selector: '#reserve_no'
+  kind: text
+- id: B0287
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 全解除
+  key: 全解除
+  rows: 3
+  books: 1
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-112-01-001
+    row: 23
+    content: 押下
+  label: 全解除
+  type: template
+  op: click
+  status: auto
+  control: button:all_clear
+  selector: '#all_clear'
+  kind: button
+- id: B0288
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 検索
+  key: 検索
+  rows: 3
+  books: 1
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-112-01-001
+    row: 34
+    content: 押下
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0289
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 通知する
+  key: 通知する
+  rows: 3
+  books: 1
+  types:
+    ボタン: 3
+  sample:
+    book: AZ-112-01-001
+    row: 99
+    content: 押下
+  label: 通知
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:section_code_set
+    selector: '#section_code_set'
+    kind: text
+  - control: submit:reset
+    selector: '#reset'
+    kind: submit
+  - control: button:sendOn
+    selector: '[name="sendOn"]'
+    kind: button
+  - control: button:sendOff
+    selector: '[name="sendOff"]'
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0290
+  screen: ANB00/ANA04
+  screenName: 取消計上申請承認画面
+  phrase: 「要再申請」押下
+  key: 「要再申請」押下
+  rows: 3
+  books: 3
+  types:
+    ボタン: 3
+  sample:
+    book: AY-410-01-006
+    row: 21
+    content: '-'
+  label: 要再申請
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:rejectButton
+    selector: '#rejectButton'
+    kind: button
+  - control: button:reject
+    selector: '#reject'
+    kind: button
+  - control: submit:route33
+    selector: '#route33'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0291
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「氏名」
+  key: 「氏名」
+  rows: 3
+  books: 3
+  types:
+    入力: 3
+  sample:
+    book: AY-410-01-001
+    row: 22
+    content: 課支社長
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name_key
+  selector: '#user_name_key'
+  kind: text
+- id: B0292
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「課支社CD」
+  key: 「課支社CD」
+  rows: 3
+  books: 3
+  types:
+    ? ''
+    : 3
+  sample:
+    book: AY-410-01-001
+    row: 23
+    content: ABM62
+  label: 課支社CD
+  type: template
+  op: click
+  status: auto
+  control: text:section_code_key
+  selector: '#section_code_key'
+  kind: text
+- id: B0293
+  screen: null
+  screenName: 回答入力画面
+  phrase: application_form_idのvalueの値を削除
+  key: application_form_ＩＤのvalueの値を削除
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-05-001
+    row: 19
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0294
+  screen: null
+  screenName: 回答入力画面
+  phrase: 「F12」より開発者ツールを開く
+  key: 「F12」より開発者ツ-ルを開く
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-05-001
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0295
+  screen: null
+  screenName: 申込書品質管理レポート画面
+  phrase: 「レポート保存」押下
+  key: 「レポ-ト保存」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-130-01-002
+    row: 32
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0296
+  screen: null
+  screenName: 申込書品質管理レポート作成画面
+  phrase: 「レポート表示」押下
+  key: 「レポ-ト表示」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-130-01-002
+    row: 30
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0297
+  screen: null
+  screenName: 回答入力画面
+  phrase: 「一時中断」押下
+  key: 「一時中断」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-200-05-001
+    row: 21
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0298
+  screen: null
+  screenName: null
+  phrase: 「不備一覧画面」押下
+  key: 「不備一覧画面」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-200-06-001
+    row: 15
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0299
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「全部>>」押下
+  key: 「全部>>」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 19
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0300
+  screen: null
+  screenName: 親子集計受付完了画面
+  phrase: 「状況確認」押下
+  key: 「状況確認」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 37
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0301
+  screen: null
+  screenName: null
+  phrase: 「親子集計」押下
+  key: 「親子集計」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 14
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0302
+  screen: null
+  screenName: 回答入力画面
+  phrase: 「訂正内容確認書」
+  key: 「訂正内容確認書」
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-200-03-002
+    row: 16
+    content: '-'
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0303
+  screen: null
+  screenName: 回答入力画面
+  phrase: 「訂正内容確認書」押下
+  key: 「訂正内容確認書」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-200-05-002
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0304
+  screen: null
+  screenName: null
+  phrase: メール登録
+  key: メ-ル登録
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 14
+    content: 押下
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0305
+  screen: null
+  screenName: null
+  phrase: 証券番号
+  key: 証券番号
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-200-07-004
+    row: 14
+    content: AZ20007003
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0306
+  screen: null
+  screenName: 回答入力画面
+  phrase: '開発者ツールでctrl+fを使用し
+
+    application_form_idを検索'
+  key: 開発者ツ-ルでctrl+fを使用しapplication_form_ＩＤを検索
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-05-001
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0307
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「予約実行」押下
+  key: 「予約実行」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 57
+    content: ''
+  label: 予約実行
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0308
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「全部>>」押下
+  key: 「全部>>」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 56
+    content: ''
+  label: 全部>>
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0309
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「実行↓」押下
+  key: 「実行↓」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-140-01-001
+    row: 55
+    content: ''
+  label: 実行↓
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0310
+  screen: AMB/AMA01
+  screenName: 申込書品質管理メニュー画面
+  phrase: 検索
+  key: 検索
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 77
+    content: 押下
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:act001to200
+  selector: '#act001to200'
+  kind: submit
+- id: B0311
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 閉局用のシェルスクリプトを実行
+  key: 閉局用のシェルスクリプトを実行
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-02-001
+    row: 26
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 閉局用のシェルスクリプトを実行
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0312
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: application_form_idのvalueの値を削除
+  key: application_form_ＩＤのvalueの値を削除
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-05-001
+    row: 23
+    content: ''
+  label: application_form_ＩＤのvalueの値を削除
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:|delete_file_${stat.index}|
+    selector: null
+    kind: button
+  - control: submit:delete
+    selector: '#delete'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0313
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「F12」より開発者ツールを開く
+  key: 「F12」より開発者ツ-ルを開く
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-05-001
+    row: 20
+    content: ''
+  label: F12
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0314
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「代理店モード表示」押下
+  key: 「代理店モ-ド表示」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-08-001
+    row: 23
+    content: ''
+  label: 代理店モ-ド表示
+  type: template
+  op: click
+  status: auto
+  control: button:act101to909
+  selector: '#act101to909'
+  kind: button
+- id: B0315
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「機械点検画像」押下
+  key: 「機械点検画像」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-06-001
+    row: 24
+    content: ''
+  label: 機械点検画像
+  type: template
+  op: click
+  status: auto
+  control: button:displayInspectorImage
+  selector: '#displayInspectorImage'
+  kind: button
+- id: B0316
+  screen: AMB/AMA04
+  screenName: 代理店モード 回答入力画面
+  phrase: 「終了」押下
+  key: 「終了」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-08-001
+    row: 28
+    content: ''
+  label: 終了
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0317
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「閉じる」押下
+  key: 「閉じる」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-09-001
+    row: 78
+    content: ''
+  label: 閉じる
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0318
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 任意の項目の値を変更
+  key: 任意の項目の値を変更
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-100-08-001
+    row: 20
+    content: ''
+  label: 任意の項目の値を変更
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0319
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 営業連携
+  key: 営業連携
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 83
+    content: 押下
+  label: 営業連携
+  type: template
+  op: click
+  status: auto
+  control: button:updateBusinessNotify
+  selector: '#updateBusinessNotify'
+  kind: button
+- id: B0320
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '開発者ツールでSourcesから
+
+    「機械点検画像表示」を検索'
+  key: 開発者ツ-ルでSourcesから「機械点検画像表示」を検索
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-111-06-001
+    row: 22
+    content: ''
+  label: 開発者ツ-ルでSourcesから「機械点検画像表示」を検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:displayInspectorImage
+    selector: '#displayInspectorImage'
+    kind: button
+  - control: button:|imperfectSearch[${stat.index}]|
+    selector: null
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0321
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '開発者ツールでctrl+fを使用し
+
+    application_form_idを検索'
+  key: 開発者ツ-ルでctrl+fを使用しapplication_form_ＩＤを検索
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-05-001
+    row: 21
+    content: ''
+  label: 開発者ツ-ルでctrl+fを使用しapplication_form_ＩＤを検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:|imperfectSearch[${stat.index}]|
+    selector: null
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0322
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: No.
+  key: No.
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AZ-112-01-001
+    row: 81
+    content: 押下
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0323
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「CSV出力」押下
+  key: 「CSV出力」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-220-02-001
+    row: 38
+    content: ''
+  label: CSV出力
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0324
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「No」リンク
+  key: 「No」リンク
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AZ-200-02-001
+    row: 24
+    content: 任意のデータ
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0325
+  screen: AMB/AMA07
+  screenName: 代理店画面サンプル 不備一覧画面
+  phrase: 「×」ボタン押下
+  key: 「×」ボタン押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-120-05-001
+    row: 18
+    content: ''
+  label: ×
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0326
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「ヘルプ」押下
+  key: 「ヘルプ」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-120-04-001
+    row: 16
+    content: ''
+  label: ヘルプ
+  type: template
+  op: click
+  status: auto
+  control: button:helpLink
+  selector: '#helpLink'
+  kind: button
+- id: B0327
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「代理店画面サンプル」押下
+  key: 「代理店画面サンプル」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-120-05-001
+    row: 16
+    content: ''
+  label: 代理店画面サンプル
+  type: template
+  op: click
+  status: auto
+  control: button:agentModeDisplay
+  selector: '#agentModeDisplay'
+  kind: button
+- id: B0328
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「削除」押下
+  key: 「削除」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-230-01-066
+    row: 64
+    content: ''
+  label: 削除
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0329
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「回答」押下
+  key: 「回答」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-230-01-049
+    row: 53
+    content: ''
+  label: 回答
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:reminder_year_from
+    selector: '#reminder_year_from'
+    kind: text
+  - control: text:reminder_month_from
+    selector: '#reminder_month_from'
+    kind: text
+  - control: text:reminder_day_from
+    selector: '#reminder_day_from'
+    kind: text
+  - control: text:reminder_year_to
+    selector: '#reminder_year_to'
+    kind: text
+  - control: text:reminder_month_to
+    selector: '#reminder_month_to'
+    kind: text
+  - control: text:reminder_day_to
+    selector: '#reminder_day_to'
+    kind: text
+  - control: text:answer_date_year
+    selector: '#answer_date_year'
+    kind: text
+  - control: text:answer_date_month
+    selector: '#answer_date_month'
+    kind: text
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0330
+  screen: AMB/AMA07
+  screenName: 回答入力画面
+  phrase: 不備一覧
+  key: 不備一覧
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-200-02-001
+    row: 28
+    content: ※閉局後
+  label: 不備一覧
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0331
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 任意のパスワード(CSV出力)
+  key: 任意のパスワ-ド(CSV出力)
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-220-02-001
+    row: 37
+    content: 「AZ2200202」を入力
+  label: 任意のパスワ-ド(CSV出力)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0332
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 各項目
+  key: 各項目
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-112-01-001
+    row: 79
+    content: '【別紙】操作内容
+
+      入力内容：７参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0333
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 連携取消押下
+  key: 連携取消押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-230-01-066
+    row: 60
+    content: '-'
+  label: 連携取消
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: checkbox:notify_status_1
+    selector: '#notify_status_1'
+    kind: checkbox
+  - control: checkbox:notify_status_2
+    selector: '#notify_status_2'
+    kind: checkbox
+  - control: checkbox:notify_status_3
+    selector: '#notify_status_3'
+    kind: checkbox
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0334
+  screen: AMB/AMA07
+  screenName: 回答入力画面
+  phrase: 閉局用のシェルスクリプトを実行
+  key: 閉局用のシェルスクリプトを実行
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-02-001
+    row: 26
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 閉局用のシェルスクリプトを実行
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0335
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 閉じる
+  key: 閉じる
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-150-03-001
+    row: 46
+    content: ''
+  label: 閉じる
+  type: template
+  op: click
+  status: auto
+  control: button:close
+  selector: '[name="close"]'
+  kind: button
+- id: B0336
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「営業連携」押下
+  key: 「営業連携」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-09-001
+    row: 30
+    content: ''
+  label: 営業連携
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0337
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「回答」押下
+  key: 「回答」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-09-001
+    row: 34
+    content: ''
+  label: 回答
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0338
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「送り状印刷」押下
+  key: 「送り状印刷」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-09-001
+    row: 29
+    content: ''
+  label: 送り状印刷
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0339
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「通知しない」押下
+  key: 「通知しない」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-111-09-001
+    row: 31
+    content: ''
+  label: 通知しない
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0340
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-111-09-001
+    row: 33
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0341
+  screen: AMB/AMA15
+  screenName: 照会内容編集画面
+  phrase: 編集照会内容
+  key: 編集照会内容
+  rows: 2
+  books: 1
+  types:
+    入力: 2
+  sample:
+    book: AZ-111-10-001
+    row: 23
+    content: 「\」と入力
+  label: 編集照会内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0342
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: application_form_idのvalueの値を削除
+  key: application_form_ＩＤのvalueの値を削除
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-05-002
+    row: 27
+    content: ''
+  label: application_form_ＩＤのvalueの値を削除
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:delete
+    selector: '#delete'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0343
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: appliction_form_idのvalueの値を削除
+  key: appliction_form_ＩＤのvalueの値を削除
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-05-002
+    row: 23
+    content: ''
+  label: appliction_form_ＩＤのvalueの値を削除
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:delete
+    selector: '#delete'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0344
+  screen: AMB/AMA19
+  screenName: 訂正内容確認画面
+  phrase: 画面を操作せず、一時間待機
+  key: 画面を操作せず、一時間待機
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-100-03-002
+    row: 22
+    content: ''
+  label: 画面を操作せず、一時間待機
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0345
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: メール通知
+  key: メ-ル通知
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AZ-112-01-001
+    row: 66
+    content: 通知件数が100件になるようにチェックを外す
+  label: メ-ル通知
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0346
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: メニュー
+  key: メニュ-
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 75
+    content: 押下
+  label: メニュ-
+  type: template
+  op: click
+  status: auto
+  control: submit:act207to001
+  selector: '#act207to001'
+  kind: submit
+- id: B0347
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 全選択
+  key: 全選択
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 55
+    content: 押下
+  label: 全選択
+  type: template
+  op: click
+  status: auto
+  control: button:all_select
+  selector: '#all_select'
+  kind: button
+- id: B0348
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 次頁
+  key: 次頁
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-112-01-001
+    row: 19
+    content: 押下
+  label: 次頁
+  type: template
+  op: click
+  status: auto
+  control: submit:nextPage
+  selector: '#nextPage'
+  kind: submit
+- id: B0349
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: No.
+  key: No.
+  rows: 2
+  books: 1
+  types:
+    クリック: 2
+  sample:
+    book: AZ-112-01-001
+    row: 36
+    content: 押下(No.1：AHK02のレコード)
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0350
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 氏名
+  key: 氏名
+  rows: 2
+  books: 1
+  types:
+    入力: 2
+  sample:
+    book: AZ-112-01-001
+    row: 38
+    content: \
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name
+  selector: '#user_name'
+  kind: text
+- id: B0351
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 部店課支社ｺｰﾄﾞ
+  key: 部店課支社ｺ-ﾄﾞ
+  rows: 2
+  books: 1
+  types:
+    入力: 1
+    その他: 1
+  sample:
+    book: AZ-112-01-001
+    row: 33
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 部店課支社ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code
+  selector: '#section_code'
+  kind: text
+- id: B0352
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 部店課支社ｺｰﾄﾞ
+  key: 部店課支社ｺ-ﾄﾞ
+  rows: 2
+  books: 1
+  types:
+    入力: 1
+    その他: 1
+  sample:
+    book: AZ-112-01-001
+    row: 85
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 部店課支社ｺ-ﾄﾞ
+  type: template
+  op: click
+  status: auto
+  control: text:section_code
+  selector: '#section_code'
+  kind: text
+- id: B0353
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「No.」リンク押下
+  key: 「No.」リンク押下
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AZ-240-01-001
+    row: 24
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0354
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「No.」押下
+  key: 「No.」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-211-04-001
+    row: 19
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0355
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: 「次頁」押下
+  key: 「次頁」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-220-02-001
+    row: 33
+    content: ''
+  label: 次頁
+  type: template
+  op: click
+  status: auto
+  control: submit:nextPage
+  selector: '#nextPage'
+  kind: submit
+- id: B0356
+  screen: AMC00/AMC22
+  screenName: 代理店 不備一覧画面
+  phrase: ダウンロード申請番号
+  key: ダウンロ-ド申請番号
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-200-07-004
+    row: 17
+    content: Z990000002
+  label: ダウンロ-ド申請番号
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0357
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「4:完了」
+  key: 「4:完了」
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AZ-111-09-001
+    row: 52
+    content: チェックボックスON
+  label: 4:完了
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0358
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面-更新
+  phrase: 「一覧画面」押下
+  key: 「一覧画面」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-240-01-001
+    row: 20
+    content: ''
+  label: 一覧画面
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0359
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「機械点検画像」押下
+  key: 「機械点検画像」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-211-04-001
+    row: 24
+    content: ''
+  label: 機械点検画像
+  type: template
+  op: click
+  status: auto
+  control: button:displayInspectorImage
+  selector: '#displayInspectorImage'
+  kind: button
+- id: B0360
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 「機械点検画像表示」を検索
+  key: 「機械点検画像表示」を検索
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-211-04-001
+    row: 22
+    content: ''
+  label: 機械点検画像表示
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:displayInspectorImage
+    selector: '#displayInspectorImage'
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0361
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 任意の項目の値を変更
+  key: 任意の項目の値を変更
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AZ-200-07-001
+    row: 16
+    content: ''
+  label: 任意の項目の値を変更
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0362
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '添付ファイル欄1
+
+    「参照」押下'
+  key: 添付ファイル欄1「参照」押下
+  rows: 2
+  books: 1
+  types:
+    ボタン: 2
+  sample:
+    book: AZ-211-02-001
+    row: 18
+    content: ''
+  label: 添付ファイル欄1「参照」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0363
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 開発者ツール-「Sources」タブ押下
+  key: 開発者ツ-ル-「Sources」タブ押下
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-211-04-001
+    row: 21
+    content: ''
+  label: 開発者ツ-ル-「Sources」タブ
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0364
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 画面を操作せず、一時間待機
+  key: 画面を操作せず、一時間待機
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AZ-200-03-002
+    row: 18
+    content: ''
+  label: 画面を操作せず、一時間待機
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0365
+  screen: ANB00/ANA02
+  screenName: 取消計上申請登録画面
+  phrase: 「メニュー画面」押下
+  key: 「メニュ-画面」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AY-100-02-001
+    row: 28
+    content: ※閉局後
+  label: メニュ-画面
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:route7
+    selector: '#route7'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0366
+  screen: ANB00/ANA02
+  screenName: 取消計上申請登録画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-100-08-001
+    row: 16
+    content: '【別紙】操作内容
+
+      入力内容：１参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0367
+  screen: ANB00/ANA02
+  screenName: 取消計上申請登録画面
+  phrase: 閉局用のシェルスクリプトを実行
+  key: 閉局用のシェルスクリプトを実行
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AY-100-02-001
+    row: 26
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 閉局用のシェルスクリプトを実行
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0368
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: application_idのvalueの値を削除
+  key: application_ＩＤのvalueの値を削除
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AY-100-05-001
+    row: 23
+    content: ''
+  label: application_ＩＤのvalueの値を削除
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:deleteApplication
+    selector: '#deleteApplication'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0369
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 「F12」より開発者ツールを開く
+  key: 「F12」より開発者ツ-ルを開く
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AY-100-05-001
+    row: 20
+    content: ''
+  label: F12
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0370
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: '「申請依頼先選択」
+
+    または
+
+    「承認依頼先」押下'
+  key: 「申請依頼先選択」または「承認依頼先」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AY-100-03-002
+    row: 20
+    content: ''
+  label: 申請依頼先選択
+  type: template
+  op: click
+  status: auto
+  control: button:selectReqApplicantUser
+  selector: '[name="selectReqApplicantUser"]'
+  kind: button
+- id: B0371
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 任意の項目の値を変更
+  key: 任意の項目の値を変更
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-100-08-001
+    row: 20
+    content: ''
+  label: 任意の項目の値を変更
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0372
+  screen: ANB00/ANA03
+  screenName: 申請・確認更新画面
+  phrase: 開発者ツールでctrl+fを使用し、application_idを検索
+  key: 開発者ツ-ルでctrl+fを使用し、application_ＩＤを検索
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AY-100-05-001
+    row: 21
+    content: ''
+  label: 開発者ツ-ルでctrl+fを使用し、application_ＩＤを検索
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0373
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 2
+  books: 2
+  types:
+    ボタン: 2
+  sample:
+    book: AY-100-08-004
+    row: 22
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0374
+  screen: ANB00/ANA05
+  screenName: 照会・検索画面
+  phrase: 証券番号
+  key: 証券番号
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-100-08-004
+    row: 16
+    content: AY10008003
+  label: 証券番号
+  type: template
+  op: click
+  status: auto
+  control: text:policy_number
+  selector: '#policy_number'
+  kind: text
+- id: B0375
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 「11：承認待ち」を選択
+  key: 「11:承認待ち」を選択
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-130-03-001
+    row: 49
+    content: ''
+  label: 11:承認待ち
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0376
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 「No」押下
+  key: 「No」押下
+  rows: 2
+  books: 2
+  types:
+    クリック: 2
+  sample:
+    book: AY-130-03-001
+    row: 22
+    content: 検索条件のデータリンクを押下
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0377
+  screen: ANB00/ANA07
+  screenName: 申請承認一覧画面
+  phrase: 画面各項目入力
+  key: 画面各項目入力
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-130-03-001
+    row: 16
+    content: '【別紙】検索条件整理（AY-130-03）.xlsx
+
+      を参照して入力を行い、検索条件ごとの結果を確認すること'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0378
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 「氏名」または「課支社CD」
+  key: 「氏名」または「課支社CD」
+  rows: 2
+  books: 2
+  types:
+    入力: 2
+  sample:
+    book: AY-100-03-002
+    row: 23
+    content: test
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name_key
+  selector: '#user_name_key'
+  kind: text
+- id: B0379
+  screen: ANB00/ANA10
+  screenName: 担当者検索画面
+  phrase: 画面を操作せず、一時間待機
+  key: 画面を操作せず、一時間待機
+  rows: 2
+  books: 2
+  types:
+    その他: 2
+  sample:
+    book: AY-100-03-002
+    row: 22
+    content: ''
+  label: 画面を操作せず、一時間待機
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0380
+  screen: null
+  screenName: AD業務総括部・異例取扱HP
+  phrase: AD商品info.海上
+  key: AD商品info.海上
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AY-100-09-002
+    row: 20
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0381
+  screen: null
+  screenName: null
+  phrase: AD業務総括部・異例取扱HP
+  key: AD業務総括部・異例取扱HP
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AY-100-09-002
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0382
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「<<全部」押下
+  key: 「<<全部」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 21
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0383
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「<個別」押下
+  key: 「<個別」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 25
+    content: 抽出対象代理店を1件選択
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0384
+  screen: null
+  screenName: 不備データ集計ファイル作成画面
+  phrase: 「ＣＳＶ出力」押下
+  key: 「CSV出力」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 54
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0385
+  screen: null
+  screenName: null
+  phrase: 「No.」押下
+  key: 「No.」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-03-001
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0386
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「↑」押下
+  key: 「↑」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 29
+    content: 抽出対象代理店の2番目に表示されている代理店を選択
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0387
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「↓」押下
+  key: 「↓」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 31
+    content: 抽出対象代理店の1番目に表示されている代理店を選択
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0388
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「クリップボードコピー」押下
+  key: 「クリップボ-ドコピ-」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 33
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0389
+  screen: null
+  screenName: null
+  phrase: 「ファイル取込」押下
+  key: 「ファイル取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 16
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0390
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「フリーコード集計取込」押下
+  key: 「フリ-ｺ-ﾄﾞ集計取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 21
+    content: AZ-130-01-001で作成したファイルを取込（AZ-150-07-001　のバッチ実行結果の確認で使用したファイルを使用）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0391
+  screen: null
+  screenName: 集計画面
+  phrase: 「メニュー」押下
+  key: 「メニュ-」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AY-100-09-001
+    row: 18
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0392
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「不備内容取込」押下
+  key: 「不備内容取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 19
+    content: AZ-130-01-001で作成したファイルを取込（AZ-150-07-001　のバッチ実行結果の確認で使用したファイルを使用）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0393
+  screen: null
+  screenName: メインメニュー画面
+  phrase: 「不備改善レポート作成（不備項目一覧）」押下
+  key: 「不備改善レポ-ト作成(不備項目一覧)」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 38
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0394
+  screen: null
+  screenName: メインメニュー画面
+  phrase: 「不備改善レポート作成」押下
+  key: 「不備改善レポ-ト作成」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 25
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0395
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「不備項目取込」押下
+  key: 「不備項目取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 18
+    content: AZ-130-01-001で作成したファイルを取込（AZ-150-07-001　のバッチ実行結果の確認で使用したファイルを使用）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0396
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「予約実行」押下
+  key: 「予約実行」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 35
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0397
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「個別>」押下
+  key: 「個別>」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 23
+    content: 候補代理店を1件選択
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0398
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「募集人集計取込」押下
+  key: 「募集人集計取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 22
+    content: AZ-130-01-001で作成したファイルを取込（AZ-150-07-001　のバッチ実行結果の確認で使用したファイルを使用）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0399
+  screen: null
+  screenName: 不備データ集計ファイル作成画面
+  phrase: 「参照」押下
+  key: 「参照」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 53
+    content: CSVファイルの出力先を指定
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0400
+  screen: null
+  screenName: 親子集計予約画面
+  phrase: 「実行↓」押下
+  key: 「実行↓」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0401
+  screen: null
+  screenName: 申込書品質管理レポート作成画面
+  phrase: 「検索開始」押下
+  key: 「検索開始」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 28
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0402
+  screen: null
+  screenName: ファイル取込画面
+  phrase: 「登録件数取込」押下
+  key: 「登録件数取込」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 20
+    content: AZ-130-01-001で作成したファイルを取込（AZ-150-07-001　のバッチ実行結果の確認で使用したファイルを使用）
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0403
+  screen: null
+  screenName: メインメニュー画面
+  phrase: 不備データ集計ファイル作成機能
+  key: 不備デ-タ集計ファイル作成機能
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-130-01-002
+    row: 50
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0404
+  screen: null
+  screenName: null
+  phrase: 不備集計ツール
+  key: 不備集計ツ-ル
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-130-01-002
+    row: 14
+    content: 不備集計ツールのダウンロード
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0405
+  screen: null
+  screenName: null
+  phrase: 申込書品質管理システムのページ
+  key: 申込書品質管理システムのペ-ジ
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-100-09-002
+    row: 17
+    content: ''
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0406
+  screen: null
+  screenName: AD業務総括部・異例取扱HP
+  phrase: 異例取扱管理メニュー画面
+  key: 異例取扱管理メニュ-画面
+  rows: 1
+  books: 1
+  types:
+    遷移: 1
+  sample:
+    book: AY-100-09-002
+    row: 19
+    content: 初期表示
+  type: no-screen
+  op: null
+  status: blocked
+  note: 该行之前没有可识别的画面遷移；需补手顺或人工指定画面
+- id: B0407
+  screen: AMB/AMA01
+  screenName: 親子集計受付完了画面
+  phrase: AZ-150-05-001の実施
+  key: AZ-150-05-001の実施
+  rows: 1
+  books: 1
+  types:
+    ? ''
+    : 1
+  sample:
+    book: AZ-140-01-001
+    row: 70
+    content: ''
+  label: AZ-150-05-001の実施
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0408
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「ファイルの選択」押下
+  key: 「ファイルの選択」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 63
+    content: 項番2-18～2-19の操作で保存したテキストファイルを選択して開く
+  label: ファイルの選択
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0409
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「メニュー」押下
+  key: 「メニュ-」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-100-09-001
+    row: 23
+    content: ''
+  label: メニュ-
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0410
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 「状況確認」押下
+  key: 「状況確認」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 74
+    content: ''
+  label: 状況確認
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0411
+  screen: AMB/AMA01
+  screenName: 申込書品質管理メニュー画面
+  phrase: 申込書品質管理システムのページ
+  key: 申込書品質管理システムのペ-ジ
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-100-09-001
+    row: 25
+    content: ''
+  label: 申込書品質管理システムのペ-ジ
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0412
+  screen: AMB/AMA01
+  screenName: 親子集計予約画面
+  phrase: 親子代理店定義ファイルの読込
+  key: 親子代理店定義ファイルの読込
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-140-01-001
+    row: 62
+    content: チェックする
+  label: 親子代理店定義ファイルの読込
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0413
+  screen: AMB/AMA03
+  screenName: 不備内容入力画面－新規
+  phrase: 「募集人選択」押下
+  key: 「募集人選択」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-110-01-001
+    row: 17
+    content: ''
+  label: 募集人選択
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0414
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「コピー登録」押下
+  key: 「コピ-登録」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-07-001
+    row: 29
+    content: ''
+  label: コピ-登録
+  type: template
+  op: click
+  status: auto
+  control: submit:copyRegist
+  selector: '#copyRegist'
+  kind: submit
+- id: B0415
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「代理店照会」プルダウン選択
+  key: 「代理店照会」プルダウン選択
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-310-27-001
+    row: 20
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 代理店照会
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0416
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「新規登録」押下
+  key: 「新規登録」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-09-002
+    row: 83
+    content: ''
+  label: 新規登録
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0417
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 「開く」押下
+  key: 「開く」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-04-001
+    row: 23
+    content: ''
+  label: 開く
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0418
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 不備情報欄に入力
+  key: 不備情報欄に入力
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-211-01-002
+    row: 26
+    content: '項番１のブラウザで行うこと
+
+
+      【別紙】操作内容
+
+      入力内容：２参照'
+  label: 不備情報欄に
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0419
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 依頼区分ラジオボタン
+  key: 依頼区分ラジオボタン
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-210-03-001
+    row: 53
+    content: 連絡に変更する
+  label: 依頼区分ラジオ
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: radio:agent_deal_flag_1
+    selector: '#agent_deal_flag_1'
+    kind: radio
+  - control: radio:agent_deal_flag_2
+    selector: '#agent_deal_flag_2'
+    kind: radio
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0420
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '回答内容回答入力欄
+
+    （代理店照会が ”否” のもの）'
+  key: 回答内容回答入力欄(代理店照会が”否”のもの)
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-410-23-001
+    row: 20
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 回答内容回答入力欄(代理店照会が”否”のもの)
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0421
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '添付ファイル1
+
+    「ファイルの選択」押下'
+  key: 添付ファイル1「ファイルの選択」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-04-001
+    row: 20
+    content: ''
+  label: 添付ファイル1「ファイルの選択」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0422
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '添付ファイル1　
+
+    「削除」押下'
+  key: 添付ファイル1「削除」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-04-001
+    row: 29
+    content: ''
+  label: 添付ファイル1「削除」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:|delete_file_${stat.index}|
+    selector: null
+    kind: button
+  - control: submit:delete
+    selector: '#delete'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0423
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: '添付ファイル1
+
+    「添付ファイル名」押下'
+  key: 添付ファイル1「添付ファイル名」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-111-04-001
+    row: 27
+    content: ''
+  label: 添付ファイル1「添付ファイル名」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0424
+  screen: AMB/AMA04
+  screenName: 不備内容入力画面-更新
+  phrase: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  key: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-111-04-001
+    row: 22
+    content: 【別紙】事前準備の添付ファイル参照
+  label: 添付用テストファイルのあるフォルダに移動して、ファイルを選択
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0425
+  screen: AMB/AMA07
+  screenName: 不備一覧画面
+  phrase: 「4:完了」チェックボックス
+  key: 「4:完了」チェックボックス
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-120-03-002
+    row: 27
+    content: チェックボックスオンにする
+  label: 4:完了
+  type: template
+  op: click
+  status: auto
+  control: checkbox:complete_status
+  selector: '#complete_status'
+  kind: checkbox
+- id: B0426
+  screen: AMB/AMA08
+  screenName: 不備集計画面
+  phrase: 「メニュー」押下
+  key: 「メニュ-」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-100-09-001
+    row: 19
+    content: ''
+  label: メニュ-
+  type: template
+  op: click
+  status: auto
+  control: submit:act201to001
+  selector: '#act201to001'
+  kind: submit
+- id: B0427
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 「No.リンク」押下
+  key: 「No.リンク」押下
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-140-01-001
+    row: 46
+    content: ''
+  type: rowlink
+  op: chooseRow
+  status: auto
+  note: 行链接，运行期用本数据的锚点值选行
+- id: B0428
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 「ダウンロード」押下
+  key: 「ダウンロ-ド」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 79
+    content: 完了時間がAZ-150-05-001の実施日以降の日付のデータ
+  label: ダウンロ-ド
+  type: template
+  op: click
+  status: auto
+  control: submit:download
+  selector: '#download'
+  kind: submit
+- id: B0429
+  screen: AMB/AMA11
+  screenName: 親子集計予約画面
+  phrase: 「メニュー」押下
+  key: 「メニュ-」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 48
+    content: ''
+  label: メニュ-
+  type: template
+  op: click
+  status: auto
+  control: submit:act204to001
+  selector: '#act204to001'
+  kind: submit
+- id: B0430
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 「前頁」押下
+  key: 「前頁」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 41
+    content: ''
+  label: 前頁
+  type: template
+  op: click
+  status: auto
+  control: submit:prevPage
+  selector: '#prevPage'
+  kind: submit
+- id: B0431
+  screen: AMB/AMA11
+  screenName: 親子集計状況確認画面
+  phrase: 「次頁」押下
+  key: 「次頁」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-140-01-001
+    row: 39
+    content: ''
+  label: 次頁
+  type: template
+  op: click
+  status: auto
+  control: submit:nextPage
+  selector: '#nextPage'
+  kind: submit
+- id: B0432
+  screen: AMB/AMA13
+  screenName: 項目名検索画面
+  phrase: 照会内容選択・プルダウン選択
+  key: 照会内容選択・プルダウン選択
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-110-01-001
+    row: 34
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 照会内容選択・プルダウン選択
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: text:inquiry_contents_code_key
+    selector: '#inquiry_contents_code_key'
+    kind: text
+  - control: submit:select
+    selector: '#select'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0433
+  screen: AMB/AMA14
+  screenName: 帳票印刷画面
+  phrase: 「帳票印刷」押下
+  key: 「帳票印刷」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-110-03-001
+    row: 54
+    content: ''
+  label: 帳票印刷
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0434
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 前頁
+  key: 前頁
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 21
+    content: 押下
+  label: 前頁
+  type: template
+  op: click
+  status: auto
+  control: submit:prevPage
+  selector: '#prevPage'
+  kind: submit
+- id: B0435
+  screen: AMB/AMA26
+  screenName: 営業連携メール通知先登録画面
+  phrase: 追加
+  key: 追加
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 31
+    content: 押下
+  label: 追加
+  type: template
+  op: click
+  status: auto
+  control: button:add_user
+  selector: '#add_user'
+  kind: button
+- id: B0436
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: メール通知
+  key: メ-ル通知
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AZ-112-01-001
+    row: 51
+    content: 押下(No.1：AHK02のレコード)
+  label: メ-ル通知
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0437
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 各項目
+  key: 各項目
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-112-01-001
+    row: 47
+    content: '【別紙】操作内容
+
+      入力内容：４参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0438
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 更新
+  key: 更新
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 53
+    content: 押下
+  label: 更新
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0439
+  screen: AMB/AMA27
+  screenName: 個別メール通知先検索画面
+  phrase: 閉じる
+  key: 閉じる
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 49
+    content: 押下
+  label: 閉じる
+  type: template
+  op: click
+  status: auto
+  control: button:close
+  selector: '[name="close"]'
+  kind: button
+- id: B0440
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 前頁
+  key: 前頁
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 90
+    content: 押下
+  label: 前頁
+  type: template
+  op: click
+  status: auto
+  control: submit:prevPage
+  selector: '#prevPage'
+  kind: submit
+- id: B0441
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 各項目
+  key: 各項目
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-112-01-001
+    row: 95
+    content: '【別紙】操作内容
+
+      入力内容：４参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0442
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 検索
+  key: 検索
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 86
+    content: 押下
+  label: 検索
+  type: template
+  op: click
+  status: auto
+  control: submit:search
+  selector: '#search'
+  kind: submit
+- id: B0443
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 次頁
+  key: 次頁
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-112-01-001
+    row: 88
+    content: 押下
+  label: 次頁
+  type: template
+  op: click
+  status: auto
+  control: submit:nextPage
+  selector: '#nextPage'
+  kind: submit
+- id: B0444
+  screen: AMB/AMA28
+  screenName: メール通知先選択画面
+  phrase: 氏名
+  key: 氏名
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-112-01-001
+    row: 93
+    content: '【別紙】操作内容
+
+      入力内容：３参照'
+  label: 氏名
+  type: template
+  op: click
+  status: auto
+  control: text:user_name
+  selector: '#user_name'
+  kind: text
+- id: B0445
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 営業連携押下
+  key: 営業連携押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-230-01-025
+    row: 54
+    content: ''
+  label: 営業連携
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0446
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: 回答内容
+  key: 回答内容
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-110-74-001
+    row: 18
+    content: '【別紙】操作内容
+
+      入力内容：２参照'
+  label: 回答内容
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: submit:updateAnswer
+    selector: '#updateAnswer'
+    kind: submit
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0447
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '添付ファイル欄1～4
+
+    「参照」押下'
+  key: 添付ファイル欄1~4「参照」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-02-001
+    row: 45
+    content: ''
+  label: 添付ファイル欄1~4「参照」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0448
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '添付ファイル欄1
+
+    「削除」押下'
+  key: 添付ファイル欄1「削除」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-02-001
+    row: 27
+    content: ''
+  label: 添付ファイル欄1「削除」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates:
+  - control: button:|delete_file_${stat.index}|
+    selector: null
+    kind: button
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0449
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '添付ファイル欄1
+
+    「添付ファイル名」押下'
+  key: 添付ファイル欄1「添付ファイル名」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-02-001
+    row: 25
+    content: ''
+  label: 添付ファイル欄1「添付ファイル名」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0450
+  screen: AMC00/AMC23
+  screenName: 代理店 不備内容入力画面（更新）
+  phrase: '添付ファイル欄2
+
+    「参照」押下'
+  key: 添付ファイル欄2「参照」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-02-001
+    row: 38
+    content: ''
+  label: 添付ファイル欄2「参照」
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0451
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 「OK」押下
+  key: 「OK」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-03-001
+    row: 27
+    content: ''
+  label: OK
+  type: template
+  op: click
+  status: auto
+  control: dialog:confirm
+  selector: '@dialog:confirm'
+  kind: dialog
+- id: B0452
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 「削除」押下
+  key: 「削除」押下
+  rows: 1
+  books: 1
+  types:
+    ボタン: 1
+  sample:
+    book: AZ-211-03-001
+    row: 26
+    content: ''
+  label: 削除
+  type: template
+  op: click
+  status: auto
+  control: submit:delete
+  selector: '#delete'
+  kind: submit
+- id: B0453
+  screen: AMC00/AMC24
+  screenName: 代理店 訂正内容確認画面
+  phrase: 各項目に入力
+  key: 各項目に入力
+  rows: 1
+  books: 1
+  types:
+    入力: 1
+  sample:
+    book: AZ-211-03-001
+    row: 21
+    content: '【別紙】操作内容
+
+      入力内容：2　参照'
+  type: directive
+  op: fillAll
+  status: auto
+  note: 手顺的「各項目に入力」由別紙数据驱动
+- id: B0454
+  screen: ANB00/ANA01
+  screenName: 異例取扱管理メニュー画面
+  phrase: 業務プロセスデザイン部・異例取扱HP
+  key: 業務プロセスデザイン部・異例取扱HP
+  rows: 1
+  books: 1
+  types:
+    クリック: 1
+  sample:
+    book: AY-100-09-001
+    row: 21
+    content: ''
+  label: 業務プロセスデザイン部・異例取扱HP
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定
+- id: B0455
+  screen: ANB00/ANA01
+  screenName: 異例取扱管理メニュー画面
+  phrase: 画面
+  key: 画面
+  rows: 1
+  books: 1
+  types:
+    遷移: 1
+  sample:
+    book: AY-100-09-001
+    row: 20
+    content: 初期表示
+  label: 画面
+  type: explicit
+  op: click
+  status: needs-human
+  candidates: []
+  note: 没有标签精确相等的控件，需人工指定

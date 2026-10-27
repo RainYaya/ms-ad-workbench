@@ -1,0 +1,139 @@
+# AZ-240-01-001  PDF形式：申込書類不備照会票（帳票出力 / MS）
+#
+# 新 schema（docs/rpa/11-KERNEL.md）。これは「帳票出力（DL）」型の検証用。
+# 代理店 不備一覧 → 検索 → No.リンク → 不備内容入力（更新）→ 印刷(PDF)
+# → 一覧画面 → 同じ流れをもう一度（明細番号だけ違う）。
+#
+# - 別紙【操作内容】1/2 = 証券番号 + 明細番号 の2組。同じ画面を2周する。
+# - 別紙【表示内容】1/2 = 21項目。mock の AMC23 は静的テンプレートで
+#   サーバ生成値が入らないため検証できない。ref: unresolved で残す
+#   （通過扱いにしない）。真機では #policy_number / #sub_policy_number /
+#   #insurant_name / #start_date / #change_date などの hidden input で確認できる。
+# - 別紙【出力結果】は appendix にシートが無い（操作内容 / 表示内容の2枚だけ）。
+#   downloadIs は「PDF が落ちてきたこと」だけを検証し、中身は ref で未解決にする。
+# - mock は印刷で download を返さない（/AMC23/aZG104Print は AMC23.html に戻る）。
+#   行 19 / 27 の downloadIs は pending。真機でのみ検証できる。
+# - 実施前提（別紙）: 代理店認証経由 / テストデータ作成済み / 現行側でも同一ユーザ。
+#   mock には認証が無いので start.url を直接開く。
+
+case: AZ-240-01-001
+start:
+  screen: 代理店 不備一覧画面
+  url: /AMC00/AMC22.html
+title: 不備一覧検索→No.リンク→不備内容入力(更新)→印刷(PDF)→一覧→2件目
+user: MS
+pointCheck: 申込書品質管理 帳票出力
+env: prod-a
+evidencePolicy: required
+
+# ── 値 ───────────────────────────────────────────────
+# 別紙【操作内容】の行。r5/r6 = 入力内容1、r7/r8 = 入力内容2。
+values:
+  証券番号:   {value: "AZ240001",   source: case, row: 5, note: シナリオID（入力内容1/2 共通）}
+  明細番号１: {value: "0000000001", source: case, row: 6}
+  明細番号２: {value: "0000000002", source: case, row: 8}
+
+# ── 手順 ─────────────────────────────────────────────
+steps:
+  # ── 1周目（入力内容1）──────────────────────────────
+  - row: 14
+    on: 代理店 不備一覧画面
+    do: fillAll
+    use:
+      - 証券番号
+      - {label: 明細番号, value: "${case.明細番号１}"}
+    note: 操作内容1。入力内容1（証券番号 + 明細番号）。
+
+  - row: 15
+    on: 代理店 不備一覧画面
+    do: click
+    target: {label: 検索}
+    note: 検索条件は証券番号と明細番号だけ。部店課支社/代理店は別紙に指定なし。
+
+  - row: 16
+    on: 代理店 不備一覧画面
+    do: chooseRow
+    target: {label: 結果行のNo.}
+    note: >
+      結果表の No. 列リンク。AMC22 の検索は1件のはずで、chooseRow は
+      辞書 selector が恰好1個のときだけ押す（0/2+ はエラー）。
+
+  - row: 17
+    on: 代理店 不備内容入力画面-更新
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 表示内容１, status: unresolved,
+            note: "21項目（入力区分/代理店名/種目/保険種類/証券番号 AZ240001/明細番号 0000000001/部店課支社コード AHE61/…）。mock の AMC23 は静的テンプレートで値が入らない"}
+
+  - row: 18
+    on: 代理店 不備内容入力画面-更新
+    do: click
+    target: {label: 印刷}
+    note: 印刷ボタンで PDF を出力する。mock は AMC23.html に戻るだけ。
+
+  - row: 19
+    on: 代理店 不備内容入力画面-更新
+    do: downloadIs
+    evidence: PDFﾌｧｲﾙ
+    expect:
+      download: {ext: pdf, note: 代理店 申込書類不備照会票}
+      ref: {appendix: 出力結果１, status: unresolved,
+            note: "別紙【正しい申込書類の作成についてのお願い】出力結果1。appendix にシートが無く未解析"}
+
+  - row: 20
+    on: 代理店 不備内容入力画面-更新
+    do: click
+    target: {label: 一覧画面}
+    expect: {screen: 代理店 不備一覧画面}
+    note: 画面のボタン表示は「不備一覧」。手順書の「一覧画面」に対応（辞書 alias）。
+
+  - row: 21
+    on: 代理店 不備一覧画面
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 入力内容１の検索結果, status: unresolved,
+            note: "検索結果が入力内容1（証券番号 AZ240001 / 明細番号 0000000001）の1件であること。mock の結果行は固定値"}
+
+  # ── 2周目（入力内容2）──────────────────────────────
+  - row: 22
+    on: 代理店 不備一覧画面
+    do: fillAll
+    use:
+      - 証券番号
+      - {label: 明細番号, value: "${case.明細番号２}"}
+    note: 操作内容1（入力内容2）。1周目と同じ画面に戻ってから入力し直す。
+
+  - row: 23
+    on: 代理店 不備一覧画面
+    do: click
+    target: {label: 検索}
+
+  - row: 24
+    on: 代理店 不備一覧画面
+    do: chooseRow
+    target: {label: 結果行のNo.}
+    note: 2件目。検索結果が1件でなければエラー。
+
+  - row: 25
+    on: 代理店 不備内容入力画面-更新
+    do: screenIs
+    evidence: 画面HC
+    expect:
+      ref: {appendix: 表示内容２, status: unresolved,
+            note: "表示内容1と同じ21項目（明細番号のみ 0000000002）。mock の AMC23 は静的テンプレート"}
+
+  - row: 26
+    on: 代理店 不備内容入力画面-更新
+    do: click
+    target: {label: 印刷}
+
+  - row: 27
+    on: 代理店 不備内容入力画面-更新
+    do: downloadIs
+    evidence: PDFﾌｧｲﾙ
+    expect:
+      download: {ext: pdf, note: 代理店 申込書類不備照会票}
+      ref: {appendix: 出力結果２, status: unresolved,
+            note: "別紙【正しい申込書類の作成についてのお願い】出力結果2。appendix にシートが無く未解析"}

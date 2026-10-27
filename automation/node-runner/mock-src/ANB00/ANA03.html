@@ -12,41 +12,55 @@
 	// 大種目リスト
 	var largeItems = [
 	  ''
-	  
-	  ,'1','1'
-	  
+
+	  ,'A','N'
+
+	  ,'B','N'
+
+	  ,'Y','C'
+
+	  ,'Z','N'
+
+	  ,'0','N'
+
 	  ];
 
 	// 保種リスト
 	var insuranceItems = [
 	  ''
-	  
-	  ,'1','1','1','1'
-	  
+
+	  ,'A','11','A0','クルマの保険/はじめての自動車保険'
+
+	  ,'B','00','A0','自賠責'
+
 	  ];
 
 	// 申請基準項目説明リスト
 	var applicationBaseItems = [
 	  ''
-	  
-	  ,'1','1','1'
-	  
+
+	  ,'1','1.再計上契約のない取消計上','1'
+
 	  ];
 
 	// 取消理由説明、区分リスト
 	var cancelReasons = [
 	  ''
-	  
-	  ,'1','1','1','1','1','1'
-	  
+
+	  ,'A','A.当社・代理店の責による意図しない保険契約の解消','自動車の取消理由','1','N','0'
+
+	  ,'G','G.当社・代理店の責による計上時等の事務ミスによる保険契約の解消','','1','N','0'
+
 	  ];
 
 	// 具体的内容リスト
 	var concreteContents = [
 	  ''
-	  
-	  ,'1','1','1','1','1'
-	  
+
+	  ,'A','C001','募集人(代理店)の説明誤り','0','N'
+
+	  ,'G','C002','社員による二重計上','0','N'
+
 	  ];
 
 </script>
@@ -853,31 +867,23 @@ function mockPrefill(form) {
   };
 
   setVal('section_code', 'ABM62');
-  setVal('agent_code', '252H');
-  setVal('policy_number', 'AZ11001');
-  setVal('insurant_name', '黒川　京子');
-  setVal('cancel_application_date', '2026/10/30');
-  setVal('start_date', '2026/11/01');
-  setVal('notification_date', '2026/10/30');
-  setVal('concrete_explanation', 'モック初期値');
+  setVal('agent_code', '2031');
+  setVal('policy_number', 'AY1101');
+  setVal('sub_policy_number', '0000000001');
+  setVal('insurant_name', 'テスト');
+  setVal('cancel_application_date', '2026/03/03');
+  setVal('start_date', '2026/04/04');
+  setVal('notification_date', '2026/05/05');
+  setVal('concrete_explanation', 'テスト');
 
   var largeItem = form.elements['large_item_list.selected'];
-  if (largeItem) { largeItem.value = 'B'; }
+  if (largeItem) { largeItem.value = 'A'; }
+  var appBase = form.elements['application_base_item_list.selected'];
+  if (appBase) { appBase.value = '1'; }
 
-  // 異例取扱理由・具体的内容はJSで選択肢を組み立てるためロード後に設定する
-  var fillSelectFromArray = function (name, values) {
-    var sel = form.elements[name];
-    if (!sel || sel.options.length > 1) { return; }
-    for (var i = 1; i < values.length; i++) {
-      var opt = document.createElement('option');
-      opt.value = values[i];
-      opt.text = values[i];
-      sel.appendChild(opt);
-    }
-    if (sel.options.length > 1) { sel.value = values[1]; }
-  };
-  fillSelectFromArray('cancel_reason_list.selected', cancelReasons);
-  fillSelectFromArray('concrete_content_list.selected', concreteContents);
+  // 申請基準項目と大種目を確定してから、異例取扱理由の選択肢を組み立てる
+  // （実機では申請基準項目がサーバから入ってくる。mock ではここで補完する）
+  if (typeof initCancelReason === 'function') { initCancelReason(false); }
 
   var needlessRadio = document.getElementById('agent_invitation_status_2');
   if (needlessRadio) { needlessRadio.checked = true; }
@@ -1827,9 +1833,11 @@ function editExplainAndInsuranceConfirm(form) {
           <div class="gyoumu_field_input">
             <input type="hidden" id="application_base_item_key" name="application_base_item_key" />
             <select name="application_base_item_list.selected" onchange="onChangeAppBaseItem(false);controlAgentLead();setApplicationBaseItemSelect(this);">
-              
-                <option>1</option>
-              
+
+                <option value="1">1.再計上契約のない取消計上</option>
+                <option value="2">2.再計上契約のある取消計上</option>
+                <option value="3">3.その他</option>
+
             </select>
           </div>
           <div class="gyoumu_field">
@@ -1861,7 +1869,7 @@ function editExplainAndInsuranceConfirm(form) {
           <div class="gyoumu_field_title">大種目</div>
           <div class="gyoumu_field_input">
             <input type="hidden" id="large_item_key" name="large_item_key" />
-            <select name="large_item_list.selected" onchange="onChangeLargeItem(false);onChangeInsuranceItem(false);setLargeItemSelect(this);resetInsuranceItemSelect();"><option value=""></option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
+            <select name="large_item_list.selected" onchange="onChangeLargeItem(false);onChangeInsuranceItem(false);setLargeItemSelect(this);resetInsuranceItemSelect();"><option value=""></option><option value="A">自動車</option><option value="B">自賠責</option><option value="Y">貨物</option><option value="Z">種目共通</option><option value="0">その他</option></select>
           </div>
           <div class="gyoumu_field_title">保種</div>
           <div id="insurance_item_title" class="gyoumu_field_input">
@@ -2084,9 +2092,10 @@ function editExplainAndInsuranceConfirm(form) {
           <div class="gyoumu_field_input">
             <input type="hidden" id="contract_relation_key" name="contract_relation_key" />
             <select name="contract_relation_list.selected" onchange="controlContractArea();setContractRelationSelect(this);">
-              
-                <option>1</option>
-              
+
+                <option value="1">届出日(変更届出書の届出日)は始期日以降　　&lt;ルールに則り、保険契約者ヒアリング不要&gt;</option>
+                <option value="2">届出日(変更届出書の届出日)は始期日前</option>
+
             </select>
           </div>
         </div>
@@ -2373,7 +2382,7 @@ function editExplainAndInsuranceConfirm(form) {
     <!--/* 処理実行ボタン */-->
     <div class="button_area_normal_operation">
       <div class="button_area_button_length3">
-        <input type="submit" formaction="/ANA03/route14" id="update" name="update" value="更新" class="button_area_button" onclick="if(!document.tks_TKSPRForm.application_id.value){location.href='/ANB00/system_error.html';return false;}clickButton(this)">
+        <input type="submit" formaction="/ANA03/route14" id="update" name="update" value="更新" class="button_area_button" onclick="if(!document.tks_TKSPRForm.application_id.value){location.href='/ANB00/system_error.html';return false;}clickButton(this);return false;">
       </div>
       <div class="button_area_space"></div>
       <div class="button_area_button_length6">

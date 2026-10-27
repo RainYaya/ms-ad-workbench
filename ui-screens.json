@@ -16,19 +16,34 @@
    "app": "AMB",
    "code": "AMA03",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA01/aZG001To03"
+   ],
+   "routesFrom": "capture 2026-10-28 AZ-110-05-008（实机：新規入力在 AMA01 控制器下）"
   },
   "不備内容入力画面-更新": {
    "app": "AMB",
    "code": "AMA04",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA03/aZG100Regist",
+    "/AMA04/aZG101UpdateBusinessNotify",
+    "/AMA04/aZG101Update",
+    "/AMA04/aZG101UpdateCompleteDate"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "不備内容入力画面-新規": {
    "app": "AMB",
    "code": "AMA03",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA01/aZG001To03"
+   ],
+   "routesFrom": "capture 2026-10-28 AZ-110-05-008"
   },
   "不備一覧画面": {
    "app": "AMB",
@@ -40,25 +55,43 @@
    "app": "AMB",
    "code": "AMA13",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA13/aZG900Search",
+    "/AMA13/aZG900Select"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "照会内容編集画面": {
    "app": "AMB",
    "code": "AMA15",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA15"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "募集人検索画面": {
    "app": "AMB",
    "code": "AMA18",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA18/aZG905Search"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "訂正内容確認画面": {
    "app": "AMB",
    "code": "AMA19",
    "status": "inferred",
-   "titleRuntime": true
+   "titleRuntime": true,
+   "routes": [
+    "/AMA19/aZG906Regist",
+    "/AMA19"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "保険種類選択画面": {
    "app": "AMB",
@@ -162,6 +195,13 @@
    "status": "inferred",
    "titleRuntime": true
   },
+  "代理店 不備内容入力画面-更新": {
+   "app": "AMC00",
+   "code": "AMC23",
+   "status": "inferred",
+   "titleRuntime": true,
+   "note": "手順書に全角（）と半角-が混在。norm() では同一にならないため別キー。中身は（更新）と同じ AMC23"
+  },
   "代理店 訂正内容確認画面": {
    "app": "AMC00",
    "code": "AMC24",
@@ -173,7 +213,14 @@
    "code": "AMA04",
    "status": "inferred",
    "titleRuntime": true,
-   "note": "手順書に全角－と半角-が混在。NFKC 正規化で同一視する"
+   "note": "手順書に全角－と半角-が混在。NFKC 正規化で同一視する",
+   "routes": [
+    "/AMA03/aZG100Regist",
+    "/AMA04/aZG101UpdateBusinessNotify",
+    "/AMA04/aZG101Update",
+    "/AMA04/aZG101UpdateCompleteDate"
+   ],
+   "routesFrom": "capture AZ-110-01-009 (2026-10-27 実機)"
   },
   "その他（申込書品質管理）": {
    "app": null,
@@ -234,6 +281,108 @@
    "code": "AMA11",
    "status": "inferred",
    "titleRuntime": true
+  },
+  "集計画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "手順の遷移にのみ出現。AMA08(不備集計) の可能性があるが名称不一致のため未確定"
+  },
+  "権限エラー画面": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "エラー画面。実機で title/URL を確認する"
+  },
+  "閉局画面": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "閉局シェル実行後の画面。実機で確認"
+  },
+  "回答入力画面": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "screen-rules では AMC23/AMA04 の両方が候補。曖昧なので確定しない"
+  },
+  "メニュー画面": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "AMA01/ANA01 の可能性。手順の文脈ごとに確認"
+  },
+  "システムエラー画面（代理店）": {
+   "app": "AMB",
+   "code": "system_error",
+   "status": "unknown",
+   "note": "mock に system_error.html があるが実機未確認"
+  },
+  "代理店モード 回答入力画面": {
+   "app": "AMC00",
+   "code": null,
+   "status": "unknown",
+   "note": "代理店モードの回答入力。実機で確認"
+  },
+  "ファイル取込画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "AMA06(checkFile) の可能性。実機で確認"
+  },
+  "申込書品質管理レポート作成画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "帳票/レポート系。実機で確認"
+  },
+  "メインメニュー画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "AMA01 の可能性。実機で確認"
+  },
+  "申込書品質管理レポート（不備内容/項目別）作成画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "帳票/レポート系。実機で確認"
+  },
+  "不備データ集計ファイル作成画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "集計ファイル出力。実機で確認"
+  },
+  "AD業務総括部・異例取扱HP": {
+   "app": null,
+   "code": null,
+   "status": "unknown",
+   "note": "外部 HP。ブラウザ自動化の対象外として扱う候補"
+  },
+  "代理店画面サンプル 不備一覧画面": {
+   "app": "AMC00",
+   "code": null,
+   "status": "unknown",
+   "note": "サンプル画面。実機で確認"
+  },
+  "申込書品質管理レポート画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "帳票/レポート系。実機で確認"
+  },
+  "申込書品質管理レポート（不備内容/項目別）画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "帳票/レポート系。実機で確認"
+  },
+  "親子集計受付完了画面": {
+   "app": "AMB",
+   "code": null,
+   "status": "unknown",
+   "note": "完了画面。実機で確認"
   }
  }
 }
