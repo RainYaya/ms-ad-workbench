@@ -68,7 +68,7 @@ node run-flow.mjs ../../flows/AZ-110-01-009.yaml --live --base https://真机/
 node capture.mjs --url https://真机/AMB/AMA01.html --out capture-1027 --edge</code></pre>
 <p><code>tools/compile_flow.py</code> 已落后于 <code>flow-loader.mjs</code>，只作历史参考； 编译/检查/执行的唯一路径是 <code>flow-loader.mjs</code> + <code>check-flow.mjs</code> + <code>run-flow.mjs</code>。</p>
 <h2 id="当前覆盖（2026-10-27-实测）">当前覆盖（2026-10-27 实测）</h2>
-<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th></tr></thead><tbody><tr><td>手顺里的本</td><td>1,386（其中 1,371 有操作行，15 本无手顺）</td></tr><tr><td>可直接生成的本（auto/confirmed 绑定 + 别紙值齐全）</td><td>122</td></tr><tr><td>生成后 L0（0 error、步数=手顺行数）</td><td>122 / 122</td></tr><tr><td>绑定规则</td><td>519（auto 263 / needs-human 220 / blocked 36）</td></tr><tr><td>控件库</td><td>54 画面 / 1,998 控件</td></tr><tr><td>mock 跑通（L1）</td><td>AY-120-08-001 等，见 <a href="14-REPORT.html">14-REPORT.md</a></td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th></tr></thead><tbody><tr><td>手顺里的本</td><td>1,386（其中 1,371 有操作行，15 本无手顺）</td></tr><tr><td>可直接生成的本（auto/confirmed 绑定 + 别紙值齐全）</td><td>124</td></tr><tr><td>生成后 L0（0 error、步数=手顺行数）</td><td>132 / 132（含 8 本手写）</td></tr><tr><td>绑定规则</td><td>519（auto 263 / needs-human 220 / blocked 36）</td></tr><tr><td>控件库</td><td>54 画面 / 1,998 控件</td></tr><tr><td>mock 跑通（L1）</td><td>AY-120-08-001 等，见 <a href="14-REPORT.html">14-REPORT.md</a></td></tr></tbody></table></div>
 <p>剩下的本不是"生不出来"，而是卡在三类<strong>明确</strong>的原因上，全部列在 <code>flows/books-status.json</code> 与 <code>14-REPORT.md</code> 第 4 节：别紙标签在画面上找不到 （多为「課支社コード」vs「部店課支社ｺｰﾄﾞ」这类措辞差）、绑定待人工确认、 手顺本身没有画面（批处理/非浏览器小节）。</p>
 <h2 id="目录">目录</h2>
 <pre><code>ui-controls.json        控件库：从 reference HTML 挖出的全部交互控件（生成物）
@@ -93,5 +93,5 @@ automation/node-runner/capture.mjs       真机 DOM 抓取</code></pre>
 <p><strong>宁可报错，绝不猜。</strong></p>
 <p>今天所有问题的根源都是"看起来差不多"被当成"对"。 字典查不到就带行号报错，运行期才能确定的就标 <code>pendingRuntime</code>。</p></article>
 <div class="footer">由 <code>tools/build_pages.py</code> 从仓库文档生成 ·
-2026-10-27 10:44</div>
+2026-10-27 10:56</div>
 </main></div></body></html>
