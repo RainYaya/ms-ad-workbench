@@ -205,6 +205,48 @@ const server = createServer(async (req, res) => {
       return json(res, 200, { ok: true, backup: `flows/.backup/${basename(backup)}` });
     }
 
+    // Save the file exactly as typed. /api/flow/save re-serializes the model,
+    // which is why every hand-written comment dies; this route is the one that
+    // keeps the file byte-for-byte. The only gate is "it must still parse and
+    // still look like a flow", so a syntax error is reported with its line
+    // number instead of being written.
+    if (p === '/api/flow/save-raw' && req.method === 'POST') {
+      const body = JSON.parse(await readBody(req));
+      const { path, raw: before } = readFlow(body.name);
+      // A browser textarea hands back LF whatever it was given, so a no-op save
+      // from the pane would otherwise rewrite every CRLF in the file and bury
+      // the real change in a whole-file diff. Keep the file's own convention.
+      const eol = before.includes('\r\n') ? '\r\n' : '\n';
+      const text = String(body.raw ?? '').replace(/\r\n/g, '\n').replace(/\n/g, eol);
+      if (!text.trim()) return json(res, 400, { error: '内容为空，未写盘' });
+      let model;
+      try {
+        model = yamlLoad(text);
+      } catch (e) {
+        const line = e.mark ? e.mark.line + 1 : null;
+        const why = String(e.reason || e.message).split('\n')[0];
+        return json(res, 400, { error: `YAML 解析失败${line ? `（第 ${line} 行）` : ''}: ${why}` });
+      }
+      if (!model || typeof model !== 'object' || Array.isArray(model)) {
+        return json(res, 400, { error: '顶层必须是映射（case: / steps: …）' });
+      }
+      if (model.steps !== undefined && !Array.isArray(model.steps)) {
+        return json(res, 400, { error: 'steps: 必须是列表' });
+      }
+      if (text === before) {
+        return json(res, 200, { ok: true, backup: null, model, bytes: Buffer.byteLength(text) });
+      }
+      mkdirSync(BACKUP, { recursive: true });
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const backup = join(BACKUP, `${logName(body.name)}.${stamp}.yaml`);
+      copyFileSync(path, backup);
+      writeFileSync(path, text, 'utf8');
+      return json(res, 200, {
+        ok: true, backup: `flows/.backup/${basename(backup)}`, model,
+        bytes: Buffer.byteLength(text),
+      });
+    }
+
     if (p === '/api/dict') {
       return json(res, 200, labelsFor(url.searchParams.get('screen') || ''));
     }

@@ -24,3 +24,6 @@ automation/node-runner/check_*.js
 /capture-*/
 # 给网页 AI 的材料包（含实机 HTML 副本）
 /brief/
+
+# Studio 每次写盘前的原文备份（本地回滚用，不是源码）
+/flows/.backup/

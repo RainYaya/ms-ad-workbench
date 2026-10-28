@@ -1,11 +1,10 @@
 {
- "at": "2026-10-27T16:09:04",
+ "at": "2026-10-28T15:35:31",
  "books": 1386,
- "written": 139,
+ "written": 132,
  "byStatus": {
-  "blocked": 1247,
-  "kept": 131,
-  "hand-written": 8
+  "blocked": 1254,
+  "ok": 132
  },
  "booksDetail": [
   {
@@ -270,19 +269,25 @@
   },
   {
    "book": "AY-100-08-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "計上情報消込処理"
+   ]
   },
   {
    "book": "AY-100-08-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "承認情報ファイル作成処理"
+   ]
   },
   {
    "book": "AY-100-08-007",
@@ -326,19 +331,25 @@
   },
   {
    "book": "AY-100-08-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "計上情報消込処理"
+   ]
   },
   {
    "book": "AY-100-08-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "承認情報ファイル作成処理"
+   ]
   },
   {
    "book": "AY-100-09-001",
@@ -362,10 +373,12 @@
   },
   {
    "book": "AY-110-01-001",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 28,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 16: appendix labels not on ANB00/ANA02: 申請・確認基準項目 (needs-human), 保険契約者氏名 (needs-human), 保種 (needs-human), 変更確認書課支社送付の理由 (needs-human)"
+   ],
    "warnings": []
   },
   {
@@ -1920,291 +1933,507 @@
   },
   {
    "book": "AY-120-08-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 13,
+   "steps": 13,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-002",
-   "status": "hand-written",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-009",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-010",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-013",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-014",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-015",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-016",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-017",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-08-018",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 14,
+   "steps": 13,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-009",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-010",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-013",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-014",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-015",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-016",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-017",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-09-018",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-120-10-001",
@@ -3328,291 +3557,507 @@
   },
   {
    "book": "AY-121-07-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 13,
+   "steps": 13,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-009",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-010",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-013",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-014",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-015",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-016",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-017",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-07-018",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 14,
+   "steps": 13,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-009",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-010",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-013",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-014",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-015",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-016",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-017",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-08-018",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 11,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 22: 内容 target 'メッセージ' not on ANB00/ANA03"
+   ],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-121-09-001",
@@ -3686,99 +4131,159 @@
   },
   {
    "book": "AY-122-01-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 13,
+   "steps": 13,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-009",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-010",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-122-01-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 10,
+   "steps": 10,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "照会・検索画面",
+    "申請・確認更新画面",
+    "異例取扱管理メニュー画面"
+   ]
   },
   {
    "book": "AY-130-01-001",
@@ -3902,43 +4407,58 @@
   },
   {
    "book": "AY-210-02-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "計上情報消込処理"
+   ]
   },
   {
    "book": "AY-210-02-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "計上情報消込処理"
+   ]
   },
   {
    "book": "AY-210-02-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 7,
+   "steps": 7,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "承認情報ファイル作成処理"
+   ]
   },
   {
    "book": "AY-210-02-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 7,
+   "steps": 7,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "承認情報ファイル作成処理"
+   ]
   },
   {
    "book": "AY-210-02-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 7,
+   "steps": 7,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "コンプラ連携ファイル作成処理"
+   ]
   },
   {
    "book": "AY-210-03-001",
@@ -4430,27 +4950,36 @@
   },
   {
    "book": "AZ-100-08-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-100-08-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-100-08-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "ユーザIDマスタ取込処理"
+   ]
   },
   {
    "book": "AZ-100-08-008",
@@ -4494,27 +5023,36 @@
   },
   {
    "book": "AZ-100-08-012",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-100-08-013",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-100-08-014",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "ユーザIDマスタ取込処理"
+   ]
   },
   {
    "book": "AZ-100-09-001",
@@ -4618,34 +5156,42 @@
   },
   {
    "book": "AZ-110-01-009",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 44,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 27: binding B0039 is needs-human (選択欄ラジオボタン)"
+   ],
    "warnings": []
   },
   {
    "book": "AZ-110-01-010",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 44,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 27: binding B0039 is needs-human (選択欄ラジオボタン)"
+   ],
    "warnings": []
   },
   {
    "book": "AZ-110-01-011",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 44,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 27: binding B0039 is needs-human (選択欄ラジオボタン)"
+   ],
    "warnings": []
   },
   {
    "book": "AZ-110-01-012",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 44,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 27: binding B0039 is needs-human (選択欄ラジオボタン)"
+   ],
    "warnings": []
   },
   {
@@ -4870,10 +5416,12 @@
   },
   {
    "book": "AZ-110-05-008",
-   "status": "kept",
-   "rows": 0,
+   "rows": 42,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 27: binding B0039 is needs-human (選択欄ラジオボタン)"
+   ],
    "warnings": []
   },
   {
@@ -6348,67 +6896,107 @@
   },
   {
    "book": "AZ-111-01-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-007",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-01-008",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備内容入力画面-更新",
+    "不備内容入力画面－新規",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-111-02-001",
@@ -6872,19 +7460,33 @@
   },
   {
    "book": "AZ-120-04-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 17: 遷移 to screen without HTML 'ヘルプ画面' -> manual"
+   ],
+   "screens": [
+    "ヘルプ画面",
+    "不備一覧画面",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-120-04-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [
+    "row 17: 遷移 to screen without HTML 'ヘルプ画面' -> manual"
+   ],
+   "screens": [
+    "ヘルプ画面",
+    "不備一覧画面",
+    "申込書品質管理メニュー画面"
+   ]
   },
   {
    "book": "AZ-120-05-001",
@@ -7039,11 +7641,14 @@
   },
   {
    "book": "AZ-150-05-001",
-   "status": "hand-written",
-   "rows": 0,
-   "steps": 0,
+   "rows": 3,
+   "steps": 3,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "親子集計バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-06-001",
@@ -7057,19 +7662,35 @@
   },
   {
    "book": "AZ-150-07-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 24,
+   "steps": 24,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "フリーコード集計バッチ処理",
+    "不備内容集計バッチ処理",
+    "不備項目集計バッチ処理",
+    "募集人情報引込バッチ処理",
+    "募集人集計バッチ処理",
+    "登録件数集計情報ファイル"
+   ]
   },
   {
    "book": "AZ-150-08-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 24,
+   "steps": 24,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "フリーコード集計バッチ処理",
+    "不備内容集計バッチ処理",
+    "不備項目集計バッチ処理",
+    "募集人情報引込バッチ処理",
+    "募集人集計バッチ処理",
+    "登録件数集計情報ファイル"
+   ]
   },
   {
    "book": "AZ-150-09-001",
@@ -7083,11 +7704,14 @@
   },
   {
    "book": "AZ-150-09-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-09-003",
@@ -7101,75 +7725,102 @@
   },
   {
    "book": "AZ-150-09-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-10-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-10-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-10-003",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-10-004",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "閲覧システム連携ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-11-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "メール変換先取込通知バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-11-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "メール変換先取込通知バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-12-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "メール変換先取込通知バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-12-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "メール変換先取込通知バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-13-001",
@@ -7273,35 +7924,53 @@
   },
   {
    "book": "AZ-150-15-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 12,
+   "steps": 12,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "システム活用率データ作成バッチ処理",
+    "不備登録情報ファイル作成バッチ処理",
+    "連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-15-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 8,
+   "steps": 8,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備登録情報ファイル作成バッチ処理",
+    "代理店完了情報ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-16-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 12,
+   "steps": 12,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "システム活用率データ作成バッチ処理",
+    "不備登録情報ファイル作成バッチ処理",
+    "連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-150-16-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 8,
+   "steps": 8,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "不備登録情報ファイル作成バッチ処理",
+    "代理店完了情報ファイル作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-160-01-001",
@@ -8015,19 +8684,25 @@
   },
   {
    "book": "AZ-200-07-005",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "ToDo連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-200-07-006",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 5,
+   "steps": 5,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "大樹生命連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-200-07-007",
@@ -8071,11 +8746,14 @@
   },
   {
    "book": "AZ-200-07-011",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "ToDo連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-210-01-001",
@@ -11549,18 +12227,23 @@
   },
   {
    "book": "AZ-230-02-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 4,
+   "steps": 4,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "大樹生命連携データ作成バッチ処理"
+   ]
   },
   {
    "book": "AZ-240-01-001",
-   "status": "hand-written",
-   "rows": 0,
+   "rows": 14,
    "steps": 0,
-   "blocked": [],
+   "status": "blocked",
+   "blocked": [
+    "row 14: appendix labels not on AMC00/AMC22: 証券番号 (no-control), 明細番号 (needs-human)"
+   ],
    "warnings": []
   },
   {
@@ -13205,19 +13888,25 @@
   },
   {
    "book": "AZ-410-01-001",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-410-01-002",
-   "status": "kept",
-   "rows": 0,
-   "steps": 0,
+   "rows": 6,
+   "steps": 6,
+   "status": "ok",
    "blocked": [],
-   "warnings": []
+   "warnings": [],
+   "screens": [
+    "機械点検不備情報登録バッチ処理"
+   ]
   },
   {
    "book": "AZ-410-02-001",

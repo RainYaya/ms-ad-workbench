@@ -15,7 +15,7 @@ start:
 
 values:
   入力区分:          {value: 現地,        source: case, row: 6}
-  契約マスタ:        {value: 連動しない,   source: case, row: 7}
+  契約マスタ:        {value: false,       source: literal, row: 7, note: "【第一轮原始产出是 連動しない（字符串），L0 未拦住；验收后按别紙改成 false】"}
   種目:              {value: 自賠責,      source: case, row: 8}
   保険種類:          {value: '00：自賠責', source: case, row: 9}
   証券番号:          {value: AZ11001,     source: case, row: 10}

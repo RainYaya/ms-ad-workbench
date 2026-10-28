@@ -22,6 +22,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Step-by-step plan, owners, acceptance, and what you need to provide |
 | [`docs/URL-MAPPING.md`](docs/URL-MAPPING.md) | Why `/AMB/AMA01.html` becomes `/mhkcmwa11/AMA01?...`, and how to run mock vs real |
 | [`docs/RUNTIME.md`](docs/RUNTIME.md) | What the runner actually loads and executes, file by file |
+| [`docs/rpa/17-USAGE.md`](docs/rpa/17-USAGE.md) | **RPA 使用说明（唯一入口）：一条龙工具链、Studio（拖动排序 / 直接改 YAML）、六个校验门** |
 | [`docs/WORKLOG-2026-10-24.md`](docs/WORKLOG-2026-10-24.md) | Day log: discussions, conclusions, mistakes, and reasoning from the block-system rework |
 | [`automation/blocks/SEMANTIC-NORM.md`](automation/blocks/SEMANTIC-NORM.md) | Semantic normalization rules, block taxonomy, coverage guarantees |
 | [`automation/STATUS3.md`](automation/STATUS3.md) | Three-state ledger (planned/coded/verified) in human terms |

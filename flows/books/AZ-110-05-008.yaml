@@ -16,7 +16,7 @@ env: prod-a
 
 values:
   入力区分:       {value: 現地,        source: case, row: 6}
-  契約マスタ:     {value: 連動しない,   source: case, row: 7}
+  契約マスタ:     {value: false,        source: literal, row: 7, note: "別紙「連動しない」= OFF（checkbox 只收布尔）"}
   種目:           {value: 自動車,      source: case, row: 8}
   保険種類:       {value: '11：クルマの保険／はじめての自動車保険', source: case, row: 9}
   証券番号:       {value: AZ11005,     source: case, row: 10}

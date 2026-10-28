@@ -199,6 +199,12 @@ if (baseCheck.count === 1) {
     label,
     selectorTemplate: templates[idx],
     how: 'rowByText',
+    // The element kind is what decides how a value may be written: a row
+    // checkbox takes true/false, a row select takes the option text. Dropping
+    // it here made every row-scoped control look alike downstream, so a
+    // checkbox holding "連動しない" passed every offline check and only died
+    // at run time.
+    kind,
     sample: anchor,
     status: 'confirmed',
     note: note || `実機 capture；行锚点 ${anchor}；${page.url}`,

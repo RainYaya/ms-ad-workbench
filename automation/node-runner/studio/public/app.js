@@ -10,6 +10,7 @@ const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
 const S = {
   flows: [], name: null, model: null, sel: -1, tab: 'step', ct: 'log',
   labels: [], screens: [], dirty: false, poll: null, running: false,
+  raw: null, yamlOpen: false,
 };
 
 const PRIMS = [
@@ -114,10 +115,11 @@ function renderFlowList() {
 }
 
 async function selectFlow(name) {
-  if (S.dirty && !confirm('当前有未保存修改，放弃并切换？')) return;
-  const { model } = await api('/api/flow?name=' + encodeURIComponent(name));
+  if ((S.dirty || yamlDirty()) && !confirm('当前有未保存修改，放弃并切换？')) return;
+  const { model, raw } = await api('/api/flow?name=' + encodeURIComponent(name));
   S.name = name;
   S.model = model;
+  S.raw = raw;
   S.sel = model.steps?.length ? 0 : -1;
   S.dirty = false;
   S.labels = [];
@@ -132,6 +134,7 @@ async function selectFlow(name) {
   syncScreen();
   loadEvidence();
   loadLastRun();
+  if (S.yamlOpen) loadYaml();
 }
 
 // ── step list ────────────────────────────────────────────────────────
@@ -160,7 +163,7 @@ function renderSteps() {
     return;
   }
   box.innerHTML = steps.map((s, i) => `
-    <div class="step ${CAT[s.do] || ''} ${i === S.sel ? 'on' : ''}" data-i="${i}">
+    <div class="step ${CAT[s.do] || ''} ${i === S.sel ? 'on' : ''}" data-i="${i}" draggable="true">
       <div class="row">r${esc(s.row)}</div>
       <div class="do">${esc(s.do)}</div>
       <div class="body">
@@ -178,6 +181,44 @@ function renderSteps() {
         </span>
       </div>
     </div>`).join('');
+
+  // Drag to reorder. A long book needs 40 clicks of ↑ otherwise, and one
+  // mis-click silently changes the execution order. The row number is a label
+  // (hand-procedure line), not the order, so only the array moves.
+  let dragFrom = null;
+  $$('#steps .step').forEach((el) => {
+    el.addEventListener('dragstart', (e) => {
+      dragFrom = Number(el.dataset.i);
+      el.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      // Firefox needs data set for the drop to fire.
+      try { e.dataTransfer.setData('text/plain', String(dragFrom)); } catch { /* ignore */ }
+    });
+    el.addEventListener('dragend', () => {
+      el.classList.remove('dragging');
+      $$('#steps .step').forEach((x) => x.classList.remove('drop-target'));
+    });
+    el.addEventListener('dragover', (e) => {
+      if (dragFrom === null) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      $$('#steps .step').forEach((x) => x.classList.remove('drop-target'));
+      el.classList.add('drop-target');
+    });
+    el.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const to = Number(el.dataset.i);
+      if (dragFrom === null || dragFrom === to) return;
+      const arr = S.model.steps;
+      const [moved] = arr.splice(dragFrom, 1);
+      arr.splice(to, 0, moved);
+      S.sel = to;
+      dragFrom = null;
+      markDirty();
+      renderSteps();
+      renderProps();
+    });
+  });
 
   $$('#steps .step').forEach((el) => {
     el.onclick = (e) => {
@@ -275,6 +316,14 @@ async function loadLabels() {
 // ── properties ───────────────────────────────────────────────────────
 function renderProps() {
   const body = $('#propBody');
+  // While the YAML pane is open the model on screen would be a second writer to
+  // the same file, and the two would race (list-save re-serializes and eats the
+  // pane's text). One writer at a time: close the pane to use the editors.
+  if (S.yamlOpen) {
+    body.innerHTML = `<div class="empty">正在直接编辑 YAML 原文。<br><br>
+      关掉上面 YAML 视图，或用 Ctrl+S 写完盘，再回到步骤编辑。</div>`;
+    return;
+  }
   if (S.tab === 'values') return renderValues(body);
   if (S.tab === 'flow') return renderFlowTab(body);
   if (S.tab === 'bind') {
@@ -585,6 +634,121 @@ function showConsole() {
   $('#checkOut').hidden = S.ct !== 'check';
 }
 
+// ── YAML source view ─────────────────────────────────────────────────
+// Two writers exist for the same file and they must never diverge:
+//   · the step list edits S.model, and /api/flow/save re-serializes it
+//     (comments are replaced — that is why that route says so in a header)
+//   · this pane edits the bytes, and /api/flow/save-raw writes them back as-is
+// So while the pane is open the step editor is closed, and opening the pane
+// with unsaved list edits first asks to save them.
+// The textarea holds LF whatever the file used; compare the same way, or a
+// CRLF file reads as "changed" the moment it is opened.
+const lf = (t) => String(t ?? '').replace(/\r\n/g, '\n');
+
+function yamlDirty() {
+  return S.yamlOpen && S.raw !== null && lf($('#ypText').value) !== lf(S.raw);
+}
+
+function yamlStats(text) {
+  const lines = text.split('\n').length;
+  return `${lines} 行 · ${new Blob([text]).size} B`;
+}
+
+function loadYaml() {
+  const text = S.raw ?? '';
+  const t = $('#ypText');
+  t.value = text;
+  // Setting .value moves the caret to the end, so the pane would open scrolled
+  // to the last line of a 245-line file.
+  t.scrollTop = 0;
+  t.selectionStart = t.selectionEnd = 0;
+  $('#ypTitle').textContent = 'YAML 原文 — ' + (S.name || '');
+  $('#ypState').textContent = yamlStats(text);
+  $('#ypFoot').classList.remove('err');
+  $('#ypFoot').textContent = '改完按「写入磁盘」或 Ctrl+S。写盘前会解析一次，语法错会指出行号并且不写。原文备份在 flows/.backup/。';
+}
+
+async function setYamlOpen(open) {
+  if (open) {
+    if (!S.name) return;
+    if (S.dirty) {
+      if (!confirm('步骤列表里有未保存的修改，YAML 原文里看不到它们。先保存列表（会重写 YAML、丢掉手写注释）再打开原文？')) return;
+      await save();
+      const { model, raw } = await api('/api/flow?name=' + encodeURIComponent(S.name));
+      S.model = model; S.raw = raw;
+    }
+    // Re-read the bytes: the step editor may have saved since the last view,
+    // and a stale textarea would silently write back the old file.
+    const { raw } = await api('/api/flow?name=' + encodeURIComponent(S.name));
+    S.raw = raw;
+    loadYaml();
+    S.yamlOpen = true;
+    $('#yamlPane').hidden = false;
+    $('#canvasBody').classList.add('yamlMode');
+    $('#canvas').classList.add('yamlMode');
+    renderProps();
+    $('#ypText').focus();
+    return;
+  }
+  if (yamlDirty() && !confirm('YAML 原文有未写入的修改，关闭就丢了。关闭？')) return;
+  S.yamlOpen = false;
+  $('#yamlPane').hidden = true;
+  $('#canvasBody').classList.remove('yamlMode');
+  $('#canvas').classList.remove('yamlMode');
+  // saveYaml() already refreshed S.model from the re-parsed text, so the step
+  // list is current unless the edits were abandoned (then the file never moved).
+  renderSteps();
+  renderProps();
+}
+
+async function saveYaml() {
+  if (!S.name) return;
+  const raw = $('#ypText').value;
+  try {
+    const r = await api('/api/flow/save-raw', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: S.name, raw }),
+    });
+    S.raw = raw;
+    if (r.model) S.model = r.model;
+    S.dirty = false;
+    $('#dirty').hidden = true;
+    // The pane's text is LF; r.bytes is what actually landed on disk.
+    $('#ypState').textContent = `${raw.split('\n').length} 行 · ${r.bytes} B`;
+    $('#ypFoot').classList.remove('err');
+    $('#ypFoot').textContent = r.backup ? `已写入。原文备份 ${r.backup}` : '与磁盘一致，没有改动。';
+    renderSteps();
+    loadFlows();
+    toast(r.backup ? '已写入 ' + raw.split('\n').length + ' 行' : '没有改动');
+  } catch (e) {
+    $('#ypFoot').classList.add('err');
+    $('#ypFoot').textContent = '没有写盘：' + e.message;
+    toast('没有写盘：' + e.message, true);
+  }
+}
+
+$('#btnYaml').onclick = () => setYamlOpen(!S.yamlOpen);
+$('#ypClose').onclick = () => setYamlOpen(false);
+$('#ypSave').onclick = saveYaml;
+$('#ypReload').onclick = () => {
+  if (yamlDirty() && !confirm('放弃当前编辑，重新从磁盘读？')) return;
+  loadYaml();
+};
+$('#ypText').addEventListener('input', () => {
+  $('#ypState').textContent = yamlStats($('#ypText').value) + (yamlDirty() ? ' · 未写入' : '');
+});
+// Tab inserts two spaces instead of leaving the textarea — the indentation is
+// part of the program here, and a jumped focus loses the cursor position.
+$('#ypText').addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  e.preventDefault();
+  const t = e.target;
+  const at = t.selectionStart;
+  t.value = t.value.slice(0, at) + '  ' + t.value.slice(t.selectionEnd);
+  t.selectionStart = t.selectionEnd = at + 2;
+});
+
+
 // ── toolbar ──────────────────────────────────────────────────────────
 $('#flowSelect').onchange = (e) => selectFlow(e.target.value);
 $('#btnScreen').onclick = () => setScreenOpen(!S.screenOpen);
@@ -603,8 +767,16 @@ $('#btnRunLive').onclick = () => {
 };
 
 document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); }
+  const inYaml = S.yamlOpen && e.target?.id === 'ypText';
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    if (inYaml) saveYaml(); else save();
+  }
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); check(); }
+});
+
+window.addEventListener('beforeunload', (e) => {
+  if (yamlDirty()) { e.preventDefault(); e.returnValue = ''; }
 });
 
 async function save() {
@@ -617,6 +789,8 @@ async function save() {
     });
     S.dirty = false;
     $('#dirty').hidden = true;
+    // The file on disk is now a re-serialized version; the pane's copy is stale.
+    try { S.raw = (await api('/api/flow?name=' + encodeURIComponent(S.name))).raw; } catch { /* ignore */ }
     toast('已保存（原文备份 ' + r.backup + '）');
     loadFlows();
   } catch (e) { toast('保存失败: ' + e.message, true); }
@@ -624,6 +798,7 @@ async function save() {
 
 async function check() {
   if (!S.name) return;
+  if (yamlDirty()) { toast('YAML 原文还没写盘，检查的是磁盘上的旧版本', true); }
   S.ct = 'check';
   $$('#consoleTabs button').forEach((x) => x.classList.toggle('on', x.dataset.ctab === 'check'));
   showConsole();
@@ -640,6 +815,7 @@ async function check() {
 
 async function run(headed) {
   if (!S.name || S.running) return;
+  if (yamlDirty() && confirm('YAML 原文有未写入的修改，运行的是磁盘上的版本。先写盘吗？（取消=不写直接跑）')) await saveYaml();
   if (S.dirty && confirm('有未保存修改，运行的是磁盘上的版本。先保存吗？（取消=不保存直接跑）')) await save();
   S.running = true;
   $('#btnRun').hidden = true;

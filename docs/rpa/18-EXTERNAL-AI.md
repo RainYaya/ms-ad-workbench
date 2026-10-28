@@ -187,6 +187,34 @@ L0 全绿，但**有 4 处真错误**，其中 2 处被 ANCHOR/capture 数据差
 这 4 条修完后，第二轮就是机械操作：**跑命令 → 复制输出 → 贴回对话**，
 不需要人判读，也不需要仓库作者在场。
 
+### 6.3 现场反馈修掉的东西（2026-10-28，真实公司机实测）
+
+第一轮 Copilot 产出「能过 L0 但不好用」，现场反馈四类问题。不是改 prompt 措辞，
+而是分别修在**产生材料的那一端**和**检查器**上：
+
+| 现场说法 | 根因（文件:行号） | 修法 |
+|---|---|---|
+| 「它也没 popup」 | prompt 里 `popup` 只是一句提示，没有自检项；索引里根本没标哪张画面是子窗口 | `make-pack.mjs` 索引加 `WINDOW: 子ウィンドウ（popup）` 行和「※ このボタンで子ウィンドウが開く」；prompt 加【D. popup】强制项；`check-flow` 加启发式告警 |
+| 「要 select 它用了 chooseRow」 | `capture.mjs` 在字段块里取**第一个** input，取到的是隐藏的 `selected_imperfect_code`；`make-pack` 随后又把隐藏 input 从 HTML 里删了，AI 无从发现 | capture 改为**按控件排序选**（隐藏 +10、`select` 0、`textarea` 1、其他 2），并记录 `options`；索引直接写 `没有选项: … → select #…` |
+| 「check 语法是填 false，它写成字符串 'false'」 | L0 只校验值和来源，不看控件类型 | `check-flow.mjs` §5.5：checkbox/radio 非布尔 = ERROR（radio 组按 choices 文字寻址，豁免）；`generate_books.py` 把别纸的「連動する/チェックオン」直接转成布尔并注明来源 |
+| 「一个详细约束都没有，AI 生成的不好用」 | `05-PROMPT.txt` 只有格式说明，没有「写错了会怎样」 | prompt 重写为【A 值类型】【B 原语选择】【C anchor 必填】【D popup】【E 一行多操作】【F 输出前自检】六段，附「误/正」对照 |
+
+还有一个**材料陈旧**的坑：`make-brief` 以前「pack 已存在就不重建」，于是一个用旧版
+`make-pack` 生成的索引被反复寄出去。现在默认**每次重建**，除非显式 `--no-pack`。
+
+再往后查索引本身，又发现两处让它「看不懂页面」的硬伤（都是实测复现，不是推测）：
+
+| 索引里的症状 | 根因（文件:行号） | 修法 |
+|---|---|---|
+| 一张表被压成一条 1700 字的假标签「項目ｺｰﾄﾞ 項目名 不備内容 照会内容 …」 | `make-pack.mjs` 的 `labelsFromHtml` 用惰性正则跨 `field_title` 单元格匹配，把整行表头当成一个 label；顺带把「保険種類」整个吞掉 | 改成「每个 title 单元格拥有到下一个 title 之前的 HTML」，span 里没有控件就跳过 |
+| 表头 `th: (none)`，AI 不知道「代理店照会」是每行一个 `<select>` | 这个应用的列头渲染在 `<table>` **外面**，`capture.mjs:105` 只读 `<th>`，读到空 | 新增 `tableColumnsFromHtml`：输出列名顺序 + `NAME[n] FAMILIES`（每行的控件族和选项）+ 「行内控件用 chooseRow + anchor」 |
+| 行内勾选框写字符串 `'false'` 也过 L0 | `add-control.mjs` 算出了元素 `kind` 却在 rowByText 分支把 `kind` 丢了；`flow-loader` 又统一覆盖成 `kind: 'rowfield'`，类型彻底消失 | `add-control` 保留 `kind`；loader 多带一个 `ctlKind`；`check-flow` 对 rowfield 用 `ctlKind` 判布尔 |
+
+最后一条特别值得记：我一开始只修了普通控件，**行内勾选框完全没被拦住** ——
+你遇到的正是行内那种。现在有实测反证（`flows/tests/AZ-110-01-009.copilot.yaml`
+把 row 42 的值改成 `"連動しない"`，L0 报
+`row 42: 照会内容チェックボックス 是 checkbox，值必须是 true/false`）。
+
 ## 7. 结论：到底行不行
 
 | 问题 | 答案 |

@@ -179,10 +179,8 @@ YAML フローに変換することです。添付ファイル:
 
 (1) flow — 形式は 00-RULES.txt の §3。
     - 手順の操作行 1 行 = ステップ 1 個。\`row:\` は手順の行番号をそのまま。
-    - 画面名は 遷移 行のとおり。ポップアップの画面名は popupScreen。
+    - 画面名は 遷移 行のとおり。
     - target は \`{label: 手順の言葉}\`。selector は書かない。
-    - 行の中のボタン・チェック・選択は \`target: {label: ..., anchor: "\${case.XXX}"}\`
-      （どの行かは anchor の値で決める。行番号は書かない）。
     - 値は 01-HAND.txt の別紙から。\`{value, source: case, row: N}\`。
     - 「初期値」「空白」「入力なし」は値を作らない。
     - 画面遷移の検証行は \`do: screenIs\`。「表示内容 N 参照」は
@@ -190,15 +188,70 @@ YAML フローに変換することです。添付ファイル:
     - 出力（Msg）行は \`do: messageIs\` + \`expect: {message: {code: ...}}\`。
     - 分からない所は \`note: "不确定：..."\` を書く。推測して埋めない。
 
+★★★ 以下は「出力前に自分で確認する」必須チェック。ここを外すと動かない。★★★
+
+【A. 値の型 — 最頻出の誤り】
+  02-INDEX.txt の LABELS に「→ checkbox」と書いてある欄は、**値は true / false だけ**。
+  別紙が「チェックオン」なら true、「連動しない」「チェックオフ」なら false。
+  文字列 'true' でも、別紙の言葉そのままでも駄目。
+    誤  checkbox欄: {value: 連動しない, source: case, row: 7}
+    正  checkbox欄: {value: false, source: literal, row: 7, note: "別紙『連動しない』= OFF"}
+  「→ select」の欄は、**値は options に載っている文字列そのもの**。
+    誤  {value: 31}            （option の value 属性を書いている）
+    正  {value: 添付書類もれ}   （表示文字を書く）
+  「→ text」の欄は文字列、日付は YYYY/MM/DD。
+
+【B. どの原語か — 2番目に多い誤り】
+  02-INDEX.txt の型と、やろうとしていることを突き合わせる:
+    型が select で「一覧から 1 つ選ぶ」          → do: select      （chooseRow ではない）
+    型が checkbox                            → do: check       value: true/false
+    表の行にある radio/ボタン（行で特定する）    → do: chooseRow   anchor 必須
+    「ラベルの無いリストボックス」から選ぶ       → do: chooseRow   anchor 必須
+  02-INDEX.txt に UNLABELED LISTS があれば、手順の「選択」は**そこ**を指す。
+  LABELS に載っていないからといって、勝手に label を作らない。
+  02-INDEX.txt に「TABLE: 1行 = 1件」がある画面では、NAME[n] FAMILIES の各項目は
+  **1 行につき 1 つ**の行内コントロール。n は行番号ではないので、n を直接書かず
+  anchor で行を指す。列名（項目ｺｰﾄﾞ／代理店照会／不備内容 …）は target.label に使う。
+
+【C. 行内コントロール — anchor は必須】
+  表の行、またはリストボックスの中の要素を操作するときは必ず:
+    target:
+      label: <02-INDEX にあるラベル。ラベルが無いリストなら label は書かず selector 側で解決>
+      anchor: "\${case.別紙の名前}"
+  anchor は**その行にしか無い表示値**。行番号・nth-child・[0] は禁止。
+  anchor が空、true/false、オブジェクトになるのは全部誤り。
+
+【D. popup — 見落としやすい】
+  02-INDEX.txt の WINDOW 行に「子ウィンドウ（popup）」とある画面で操作するステップ、
+  および 04-ROUTES.txt で別ウィンドウとして開いている URL の画面は、
+  **そのステップに \`popup: true\` を必ず付ける。**
+  flow 全体で 1 個も popup: true が無いのに、手順に「検索画面を開く」があるなら付け忘れ。
+
+【E. 手順 1 行が複数操作を含むとき】
+  手順の 1 行が「A を選び、B も選び、C も設定する」と複数の操作を指している場合
+  （別紙の「入力内容：N参照」が複数項目を列挙している等）、
+  **同じ row のステップを複数書いてよい**（順序は手順の順）。
+  逆に、1 操作で足りるなら 1 個だけ書く。どちらか分からない場合は note に書く。
+
+【F. 出力前の自己点検（必ず実施）】
+  □ 手順の操作行の数 = ステップ数（削除・統合なし）
+  □ checkbox の値は true / false のみ
+  □ select の値は options の表示文字
+  □ 行内・リストボックス操作には anchor（文字列）がある
+  □ popup 画面のステップに popup: true がある
+  □ selector を書いていない
+  □ expect を緩めていない
+
 (2) control-patch — 00-RULES.txt の §8。\`{label}\` が 02-INDEX.txt の
-    「手順の言葉 → コントロール」に載っていない場合だけ、その label の
-    selector を 03-SCREENS の HTML から作る。載っている label は書かない。
+    LABELS に載っていない場合だけ、その label の selector を 03-SCREENS の HTML から作る。
+    載っている label は書かない。
     行内コントロールは \`selectorTemplate: 'tr:has(td:text-is("{value}")) <base>'\`。
 
 注意:
 - 存在しない id/name を創作しない。HTML に無いものは「無い」と書く。
 - 手順の行を削除・統合しない。44 行なら 44 ステップ。
 - 期待（expect）を勝手に緩めない。
+- 02-INDEX.txt に書かれている型（select / checkbox / text）を無視しない。
 `;
 
 const README = (cid, capPath) => `给 Copilot 的材料包 —— 用法（照顺序做，全部在这台电脑上完成）
@@ -235,10 +288,18 @@ const README = (cid, capPath) => `给 Copilot 的材料包 —— 用法（照�
 `;
 
 // ── pack ────────────────────────────────────────────────────────────
+// An old pack can be worse than no pack: it was built by an earlier
+// make-pack whose label table said 「不備内容 → input#selected_imperfect_code」
+// (a hidden input) while the page has a <select>. The brief must never ship
+// a stale index, so rebuild unless the caller explicitly says --no-pack.
 const pack = join(cap, 'pack');
-if (!existsSync(join(pack, '00-INDEX.md'))) {
-  if (flag('no-pack')) { console.error(`pack missing: ${pack} (run make-pack.mjs first)`); process.exit(2); }
-  console.log(`pack missing -> running make-pack.mjs on ${cap}`);
+if (flag('no-pack')) {
+  if (!existsSync(join(pack, '00-INDEX.md'))) {
+    console.error(`pack missing: ${pack} (run make-pack.mjs first)`);
+    process.exit(2);
+  }
+} else {
+  console.log(`rebuilding pack from ${cap}`);
   execFileSync(process.execPath, [join(here, 'make-pack.mjs'), '--capture', cap], { stdio: 'inherit' });
 }
 

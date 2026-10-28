@@ -114,6 +114,10 @@ function lookup(screenKey, label) {
         kind: 'rowfield', how: rf.how,
         namePattern: rf.namePattern,
         selectorTemplate: rf.selectorTemplate,
+        // What the element actually is (checkbox / select / button …). A
+        // rowfield is row-scoped, not "kindless": the value rules still depend
+        // on whether the target element is a checkbox.
+        ctlKind: rf.kind || null,
         note: rf.note, status: rf.status,
       };
     }
@@ -367,6 +371,7 @@ export function compileFlow(flowPath, opts = {}) {
       }
       return {
         label, kind: 'rowfield', how: hit.how, namePattern: hit.namePattern,
+        ctlKind: hit.ctlKind || null,
         selector: built, value: val, anchor, note: hit.note, status: hit.status,
       };
     }

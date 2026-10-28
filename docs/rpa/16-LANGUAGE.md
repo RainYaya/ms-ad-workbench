@@ -401,7 +401,19 @@ expect:
 | `chooseRow: anchor ambiguous` | 锚点不唯一 | 换更具体的值 |
 | `element not found: #xxx` | 画面对了，真机没有这个节点 | 重新抓 DOM，补控件覆盖 |
 | `rowfield ambiguous: name[{n}] indices[0..19]` | 行内控件的行号不唯一 | 给该步骤加 `target.anchor`，并在控件补丁里用 `{value}` 模板 |
+| `row N: 行内控件「X」必须写 target.anchor` | 行内/列表控件缺锚点。`flow-loader.mjs:362` 会拿步骤的 value 当锚点，`value: true` 就变成找 `tr:has(td:text-is("true"))` | 写 `anchor: "${case.别纸名}"` |
+| `row N: target.anchor 必须是字符串 / 是非法值 "true"` | 布尔或对象漏进了锚点，能拼出合法 selector 但永远匹配不到 | 锚点只能是字符串业务值 |
+| `row N: X 是 checkbox，值必须是 true/false` | 别纸写「連動しない」，AI 照抄成字符串 | `{value: false, source: literal, row: N, note: "別紙「連動しない」= OFF"}` |
+| `row N: select 的 value 是布尔 / 对象 / "[object Object]"` | 下拉框的值是**选项的显示文字** | 写 options 里的原文，例如 `添付書類もれ` |
+| `row N: value 是对象 / "[object Object]"` | 值只能是一个字符串/数字/布尔 | 拆开写，不要嵌套对象 |
+| `WARN 手顺里有弹出窗口操作，但整份 flow 一个 popup: true 都没有` | 弹窗里的控件会被当主画面找 | 给弹窗内的步骤加 `popup: true`（§5.2.1） |
 | `L0 全绿但真机失败` | 检查器只验证「解析成字符串」，不验证真机节点 | 用 `check-patch` 对真实 DOM 校验（§11） |
+
+上表后五行是 2026-10-28 新增的**硬校验**（`check-flow.mjs` §5.5）：它们全部来自
+「第一轮 Copilot 生成物 L0 全绿、真机全错」的实测，以前的检查器只看形状不看类型。
+其中「checkbox 必须是布尔」对**行内控件**同样生效：行内控件的 `kind` 是 `rowfield`，
+真实元素类型记在 `ctlKind`（`ui-rowfields.json` 的 `kind` 字段 → `flow-loader` → `check-flow`）。
+`ui-rowfields.json` 里没写 `kind` 的行内控件，这条校验只能跳过——补 `kind` 才有效。
 
 **不要**用以下方式「修复」：改断言、删步骤、加 sleep、强制点击、
 在 flows 里手写 selector。

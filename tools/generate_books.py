@@ -55,13 +55,47 @@ def control_labels(screen_key: str, controls: dict) -> set[str]:
             if c.get("labelKey") and c.get("kind") != "hidden"}
 
 
+def control_kinds(screen_key: str, controls: dict) -> dict[str, str]:
+    """label -> kind for the controls a book can actually target."""
+    page = (controls.get("screens") or {}).get(screen_key) or {}
+    out: dict[str, str] = {}
+    for c in page.get("controls") or []:
+        if c.get("labelKey") and c.get("kind") != "hidden" and c["labelKey"] not in out:
+            out[c["labelKey"]] = c.get("kind") or ""
+    return out
+
+
+# 別紙 writes checkbox state in prose. Copying it literally produces a string
+# where the runner needs a boolean ("checkbox value must be boolean"), so the
+# conversion is a table with a reason, not an inference.
+CHECKBOX_WORDS = {
+    "チェックオン": True, "チェックオンする": True, "オン": True,
+    "チェックオフ": False, "チェックオフする": False, "オフ": False,
+    "連動する": True, "連動しない": False,
+}
+
+
+def coerce_checkbox(val, kind: str):
+    """Return (value, note). Unknown wording stays as-is so the book blocks."""
+    if kind not in ("checkbox", "radio"):
+        return val, None
+    if isinstance(val, bool):
+        return val, None
+    word = str(val).strip()
+    if word in CHECKBOX_WORDS:
+        return CHECKBOX_WORDS[word], f"別紙「{word}」= {'ON' if CHECKBOX_WORDS[word] else 'OFF'}"
+    return val, None
+
+
 OP_DO = {"click": "click", "fill": "fill", "select": "select", "check": "check",
          "chooseRow": "chooseRow", "press": "press"}
 
 
 def build_book(cid: str, case: dict, rules: dict, screens: dict, by_norm: dict,
-               ctl_labels: dict, field_rules: dict | None = None) -> tuple[dict | None, dict]:
+               ctl_labels: dict, field_rules: dict | None = None,
+               ctl_kinds: dict | None = None) -> tuple[dict | None, dict]:
     field_rules = field_rules or {}
+    ctl_kinds = ctl_kinds or {}
     rows = (case.get("workflow") or {}).get("rows") or []
     st = {"book": cid, "rows": len(rows), "steps": 0, "status": "ok",
           "blocked": [], "warnings": []}
@@ -242,7 +276,12 @@ def build_book(cid: str, case: dict, rules: dict, screens: dict, by_norm: dict,
                         f"row {r['sourceRow']}: no appendix value for {label!r} "
                         f"(block {r.get('operationNo')})")
                     break
-                step["value"] = val
+                val, note = coerce_checkbox(val, (ctl_kinds.get(cur_sk) or {}).get(label, ""))
+                if note:
+                    step["value"] = val
+                    step["valueNote"] = note
+                else:
+                    step["value"] = val
                 step["valueRow"] = blk[label][1]
             if (r.get("evidenceType") or "").strip():
                 step["evidence"] = r["evidenceType"].strip()
@@ -275,14 +314,24 @@ def build_book(cid: str, case: dict, rules: dict, screens: dict, by_norm: dict,
             for lab, (val, srow) in blk.items():
                 if lab.startswith("__"):
                     continue
+                kind = (ctl_kinds.get(cur_sk) or {}).get(lab, "")
+                val, note = coerce_checkbox(val, kind)
                 use.append(lab)
                 prev = values.get(lab)
                 if prev and prev["value"] != val:
                     # same label, different value inside one book -> keep the
                     # value on the step, not in the shared map
-                    use[-1] = {"label": lab, "value": val}
+                    item = {"label": lab, "value": val}
+                    if note:
+                        item["note"] = note
+                    use[-1] = item
                 else:
-                    values[lab] = {"value": val, "source": "case", "row": srow}
+                    entry = {"value": val,
+                             "source": "literal" if note else "case",
+                             "row": srow}
+                    if note:
+                        entry["note"] = note
+                    values[lab] = entry
             steps.append({"row": r["sourceRow"], "on": cur_name, "do": "fillAll", "use": use,
                           "note": f"別紙【操作内容】{blk_no} の入力項目"})
         elif rtype == "rowlink":
@@ -337,6 +386,7 @@ def main() -> int:
     screens, by_norm = rpa_common.load_screens()
     controls = json.loads(CONTROLS.read_text(encoding="utf-8"))
     ctl_labels = {sk: control_labels(sk, controls) for sk in controls.get("screens", {})}
+    ctl_kinds = {sk: control_kinds(sk, controls) for sk in controls.get("screens", {})}
     doc = yaml.safe_load(BINDINGS.read_text(encoding="utf-8")) or {}
     rules = {(r.get("screen"), r.get("key")): r for r in doc.get("rules") or []}
     field_rules = {(r.get("screen"), r.get("key")): r for r in doc.get("rules") or []
@@ -367,7 +417,7 @@ def main() -> int:
                           "blocked": [], "warnings": []})
             kept.add(cid)
             continue
-        flow, st = build_book(cid, case, rules, screens, by_norm, ctl_labels, field_rules)
+        flow, st = build_book(cid, case, rules, screens, by_norm, ctl_labels, field_rules, ctl_kinds)
         stats.append(st)
         if not flow:
             continue

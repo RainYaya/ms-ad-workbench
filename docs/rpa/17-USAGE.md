@@ -100,10 +100,19 @@ node automation/node-runner/make-pack.mjs --capture capture-20261028
 
 | 文件 | 内容 |
 |---|---|
-| `00-INDEX.md` | 画面清单 + 每个画面的 **手顺措辞 → 控件 id**、按钮、表格样例（先贴这个） |
+| `00-INDEX.md` | 画面清单 + 每个画面的 **手顺措辞 → 控件 id**、按钮、表格（先贴这个） |
 | `01-screens.md` … | 清洗后的 HTML（去 script/style/隐藏域），每块 ≤3 万字符 |
 | `routes.md` | 这次实机实际走过的 **URL → 画面名**；`!! NOT IN ui-screens.json` 的要补进去 |
 | `manifest.json` | 机器可读索引 |
+
+索引里这几节是「AI 会不会写错原语」的关键：
+
+| 节 | 含义 |
+|---|---|
+| `LABELS (from HTML — authoritative)` | 标签 → 控件类型 + id/name，**选项列出下拉的全部文字**。`→ checkbox` 的栏只能写 true/false |
+| `TABLE: 1行 = 1件` | 这张表的列名顺序、`NAME[n] FAMILIES`（每行各一个的控件族 + 选项）。**行内控件必须用 chooseRow + anchor**，不是 select/check |
+| `UNLABELED LISTS` | 没有可见标签的列表框（如 AMA13 的 `field_list.selected`）。手顺说「选择」时指的就是这里 |
+| `WINDOW: 子ウィンドウ（popup）` | 这个画面是弹窗，其中步骤必须带 `popup: true` |
 
 规则：**一个画面只取最完整的一次快照**；同一画面按 URL/画面名合并。
 如果某个画面显示 `!! ui-screens.json にこの名前が無い`，先补 `ui-screens.json` 的
@@ -126,7 +135,7 @@ node automation/node-runner/make-brief.mjs --case AZ-110-01-009 \
 | `README.txt` | 不用上传 | 给人看的步骤 |
 | `00-RULES.txt` | 上传 | 语言规范全文 |
 | `01-HAND.txt` | 上传 | 手顺行 + 别紙值/期望（自动从 v2 数据导出） |
-| `02-INDEX.txt` | 上传 | 画面清单：措辞 → 控件 id、按钮、表格样例 |
+| `02-INDEX.txt` | 上传 | 画面清单：措辞 → 控件类型 + id、下拉选项、行内控件族、弹窗标记 |
 | `03-SCREENS-NN.txt` | 上传 | 清洗后的实机 HTML，每块 ≤3 万字符 |
 | `04-ROUTES.txt` | 上传 | 实机走过的 URL → 画面名 |
 | `05-PROMPT.txt` | **粘贴到对话框** | 让 AI 输出 flow + control-patch 的指令 |
@@ -170,13 +179,34 @@ node automation/node-runner/add-control.mjs \
 手工另存的一堆 `.html` 也可以当 capture 用（不需要 `index.json`），
 `check-patch --capture <那个目录>` 直接能校验。
 
-### 3.7 Studio（看画面、确认绑定）
+### 3.7 Studio（看画面、确认绑定、直接改 YAML）
 
 ```bash
 node automation/node-runner/studio/server.mjs 10200   # → http://127.0.0.1:10200
 ```
 
 预览的是 **mock 画面**，不是真机。215 条 `needs-human` 绑定在这里逐条点选确认。
+
+三件关于改流程的事：
+
+| 想做的 | 怎么做 | 注意 |
+|---|---|---|
+| 调换步骤顺序 | 在步骤列表里**拖动**整行到目标位置 | 拖的是 `steps` 数组顺序，`row:` 是手顺行号，不跟着变。要移动「一块」就把这几行一起拖 |
+| 新步骤不要排在最后 | 先拖到目标位置再填内容，或添加后立刻拖 | 新步骤默认追加到末尾（`row` = 上一行 +1，要手改） |
+| 改 YAML 原文（含注释） | 顶部「YAML」按钮 → 直接编辑 → 「写入磁盘」或 Ctrl+S | 见下 |
+
+**「YAML」视图**是唯一一条**不重排、不丢注释**的写盘路径：
+
+- 步骤列表的「保存」是把内存里的模型重新序列化成 YAML（手写注释被替换，文件头会写明）；
+  YAML 视图是**把 textarea 的字节原样写回**，注释、空行、引号、字段顺序全部保留。
+- 写盘前解析一次。语法错 / 顶层不是映射 / `steps:` 不是列表 → **不写盘**，底栏用红字给出**行号 + yaml 的原因**。
+- 内容与磁盘一致时不写盘，也不产生备份。
+- 每次真正写盘前把原文件复制到 `flows/.backup/<名>.<时间戳>.yaml`（已 gitignore）。
+- 文件原本是 CRLF 就写回 CRLF，浏览器 textarea 的 LF 不会把整个文件变成全行 diff。
+- 打开时若有未保存的列表修改，会先问「先保存列表再打开原文？」；YAML 视图开着时右侧属性面板**锁住**
+  （同一文件不能有两个写手：列表保存会把原文重新序列化，覆盖你的编辑）。
+- 关掉视图后，步骤列表用刚写盘的模型重画；`Ctrl+Enter` 检查、`▶ 运行` 跑的都是**磁盘上的版本**，
+  原文有未写盘的修改时会先提醒。
 
 ### 3.8 重新生成 / 更新文档
 

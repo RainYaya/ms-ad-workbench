@@ -204,7 +204,9 @@ steps:
   - row: 34
     on: 不備内容入力画面-更新
     do: click
-    target: {label: 検索}
+    target:
+      label: 検索
+      anchor: "${case.不備内容}"
     expect: {screen: 項目名検索画面}
 
   - row: 35
@@ -253,13 +255,17 @@ steps:
   - row: 42
     on: 不備内容入力画面-更新
     do: check
-    target: {label: 照会内容チェックボックス}
+    target:
+      label: 照会内容チェックボックス
+      anchor: "${case.不備内容}"
     value: true
 
   - row: 43
     on: 不備内容入力画面-更新
     do: click
-    target: {label: 修}
+    target:
+      label: 修
+      anchor: "${case.不備内容}"
     expect: {screen: 照会内容編集画面}
 
   - row: 44
@@ -291,7 +297,9 @@ steps:
   - row: 48
     on: 不備内容入力画面-更新
     do: select
-    target: {label: 代理店照会}
+    target:
+      label: 代理店照会
+      anchor: "${case.不備内容}"
     value: "否"
 
   - row: 49

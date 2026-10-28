@@ -54,20 +54,52 @@ function inspectPage(page) {
     const ids = uniq([...document.querySelectorAll('[id]')].map((e) => e.id));
     const names = uniq([...document.querySelectorAll('[name]')].map((e) => e.getAttribute('name')));
     // field_title と field_value の対応（辞書の元ネタ）
+    // A field block usually starts with a hidden holder input (ASP.NET / SAP
+    // WebGUI style: `#selected_xxx` then the real control). Taking the FIRST
+    // element made the index say "不備内容 → input#selected_imperfect_code"
+    // (hidden) while the page really has <select name="imperfect_list.selected">,
+    // so the web AI wrote chooseRow where a select was needed. Rank instead:
+    // visible > hidden, and select/textarea over input.
+    const rankControl = (el) => {
+      const hidden = el.type === 'hidden' || el.offsetParent === null;
+      const tagRank = el.tagName === 'SELECT' ? 0 : el.tagName === 'TEXTAREA' ? 1 : 2;
+      return (hidden ? 10 : 0) + tagRank;
+    };
     const pairs = [];
     document.querySelectorAll('.gyoumu_field_title, [class*="field_title"]').forEach((t) => {
       const label = (t.textContent || '').trim().replace(/\s+/g, ' ');
       let sib = t.nextElementSibling;
       while (sib && !/field_value/.test(sib.className || '')) sib = sib.nextElementSibling;
-      let id = null, tag = null;
+      let id = null, tag = null, type = null, name = null, options = null, hidden = true;
       if (sib) {
-        const el = sib.querySelector('input,select,textarea');
-        if (el) { id = el.id || el.getAttribute('name'); tag = el.tagName.toLowerCase(); }
+        const all = [...sib.querySelectorAll('input,select,textarea')];
+        const el = all.sort((a, b) => rankControl(a) - rankControl(b))[0];
+        if (el) {
+          id = el.id || null;
+          name = el.getAttribute('name');
+          tag = el.tagName.toLowerCase();
+          type = el.type || null;
+          hidden = el.type === 'hidden' || el.offsetParent === null;
+          if (tag === 'select') {
+            options = [...el.options].map((o) => (o.textContent || '').trim()).filter(Boolean).slice(0, 30);
+          }
+        }
       }
-      if (label) pairs.push({ label, id, tag });
+      if (label) pairs.push({ label, id, tag, type, name, hidden, options });
     });
     const buttons = [...document.querySelectorAll('input[type=submit],input[type=button],button')]
-      .map((b) => ({ label: (b.value || b.textContent || '').trim(), id: b.id || b.getAttribute('name'), disabled: b.disabled }));
+      .map((b) => {
+        const onclick = (b.getAttribute('onclick') || '').toLowerCase();
+        return {
+          label: (b.value || b.textContent || '').trim(),
+          id: b.id || b.getAttribute('name'),
+          disabled: b.disabled,
+          // A button that opens a child window changes what the next step can
+          // see. Web AI cannot infer that from static HTML, so it travels in
+          // the index as an explicit fact.
+          opensPopup: /popup|window\.open|opener/.test(onclick) || undefined,
+        };
+      });
     // テーブル行の構造（rowfield を解く鍵）
     const tables = [...document.querySelectorAll('table')].map((tb) => {
       const th = [...tb.querySelectorAll('th')].map((x) => (x.textContent || '').trim()).filter(Boolean);

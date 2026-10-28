@@ -38,6 +38,13 @@ ms-ad RPA 包（2026-10-28）
      node automation\node-runner\run-flow.mjs flows\tests\AZ-110-01-009.ai.yaml --live --login --demo --demo-delay 1500
 
 判读：PENDING / ANCHOR / NO-CAPTURE 都不是通过。
+
+-= 在 Studio 里改流程 ====================================================
+  node automation\node-runner\studio\server.mjs 10200  → http://127.0.0.1:10200
+
+  · 调换步骤顺序：直接拖动整行（不用点几十次 ↑）
+  · 顶部「YAML」按钮：直接看/改 YAML 原文，Ctrl+S 原样写回，注释不丢
+    写盘前解析一次；语法错会指出行号并且不写。备份在 flows\.backup\
       3 个 ANCHOR 若都是「行锚点值不在这份 capture 的数据里」，要用真机数据再跑一次。
 
 -= 最快确认这套东西能跑 ====================================================

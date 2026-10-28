@@ -14,14 +14,16 @@
     "how": "radioByRowText",
     "rowTextFrom": "募集人ID",
     "selectorTemplate": "tr:has(td:has-text(\"{value}\")) input[name=selectNo]",
-    "note": "結果行の radio。th:value は行 index なので行テキストで特定する"
+    "note": "結果行の radio。th:value は行 index なので行テキストで特定する",
+    "kind": "radio"
    },
    {
     "label": "選択欄ラジオボタン",
     "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name=\"selectNo\"]",
     "how": "rowByText",
     "note": "実機 capture 2026-10-28；結果行 radio。行锚点=募集人ID",
-    "status": "confirmed"
+    "status": "confirmed",
+    "kind": "radio"
    }
   ],
   "AMB/AMA13": [
@@ -37,7 +39,8 @@
     "namePattern": "field_list.selected",
     "how": "optionByText",
     "status": "runtime-resolve",
-    "note": "実機 capture；AMA13 の結果は option 一覧。chooseRow がアンカー文字で選ぶ"
+    "note": "実機 capture；AMA13 の結果は option 一覧。chooseRow がアンカー文字で選ぶ",
+    "kind": "select"
    }
   ],
   "AMB/AMA04": [
@@ -47,7 +50,8 @@
     "how": "rowByText",
     "status": "confirmed",
     "note": "実機 capture；行内 checkbox。行锚点=不備内容",
-    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".inquiry_contents_edit_flag\"]"
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".inquiry_contents_edit_flag\"]",
+    "kind": "checkbox"
    },
    {
     "label": "代理店照会",
@@ -55,7 +59,8 @@
     "how": "rowByText",
     "status": "confirmed",
     "note": "実機 capture；行内 select（要/否）。行锚点=不備内容",
-    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".agent_inquiry_flag.selected\"]"
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"list[\"][name$=\".agent_inquiry_flag.selected\"]",
+    "kind": "select"
    },
    {
     "label": "修",
@@ -63,7 +68,8 @@
     "how": "rowByText",
     "status": "confirmed",
     "note": "実機 capture；行内 修 ボタン。行锚点=不備内容",
-    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"editInquiryContents[\"]"
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"editInquiryContents[\"]",
+    "kind": "button"
    },
    {
     "label": "検索",
@@ -71,7 +77,8 @@
     "how": "rowByText",
     "status": "confirmed",
     "note": "実機 capture；行内検索ボタン。行锚点=不備内容",
-    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"imperfectSearch[\"]"
+    "selectorTemplate": "tr:has(td:text-is(\"{value}\")) [name^=\"imperfectSearch[\"]",
+    "kind": "button"
    }
   ],
   "AMB/AMA15": [

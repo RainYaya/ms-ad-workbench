@@ -275,6 +275,125 @@ for (const s of r.steps) {
   }
 }
 
+// ── 5.5 值形态 / 锚点形态（实测最常被 AI 写错的四类）────────────────
+// L0 used to accept anything that parsed to a string, so these only surfaced
+// at run time (or not at all, because an anchor of "true" builds a valid CSS
+// selector). They are now compile errors: the point is that the feedback loop
+// says exactly which row and why, without a human reading the YAML.
+
+// (a) Row-scoped targets need an anchor, and the anchor must be a business
+//     value. flow-loader falls back to the step value when anchor is absent
+//     (flow-loader.mjs:362), which silently turns `value: true` into
+//     `tr:has(td:text-is("true"))` — a selector that matches nothing but
+//     looks legitimate in every report.
+//     How-values are the ones the loader actually emits (binding, control,
+//     rowByText, optionByText, radioByRowText, runtime-resolve, datetime,
+//     selector, fill, checkbox). Row-scoped = the ones that need a row.
+const ROW_SCOPED_HOW = new Set(['rowByText', 'optionByText', 'radioByRowText', 'runtime-resolve', 'rowfield', 'option-list', 'table-row']);
+const ALL_HOW = new Set(['binding', 'control', 'rowByText', 'optionByText', 'radioByRowText',
+  'runtime-resolve', 'datetime', 'selector', 'fill', 'checkbox']);
+for (const s of r.steps) {
+  for (const t of s.targets || []) {
+    if (!t) continue;
+    const rowScoped = ROW_SCOPED_HOW.has(t.how) ||
+      (t.selectorTemplate && String(t.selectorTemplate).includes('{value}'));
+    const hasAnchor = t.anchor !== undefined && t.anchor !== null && t.anchor !== '';
+    if (rowScoped && !hasAnchor) {
+      errors.push(`row ${s.row}: 行内控件「${t.label || t.how}」必须写 target.anchor（否则会拿 value 当行锚点）`);
+    }
+    if (hasAnchor) {
+      const a = t.anchor;
+      if (typeof a !== 'string') {
+        errors.push(`row ${s.row}: target.anchor 必须是字符串，现在是 ${Array.isArray(a) ? 'array' : typeof a}（${JSON.stringify(a)}）`);
+      } else if (/^\[object |^(true|false|undefined|null)$/.test(a.trim())) {
+        errors.push(`row ${s.row}: target.anchor 是非法值 "${a}"（布尔/对象泄漏成了锚点）`);
+      }
+    }
+  }
+}
+
+// The loader stringifies an object value into "[object Object]" before L0 can
+// see its shape, so the raw step is the only place the original type survives.
+const rawSteps = raw.steps || [];
+for (const rs of rawSteps) {
+  const bad = [];
+  if (rs.value !== null && typeof rs.value === 'object') bad.push(`value 是对象 ${JSON.stringify(rs.value)}`);
+  if (typeof rs.value === 'string' && rs.value === '[object Object]') bad.push('value 是 "[object Object]"');
+  if (rs.target && typeof rs.target.value === 'object' && rs.target.value !== null) bad.push('target.value 是对象');
+  for (const u of rs.use || []) {
+    if (u && typeof u === 'object' && u.value !== null && typeof u.value === 'object') bad.push('use[] 的 value 是对象');
+  }
+  if (bad.length) errors.push(`row ${rs.row}: ${bad.join('；')}（值只能是一个字符串/数字/布尔）`);
+}
+
+// (b) A checkbox/radio takes a boolean. 別紙 writes 「連動しない」; the AI copies
+//     it literally and the runner dies with "checkbox value must be boolean".
+//     fillAll carries the same risk and used to be skipped here.
+const BOOL_KINDS = new Set(['checkbox', 'radio']);
+const literalBool = (v) => typeof v === 'boolean';
+const valueIsBoolean = (v) => {
+  if (literalBool(v)) return true;
+  if (typeof v !== 'string') return false;
+  const m = /^\$\{(?:case|env|prev)\.([^}]+)\}$/.exec(v.trim());
+  if (!m) return false;
+  const spec = raw.values?.[m[1]];
+  return !!(spec && typeof spec === 'object' && typeof spec.value === 'boolean');
+};
+for (const s of r.steps) {
+  if (!['check', 'fill', 'fillAll'].includes(s.do)) continue;
+  for (const t of s.targets || []) {
+    if (!t) continue;
+    // A row-scoped control reports kind 'rowfield'; the element's real type is
+    // in ctlKind. Without this a row checkbox holding "連動しない" looked
+    // identical to a row button and slipped through every offline check.
+    const k = t.kind === 'rowfield' ? t.ctlKind : t.kind;
+    if (!BOOL_KINDS.has(k)) continue;
+    // A radio group is addressed by the visible choice text (「必要」/「不要」):
+    // that is a string on purpose and must not be coerced to a boolean.
+    if (t.choices) continue;
+    if (valueIsBoolean(t.value)) continue;
+    const what = k === 'radio' ? 'radio' : 'checkbox';
+    if (typeof t.value === 'string' && /^\$\{(?:case|env|prev)\./.test(t.value.trim())) {
+      warnings.push(`row ${s.row}: ${t.label} 是 ${what}，值来自 ${t.value}（运行期必须是布尔；建议改成 literal true/false）`);
+      continue;
+    }
+    const hint = String(t.value) === 'true' || String(t.value) === 'false' ? '（是字符串，不是布尔）' : '';
+    errors.push(`row ${s.row}: ${t.label} 是 ${what}，值必须是 true/false，现在是 ${JSON.stringify(t.value)}${hint}`);
+  }
+}
+
+// (c) A <select> value is the visible option text, not the option's value
+//     attribute. check-patch can prove it against the capture; L0 rejects the
+//     shapes that can never be option text.
+for (const s of r.steps) {
+  if (s.do !== 'select') continue;
+  for (const t of s.targets || []) {
+    const v = t?.value;
+    if (v === undefined || v === null || v === '') {
+      const rawStep = rawSteps.find((x) => x.row === s.row && x.do === 'select');
+      if (rawStep && rawStep.value === undefined) errors.push(`row ${s.row}: select 必须有 value（选项的显示文字）`);
+      continue;
+    }
+    if (typeof v === 'object') {
+      errors.push(`row ${s.row}: select 的 value 应该是字符串，现在是对象 ${JSON.stringify(v)}（模板会取到 [object Object]）`);
+    } else if (typeof v === 'boolean') {
+      errors.push(`row ${s.row}: select 的 value 是布尔 ${v}；下拉框的值是选项文字`);
+    } else if (/^\[object /.test(v)) {
+      errors.push(`row ${s.row}: select 的 value 是 "${v}"（值是对象，被字符串化了）`);
+    }
+  }
+}
+
+// (d) popup detection: if the hand procedure opens child windows and the flow
+//     has no popup: true anywhere, every step inside those windows will look
+//     for controls on the parent page. This is a heuristic, so it warns.
+const handOpensPopup = Object.values(handRows).some((info) =>
+  /ポップアップ|popup|子画面|子ウィンドウ/i.test(`${info.op || ''} ${info.ver || ''}`));
+const flowHasPopup = r.steps.some((s) => s.popup);
+if (handOpensPopup && !flowHasPopup) {
+  warnings.push('手顺里有弹出窗口操作，但整份 flow 一个 popup: true 都没有（弹窗里的控件会被当主画面找）');
+}
+
 // ── 6. summary ──────────────────────────────────────────────────────
 const result = {
   case: flow.case,

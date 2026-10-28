@@ -15,6 +15,7 @@
   <div class="spacer"></div>
   <span id="envChip" class="badge"></span>
   <button id="btnScreen" title="显示/隐藏画面预览">画面</button>
+  <button id="btnYaml" title="查看 / 直接编辑 YAML 原文（保存时不重排、不丢注释）">YAML</button>
   <button id="btnCheck" title="离线检查 (Ctrl+Enter)">检查</button>
   <button id="btnSave" title="保存 YAML (Ctrl+S)">保存</button>
   <button id="btnRun" class="primary" title="启动 mock 后端并运行（显示浏览器；Shift+点击=无头）">▶ 运行</button>
@@ -32,6 +33,19 @@
     <div id="palette"></div>
     <div id="canvasBody">
       <div id="steps" class="steps"></div>
+      <div id="yamlPane" hidden>
+        <div class="yp-head">
+          <span id="ypTitle" class="badge">YAML 原文</span>
+          <span id="ypState" class="hint"></span>
+          <span class="spacer"></span>
+          <button id="ypReload" title="放弃编辑，重新从磁盘读">重读</button>
+          <button id="ypSave" class="primary" title="原样写回（Ctrl+S）">写入磁盘</button>
+          <button id="ypClose" title="关闭 YAML 视图">×</button>
+        </div>
+        <textarea id="ypText" spellcheck="false" wrap="off"></textarea>
+        <div id="ypFoot" class="hint">改完按「写入磁盘」或 Ctrl+S。写盘前会解析一次，语法错会指出行号并且不写。
+          原文备份在 flows/.backup/。</div>
+      </div>
       <div id="screenPane" hidden>
         <div class="sp-head">
           <span id="spTitle">画面</span>
