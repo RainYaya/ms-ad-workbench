@@ -387,7 +387,13 @@ async function capture(opts = {}) {
     try {
       const html = await targetPage.content();
       const file = base + '.html';
-      writeFileSync(join(outDir, file), html, 'utf8');
+      // The SUT sets <title> from JS (ui-screens.json marks these screens
+      // titleRuntime: true), so a saved page often has an empty title and the
+      // file name carries no screen. Stamp the URL in a comment: dom-check
+      // resolves a logs/ page to a screen by route > title > controller code,
+      // same as everywhere else. Without it, a failure page cannot be used as
+      // --capture for add-control, which is the whole real-machine repair loop.
+      writeFileSync(join(outDir, file), `<!-- rpa-url: ${targetPage.url()} -->\n` + html, 'utf8');
       written.push({ file, of: 'dom', url: targetPage.url() });
     } catch (e) { errs.push(String(e.message).split('\n')[0]); }
   } else if (of === 'element') {

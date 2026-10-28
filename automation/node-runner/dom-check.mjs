@@ -92,8 +92,12 @@ function scanHtmlDir(dir, screens) {
       let html = '';
       try { html = readFileSync(abs, 'utf8'); } catch { continue; }
       const title = (/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] || '').trim();
+      // run-flow stamps the URL into pages it saves (failure screenshots go to
+      // logs/<case>-flow/). The SUT fills <title> from JS, so without this a
+      // saved page has no identity and cannot be used as --capture.
+      const url = (/<!--\s*rpa-url:\s*(\S+?)\s*-->/.exec(html)?.[1] || '').trim();
       n += 1;
-      const entry = { n, reason: 'file', file: abs.slice(dir.length + 1).replace(/\\/g, '/'), url: '', title, counts: null };
+      const entry = { n, reason: 'file', file: abs.slice(dir.length + 1).replace(/\\/g, '/'), url, title, counts: null };
       out.push({ ...entry, screen: screenForPage(entry, screens), abs });
     }
   }

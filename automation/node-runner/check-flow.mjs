@@ -78,6 +78,20 @@ if (!chainCase) {
 // not apply (docs/rpa/11-KERNEL.md §13).
 const externalMode = String(flow.mode || '').toLowerCase() === 'external';
 
+// ── 0. closed instruction set ───────────────────────────────────────
+// The language is 17 primitives and nothing else (16-LANGUAGE §5.1). An
+// invented `do` used to compile clean and only fail mid-run with
+// "unknown action: X" (run-flow.mjs:1012), after the browser was already open.
+const PRIMITIVES = new Set([
+  'click', 'fill', 'select', 'check', 'chooseRow', 'fillAll', 'press', 'goto', 'waitUntil',
+  'capture', 'screenIs', 'fieldIs', 'rowsAtLeast', 'messageIs', 'downloadIs', 'externalIs', 'manual',
+]);
+for (const s of r.steps) {
+  if (!PRIMITIVES.has(s.do)) {
+    errors.push(`row ${s.row}: unknown primitive '${s.do}' (the instruction set is closed: see 16-LANGUAGE §5.1)`);
+  }
+}
+
 // ── 1. screen chain vs hand procedure ────────────────────────────────
 const handRows = chainCase?.rows || {};
 if (!externalMode) {
@@ -190,11 +204,19 @@ for (const [k, spec] of Object.entries(raw.values || {})) {
   const text = String(s.value ?? '');
   for (const m of text.matchAll(/\$\{([^{}]+)\}/g)) {
     const expr = m[1].trim();
-    if (expr.startsWith('env.') && !(expr.slice(4) in envValues)) {
+    if (expr.startsWith('env.') && !envName) {
+      errors.push(`value ${k}: ${expr} needs a top-level env: profile`);
+    } else if (expr.startsWith('env.') && !(expr.slice(4) in envValues)) {
       errors.push(`value ${k}: ${expr} not in flows/env/${envName}.yaml`);
     }
     if (expr.startsWith('case.') && !(expr.slice(5) in (raw.values || {}))) {
       errors.push(`value ${k}: ${expr} not defined in values`);
+    }
+    // `prev` shares case's map (flow-loader resolveExpr: case and prev both read
+    // ctx.values). Validate it the same way, otherwise a typo compiles fine and
+    // becomes an empty string at run time.
+    if (expr.startsWith('prev.') && !(expr.slice(5) in (raw.values || {}))) {
+      errors.push(`value ${k}: ${expr} not defined in values (prev is an alias of case)`);
     }
     if (expr.startsWith('sys.') && !/^sys\.(now|today|today\+\d+d)$/.test(expr)) {
       errors.push(`value ${k}: unsupported sys expression ${expr}`);
@@ -202,7 +224,7 @@ for (const [k, spec] of Object.entries(raw.values || {})) {
   }
 }
 
-// every ${case.x} / ${env.x} used by a step must exist
+// every ${case.x} / ${prev.x} / ${env.x} used by a step must exist
 for (const s of r.steps) {
   const texts = [s.value, s.target?.anchor].filter((x) => x !== undefined).map(String);
   // fillAll items can carry their own value ({label, value}); a typo in
@@ -215,6 +237,14 @@ for (const s of r.steps) {
       const expr = m[1].trim();
       if (expr.startsWith('case.') && !(expr.slice(5) in (raw.values || {}))) {
         errors.push(`row ${s.row}: ${expr} not defined in values`);
+      }
+      if (expr.startsWith('prev.') && !(expr.slice(5) in (raw.values || {}))) {
+        errors.push(`row ${s.row}: ${expr} not defined in values (prev is an alias of case)`);
+      }
+      // Without an env profile resolveExpr returns '' for every ${env.x}
+      // (flow-loader.mjs:229), so the step would fill an empty string.
+      if (expr.startsWith('env.') && !envName) {
+        errors.push(`row ${s.row}: ${expr} needs a top-level env: profile`);
       }
       if (expr.startsWith('env.') && envName && !(expr.slice(4) in envValues)) {
         errors.push(`row ${s.row}: ${expr} not in flows/env/${envName}.yaml`);
