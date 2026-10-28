@@ -3,6 +3,9 @@
 > 最后更新：2026-10-27　适用分支：`feat/rpa-flow`
 > 这份文档回答三件事：**怎么启动、每种活怎么做、出错先看哪。**
 > 规则细节看 [16-LANGUAGE.md](16-LANGUAGE.md)，整条链看 [15-CHAIN.md](15-CHAIN.md)。
+> **Studio 每一栏对应哪个 YAML 键、值从哪来（`env` / `values` / `case`）→
+> [22-STUDIO-FIELDS.md](22-STUDIO-FIELDS.md)。**
+> **真机上某一步找不到控件、要改哪个文件 → [23-REAL-MACHINE-REPAIR.md](23-REAL-MACHINE-REPAIR.md)。**
 > 想先搞懂这门语言本身（类型、寻址、顺序、编译/运行的边界）→
 > [20-YAML-AS-LANGUAGE.md](20-YAML-AS-LANGUAGE.md)。
 > **全部操作只想在实机那台电脑上做完 → 直接看 [19-REAL-MACHINE.md](19-REAL-MACHINE.md)。**
@@ -167,10 +170,15 @@ node automation/node-runner/check-patch.mjs \
 ```bash
 node automation/node-runner/add-control.mjs \
   --capture capture-20261028 --screen 募集人検索画面 \
+  --label 選択欄ラジオボタン \
   --html '<input type="radio" name="selectNo" value="0">' \
   --anchor 3028004586 \
   --out flows/patches/AZ-110-01-009.control.yaml
 ```
+
+`--label` 是**手顺里的措辞**，必填。`--capture` 也可以直接指向 `logs/<case>-flow/`：
+运行失败时 `run-flow` 会把当时的真机页面存成 `NNN_rXX_FAIL.html`（文件头带 `<!-- rpa-url: … -->`），
+不用重新抓就能补控件。完整修复流程见 [23-REAL-MACHINE-REPAIR.md](23-REAL-MACHINE-REPAIR.md)。
 
 - 1 个命中 → 写固定 `selector`；多个命中且给了 `--anchor` → 验证
   `tr:has(td:text-is("{value}")) …` 后写**模板**；0 个命中 → 直接报错。
@@ -186,6 +194,8 @@ node automation/node-runner/studio/server.mjs 10200   # → http://127.0.0.1:102
 ```
 
 预览的是 **mock 画面**，不是真机。215 条 `needs-human` 绑定在这里逐条点选确认。
+**Studio 不产生新真值**：左栏=文件、中间= `steps:`、右栏四个页签 = `steps` / `values` /
+`bindings.yaml` / 顶层字段。每一栏和运行期字段的对照见 [22-STUDIO-FIELDS.md](22-STUDIO-FIELDS.md) §2–§4。
 
 三件关于改流程的事：
 
@@ -194,6 +204,7 @@ node automation/node-runner/studio/server.mjs 10200   # → http://127.0.0.1:102
 | 调换步骤顺序 | 在步骤列表里**拖动**整行到目标位置 | 拖的是 `steps` 数组顺序，`row:` 是手顺行号，不跟着变。要移动「一块」就把这几行一起拖 |
 | 新步骤不要排在最后 | 先拖到目标位置再填内容，或添加后立刻拖 | 新步骤默认追加到末尾（`row` = 上一行 +1，要手改） |
 | 改 YAML 原文（含注释） | 顶部「YAML」按钮 → 直接编辑 → 「写入磁盘」或 Ctrl+S | 见下 |
+| 加一步 | 左边窄条 palette 就是 **17 个原语**，点一下追加到末尾，再拖到位置 | 没有第 18 个；`branch` 已从 palette 移除（运行期不认识） |
 
 **「YAML」视图**是唯一一条**不重排、不丢注释**的写盘路径：
 
@@ -235,7 +246,8 @@ node automation/node-runner/check-patch.mjs --flow flows/tests/<本>.ai.yaml --c
 2. 标签找不到：`check-patch` 看该画面有没有这个控件；没有就 `add-control`。
 3. 画面不对：看 `ui-screens.json` 的 `routes` 是否覆盖真实 URL（抓到的 URL 就是证据）。
 4. 运行期错行：加 `target.anchor`；确实无锚点（如刚登记的空行）才用本别覆盖钉死行号，并写 `reason`。
-5. 还不明白：按 [10-DEBUG-BY-CODE.md](10-DEBUG-BY-CODE.md) 的要求，先回答「现在实际结构是什么（文件+行号）」，再动手。
+5. 真机上某一步找不到控件：按 [23-REAL-MACHINE-REPAIR.md](23-REAL-MACHINE-REPAIR.md) 的对照表，用失败时存下的 `logs/<case>-flow/NNN_rXX_FAIL.html` 补控件，不需要重新抓、不需要 Python。
+6. 还不明白：按 [10-DEBUG-BY-CODE.md](10-DEBUG-BY-CODE.md) 的要求，先回答「现在实际结构是什么（文件+行号）」，再动手。
 
 ## 6. 红线（任何用法都不例外）
 

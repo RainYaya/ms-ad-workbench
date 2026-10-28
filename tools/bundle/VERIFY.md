@@ -26,7 +26,7 @@ ui-rowfields.json         人工覆盖层（行内控件 / 组合控件）
 flows/bindings.yaml       绑定表（auto / confirmed / needs-human / blocked）
 guards.json               前置/校验（32 前置 / 569 校验）
 reports/screen-chain.json check-flow 的画面链依据（100% 派生）
-docs/rpa/ docs/adr/       设计、状态、报告、ADR（17-USAGE / 19-REAL-MACHINE / 20 / 21 是入口）
+docs/rpa/ docs/adr/       设计、状态、报告、ADR（17-USAGE / 19-REAL-MACHINE / 20 / 21 / 22 是入口）
 tools/                    重建脚本（Python，仅重建时需要）+ save-clip.ps1（剪贴板 → YAML）
 v2/data/cases/            手顺/别紙源数据（仅重建、make-brief 需要）
 ```
@@ -73,7 +73,7 @@ node automation\node-runner\check-flow.mjs flows\AZ-150-05-001.yaml
 ```
 case AZ-110-01-009
   steps 45  handRows 44  targets 51
-  errors 0  warnings 0  pending 22
+  errors 0  warnings 0  pending 16
 
 case AY-120-08-001
   steps 13  handRows 13  targets 8
@@ -97,13 +97,13 @@ node automation\node-runner\studio\server.mjs 10200
 
 浏览器打开 <http://127.0.0.1:10200>。要确认：
 
-1. 左侧列表 **130 条**；`books/` 开头的带「本」标签（122 本）。
+1. 左侧列表 **141 条**；`books/` 开头的带「本」标签（133 本）。
 2. 点 `AY-110-01-001` → **28 步**。先点右上角「画面」按钮打开预览（默认是关的）。
    点 `row 17` → 预览切到「取消計上申請登録画面」。
    把鼠标移到「登録」按钮：按钮出现绿框，底部一行显示 `登録  #regist`。
 3. 左侧筛选框输入 `AZ-240` → 只剩 `AZ-240-01-001`（14 步）。
-4. 顶部「绑定队列」→ 默认 `待确认`，列表 **218 条**，下面写
-   「共 519 条规则；待确认 218 条」。
+4. 顶部「绑定队列」→ 默认 `待确认`，列表 **211 条**，下面写
+   「共 519 条规则；待确认 211 条」。
    点一条没有 selector 的规则（例如 `B0007「OK」ボタン押下`）→ 画面打开，
    顶部写「未确认（无 selector）」；这是对的，不是 bug。
 5. 再点「步骤」回到编辑视图；`screenPane` 用 × 关掉。
@@ -176,9 +176,9 @@ python tools\report.py --check --write docs\rpa\14-REPORT.md
 | 步骤 | 期望 |
 |---|---|
 | build_controls | `54 screens / 1998 controls`（写 `ui-controls.json`） |
-| build_bindings | `519 rules`：auto 265 / needs-human 218 / blocked 36 |
-| generate_books | `books 1386 written 122`；hand-written 8；blocked 1256 |
-| report --check | `L0 130/130`；`L1` = 你实际跑过的本数（全新包是 0，跑过 2.3 就是 1）；`L2 0` |
+| build_bindings | `519 rules`：auto 265 / needs-human 211 / blocked 36（其中 7 条已在 Studio 确认，重建会保留） |
+| generate_books | `books 1386 written 139`；hand-written 8；blocked 1247 |
+| report --check | `L0 141/141`；`L1` = 你实际跑过的本数（全新包是 0，跑过 2.3 就是 1）；`L2 0` |
 
 `report.py --check` 会对 130 个 flow 各跑一次 check-flow，约 2 分钟。
 不带 `--check` 则没有 L0 结果（会显示 `0 / 130`），那不代表失败，只是没检查。

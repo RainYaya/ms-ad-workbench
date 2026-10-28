@@ -83,7 +83,7 @@ node automation/node-runner/check-patch.mjs \
 
 # ③ 缺控件就补（粘贴真实元素，先校验再加 --apply）
 node automation/node-runner/add-control.mjs --capture capture-YYYYMMDD \
-  --screen <画面名> --html '<input ...>' --anchor <行值> --out flows/patches/<case>.control.yaml
+  --screen <画面名> --label <手顺措辞> --html '<input ...>' --anchor <行值> --out flows/patches/<case>.control.yaml
 
 # ④ mock 跑 / 真机演示
 node automation/node-runner/run-flow.mjs flows/tests/<case>.ai.yaml --demo --demo-delay 1200

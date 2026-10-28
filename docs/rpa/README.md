@@ -51,7 +51,9 @@
 | 21 | [19-REAL-MACHINE.md](19-REAL-MACHINE.md) | **在实机电脑上一条龙**：抓页面 → 打材料包 → Copilot → 校验 → 跑（不回家） |
 | 22 | [20-YAML-AS-LANGUAGE.md](20-YAML-AS-LANGUAGE.md) | **把流程 YAML 当编程语言讲**：类型、求值、寻址、编译/运行边界、定制化配方 |
 | 23 | [21-WRITE-A-FLOW.md](21-WRITE-A-FLOW.md) | **白话版：自己写一本流程**（从零到能跑，含模板与自查清单） |
-| 24 | [../adr/](../adr/) | ADR 0001–0007：为什么是这四层、为什么删掉模糊匹配、画面从哪来、值从哪来 |
+| 24 | [22-STUDIO-FIELDS.md](22-STUDIO-FIELDS.md) | **Studio 每栏对应哪个 YAML 键 + 每个字段/原语/证据 + `env`/`values`/`case` 怎么组合** |
+| 25 | [23-REAL-MACHINE-REPAIR.md](23-REAL-MACHINE-REPAIR.md) | **真机某步找不到控件怎么修**：故障 → 改哪个文件 → 不需要 Python/AI |
+| 26 | [../adr/](../adr/) | ADR 0001–0007：为什么是这四层、为什么删掉模糊匹配、画面从哪来、值从哪来 |
 
 ## 现在能用什么
 

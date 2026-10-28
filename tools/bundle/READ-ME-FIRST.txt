@@ -14,6 +14,8 @@ ms-ad RPA 包（2026-10-28）
 完整说明：docs\rpa\19-REAL-MACHINE.md
 白话版怎么写/改一本：docs\rpa\21-WRITE-A-FLOW.md
 语言（类型/寻址/顺序/边界）：docs\rpa\20-YAML-AS-LANGUAGE.md
+字段与变量（Studio 每栏对应哪个键、env/values/case 怎么组合）：docs\rpa\22-STUDIO-FIELDS.md
+真机某步找不到控件怎么修（不需要 Python）：docs\rpa\23-REAL-MACHINE-REPAIR.md
 
   1) 抓页面（手动走完整本，走完 Ctrl+C）
      node automation\node-runner\capture.mjs --url "<真机URL>" --out capture-20261028 --edge

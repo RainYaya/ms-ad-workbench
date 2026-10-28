@@ -138,9 +138,15 @@ steps:
 | `env` | 环境剖面 | `{value: "${env.部店課支社コード}", source: env}` | 剖面里必须存在 |
 | `case` | 别紙数据 | `{value: AZ11005, source: case, row: 10}` | 必须有 row |
 | `sys` | 系统生成 | `{value: "${sys.today+7d}", source: sys}` | 只允许白名单 |
-| `prev` | 上一步的结果 | `{value: "${prev.保険種類}", source: prev}` | 前一步必须产生 |
+| `prev` | **`case` 的别名（不是「上一步」）** | `{value: "${prev.保険種類}", source: prev}` | 键必须在 `values` 里；没有 row 要求 |
 | `blank` | 手顺要求留空 | `{value: "", source: blank, row: 35}` | — |
-| `human` | 人工临时输入 | `{value: "", source: human, row: n}` | — |
+| `human` | 人工临时输入 | `{value: "", source: human, row: n}` | 必须有 row |
+| `auto` | 生成器打标，等同 `case` | `{value: 未計上, source: auto, row: 12}` | 必须有 row |
+
+> `prev` 的实情：`flow-loader.mjs` 的 `resolveExpr` 把 `case` 和 `prev` 送进**同一张**
+> `ctx.values`，运行期没有任何「上一步的返回值」写进去。现存 141 本没有一本用它。
+> 要「人填的值传给下一步」，用 `manual` 步 + 后面的 `fillAll` 按标签名回查。
+> 详见 [22-STUDIO-FIELDS.md](22-STUDIO-FIELDS.md) §5.7。
 
 **表达式只允许三种命名空间：**
 
