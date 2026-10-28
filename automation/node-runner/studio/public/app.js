@@ -16,7 +16,8 @@ const S = {
 const PRIMS = [
   { group: '动作', cls: 'act', items: [
     ['click', 'click 点击'], ['fill', 'fill 填写'], ['select', 'select 选择'],
-    ['check', 'check 勾选'], ['chooseRow', 'chooseRow 选行'], ['press', 'press 按键'],
+    ['check', 'check 勾选'], ['chooseRow', 'chooseRow 选行'], ['fillAll', 'fillAll 批量填'],
+    ['press', 'press 按键'],
     ['goto', 'goto 跳转'], ['waitUntil', 'waitUntil 等待'],
   ] },
   { group: '证据', cls: 'evi', items: [['capture', 'capture 截图']] },
@@ -25,7 +26,7 @@ const PRIMS = [
     ['messageIs', 'messageIs 报文'], ['downloadIs', 'downloadIs 下载'], ['externalIs', 'externalIs 外部'],
   ] },
   { group: '控制', cls: 'ctl', items: [
-    ['manual', 'manual 人工'], ['branch', 'branch 分支'],
+    ['manual', 'manual 人工'],
   ] },
 ];
 
@@ -269,12 +270,10 @@ function defaultStep(doName, on) {
   if (doName === 'goto') { s.url = ''; s.reason = ''; }
   if (doName === 'press') s.key = 'Enter';
   if (doName === 'manual') s.note = '';
-  if (doName === 'branch') s.note = '未実装（branch は runner に未対応）';
   return s;
 }
 
 function addStep(doName) {
-  if (doName === 'branch') { toast('branch 还没有 runner 实现，先不添加', true); return; }
   const on = S.sel >= 0 ? S.model.steps[S.sel].on : S.model.start?.screen;
   const s = defaultStep(doName, on);
   S.model.steps = S.model.steps || [];
@@ -290,8 +289,7 @@ function renderPalette() {
   $('#palette').innerHTML = PRIMS.map((g) => `
     <div class="pal-group">
       <span class="pal-label">${g.group}</span>
-      ${g.items.map(([k, label]) => `<button class="pal ${g.cls}" data-do="${k}"
-        ${k === 'branch' ? 'disabled title="runner 未实现"' : ''}>${esc(label)}</button>`).join('')}
+      ${g.items.map(([k, label]) => `<button class="pal ${g.cls}" data-do="${k}">${esc(label)}</button>`).join('')}
     </div>`).join('');
   $$('#palette .pal').forEach((b) => b.onclick = () => addStep(b.dataset.do));
 }
