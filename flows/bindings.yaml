@@ -1,5 +1,5 @@
 version: 1
-generated: '2026-10-27 12:17:16'
+generated: '2026-10-29 08:30:26'
 source: v2/data/cases/*.js + ui-controls.json
 corpus:
   books: 1386
@@ -7,7 +7,8 @@ corpus:
   rows: 24854
   byStatus:
     auto: 265
-    needs-human: 218
+    confirmed: 7
+    needs-human: 211
     blocked: 36
   byType:
     template: 169
@@ -129,7 +130,7 @@ rules:
   label: OK
   type: template
   op: click
-  status: needs-human
+  status: confirmed
   candidates:
   - control: button:ok
     selector: '[name="ok"]'
@@ -137,7 +138,11 @@ rules:
   - control: dialog:confirm
     selector: '@dialog:confirm'
     kind: dialog
-  note: 标签为 OK 的控件有 2 个，必须人选定一个
+  note: 'confirmed by studio: Ｏ　Ｋ'
+  control: button:ok
+  selector: '[name="ok"]'
+  kind: button
+  confirmedAt: '2026-10-28T22:51:21.205Z'
 - id: B0001
   screen: AMB/AMA04
   screenName: 不備内容入力画面-更新
@@ -483,9 +488,13 @@ rules:
   label: 照会内容チェックボックス
   type: explicit
   op: click
-  status: needs-human
+  status: confirmed
   candidates: []
-  note: 没有标签精确相等的控件，需人工指定
+  note: 'confirmed by studio: [name="list[0].inquiry_contents_edit_flag"]'
+  control: checkbox:list[0].inquiry_contents_edit_flag
+  selector: '[name="list[0].inquiry_contents_edit_flag"]'
+  kind: checkbox
+  confirmedAt: '2026-10-28T22:51:15.371Z'
 - id: B0024
   screen: AMB/AMA15
   screenName: 照会内容編集画面
@@ -560,7 +569,7 @@ rules:
   label: OK
   type: template
   op: click
-  status: needs-human
+  status: confirmed
   candidates:
   - control: button:ok
     selector: '[name="ok"]'
@@ -568,7 +577,11 @@ rules:
   - control: dialog:confirm
     selector: '@dialog:confirm'
     kind: dialog
-  note: 标签为 OK 的控件有 2 个，必须人选定一个
+  note: 'confirmed by studio: Ｏ　Ｋ'
+  control: button:ok
+  selector: '[name="ok"]'
+  kind: button
+  confirmedAt: '2026-10-28T22:51:29.151Z'
 - id: B0029
   screen: AMB/AMA04
   screenName: 不備内容入力画面-更新
@@ -781,12 +794,16 @@ rules:
   label: 選択欄ラジオ
   type: explicit
   op: click
-  status: needs-human
+  status: confirmed
   candidates:
   - control: button:closeSelect
     selector: '[name="closeSelect"]'
     kind: button
-  note: 没有标签精确相等的控件，需人工指定
+  note: 'confirmed by studio: [name="selectNo"]'
+  control: radio:selectNo
+  selector: '[name="selectNo"]'
+  kind: radio
+  confirmedAt: '2026-10-28T22:51:43.191Z'
 - id: B0040
   screen: AMB/AMA18
   screenName: 募集人検索画面
@@ -881,11 +898,17 @@ rules:
   type: template
   op: click
   status: confirmed
+  candidates:
+  - control: button:selectInsuransuItem
+    selector: '[name="selectInsuransuItem"]'
+    kind: button
+  - control: button:selectFieldAgent
+    selector: '[name="selectFieldAgent"]'
+    kind: button
+  note: 手顺明写「保険種類欄の横」。実機 DOM（2026-10-28 AMA01/aZG001To03）两个 .... 按钮为 selectInsuransuItem / selectFieldAgent，此条取前者
   control: button:selectInsuransuItem
   selector: '[name="selectInsuransuItem"]'
   kind: button
-  note: 手顺明写「保険種類欄の横」。実機 DOM（2026-10-28 AMA01/aZG001To03）两个 .... 按钮为
-    selectInsuransuItem / selectFieldAgent，此条取前者
   confirmedAt: '2026-10-28T00:00:00'
 - id: B0042
   screen: AMB/AMA03
@@ -904,11 +927,17 @@ rules:
   type: template
   op: click
   status: confirmed
+  candidates:
+  - control: button:selectInsuransuItem
+    selector: '[name="selectInsuransuItem"]'
+    kind: button
+  - control: button:selectFieldAgent
+    selector: '[name="selectFieldAgent"]'
+    kind: button
+  note: 手顺明写「募集人ID欄の横」。実機 DOM（2026-10-28 AMA01/aZG001To03）两个 .... 按钮为 selectInsuransuItem / selectFieldAgent，此条取后者
   control: button:selectFieldAgent
   selector: '[name="selectFieldAgent"]'
   kind: button
-  note: 手顺明写「募集人ID欄の横」。実機 DOM（2026-10-28 AMA01/aZG001To03）两个 .... 按钮为
-    selectInsuransuItem / selectFieldAgent，此条取后者
   confirmedAt: '2026-10-28T00:00:00'
 - id: B0043
   screen: AMB/insurance_item_select
@@ -8607,10 +8636,12 @@ rules:
   type: field
   op: fill
   status: confirmed
+  candidates: []
+  note: 実機 DOM（2026-10-28 AMA01/aZG001To03）确认：标签后的 value_left 里先 hidden input（id=selected_insurance_item_code）再 select[name=insurance_item_list.selected]；控件库把 hidden 排除后整条丢失。填 select，与 AMB/AMA04 的 auto
+    规则一致
   control: select:insurance_item_list.selected
   selector: '[name="insurance_item_list.selected"]'
   kind: select
-  note: 実機 DOM（2026-10-28 AMA01/aZG001To03）确认：标签后的 value_left 里先 hidden input（id=selected_insurance_item_code）再 select[name=insurance_item_list.selected]；控件库把 hidden 排除后整条丢失。填 select，与 AMB/AMA04 的 auto 规则一致
   confirmedAt: '2026-10-28T00:00:00'
 - id: B0531
   screen: AMB/AMA03
