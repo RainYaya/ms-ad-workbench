@@ -242,11 +242,13 @@ selectorTemplate: 'tr:has(td:text-is("{value}")) input[name="selectNo"]'
 真机上失败时，命令行会停下问你：
 
 ```
-[Enter]retry  [s]skip  [v]manual value  [k]take over  [q]quit  [a]stop all
+[Enter]retry  [r]重读YAML再试这一步  [s]skip  [v]manual value  [k]take over  [q]quit  [a]stop all
 ```
 
 - `s` 跳过会记在 `run.json` 里（skip 不是通过）。
 - `k` 接管：浏览器保持打开，你手动做完再决定。
+- `r` 把文件（含标签表）重读一遍，**在同一个页面重做这一步**；编译不过会拒绝。
+  跑完停在结尾提示符时同一套 `r` 还能往前跳：`r` = 下一行，`r 23` = 从第 23 行开始。
 - 任何情况下都会**先截图再问**，失败现场不会被覆盖。
 
 ---

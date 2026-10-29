@@ -78,6 +78,14 @@ export function loadDictionaries(base = ROOT) {  cachedDict = loadJson(join(base
   return { dict: cachedDict, screens: cachedScreens, aliases: cachedAliases, overlay: cachedOverlay, byScreen };
 }
 
+// A run that stays alive (hot reload, --row) must see edits made while it is
+// running: the overlay, the bindings and the screen map are read once per
+// process. Dropping them makes the next compileFlow re-read the files.
+export function resetDictionaries() {
+  cachedDict = cachedScreens = cachedAliases = null;
+  cachedOverlay = cachedControls = cachedBindings = null;
+}
+
 function pageForScreen(screenName) {
   const screens = cachedScreens?.screens || {};
   let meta = screens[screenName];

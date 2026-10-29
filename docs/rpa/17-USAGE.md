@@ -1,6 +1,6 @@
 # 使用说明（唯一入口）
 
-> 最后更新：2026-10-27　适用分支：`feat/rpa-flow`
+> 最后更新：2026-10-29　适用分支：`feat/rpa-flow`
 > 这份文档回答三件事：**怎么启动、每种活怎么做、出错先看哪。**
 > 规则细节看 [16-LANGUAGE.md](16-LANGUAGE.md)，整条链看 [15-CHAIN.md](15-CHAIN.md)。
 > **Studio 每一栏对应哪个 YAML 键、值从哪来（`env` / `values` / `case`）→
@@ -78,6 +78,38 @@ node run-flow.mjs flows/AZ-110-01-009.yaml --live --login \
 - `--login` 打开浏览器等你手动登录，登录完回车。
 - 先加 `--demo` 看每一步落点，确认后再正式跑。
 - 失败会截图并记录 URL / 画面 / 目标 / 候选。
+
+### 3.2.1 改了一步不用重跑：再読込（`r`）
+
+跑到第 46 行发现这一步漏了 / 绑定不对，在 Studio 或编辑器里改好那一行，
+**不用退出重跑**：同一个进程还记得浏览器、登录和当前画面，`r` 只重读文件。
+
+两个入口，提示符一样：
+
+| 什么时候 | 怎么进 |
+|---|---|
+| 某一步失败时（失败菜单） | 按 `r`：重读 YAML 后**重做这一步** |
+| 跑完 / 按 `k` 留在原地（结尾提示符） | `r` = 从**最后执行过的行的下一行**继续；`r 23` = 从第 23 行开始（23 会重做） |
+
+失败菜单：`[Enter]retry [r]重读YAML再试这一步 [s]skip [v]manual value [k]take over [q]quit [a]stop all`
+
+再読込做三件事，都是显式的：
+
+1. 先跑一遍 `check-flow`。**编译不过就拒绝**（列出带行号的错误，浏览器一步没动）；
+   能编译但有画面链警告才问一次「仍然继续？」。
+2. 重读 YAML，并丢掉 6 个数据文件的缓存 —— `ui-screens` / `ui-controls` / `ui-dictionary` /
+   `ui-aliases` / `ui-rowfields` / `bindings.yaml`。所以 `add-control --apply` 改完按 `r` 就生效，
+   不用重启进程。
+3. 在**当前页面**上继续，不重新登录、不回起点，前面已经完成的步骤不重放。
+   每次再読込记进 `run.json` 的 `reloads`（`{at, row, steps}`）。
+
+两条限制，是设计的边界不是 bug：
+
+- **跳回已经走过的一段，副作用会再做一次。** `r 23` 会从 23 行一路重做后面的行；
+  如果 24 行已经按过「更新」，它会再按一次。真机上要按业务状态判断能不能跳回。
+- **每一步执行前仍然先验画面。** 浏览器停在 30 行的画面时 `r 23`
+  （23 行在别的画面）= `wrong screen`，这是对的。跨画面跳回去之前先把页面带回那一行的画面，
+  或者干脆重启一本。
 
 ### 3.3 抓实机 DOM（人操作，工具记录）
 
@@ -281,6 +313,7 @@ node automation/node-runner/check-patch.mjs --flow flows/tests/<本>.ai.yaml --c
 3. 画面不对：看 `ui-screens.json` 的 `routes` 是否覆盖真实 URL（抓到的 URL 就是证据）。
 4. 运行期错行：加 `target.anchor`；确实无锚点（如刚登记的空行）才用本别覆盖钉死行号，并写 `reason`。
 5. 真机上某一步找不到控件：按 [23-REAL-MACHINE-REPAIR.md](23-REAL-MACHINE-REPAIR.md) 的对照表，用失败时存下的 `logs/<case>-flow/NNN_rXX_FAIL.html` 补控件，不需要重新抓、不需要 Python。
+   补完**不用重跑**：回到 `run-flow` 的提示符按 `r` 或 `r <行号>`（见 §3.2.1）。
 6. 还不明白：按 [10-DEBUG-BY-CODE.md](10-DEBUG-BY-CODE.md) 的要求，先回答「现在实际结构是什么（文件+行号）」，再动手。
 
 ## 6. 红线（任何用法都不例外）

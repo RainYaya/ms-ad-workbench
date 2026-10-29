@@ -11,6 +11,10 @@
 // --to-row N   stop after row N
 // --dump       on failure, print the form's current values (diagnostic only)
 //
+// Hot reload, no restart: `r` in the failure menu re-reads the book (and the
+// label tables) and redoes that row on the same page; the prompt after the run
+// takes `r` (next row) / `r 23` (from hand row 23). check-flow gates both.
+//
 // Kernel: docs/rpa/11-KERNEL.md. 17 primitives, state-checked, fail-stop.
 import { chromium } from 'playwright-core';
 import { mkdirSync, writeFileSync, readFileSync, existsSync, unlinkSync } from 'node:fs';
@@ -18,7 +22,8 @@ import { createHash } from 'node:crypto';
 import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createInterface } from 'node:readline';
-import { compileFlow, interpolate, norm, resolveValue, dictSelector } from './flow-loader.mjs';
+import { spawnSync } from 'node:child_process';
+import { compileFlow, interpolate, norm, resolveValue, dictSelector, resetDictionaries } from './flow-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(here, '../..');
@@ -47,9 +52,17 @@ const slow = demo ? 0 : (Number(arg('slow', '0')) || 0);
 const outDir = resolve(ROOT, 'logs', basename(flowPath).replace(/\.ya?ml$/, '') + '-flow');
 mkdirSync(outDir, { recursive: true });
 
-const { flow, steps, values, errors, pendingRuntime } = compileFlow(flowPath);
+// The book is compiled once at start and *again* on every hot reload (r in the
+// failure menu / at the end): the browser keeps its page, the file is re-read.
+const shotsArg = arg('shots', '');
+const compiled = compileFlow(flowPath);
+let flow = compiled.flow;
+let steps = compiled.steps;
+let values = compiled.values;
+const pendingRuntime = compiled.pendingRuntime;
+const errors = compiled.errors;
 const caseId = flow.case || basename(flowPath);
-const evidencePolicy = arg('shots', flow.evidencePolicy || 'required');
+let evidencePolicy = shotsArg || flow.evidencePolicy || 'required';
 
 console.log('');
 console.log('=== ' + caseId + ' ===');
@@ -72,6 +85,50 @@ const screens = (() => {
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 const ask = (q) => new Promise((res) => rl.question(q, (a) => res(a.trim())));
 let overrideAll = autoYes;
+const reloads = [];
+
+// ── hot reload ──────────────────────────────────────────────────────
+// A step that did not work is usually a wrong binding, not a wrong plan: the
+// fix is an edit to this book (or to ui-rowfields.json) while the browser is
+// still sitting on that screen. Reload re-reads the file *and* the
+// dictionaries, then the run continues on the same page — rows that already
+// did their job are not repeated, the login is not repeated, the screen is not
+// navigated away from.
+//
+// check-flow runs first. A book that does not compile is refused here, with
+// the same row-numbered message the command line gives; a book that compiles
+// but has chain warnings is offered with an explicit enter.
+async function reloadFlow(fromRow = null) {
+  const cf = spawnSync(process.execPath, ['check-flow.mjs', flowPath], { cwd: here, encoding: 'utf8' });
+  const out = String(cf.stdout || '') + String(cf.stderr || '');
+  resetDictionaries();
+  let next;
+  try {
+    next = compileFlow(flowPath);
+  } catch (e) {
+    console.log('  RELOAD 失败: ' + String(e.message).split('\n')[0]);
+    return false;
+  }
+  if (next.errors.length) {
+    console.log('  RELOAD 拒绝 —— 编译不通过（浏览器没动）:');
+    next.errors.forEach((e) => console.log('    ' + e));
+    return false;
+  }
+  if (cf.status !== 0) {
+    const lines = out.split('\n').filter((l) => /^\s+ERROR/.test(l) || /\berrors \d/.test(l));
+    console.log('  check-flow 仍有问题（画面链/原语/锚点；不影响执行）:');
+    lines.slice(0, 8).forEach((l) => console.log('    ' + l.trim()));
+    const go = await ask('  仍然继续？[Enter]=继续 [q]=取消 > ');
+    if (go.toLowerCase().startsWith('q')) return false;
+  }
+  flow = next.flow;
+  steps = next.steps;
+  values = next.values;
+  evidencePolicy = shotsArg || flow.evidencePolicy || 'required';
+  reloads.push({ at: new Date().toISOString(), row: fromRow, steps: steps.length });
+  console.log('  RELOAD ' + steps.length + ' 步（浏览器与画面不动）');
+  return true;
+}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -1026,8 +1083,9 @@ async function onFail(step, err) {
   console.error('  ' + String(err.message).split('\n')[0]);
   if (overrideAll) return 'abort';
   for (;;) {
-    const a = await ask('  [Enter]retry [s]skip [v]manual value [k]take over [q]quit [a]stop all > ');
+    const a = await ask('  [Enter]retry [r]重读YAML再试这一步 [s]skip [v]manual value [k]take over [q]quit [a]stop all > ');
     if (a === '') return 'retry';
+    if (a.toLowerCase() === 'r') return { reload: true };
     if (a === 's') return 'skip';
     if (a === 'q') return 'abort';
     if (a === 'a') { overrideAll = true; return 'abort'; }
@@ -1067,125 +1125,164 @@ if (startUrl || startOverride) {
 const ASSERT_OR_SIDE = new Set(['screenIs', 'fieldIs', 'rowsAtLeast', 'messageIs', 'downloadIs', 'externalIs', 'capture', 'manual', 'waitUntil', 'goto']);
 
 let failed = 0, skipped = 0, done = 0, pending = 0, stopAll = false;
-for (const step of steps) {
-  if (stopAll) break;
-  if (endRow && step.row > endRow) break;
-  if (startRow && step.row < startRow) continue;
-  if (step.popup && (!popupPage || popupPage.isClosed())) await waitForPopup(5000);
-  const pg = activePage(step);
-  const head = 'row ' + String(step.row).padStart(3) + ' ' + String(step.do).padEnd(13) + ' ' + (step.screen || '').slice(0, 22) + ' ';
-  if (demo) {
-    // Presentation mode: pause gate, then the banner naming this hand row,
-    // primitive, screen, target and value before anything is touched.
-    await demoInstall(pg);
-    await demoPauseGate(pg);
-    await demoBanner(pg, step);
-  }
-  process.stdout.write(head);
-  for (;;) {
-    const before = { url: pg.url(), code: codeFromUrl(pg.url()), dialogs: dialogs.length, downloads: downloads.length };
-    try {
-      // Precondition: be on the declared screen before acting.
-      if (!ASSERT_OR_SIDE.has(step.do)) {
-        const pre = await waitForScreen(step, 10000);
-        if (!pre.ok) throw new Error(`wrong screen: want ${pre.want}; at ${pre.urls}`);
-      }
-      if (demo) await demoHighlight(pg, step);
-      const r = await doStep(step, pg);
 
-      // Postcondition: an action may declare the expected screen.
-      if (step.expect?.screen) {
-        const post = await waitForScreen(step.expect.screen, 10000);
-        if (!post.ok) {
-          const newDialogs = dialogs.slice(before.dialogs);
-          const dmsg = newDialogs.length
-            ? '; dialog: ' + newDialogs.map((d) => d.text || '(empty)').join(' | ')
-            : '';
-          throw new Error(`expect screen ${step.expect.screen}: at ${post.urls}${dmsg}`);
+// One pass over the current steps. The loop indexes `steps` instead of taking
+// an iterator, so a hot reload can swap the edited book in and come back to
+// the same hand row without rebuilding the browser.
+async function runPass(fromRow, toRow) {
+  let i = 0;
+  while (i < steps.length) {
+    const step = steps[i];
+    if (stopAll) break;
+    if (toRow && step.row > toRow) break;
+    if (fromRow && step.row < fromRow) { i++; continue; }
+    if (step.popup && (!popupPage || popupPage.isClosed())) await waitForPopup(5000);
+    const pg = activePage(step);
+    const head = 'row ' + String(step.row).padStart(3) + ' ' + String(step.do).padEnd(13) + ' ' + (step.screen || '').slice(0, 22) + ' ';
+    if (demo) {
+      // Presentation mode: pause gate, then the banner naming this hand row,
+      // primitive, screen, target and value before anything is touched.
+      await demoInstall(pg);
+      await demoPauseGate(pg);
+      await demoBanner(pg, step);
+    }
+    process.stdout.write(head);
+    for (;;) {
+      const before = { url: pg.url(), code: codeFromUrl(pg.url()), dialogs: dialogs.length, downloads: downloads.length };
+      try {
+        // Precondition: be on the declared screen before acting.
+        if (!ASSERT_OR_SIDE.has(step.do)) {
+          const pre = await waitForScreen(step, 10000);
+          if (!pre.ok) throw new Error(`wrong screen: want ${pre.want}; at ${pre.urls}`);
         }
-      }
+        if (demo) await demoHighlight(pg, step);
+        const r = await doStep(step, pg);
 
-      // Evidence policy. A screenshot proves the screen; in mode=external
-      // there is no screen, so the evidence is the external record instead.
-      if (evidencePolicy === 'all' && !externalMode) {
-        await capture({ of: 'viewport', step, pg, tag: 'step' }).catch(() => {});
-      } else if (step.evidence && !externalMode && (evidencePolicy === 'required' || evidencePolicy === 'all')) {
-        await capture({ of: 'viewport', step, pg, tag: step.evidence }).catch(() => {});
-      }
+        // Postcondition: an action may declare the expected screen.
+        if (step.expect?.screen) {
+          const post = await waitForScreen(step.expect.screen, 10000);
+          if (!post.ok) {
+            const newDialogs = dialogs.slice(before.dialogs);
+            const dmsg = newDialogs.length
+              ? '; dialog: ' + newDialogs.map((d) => d.text || '(empty)').join(' | ')
+              : '';
+            throw new Error(`expect screen ${step.expect.screen}: at ${post.urls}${dmsg}`);
+          }
+        }
 
-      const after = { url: pg.url(), code: codeFromUrl(pg.url()) };
-      trace.push({
-        row: step.row, do: step.do, screen: step.screen, ok: true,
-        pending: !!r.pendingRef, pendingRef: r.pendingRef || null,
-        before, after, result: r, url: pg.url(),
-        events: { dialogs: dialogs.slice(before.dialogs), downloads: downloads.slice(before.downloads) },
-      });
-      if (r.pendingRef) {
-        pending++;
-        console.log('PENDING [ref:' + r.pendingRef + ']');
-      } else {
-        console.log('OK' + (r.screen ? ' [' + r.screen + ']' : ''));
-        done++;
-      }
-      break;
-    } catch (err) {
-      if (flag('dump')) console.error('\n[error] ' + String(err.message) + '\n[stack] ' + String(err.stack).split('\n').slice(0, 6).join('\n'));
-      const msg = String(err.message).split('\n')[0];
-      await onFailureCapture(step, err);
-      if (flag('dump')) await dumpForm(pg);
-      const action = await onFail(step, err);
-      if (action === 'retry') { process.stdout.write(head); continue; }
-      if (action === 'skip') { skipped++; trace.push({ row: step.row, do: step.do, ok: false, skipped: true, msg, url: pg.url() }); console.log('skip'); break; }
-      if (action === 'keep') {
-        console.log('kept (browser stays open)');
-        keepOpen = true;
-        trace.push({ row: step.row, do: step.do, ok: false, kept: true, msg, url: pg.url() });
+        // Evidence policy. A screenshot proves the screen; in mode=external
+        // there is no screen, so the evidence is the external record instead.
+        if (evidencePolicy === 'all' && !externalMode) {
+          await capture({ of: 'viewport', step, pg, tag: 'step' }).catch(() => {});
+        } else if (step.evidence && !externalMode && (evidencePolicy === 'required' || evidencePolicy === 'all')) {
+          await capture({ of: 'viewport', step, pg, tag: step.evidence }).catch(() => {});
+        }
+
+        const after = { url: pg.url(), code: codeFromUrl(pg.url()) };
+        trace.push({
+          row: step.row, do: step.do, screen: step.screen, ok: true,
+          pending: !!r.pendingRef, pendingRef: r.pendingRef || null,
+          before, after, result: r, url: pg.url(),
+          events: { dialogs: dialogs.slice(before.dialogs), downloads: downloads.slice(before.downloads) },
+        });
+        if (r.pendingRef) {
+          pending++;
+          console.log('PENDING [ref:' + r.pendingRef + ']');
+        } else {
+          console.log('OK' + (r.screen ? ' [' + r.screen + ']' : ''));
+          done++;
+        }
+        break;
+      } catch (err) {
+        if (flag('dump')) console.error('\n[error] ' + String(err.message) + '\n[stack] ' + String(err.stack).split('\n').slice(0, 6).join('\n'));
+        const msg = String(err.message).split('\n')[0];
+        await onFailureCapture(step, err);
+        if (flag('dump')) await dumpForm(pg);
+        const action = await onFail(step, err);
+        if (action === 'retry') { process.stdout.write(head); continue; }
+        if (action && action.reload) {
+          if (!(await reloadFlow(step.row))) { process.stdout.write(head); continue; }
+          // Come back to the same hand row in the *reloaded* step list. If the
+          // row was deleted by the edit, the pass ends where the list ends.
+          const j = steps.findIndex((x) => x.row >= step.row);
+          i = (j < 0 ? steps.length : j) - 1;
+          break;
+        }
+        if (action === 'skip') { skipped++; trace.push({ row: step.row, do: step.do, ok: false, skipped: true, msg, url: pg.url() }); console.log('skip'); break; }
+        if (action === 'keep') {
+          console.log('kept (browser stays open)');
+          keepOpen = true;
+          trace.push({ row: step.row, do: step.do, ok: false, kept: true, msg, url: pg.url() });
+          break;
+        }
+        if (action === 'abort') { failed++; stopAll = true; trace.push({ row: step.row, do: step.do, ok: false, msg, url: pg.url() }); console.log('abort'); break; }
+        if (action && action.manual) {
+          values[action.manual.label] = { value: action.manual.val, source: 'manual', resolved: action.manual.val };
+          process.stdout.write(head);
+          continue;
+        }
+        failed++;
         break;
       }
-      if (action === 'abort') { failed++; stopAll = true; trace.push({ row: step.row, do: step.do, ok: false, msg, url: pg.url() }); console.log('abort'); break; }
-      if (action && action.manual) {
-        values[action.manual.label] = { value: action.manual.val, source: 'manual', resolved: action.manual.val };
-        process.stdout.write(head);
-        continue;
-      }
-      failed++;
-      break;
     }
+    if (keepOpen) break;
+    if (demo) {
+      // Hold the result on screen long enough to read, then clear the marker.
+      await demoWait(pg, demoDelay);
+      await demoClear(pg);
+    } else if (slow) await sleep(slow);
+    i++;
   }
-  if (keepOpen) break;
-  if (demo) {
-    // Hold the result on screen long enough to read, then clear the marker.
-    await demoWait(pg, demoDelay);
-    await demoClear(pg);
-  } else if (slow) await sleep(slow);
 }
+
+await runPass(startRow, endRow);
 
 await Promise.all(downloads.map((d) => d.promise).filter(Boolean));
-const result = {
-  case: caseId, done, failed, skipped, pending, at: new Date().toISOString(),
-  live, evidencePolicy, missing: [...missing], dialogs,
-  downloads: downloads.map(({ promise, ...d }) => d),
-  evidence, trace,
-};
-writeFileSync(join(outDir, 'run.json'), JSON.stringify(result, null, 1), 'utf-8');
-const rows = trace.map((t) => '<tr><td>' + t.row + '</td><td>' + t.do + '</td><td>' + (t.screen || '') + '</td><td>' + (t.pending ? 'PENDING' : (t.ok ? 'OK' : (t.kept ? 'KEEP' : 'NG'))) + '</td><td>' + (t.msg || '') + '</td></tr>').join('');
-writeFileSync(join(outDir, 'run.html'), '<meta charset="utf-8"><body style="font:13px system-ui;padding:20px"><h1>' + caseId + '</h1><p>done ' + done + ' / pending ' + pending + ' / failed ' + failed + ' / skipped ' + skipped + '</p><p>missing vars: ' + ([...missing].join(', ') || 'none') + '</p><p>evidence: ' + evidence.length + '</p><table border=1 cellpadding=5 style="border-collapse:collapse"><tr><th>row</th><th>do</th><th>screen</th><th>result</th><th>msg</th></tr>' + rows + '</table></body>', 'utf-8');
 
-console.log('');
-console.log('-- result --');
-console.log('done ' + done + '  pending ' + pending + '  failed ' + failed + '  skipped ' + skipped + '  evidence ' + evidence.length);
-if (missing.size) console.log('missing vars: ' + [...missing].join(', '));
-console.log('log: ' + outDir);
+function writeReport() {
+  const result = {
+    case: caseId, done, failed, skipped, pending, at: new Date().toISOString(),
+    live, evidencePolicy, missing: [...missing], dialogs,
+    downloads: downloads.map(({ promise, ...d }) => d),
+    evidence, trace, reloads,
+  };
+  writeFileSync(join(outDir, 'run.json'), JSON.stringify(result, null, 1), 'utf-8');
+  const rows = trace.map((t) => '<tr><td>' + t.row + '</td><td>' + t.do + '</td><td>' + (t.screen || '') + '</td><td>' + (t.pending ? 'PENDING' : (t.ok ? 'OK' : (t.kept ? 'KEEP' : 'NG'))) + '</td><td>' + (t.msg || '') + '</td></tr>').join('');
+  writeFileSync(join(outDir, 'run.html'), '<meta charset="utf-8"><body style="font:13px system-ui;padding:20px"><h1>' + caseId + '</h1><p>done ' + done + ' / pending ' + pending + ' / failed ' + failed + ' / skipped ' + skipped + '</p><p>missing vars: ' + ([...missing].join(', ') || 'none') + '</p><p>evidence: ' + evidence.length + '</p><table border=1 cellpadding=5 style="border-collapse:collapse"><tr><th>row</th><th>do</th><th>screen</th><th>result</th><th>msg</th></tr>' + rows + '</table></body>', 'utf-8');
 
-if (keepOpen) {
   console.log('');
-  console.log('browser stays open. Operate it, then press Enter to close.');
-  await ask('');
+  console.log('-- result --');
+  console.log('done ' + done + '  pending ' + pending + '  failed ' + failed + '  skipped ' + skipped + '  evidence ' + evidence.length);
+  if (reloads.length) console.log('reloads ' + reloads.length + '（本流程在中途被重读过）');
+  if (missing.size) console.log('missing vars: ' + [...missing].join(', '));
+  console.log('log: ' + outDir);
 }
-else if (headed && !autoYes) {
-  console.log('');
-  console.log('browser stays open. Enter to close.');
-  await ask('');
+writeReport();
+
+// The browser is still sitting on the screen where the run stopped, which is
+// exactly the state a repair needs. The prompt is therefore also the debugger:
+// fix the book (Studio, editor, add-control), then type r here — the file is
+// re-read and the run continues in this window, without logging in again,
+// without navigating away, and without repeating the rows that already worked.
+if (keepOpen || (headed && !autoYes)) {
+  for (;;) {
+    console.log('');
+    console.log('[Enter] 关闭浏览器   [r] 从「最后执行的行之后」继续   [r <行号>] 从该行继续（重新做这一行）');
+    const a = await ask('  > ');
+    if (a === '') break;
+    const m = /^r\s*(\d+)?$/i.exec(a);
+    if (!m) { console.log('  输入 r / r 46，或者直接回车关闭'); continue; }
+    let from = Number(m[1] || 0);
+    if (!from) from = (trace.length ? Math.max(...trace.map((t) => t.row)) : 0) + 1;
+    if (!(await reloadFlow(from))) continue;
+    stopAll = false;
+    keepOpen = false;
+    console.log('');
+    console.log('=== 续跑 from row ' + from + '（浏览器不动） ===');
+    await runPass(from, 0);
+    await Promise.all(downloads.map((d) => d.promise).filter(Boolean));
+    writeReport();
+  }
 }
 rl.close();
 await browser.close();

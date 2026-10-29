@@ -24,7 +24,7 @@ Static workbench for the `AZ` / `AY` integration-test procedures, plus a local C
 | [`docs/RUNTIME.md`](docs/RUNTIME.md) | What the runner actually loads and executes, file by file |
 | [`docs/rpa/17-USAGE.md`](docs/rpa/17-USAGE.md) | **RPA 使用说明（唯一入口）：一条龙工具链、Studio（拖动排序 / 直接改 YAML）、六个校验门** |
 | [`docs/rpa/22-STUDIO-FIELDS.md`](docs/rpa/22-STUDIO-FIELDS.md) | **Studio 与真机的关系、每个字段/原语/证据、以及 `env` / `values` / `case` 变量怎么组合** |
-| [`docs/rpa/23-REAL-MACHINE-REPAIR.md`](docs/rpa/23-REAL-MACHINE-REPAIR.md) | **真机上某一步找不到控件怎么办：故障 → 改哪个文件 → 不必用 Python / AI** |
+| [`docs/rpa/23-REAL-MACHINE-REPAIR.md`](docs/rpa/23-REAL-MACHINE-REPAIR.md) | **真机上某一步找不到控件怎么办：故障 → 改哪个文件 → 改完就地续跑（`r`），不必用 Python / AI** |
 | [`docs/WORKLOG-2026-10-24.md`](docs/WORKLOG-2026-10-24.md) | Day log: discussions, conclusions, mistakes, and reasoning from the block-system rework |
 | [`automation/blocks/SEMANTIC-NORM.md`](automation/blocks/SEMANTIC-NORM.md) | Semantic normalization rules, block taxonomy, coverage guarantees |
 | [`automation/STATUS3.md`](automation/STATUS3.md) | Three-state ledger (planned/coded/verified) in human terms |
