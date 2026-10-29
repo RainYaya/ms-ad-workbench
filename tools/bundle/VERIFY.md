@@ -3,10 +3,11 @@
 这个包是把 `feat/rpa-flow` 上当前的四层真值 + 内核 + Studio 打成一个可离线运行的目录。
 **包里的数字都是 2026-10-29 实测的**；下面每条验收都写了"应该看到什么"。
 对不上就是有问题，别改断言，把输出发回来。
-（本手册对应 `pack-2026-10-29` 这个快照。仓库里的 `flows/books/` 之后又加入了全量草稿本，
-重新打出来的包里条数会更多——以本文档对应 zip 里 `PACKAGE-MANIFEST.json` 为准。）
+（本手册对应 `pack-2026-10-29-hotreload` 这个快照：比上一版多了运行期再読込（`r`）
+和 Studio「新步骤插在选中行下方」。仓库里的 `flows/books/` 之后再变，包里的条数会更多——
+以 zip 里 `PACKAGE-MANIFEST.json` 为准。）
 
-所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-29-books`）。
+所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-29-hotreload`）。
 如果 `node` 不在 PATH，把便携版 `node.exe` 放到包根目录，cmd 会优先找当前目录。
 
 ---
@@ -160,6 +161,47 @@ logs\AY-120-08-001-flow\
 
 也可以双击 `mock-demo.cmd`（会自动开 mock 窗口再跑）。
 
+### 2.4 再読込 `r`（2 分钟，本版新增）
+
+目的：验证「改了一行不用重跑前面」这条路径真的在包里。
+
+前提：**不要加 `--yes`**（加了就不会停在结尾提示符），有头跑完会停在：
+
+```
+[Enter] 关闭浏览器   [r] 从「最后执行的行之后」继续   [r <行号>] 从该行继续（重新做这一行）
+  >
+```
+
+```bat
+:: 窗口 A
+node automation\node-runner\mock-server.mjs 10117
+
+:: 窗口 B（有头，别加 --yes）
+node automation\node-runner\run-flow.mjs flows\books\AY-120-08-001.yaml --base http://127.0.0.1:10117/AMB/dummy.html
+```
+
+在提示符依次做三件事：
+
+1. 输入 `r 21` 回车 → 期望
+   ```
+     RELOAD 13 步（浏览器与画面不动）
+   === 续跑 from row 21（浏览器不动） ===
+   row  21 fillAll ... OK
+   ```
+   然后 21–26 行全部再走一遍（前面 14–20 不再出现），最后又停回同一个提示符。
+2. 故意写坏一行再试拒绝：用记事本把 `flows\books\AY-120-08-001.yaml` 里
+   `row: 21` 那一步的 `label: 異例取扱理由` 改成 `label: 存在しない欄`，保存 →
+   输入 `r 21` → 期望
+   ```
+     RELOAD 拒绝 —— 编译不通过（浏览器没动）:
+       row ...: label not in ...
+   ```
+   浏览器**一步没动**，提示符重新出现。
+3. 把那个标签改回来 → `r 21` → 正常 `RELOAD`；最后按 **Enter** 关浏览器。
+
+判读：`RELOAD` 出现、前面的行没有重放、坏文件被拒绝且浏览器不动 = 通过。
+真机上这一步就是「第 46 行坏了 → 改文件 → 按 `r`」，见 `docs\rpa\23-REAL-MACHINE-REPAIR.md` §5。
+
 ---
 
 ## 3. 可选：从零重建四层真值（10 分钟）
@@ -241,8 +283,9 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 1. `verify-check.cmd` 的完整输出（或截图）。
 2. mock 跑完的 `logs\AY-120-08-001-flow\run.json`。
 3. Studio 左侧条数、绑定队列右下角数字的截图（1373 / 211）。
-4. `capture-20261029.zip`（真机抓取）。
-5. 三个问题的回答：
+4. 2.4 里 `RELOAD …` 和 `RELOAD 拒绝 …` 那几行（截图即可）。
+5. `capture-20261029.zip`（真机抓取）。
+6. 三个问题的回答：
    - `node -v` 和 Edge 版本？
    - 2.2 里 `#regist` 高亮到了吗？第 4 条点规则时提示是不是「未确认（无 selector）」？
    - 真机抓取的画面标题列表（`index.json` 里的 `title`）里，有没有和手顺叫法不一致的？
@@ -265,6 +308,15 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 
 **Studio 画面显示"该画面未收录 HTML"**
 说明这个步骤的画面是批处理/弹窗外/未映射，正常。Studio 里 `batch` 标签就是这类本。
+
+**按了 `r` 却看到 `RELOAD 拒绝`**
+这是对的：文件还编译不过（后面几行写着 `row N: …`）。浏览器没动，改完再按一次 `r`。
+一直拒绝就看那几行错误去改 YAML / `ui-rowfields.json`，别绕过。
+
+**输入 `r` 没反应**
+你大概加了 `--yes`（无人值守，非零失败项也不会停下来问），或者用 `--headless` 正常跑完：
+这两种都直接退出。去掉 `--yes`、用有头跑才会停在结尾提示符。
+（`--headless` 时只有失败菜单里按过 `k` 才会停到结尾提示符。）
 
 **中文乱码**
 包里都是 UTF-8；Windows 控制台如果是 936 代码页，`type` 文档会乱码，
