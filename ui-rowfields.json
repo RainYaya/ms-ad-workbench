@@ -93,6 +93,20 @@
   ],
   "AMB/AMA07": [
    {
+    "label": "証券番号",
+    "selector": "#policy_number",
+    "kind": "input",
+    "status": "source",
+    "note": "reference AMA07.html: <input id=policy_number name=policy_number>。この欄は隣の検索区分 (#select_search_item_key) が「照会ＩＤ」のときは照会ＩＤ入力欄になる。辞書 (ui-controls.json) はこの動的なラベル切替を静的には解けないのでラベルを付けられていない。実機で検索区分の初期値が証券番号であることを確認すること"
+   },
+   {
+    "label": "明細番号",
+    "selector": "#sub_policy_number",
+    "kind": "input",
+    "status": "source",
+    "note": "reference AMA07.html: <input id=sub_policy_number>（ANA05/ANA10 と同じ id）"
+   },
+   {
     "label": "結果行のNo.",
     "selector": "#gyoumu_list tr a[name=\"link\"]",
     "kind": "link",

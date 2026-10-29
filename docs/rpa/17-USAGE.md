@@ -243,6 +243,18 @@ grep -h "【未自動化】" flows/books/*.yaml | sort | uniq -c | sort -rn   # 
 ```
 
 草稿的意思是：**行覆盖是完整的，值是真的，只有标记【未自動化】的那几行要人补**。
+生成器判断"这个 label 认不认得出"用的是**运行期同一张表**：`ui-rowfields.json` 优先，
+其次 `bindings.yaml` 的 auto/confirmed、`ui-controls.json`。所以某个控件字段缺了，
+正确做法是把它补进 `ui-rowfields.json`（`add-control` 或手写），不是改生成器——
+
+```json
+{ "label": "証券番号", "selector": "#policy_number", "kind": "input", "status": "source",
+  "note": "reference AMA07.html；検索区分が照会ＩＤのときは同じ欄が照会ＩＤ入力欄になる" }
+```
+
+`status` 的含义：`confirmed` = 实机 capture 里验过；`source` = 从客户源码（`reference/webapps/`）
+读出来的 id/name，还没在实机核对；`mock-only` = 只在 mock 里成立。真机第一次跑这几步时要看住它。
+
 生成器自己在下面四种情况下会写 manual 而不是瞎猜：
 
 1. 结果表 No. リンク所在画面没在 `ui-rowfields.json` 登记 `結果行のNo.`（先用 `add-control` 补）；

@@ -181,6 +181,11 @@ def build_book(cid: str, case: dict, rules: dict, screens: dict, by_norm: dict,
 
     def label_status(sk: str, lab: str) -> str:
         key = norm(lab)
+        # The overlay is the first thing flow-loader.lookup() consults, so a label
+        # registered there resolves at run time even when the mined repository
+        # could not name it (a field whose caption changes with another control).
+        if any(norm(rf.get("label") or "") == key for rf in overlay.get(sk) or []):
+            return "ok"
         if key in ctl_labels.get(sk, set()):
             return "ok"
         r = field_rules.get((sk, key))
@@ -575,9 +580,11 @@ def main() -> int:
 
     # A book that became blocked must not keep a stale flow file: the file is
     # what the Studio and the runner see. Only generator-owned files are
-    # removed, and only with --force (by default an existing book is
-    # human-owned and is never touched).
-    if not args.dry_run and args.force and not args.only and not args.limit:
+    # removed, and only with --force on a full run (a filtered run under
+    # --cases/--only knows nothing about the books it did not process, so it
+    # must never delete anything).
+    if not args.dry_run and args.force and not args.only and not args.limit \
+            and not args.cases:
         for f in OUT.glob("*.yaml"):
             if f.stem in kept:
                 continue
