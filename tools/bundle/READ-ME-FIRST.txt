@@ -1,4 +1,4 @@
-ms-ad RPA 包（2026-10-28）
+ms-ad RPA 包（2026-10-29）
 ==========================
 
 先看 VERIFY.md。那一份写清楚了：装什么、跑什么、看到什么才算通过、
@@ -18,10 +18,10 @@ ms-ad RPA 包（2026-10-28）
 真机某步找不到控件怎么修（不需要 Python）：docs\rpa\23-REAL-MACHINE-REPAIR.md
 
   1) 抓页面（手动走完整本，走完 Ctrl+C）
-     node automation\node-runner\capture.mjs --url "<真机URL>" --out capture-20261028 --edge
+     node automation\node-runner\capture.mjs --url "<真机URL>" --out capture-20261029 --edge
 
   2) 打材料包（全是 .txt，网页 AI 的上传框都收）
-     node automation\node-runner\make-brief.mjs --case AZ-110-01-009 --capture capture-20261028
+     node automation\node-runner\make-brief.mjs --case AZ-110-01-009 --capture capture-20261029
 
   3) 打开 Copilot，上传 brief\AZ-110-01-009\ 里的 00/01/02/03*/04，
      把 05-PROMPT.txt 全文粘进对话框。
@@ -31,7 +31,7 @@ ms-ad RPA 包（2026-10-28）
 
   5) 校验（两条都要 0 error）
      node automation\node-runner\check-flow.mjs flows\tests\AZ-110-01-009.ai.yaml
-     node automation\node-runner\check-patch.mjs --flow flows\tests\AZ-110-01-009.ai.yaml --capture capture-20261028
+     node automation\node-runner\check-patch.mjs --flow flows\tests\AZ-110-01-009.ai.yaml --capture capture-20261029
 
      有报错：把错误原文 + 出错那一小块真实 HTML + 别紙的值贴回同一个对话，
      只让它改出错的行，不要让它重写整本。

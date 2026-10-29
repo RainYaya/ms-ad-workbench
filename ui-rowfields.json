@@ -91,6 +91,16 @@
     "note": "手順 r45 の『照会内容』。画面のラベルは『編集照会内容』で、親画面の list[n].inquiry_contents とは別物"
    }
   ],
+  "AMB/AMA07": [
+   {
+    "label": "結果行のNo.",
+    "selector": "#gyoumu_list tr a[name=\"link\"]",
+    "kind": "link",
+    "how": "chooseRow",
+    "status": "source",
+    "note": "reference/webapps/AMB/webapp/WEB-INF/views/AMA07.html の結果表 <tbody id=gyoumu_list> 1セル目 <a name=\"link\">[row.rownumber]</a>（ファイル内で name=link は1か所）。実機 capture は未確認なので status=source。chooseRow は恰好1件でなければエラー（検索条件で1件に絞ること）"
+   }
+  ],
   "ANB00/ANA02": [
    {
     "label": "申請・確認基準項目",

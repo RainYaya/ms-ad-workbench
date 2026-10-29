@@ -229,6 +229,28 @@ python tools/report.py --check --write docs/rpa/14-REPORT.md
 python tools/build_pages.py --out .pages-out
 ```
 
+`generate_books.py` 的两个开关（只影响"生成草稿"，不影响任何已存在的本）：
+
+| 开关 | 作用 |
+|---|---|
+| `--cases <文件>` | 只生成清单里的本（每行一个本番号，`#` 开头的行跳过）。状态文件会合并回全量，不会缩成清单的条数 |
+| `--partial` | 某一行实在表达不了时**不再中断整本**，而是把那一行留成 `do: manual` + `note: 【未自動化】<原因>`，其余照常生成；文件头写 `# DRAFT:` 和未自動化行数 |
+
+```bash
+python tools/generate_books.py --partial --cases automation/tasks/assigned_20261023.txt
+grep -l "^# DRAFT:" flows/books/*.yaml | wc -l      # 有多少本草稿
+grep -h "【未自動化】" flows/books/*.yaml | sort | uniq -c | sort -rn   # 卡在哪、为什么
+```
+
+草稿的意思是：**行覆盖是完整的，值是真的，只有标记【未自動化】的那几行要人补**。
+生成器自己在下面四种情况下会写 manual 而不是瞎猜：
+
+1. 结果表 No. リンク所在画面没在 `ui-rowfields.json` 登记 `結果行のNo.`（先用 `add-control` 补）；
+2. 目标控件是行内控件（`ui-rowfields.json` 里 `rowByText` 一类），而手顺/別紙没写"哪一行"的值；
+3. 绑定还是 `needs-human` / `explicit`，或別紙那一块没解析出来；
+4. 手顺的 `「....」（保険種類欄の横）` 这类同标签多控件：会拆成 `{label, qualifier}`，交给
+   `ui-rowfields.json` 的 `qualifiedButtons` 认；认不出来才 manual。
+
 ## 4. 外部 AI 生成流程（完整规程见 18-EXTERNAL-AI.md）
 
 ```bash

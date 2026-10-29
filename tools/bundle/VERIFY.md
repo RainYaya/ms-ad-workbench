@@ -1,10 +1,12 @@
 # 验收手册（公司电脑）
 
 这个包是把 `feat/rpa-flow` 上当前的四层真值 + 内核 + Studio 打成一个可离线运行的目录。
-**包里的数字都是 2026-10-27 实测的**；下面每条验收都写了"应该看到什么"。
+**包里的数字都是 2026-10-29 实测的**；下面每条验收都写了"应该看到什么"。
 对不上就是有问题，别改断言，把输出发回来。
+（本手册对应 `pack-2026-10-29` 这个快照。仓库里的 `flows/books/` 之后又加入了全量草稿本，
+重新打出来的包里条数会更多——以本文档对应 zip 里 `PACKAGE-MANIFEST.json` 为准。）
 
-所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-27`）。
+所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-29`）。
 如果 `node` 不在 PATH，把便携版 `node.exe` 放到包根目录，cmd 会优先找当前目录。
 
 ---
@@ -42,7 +44,7 @@ L2（真机）目前仍是 0，靠第 4 节去补。
 ## 1. 解包 & 环境
 
 ```bat
-cd ms-ad-rpa-pack-2026-10-28
+cd ms-ad-rpa-pack-2026-10-29
 node -v
 ```
 
@@ -197,7 +199,7 @@ python tools\report.py --check --write docs\rpa\14-REPORT.md
 这一步不需要 Python，也不需要先跑第 3 节。**只抓，不改任何东西。**
 
 ```bat
-node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20261028 --edge
+node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20261029 --edge
 ```
 
 会发生什么：
@@ -206,7 +208,7 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 2. **你手动登录**，然后按手顺走一遍：每个画面停 1.5 秒再点下一步。
 3. 每次页面跳转 / 弹窗 / 输入停下来，自动保存：
    ```
-   capture-20261028\
+   capture-20261029\
      index.json          每页的 url / title / charset / 控件数 / 弹窗标记
      pages\001_<画面名>.html    完整 DOM
      pages\001_<画面名>.json    id / name / label→id / 按钮 / 表格结构 / body 文本
@@ -222,7 +224,7 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 - 别在抓取期间改 SUT 的数据（不要真的提交）；只走到能看见目标控件为止。
 - 如果 URL 需要 VPN / 证书例外，先手动确认能打开。
 
-**回传**：把整个 `capture-20261028` 文件夹压成 zip 发回来。里面是公司画面，
+**回传**：把整个 `capture-20261029` 文件夹压成 zip 发回来。里面是公司画面，
 只在我俩之间传；我拿它做三件事：
 
 1. 对齐 `ui-controls.json` 的 selector（真机 id/name 与 mock 不一致的地方）。
@@ -238,7 +240,7 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 1. `verify-check.cmd` 的完整输出（或截图）。
 2. mock 跑完的 `logs\AY-120-08-001-flow\run.json`。
 3. Studio 左侧条数、绑定队列右下角数字的截图（130 / 218）。
-4. `capture-20261028.zip`（真机抓取）。
+4. `capture-20261029.zip`（真机抓取）。
 5. 三个问题的回答：
    - `node -v` 和 Edge 版本？
    - 2.2 里 `#regist` 高亮到了吗？第 4 条点规则时提示是不是「未确认（无 selector）」？
