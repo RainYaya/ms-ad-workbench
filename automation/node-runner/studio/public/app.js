@@ -273,12 +273,28 @@ function defaultStep(doName, on) {
   return s;
 }
 
+// A new step is inserted *below the selected step*, not appended to the end of
+// the book: a missing action almost always belongs where you are looking, and
+// appending meant one drag per new step.
+//
+// Which hand row it claims: normally the next row after the selected one
+// (filling the gap, since generated books have one step per hand row). If the
+// following step already owns that number, the new step is a second action on
+// the selected row and keeps its number — otherwise it would steal the next
+// hand row's identity and check-flow would report a screen mismatch.
 function addStep(doName) {
-  const on = S.sel >= 0 ? S.model.steps[S.sel].on : S.model.start?.screen;
-  const s = defaultStep(doName, on);
-  S.model.steps = S.model.steps || [];
-  S.model.steps.push(s);
-  S.sel = S.model.steps.length - 1;
+  const steps = S.model.steps = S.model.steps || [];
+  const sel = S.sel >= 0 && steps[S.sel] ? S.sel : -1;
+  const ref = sel >= 0 ? steps[sel] : steps[steps.length - 1];
+  const s = defaultStep(doName, ref ? ref.on : S.model.start?.screen);
+  if (ref) {
+    const row = Number(ref.row);
+    const next = steps[sel + 1];
+    if (Number.isFinite(row)) s.row = next && Number(next.row) === row + 1 ? row : row + 1;
+  }
+  const at = sel >= 0 ? sel + 1 : steps.length;
+  steps.splice(at, 0, s);
+  S.sel = at;
   markDirty();
   renderSteps();
   renderProps();
@@ -289,7 +305,7 @@ function renderPalette() {
   $('#palette').innerHTML = PRIMS.map((g) => `
     <div class="pal-group">
       <span class="pal-label">${g.group}</span>
-      ${g.items.map(([k, label]) => `<button class="pal ${g.cls}" data-do="${k}">${esc(label)}</button>`).join('')}
+      ${g.items.map(([k, label]) => `<button class="pal ${g.cls}" data-do="${k}" title="插在当前选中的步骤下方">${esc(label)}</button>`).join('')}
     </div>`).join('');
   $$('#palette .pal').forEach((b) => b.onclick = () => addStep(b.dataset.do));
 }
