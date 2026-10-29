@@ -6,7 +6,7 @@
 （本手册对应 `pack-2026-10-29` 这个快照。仓库里的 `flows/books/` 之后又加入了全量草稿本，
 重新打出来的包里条数会更多——以本文档对应 zip 里 `PACKAGE-MANIFEST.json` 为准。）
 
-所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-29`）。
+所有命令都在**包根目录**执行（`ms-ad-rpa-pack-2026-10-29-books`）。
 如果 `node` 不在 PATH，把便携版 `node.exe` 放到包根目录，cmd 会优先找当前目录。
 
 ---
@@ -20,7 +20,7 @@ automation/node-runner/   执行器：flow-loader / check-flow / check-patch / r
                           capture / make-brief / make-pack / add-control / dom-check / studio
 automation/node-runner/mock-src/   65 个 mock 画面（Studio 预览和 mock 跑都用它）
 automation/node-runner/node_modules/   playwright-core + js-yaml（不用 npm install）
-flows/                    手写本 + flows/books/ 生成本 + tests/ + env/ + overrides/ + patches/
+flows/                    手写本 8 + flows/books/ 1365 本（1232 草稿）+ tests/ + env/ + overrides/ + patches/
 ui-controls.json          54 画面 / 1,998 控件（生成物）
 ui-screens.json           手顺画面名 → 画面码 + 真机路由
 ui-aliases.json           别紙措辞 → 画面措辞（显式同义词）
@@ -44,7 +44,7 @@ L2（真机）目前仍是 0，靠第 4 节去补。
 ## 1. 解包 & 环境
 
 ```bat
-cd ms-ad-rpa-pack-2026-10-29
+cd ms-ad-rpa-pack-2026-10-29-books
 node -v
 ```
 
@@ -99,7 +99,8 @@ node automation\node-runner\studio\server.mjs 10200
 
 浏览器打开 <http://127.0.0.1:10200>。要确认：
 
-1. 左侧列表 **141 条**；`books/` 开头的带「本」标签（133 本）。
+1. 左侧列表 **1373 条**；`books/` 开头的带「本」标签（**1365 本**，其中 1232 本是草稿：
+   文件头有 `# DRAFT:`，标记【未自動化】的行要人补）。
 2. 点 `AY-110-01-001` → **28 步**。先点右上角「画面」按钮打开预览（默认是关的）。
    点 `row 17` → 预览切到「取消計上申請登録画面」。
    把鼠标移到「登録」按钮：按钮出现绿框，底部一行显示 `登録  #regist`。
@@ -112,7 +113,7 @@ node automation\node-runner\studio\server.mjs 10200
 6. 顶部「YAML」按钮 → 中间变成原文（245 行左右），**从第一行开始**显示，右侧属性面板变灰。
    在任意一行末尾加个空格 → 顶部显示「未写入」；按 Ctrl+S → 底栏写「已写入」并给出备份路径。
    再在 YAML 里故意删掉一行缩进 → Ctrl+S → 底栏红字给出**行号**并且**没有写盘**。
-   点 × 关闭 YAML 视图，步骤列表回来。全程左侧列表 130 条不变。
+   点 × 关闭 YAML 视图，步骤列表回来。全程左侧列表 1373 条不变。
 7. 拖动：把第 2 步拖到第 5 步的位置 → 顺序变化、「未保存」亮起。**不要保存**，
    按 F5 刷新确认回到磁盘顺序。
 
@@ -179,11 +180,11 @@ python tools\report.py --check --write docs\rpa\14-REPORT.md
 |---|---|
 | build_controls | `54 screens / 1998 controls`（写 `ui-controls.json`） |
 | build_bindings | `519 rules`：auto 265 / needs-human 211 / blocked 36（其中 7 条已在 Studio 确认，重建会保留） |
-| generate_books | `books 1386 written 139`；hand-written 8；blocked 1247 |
-| report --check | `L0 141/141`；`L1` = 你实际跑过的本数（全新包是 0，跑过 2.3 就是 1）；`L2 0` |
+| generate_books | `books 1386 written 1371 (new 0)`；kept 1363 / blocked 15 / hand-written 8 |
+| report --check | `L0 1321 / 1373`（52 本有 error，全是画面链冲突/批处理首行，见 `14-REPORT.md`）；`L1` = 你实际跑过的本数（全新包是 0，跑过 2.3 就是 1）；`L2 0` |
 
-`report.py --check` 会对 130 个 flow 各跑一次 check-flow，约 2 分钟。
-不带 `--check` 则没有 L0 结果（会显示 `0 / 130`），那不代表失败，只是没检查。
+`report.py --check` 会对 1373 个 flow 各跑一次 check-flow，约 8-12 分钟。
+不带 `--check` 则没有 L0 结果（会显示 `0 / 1373`），那不代表失败，只是没检查。
 如果 `node` 不在 PATH，把 `node.exe` 放包根目录也行，`report.py` 会优先找它。
 
 注意：这一步会覆盖 `ui-controls.json`、`flows/bindings.yaml`、
@@ -239,7 +240,7 @@ node automation\node-runner\capture.mjs --url <真机入口URL> --out capture-20
 
 1. `verify-check.cmd` 的完整输出（或截图）。
 2. mock 跑完的 `logs\AY-120-08-001-flow\run.json`。
-3. Studio 左侧条数、绑定队列右下角数字的截图（130 / 218）。
+3. Studio 左侧条数、绑定队列右下角数字的截图（1373 / 211）。
 4. `capture-20261029.zip`（真机抓取）。
 5. 三个问题的回答：
    - `node -v` 和 Edge 版本？
